@@ -917,6 +917,14 @@
             "coding": {
               "language": "python",
               "code": "evenements = [\"échec\", \"succès\", \"échec\"]\ncompteur = 0\nfor evenement in evenements:\n    if evenement == \"échec\":\n        compteur += 1\nprint(compteur)"
+            },
+            "catalogue_ref": {
+              "course_id": "python-bases",
+              "lesson_ids": [
+                "py-m2-01",
+                "py-m2-06",
+                "py-m4-01"
+              ]
             }
           },
           {
@@ -1718,7 +1726,18 @@
       "cyber-projet-checkpoint",
       "cyber-suite-checkpoint"
     ],
-    "depth_fr": "Parcours d’initiation complet : premiers repères, exercices et projet court. Il ne prépare pas à lui seul à exercer le métier."
+    "depth_fr": "Parcours d’initiation complet : premiers repères, exercices et projet court. Il ne prépare pas à lui seul à exercer le métier.",
+    "catalogue_refs": [
+      {
+        "course_id": "python-bases",
+        "module_ids": [
+          "m1",
+          "m2",
+          "m3",
+          "m4"
+        ]
+      }
+    ]
   },
   {
     "id": "developpement-web",
@@ -3419,7 +3438,18 @@
       "web-projet-checkpoint",
       "web-suite-checkpoint"
     ],
-    "depth_fr": "Parcours d’initiation complet : premiers repères, exercices et projet court. Il ne prépare pas à lui seul à exercer le métier."
+    "depth_fr": "Parcours d’initiation complet : premiers repères, exercices et projet court. Il ne prépare pas à lui seul à exercer le métier.",
+    "catalogue_refs": [
+      {
+        "course_id": "python-bases",
+        "module_ids": [
+          "m1",
+          "m2",
+          "m3",
+          "m4"
+        ]
+      }
+    ]
   },
   {
     "id": "donnees-ia",
@@ -4332,6 +4362,14 @@
             "coding": {
               "language": "python",
               "code": "prets = [4, 6, 5]\nif len(prets) > 0:\n    moyenne = sum(prets) / len(prets)\n    print(moyenne)"
+            },
+            "catalogue_ref": {
+              "course_id": "python-bases",
+              "lesson_ids": [
+                "py-m2-01",
+                "py-m2-06",
+                "py-m4-01"
+              ]
             }
           },
           {
@@ -5094,7 +5132,18 @@
       "data-projet-checkpoint",
       "data-suite-checkpoint"
     ],
-    "depth_fr": "Parcours d’initiation complet : premiers repères, exercices et projet court. Il ne prépare pas à lui seul à exercer le métier."
+    "depth_fr": "Parcours d’initiation complet : premiers repères, exercices et projet court. Il ne prépare pas à lui seul à exercer le métier.",
+    "catalogue_refs": [
+      {
+        "course_id": "python-bases",
+        "module_ids": [
+          "m1",
+          "m2",
+          "m3",
+          "m4"
+        ]
+      }
+    ]
   },
   {
     "id": "sante-sciences",

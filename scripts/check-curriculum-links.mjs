@@ -1,0 +1,6 @@
+import fs from 'node:fs';
+const catalogue=JSON.parse(fs.readFileSync('data/curriculum/catalogue.json')),pack=JSON.parse(fs.readFileSync('dist/data/curriculum/python-bases.json')),lessons=new Set(pack.lessons.map(l=>l.id)),courses=new Map(catalogue.courses.map(c=>[c.id,c]));
+for(const c of catalogue.courses){for(const m of c.modules)for(const id of m.lesson_ids){if(!lessons.has(id)||!fs.existsSync(`content/fr/${c.id}/${m.id}/${id}.md`))throw Error('Broken lesson reference '+id)}}
+for(const path of JSON.parse(fs.readFileSync('data/academy_paths.json'))){for(const ref of [...(path.catalogue_refs||[]),...path.stages.flatMap(s=>s.steps.map(s=>s.catalogue_ref).filter(Boolean))]){const c=courses.get(ref.course_id);if(!c)throw Error('Unknown course '+ref.course_id);for(const id of ref.lesson_ids||[])if(!lessons.has(id))throw Error('Broken career lesson '+id);for(const id of ref.module_ids||[])if(!c.modules.some(m=>m.id===id))throw Error('Broken career module '+id)}}
+for(const file of ['index.json','python-bases.json','search.json'])if(!fs.existsSync('dist/data/curriculum/'+file))throw Error('Missing offline file '+file);
+console.log(JSON.stringify({catalogueLinks:'passed',careerReferences:'passed',offlineAssets:'passed'}));

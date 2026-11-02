@@ -1,5 +1,7 @@
 # Contenus et validations à poursuivre
 
+Priorité v5 : faire relire et essayer les 22 leçons Python M1–M4 ; corriger à partir des essais, puis développer M5–M10, HTML, CSS et JavaScript. Les autres langages restent en préparation. Migrer ensuite le pilote de mathématiques vers la même profondeur et le même catalogue. Ne pas présenter les anciennes unités courtes comme déjà conformes à cette nouvelle barre.
+
 - Faire relire les trois initiations originales et les douze découvertes par des enseignants / professionnels togolais ; tous restent `brouillon`, `reviewer:null`. Recueillir les erreurs des premiers élèves et prioriser les corrections.
 - Valider matière par classe, série, unités, coefficients et calendriers dans les décisions officielles. Les dates communautaires ne doivent jamais activer un compte à rebours officiel. Le pilote scolaire est une unité de mathématiques seconde, pas un programme national complet.
 - Vérifier les établissements, noms actuels, admissions et certifications des 43 métiers. Les 13 secteurs sont documentés sans classement de demande, salaire ou garantie d’emploi.

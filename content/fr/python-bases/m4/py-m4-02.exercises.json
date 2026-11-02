@@ -1,0 +1,199 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Compter avec while",
+    "instruction_fr": "Lis une limite positive ou nulle et affiche les entiers de 1 à cette limite incluse.",
+    "starter_code": "limite = int(input())\ncompteur = 1\nwhile compteur < limite:\n    print(compteur)\n    compteur = compteur + 1",
+    "solution": "limite = int(input())\ncompteur = 1\nwhile compteur <= limite:\n    print(compteur)\n    compteur = compteur + 1",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "1\n2\n3\n"
+      },
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "1\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": ""
+      },
+      {
+        "inputs": [
+          "2"
+        ],
+        "expected_output": "1\n2\n"
+      }
+    ],
+    "hints": [
+      "Le compteur démarre déjà à un.",
+      "La dernière valeur doit être acceptée par la condition.",
+      "Utilise compteur <= limite."
+    ],
+    "explanation_fr": "La mise à jour conduit ensuite le compteur au-delà de la limite.",
+    "common_wrong_answers": [
+      {
+        "pattern": "compteur < limite",
+        "feedback_fr": "La comparaison stricte exclut la dernière valeur demandée."
+      }
+    ],
+    "id": "py-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un petit compte à rebours",
+    "instruction_fr": "Lis un entier positif ou nul. Affiche ce nombre puis les valeurs décroissantes jusqu’à 1, sans afficher 0.",
+    "starter_code": "nombre = int(input())\nwhile nombre > 1:\n    print(nombre)\n    nombre = nombre - 1",
+    "solution": "nombre = int(input())\nwhile nombre > 0:\n    print(nombre)\n    nombre = nombre - 1",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "3\n2\n1\n"
+      },
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "1\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": ""
+      },
+      {
+        "inputs": [
+          "2"
+        ],
+        "expected_output": "2\n1\n"
+      }
+    ],
+    "hints": [
+      "Le nombre diminue à chaque passage.",
+      "La valeur un doit encore entrer dans la boucle.",
+      "Continue tant que nombre > 0."
+    ],
+    "explanation_fr": "La condition exclut zéro, mais accepte un.",
+    "common_wrong_answers": [
+      {
+        "pattern": "nombre > 1",
+        "feedback_fr": "Cette condition arrête le programme avant l’affichage de un."
+      }
+    ],
+    "id": "py-m4-02-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Lire jusqu’au signal zéro",
+    "instruction_fr": "Lis des entiers jusqu’à la première valeur 0. Pour chaque valeur avant zéro, affiche « Reçu : X ». Les nombres négatifs comptent aussi comme des données.",
+    "starter_code": "nombre = int(input())\nwhile nombre > 0:\n    print(f\"Reçu : {nombre}\")\n    nombre = int(input())",
+    "solution": "nombre = int(input())\nwhile nombre != 0:\n    print(f\"Reçu : {nombre}\")\n    nombre = int(input())",
+    "visible_tests": [
+      {
+        "inputs": [
+          "5",
+          "3",
+          "0"
+        ],
+        "expected_output": "Reçu : 5\nReçu : 3\n"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": ""
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "-2",
+          "0"
+        ],
+        "expected_output": "Reçu : -2\n"
+      },
+      {
+        "inputs": [
+          "1",
+          "-1",
+          "0"
+        ],
+        "expected_output": "Reçu : 1\nReçu : -1\n"
+      }
+    ],
+    "hints": [
+      "Le signal d’arrêt est exactement zéro.",
+      "Une valeur négative ne doit pas interrompre la lecture.",
+      "Teste nombre != 0 plutôt que nombre > 0."
+    ],
+    "explanation_fr": "La sentinelle est distinguée des données par une comparaison précise.",
+    "common_wrong_answers": [
+      {
+        "pattern": "nombre > 0",
+        "feedback_fr": "Le programme doit aussi traiter les valeurs négatives avant zéro."
+      }
+    ],
+    "id": "py-m4-02-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Ne sauter aucun nombre",
+    "instruction_fr": "Lis une limite positive ou nulle. Corrige la mise à jour pour afficher de 0 à limite exclue sans sauter de nombre.",
+    "starter_code": "limite = int(input())\ncompteur = 0\nwhile compteur < limite:\n    print(compteur)\n    compteur = compteur + 2",
+    "solution": "limite = int(input())\ncompteur = 0\nwhile compteur < limite:\n    print(compteur)\n    compteur = compteur + 1",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "0\n1\n2\n3\n"
+      },
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "0\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": ""
+      },
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "0\n1\n2\n"
+      }
+    ],
+    "hints": [
+      "Le départ et la condition sont corrects.",
+      "Observe les valeurs 0, 2, 4 produites par le code initial.",
+      "Ajoute un au compteur à chaque passage, pas deux."
+    ],
+    "explanation_fr": "La condition décide quand continuer ; la mise à jour décide quelle valeur sera testée ensuite.",
+    "common_wrong_answers": [
+      {
+        "pattern": "compteur + 2",
+        "feedback_fr": "Ce pas saute un nombre sur deux."
+      }
+    ],
+    "id": "py-m4-02-e4"
+  }
+]

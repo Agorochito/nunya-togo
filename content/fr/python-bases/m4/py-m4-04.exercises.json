@@ -1,0 +1,223 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Additionner les montants",
+    "instruction_fr": "Lis n positif ou nul, puis n montants entiers. Affiche leur somme ; pour n = 0, affiche 0.",
+    "starter_code": "n = int(input())\ntotal = 1\nfor tour in range(n):\n    montant = int(input())\n    total = total + montant\nprint(total)",
+    "solution": "n = int(input())\ntotal = 0\nfor tour in range(n):\n    montant = int(input())\n    total = total + montant\nprint(total)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3",
+          "2",
+          "5",
+          "3"
+        ],
+        "expected_output": "10\n"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "0\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "2",
+          "10",
+          "-3"
+        ],
+        "expected_output": "7\n"
+      },
+      {
+        "inputs": [
+          "1",
+          "7"
+        ],
+        "expected_output": "7\n"
+      }
+    ],
+    "hints": [
+      "Le total de départ ne doit pas ajouter un montant fictif.",
+      "Pour une somme, la valeur initiale est zéro.",
+      "Initialise total = 0 avant la boucle."
+    ],
+    "explanation_fr": "Chaque montant est ajouté exactement une fois à un total initialement nul.",
+    "common_wrong_answers": [
+      {
+        "pattern": "total = 1",
+        "feedback_fr": "Ce départ ajoute une unité qui ne vient d’aucune entrée."
+      }
+    ],
+    "id": "py-m4-04-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Compter les valeurs retenues",
+    "instruction_fr": "Lis n puis n entiers. Affiche le nombre de valeurs supérieures ou égales à 10.",
+    "starter_code": "n = int(input())\ncompteur = 0\nfor tour in range(n):\n    valeur = int(input())\n    if valeur >= 10:\n        compteur = 1\nprint(compteur)",
+    "solution": "n = int(input())\ncompteur = 0\nfor tour in range(n):\n    valeur = int(input())\n    if valeur >= 10:\n        compteur = compteur + 1\nprint(compteur)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3",
+          "8",
+          "10",
+          "12"
+        ],
+        "expected_output": "2\n"
+      },
+      {
+        "inputs": [
+          "2",
+          "1",
+          "2"
+        ],
+        "expected_output": "0\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "0\n"
+      },
+      {
+        "inputs": [
+          "3",
+          "10",
+          "10",
+          "10"
+        ],
+        "expected_output": "3\n"
+      }
+    ],
+    "hints": [
+      "Une affectation à un oublie les événements précédents.",
+      "Il faut ajouter un au compteur existant.",
+      "Écris compteur = compteur + 1 dans le if."
+    ],
+    "explanation_fr": "Le compteur représente le nombre d’événements, pas seulement leur présence.",
+    "common_wrong_answers": [
+      {
+        "pattern": "compteur = 1",
+        "feedback_fr": "Cette instruction ne conserve pas combien de valeurs avaient déjà été retenues."
+      }
+    ],
+    "id": "py-m4-04-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Une moyenne ou un message",
+    "instruction_fr": "Lis n positif ou nul. Si n vaut 0, affiche « Aucune donnée ». Sinon lis n entiers et affiche leur moyenne.",
+    "starter_code": "n = int(input())\nif n == 0:\n    print(\"Aucune donnée\")\nelse:\n    total = 0\n    for tour in range(n):\n        valeur = int(input())\n        total = total + valeur\n    print(total / (n + 1))",
+    "solution": "n = int(input())\nif n == 0:\n    print(\"Aucune donnée\")\nelse:\n    total = 0\n    for tour in range(n):\n        valeur = int(input())\n        total = total + valeur\n    print(total / n)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "Aucune donnée\n"
+      },
+      {
+        "inputs": [
+          "2",
+          "8",
+          "12"
+        ],
+        "expected_output": "10.0\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1",
+          "7"
+        ],
+        "expected_output": "7.0\n"
+      },
+      {
+        "inputs": [
+          "3",
+          "2",
+          "4",
+          "6"
+        ],
+        "expected_output": "4.0\n"
+      }
+    ],
+    "hints": [
+      "Le cas sans donnée est déjà séparé.",
+      "Pour les autres cas, le nombre de valeurs est n.",
+      "Divise total par n, pas par n + 1."
+    ],
+    "explanation_fr": "Le message évite une division par zéro ; le dénominateur compte les valeurs réellement reçues.",
+    "common_wrong_answers": [
+      {
+        "pattern": "n + 1",
+        "feedback_fr": "Cette valeur compterait une donnée supplémentaire qui n’a pas été lue."
+      }
+    ],
+    "id": "py-m4-04-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Total et nombre des positifs",
+    "instruction_fr": "Lis n puis n entiers. Pour les valeurs strictement positives seulement, affiche « Total : X » puis « Nombre : Y ». Corrige la somme sans modifier le compteur.",
+    "starter_code": "n = int(input())\ntotal = 0\ncompteur = 0\nfor tour in range(n):\n    valeur = int(input())\n    if valeur > 0:\n        total = valeur\n        compteur = compteur + 1\nprint(f\"Total : {total}\")\nprint(f\"Nombre : {compteur}\")",
+    "solution": "n = int(input())\ntotal = 0\ncompteur = 0\nfor tour in range(n):\n    valeur = int(input())\n    if valeur > 0:\n        total = total + valeur\n        compteur = compteur + 1\nprint(f\"Total : {total}\")\nprint(f\"Nombre : {compteur}\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4",
+          "2",
+          "-1",
+          "5",
+          "0"
+        ],
+        "expected_output": "Total : 7\nNombre : 2\n"
+      },
+      {
+        "inputs": [
+          "2",
+          "-1",
+          "0"
+        ],
+        "expected_output": "Total : 0\nNombre : 0\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "Total : 0\nNombre : 0\n"
+      },
+      {
+        "inputs": [
+          "3",
+          "1",
+          "2",
+          "3"
+        ],
+        "expected_output": "Total : 6\nNombre : 3\n"
+      }
+    ],
+    "hints": [
+      "Le compteur est déjà mis à jour correctement.",
+      "Le total actuel est remplacé au lieu d’être augmenté.",
+      "Utilise total = total + valeur dans le if."
+    ],
+    "explanation_fr": "Le total et le compteur portent sur les mêmes données, mais ne mesurent pas la même chose.",
+    "common_wrong_answers": [
+      {
+        "pattern": "total = valeur",
+        "feedback_fr": "Cette affectation ne conserve que le dernier positif."
+      }
+    ],
+    "id": "py-m4-04-e4"
+  }
+]

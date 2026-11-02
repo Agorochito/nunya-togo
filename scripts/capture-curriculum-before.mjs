@@ -1,0 +1,3 @@
+import {chromium} from '@playwright/test';
+const b=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});
+for(const width of [360,1440]){const c=await b.newContext({viewport:{width,height:width===360?640:900}}),p=await c.newPage();for(const [name,route] of [['accueil','accueil'],['python','parcours/cours-python/etape/0']]){await p.goto('https://nunya-togo.vercel.app/#/'+route);await p.locator('#main h1').first().waitFor();await p.waitForTimeout(600);await p.screenshot({path:`docs/screenshots/v5-${width}-before-${name}.png`,fullPage:true})}await c.close()}await b.close();console.log('Before screenshots captured from public v5.0.2');

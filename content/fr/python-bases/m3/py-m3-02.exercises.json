@@ -1,0 +1,194 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Lire le stock",
+    "instruction_fr": "Lis stock. Affiche « Disponible » s’il est strictement positif, sinon « À réapprovisionner ».",
+    "starter_code": "stock = int(input())\nif stock > 0:\n    print(\"À réapprovisionner\")\nelse:\n    print(\"Disponible\")",
+    "solution": "stock = int(input())\nif stock > 0:\n    print(\"Disponible\")\nelse:\n    print(\"À réapprovisionner\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2"
+        ],
+        "expected_output": "Disponible\n"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "À réapprovisionner\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "10"
+        ],
+        "expected_output": "Disponible\n"
+      },
+      {
+        "inputs": [
+          "-1"
+        ],
+        "expected_output": "À réapprovisionner\n"
+      }
+    ],
+    "hints": [
+      "La comparaison est déjà correcte.",
+      "Vérifie quel message appartient au stock positif.",
+      "Le premier bloc doit afficher Disponible et le else À réapprovisionner."
+    ],
+    "explanation_fr": "Les messages étaient inversés entre les deux branches.",
+    "common_wrong_answers": [
+      {
+        "pattern": "if stock > 0:\n    print(\"À réapprovisionner\")",
+        "feedback_fr": "Le stock positif doit conduire au message Disponible."
+      }
+    ],
+    "id": "py-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Comparer un budget fictif",
+    "instruction_fr": "Lis un budget entier. Pour cet exercice, un achat fictif coûte 500 FCFA. Affiche « Possible » si le budget atteint 500, sinon « À reporter ».",
+    "starter_code": "budget = int(input())\nif budget > 500:\n    print(\"Possible\")\nelse:\n    print(\"À reporter\")",
+    "solution": "budget = int(input())\nif budget >= 500:\n    print(\"Possible\")\nelse:\n    print(\"À reporter\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "500"
+        ],
+        "expected_output": "Possible\n"
+      },
+      {
+        "inputs": [
+          "499"
+        ],
+        "expected_output": "À reporter\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "750"
+        ],
+        "expected_output": "Possible\n"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "À reporter\n"
+      }
+    ],
+    "hints": [
+      "Un budget exactement égal au coût suffit.",
+      "Le premier cas utilise une comparaison qui inclut l’égalité.",
+      "Teste budget >= 500."
+    ],
+    "explanation_fr": "500 est un montant fictif d’exercice, pas un tarif présenté comme réel.",
+    "common_wrong_answers": [
+      {
+        "pattern": "budget > 500",
+        "feedback_fr": "> refuse le cas où le budget est exactement égal au coût."
+      }
+    ],
+    "id": "py-m3-02-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Pair ou impair",
+    "instruction_fr": "Lis un entier et affiche « Pair » si son reste dans la division par 2 vaut zéro, sinon « Impair ».",
+    "starter_code": "nombre = int(input())\nif nombre % 2 != 0:\n    print(\"Pair\")\nelse:\n    print(\"Impair\")",
+    "solution": "nombre = int(input())\nif nombre % 2 == 0:\n    print(\"Pair\")\nelse:\n    print(\"Impair\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "Pair\n"
+      },
+      {
+        "inputs": [
+          "5"
+        ],
+        "expected_output": "Impair\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "Pair\n"
+      },
+      {
+        "inputs": [
+          "9"
+        ],
+        "expected_output": "Impair\n"
+      }
+    ],
+    "hints": [
+      "Le reste se calcule avec %.",
+      "Les nombres pairs ont un reste égal à zéro.",
+      "La condition est nombre % 2 == 0."
+    ],
+    "explanation_fr": "La condition doit correspondre au message du premier bloc.",
+    "common_wrong_answers": [
+      {
+        "pattern": "% 2 != 0",
+        "feedback_fr": "Cette condition reconnaît les nombres impairs ; elle ne convient pas au message Pair du premier bloc."
+      }
+    ],
+    "id": "py-m3-02-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Préparer des lots",
+    "instruction_fr": "Lis une quantité. À partir de 5 unités, affiche « Lots » ; en dessous, « Unités ». Corrige le cas limite.",
+    "starter_code": "quantite = int(input())\nif quantite > 5:\n    print(\"Lots\")\nelse:\n    print(\"Unités\")",
+    "solution": "quantite = int(input())\nif quantite >= 5:\n    print(\"Lots\")\nelse:\n    print(\"Unités\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "5"
+        ],
+        "expected_output": "Lots\n"
+      },
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "Unités\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "12"
+        ],
+        "expected_output": "Lots\n"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "Unités\n"
+      }
+    ],
+    "hints": [
+      "« À partir de 5 » inclut 5.",
+      "Les blocs sont corrects ; examine l’opérateur.",
+      "Remplace > par >= dans la condition."
+    ],
+    "explanation_fr": "Le choix de branche dépend de la bonne interprétation de la limite.",
+    "common_wrong_answers": [
+      {
+        "pattern": "quantite > 5",
+        "feedback_fr": "L’égalité à cinq doit aussi conduire à Lots."
+      }
+    ],
+    "id": "py-m3-02-e4"
+  }
+]

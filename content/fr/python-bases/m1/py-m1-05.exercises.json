@@ -1,0 +1,110 @@
+[
+  {
+    "id": "py-m1-05-e1",
+    "kind": "guided",
+    "title_fr": "Construire la carte",
+    "instruction_fr": "Affiche Ama puis Club sciences sur deux lignes.",
+    "starter_code": "print(\"Ama\")",
+    "solution": "print(\"Ama\")\nprint(\"Club sciences\")",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Ama\nClub sciences"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Une ligne affichée correspond ici à un appel de print.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "print(\"Ama\")\nprint(\"Club sciences\")"
+    ],
+    "explanation_fr": "Une ligne affichée correspond ici à un appel de print. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  },
+  {
+    "id": "py-m1-05-e2",
+    "kind": "practice",
+    "title_fr": "Ajouter un objectif",
+    "instruction_fr": "Affiche Apprenant : Kossi puis Objectif : Python.",
+    "starter_code": "print(\"Apprenant : Kossi\")",
+    "solution": "print(\"Apprenant : Kossi\")\nprint(\"Objectif : Python\")",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Apprenant : Kossi\nObjectif : Python"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Les deux-points font partie du texte, à l’intérieur des guillemets.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "print(\"Apprenant : Kossi\")\nprint(\"Objectif : Python\")"
+    ],
+    "explanation_fr": "Les deux-points font partie du texte, à l’intérieur des guillemets. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  },
+  {
+    "id": "py-m1-05-e3",
+    "kind": "practice",
+    "title_fr": "Finir le mini-projet",
+    "instruction_fr": "Affiche === CARTE === puis Ama puis Projet : lecture sur trois lignes.",
+    "starter_code": "# Carte fictive\nprint(\"=== CARTE ===\")",
+    "solution": "# Carte fictive\nprint(\"=== CARTE ===\")\nprint(\"Ama\")\nprint(\"Projet : lecture\")",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "=== CARTE ===\nAma\nProjet : lecture"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Prépare les trois lignes attendues, puis écris-les dans cet ordre.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "# Carte fictive\nprint(\"=== CARTE ===\")\nprint(\"Ama\")\nprint(\"Projet : lecture\")"
+    ],
+    "explanation_fr": "Prépare les trois lignes attendues, puis écris-les dans cet ordre. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  },
+  {
+    "id": "py-m1-05-e4",
+    "kind": "debug",
+    "title_fr": "Trouver l’erreur du projet",
+    "instruction_fr": "La carte doit afficher Kara puis Prêt !. Répare sans afficher la note.",
+    "starter_code": "print(\"Kara\")\nPrint(\"Prêt !\")\nprint(\"Note technique\")",
+    "solution": "print(\"Kara\")\nprint(\"Prêt !\")\n# Note technique",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Kara\nPrêt !"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Corrige le nom de print et transforme la note technique en commentaire.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "print(\"Kara\")\nprint(\"Prêt !\")\n# Note technique"
+    ],
+    "explanation_fr": "Corrige le nom de print et transforme la note technique en commentaire. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  }
+]

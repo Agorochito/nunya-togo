@@ -1,0 +1,110 @@
+[
+  {
+    "id": "py-m2-04-e1",
+    "kind": "guided",
+    "title_fr": "Garder un état booléen",
+    "instruction_fr": "Affecte la valeur booléenne True à inscription_ouverte, puis affiche cette variable.",
+    "starter_code": "inscription_ouverte = False\nprint(inscription_ouverte)",
+    "solution": "inscription_ouverte = True\nprint(inscription_ouverte)",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "True"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "True commence par une majuscule.",
+      "Il ne faut pas de guillemets autour de cette valeur booléenne.",
+      "Écris inscription_ouverte = True avant son affichage."
+    ],
+    "explanation_fr": "La variable contient le booléen True, pas une chaîne qui l’imite.",
+    "common_wrong_answers": [
+      {
+        "pattern": "= true",
+        "feedback_fr": "Python écrit la valeur booléenne avec une majuscule : True."
+      }
+    ]
+  },
+  {
+    "id": "py-m2-04-e2",
+    "kind": "practice",
+    "title_fr": "Tester une quantité minimale",
+    "instruction_fr": "Garde places = 5. Affecte à assez le résultat de « places est au moins égal à 5 », puis affiche assez.",
+    "starter_code": "places = 5\nassez = places > 5\nprint(assez)",
+    "solution": "places = 5\nassez = places >= 5\nprint(assez)",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "True"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "« Au moins » autorise l’égalité.",
+      "Le signe strict > ne suffit pas lorsque la valeur vaut exactement 5.",
+      "Utilise places >= 5 pour calculer assez."
+    ],
+    "explanation_fr": "5 >= 5 vaut True parce que l’égalité fait partie de la règle.",
+    "common_wrong_answers": [
+      {
+        "pattern": "places > 5",
+        "feedback_fr": "Avec >, la valeur 5 est refusée ; >= inclut l’égalité."
+      }
+    ]
+  },
+  {
+    "id": "py-m2-04-e3",
+    "kind": "practice",
+    "title_fr": "Comparer deux nombres différents",
+    "instruction_fr": "Garde reserve = 4 et demande = 7. Affiche le résultat de la question « reserve est-il différent de demande ? ».",
+    "starter_code": "reserve = 4\ndemande = 7\nprint(reserve == demande)",
+    "solution": "reserve = 4\ndemande = 7\nprint(reserve != demande)",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "True"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "La question porte sur la différence, pas l’égalité.",
+      "Le signe de différence contient ! puis =.",
+      "Place reserve != demande dans print."
+    ],
+    "explanation_fr": "4 et 7 sont différents ; la comparaison != donne True.",
+    "common_wrong_answers": [
+      {
+        "pattern": "reserve == demande",
+        "feedback_fr": "== vérifie l’égalité. La consigne demande ici la différence avec !=."
+      }
+    ]
+  },
+  {
+    "id": "py-m2-04-e4",
+    "kind": "debug",
+    "title_fr": "Réparer l’orthographe d’un booléen",
+    "instruction_fr": "Le programme doit afficher le booléen False. Corrige sa valeur sans utiliser de guillemets.",
+    "starter_code": "livre_disponible = false\nprint(livre_disponible)",
+    "solution": "livre_disponible = False\nprint(livre_disponible)",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "False"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "false en minuscules est interprété comme un nom.",
+      "La valeur réservée du langage commence par F.",
+      "Remplace false par False."
+    ],
+    "explanation_fr": "La casse correcte distingue la valeur booléenne d’un nom non défini.",
+    "common_wrong_answers": [
+      {
+        "pattern": "= false",
+        "feedback_fr": "Utilise la majuscule initiale de False."
+      }
+    ]
+  }
+]

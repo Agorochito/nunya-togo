@@ -1,0 +1,198 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Compter depuis zéro",
+    "instruction_fr": "Lis un entier n positif ou nul. Affiche les entiers de 0 à n exclu, un par ligne.",
+    "starter_code": "n = int(input())\nfor numero in range(n + 1):\n    print(numero)",
+    "solution": "n = int(input())\nfor numero in range(n):\n    print(numero)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "0\n1\n2\n"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": ""
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "0\n"
+      },
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "0\n1\n2\n3\n"
+      }
+    ],
+    "hints": [
+      "La borne finale de range n’est pas incluse.",
+      "Tu veux exactement n passages.",
+      "Utilise range(n), sans ajouter un."
+    ],
+    "explanation_fr": "range(n) commence à zéro et exclut n.",
+    "common_wrong_answers": [
+      {
+        "pattern": "range(n + 1)",
+        "feedback_fr": "Ajouter un crée un passage supplémentaire et affiche n."
+      }
+    ],
+    "id": "py-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Choisir un début et une fin",
+    "instruction_fr": "Lis debut puis fin, deux entiers avec debut <= fin. Affiche de debut inclus à fin exclu.",
+    "starter_code": "debut = int(input())\nfin = int(input())\nfor numero in range(fin):\n    print(numero)",
+    "solution": "debut = int(input())\nfin = int(input())\nfor numero in range(debut, fin):\n    print(numero)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2",
+          "5"
+        ],
+        "expected_output": "2\n3\n4\n"
+      },
+      {
+        "inputs": [
+          "3",
+          "3"
+        ],
+        "expected_output": ""
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "-2",
+          "1"
+        ],
+        "expected_output": "-2\n-1\n0\n"
+      },
+      {
+        "inputs": [
+          "0",
+          "2"
+        ],
+        "expected_output": "0\n1\n"
+      }
+    ],
+    "hints": [
+      "Un seul argument ferait commencer range à zéro.",
+      "Deux arguments permettent de choisir la première valeur.",
+      "Utilise range(debut, fin)."
+    ],
+    "explanation_fr": "La borne de départ est incluse et la borne d’arrêt exclue.",
+    "common_wrong_answers": [
+      {
+        "pattern": "range(fin)",
+        "feedback_fr": "Cette version oublie la valeur de départ saisie."
+      }
+    ],
+    "id": "py-m4-01-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Les pairs jusqu’à la limite",
+    "instruction_fr": "Lis une limite entière positive ou nulle. Affiche les nombres pairs de 0 à cette limite incluse avec un pas de 2.",
+    "starter_code": "limite = int(input())\nfor nombre in range(0, limite, 2):\n    print(nombre)",
+    "solution": "limite = int(input())\nfor nombre in range(0, limite + 1, 2):\n    print(nombre)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "7"
+        ],
+        "expected_output": "0\n2\n4\n6\n"
+      },
+      {
+        "inputs": [
+          "8"
+        ],
+        "expected_output": "0\n2\n4\n6\n8\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "0\n"
+      },
+      {
+        "inputs": [
+          "2"
+        ],
+        "expected_output": "0\n2\n"
+      }
+    ],
+    "hints": [
+      "Le troisième argument est le pas.",
+      "L’arrêt exclu doit être placé après la limite à inclure.",
+      "Utilise range(0, limite + 1, 2)."
+    ],
+    "explanation_fr": "Le + 1 ne change pas le pas ; il permet d’inclure une limite paire.",
+    "common_wrong_answers": [
+      {
+        "pattern": "range(0, limite, 2)",
+        "feedback_fr": "La limite serait exclue lorsqu’elle est paire."
+      }
+    ],
+    "id": "py-m4-01-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Numéroter à partir de un",
+    "instruction_fr": "Lis n positif ou nul. Le programme doit afficher de 1 à n inclus. Corrige la borne finale.",
+    "starter_code": "n = int(input())\nfor numero in range(1, n):\n    print(numero)",
+    "solution": "n = int(input())\nfor numero in range(1, n + 1):\n    print(numero)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "1\n2\n3\n"
+      },
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "1\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": ""
+      },
+      {
+        "inputs": [
+          "2"
+        ],
+        "expected_output": "1\n2\n"
+      }
+    ],
+    "hints": [
+      "Le départ à un est déjà correct.",
+      "range s’arrête avant son deuxième argument.",
+      "Remplace n par n + 1 dans l’arrêt."
+    ],
+    "explanation_fr": "Le cas n = 1 montre immédiatement la valeur oubliée dans le code initial.",
+    "common_wrong_answers": [
+      {
+        "pattern": "range(1, n)",
+        "feedback_fr": "Ce range exclut n alors que la consigne veut l’afficher."
+      }
+    ],
+    "id": "py-m4-01-e4"
+  }
+]

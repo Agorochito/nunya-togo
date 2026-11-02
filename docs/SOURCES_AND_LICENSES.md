@@ -53,3 +53,9 @@ Les présentations françaises des vidéos proviennent du même export public Kh
 - Class Central : https://www.classcentral.com/report/big-tech-free-courses/ utilisé pour découvrir les organismes ; pas d’aspiration de ses descriptions, aucune promesse que tous les cours ou certificats recensés soient gratuits. Les essais payants et abonnements ne sont pas importés comme cours gratuits.
 
 Les quatre nouveaux cours CV / entretien / documents / tableurs et les trois initiations sont des rédactions Nunya originales à relire. Douze découvertes réassemblent surtout les leçons Nunya existantes ; elles ne gonflent pas le nombre de cours uniques. Les captures de référence du propriétaire ont guidé la navigation et l’organisation, sans copie de photos ou de marque tierce.
+
+## Cours Python depuis zéro (v5)
+
+Les 22 leçons M1–M4, 44 exemples et 88 exercices sont des rédactions originales Nunya. Références de vérification conceptuelle : https://docs.python.org/fr/3/tutorial/ ; le texte du tutoriel n’est pas recopié. freeCodeCamp sert d’inspiration pour l’organisation générale, pas de source de textes ou de défis copiés. La version actuelle du curriculum et ses conditions ne permettent pas de supposer une autorisation générale de republication : https://github.com/freeCodeCamp/freeCodeCamp et https://www.freecodecamp.org/news/terms-of-service/. Une recherche a identifié une version historique CC BY-SA4.0, mais ses adaptations ne sont pas publiées conformément au brief v5 original-only.
+
+CodeMirror6 : éditeur logiciel MIT, dépendances figées dans package-lock.json, notices conservées dans le bundle. Pyodide conserve les notices déjà livrées. Aucune iframe freeCodeCamp/Coddy ni service distant de compilation n’est utilisé.

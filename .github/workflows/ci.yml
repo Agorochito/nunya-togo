@@ -15,3 +15,9 @@ jobs:
       - run: npm test
       - run: npm run check:content
       - run: npm run check:academy
+
+      - run: npm run lint:content
+      - run: npm run check:prereqs
+      - run: npm run check:curriculum-links
+      - run: npm run test:code
+      - run: npm run build

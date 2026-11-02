@@ -1,0 +1,411 @@
+{
+  "id": "python-bases",
+  "title_fr": "Python : les bases",
+  "summary_fr": "Pars de zéro : écris, exécute et corrige tes premiers programmes, puis utilise variables, conditions et boucles.",
+  "depth_fr": "Modules 1 à 4 · initiation pratique. Modules 5 à 10 en préparation.",
+  "status": "brouillon",
+  "reviewer": null,
+  "level": "Aucun code préalable",
+  "prerequisites": [
+    "Savoir saisir un texte et ouvrir une page web."
+  ],
+  "outcomes": [
+    "Écrire un programme dans l’éditeur et expliquer sa console.",
+    "Lire une saisie, convertir une valeur et faire des calculs.",
+    "Choisir une action avec if, elif et else.",
+    "Répéter et compter avec for et while.",
+    "Construire et tester de petits projets à données fictives."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Premiers pas",
+      "lesson_ids": [
+        "py-m1-01",
+        "py-m1-02",
+        "py-m1-03",
+        "py-m1-04",
+        "py-m1-05"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Variables et types",
+      "lesson_ids": [
+        "py-m2-01",
+        "py-m2-02",
+        "py-m2-03",
+        "py-m2-04",
+        "py-m2-05",
+        "py-m2-06",
+        "py-m2-07"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Conditions",
+      "lesson_ids": [
+        "py-m3-01",
+        "py-m3-02",
+        "py-m3-03",
+        "py-m3-04",
+        "py-m3-05"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Boucles",
+      "lesson_ids": [
+        "py-m4-01",
+        "py-m4-02",
+        "py-m4-03",
+        "py-m4-04",
+        "py-m4-05"
+      ]
+    }
+  ],
+  "later_modules": [
+    "Chaînes et listes",
+    "Fonctions",
+    "Dictionnaires, tuples et ensembles",
+    "Erreurs et débogage",
+    "Modules Python",
+    "Projet final"
+  ],
+  "lessons": [
+    {
+      "id": "py-m1-01",
+      "title_fr": "Comprendre le programme, l’éditeur et la console",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [],
+      "tags": [
+        "débuter",
+        "programme",
+        "console",
+        "print"
+      ]
+    },
+    {
+      "id": "py-m1-02",
+      "title_fr": "Afficher un texte avec print et les guillemets",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m1-01"
+      ],
+      "tags": [
+        "débuter",
+        "programme",
+        "console",
+        "print"
+      ]
+    },
+    {
+      "id": "py-m1-03",
+      "title_fr": "Commenter un programme pour expliquer son intention",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m1-02"
+      ],
+      "tags": [
+        "débuter",
+        "programme",
+        "console",
+        "print"
+      ]
+    },
+    {
+      "id": "py-m1-04",
+      "title_fr": "Lire une erreur de syntaxe et la corriger",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m1-03"
+      ],
+      "tags": [
+        "débuter",
+        "programme",
+        "console",
+        "print"
+      ]
+    },
+    {
+      "id": "py-m1-05",
+      "title_fr": "Créer une carte de présentation dans la console",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m1-04"
+      ],
+      "tags": [
+        "débuter",
+        "programme",
+        "console",
+        "print"
+      ]
+    },
+    {
+      "id": "py-m2-01",
+      "title_fr": "Donner un nom à une valeur",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m1-05"
+      ],
+      "tags": [
+        "python",
+        "variables",
+        "affectation",
+        "trace"
+      ]
+    },
+    {
+      "id": "py-m2-02",
+      "title_fr": "Distinguer entiers, décimaux et conversions",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m2-01"
+      ],
+      "tags": [
+        "python",
+        "types",
+        "int",
+        "float",
+        "conversion"
+      ]
+    },
+    {
+      "id": "py-m2-03",
+      "title_fr": "Assembler et lire des chaînes de caractères",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m2-02"
+      ],
+      "tags": [
+        "python",
+        "chaines",
+        "str",
+        "concatenation",
+        "len"
+      ]
+    },
+    {
+      "id": "py-m2-04",
+      "title_fr": "Poser une question qui vaut True ou False",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m2-03"
+      ],
+      "tags": [
+        "python",
+        "booleens",
+        "comparaisons",
+        "True",
+        "False"
+      ]
+    },
+    {
+      "id": "py-m2-05",
+      "title_fr": "Lire une saisie avec input puis la convertir",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m2-04"
+      ],
+      "tags": [
+        "python",
+        "input",
+        "entrees",
+        "conversion"
+      ]
+    },
+    {
+      "id": "py-m2-06",
+      "title_fr": "Calculer avec les opérateurs arithmétiques",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m2-05"
+      ],
+      "tags": [
+        "python",
+        "operateurs",
+        "arithmetique",
+        "quotient",
+        "reste"
+      ]
+    },
+    {
+      "id": "py-m2-07",
+      "title_fr": "Présenter un résultat avec une f-string",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m2-06"
+      ],
+      "tags": [
+        "python",
+        "fstrings",
+        "formatage",
+        "mini-projet",
+        "taux-fictif",
+        "FCFA",
+        "convertisseur",
+        "monnaie"
+      ]
+    },
+    {
+      "id": "py-m3-01",
+      "title_fr": "Comparer des valeurs",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m2-07"
+      ],
+      "tags": [
+        "comparaison",
+        "booleens",
+        "seuils"
+      ]
+    },
+    {
+      "id": "py-m3-02",
+      "title_fr": "Choisir avec if et else",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m3-01"
+      ],
+      "tags": [
+        "if",
+        "else",
+        "indentation"
+      ]
+    },
+    {
+      "id": "py-m3-03",
+      "title_fr": "Classer avec elif",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m3-02"
+      ],
+      "tags": [
+        "elif",
+        "classement",
+        "ordre-des-conditions"
+      ]
+    },
+    {
+      "id": "py-m3-04",
+      "title_fr": "Combiner les conditions",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m3-03"
+      ],
+      "tags": [
+        "logique",
+        "and",
+        "or",
+        "not",
+        "conditions-imbriquees"
+      ]
+    },
+    {
+      "id": "py-m3-05",
+      "title_fr": "Créer un bilan d’entraînement",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m3-04"
+      ],
+      "tags": [
+        "projet",
+        "moyenne",
+        "validation",
+        "conditions"
+      ]
+    },
+    {
+      "id": "py-m4-01",
+      "title_fr": "Répéter avec for et range",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m3-05"
+      ],
+      "tags": [
+        "for",
+        "range",
+        "boucles"
+      ]
+    },
+    {
+      "id": "py-m4-02",
+      "title_fr": "Continuer avec while",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m4-01"
+      ],
+      "tags": [
+        "while",
+        "sentinelle",
+        "arret"
+      ]
+    },
+    {
+      "id": "py-m4-03",
+      "title_fr": "Utiliser break et continue",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m4-02"
+      ],
+      "tags": [
+        "break",
+        "continue",
+        "flux-de-controle"
+      ]
+    },
+    {
+      "id": "py-m4-04",
+      "title_fr": "Calculer un total et un compteur",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m4-03"
+      ],
+      "tags": [
+        "accumulateur",
+        "compteur",
+        "somme",
+        "moyenne"
+      ]
+    },
+    {
+      "id": "py-m4-05",
+      "title_fr": "Créer un jeu de devinette",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m4-04"
+      ],
+      "tags": [
+        "projet",
+        "devinette",
+        "tests",
+        "boucles"
+      ]
+    }
+  ],
+  "estimated_minutes": 440,
+  "license": "Contenu original Nunya · brouillon",
+  "runtime": "python"
+}

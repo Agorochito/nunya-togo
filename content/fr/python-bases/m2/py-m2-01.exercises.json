@@ -1,0 +1,110 @@
+[
+  {
+    "id": "py-m2-01-e1",
+    "kind": "guided",
+    "title_fr": "Créer et lire une variable",
+    "instruction_fr": "Associe le texte Afi à prenom, puis affiche la valeur de prenom sur une seule ligne.",
+    "starter_code": "prenom = \"À compléter\"\nprint(prenom)",
+    "solution": "prenom = \"Afi\"\nprint(prenom)",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Afi"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "La valeur demandée est un texte : garde ses guillemets.",
+      "La première ligne doit commencer par prenom =.",
+      "Écris prenom = \"Afi\", puis print(prenom)."
+    ],
+    "explanation_fr": "La première ligne crée l’association ; print(prenom) lit sa valeur actuelle.",
+    "common_wrong_answers": [
+      {
+        "pattern": "print\\([\"']prenom[\"']\\)",
+        "feedback_fr": "Sans guillemets autour de prenom dans print, Python lit la variable plutôt que le mot prenom."
+      }
+    ]
+  },
+  {
+    "id": "py-m2-01-e2",
+    "kind": "practice",
+    "title_fr": "Nommer le club",
+    "instruction_fr": "Crée nom_du_club avec le texte Club Démo. Affiche uniquement la valeur de cette variable.",
+    "starter_code": "nom_du_club = \"\"\nprint(nom_du_club)",
+    "solution": "nom_du_club = \"Club Démo\"\nprint(nom_du_club)",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Club Démo"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Le texte demandé contient un espace ; le nom de variable utilise des soulignements.",
+      "Place Club Démo entre guillemets à droite du signe =.",
+      "Crée nom_du_club = \"Club Démo\" avant print(nom_du_club)."
+    ],
+    "explanation_fr": "Le nom de variable ne contient pas d’espace ; la valeur textuelle peut en contenir.",
+    "common_wrong_answers": [
+      {
+        "pattern": "nom du club",
+        "feedback_fr": "Les espaces ne font pas partie d’un nom de variable ; utilise nom_du_club."
+      }
+    ]
+  },
+  {
+    "id": "py-m2-01-e3",
+    "kind": "practice",
+    "title_fr": "Suivre une mise à jour",
+    "instruction_fr": "Stocke 8 dans places et affiche cette valeur. Réaffecte ensuite 5 à places et affiche sa nouvelle valeur. Les deux nombres doivent apparaître sur deux lignes.",
+    "starter_code": "places = 8\nprint(places)\n# Réaffecte puis affiche.",
+    "solution": "places = 8\nprint(places)\nplaces = 5\nprint(places)",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "8\n5"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Il faut deux appels à print, à deux moments différents.",
+      "La seconde affectation se situe entre les deux affichages.",
+      "Après print(places), ajoute places = 5 puis print(places)."
+    ],
+    "explanation_fr": "Le premier affichage utilise 8 ; la réaffectation change ce que le second affichage lit.",
+    "common_wrong_answers": [
+      {
+        "pattern": "places == 5",
+        "feedback_fr": "Dans une affectation, utilise un seul signe = ; == posera une question dans une prochaine leçon."
+      }
+    ]
+  },
+  {
+    "id": "py-m2-01-e4",
+    "kind": "debug",
+    "title_fr": "Réparer un nom incohérent",
+    "instruction_fr": "Le programme doit afficher Lomé à partir de ville. Corrige le nom utilisé pour lire la variable, sans changer sa valeur.",
+    "starter_code": "ville = \"Lomé\"\nprint(Ville)",
+    "solution": "ville = \"Lomé\"\nprint(ville)",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Lomé"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Python distingue majuscule et minuscule.",
+      "Compare caractère par caractère le nom créé et le nom affiché.",
+      "Le nom créé est ville : remplace Ville par ville dans print."
+    ],
+    "explanation_fr": "Ville et ville sont deux noms différents ; seul ville a reçu une valeur.",
+    "common_wrong_answers": [
+      {
+        "pattern": "print\\(Ville\\)",
+        "feedback_fr": "Le V majuscule désigne un autre nom, qui n’a pas été défini."
+      }
+    ]
+  }
+]

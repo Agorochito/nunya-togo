@@ -1,0 +1,110 @@
+[
+  {
+    "id": "py-m1-03-e1",
+    "kind": "guided",
+    "title_fr": "Lire sans afficher la note",
+    "instruction_fr": "Le résultat doit être Bonjour seulement. Complète la ligne de code.",
+    "starter_code": "# Message d’accueil\nprint(\"...\")",
+    "solution": "# Message d’accueil\nprint(\"Bonjour\")",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bonjour"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "La note explique la ligne mais ne s’affiche pas.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "# Message d’accueil\nprint(\"Bonjour\")"
+    ],
+    "explanation_fr": "La note explique la ligne mais ne s’affiche pas. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  },
+  {
+    "id": "py-m1-03-e2",
+    "kind": "practice",
+    "title_fr": "Désactiver une instruction",
+    "instruction_fr": "Affiche Actif seulement ; désactive la seconde ligne avec #.",
+    "starter_code": "print(\"Actif\")\nprint(\"Brouillon\")",
+    "solution": "print(\"Actif\")\n# print(\"Brouillon\")",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Actif"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Un # avant une instruction la transforme en commentaire.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "print(\"Actif\")\n# print(\"Brouillon\")"
+    ],
+    "explanation_fr": "Un # avant une instruction la transforme en commentaire. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  },
+  {
+    "id": "py-m1-03-e3",
+    "kind": "practice",
+    "title_fr": "Afficher le signe lui-même",
+    "instruction_fr": "Affiche #Python exactement.",
+    "starter_code": "print(\"Python\")",
+    "solution": "print(\"#Python\")",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "#Python"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Le # doit se trouver entre guillemets pour appartenir au message.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "print(\"#Python\")"
+    ],
+    "explanation_fr": "Le # doit se trouver entre guillemets pour appartenir au message. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  },
+  {
+    "id": "py-m1-03-e4",
+    "kind": "debug",
+    "title_fr": "Trouver l’erreur de commentaire",
+    "instruction_fr": "Le programme doit afficher Séance 1 puis Prêt sur deux lignes. Une ligne a été désactivée par erreur.",
+    "starter_code": "print(\"Séance 1\")\n# print(\"Prêt\")",
+    "solution": "print(\"Séance 1\")\nprint(\"Prêt\")",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Séance 1\nPrêt"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Retire le # de l’instruction qui doit s’exécuter.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "print(\"Séance 1\")\nprint(\"Prêt\")"
+    ],
+    "explanation_fr": "Retire le # de l’instruction qui doit s’exécuter. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  }
+]

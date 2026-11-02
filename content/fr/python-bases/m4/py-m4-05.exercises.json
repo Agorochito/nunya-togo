@@ -1,0 +1,210 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Donner la bonne direction",
+    "instruction_fr": "Lis une proposition pour le secret fixe 7. Affiche « Plus grand » si elle est trop petite, « Plus petit » si elle est trop grande, sinon « Trouvé ».",
+    "starter_code": "secret = 7\nproposition = int(input())\nif proposition < secret:\n    print(\"Plus petit\")\nelif proposition > secret:\n    print(\"Plus grand\")\nelse:\n    print(\"Trouvé\")",
+    "solution": "secret = 7\nproposition = int(input())\nif proposition < secret:\n    print(\"Plus grand\")\nelif proposition > secret:\n    print(\"Plus petit\")\nelse:\n    print(\"Trouvé\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "Plus grand\n"
+      },
+      {
+        "inputs": [
+          "10"
+        ],
+        "expected_output": "Plus petit\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "7"
+        ],
+        "expected_output": "Trouvé\n"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "Plus grand\n"
+      }
+    ],
+    "hints": [
+      "L’indice indique la direction vers le secret.",
+      "Une proposition de quatre doit augmenter pour atteindre sept.",
+      "Inverse les deux messages Plus petit et Plus grand."
+    ],
+    "explanation_fr": "Les comparaisons sont correctes ; les indications étaient inversées.",
+    "common_wrong_answers": [
+      {
+        "pattern": "proposition < secret:\n    print(\"Plus petit\")",
+        "feedback_fr": "Une proposition trop petite nécessite une prochaine valeur plus grande."
+      }
+    ],
+    "id": "py-m4-05-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Au plus trois propositions",
+    "instruction_fr": "Lis jusqu’à trois propositions pour le secret 7. À chaque erreur affiche « Encore ». À la réussite affiche « Trouvé » et arrête. Après trois erreurs, affiche aussi « À réessayer ».",
+    "starter_code": "secret = 7\ntrouve = False\nfor essai in range(3):\n    proposition = int(input())\n    if proposition != secret:\n        trouve = True\n        print(\"Trouvé\")\n        break\n    print(\"Encore\")\nif not trouve:\n    print(\"À réessayer\")",
+    "solution": "secret = 7\ntrouve = False\nfor essai in range(3):\n    proposition = int(input())\n    if proposition == secret:\n        trouve = True\n        print(\"Trouvé\")\n        break\n    print(\"Encore\")\nif not trouve:\n    print(\"À réessayer\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "7"
+        ],
+        "expected_output": "Trouvé\n"
+      },
+      {
+        "inputs": [
+          "1",
+          "7"
+        ],
+        "expected_output": "Encore\nTrouvé\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1",
+          "2",
+          "3"
+        ],
+        "expected_output": "Encore\nEncore\nEncore\nÀ réessayer\n"
+      },
+      {
+        "inputs": [
+          "1",
+          "2",
+          "7"
+        ],
+        "expected_output": "Encore\nEncore\nTrouvé\n"
+      }
+    ],
+    "hints": [
+      "Le cas gagnant doit reconnaître l’égalité.",
+      "Le booléen trouve doit devenir vrai seulement pour sept.",
+      "Remplace != par == dans le test de réussite."
+    ],
+    "explanation_fr": "break empêche de lire les propositions inutiles après la réussite.",
+    "common_wrong_answers": [
+      {
+        "pattern": "proposition != secret",
+        "feedback_fr": "Ce test inverse la victoire et l’erreur."
+      }
+    ],
+    "id": "py-m4-05-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Compter les essais utilisés",
+    "instruction_fr": "Avec le secret fixe 7, lis au plus trois propositions et arrête dès la bonne réponse. Affiche « Trouvé en X essai(s) » si réussi, sinon « Fin des essais ».",
+    "starter_code": "secret = 7\nessais = 0\ntrouve = False\nwhile essais < 2 and not trouve:\n    proposition = int(input())\n    essais = essais + 1\n    if proposition == secret:\n        trouve = True\nif trouve:\n    print(f\"Trouvé en {essais} essai(s)\")\nelse:\n    print(\"Fin des essais\")",
+    "solution": "secret = 7\nessais = 0\ntrouve = False\nwhile essais < 3 and not trouve:\n    proposition = int(input())\n    essais = essais + 1\n    if proposition == secret:\n        trouve = True\nif trouve:\n    print(f\"Trouvé en {essais} essai(s)\")\nelse:\n    print(\"Fin des essais\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "7"
+        ],
+        "expected_output": "Trouvé en 1 essai(s)\n"
+      },
+      {
+        "inputs": [
+          "1",
+          "2",
+          "7"
+        ],
+        "expected_output": "Trouvé en 3 essai(s)\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1",
+          "2",
+          "3"
+        ],
+        "expected_output": "Fin des essais\n"
+      },
+      {
+        "inputs": [
+          "2",
+          "7"
+        ],
+        "expected_output": "Trouvé en 2 essai(s)\n"
+      }
+    ],
+    "hints": [
+      "Le compteur commence à zéro avant toute lecture.",
+      "Le troisième essai doit encore être possible.",
+      "La condition de limite doit être essais < 3."
+    ],
+    "explanation_fr": "La condition combine la limite et l’absence de réussite ; le compteur mesure les propositions réellement lues.",
+    "common_wrong_answers": [
+      {
+        "pattern": "essais < 2",
+        "feedback_fr": "Cette limite interdit la troisième proposition demandée par la règle."
+      }
+    ],
+    "id": "py-m4-05-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La partie complète",
+    "instruction_fr": "Secret = 7, au plus trois propositions. Affiche Trouvé si correct, Plus grand si trop petit, Plus petit si trop grand. Après trois erreurs, affiche « Le nombre était 7 ». Corrige le compteur.",
+    "starter_code": "secret = 7\nessais = 0\ntrouve = False\nwhile essais < 3 and not trouve:\n    proposition = int(input())\n    essais = essais + 2\n    if proposition == secret:\n        trouve = True\n        print(\"Trouvé\")\n    elif proposition < secret:\n        print(\"Plus grand\")\n    else:\n        print(\"Plus petit\")\nif not trouve:\n    print(f\"Le nombre était {secret}\")",
+    "solution": "secret = 7\nessais = 0\ntrouve = False\nwhile essais < 3 and not trouve:\n    proposition = int(input())\n    essais = essais + 1\n    if proposition == secret:\n        trouve = True\n        print(\"Trouvé\")\n    elif proposition < secret:\n        print(\"Plus grand\")\n    else:\n        print(\"Plus petit\")\nif not trouve:\n    print(f\"Le nombre était {secret}\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4",
+          "10",
+          "7"
+        ],
+        "expected_output": "Plus grand\nPlus petit\nTrouvé\n"
+      },
+      {
+        "inputs": [
+          "7"
+        ],
+        "expected_output": "Trouvé\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1",
+          "2",
+          "3"
+        ],
+        "expected_output": "Plus grand\nPlus grand\nPlus grand\nLe nombre était 7\n"
+      },
+      {
+        "inputs": [
+          "10",
+          "9",
+          "8"
+        ],
+        "expected_output": "Plus petit\nPlus petit\nPlus petit\nLe nombre était 7\n"
+      }
+    ],
+    "hints": [
+      "Une proposition doit consommer exactement un essai.",
+      "Le code initial fait passer le compteur de zéro à deux dès la première saisie.",
+      "Remplace essais = essais + 2 par essais = essais + 1."
+    ],
+    "explanation_fr": "Une mise à jour trop rapide termine la partie avant la troisième proposition.",
+    "common_wrong_answers": [
+      {
+        "pattern": "essais + 2",
+        "feedback_fr": "Deux essais sont comptés pour une seule proposition."
+      }
+    ],
+    "id": "py-m4-05-e4"
+  }
+]

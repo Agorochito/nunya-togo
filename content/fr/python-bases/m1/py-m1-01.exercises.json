@@ -1,0 +1,110 @@
+[
+  {
+    "id": "py-m1-01-e1",
+    "kind": "guided",
+    "title_fr": "Écrire une première instruction",
+    "instruction_fr": "Affiche Bonjour le Togo.",
+    "starter_code": "print(\"...\")",
+    "solution": "print(\"Bonjour le Togo\")",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bonjour le Togo"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Remplace les trois points entre guillemets par le message demandé.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "print(\"Bonjour le Togo\")"
+    ],
+    "explanation_fr": "Remplace les trois points entre guillemets par le message demandé. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  },
+  {
+    "id": "py-m1-01-e2",
+    "kind": "practice",
+    "title_fr": "Choisir un autre message",
+    "instruction_fr": "Affiche Je commence Python.",
+    "starter_code": "print(\"\")",
+    "solution": "print(\"Je commence Python\")",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Je commence Python"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Le texte doit se trouver entre les deux guillemets.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "print(\"Je commence Python\")"
+    ],
+    "explanation_fr": "Le texte doit se trouver entre les deux guillemets. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  },
+  {
+    "id": "py-m1-01-e3",
+    "kind": "practice",
+    "title_fr": "Respecter l’ordre",
+    "instruction_fr": "Affiche Bonjour puis Lomé sur deux lignes.",
+    "starter_code": "print(\"Lomé\")",
+    "solution": "print(\"Bonjour\")\nprint(\"Lomé\")",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bonjour\nLomé"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Deux appels à print créent deux lignes dans le même ordre.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "print(\"Bonjour\")\nprint(\"Lomé\")"
+    ],
+    "explanation_fr": "Deux appels à print créent deux lignes dans le même ordre. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  },
+  {
+    "id": "py-m1-01-e4",
+    "kind": "debug",
+    "title_fr": "Trouver l’erreur de nom",
+    "instruction_fr": "Corrige ce programme pour afficher Salut.",
+    "starter_code": "Print(\"Salut\")",
+    "solution": "print(\"Salut\")",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Salut"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Le nom print commence par une minuscule.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "print(\"Salut\")"
+    ],
+    "explanation_fr": "Le nom print commence par une minuscule. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  }
+]

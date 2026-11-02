@@ -11,12 +11,19 @@
     "check:academy": "node scripts/validate-academy.mjs",
     "test:e2e": "node scripts/test-academy-flow.mjs",
     "check:links": "node scripts/check-links.mjs",
-    "build": "node scripts/build-academy.mjs"
+    "build": "node scripts/build-academy.mjs",
+    "lint:content": "node scripts/lint-curriculum.mjs",
+    "test:code": "python3 scripts/test-curriculum-code.py",
+    "check:prereqs": "node scripts/check-prereqs.mjs",
+    "check:curriculum-links": "node scripts/check-curriculum-links.mjs",
+    "check-links": "npm run check:curriculum-links && npm run check:links"
   },
   "devDependencies": {
+    "@codemirror/lang-python": "^6.2.1",
     "@playwright/test": "^1.64.1",
     "ajv": "^8.20.0",
     "axe-core": "^4.14.0",
+    "codemirror": "^6.0.2",
     "esbuild": "^0.28.2",
     "eslint": "^10.14.0",
     "katex": "^0.19.1",

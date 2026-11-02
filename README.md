@@ -1,4 +1,35 @@
-# Nunya — pilote TIA pour le Togo
+# Nunya — apprendre en français au Togo
+
+[Site public](https://nunya-togo.vercel.app/) · [Programme Python](https://nunya-togo.vercel.app/#/apprendre/python-bases) · [Première leçon](https://nunya-togo.vercel.app/#/apprendre/python-bases/m1/py-m1-01)
+
+## Version 5.1.0 — programme depuis zéro
+
+Trois entrées : **Apprendre à coder**, **Mes cours & examens**, **Mon avenir**. Le nouveau cours Python comprend les modules 1 à 4 : 22 leçons originales en français, 7 298 mots d’explication, 44 exemples avec traces, 88 exercices de code et 66 questions. Les quatre projets et points d’étape font partie de ces modules. Les modules 5 à 10 et les autres langages restent explicitement en préparation ; ce n’est pas encore le cours Python complet de 25–30 heures.
+
+Les leçons associent lecture et atelier CodeMirror. Pyodide s’exécute dans un Worker local, avec saisies simulées, tests visibles et autres cas, indices gradués, erreurs expliquées, arrêt et console bornée. Le moteur facultatif s’enregistre séparément pour le hors ligne. Aucune limite stricte de mémoire n’est garantie par le navigateur.
+
+Le programme montre prérequis, lecture libre et conditions de progression ; un questionnaire de dix questions conseille un début et chaque module a une validation avec défi de code. La recherche classe cours, leçons, parcours et ressources, accepte les accents et certaines fautes. La reprise, les essais, indices, avis et carnet d’erreurs restent sur l’appareil, sans compte ni collecte distante.
+
+Source des nouvelles leçons : `content/fr/python-bases/<module>/*.md`, exercices JSON voisins. Les fichiers de `data/curriculum` et `dist/data/curriculum` sont générés par `scripts/prepare-curriculum.py`. Aucun doublon de source de rédaction. Les trois parcours métiers techniques référencent ce programme. Les anciennes notices et unités courtes restent des repères à migrer, pas des cours complets équivalents.
+
+Tous les nouveaux contenus sont des brouillons : `status:brouillon`, `reviewer:null`. Contrôles automatiques réussis ; relecture humaine et essais avec des débutants encore nécessaires. Voir [audit](docs/AUDIT_V2.md), [résultats](docs/TEST_RESULTS.md), [style](docs/CONTENT_STYLE_GUIDE.md) et [relecture](docs/REVIEW_CHECKLIST.md).
+
+```sh
+npm ci
+npm run build
+npm run lint
+npm run typecheck
+npm test
+npm run lint:content
+npm run check:prereqs
+npm run test:code
+npm run check:curriculum-links
+```
+
+Le build utilise Node et Python 3. Les tests navigateur utilisent Chrome local macOS : adapter `executablePath` sur une autre machine. `npm run check-links` ajoute le contrôle de disponibilité des sources institutionnelles ; `--all` sur `check:links` inclut toute la bibliothèque. Un statut HTTP ne garantit pas la lecture d’une vidéo ni un certificat gratuit.
+
+## Fonctions et ressources conservées
+
 
 [Ouvrir le site](https://nunya-togo.vercel.app) · [Dépôt public](https://github.com/Agorochito/nunya-togo)
 

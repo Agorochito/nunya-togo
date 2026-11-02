@@ -1,0 +1,200 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Trois signes",
+    "instruction_fr": "Lis un entier et affiche « Négatif », « Nul » ou « Positif ».",
+    "starter_code": "nombre = int(input())\nif nombre < 0:\n    print(\"Négatif\")\nelif nombre > 0:\n    print(\"Nul\")\nelse:\n    print(\"Positif\")",
+    "solution": "nombre = int(input())\nif nombre < 0:\n    print(\"Négatif\")\nelif nombre == 0:\n    print(\"Nul\")\nelse:\n    print(\"Positif\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "-2"
+        ],
+        "expected_output": "Négatif\n"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "Nul\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "8"
+        ],
+        "expected_output": "Positif\n"
+      }
+    ],
+    "hints": [
+      "Le elif doit reconnaître exactement zéro.",
+      "Le cas positif restera pour else.",
+      "Utilise elif nombre == 0:."
+    ],
+    "explanation_fr": "Le test d’égalité distingue zéro du dernier cas.",
+    "common_wrong_answers": [
+      {
+        "pattern": "elif nombre > 0",
+        "feedback_fr": "Ce test reconnaît les positifs, pas le nombre nul."
+      }
+    ],
+    "id": "py-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Étiquettes de quantité",
+    "instruction_fr": "Lis une quantité entière. Affiche « Grand » à partir de 10, « Moyen » de 5 à 9, sinon « Petit ».",
+    "starter_code": "quantite = int(input())\nif quantite >= 5:\n    print(\"Moyen\")\nelif quantite >= 10:\n    print(\"Grand\")\nelse:\n    print(\"Petit\")",
+    "solution": "quantite = int(input())\nif quantite >= 10:\n    print(\"Grand\")\nelif quantite >= 5:\n    print(\"Moyen\")\nelse:\n    print(\"Petit\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "10"
+        ],
+        "expected_output": "Grand\n"
+      },
+      {
+        "inputs": [
+          "5"
+        ],
+        "expected_output": "Moyen\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "Petit\n"
+      },
+      {
+        "inputs": [
+          "15"
+        ],
+        "expected_output": "Grand\n"
+      },
+      {
+        "inputs": [
+          "9"
+        ],
+        "expected_output": "Moyen\n"
+      }
+    ],
+    "hints": [
+      "Une quantité de 12 satisfait les deux comparaisons.",
+      "La catégorie Grand doit être testée avant Moyen.",
+      "Commence par if quantite >= 10:, puis elif quantite >= 5:."
+    ],
+    "explanation_fr": "La première condition vraie termine la recherche de branche.",
+    "common_wrong_answers": [
+      {
+        "pattern": "if quantite >= 5",
+        "feedback_fr": "Ce premier test capture aussi les quantités supérieures à dix."
+      }
+    ],
+    "id": "py-m3-03-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Trois repères de température",
+    "instruction_fr": "Pour cet exercice fictif seulement : affiche « Frais » sous 20, « Tempéré » de 20 à 30 inclus, « Chaud » au-dessus de 30. Lis un entier.",
+    "starter_code": "temperature = int(input())\nif temperature < 20:\n    print(\"Frais\")\nelif temperature < 30:\n    print(\"Tempéré\")\nelse:\n    print(\"Chaud\")",
+    "solution": "temperature = int(input())\nif temperature < 20:\n    print(\"Frais\")\nelif temperature <= 30:\n    print(\"Tempéré\")\nelse:\n    print(\"Chaud\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "19"
+        ],
+        "expected_output": "Frais\n"
+      },
+      {
+        "inputs": [
+          "30"
+        ],
+        "expected_output": "Tempéré\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "20"
+        ],
+        "expected_output": "Tempéré\n"
+      },
+      {
+        "inputs": [
+          "31"
+        ],
+        "expected_output": "Chaud\n"
+      }
+    ],
+    "hints": [
+      "La première condition a déjà exclu les valeurs sous 20.",
+      "Le elif doit inclure 30.",
+      "Utilise elif temperature <= 30:."
+    ],
+    "explanation_fr": "Ces noms sont des catégories de programmation inventées, pas des définitions météorologiques officielles.",
+    "common_wrong_answers": [
+      {
+        "pattern": "temperature < 30",
+        "feedback_fr": "Le texte inclut trente dans Tempéré."
+      }
+    ],
+    "id": "py-m3-03-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Un classement de jeu",
+    "instruction_fr": "Dans un jeu fictif, affiche A pour un score de 80 ou plus, B de 50 à 79, sinon C. Corrige l’ordre.",
+    "starter_code": "score = int(input())\nif score >= 50:\n    print(\"B\")\nelif score >= 80:\n    print(\"A\")\nelse:\n    print(\"C\")",
+    "solution": "score = int(input())\nif score >= 80:\n    print(\"A\")\nelif score >= 50:\n    print(\"B\")\nelse:\n    print(\"C\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "80"
+        ],
+        "expected_output": "A\n"
+      },
+      {
+        "inputs": [
+          "50"
+        ],
+        "expected_output": "B\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "49"
+        ],
+        "expected_output": "C\n"
+      },
+      {
+        "inputs": [
+          "79"
+        ],
+        "expected_output": "B\n"
+      },
+      {
+        "inputs": [
+          "100"
+        ],
+        "expected_output": "A\n"
+      }
+    ],
+    "hints": [
+      "Suis le trajet d’un score de 90 dans le code initial.",
+      "Le premier test vrai empêche d’atteindre le elif.",
+      "Teste d’abord score >= 80, puis score >= 50."
+    ],
+    "explanation_fr": "Le bug n’est pas dans les seuils eux-mêmes, mais dans leur ordre.",
+    "common_wrong_answers": [
+      {
+        "pattern": "if score >= 50",
+        "feedback_fr": "Le score de 80 passe déjà dans ce bloc : le test suivant devient inaccessible pour A."
+      }
+    ],
+    "id": "py-m3-03-e4"
+  }
+]

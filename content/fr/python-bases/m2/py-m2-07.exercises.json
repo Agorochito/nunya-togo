@@ -1,0 +1,182 @@
+[
+  {
+    "id": "py-m2-07-e1",
+    "kind": "guided",
+    "title_fr": "Insérer un prénom dans le message",
+    "instruction_fr": "Lis un prénom fictif. Affiche Bonjour suivi d’un espace et du prénom avec une f-string.",
+    "starter_code": "prenom = input()\nprint(\"Bonjour {prenom}\")",
+    "solution": "prenom = input()\nprint(f\"Bonjour {prenom}\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Afi"
+        ],
+        "expected_output": "Bonjour Afi"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "Sena"
+        ],
+        "expected_output": "Bonjour Sena"
+      },
+      {
+        "inputs": [
+          "Kossi"
+        ],
+        "expected_output": "Bonjour Kossi"
+      }
+    ],
+    "hints": [
+      "La chaîne contient déjà les accolades nécessaires.",
+      "Python doit savoir qu’il s’agit d’une chaîne à expressions insérées.",
+      "Ajoute f juste avant le premier guillemet : f\"Bonjour {prenom}\"."
+    ],
+    "explanation_fr": "La lettre f active le remplacement du nom entre accolades par sa valeur.",
+    "common_wrong_answers": [
+      {
+        "pattern": "print\\(\"Bonjour \\{prenom\\}\\\"\\)",
+        "feedback_fr": "Ajoute f avant le guillemet ouvrant pour évaluer l’expression entre accolades."
+      }
+    ],
+    "required_syntax": [
+      "\\b(?:[fF][rR]?|[rR][fF])[\"']"
+    ]
+  },
+  {
+    "id": "py-m2-07-e2",
+    "kind": "practice",
+    "title_fr": "Afficher deux décimales",
+    "instruction_fr": "Lis une mesure décimale valide. Affiche Mesure : suivi de sa représentation à deux décimales, puis un espace et le mot unités.",
+    "starter_code": "mesure = float(input())\nprint(f\"Mesure : {mesure} unités\")",
+    "solution": "mesure = float(input())\nprint(f\"Mesure : {mesure:.2f} unités\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2.5"
+        ],
+        "expected_output": "Mesure : 2.50 unités"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "Mesure : 4.00 unités"
+      },
+      {
+        "inputs": [
+          "1.25"
+        ],
+        "expected_output": "Mesure : 1.25 unités"
+      }
+    ],
+    "hints": [
+      "Le format appartient à l’intérieur des accolades.",
+      "Après le nom de variable, :.2f demande deux décimales.",
+      "Utilise {mesure:.2f} dans la f-string."
+    ],
+    "explanation_fr": "Le format change la représentation affichée, pas la valeur conservée dans mesure.",
+    "common_wrong_answers": [
+      {
+        "pattern": "\\{mesure\\}",
+        "feedback_fr": "Ajoute :.2f après mesure à l’intérieur des accolades."
+      }
+    ]
+  },
+  {
+    "id": "py-m2-07-e3",
+    "kind": "practice",
+    "title_fr": "Mini-projet : convertisseur à taux fictif",
+    "instruction_fr": "Lis un montant fictif en FCFA. Pour cet exercice seulement, 1 TST = 500 FCFA ; TST est une monnaie pédagogique inventée, pas un cours réel. Calcule le montant en TST et affiche deux décimales suivies de TST (taux fictif).",
+    "starter_code": "montant_fcfa = float(input())\ntaux_fictif = 500\nmontant_tst = 0\nprint(f\"{montant_tst:.2f} TST (taux fictif)\")",
+    "solution": "montant_fcfa = float(input())\ntaux_fictif = 500\nmontant_tst = montant_fcfa / taux_fictif\nprint(f\"{montant_tst:.2f} TST (taux fictif)\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "750"
+        ],
+        "expected_output": "1.50 TST (taux fictif)"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1000"
+        ],
+        "expected_output": "2.00 TST (taux fictif)"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "0.00 TST (taux fictif)"
+      },
+      {
+        "inputs": [
+          "1250"
+        ],
+        "expected_output": "2.50 TST (taux fictif)"
+      }
+    ],
+    "hints": [
+      "La règle dit combien de FCFA correspondent à une unité TST.",
+      "Pour passer de FCFA à TST, divise le montant FCFA par 500.",
+      "Associe montant_fcfa / taux_fictif à montant_tst, puis conserve l’affichage à deux décimales."
+    ],
+    "explanation_fr": "Le programme relie lecture, conversion, calcul et présentation. Le taux et la monnaie TST sont explicitement fictifs.",
+    "common_wrong_answers": [
+      {
+        "pattern": "montant_fcfa \\* taux_fictif",
+        "feedback_fr": "Pour cette direction de conversion, divise les FCFA par le nombre de FCFA par TST."
+      }
+    ]
+  },
+  {
+    "id": "py-m2-07-e4",
+    "kind": "debug",
+    "title_fr": "Réparer le format d’un total",
+    "instruction_fr": "Lis un prix décimal fictif puis une quantité entière. Le total doit être affiché avec deux décimales sous la forme Total : 750.00 FCFA pour 250 et 3. Corrige l’affichage sans changer le calcul.",
+    "starter_code": "prix = float(input())\nquantite = int(input())\ntotal = prix * quantite\nprint(\"Total : {total:.2f} FCFA\")",
+    "solution": "prix = float(input())\nquantite = int(input())\ntotal = prix * quantite\nprint(f\"Total : {total:.2f} FCFA\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "250",
+          "3"
+        ],
+        "expected_output": "Total : 750.00 FCFA"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "125.5",
+          "2"
+        ],
+        "expected_output": "Total : 251.00 FCFA"
+      },
+      {
+        "inputs": [
+          "300",
+          "0"
+        ],
+        "expected_output": "Total : 0.00 FCFA"
+      }
+    ],
+    "hints": [
+      "Le résultat calculé est déjà associé à total.",
+      "Le texte semble contenir un format, mais il n’est pas encore évalué.",
+      "Ajoute f avant le guillemet ouvrant de la dernière chaîne."
+    ],
+    "explanation_fr": "Une chaîne ordinaire affiche ses accolades ; une f-string évalue total puis applique le format .2f.",
+    "common_wrong_answers": [
+      {
+        "pattern": "print\\(\"Total",
+        "feedback_fr": "Pour évaluer le total dans ce message, précède le guillemet ouvrant de f."
+      }
+    ]
+  }
+]

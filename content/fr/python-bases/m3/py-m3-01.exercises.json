@@ -1,0 +1,198 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Au moins trois cahiers",
+    "instruction_fr": "Lis un entier stock et affiche si ce stock contient au moins 3 cahiers.",
+    "starter_code": "stock = int(input())\nprint(stock > 3)",
+    "solution": "stock = int(input())\nprint(stock >= 3)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2"
+        ],
+        "expected_output": "False\n"
+      },
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "True\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "True\n"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "False\n"
+      }
+    ],
+    "hints": [
+      "« Au moins » inclut la quantité demandée.",
+      "Vérifie le résultat quand stock vaut exactement 3.",
+      "La comparaison attendue est stock >= 3."
+    ],
+    "explanation_fr": ">= accepte aussi le stock égal à trois. Le résultat booléen est affiché directement.",
+    "common_wrong_answers": [
+      {
+        "pattern": "stock > 3",
+        "feedback_fr": "Avec >, le stock égal à 3 est refusé. Le texte dit pourtant « au moins »."
+      }
+    ],
+    "id": "py-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "La commande est-elle exacte ?",
+    "instruction_fr": "Lis deux entiers, reçu puis commandé. Affiche True seulement quand les deux nombres sont égaux.",
+    "starter_code": "recu = int(input())\ncommande = int(input())\nprint(recu != commande)",
+    "solution": "recu = int(input())\ncommande = int(input())\nprint(recu == commande)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4",
+          "4"
+        ],
+        "expected_output": "True\n"
+      },
+      {
+        "inputs": [
+          "4",
+          "5"
+        ],
+        "expected_output": "False\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0",
+          "0"
+        ],
+        "expected_output": "True\n"
+      },
+      {
+        "inputs": [
+          "7",
+          "2"
+        ],
+        "expected_output": "False\n"
+      }
+    ],
+    "hints": [
+      "Tu cherches une égalité, pas une différence.",
+      "Une comparaison d’égalité comporte deux signes =.",
+      "Utilise print(recu == commande)."
+    ],
+    "explanation_fr": "== compare les valeurs sans les modifier.",
+    "common_wrong_answers": [
+      {
+        "pattern": "!=",
+        "feedback_fr": "!= demande si les nombres sont différents ; c’est la question inverse."
+      }
+    ],
+    "id": "py-m3-01-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un stock non vide",
+    "instruction_fr": "Lis un entier stock et affiche si ce nombre est différent de zéro. Cet exercice porte sur !=, sans décision à prendre.",
+    "starter_code": "stock = int(input())\nprint(stock == 0)",
+    "solution": "stock = int(input())\nprint(stock != 0)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "False\n"
+      },
+      {
+        "inputs": [
+          "5"
+        ],
+        "expected_output": "True\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "True\n"
+      },
+      {
+        "inputs": [
+          "-1"
+        ],
+        "expected_output": "True\n"
+      }
+    ],
+    "hints": [
+      "Ne remplace pas la question « différent de zéro » par « positif ».",
+      "La différence s’écrit !=.",
+      "Affiche le résultat de stock != 0."
+    ],
+    "explanation_fr": "Une valeur négative est aussi différente de zéro ; le test ne vérifie pas ici la validité d’un inventaire.",
+    "common_wrong_answers": [
+      {
+        "pattern": "stock > 0",
+        "feedback_fr": "> 0 teste la positivité, alors que la consigne demande uniquement une différence avec zéro."
+      }
+    ],
+    "id": "py-m3-01-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Une boîte de dix places",
+    "instruction_fr": "Le code doit accepter une quantité inférieure ou égale à 10. Corrige son opérateur sans changer la saisie.",
+    "starter_code": "quantite = int(input())\nprint(quantite < 10)",
+    "solution": "quantite = int(input())\nprint(quantite <= 10)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "9"
+        ],
+        "expected_output": "True\n"
+      },
+      {
+        "inputs": [
+          "10"
+        ],
+        "expected_output": "True\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "11"
+        ],
+        "expected_output": "False\n"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "True\n"
+      }
+    ],
+    "hints": [
+      "Commence par le cas quantite = 10.",
+      "La boîte accepte également une quantité égale à sa capacité.",
+      "Remplace < par <=."
+    ],
+    "explanation_fr": "Le bug concernait la frontière, pas tous les cas : neuf était déjà accepté.",
+    "common_wrong_answers": [
+      {
+        "pattern": "quantite < 10",
+        "feedback_fr": "Le signe < exclut la quantité exactement égale à 10."
+      }
+    ],
+    "id": "py-m3-01-e4"
+  }
+]

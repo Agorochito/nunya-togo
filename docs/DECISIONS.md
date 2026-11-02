@@ -34,3 +34,14 @@ Relecteurs togolais à identifier ; calendrier officiel à obtenir ; établissem
 - La mention « source consultée » qualifie la recherche, jamais la validation pédagogique, l’ouverture d’une offre ou l’admissibilité. Les contenus nouveaux et métiers restent en brouillon.
 - L’outil interne de génération APC reste hors de l’application élève. Sans empreintes autorisées ni relecteur humain, `publishable:false`.
 - Dépôt GitHub public demandé par le propriétaire, configuration Vercel prête. Les sessions locales, fichiers d’environnement, identifiants Sites et historique de travail ne sont pas nécessaires au dépôt public ; publier un instantané de source nettoyé. Les données des élèves n’existent que dans leur navigateur.
+
+## Brief v5 — priorité du 2 novembre
+
+- Le brief v5 remplace la priorité d’élargissement par la profondeur : un seul nouveau cours ouvert, Python : les bases, M1–M4 (22 leçons). M5–M10 et les autres langages sont des plans en préparation, pas des cours complets annoncés. Les anciens cours de code courts ne sont plus les destinations par défaut.
+- Les 18 adaptations historiques freeCodeCamp préparées avant ce brief ne sont pas publiées : v5 demande des contenus originaux uniquement. Structure pédagogique inspirée de pratiques générales, aucune affiliation ni certification freeCodeCamp.
+- Chaque nouvelle leçon possède une seule source Markdown et un JSON d’exercices adjacent ; catalogue, recherche et packs sont des dérivés. Les anciens contenus restent des repères historiques, à migrer et relire progressivement ; ils ne sont pas comptés comme le nouveau programme complet.
+- Routes : apprendre pour le code, mes-cours pour le scolaire, parcours pour les métiers. Les anciens liens sont redirigés. Une fiche de glossaire Python propose le véritable cours au lieu de se présenter comme ce cours.
+- Les contrôles de code et de structure ne remplacent pas la revue de compréhension par un élève débutant. Le moteur possède un timeout ; la limite mémoire stricte demandée ne peut pas être garantie par le runtime Pyodide actuellement embarqué. Repli lecture, traces et quiz disponible.
+
+- Les prérequis conditionnent la progression, sans empêcher une lecture ou un essai libre. Un test de module permet de valider des acquis ; le questionnaire de départ conseille seulement et ne valide rien.
+- Le contrôle sémantique complet du vocabulaire et de la difficulté demeure humain. Les validateurs garantissent des champs, bornes, références et sorties de programmes, pas l’absence de tout jargon.

@@ -1,0 +1,110 @@
+[
+  {
+    "id": "py-m2-03-e1",
+    "kind": "guided",
+    "title_fr": "Assembler une salutation",
+    "instruction_fr": "Associe Afi à prenom. Construis et affiche Bonjour Afi avec un seul espace entre les mots.",
+    "starter_code": "prenom = \"Afi\"\nmessage = \"Bonjour\" + prenom\nprint(message)",
+    "solution": "prenom = \"Afi\"\nmessage = \"Bonjour \" + prenom\nprint(message)",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bonjour Afi"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Python n’ajoute pas d’espace lors d’une concaténation.",
+      "L’espace peut se trouver à la fin de la première chaîne.",
+      "Utilise \"Bonjour \" avec un espace avant le guillemet fermant."
+    ],
+    "explanation_fr": "L’espace fait partie de la première chaîne et apparaît entre les deux morceaux.",
+    "common_wrong_answers": [
+      {
+        "pattern": "\"Bonjour\" \\+",
+        "feedback_fr": "Ajoute un espace au texte Bonjour avant de l’assembler au prénom."
+      }
+    ]
+  },
+  {
+    "id": "py-m2-03-e2",
+    "kind": "practice",
+    "title_fr": "Écrire un trajet lisible",
+    "instruction_fr": "Utilise les variables depart = \"Sokodé\" et arrivee = \"Kara\" pour afficher Sokodé - Kara.",
+    "starter_code": "depart = \"Sokodé\"\narrivee = \"Kara\"\nprint(depart + arrivee)",
+    "solution": "depart = \"Sokodé\"\narrivee = \"Kara\"\nprint(depart + \" - \" + arrivee)",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Sokodé - Kara"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Le séparateur est une chaîne à ajouter entre les deux noms.",
+      "Ce séparateur contient trois caractères : espace, tiret, espace.",
+      "Assemble depart + \" - \" + arrivee dans print."
+    ],
+    "explanation_fr": "Les villes restent dans des variables ; le séparateur explicite rend le message lisible.",
+    "common_wrong_answers": [
+      {
+        "pattern": "depart \\+ arrivee",
+        "feedback_fr": "La concaténation directe ne crée aucun séparateur."
+      }
+    ]
+  },
+  {
+    "id": "py-m2-03-e3",
+    "kind": "practice",
+    "title_fr": "Compter les caractères",
+    "instruction_fr": "Garde le texte Club Démo dans nom et affiche sa longueur avec len(). L’espace compte.",
+    "starter_code": "nom = \"Club Démo\"\nprint(nom)",
+    "solution": "nom = \"Club Démo\"\nprint(len(nom))",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "9"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Tu dois afficher un nombre, pas recopier le nom.",
+      "len(nom) calcule la longueur de la chaîne associée à nom.",
+      "Place len(nom) entre les parenthèses de print."
+    ],
+    "explanation_fr": "Club contient quatre caractères, l’espace en ajoute un et Démo en ajoute quatre : neuf au total.",
+    "common_wrong_answers": [
+      {
+        "pattern": "print\\(nom\\)",
+        "feedback_fr": "Pour afficher la longueur plutôt que le texte, utilise len(nom)."
+      }
+    ]
+  },
+  {
+    "id": "py-m2-03-e4",
+    "kind": "debug",
+    "title_fr": "Convertir avant d’assembler",
+    "instruction_fr": "Le programme doit afficher Cahiers : 7. Garde cahiers comme entier et corrige seulement son usage dans le message.",
+    "starter_code": "cahiers = 7\nprint(\"Cahiers : \" + cahiers)",
+    "solution": "cahiers = 7\nprint(\"Cahiers : \" + str(cahiers))",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Cahiers : 7"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "L’erreur vient d’un assemblage entre une chaîne et un entier.",
+      "str() produit une représentation textuelle du nombre.",
+      "Remplace le second morceau par str(cahiers)."
+    ],
+    "explanation_fr": "La quantité reste un entier ; seule sa représentation dans le message est convertie en chaîne.",
+    "common_wrong_answers": [
+      {
+        "pattern": "\"Cahiers : \" \\+ cahiers",
+        "feedback_fr": "La concaténation exige ici deux chaînes : utilise str(cahiers)."
+      }
+    ]
+  }
+]

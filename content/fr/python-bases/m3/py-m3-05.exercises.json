@@ -1,0 +1,222 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "La moyenne de trois notes",
+    "instruction_fr": "Lis trois entiers et affiche leur moyenne simple. Les entrées de cet exercice sont déjà comprises entre 0 et 20.",
+    "starter_code": "n1 = int(input())\nn2 = int(input())\nn3 = int(input())\nmoyenne = (n1 + n2 + n3) / 2\nprint(moyenne)",
+    "solution": "n1 = int(input())\nn2 = int(input())\nn3 = int(input())\nmoyenne = (n1 + n2 + n3) / 3\nprint(moyenne)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "12",
+          "14",
+          "16"
+        ],
+        "expected_output": "14.0\n"
+      },
+      {
+        "inputs": [
+          "10",
+          "10",
+          "10"
+        ],
+        "expected_output": "10.0\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0",
+          "0",
+          "0"
+        ],
+        "expected_output": "0.0\n"
+      },
+      {
+        "inputs": [
+          "20",
+          "20",
+          "20"
+        ],
+        "expected_output": "20.0\n"
+      }
+    ],
+    "hints": [
+      "Compte les notes additionnées.",
+      "La somme contient trois notes, pas deux.",
+      "Divise la somme par 3."
+    ],
+    "explanation_fr": "Le dénominateur correspond au nombre de valeurs, pas au nombre de signes +.",
+    "common_wrong_answers": [
+      {
+        "pattern": "/ 2",
+        "feedback_fr": "Il y a trois notes : la division doit utiliser trois."
+      }
+    ],
+    "id": "py-m3-05-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Valider les trois entrées",
+    "instruction_fr": "Lis trois entiers. Affiche « Valide » si chaque note est entre 0 et 20 inclus, sinon « À corriger ».",
+    "starter_code": "n1 = int(input())\nn2 = int(input())\nn3 = int(input())\nif n1 >= 0 and n1 <= 20:\n    print(\"Valide\")\nelse:\n    print(\"À corriger\")",
+    "solution": "n1 = int(input())\nn2 = int(input())\nn3 = int(input())\nif n1 >= 0 and n1 <= 20 and n2 >= 0 and n2 <= 20 and n3 >= 0 and n3 <= 20:\n    print(\"Valide\")\nelse:\n    print(\"À corriger\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "0",
+          "10",
+          "20"
+        ],
+        "expected_output": "Valide\n"
+      },
+      {
+        "inputs": [
+          "10",
+          "21",
+          "12"
+        ],
+        "expected_output": "À corriger\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "10",
+          "12",
+          "-1"
+        ],
+        "expected_output": "À corriger\n"
+      },
+      {
+        "inputs": [
+          "-1",
+          "12",
+          "10"
+        ],
+        "expected_output": "À corriger\n"
+      }
+    ],
+    "hints": [
+      "La validité de n1 ne dit rien sur n2 et n3.",
+      "Il faut six comparaisons reliées par and.",
+      "Vérifie les bornes 0 et 20 pour chacune des trois notes."
+    ],
+    "explanation_fr": "Toutes les entrées doivent respecter les bornes ; l’égalité aux bornes est acceptée.",
+    "common_wrong_answers": [
+      {
+        "pattern": "if n1 >= 0 and n1 <= 20:",
+        "feedback_fr": "Le code ne vérifie encore que la première note."
+      }
+    ],
+    "id": "py-m3-05-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Choisir un repère fictif",
+    "instruction_fr": "Lis deux notes valides entre 0 et 20 et calcule leur moyenne. Affiche le repère fictif : Très bien >= 16, Bien >= 14, En progrès >= 10, sinon À renforcer. Ce n’est pas une règle d’examen.",
+    "starter_code": "n1 = int(input())\nn2 = int(input())\nmoyenne = (n1 + n2) / 2\nif moyenne >= 10:\n    print(\"En progrès\")\nelif moyenne >= 14:\n    print(\"Bien\")\nelif moyenne >= 16:\n    print(\"Très bien\")\nelse:\n    print(\"À renforcer\")",
+    "solution": "n1 = int(input())\nn2 = int(input())\nmoyenne = (n1 + n2) / 2\nif moyenne >= 16:\n    print(\"Très bien\")\nelif moyenne >= 14:\n    print(\"Bien\")\nelif moyenne >= 10:\n    print(\"En progrès\")\nelse:\n    print(\"À renforcer\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "16",
+          "16"
+        ],
+        "expected_output": "Très bien\n"
+      },
+      {
+        "inputs": [
+          "14",
+          "14"
+        ],
+        "expected_output": "Bien\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "10",
+          "10"
+        ],
+        "expected_output": "En progrès\n"
+      },
+      {
+        "inputs": [
+          "8",
+          "10"
+        ],
+        "expected_output": "À renforcer\n"
+      }
+    ],
+    "hints": [
+      "Une moyenne de 17 satisfait aussi le seuil de 10.",
+      "Commence par le seuil le plus élevé.",
+      "Teste 16, puis 14, puis 10."
+    ],
+    "explanation_fr": "Les catégories larges ne doivent pas masquer les catégories plus exigeantes.",
+    "common_wrong_answers": [
+      {
+        "pattern": "if moyenne >= 10",
+        "feedback_fr": "Ce premier test empêche d’atteindre les autres repères pour les moyennes élevées."
+      }
+    ],
+    "id": "py-m3-05-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le bilan complet",
+    "instruction_fr": "Lis trois notes. Si l’une sort de 0..20, affiche « Notes invalides ». Sinon affiche « Moyenne : X » puis « Repère : Y » selon notre barème fictif. Corrige le calcul.",
+    "starter_code": "n1 = int(input())\nn2 = int(input())\nn3 = int(input())\nif n1 < 0 or n1 > 20 or n2 < 0 or n2 > 20 or n3 < 0 or n3 > 20:\n    print(\"Notes invalides\")\nelse:\n    moyenne = (n1 + n2 + n3) / 2\n    if moyenne >= 16:\n        repere = \"Très bien\"\n    elif moyenne >= 14:\n        repere = \"Bien\"\n    elif moyenne >= 10:\n        repere = \"En progrès\"\n    else:\n        repere = \"À renforcer\"\n    print(f\"Moyenne : {moyenne}\")\n    print(f\"Repère : {repere}\")",
+    "solution": "n1 = int(input())\nn2 = int(input())\nn3 = int(input())\nif n1 < 0 or n1 > 20 or n2 < 0 or n2 > 20 or n3 < 0 or n3 > 20:\n    print(\"Notes invalides\")\nelse:\n    moyenne = (n1 + n2 + n3) / 3\n    if moyenne >= 16:\n        repere = \"Très bien\"\n    elif moyenne >= 14:\n        repere = \"Bien\"\n    elif moyenne >= 10:\n        repere = \"En progrès\"\n    else:\n        repere = \"À renforcer\"\n    print(f\"Moyenne : {moyenne}\")\n    print(f\"Repère : {repere}\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "12",
+          "14",
+          "16"
+        ],
+        "expected_output": "Moyenne : 14.0\nRepère : Bien\n"
+      },
+      {
+        "inputs": [
+          "21",
+          "10",
+          "10"
+        ],
+        "expected_output": "Notes invalides\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "16",
+          "16",
+          "16"
+        ],
+        "expected_output": "Moyenne : 16.0\nRepère : Très bien\n"
+      },
+      {
+        "inputs": [
+          "8",
+          "8",
+          "8"
+        ],
+        "expected_output": "Moyenne : 8.0\nRepère : À renforcer\n"
+      }
+    ],
+    "hints": [
+      "La validation et l’ordre des repères sont déjà corrects.",
+      "Vérifie la valeur de moyenne pour trois notes identiques.",
+      "Le dénominateur du calcul doit être 3."
+    ],
+    "explanation_fr": "Un mauvais calcul peut produire un mauvais repère même si les conditions sont correctement écrites.",
+    "common_wrong_answers": [
+      {
+        "pattern": "/ 2",
+        "feedback_fr": "La somme utilise trois notes, donc le dénominateur doit être trois."
+      }
+    ],
+    "id": "py-m3-05-e4"
+  }
+]

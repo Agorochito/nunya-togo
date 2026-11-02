@@ -1,0 +1,200 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Deux conditions nécessaires",
+    "instruction_fr": "Lis stock, budget et prix, tous entiers. Affiche « Possible » seulement si stock > 0 et budget >= prix, sinon « Attendre ».",
+    "starter_code": "stock = int(input())\nbudget = int(input())\nprix = int(input())\nif stock > 0 or budget >= prix:\n    print(\"Possible\")\nelse:\n    print(\"Attendre\")",
+    "solution": "stock = int(input())\nbudget = int(input())\nprix = int(input())\nif stock > 0 and budget >= prix:\n    print(\"Possible\")\nelse:\n    print(\"Attendre\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2",
+          "500",
+          "500"
+        ],
+        "expected_output": "Possible\n"
+      },
+      {
+        "inputs": [
+          "0",
+          "800",
+          "500"
+        ],
+        "expected_output": "Attendre\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "2",
+          "400",
+          "500"
+        ],
+        "expected_output": "Attendre\n"
+      },
+      {
+        "inputs": [
+          "0",
+          "0",
+          "500"
+        ],
+        "expected_output": "Attendre\n"
+      }
+    ],
+    "hints": [
+      "La consigne demande les deux conditions.",
+      "or n’en exige qu’une ; ce n’est pas suffisant.",
+      "Relie les comparaisons par and."
+    ],
+    "explanation_fr": "Les deux contraintes doivent être respectées simultanément.",
+    "common_wrong_answers": [
+      {
+        "pattern": "stock > 0 or",
+        "feedback_fr": "or autoriserait un achat sans stock ou sans budget suffisant."
+      }
+    ],
+    "id": "py-m3-04-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Deux jours au choix",
+    "instruction_fr": "Lis un jour en minuscules. Affiche « Pause » pour samedi ou dimanche, sinon « Activité ».",
+    "starter_code": "jour = input()\nif jour == \"samedi\" and jour == \"dimanche\":\n    print(\"Pause\")\nelse:\n    print(\"Activité\")",
+    "solution": "jour = input()\nif jour == \"samedi\" or jour == \"dimanche\":\n    print(\"Pause\")\nelse:\n    print(\"Activité\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "samedi"
+        ],
+        "expected_output": "Pause\n"
+      },
+      {
+        "inputs": [
+          "lundi"
+        ],
+        "expected_output": "Activité\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "dimanche"
+        ],
+        "expected_output": "Pause\n"
+      },
+      {
+        "inputs": [
+          "mardi"
+        ],
+        "expected_output": "Activité\n"
+      }
+    ],
+    "hints": [
+      "Un même texte ne peut pas être à la fois samedi et dimanche.",
+      "Il suffit que l’une des comparaisons soit vraie.",
+      "Utilise jour == \"samedi\" or jour == \"dimanche\"."
+    ],
+    "explanation_fr": "or permet de reconnaître l’une des deux valeurs autorisées.",
+    "common_wrong_answers": [
+      {
+        "pattern": "and jour ==",
+        "feedback_fr": "and demanderait deux égalités impossibles à satisfaire simultanément ici."
+      }
+    ],
+    "id": "py-m3-04-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Exprimer le contraire",
+    "instruction_fr": "Lis « oui » ou « non ». La variable accord doit être vraie pour oui. Affiche « Sans accord » si not accord, sinon « Avec accord ».",
+    "starter_code": "accord = input() == \"oui\"\nif accord:\n    print(\"Sans accord\")\nelse:\n    print(\"Avec accord\")",
+    "solution": "accord = input() == \"oui\"\nif not accord:\n    print(\"Sans accord\")\nelse:\n    print(\"Avec accord\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "oui"
+        ],
+        "expected_output": "Avec accord\n"
+      },
+      {
+        "inputs": [
+          "non"
+        ],
+        "expected_output": "Sans accord\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "oui"
+        ],
+        "expected_output": "Avec accord\n"
+      }
+    ],
+    "hints": [
+      "accord est déjà un booléen.",
+      "Le premier message concerne son contraire.",
+      "Écris if not accord:."
+    ],
+    "explanation_fr": "not inverse la réponse booléenne créée par la comparaison à oui.",
+    "common_wrong_answers": [
+      {
+        "pattern": "if accord:",
+        "feedback_fr": "Ce premier bloc doit concerner l’absence d’accord."
+      }
+    ],
+    "id": "py-m3-04-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Un choix dans un choix",
+    "instruction_fr": "Lis accès puis badge, chacun « oui » ou « non ». Sans accès : « Fermé ». Avec accès et badge : « Entrer ». Avec accès sans badge : « Badge demandé ».",
+    "starter_code": "acces = input() == \"oui\"\nbadge = input() == \"oui\"\nif acces:\n    if badge:\n        print(\"Entrer\")\n    else:\n        print(\"Fermé\")\nelse:\n    print(\"Badge demandé\")",
+    "solution": "acces = input() == \"oui\"\nbadge = input() == \"oui\"\nif acces:\n    if badge:\n        print(\"Entrer\")\n    else:\n        print(\"Badge demandé\")\nelse:\n    print(\"Fermé\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "oui",
+          "oui"
+        ],
+        "expected_output": "Entrer\n"
+      },
+      {
+        "inputs": [
+          "oui",
+          "non"
+        ],
+        "expected_output": "Badge demandé\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "non",
+          "oui"
+        ],
+        "expected_output": "Fermé\n"
+      },
+      {
+        "inputs": [
+          "non",
+          "non"
+        ],
+        "expected_output": "Fermé\n"
+      }
+    ],
+    "hints": [
+      "Le else le plus décalé concerne le badge.",
+      "Le dernier else concerne l’accès général.",
+      "Intervertis les messages Fermé et Badge demandé."
+    ],
+    "explanation_fr": "L’indentation permet d’associer chaque else au bon if.",
+    "common_wrong_answers": [
+      {
+        "pattern": "else:\n        print(\"Fermé\")",
+        "feedback_fr": "Ce else intérieur signifie que l’accès existe, mais que le badge manque."
+      }
+    ],
+    "id": "py-m3-04-e4"
+  }
+]

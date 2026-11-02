@@ -1,3 +1,21 @@
+# Vérifications — version 5.1.0, 2 novembre 2026
+
+32 tests Vitest, lint et TypeScript réussis. 22 leçons passent les contrôles de structure (300–700 mots par explication, deux exemples, quatre exercices, trois quiz, erreurs, glossaire et récapitulatif), le graphe de prérequis et les références du catalogue. Les 278 cas d’exécution des exemples et solutions passent avec Python 3. Les solutions sont vérifiées avec les saisies et sorties attendues ; ce contrôle ne prétend pas juger toute la pédagogie.
+
+Chrome anonyme : première leçon depuis l’accueil et reprise en un clic ; réponse Python incorrecte puis correcte ; quatre exercices et quiz avant progression ; saisies `input()` et cas supplémentaires ; ancien lien physique redirigé dans le scolaire ; articles CSS puis Python ouverts depuis la bibliothèque sans actualisation. Zéro erreur JavaScript pendant ce scénario après correction des éléments historiques de navigation et de la recherche asynchrone.
+
+Après téléchargement : contexte passé hors ligne, recherche et lecture accessibles, éditeur chargé, code Python exécuté avec moteur déjà enregistré. Le moteur reste facultatif et distinct du texte. Les vidéos ne sont pas téléchargées.
+
+Seize vues axe A/AA : programme, carte du cours, première leçon et recherche, en 360/1440 px et clair/sombre. Zéro violation détectée et zéro débordement horizontal ; voir `AXE_CURRICULUM.json`. Ce n’est pas une certification d’accessibilité. Les tests sur téléphone réel restent à faire.
+
+Navigation ralentie : viewport 360×640, CDP latence 150 ms, débit 200 Ko/s, CPU ×4. Les comptes de clics et temps sont dans `FINDABILITY_V5.json`. Temps synthétiques sur serveur local, après affichage de l’accueil et avec caches progressivement chauds : pas une mesure du réseau d’un élève togolais. Le questionnaire adaptatif de dix questions et les conditions de progression sont aussi testés. Les recherches vérifient les adresses des premières leçons : boucle → for/range ; variable et varible → nommer une valeur ; if → if/else ; FCFA → conversion avec f-string.
+
+Captures avant : site public 5.0.2, visiteur anonyme. Captures après : version 5.1.0 locale. `docs/screenshots/v5-360-*` et `v5-1440-*` contiennent accueil, carte et leçon, dont des captures de page complète.
+
+Relecture humaine, réussite M1–M2 en trois heures et maîtrise d’un débutant : non mesurées. Les contenus restent brouillons. La limite mémoire stricte du runtime navigateur n’est pas garantie. Les modules 5–10, les autres langages et la mise au niveau v5 complète du pilote de mathématiques restent à développer.
+
+## Historique 5.0.2
+
 # Vérifications — version 5.0.2, 2 novembre 2026
 
 Lint, TypeScript, 27 tests Vitest et contrôles de contenu réussis. Les réponses des 27 questions numériques des trois nouvelles initiations sont vérifiées indépendamment, en plus des schémas, bornes des QCM, durées et identifiants.

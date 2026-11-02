@@ -1,0 +1,110 @@
+[
+  {
+    "id": "py-m1-02-e1",
+    "kind": "guided",
+    "title_fr": "Compléter le texte",
+    "instruction_fr": "Affiche Bienvenue à Kara.",
+    "starter_code": "print(\"...\")",
+    "solution": "print(\"Bienvenue à Kara\")",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bienvenue à Kara"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Les accents et les espaces doivent rester dans le texte.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "print(\"Bienvenue à Kara\")"
+    ],
+    "explanation_fr": "Les accents et les espaces doivent rester dans le texte. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  },
+  {
+    "id": "py-m1-02-e2",
+    "kind": "practice",
+    "title_fr": "Garder une apostrophe",
+    "instruction_fr": "Affiche L'atelier est ouvert.",
+    "starter_code": "print(\"\")",
+    "solution": "print(\"L'atelier est ouvert\")",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "L'atelier est ouvert"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Utilise des guillemets doubles autour du texte contenant une apostrophe.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "print(\"L'atelier est ouvert\")"
+    ],
+    "explanation_fr": "Utilise des guillemets doubles autour du texte contenant une apostrophe. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  },
+  {
+    "id": "py-m1-02-e3",
+    "kind": "practice",
+    "title_fr": "Composer deux lignes",
+    "instruction_fr": "Affiche Cours : puis Python sur deux lignes.",
+    "starter_code": "print(\"Cours :\")",
+    "solution": "print(\"Cours :\")\nprint(\"Python\")",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Cours :\nPython"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Ajoute une deuxième instruction sous la première.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "print(\"Cours :\")\nprint(\"Python\")"
+    ],
+    "explanation_fr": "Ajoute une deuxième instruction sous la première. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  },
+  {
+    "id": "py-m1-02-e4",
+    "kind": "debug",
+    "title_fr": "Trouver l’erreur de fermeture",
+    "instruction_fr": "Répare la chaîne pour afficher Merci.",
+    "starter_code": "print(\"Merci')",
+    "solution": "print(\"Merci\")",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Merci"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Le guillemet de fermeture doit avoir le même type que celui du début.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "print(\"Merci\")"
+    ],
+    "explanation_fr": "Le guillemet de fermeture doit avoir le même type que celui du début. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  }
+]

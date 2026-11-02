@@ -1,0 +1,192 @@
+[
+  {
+    "id": "py-m2-06-e1",
+    "kind": "guided",
+    "title_fr": "Calculer le coût d’un lot fictif",
+    "instruction_fr": "Lis un prix entier puis une quantité entière. Affiche leur produit sans ajouter de libellé. Les données sont fictives.",
+    "starter_code": "prix = int(input())\nquantite = int(input())\ntotal = 0\nprint(total)",
+    "solution": "prix = int(input())\nquantite = int(input())\ntotal = prix * quantite\nprint(total)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "250",
+          "4"
+        ],
+        "expected_output": "1000"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "300",
+          "3"
+        ],
+        "expected_output": "900"
+      },
+      {
+        "inputs": [
+          "125",
+          "6"
+        ],
+        "expected_output": "750"
+      }
+    ],
+    "hints": [
+      "Le coût total dépend à la fois du prix et de la quantité.",
+      "La multiplication de nombres s’écrit avec *.",
+      "Associe prix * quantite à total avant print(total)."
+    ],
+    "explanation_fr": "Le programme calcule le produit des deux entrées plutôt que d’afficher une réponse constante.",
+    "common_wrong_answers": [
+      {
+        "pattern": "prix \\+ quantite",
+        "feedback_fr": "Additionner prix et quantité ne calcule pas le coût de plusieurs articles ; utilise leur produit."
+      }
+    ]
+  },
+  {
+    "id": "py-m2-06-e2",
+    "kind": "practice",
+    "title_fr": "Former des lots complets",
+    "instruction_fr": "Lis un nombre de cahiers entier positif ou nul, puis un nombre de cahiers par lot strictement positif. Affiche le nombre de lots complets, puis le reste, sur deux lignes.",
+    "starter_code": "cahiers = int(input())\npar_lot = int(input())\nprint(cahiers / par_lot)",
+    "solution": "cahiers = int(input())\npar_lot = int(input())\nprint(cahiers // par_lot)\nprint(cahiers % par_lot)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "17",
+          "5"
+        ],
+        "expected_output": "3\n2"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "20",
+          "4"
+        ],
+        "expected_output": "5\n0"
+      },
+      {
+        "inputs": [
+          "3",
+          "5"
+        ],
+        "expected_output": "0\n3"
+      },
+      {
+        "inputs": [
+          "0",
+          "3"
+        ],
+        "expected_output": "0\n0"
+      }
+    ],
+    "hints": [
+      "Les questions « combien de lots complets ? » et « quel reste ? » sont différentes.",
+      "Utilise // pour le quotient entier et % pour le reste.",
+      "Affiche cahiers // par_lot, puis cahiers % par_lot sur la ligne suivante."
+    ],
+    "explanation_fr": "Pour les entrées positives annoncées, quotient entier et reste décrivent exactement le partage.",
+    "common_wrong_answers": [
+      {
+        "pattern": "print\\(cahiers / par_lot\\)",
+        "feedback_fr": "/ donne un quotient décimal ; le nombre de lots complets demande //."
+      }
+    ]
+  },
+  {
+    "id": "py-m2-06-e3",
+    "kind": "practice",
+    "title_fr": "Calculer le carré d’un nombre",
+    "instruction_fr": "Lis un entier, puis affiche son carré avec **. Le carré d’un nombre est son produit par lui-même.",
+    "starter_code": "nombre = int(input())\nprint(nombre * 2)",
+    "solution": "nombre = int(input())\nprint(nombre ** 2)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "9"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "5"
+        ],
+        "expected_output": "25"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "0"
+      },
+      {
+        "inputs": [
+          "-4"
+        ],
+        "expected_output": "16"
+      }
+    ],
+    "hints": [
+      "Multiplier par deux et mettre au carré sont deux opérations différentes.",
+      "En Python, une puissance utilise deux étoiles successives.",
+      "Écris nombre ** 2 dans print."
+    ],
+    "explanation_fr": "** 2 calcule le carré ; pour -4, le résultat vaut 16.",
+    "common_wrong_answers": [
+      {
+        "pattern": "nombre \\* 2",
+        "feedback_fr": "* 2 double le nombre ; ** 2 calcule son carré."
+      }
+    ]
+  },
+  {
+    "id": "py-m2-06-e4",
+    "kind": "debug",
+    "title_fr": "Conserver une moyenne décimale",
+    "instruction_fr": "Lis un total entier puis un nombre d’observations strictement positif. Corrige l’opérateur pour afficher la moyenne avec la division /, sans arrondir.",
+    "starter_code": "total = int(input())\nnombre = int(input())\nprint(total // nombre)",
+    "solution": "total = int(input())\nnombre = int(input())\nprint(total / nombre)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "7",
+          "2"
+        ],
+        "expected_output": "3.5"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "10",
+          "4"
+        ],
+        "expected_output": "2.5"
+      },
+      {
+        "inputs": [
+          "12",
+          "3"
+        ],
+        "expected_output": "4.0"
+      }
+    ],
+    "hints": [
+      "Une moyenne peut avoir une partie décimale.",
+      "Le quotient entier // arrondit vers le bas.",
+      "Remplace // par / pour la moyenne demandée."
+    ],
+    "explanation_fr": "La division / garde ici le quotient décimal ; // change la question calculée.",
+    "common_wrong_answers": [
+      {
+        "pattern": "total // nombre",
+        "feedback_fr": "Le quotient entier perd la partie décimale dont la moyenne a besoin."
+      }
+    ]
+  }
+]

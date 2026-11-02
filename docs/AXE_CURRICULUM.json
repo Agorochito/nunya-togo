@@ -1,0 +1,114 @@
+[
+  {
+    "route": "apprendre",
+    "width": 360,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "apprendre/python-bases",
+    "width": 360,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "apprendre/python-bases/m1/py-m1-01",
+    "width": 360,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "recherche",
+    "width": 360,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "apprendre",
+    "width": 360,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "apprendre/python-bases",
+    "width": 360,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "apprendre/python-bases/m1/py-m1-01",
+    "width": 360,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "recherche",
+    "width": 360,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "apprendre",
+    "width": 1440,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "apprendre/python-bases",
+    "width": 1440,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "apprendre/python-bases/m1/py-m1-01",
+    "width": 1440,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "recherche",
+    "width": 1440,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "apprendre",
+    "width": 1440,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "apprendre/python-bases",
+    "width": 1440,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "apprendre/python-bases/m1/py-m1-01",
+    "width": 1440,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "recherche",
+    "width": 1440,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  }
+]

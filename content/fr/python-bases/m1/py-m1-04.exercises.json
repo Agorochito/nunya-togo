@@ -1,0 +1,110 @@
+[
+  {
+    "id": "py-m1-04-e1",
+    "kind": "guided",
+    "title_fr": "Réparer une parenthèse",
+    "instruction_fr": "Affiche Bonjour en fermant l’instruction.",
+    "starter_code": "print(\"Bonjour\"",
+    "solution": "print(\"Bonjour\")",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bonjour"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "La parenthèse ouverte après print attend une fermeture.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "print(\"Bonjour\")"
+    ],
+    "explanation_fr": "La parenthèse ouverte après print attend une fermeture. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  },
+  {
+    "id": "py-m1-04-e2",
+    "kind": "practice",
+    "title_fr": "Réparer une chaîne",
+    "instruction_fr": "Affiche Bonsoir.",
+    "starter_code": "print(\"Bonsoir)",
+    "solution": "print(\"Bonsoir\")",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bonsoir"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Ferme la chaîne avant la parenthèse.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "print(\"Bonsoir\")"
+    ],
+    "explanation_fr": "Ferme la chaîne avant la parenthèse. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  },
+  {
+    "id": "py-m1-04-e3",
+    "kind": "practice",
+    "title_fr": "Corriger un résultat",
+    "instruction_fr": "Le programme doit afficher Sokodé, pas Kara.",
+    "starter_code": "print(\"Kara\")",
+    "solution": "print(\"Sokodé\")",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Sokodé"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "La syntaxe fonctionne ; c’est le message qui ne correspond pas à la consigne.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "print(\"Sokodé\")"
+    ],
+    "explanation_fr": "La syntaxe fonctionne ; c’est le message qui ne correspond pas à la consigne. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  },
+  {
+    "id": "py-m1-04-e4",
+    "kind": "debug",
+    "title_fr": "Trouver deux erreurs",
+    "instruction_fr": "Affiche Étape 1 puis Étape 2 sur deux lignes.",
+    "starter_code": "Print(\"Étape 1\")\nprint(\"Étape 2\"",
+    "solution": "print(\"Étape 1\")\nprint(\"Étape 2\")",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Étape 1\nÉtape 2"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Corrige d’abord Print, puis vérifie la dernière parenthèse.",
+      "Compare les caractères et l’ordre des lignes avec la consigne.",
+      "print(\"Étape 1\")\nprint(\"Étape 2\")"
+    ],
+    "explanation_fr": "Corrige d’abord Print, puis vérifie la dernière parenthèse. La console doit afficher exactement les lignes demandées ; les guillemets du programme ne sont pas affichés.",
+    "common_wrong_answers": [
+      {
+        "pattern": "Print\\(",
+        "feedback_fr": "Python distingue majuscules et minuscules. Écris print en minuscules."
+      }
+    ]
+  }
+]

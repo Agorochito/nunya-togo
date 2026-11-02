@@ -1,0 +1,84 @@
+{
+  "viewport": "360×640",
+  "network": {
+    "latencyMs": 150,
+    "downloadKBps": 200,
+    "uploadKBps": 100
+  },
+  "cpuSlowdown": 4,
+  "synthetic": true,
+  "report": [
+    {
+      "task": "Première leçon Python",
+      "taps": 1,
+      "seconds": 0.18,
+      "route": "/apprendre/python-bases/m1/py-m1-01"
+    },
+    {
+      "task": "Reprendre la leçon",
+      "taps": 1,
+      "seconds": 0.09,
+      "route": "/apprendre/python-bases/m1/py-m1-01"
+    },
+    {
+      "task": "Maths de seconde",
+      "taps": 3,
+      "seconds": 0.26,
+      "route": "/mes-cours/seconde/maths/maths-seconde/0"
+    },
+    {
+      "task": "Parcours cybersécurité",
+      "taps": 1,
+      "seconds": 0.1,
+      "route": "/parcours/cybersecurite"
+    },
+    {
+      "task": "Cours téléchargeable",
+      "taps": 3,
+      "seconds": 0.24,
+      "route": "/apprendre/python-bases"
+    },
+    {
+      "task": "Recherche boucle",
+      "taps": 1,
+      "seconds": 0.51,
+      "first": "Apprendre › Python › Boucles\nRépéter avec for et range\nOuvrir →"
+    },
+    {
+      "task": "Recherche variable",
+      "taps": 1,
+      "seconds": 0.53,
+      "first": "Apprendre › Python › Variables et types\nDonner un nom à une valeur\nOuvrir →"
+    },
+    {
+      "task": "Recherche if",
+      "taps": 1,
+      "seconds": 0.51,
+      "first": "Apprendre › Python › Conditions\nChoisir avec if et else\nOuvrir →"
+    },
+    {
+      "task": "Recherche FCFA",
+      "taps": 1,
+      "seconds": 0.54,
+      "first": "Apprendre › Python › Variables et types\nPrésenter un résultat avec une f-string\nOuvrir →"
+    },
+    {
+      "task": "Recherche varible",
+      "taps": 1,
+      "seconds": 0.46,
+      "first": "Apprendre › Python › Variables et types\nDonner un nom à une valeur\nOuvrir →"
+    },
+    {
+      "task": "Où suis-je et prérequis",
+      "taps": 1,
+      "position": "Leçon 2 sur 5 · Module 1",
+      "unlock": "Prérequis liés + test du module"
+    },
+    {
+      "task": "Positionnement adaptatif",
+      "questions": 10,
+      "passed": true
+    }
+  ],
+  "errors": []
+}
