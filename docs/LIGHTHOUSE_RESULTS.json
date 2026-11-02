@@ -1,14 +1,29 @@
 {
   "release": "5.0.2",
   "measured_on": "2026-11-02",
-  "context": "Local Python HTTP server without compression; Lighthouse mobile simulation",
+  "url": "https://nunya-togo.vercel.app/#/parcours/cybersecurite",
+  "context": "Lighthouse mobile simulation on Vercel production; fresh anonymous Chrome profile",
   "scores": {
-    "performance": 80,
+    "performance": 96,
     "accessibility": 100,
     "best-practices": 100
   },
-  "lcp_ms": 4676.4024,
+  "lcp_ms": 1838.153,
   "cls": 0.09541813634701365,
-  "productionMeasurement": false,
-  "remaining": "LCP < 3 s not achieved locally; real-device and production measurement required."
+  "productionMeasurement": true,
+  "previous_local_measurement": {
+    "release": "5.0.2",
+    "measured_on": "2026-11-02",
+    "context": "Local Python HTTP server without compression; Lighthouse mobile simulation",
+    "scores": {
+      "performance": 80,
+      "accessibility": 100,
+      "best-practices": 100
+    },
+    "lcp_ms": 4676.4024,
+    "cls": 0.09541813634701365,
+    "productionMeasurement": false,
+    "remaining": "LCP < 3 s not achieved locally; real-device and production measurement required."
+  },
+  "remaining": "Physical low-end Android and iOS tests, keyboard and screen-reader review still needed."
 }

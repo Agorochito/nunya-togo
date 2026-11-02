@@ -9,6 +9,9 @@
 - Valider humainement les propositions `data/review/` avant tout rapprochement de ressource avec programme, parcours ou étape. Les 2 925 suggestions lexicales ne sont pas des associations approuvées.
 - Réunir les documents autorisés et empreintes nécessaires au contrôle d’originalité APC. Sans cela, le générateur refuse toute qualité « publiable » ; ses calculs et barèmes sont testés, son originalité n’est pas certifiée.
 - Tester sur Android peu puissant et Safari iOS réels, petits écrans, clavier et lecteur d’écran ; vérifier les PDF et vidéos chez les élèves.
-- Réduire le LCP mesuré localement (~4,7 s) et refaire Lighthouse sur l’hébergement réel avec compression. Les 56 vues axe sont un contrôle automatique, pas une certification complète d’accessibilité.
+- Lighthouse sur Vercel atteint 96/100/100 et un LCP de 1,8 s ; maintenir ces résultats et tester sur appareils réels. Les 56 vues axe sont un contrôle automatique, pas une certification complète d’accessibilité.
 - Compléter progressivement l’anglais ; la langue d’enseignement prioritaire reste le français.
 - Authentification, synchronisation, portfolio public opt-in, mentors et employeurs : après décision d’architecture, hébergement et financement. Ne pas simuler de candidatures ou d’échanges.
+
+
+Vercel production vérifiée le 2 novembre : https://nunya-togo.vercel.app, accès anonyme HTTP 200, 12 compétences présentes, ouverture d’un accompagnement français sans erreur JavaScript. Dépôt public : https://github.com/Agorochito/nunya-togo ; contrôle GitHub Actions réussi.

@@ -1,5 +1,7 @@
 # Nunya — pilote TIA pour le Togo
 
+[Ouvrir le site](https://nunya-togo.vercel.app) · [Dépôt public](https://github.com/Agorochito/nunya-togo)
+
 Apprendre en français, réviser ses cours et explorer des métiers, d’abord pour les lycéens, puis les étudiants. Les élèves plus jeunes restent une étape ultérieure du déploiement, même si les classes du primaire et le CEPD sont modélisés.
 
 ## Démarrer et vérifier

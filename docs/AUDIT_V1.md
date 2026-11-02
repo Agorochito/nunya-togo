@@ -21,7 +21,7 @@ Audit initial le 1er novembre, vérification finale le 2 novembre 2026. Applicat
 ## P2 — limites et suite
 
 - Relecture pédagogique humaine, alignement au programme togolais, admissions et débouchés non validés. Les sources consultées ne sont pas des offres ouvertes garanties.
-- Lighthouse mobile local : 80 performance, 100 accessibilité, 100 bonnes pratiques. LCP 4,7 s sur serveur Python sans compression : objectif de moins de 3 s encore à atteindre, puis mesurer sur hébergement réel.
+- Lighthouse mobile local : 80 performance, 100 accessibilité, 100 bonnes pratiques. LCP 4,7 s sur serveur Python sans compression : mesure locale défavorable ; la mesure de production Vercel atteint ensuite 96/100/100 et un LCP de 1,8 s.
 - Aucun essai sur un téléphone Android/iPhone physique. Les lecteurs PDF et chaque vidéo ne sont pas contrôlés individuellement.
 - Certains libellés anciens et contenus restent français lors du passage en anglais ; interface de base traduite, pas une traduction intégrale de tous les cours.
 - Authentification, IA distante, portfolio public et vrais mentors nécessitent un serveur ; le pilote indique ces fonctions à venir.
@@ -32,3 +32,6 @@ Audit initial le 1er novembre, vérification finale le 2 novembre 2026. Applicat
 ![Après accueil sombre](screenshots/final-1440-dark-accueil.png)
 ![Après parcours](screenshots/final-1440-light-parcours-cybersecurite.png)
 ![Nouvel explorateur](screenshots/skills-1440-dark-bibliotheque-competences.png)
+
+
+Vercel production vérifiée le 2 novembre : https://nunya-togo.vercel.app, accès anonyme HTTP 200, 12 compétences présentes, ouverture d’un accompagnement français sans erreur JavaScript. Dépôt public : https://github.com/Agorochito/nunya-togo ; contrôle GitHub Actions réussi.

@@ -1,5 +1,7 @@
 # Partager Nunya avec GitHub et Vercel
 
+Déploiement effectué le 2 novembre 2026 : [site public](https://nunya-togo.vercel.app) et [dépôt public](https://github.com/Agorochito/nunya-togo). Accès sans compte vérifié. Les réglages ci-dessous sont déjà appliqués.
+
 Le dépôt GitHub contient le code ; Vercel sert le site aux élèves. Un lien localhost ne fonctionne que sur l’ordinateur qui exécute le serveur. Le lien de production HTTPS reste disponible quand cet ordinateur est éteint.
 
 ## Importer sur Vercel
