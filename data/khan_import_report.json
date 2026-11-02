@@ -1,0 +1,22 @@
+{
+  "provider": "Khan Academy",
+  "source": "https://storage.googleapis.com/public-content-export-data/fr-export-recent.tsv",
+  "sourceDocumentation": "https://github.com/learningequality/sushi-chef-khan-academy/blob/master/tsvkhan.py",
+  "imported": 4115,
+  "deduplication": "translated_youtube_id",
+  "filters": [
+    "fully_translated",
+    "dubbed",
+    "listed_anywhere",
+    "cc-by-nc-sa"
+  ],
+  "checked": "2026-11-01",
+  "bySubject": {
+    "tech": 2,
+    "business": 124,
+    "maths": 3169,
+    "physics": 197,
+    "biology": 223,
+    "chemistry": 400
+  }
+}

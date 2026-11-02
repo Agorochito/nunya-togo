@@ -1,0 +1,30 @@
+-- Migration prepared for a dedicated Supabase project. Not applied by the static pilot.
+create extension if not exists pgcrypto;
+create table public.profiles (id uuid primary key references auth.users(id) on delete cascade, display_name text, age_band text, status text, school_class text, school_series text, preferred_track text not null default 'both', created_at timestamptz not null default now());
+create table public.staff_roles (user_id uuid primary key references auth.users(id) on delete cascade, role text not null check(role in ('reviewer','admin')));
+alter table public.staff_roles enable row level security;
+create policy staff_own_read on public.staff_roles for select to authenticated using(user_id=auth.uid());
+-- No client write policy for staff roles; administrators assign them using a trusted service.
+create function public.is_reviewer() returns boolean language sql stable security definer set search_path='' as $$ select exists(select 1 from public.staff_roles where user_id=auth.uid() and role in ('admin','reviewer')); $$;
+create table public.domains (id uuid primary key default gen_random_uuid(), slug text unique not null, title jsonb not null, status text not null default 'brouillon');
+create table public.pathways (id uuid primary key default gen_random_uuid(), domain_id uuid not null references public.domains(id), title jsonb not null, status text not null default 'brouillon');
+create table public.levels (id uuid primary key default gen_random_uuid(), pathway_id uuid not null references public.pathways(id), position integer not null, title jsonb not null, status text not null default 'brouillon');
+create table public.modules (id uuid primary key default gen_random_uuid(), level_id uuid not null references public.levels(id), title jsonb not null, position integer not null, status text not null default 'brouillon');
+create table public.chapters (id uuid primary key default gen_random_uuid(), module_id uuid not null references public.modules(id), title jsonb not null, body jsonb not null, language text not null default 'fr-TG', author text not null, reviewer uuid references auth.users(id), curriculum_ref jsonb, source_metadata jsonb not null default '[]', status text not null default 'brouillon' check(status in ('brouillon','relu','validé')), last_verified timestamptz, check(status<>'validé' or reviewer is not null));
+create table public.steps (id uuid primary key default gen_random_uuid(), chapter_id uuid not null references public.chapters(id) on delete cascade, position integer not null, payload jsonb not null, status text not null default 'brouillon');
+create table public.exercises (id uuid primary key default gen_random_uuid(), chapter_id uuid references public.chapters(id), payload jsonb not null, generated_by text, model text, prompt_version text, reviewer uuid references auth.users(id), status text not null default 'brouillon', check(status<>'validé' or reviewer is not null));
+create table public.placement_questions (id uuid primary key default gen_random_uuid(), payload jsonb not null, difficulty integer not null, status text not null default 'brouillon');
+do $$ declare t text; begin foreach t in array array['domains','pathways','levels','modules','chapters','steps','exercises','placement_questions'] loop execute format('alter table public.%I enable row level security',t);execute format('create policy approved_read on public.%I for select using (status = ''validé'' or public.is_reviewer())',t);execute format('create policy reviewer_write on public.%I for all to authenticated using (public.is_reviewer()) with check (public.is_reviewer())',t);end loop;end $$;
+-- Owner-scoped records. Per-record timestamps support deterministic last-write-wins merging.
+do $$ declare t text; begin foreach t in array array['placement_results','progress','skill_mastery','review_schedule','downloads','feedback','badges','notes','learning_events'] loop execute format('create table public.%I (id uuid primary key default gen_random_uuid(), user_id uuid not null references auth.users(id) on delete cascade, record_key text not null, payload jsonb not null, updated_at timestamptz not null default now(), unique(user_id, record_key))',t);execute format('alter table public.%I enable row level security',t);execute format('create policy owner_records on public.%I for all to authenticated using (user_id = auth.uid()) with check (user_id = auth.uid())',t);end loop;end $$;
+alter table public.profiles enable row level security;
+create policy own_profile on public.profiles for all to authenticated using(id=auth.uid()) with check(id=auth.uid());
+create table public.ai_usage (user_id uuid not null references auth.users(id) on delete cascade, usage_day date not null default current_date, requests integer not null default 0, primary key(user_id,usage_day));
+alter table public.ai_usage enable row level security;
+create policy usage_own_read on public.ai_usage for select to authenticated using(user_id=auth.uid());
+create function public.reserve_ai_request() returns integer language plpgsql security definer set search_path='' as $$ declare n integer; begin if auth.uid() is null then raise exception 'authentication required';end if;insert into public.ai_usage(user_id,usage_day,requests) values(auth.uid(),current_date,1) on conflict(user_id,usage_day) do update set requests=public.ai_usage.requests+1 where public.ai_usage.requests<15 returning requests into n;if n is null then raise exception 'daily quota reached';end if;return 15-n;end $$;
+revoke all on function public.reserve_ai_request() from public;grant execute on function public.reserve_ai_request() to authenticated;
+create table public.organizations (id uuid primary key default gen_random_uuid(), name text not null);
+create table public.classes (id uuid primary key default gen_random_uuid(), organization_id uuid references public.organizations(id), name text not null);
+alter table public.organizations enable row level security;alter table public.classes enable row level security;
+-- School portals remain closed: intentionally no client policies until the membership model is reviewed.

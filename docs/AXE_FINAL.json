@@ -1,0 +1,310 @@
+[
+  {
+    "route": "accueil",
+    "width": 360,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "avenir",
+    "width": 360,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "parcours/cybersecurite",
+    "width": 360,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "mes-cours",
+    "width": 360,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "bibliotheque",
+    "width": 360,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "opportunites",
+    "width": 360,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "etranger",
+    "width": 360,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "portfolio",
+    "width": 360,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "parcours/cybersecurite/etape/cyber-decouvrir-metier",
+    "width": 360,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "avenir/health",
+    "width": 360,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "parcours/sante-sciences",
+    "width": 360,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "accueil",
+    "width": 360,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "avenir",
+    "width": 360,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "parcours/cybersecurite",
+    "width": 360,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "mes-cours",
+    "width": 360,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "bibliotheque",
+    "width": 360,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "opportunites",
+    "width": 360,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "etranger",
+    "width": 360,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "portfolio",
+    "width": 360,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "parcours/cybersecurite/etape/cyber-decouvrir-metier",
+    "width": 360,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "avenir/health",
+    "width": 360,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "parcours/sante-sciences",
+    "width": 360,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "accueil",
+    "width": 1440,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "avenir",
+    "width": 1440,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "parcours/cybersecurite",
+    "width": 1440,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "mes-cours",
+    "width": 1440,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "bibliotheque",
+    "width": 1440,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "opportunites",
+    "width": 1440,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "etranger",
+    "width": 1440,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "portfolio",
+    "width": 1440,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "parcours/cybersecurite/etape/cyber-decouvrir-metier",
+    "width": 1440,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "avenir/health",
+    "width": 1440,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "parcours/sante-sciences",
+    "width": 1440,
+    "dark": false,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "accueil",
+    "width": 1440,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "avenir",
+    "width": 1440,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "parcours/cybersecurite",
+    "width": 1440,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "mes-cours",
+    "width": 1440,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "bibliotheque",
+    "width": 1440,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "opportunites",
+    "width": 1440,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "etranger",
+    "width": 1440,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "portfolio",
+    "width": 1440,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "parcours/cybersecurite/etape/cyber-decouvrir-metier",
+    "width": 1440,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "avenir/health",
+    "width": 1440,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  },
+  {
+    "route": "parcours/sante-sciences",
+    "width": 1440,
+    "dark": true,
+    "overflow": false,
+    "violations": []
+  }
+]

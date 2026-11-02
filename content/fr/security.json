@@ -1,0 +1,77 @@
+{
+  "id": "security",
+  "title": "Les réflexes de sécurité numérique",
+  "en": "Les réflexes de sécurité numérique",
+  "category": "CYBERSÉCURITÉ",
+  "domain": "tech",
+  "desc": "Apprends à repérer les messages suspects et à protéger ton identité en ligne.",
+  "enDesc": "Apprends à repérer les messages suspects et à protéger ton identité en ligne.",
+  "glyph": "⌁",
+  "color": "#d8e9e4",
+  "type": "subject",
+  "level": "Débutant",
+  "duration": 40,
+  "lessons": [
+    {
+      "title": "Repérer une demande suspecte",
+      "body": "Un message peut imiter une organisation connue pour obtenir une information privée. L’urgence, la menace et une demande de code sont des signaux d’alerte. Vérifie la demande par un canal officiel que tu connais déjà.",
+      "code": "Message : « Donne ton code tout de suite ! »\nRéflexe : ne pas transmettre le code.",
+      "output": "Prendre le temps de vérifier.",
+      "question": "Quelle demande est un signal d’alerte ?",
+      "options": [
+        "Une demande de code de connexion",
+        "Une explication de cours",
+        "Une date publique"
+      ],
+      "answer": 0,
+      "explanation": "Un code de connexion est privé et peut donner accès à un compte."
+    },
+    {
+      "title": "Une sauvegarde, une deuxième chance",
+      "body": "Une sauvegarde est une copie que tu peux restaurer si l’original est perdu. Une copie sur le même appareil ne suffit pas si cet appareil disparaît. Vérifie régulièrement que la sauvegarde peut être ouverte.",
+      "code": "Original sur le téléphone\n+ copie sur un autre support\n+ vérification de la restauration",
+      "output": "Une copie utile doit être récupérable.",
+      "question": "Si toutes les copies restent sur le même téléphone…",
+      "options": [
+        "La perte du téléphone peut tout supprimer",
+        "Il n’y a plus aucun risque",
+        "Internet les protège forcément"
+      ],
+      "answer": 0,
+      "explanation": "Un autre support réduit le risque de tout perdre avec l’appareil."
+    },
+    {
+      "title": "Gérer les autorisations",
+      "body": "Une application peut demander l’accès à la caméra, aux contacts ou à la position. Demande-toi si cet accès sert la fonction utilisée. Refuser une autorisation inutile limite les informations partagées.",
+      "code": "Fonction : lire un cours\nQuestion : les contacts sont-ils nécessaires ?",
+      "output": "Donner seulement les accès utiles.",
+      "question": "Une appli de lecture a-t-elle toujours besoin de tes contacts ?",
+      "options": [
+        "Oui",
+        "Non",
+        "Seulement le dimanche"
+      ],
+      "answer": 1,
+      "explanation": "Une lecture de leçon ne nécessite généralement pas l’accès aux contacts."
+    },
+    {
+      "title": "Partager avec discernement",
+      "body": "Avant de publier, vérifie si le contenu expose quelqu’un : adresse, document privé, visage ou emploi du temps. Une publication peut circuler au-delà du public prévu. Demande l’accord des personnes concernées.",
+      "code": "Avant de publier :\nQui est visible ?\nQuelles données apparaissent ?\nAi-je l’accord nécessaire ?",
+      "output": "Un moment de vérification évite une exposition inutile.",
+      "question": "Avant de publier une photo d’un camarade…",
+      "options": [
+        "Demande son accord",
+        "Cache seulement ton nom",
+        "Publie sans réfléchir"
+      ],
+      "answer": 0,
+      "explanation": "L’accord et la protection des données personnelles comptent."
+    }
+  ],
+  "author": "Nunya",
+  "reviewer": null,
+  "status": "brouillon",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

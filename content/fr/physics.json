@@ -1,0 +1,77 @@
+{
+  "id": "physics",
+  "title": "Énergie, mesures & électricité",
+  "en": "Énergie, mesures & électricité",
+  "category": "SCIENCES & TECHNIQUES",
+  "domain": "sciences",
+  "desc": "Les premières notions pour comprendre un circuit, une mesure et l’énergie solaire.",
+  "enDesc": "Les premières notions pour comprendre un circuit, une mesure et l’énergie solaire.",
+  "glyph": "⚡",
+  "color": "#f3e9bd",
+  "type": "subject",
+  "level": "Débutant",
+  "duration": 40,
+  "lessons": [
+    {
+      "title": "Mesurer pour comprendre",
+      "body": "Une mesure comporte une valeur et une unité. Le mètre mesure une longueur, la seconde une durée. Convertir les unités permet de comparer correctement les données. Note toujours l’unité avec le résultat.",
+      "code": "1 mètre = 100 centimètres\n2 mètres = 200 centimètres",
+      "output": "200 cm",
+      "question": "Combien valent 3 mètres en centimètres ?",
+      "options": [
+        "30 cm",
+        "300 cm",
+        "3 000 cm"
+      ],
+      "answer": 1,
+      "explanation": "Chaque mètre vaut 100 cm : 3 × 100 = 300 cm."
+    },
+    {
+      "title": "Un circuit, une boucle",
+      "body": "Un circuit simple relie une source, des conducteurs et un récepteur dans une boucle fermée. Si la boucle est ouverte, le courant ne circule pas dans ce circuit simple. Cette leçon est conceptuelle : ne manipule jamais une prise ou une installation électrique.",
+      "code": "Source → conducteur → lampe\n  ↑________________________↓",
+      "output": "Une boucle complète permet au courant de circuler.",
+      "question": "Dans un circuit simple ouvert, la lampe…",
+      "options": [
+        "S’allume toujours",
+        "Ne s’allume pas",
+        "Crée son énergie"
+      ],
+      "answer": 1,
+      "explanation": "Le circuit est interrompu ; le courant ne peut pas parcourir la boucle."
+    },
+    {
+      "title": "Puissance et énergie",
+      "body": "La puissance décrit le rythme auquel de l’énergie est transférée. Une puissance en watts multipliée par une durée en heures donne une énergie en wattheures. Un appareil utilisé plus longtemps consomme davantage, à puissance constante.",
+      "code": "Lampe : 10 W\nDurée : 3 h\nÉnergie : 10 × 3 = 30 Wh",
+      "output": "30 Wh",
+      "question": "Une lampe de 5 W utilisée 2 h consomme…",
+      "options": [
+        "2,5 Wh",
+        "7 Wh",
+        "10 Wh"
+      ],
+      "answer": 2,
+      "explanation": "Énergie = puissance × durée : 5 × 2 = 10 Wh."
+    },
+    {
+      "title": "Découvrir le solaire",
+      "body": "Un panneau photovoltaïque transforme une partie de l’énergie lumineuse en énergie électrique. La production dépend notamment de l’ensoleillement et de l’installation. Une batterie stocke de l’énergie pour un usage ultérieur ; elle n’est pas une source inépuisable.",
+      "code": "Lumière → panneau → énergie électrique\nBatterie → stockage",
+      "output": "Transformer et stocker sont deux fonctions différentes.",
+      "question": "Quel élément sert au stockage ?",
+      "options": [
+        "La batterie",
+        "La lumière",
+        "Une unité de longueur"
+      ],
+      "answer": 0,
+      "explanation": "La batterie stocke de l’énergie. Son installation relève de professionnels formés."
+    }
+  ],
+  "author": "Nunya",
+  "reviewer": null,
+  "status": "brouillon",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

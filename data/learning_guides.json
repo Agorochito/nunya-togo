@@ -1,0 +1,2716 @@
+[
+  {
+    "id": "maths-0",
+    "title": "Des parts à comparer",
+    "terms": [
+      "fraction",
+      "numérateur",
+      "dénominateur"
+    ],
+    "body": "Une fraction décrit un nombre de parts sur un total de parts égales. Le numérateur est en haut, le dénominateur en bas. Deux fractions peuvent représenter la même quantité : partager chaque moitié en deux donne deux quarts pour une moitié.",
+    "example": "1/2 = 2/4 = 3/6\nUne moitié reste une moitié.",
+    "output": "Des écritures différentes pour une même quantité.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Une fraction décrit un nombre de parts sur un total de parts égales."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "1/2 = 2/4 = 3/6\nUne moitié reste une moitié."
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Des écritures différentes pour une même quantité."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Quelle fraction vaut 1/2 ?",
+        "options": [
+          "2/4",
+          "1/4",
+          "3/4"
+        ],
+        "answer": 0,
+        "explanation": "Deux parts sur quatre représentent la moitié du total."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "maths-1",
+    "title": "Le prix suit la quantité",
+    "terms": [
+      "proportionnalité",
+      "proportionnel",
+      "prix unitaire"
+    ],
+    "body": "Deux grandeurs sont proportionnelles quand on passe de l’une à l’autre avec le même coefficient. Si un cahier coûte 250 FCFA, quatre cahiers coûtent quatre fois plus. Vérifie que le prix unitaire reste identique avant d’appliquer cette méthode.",
+    "example": "1 cahier → 250 FCFA\n4 cahiers → 4 × 250 = 1 000 FCFA",
+    "output": "1 000 FCFA",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Deux grandeurs sont proportionnelles quand on passe de l’une à l’autre avec le même coefficient."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "1 cahier → 250 FCFA\n4 cahiers → 4 × 250 = 1 000 FCFA"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "1 000 FCFA"
+      }
+    ],
+    "questions": [
+      {
+        "question": "À prix unitaire constant, 6 cahiers coûtent…",
+        "options": [
+          "1 250 FCFA",
+          "1 500 FCFA",
+          "2 000 FCFA"
+        ],
+        "answer": 1,
+        "explanation": "6 × 250 = 1 500 FCFA."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "maths-2",
+    "title": "Comprendre un pourcentage",
+    "terms": [
+      "pourcentage",
+      "pour cent"
+    ],
+    "body": "Un pourcentage est une proportion sur 100. Pour calculer 10 % d’un montant, on multiplie par 10 puis on divise par 100. Ne confonds pas le montant de la réduction et le prix restant à payer.",
+    "example": "Prix : 2 000 FCFA\nRéduction : 10 % = 200 FCFA\nNouveau prix : 1 800 FCFA",
+    "output": "Le prix baisse de 200 FCFA.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Un pourcentage est une proportion sur 100."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Prix : 2 000 FCFA\nRéduction : 10 % = 200 FCFA\nNouveau prix : 1 800 FCFA"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Le prix baisse de 200 FCFA."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Que valent 25 % de 100 ?",
+        "options": [
+          "4",
+          "25",
+          "75"
+        ],
+        "answer": 1,
+        "explanation": "25 % signifie 25 sur 100 : le quart de 100 vaut 25."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "maths-seconde-0",
+    "title": "Calculer dans le bon ordre",
+    "terms": [
+      "priorité des opérations",
+      "ordre des opérations"
+    ],
+    "body": "Dans une expression, on commence par les parenthèses, puis les puissances, puis les multiplications et divisions, puis les additions et soustractions. Des opérations de même priorité se traitent de gauche à droite. Écris chaque étape pour éviter une erreur de signe.",
+    "example": "A = 3 + 2 × (7 − 4)\nA = 3 + 2 × 3\nA = 3 + 6 = 9",
+    "output": "9",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Dans une expression, on commence par les parenthèses, puis les puissances, puis les multiplications et divisions, puis les additions et soustractions."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "A = 3 + 2 × (7 − 4)\nA = 3 + 2 × 3\nA = 3 + 6 = 9"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "9"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Combien vaut 8 − 2 × 3 ?",
+        "options": [
+          "18",
+          "2",
+          "6"
+        ],
+        "answer": 1,
+        "explanation": "La multiplication passe d’abord : 2 × 3 = 6, puis 8 − 6 = 2."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "maths-seconde-1",
+    "title": "Résoudre une équation",
+    "terms": [
+      "équation linéaire",
+      "équations du premier degré",
+      "résoudre une équation"
+    ],
+    "body": "Résoudre une équation consiste à trouver les valeurs qui rendent une égalité vraie. Pour conserver une égalité, on fait la même opération des deux côtés. Vérifie ensuite le résultat en remplaçant l’inconnue dans l’expression de départ.",
+    "example": "3x + 2 = 14\n3x = 12\nx = 4\nVérification : 3 × 4 + 2 = 14",
+    "output": "x = 4",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Résoudre une équation consiste à trouver les valeurs qui rendent une égalité vraie."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "3x + 2 = 14\n3x = 12\nx = 4\nVérification : 3 × 4 + 2 = 14"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "x = 4"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Quelle est la solution de 2x + 5 = 13 ?",
+        "options": [
+          "4",
+          "9",
+          "6"
+        ],
+        "answer": 0,
+        "explanation": "On retire 5 des deux côtés : 2x = 8. On divise ensuite par 2 : x = 4."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "maths-seconde-2",
+    "title": "Développer et factoriser",
+    "terms": [
+      "factoriser",
+      "factorisation",
+      "distributivité",
+      "développer une expression"
+    ],
+    "body": "Développer utilise la distributivité : a(b + c) = ab + ac. Factoriser fait le chemin inverse en repérant un facteur commun. Les deux formes représentent la même expression mais peuvent faciliter des calculs différents.",
+    "example": "Développer : 3(x + 2) = 3x + 6\nFactoriser : 5x + 10 = 5(x + 2)",
+    "output": "Deux écritures d’une même expression.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Développer utilise la distributivité : a(b + c) = ab + ac."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Développer : 3(x + 2) = 3x + 6\nFactoriser : 5x + 10 = 5(x + 2)"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Deux écritures d’une même expression."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Quelle expression est égale à 2(x + 4) ?",
+        "options": [
+          "2x + 4",
+          "2x + 8",
+          "x + 8"
+        ],
+        "answer": 1,
+        "explanation": "Le 2 multiplie les deux termes : 2 × x et 2 × 4."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "maths-seconde-3",
+    "title": "Comprendre une fonction",
+    "terms": [
+      "image et antécédent",
+      "fonction affine",
+      "fonctions linéaires"
+    ],
+    "body": "Une fonction associe à un nombre de départ au plus une image. Pour calculer f(3), on remplace x par 3 dans la formule. L’image est un résultat ; un antécédent est une valeur de départ qui donne ce résultat.",
+    "example": "f(x) = 2x + 1\nf(3) = 2 × 3 + 1 = 7",
+    "output": "7 est l’image de 3 par f.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Une fonction associe à un nombre de départ au plus une image."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "f(x) = 2x + 1\nf(3) = 2 × 3 + 1 = 7"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "7 est l’image de 3 par f."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Pour f(x) = 3x − 2, quelle est l’image de 4 ?",
+        "options": [
+          "10",
+          "6",
+          "14"
+        ],
+        "answer": 0,
+        "explanation": "On remplace x par 4 : 3 × 4 − 2 = 12 − 2 = 10."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "maths-seconde-5",
+    "title": "Utiliser le théorème de Pythagore",
+    "terms": [
+      "pythagore",
+      "triangle rectangle"
+    ],
+    "body": "Dans un triangle rectangle, le carré de l’hypoténuse est égal à la somme des carrés des deux autres côtés. L’hypoténuse est le côté opposé à l’angle droit. Identifie le triangle rectangle avant d’utiliser la formule.",
+    "example": "Côtés de l’angle droit : 3 cm et 4 cm\nh² = 3² + 4² = 9 + 16 = 25\nh = 5 cm",
+    "output": "L’hypoténuse mesure 5 cm.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Dans un triangle rectangle, le carré de l’hypoténuse est égal à la somme des carrés des deux autres côtés."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Côtés de l’angle droit : 3 cm et 4 cm\nh² = 3² + 4² = 9 + 16 = 25\nh = 5 cm"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "L’hypoténuse mesure 5 cm."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Dans ce triangle, quel côté est le plus long ?",
+        "options": [
+          "3 cm",
+          "4 cm",
+          "5 cm"
+        ],
+        "answer": 2,
+        "explanation": "L’hypoténuse est le côté le plus long d’un triangle rectangle."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "maths-seconde-6",
+    "title": "Lire des statistiques",
+    "terms": [
+      "médiane",
+      "quartile",
+      "écart interquartile"
+    ],
+    "body": "La médiane partage une série ordonnée en deux groupes de même effectif, ou se situe entre les deux valeurs centrales si l’effectif est pair. Elle ne se calcule pas comme la moyenne. Commence toujours par ranger les valeurs.",
+    "example": "Série : 2, 9, 4, 6, 7\nOrdre : 2, 4, 6, 7, 9\nValeur centrale : 6",
+    "output": "La médiane est 6.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "La médiane partage une série ordonnée en deux groupes de même effectif, ou se situe entre les deux valeurs centrales si l’effectif est pair."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Série : 2, 9, 4, 6, 7\nOrdre : 2, 4, 6, 7, 9\nValeur centrale : 6"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "La médiane est 6."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Quelle est la médiane de 1, 3, 8 ?",
+        "options": [
+          "3",
+          "4",
+          "8"
+        ],
+        "answer": 0,
+        "explanation": "La série est déjà ordonnée ; la valeur du milieu est 3."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "data-1",
+    "title": "Calculer une moyenne",
+    "terms": [
+      "moyenne arithmétique",
+      "calculer la moyenne"
+    ],
+    "body": "La moyenne additionne les valeurs puis divise le total par leur nombre. Elle résume une série, mais peut masquer des écarts. Pour comprendre un groupe, regarde aussi les valeurs individuelles.",
+    "example": "Valeurs : 4, 6, 8\nSomme : 18\nMoyenne : 18 / 3 = 6",
+    "output": "6",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "La moyenne additionne les valeurs puis divise le total par leur nombre."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Valeurs : 4, 6, 8\nSomme : 18\nMoyenne : 18 / 3 = 6"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "6"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Quelle est la moyenne de 2, 4 et 6 ?",
+        "options": [
+          "3",
+          "4",
+          "6"
+        ],
+        "answer": 1,
+        "explanation": "(2 + 4 + 6) / 3 = 12 / 3 = 4."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths",
+      "business",
+      "tech"
+    ]
+  },
+  {
+    "id": "data-2",
+    "title": "Choisir un graphique",
+    "terms": [
+      "diagramme",
+      "histogramme",
+      "graphique en barres"
+    ],
+    "body": "Des barres comparent des catégories. Une courbe peut montrer une évolution dans le temps. N’oublie pas les titres, les unités et une échelle compréhensible. Un graphique très décoré n’est pas forcément plus informatif.",
+    "example": "Barres → comparer des catégories\nCourbe → suivre une évolution",
+    "output": "Le graphique dépend de la question.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Des barres comparent des catégories."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Barres → comparer des catégories\nCourbe → suivre une évolution"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Le graphique dépend de la question."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Pour suivre une quantité chaque semaine, on peut utiliser…",
+        "options": [
+          "Une courbe chronologique",
+          "Un titre sans données",
+          "Un mot de passe"
+        ],
+        "answer": 0,
+        "explanation": "Une courbe sur un axe temporel aide à suivre l’évolution."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths",
+      "business",
+      "tech"
+    ]
+  },
+  {
+    "id": "terminale-analyse-0",
+    "title": "Le domaine avant le calcul",
+    "terms": [
+      "domaine de définition",
+      "ensemble de définition"
+    ],
+    "body": "Le domaine de définition indique les valeurs pour lesquelles une expression a un sens. Un dénominateur ne peut pas être nul ; sous une racine carrée réelle, la quantité doit être positive ou nulle. Écris ces contraintes avant de simplifier. Par exemple, simplifier un quotient n’autorise pas à réintroduire une valeur exclue dans la formule de départ. Cette précaution sert ensuite à étudier une limite ou une dérivée.",
+    "example": "f(x) = (x² − 1)/(x − 1)\nContrainte : x ≠ 1\nPour x ≠ 1 : f(x) = x + 1\nf(1) reste non défini.",
+    "output": "Domaine : ℝ privé de 1.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Le domaine de définition indique les valeurs pour lesquelles une expression a un sens."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "f(x) = (x² − 1)/(x − 1)\nContrainte : x ≠ 1\nPour x ≠ 1 : f(x) = x + 1\nf(1) reste non défini."
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Domaine : ℝ privé de 1."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Quel est le domaine de g(x) = 1/(x + 2) ?",
+        "options": [
+          "Tous les réels",
+          "Les réels sauf −2",
+          "Les réels sauf 2"
+        ],
+        "answer": 1,
+        "explanation": "Le dénominateur s’annule lorsque x + 2 = 0, donc en −2. On exclut cette valeur."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "terminale-analyse-1",
+    "title": "Une limite sans valeur au point",
+    "terms": [
+      "limite",
+      "continuité"
+    ],
+    "body": "Une limite décrit le comportement d’une fonction lorsque x se rapproche d’un nombre ou devient très grand. La limite en un point peut exister même si la fonction n’y est pas définie. Face à une forme 0/0, on ne conclut pas que la limite vaut zéro : on cherche une transformation valable autour du point. Après factorisation, on étudie une expression équivalente pour les valeurs autorisées.",
+    "example": "Pour x ≠ 1 : (x² − 1)/(x − 1) = x + 1\nQuand x se rapproche de 1 : x + 1 se rapproche de 2.\nDonc la limite est 2, même si f(1) n’existe pas.",
+    "output": "Limite en 1 : 2.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Une limite décrit le comportement d’une fonction lorsque x se rapproche d’un nombre ou devient très grand."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Pour x ≠ 1 : (x² − 1)/(x − 1) = x + 1\nQuand x se rapproche de 1 : x + 1 se rapproche de 2.\nDonc la limite est 2, même si f(1) n’existe pas."
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Limite en 1 : 2."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Pour x ≠ 3, (x² − 9)/(x − 3) a pour limite en 3…",
+        "options": [
+          "0",
+          "3",
+          "6"
+        ],
+        "answer": 2,
+        "explanation": "x² − 9 = (x − 3)(x + 3). Autour de 3, le quotient vaut x + 3, qui tend vers 6."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "terminale-analyse-2",
+    "title": "Calculer une dérivée et une tangente",
+    "terms": [
+      "dérivée",
+      "dérivation",
+      "tangente"
+    ],
+    "body": "La dérivée en un point mesure le taux de variation instantané d’une fonction. Pour un polynôme, on dérive terme par terme : la dérivée de x² est 2x, celle de x est 1 et celle d’une constante est 0. Une tangente en a s’écrit y = f′(a)(x − a) + f(a). Il faut calculer à la fois la pente f′(a) et la valeur f(a), puis développer si nécessaire.",
+    "example": "f(x) = x² − 4x + 3\nf′(x) = 2x − 4\nEn a = 1 : f(1) = 0 et f′(1) = −2\nTangente : y = −2(x − 1) = −2x + 2",
+    "output": "La pente de la tangente en 1 est −2.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "La dérivée en un point mesure le taux de variation instantané d’une fonction."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "f(x) = x² − 4x + 3\nf′(x) = 2x − 4\nEn a = 1 : f(1) = 0 et f′(1) = −2\nTangente : y = −2(x − 1) = −2x + 2"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "La pente de la tangente en 1 est −2."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Quelle est la dérivée de 3x² + 2x − 5 ?",
+        "options": [
+          "3x + 2",
+          "6x + 2",
+          "6x − 5"
+        ],
+        "answer": 1,
+        "explanation": "On dérive chaque terme : 3 × 2x + 2 × 1 − 0 = 6x + 2."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "terminale-analyse-3",
+    "title": "Du signe de la dérivée aux variations",
+    "terms": [
+      "tableau de variation",
+      "extremum",
+      "maximum",
+      "minimum"
+    ],
+    "body": "Sur un intervalle, une dérivée positive indique une fonction croissante et une dérivée négative une fonction décroissante. On commence par résoudre f′(x) = 0, puis on étudie son signe entre ces valeurs. Une dérivée nulle en un point ne suffit pas à garantir un minimum : il faut observer le changement de signe. Le tableau de variations relie ces informations aux valeurs de la fonction.",
+    "example": "f(x) = x² − 4x + 3 ; f′(x) = 2x − 4\nf′(x) < 0 si x < 2 ; f′(x) > 0 si x > 2\nf décroît puis croît.\nf(2) = −1 : minimum sur ℝ.",
+    "output": "Minimum : −1, atteint en x = 2.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Sur un intervalle, une dérivée positive indique une fonction croissante et une dérivée négative une fonction décroissante."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "f(x) = x² − 4x + 3 ; f′(x) = 2x − 4\nf′(x) < 0 si x < 2 ; f′(x) > 0 si x > 2\nf décroît puis croît.\nf(2) = −1 : minimum sur ℝ."
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Minimum : −1, atteint en x = 2."
+      }
+    ],
+    "questions": [
+      {
+        "question": "La fonction h(x) = x² + 2x atteint son minimum en…",
+        "options": [
+          "−1",
+          "0",
+          "1"
+        ],
+        "answer": 0,
+        "explanation": "h′(x) = 2x + 2 s’annule en −1 et passe de négatif à positif. La fonction y atteint un minimum, égal à −1."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "terminale-analyse-4",
+    "title": "Reconnaître une suite arithmétique",
+    "terms": [
+      "suite arithmétique"
+    ],
+    "body": "Une suite associe une valeur à chaque indice entier. Une suite arithmétique ajoute toujours la même raison r : u(n+1) = u(n) + r. Avec un premier terme u(0), la formule explicite est u(n) = u(0) + nr. Attention à l’indice du premier terme : avec u(1), la formule devient u(n) = u(1) + (n − 1)r. Vérifie la formule au premier indice avant de l’utiliser.",
+    "example": "Épargne fictive : u(0) = 1 000 FCFA\nAjout constant : r = 500 FCFA par semaine\nu(4) = 1 000 + 4 × 500 = 3 000 FCFA",
+    "output": "Après quatre ajouts : 3 000 FCFA.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Une suite associe une valeur à chaque indice entier."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Épargne fictive : u(0) = 1 000 FCFA\nAjout constant : r = 500 FCFA par semaine\nu(4) = 1 000 + 4 × 500 = 3 000 FCFA"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Après quatre ajouts : 3 000 FCFA."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Si u(0) = 2 et r = 3, u(5) vaut…",
+        "options": [
+          "15",
+          "17",
+          "21"
+        ],
+        "answer": 1,
+        "explanation": "u(5) = u(0) + 5r = 2 + 5 × 3 = 17."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "terminale-analyse-5",
+    "title": "Une suite géométrique et ses hypothèses",
+    "terms": [
+      "suite géométrique",
+      "croissance exponentielle"
+    ],
+    "body": "Une suite géométrique multiplie chaque terme par une même raison q. Si u(0) est le premier terme, u(n) = u(0) × qⁿ. Une hausse de 10 % correspond à q = 1,10 et une baisse de 10 % à q = 0,90. Une hausse puis une baisse du même pourcentage ne s’annulent pas. Dans une situation réelle, vérifie que le taux reste constant : le modèle est une hypothèse, pas une prédiction garantie.",
+    "example": "Valeur initiale fictive : 100\nHausse de 10 % : 100 × 1,10 = 110\nPuis baisse de 10 % : 110 × 0,90 = 99",
+    "output": "Le résultat final vaut 99, pas 100.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Une suite géométrique multiplie chaque terme par une même raison q."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Valeur initiale fictive : 100\nHausse de 10 % : 100 × 1,10 = 110\nPuis baisse de 10 % : 110 × 0,90 = 99"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Le résultat final vaut 99, pas 100."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Avec u(0) = 4 et q = 2, u(3) vaut…",
+        "options": [
+          "12",
+          "24",
+          "32"
+        ],
+        "answer": 2,
+        "explanation": "u(3) = 4 × 2³ = 4 × 8 = 32."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "terminale-mecanique-0",
+    "title": "Le travail d’une force constante",
+    "terms": [
+      "travail d’une force",
+      "travail d'une force"
+    ],
+    "body": "Le travail mesure un transfert d’énergie associé à une force et à un déplacement. Pour une force constante sur un déplacement rectiligne, W = F × d × cos(θ), où θ est l’angle entre la force et le déplacement. Les unités sont le newton, le mètre et le joule. Le travail est positif si la force favorise le déplacement, négatif si elle s’y oppose et nul si elle lui est perpendiculaire. On ne doit pas confondre force et énergie.",
+    "example": "F = 20 N ; d = 3 m ; θ = 0°\nW = 20 × 3 × cos(0°)\nW = 60 J",
+    "output": "La force transfère 60 joules.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Le travail mesure un transfert d’énergie associé à une force et à un déplacement."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "F = 20 N ; d = 3 m ; θ = 0°\nW = 20 × 3 × cos(0°)\nW = 60 J"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "La force transfère 60 joules."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Une force perpendiculaire au déplacement produit un travail…",
+        "options": [
+          "nul",
+          "toujours positif",
+          "égal à F × d"
+        ],
+        "answer": 0,
+        "explanation": "cos(90°) = 0, donc W = 0 même si la force et le déplacement ne sont pas nuls."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "physics"
+    ]
+  },
+  {
+    "id": "terminale-mecanique-2",
+    "title": "L’énergie cinétique",
+    "terms": [
+      "énergie cinétique"
+    ],
+    "body": "Dans un référentiel donné, l’énergie cinétique d’un solide en translation vaut Ec = ½mv². La masse doit être exprimée en kilogrammes et la vitesse en mètres par seconde. La vitesse est au carré : doubler la vitesse multiplie cette énergie par quatre. L’énergie cinétique dépend du référentiel et n’est jamais négative dans ce modèle. Un bilan exige de préciser le système étudié et les forces qui agissent sur lui.",
+    "example": "m = 2 kg ; v = 3 m/s\nEc = ½ × 2 × 3² = 9 J\nÀ 6 m/s : Ec = ½ × 2 × 6² = 36 J",
+    "output": "La vitesse double et l’énergie est multipliée par quatre.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Dans un référentiel donné, l’énergie cinétique d’un solide en translation vaut Ec = ½mv²."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "m = 2 kg ; v = 3 m/s\nEc = ½ × 2 × 3² = 9 J\nÀ 6 m/s : Ec = ½ × 2 × 6² = 36 J"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "La vitesse double et l’énergie est multipliée par quatre."
+      }
+    ],
+    "questions": [
+      {
+        "question": "À masse constante, si la vitesse est multipliée par 3, Ec est multipliée par…",
+        "options": [
+          "3",
+          "6",
+          "9"
+        ],
+        "answer": 2,
+        "explanation": "La vitesse intervient au carré : 3² = 9."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "physics"
+    ]
+  },
+  {
+    "id": "terminale-mecanique-3",
+    "title": "Construire un bilan d’énergie mécanique",
+    "terms": [
+      "énergie mécanique",
+      "énergie potentielle"
+    ],
+    "body": "L’énergie mécanique est la somme de l’énergie cinétique et de l’énergie potentielle. Près de la surface terrestre, on peut écrire Ep = mgh après avoir choisi un niveau de référence. L’énergie mécanique se conserve dans un modèle où les forces non conservatives ne travaillent pas. Avec des frottements, elle peut diminuer au profit d’autres formes d’énergie : l’énergie totale ne disparaît pas. N’utilise donc pas la conservation sans annoncer les hypothèses.",
+    "example": "Chute idéale depuis h = 5 m ; départ au repos\nOn prend g = 10 m/s² et on néglige les frottements.\nmgh = ½mv² → v² = 2gh = 100\nVitesse au niveau de référence : 10 m/s",
+    "output": "Résultat du modèle idéal : 10 m/s.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "L’énergie mécanique est la somme de l’énergie cinétique et de l’énergie potentielle."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Chute idéale depuis h = 5 m ; départ au repos\nOn prend g = 10 m/s² et on néglige les frottements.\nmgh = ½mv² → v² = 2gh = 100\nVitesse au niveau de référence : 10 m/s"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Résultat du modèle idéal : 10 m/s."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Dans ce modèle, si l’on double la masse en gardant h identique, la vitesse finale…",
+        "options": [
+          "double",
+          "reste la même",
+          "est divisée par deux"
+        ],
+        "answer": 1,
+        "explanation": "La masse se simplifie dans mgh = ½mv². La vitesse finale du modèle ne dépend pas de la masse."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "physics"
+    ]
+  },
+  {
+    "id": "physics-2",
+    "title": "Puissance et énergie",
+    "terms": [
+      "puissance électrique",
+      "kilowattheure",
+      "consommation électrique"
+    ],
+    "body": "La puissance décrit le rythme auquel de l’énergie est transférée. Une puissance en watts multipliée par une durée en heures donne une énergie en wattheures. Un appareil utilisé plus longtemps consomme davantage, à puissance constante.",
+    "example": "Lampe : 10 W\nDurée : 3 h\nÉnergie : 10 × 3 = 30 Wh",
+    "output": "30 Wh",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "La puissance décrit le rythme auquel de l’énergie est transférée."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Lampe : 10 W\nDurée : 3 h\nÉnergie : 10 × 3 = 30 Wh"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "30 Wh"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Une lampe de 5 W utilisée 2 h consomme…",
+        "options": [
+          "2,5 Wh",
+          "7 Wh",
+          "10 Wh"
+        ],
+        "answer": 2,
+        "explanation": "Énergie = puissance × durée : 5 × 2 = 10 Wh."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "physics"
+    ]
+  },
+  {
+    "id": "ou-electronique-fr-1",
+    "title": "Utiliser la loi d’Ohm dans un modèle",
+    "terms": [
+      "loi d’ohm",
+      "loi d'ohm",
+      "résistance électrique"
+    ],
+    "body": "Pour une résistance idéale dans les conditions du modèle, la relation est U = RI. On peut en déduire I = U/R lorsque R n’est pas nul. Convertis les milliampères en ampères et les kilo-ohms en ohms avant le calcul. La relation d’une résistance idéale n’est pas une description universelle de tous les composants électroniques.",
+    "example": "Modèle : U = 6 V ; R = 300 Ω\nI = 6 / 300 = 0,020 A\n0,020 A = 20 mA",
+    "output": "Le courant calculé est 20 mA.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Pour une résistance idéale dans les conditions du modèle, la relation est U = RI."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Modèle : U = 6 V ; R = 300 Ω\nI = 6 / 300 = 0,020 A\n0,020 A = 20 mA"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Le courant calculé est 20 mA."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Pour U = 9 V et R = 450 Ω, I vaut…",
+        "options": [
+          "20 mA",
+          "2 A",
+          "50 mA"
+        ],
+        "answer": 0,
+        "explanation": "9/450 = 0,020 A, soit 20 mA."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "physics"
+    ]
+  },
+  {
+    "id": "ou-electronique-fr-2",
+    "title": "Un diviseur de tension à vide",
+    "terms": [
+      "diviseur de tension"
+    ],
+    "body": "Deux résistances en série peuvent former un diviseur. Si la sortie aux bornes de R2 ne fournit pratiquement aucun courant à une autre charge, U_sortie = U_entrée × R2/(R1 + R2). L’hypothèse de sortie à vide compte : ajouter une charge peut modifier le résultat. Cet exercice est un calcul, pas une consigne de montage réel.",
+    "example": "U_entrée = 10 V ; R1 = 1 000 Ω ; R2 = 1 000 Ω\nU_sortie = 10 × 1 000/(1 000 + 1 000)\nU_sortie = 5 V",
+    "output": "La sortie à vide vaut 5 V dans ce modèle.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Deux résistances en série peuvent former un diviseur."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "U_entrée = 10 V ; R1 = 1 000 Ω ; R2 = 1 000 Ω\nU_sortie = 10 × 1 000/(1 000 + 1 000)\nU_sortie = 5 V"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "La sortie à vide vaut 5 V dans ce modèle."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Avec deux résistances égales et une entrée de 8 V, la sortie à vide vaut…",
+        "options": [
+          "8 V",
+          "2 V",
+          "4 V"
+        ],
+        "answer": 2,
+        "explanation": "Le rapport R2/(R1 + R2) vaut 1/2. La tension de sortie vaut donc 8/2 = 4 V."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "physics"
+    ]
+  },
+  {
+    "id": "javascript-0",
+    "title": "Garder une valeur",
+    "terms": [
+      "variable",
+      "constante",
+      "déclaration de variable"
+    ],
+    "body": "En JavaScript, const sert à déclarer une variable dont on ne réaffectera pas la valeur. let convient à une variable que l’on veut modifier. Un texte s’écrit entre guillemets ; un nombre peut être utilisé dans un calcul.",
+    "example": "const ville = \"Lomé\";\nlet points = 2;\npoints = points + 3;\nconsole.log(points);",
+    "output": "5",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "En JavaScript, const sert à déclarer une variable dont on ne réaffectera pas la valeur."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "const ville = \"Lomé\";\nlet points = 2;\npoints = points + 3;\nconsole.log(points);"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "5"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Quelle déclaration permet de réaffecter une valeur ?",
+        "options": [
+          "let",
+          "const",
+          "console"
+        ],
+        "answer": 0,
+        "explanation": "let autorise une réaffectation. const l’empêche."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "tech"
+    ]
+  },
+  {
+    "id": "javascript-1",
+    "title": "Choisir avec une condition",
+    "terms": [
+      "condition",
+      "instruction if",
+      "instructions conditionnelles"
+    ],
+    "body": "if exécute un bloc si une condition est vraie. else exécute une autre action. Le symbole === compare des valeurs sans conversion automatique de type. Il ne faut pas le confondre avec =, qui affecte une valeur.",
+    "example": "const disponible = true;\nif (disponible === true) {\n  console.log(\"Bienvenue !\");\n} else {\n  console.log(\"À bientôt !\");\n}",
+    "output": "Bienvenue !",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "if exécute un bloc si une condition est vraie."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "const disponible = true;\nif (disponible === true) {\n  console.log(\"Bienvenue !\");\n} else {\n  console.log(\"À bientôt !\");\n}"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Bienvenue !"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Quel signe sert ici à comparer ?",
+        "options": [
+          "=",
+          "===",
+          "+"
+        ],
+        "answer": 1,
+        "explanation": "=== compare ; = affecte une valeur."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "tech"
+    ]
+  },
+  {
+    "id": "javascript-2",
+    "title": "Réutiliser une fonction",
+    "terms": [
+      "fonction javascript",
+      "paramètre",
+      "valeur de retour"
+    ],
+    "body": "Une fonction réalise une tâche. Les paramètres sont les informations reçues. return produit un résultat que l’on peut utiliser ailleurs. Donne à la fonction un nom qui décrit clairement son rôle.",
+    "example": "function total(prix, nombre) {\n  return prix * nombre;\n}\nconsole.log(total(200, 3));",
+    "output": "600",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Une fonction réalise une tâche."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "function total(prix, nombre) {\n  return prix * nombre;\n}\nconsole.log(total(200, 3));"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "600"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Que renvoie total(100, 4) ?",
+        "options": [
+          "104",
+          "400",
+          "1004"
+        ],
+        "answer": 1,
+        "explanation": "La fonction multiplie les deux paramètres : 100 × 4 = 400."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "tech"
+    ]
+  },
+  {
+    "id": "javascript-3",
+    "title": "Parcourir une liste",
+    "terms": [
+      "boucle",
+      "tableau javascript",
+      "liste javascript"
+    ],
+    "body": "Un tableau contient plusieurs valeurs. La boucle for...of parcourt les valeurs dans l’ordre. On peut ainsi préparer un total, rechercher un élément ou afficher une liste de résultats.",
+    "example": "const prix = [100, 200, 300];\nlet somme = 0;\nfor (const montant of prix) {\n  somme = somme + montant;\n}\nconsole.log(somme);",
+    "output": "600",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Un tableau contient plusieurs valeurs."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "const prix = [100, 200, 300];\nlet somme = 0;\nfor (const montant of prix) {\n  somme = somme + montant;\n}\nconsole.log(somme);"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "600"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Combien de valeurs sont parcourues ?",
+        "options": [
+          "2",
+          "3",
+          "4"
+        ],
+        "answer": 1,
+        "explanation": "Le tableau contient trois valeurs : 100, 200 et 300."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "tech"
+    ]
+  },
+  {
+    "id": "web-1",
+    "title": "Tes premières balises HTML",
+    "terms": [
+      "balise html",
+      "élément html",
+      "structure html"
+    ],
+    "body": "Une balise indique la nature d’un élément. <h1> est le titre principal et <p> un paragraphe. La plupart des balises s’ouvrent et se ferment. Le texte se place entre les deux.",
+    "example": "<h1>Bienvenue à Lomé</h1>\n<p>Voici ma première page.</p>",
+    "output": "Bienvenue à Lomé\nVoici ma première page.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Une balise indique la nature d’un élément."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "<h1>Bienvenue à Lomé</h1>\n<p>Voici ma première page.</p>"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Bienvenue à Lomé\nVoici ma première page."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Quelle balise sert à écrire un paragraphe ?",
+        "options": [
+          "<p>",
+          "<h1>",
+          "<img>"
+        ],
+        "answer": 0,
+        "explanation": "<p> définit un paragraphe. <h1> définit le titre principal et <img> insère une image."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "tech"
+    ]
+  },
+  {
+    "id": "web-2",
+    "title": "Mettre des couleurs avec CSS",
+    "terms": [
+      "sélecteur css",
+      "feuille de style",
+      "mise en forme css"
+    ],
+    "body": "CSS associe un sélecteur à des propriétés. Le sélecteur h1 cible tous les titres h1. color change la couleur du texte, tandis que font-size change sa taille. Chaque déclaration se termine par un point-virgule.",
+    "example": "h1 {\n  color: green;\n  font-size: 28px;\n}",
+    "output": "Un titre vert, d’une taille de 28 pixels.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "CSS associe un sélecteur à des propriétés."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "h1 {\n  color: green;\n  font-size: 28px;\n}"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Un titre vert, d’une taille de 28 pixels."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Quelle propriété change la couleur du texte ?",
+        "options": [
+          "background",
+          "font-size",
+          "color"
+        ],
+        "answer": 2,
+        "explanation": "color change la couleur du texte. background change le fond de l’élément."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "tech"
+    ]
+  },
+  {
+    "id": "web-4",
+    "title": "Un bouton qui réagit",
+    "terms": [
+      "addEventListener",
+      "événement",
+      "dom"
+    ],
+    "body": "Le DOM est la représentation de la page que JavaScript peut modifier. querySelector sélectionne un élément. addEventListener attend un événement, comme un clic, puis exécute une fonction.",
+    "example": "const bouton = document.querySelector(\"button\");\nbouton.addEventListener(\"click\", () => {\n  bouton.textContent = \"Bravo !\";\n});",
+    "output": "Après un clic, le bouton affiche Bravo !",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Le DOM est la représentation de la page que JavaScript peut modifier."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "const bouton = document.querySelector(\"button\");\nbouton.addEventListener(\"click\", () => {\n  bouton.textContent = \"Bravo !\";\n});"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Après un clic, le bouton affiche Bravo !"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Quel événement correspond à un clic ?",
+        "options": [
+          "hover",
+          "click",
+          "load"
+        ],
+        "answer": 1,
+        "explanation": "click est déclenché lorsqu’on active le bouton avec la souris, le toucher ou le clavier."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "tech"
+    ]
+  },
+  {
+    "id": "biology-0",
+    "title": "La cellule, unité du vivant",
+    "terms": [
+      "cellule",
+      "organite",
+      "cytoplasme"
+    ],
+    "body": "Les êtres vivants sont constitués de cellules. Certaines formes de vie n’en ont qu’une ; notre organisme en contient de très nombreuses. Une membrane délimite la cellule et contrôle ses échanges. Cette initiation scientifique ne donne pas de conseils de diagnostic ou de traitement.",
+    "example": "Cellule → tissu → organe → organisme",
+    "output": "Plusieurs niveaux d’organisation du vivant.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Les êtres vivants sont constitués de cellules."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Cellule → tissu → organe → organisme"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Plusieurs niveaux d’organisation du vivant."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Quelle structure délimite une cellule ?",
+        "options": [
+          "La membrane",
+          "Un dossier informatique",
+          "Une règle"
+        ],
+        "answer": 0,
+        "explanation": "La membrane cellulaire forme une frontière qui participe aux échanges."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "biology"
+    ]
+  },
+  {
+    "id": "business-1",
+    "title": "Distinguer recettes et résultat",
+    "terms": [
+      "recettes",
+      "bénéfice",
+      "profit",
+      "coût total"
+    ],
+    "body": "Les recettes sont les montants des ventes. Le résultat simplifié correspond aux recettes moins les coûts. Un projet peut vendre beaucoup et conserver peu si ses coûts sont élevés. L’exemple suivant est pédagogique et ne remplace pas une comptabilité complète.",
+    "example": "Recettes : 5 000 FCFA\nCoûts : 3 500 FCFA\nRésultat simplifié : 1 500 FCFA",
+    "output": "1 500 FCFA",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Les recettes sont les montants des ventes."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Recettes : 5 000 FCFA\nCoûts : 3 500 FCFA\nRésultat simplifié : 1 500 FCFA"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "1 500 FCFA"
+      }
+    ],
+    "questions": [
+      {
+        "question": "Avec 4 000 de recettes et 3 000 de coûts, il reste…",
+        "options": [
+          "1 000 FCFA",
+          "3 000 FCFA",
+          "7 000 FCFA"
+        ],
+        "answer": 0,
+        "explanation": "4 000 − 3 000 = 1 000 FCFA."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "business"
+    ]
+  },
+  {
+    "id": "negative",
+    "title": "Calculer avec des nombres relatifs",
+    "terms": [
+      "nombre négatif",
+      "nombres relatifs",
+      "droite graduée",
+      "soustraction des entiers"
+    ],
+    "body": "Un nombre négatif se situe à gauche de zéro sur une droite graduée. Ajouter un nombre positif déplace vers la droite ; soustraire un nombre positif déplace vers la gauche. Écris les signes avant de calculer.",
+    "example": "−3 + 5 = 2\n2 − 4 = −2",
+    "output": "Le résultat final vaut −2.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Un nombre négatif se situe à gauche de zéro sur une droite graduée."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "−3 + 5 = 2\n2 − 4 = −2"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Le résultat final vaut −2."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Combien vaut −4 + 7 ?",
+        "options": [
+          "−11",
+          "3",
+          "11"
+        ],
+        "answer": 1,
+        "explanation": "Partir de −4 et avancer de 7 unités vers la droite conduit à 3."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "powers",
+    "title": "Comprendre les puissances",
+    "terms": [
+      "puissance",
+      "exposant",
+      "notation scientifique"
+    ],
+    "body": "Une puissance aⁿ, pour n entier positif, représente un produit de n facteurs égaux à a. Les parenthèses distinguent une base négative d’un signe placé devant la puissance. Pour a non nul, a⁰ = 1.",
+    "example": "2³ = 2 × 2 × 2 = 8\n(−2)² = 4 ; −2² = −4",
+    "output": "L’exposant indique le nombre de facteurs, pas une multiplication par cet exposant.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Une puissance aⁿ, pour n entier positif, représente un produit de n facteurs égaux à a."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "2³ = 2 × 2 × 2 = 8\n(−2)² = 4 ; −2² = −4"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "L’exposant indique le nombre de facteurs, pas une multiplication par cet exposant."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Combien vaut 3³ ?",
+        "options": [
+          "9",
+          "27",
+          "6"
+        ],
+        "answer": 1,
+        "explanation": "3³ = 3 × 3 × 3 = 27."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "quadratic",
+    "title": "Résoudre une équation du second degré",
+    "terms": [
+      "second degré",
+      "discriminant",
+      "trinôme",
+      "équation quadratique"
+    ],
+    "body": "Pour ax² + bx + c = 0 avec a non nul, le discriminant vaut Δ = b² − 4ac. Si Δ est positif, les deux solutions réelles sont (−b − √Δ)/(2a) et (−b + √Δ)/(2a). Si Δ = 0, il y a une solution double ; si Δ est négatif, il n’y a pas de solution réelle.",
+    "example": "x² − 5x + 6 = 0\nΔ = 25 − 24 = 1\nx = (5 − 1)/2 = 2 ou (5 + 1)/2 = 3",
+    "output": "Les solutions sont 2 et 3.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Pour ax² + bx + c = 0 avec a non nul, le discriminant vaut Δ = b² − 4ac."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "x² − 5x + 6 = 0\nΔ = 25 − 24 = 1\nx = (5 − 1)/2 = 2 ou (5 + 1)/2 = 3"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Les solutions sont 2 et 3."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Quelles sont les solutions réelles de x² − 9 = 0 ?",
+        "options": [
+          "3 seulement",
+          "−3 et 3",
+          "−9 et 9"
+        ],
+        "answer": 1,
+        "explanation": "x² − 9 = (x − 3)(x + 3). Le produit est nul si x vaut 3 ou −3."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "trigonometry",
+    "title": "Choisir un rapport trigonométrique",
+    "terms": [
+      "sinus",
+      "cosinus",
+      "tangente trigonométrique",
+      "trigonométrie"
+    ],
+    "body": "Dans un triangle rectangle, pour un angle aigu θ, sin θ = opposé/hypoténuse, cos θ = adjacent/hypoténuse et tan θ = opposé/adjacent. Repère les côtés par rapport à l’angle choisi avant d’utiliser une formule.",
+    "example": "Opposé = 3 ; adjacent = 4 ; hypoténuse = 5\nsin θ = 3/5 = 0,6\ncos θ = 4/5 = 0,8",
+    "output": "Le rapport dépend du côté et de l’angle considérés.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Dans un triangle rectangle, pour un angle aigu θ, sin θ = opposé/hypoténuse, cos θ = adjacent/hypoténuse et tan θ = opposé/adjacent."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Opposé = 3 ; adjacent = 4 ; hypoténuse = 5\nsin θ = 3/5 = 0,6\ncos θ = 4/5 = 0,8"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Le rapport dépend du côté et de l’angle considérés."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Si opposé = 6 et hypoténuse = 10, sin θ vaut…",
+        "options": [
+          "0,6",
+          "1,67",
+          "4"
+        ],
+        "answer": 0,
+        "explanation": "sin θ = 6/10 = 0,6."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "vectors",
+    "title": "Lire les coordonnées d’un vecteur",
+    "terms": [
+      "vecteur",
+      "coordonnées",
+      "translation"
+    ],
+    "body": "Dans un repère du plan, le vecteur allant de A vers B a pour coordonnées (xB − xA ; yB − yA). Le sens compte : le vecteur de B vers A est son opposé.",
+    "example": "A(1 ; 2), B(4 ; 6)\nAB = (4 − 1 ; 6 − 2) = (3 ; 4)",
+    "output": "On soustrait les coordonnées du départ à celles de l’arrivée.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Dans un repère du plan, le vecteur allant de A vers B a pour coordonnées (xB − xA ; yB − yA)."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "A(1 ; 2), B(4 ; 6)\nAB = (4 − 1 ; 6 − 2) = (3 ; 4)"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "On soustrait les coordonnées du départ à celles de l’arrivée."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Avec A(2 ; 1) et B(5 ; 3), AB vaut…",
+        "options": [
+          "(7 ; 4)",
+          "(3 ; 2)",
+          "(−3 ; −2)"
+        ],
+        "answer": 1,
+        "explanation": "AB = (5 − 2 ; 3 − 1) = (3 ; 2)."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "logs",
+    "title": "Relier logarithme et exponentielle",
+    "terms": [
+      "logarithme",
+      "logarithmique",
+      "fonction exponentielle"
+    ],
+    "body": "Le logarithme népérien est défini pour les réels strictement positifs. Il est la fonction réciproque de l’exponentielle : ln(eˣ) = x et e^(ln x) = x pour x positif. Les règles du logarithme exigent de vérifier le domaine.",
+    "example": "e⁰ = 1\nln(1) = 0\nln(e²) = 2",
+    "output": "Logarithme et exponentielle permettent de revenir à la valeur de départ.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Le logarithme népérien est défini pour les réels strictement positifs."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "e⁰ = 1\nln(1) = 0\nln(e²) = 2"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Logarithme et exponentielle permettent de revenir à la valeur de départ."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Que vaut ln(e³) ?",
+        "options": [
+          "e",
+          "3",
+          "1"
+        ],
+        "answer": 1,
+        "explanation": "L’identité ln(eˣ) = x donne ici 3."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "integral",
+    "title": "Interpréter une intégrale",
+    "terms": [
+      "intégrale",
+      "primitive",
+      "intégration"
+    ],
+    "body": "Si F est une primitive de f sur un intervalle, l’intégrale de f entre a et b vaut F(b) − F(a). Elle représente une aire algébrique : les parties sous l’axe comptent négativement.",
+    "example": "f(x) = 2x ; F(x) = x²\nIntégrale entre 0 et 2 : F(2) − F(0) = 4",
+    "output": "L’aire algébrique vaut 4 unités d’aire.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Si F est une primitive de f sur un intervalle, l’intégrale de f entre a et b vaut F(b) − F(a)."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "f(x) = 2x ; F(x) = x²\nIntégrale entre 0 et 2 : F(2) − F(0) = 4"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "L’aire algébrique vaut 4 unités d’aire."
+      }
+    ],
+    "questions": [
+      {
+        "question": "L’intégrale de la fonction constante 3 entre 0 et 2 vaut…",
+        "options": [
+          "3",
+          "5",
+          "6"
+        ],
+        "answer": 2,
+        "explanation": "C’est l’aire d’un rectangle de largeur 2 et hauteur 3 : 2 × 3 = 6."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "probability",
+    "title": "Calculer une probabilité simple",
+    "terms": [
+      "probabilité",
+      "probabilités",
+      "événement",
+      "équiprobable"
+    ],
+    "body": "Dans une expérience où les issues sont équiprobables, la probabilité d’un événement est le nombre d’issues favorables divisé par le nombre total d’issues. Elle se situe entre 0 et 1. Cette formule de comptage suppose bien l’équiprobabilité.",
+    "example": "Dé équilibré : six issues\nObtenir un nombre pair : 2, 4, 6\nP(pair) = 3/6 = 1/2",
+    "output": "Une chance sur deux dans ce modèle.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Dans une expérience où les issues sont équiprobables, la probabilité d’un événement est le nombre d’issues favorables divisé par le nombre total d’issues."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Dé équilibré : six issues\nObtenir un nombre pair : 2, 4, 6\nP(pair) = 3/6 = 1/2"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Une chance sur deux dans ce modèle."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Avec un dé équilibré, P(obtenir 6) vaut…",
+        "options": [
+          "1/6",
+          "1/2",
+          "6"
+        ],
+        "answer": 0,
+        "explanation": "Une seule issue favorable sur six issues équiprobables : 1/6."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "maths"
+    ]
+  },
+  {
+    "id": "dna",
+    "title": "ADN : conserver et transmettre une information",
+    "terms": [
+      "adn",
+      "gène",
+      "génétique",
+      "chromosome",
+      "réplication",
+      "nucléotide"
+    ],
+    "body": "L’ADN porte une information sous la forme d’une séquence de nucléotides. Dans une double hélice, A s’apparie avec T et C avec G. Un gène est une région de l’ADN ; un chromosome est une structure contenant de l’ADN associé à des protéines.",
+    "example": "Brin : A T C G\nBrin complémentaire : T A G C",
+    "output": "La complémentarité repose sur des appariements précis.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "L’ADN porte une information sous la forme d’une séquence de nucléotides."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Brin : A T C G\nBrin complémentaire : T A G C"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "La complémentarité repose sur des appariements précis."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Quelle base s’apparie avec C dans l’ADN ?",
+        "options": [
+          "A",
+          "T",
+          "G"
+        ],
+        "answer": 2,
+        "explanation": "Dans l’ADN à double brin, la cytosine C s’apparie avec la guanine G."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "biology"
+    ]
+  },
+  {
+    "id": "expression",
+    "title": "De l’ADN à une protéine",
+    "terms": [
+      "transcription",
+      "traduction",
+      "arn",
+      "ribosome",
+      "protéine"
+    ],
+    "body": "Pour un gène codant une protéine, la transcription produit un ARN à partir d’une séquence d’ADN. Lors de la traduction, le ribosome lit l’ARN messager et assemble des acides aminés. Il faut distinguer ces deux étapes et leurs produits.",
+    "example": "ADN → transcription → ARN messager\nARN messager → traduction → chaîne d’acides aminés",
+    "output": "La transcription produit un ARN ; la traduction assemble une chaîne protéique.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Pour un gène codant une protéine, la transcription produit un ARN à partir d’une séquence d’ADN."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "ADN → transcription → ARN messager\nARN messager → traduction → chaîne d’acides aminés"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "La transcription produit un ARN ; la traduction assemble une chaîne protéique."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Quel élément réalise la traduction de l’ARN messager ?",
+        "options": [
+          "Le ribosome",
+          "Un chromosome entier",
+          "La membrane plasmique seule"
+        ],
+        "answer": 0,
+        "explanation": "Le ribosome lit l’ARN messager et participe à l’assemblage de la chaîne d’acides aminés."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "biology"
+    ]
+  },
+  {
+    "id": "division",
+    "title": "Distinguer mitose et méiose",
+    "terms": [
+      "mitose",
+      "méiose",
+      "division cellulaire",
+      "cycle cellulaire"
+    ],
+    "body": "La mitose répartit des chromosomes dupliqués entre deux cellules filles et conserve habituellement le nombre de chromosomes. La méiose comporte deux divisions et réduit ce nombre de moitié dans la formation de cellules haploïdes. La duplication de l’ADN précède la division ; elle ne constitue pas une division à elle seule.",
+    "example": "Cellule diploïde fictive : 2n = 8\nAprès mitose : chaque cellule fille conserve 8 chromosomes\nAprès méiose : les cellules obtenues ont n = 4",
+    "output": "Le résultat dépend du type de division.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "La mitose répartit des chromosomes dupliqués entre deux cellules filles et conserve habituellement le nombre de chromosomes."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Cellule diploïde fictive : 2n = 8\nAprès mitose : chaque cellule fille conserve 8 chromosomes\nAprès méiose : les cellules obtenues ont n = 4"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Le résultat dépend du type de division."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Dans ce modèle, une méiose réduit 2n = 12 à…",
+        "options": [
+          "12",
+          "6",
+          "24"
+        ],
+        "answer": 1,
+        "explanation": "Le nombre de chromosomes est réduit de moitié : n = 6."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "biology"
+    ]
+  },
+  {
+    "id": "selection",
+    "title": "Comprendre la sélection naturelle",
+    "terms": [
+      "évolution",
+      "sélection naturelle",
+      "adaptation",
+      "biodiversité"
+    ],
+    "body": "Dans une population, des variations héréditaires peuvent influencer la survie et la reproduction dans un environnement donné. Si certains individus laissent davantage de descendants, la fréquence de ces variantes peut changer au fil des générations. Une population évolue ; un individu ne choisit pas une mutation pour répondre à un besoin.",
+    "example": "Variation héréditaire → différences de succès reproducteur\nPlusieurs générations → changement possible des fréquences",
+    "output": "Le mécanisme porte sur les générations d’une population.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Dans une population, des variations héréditaires peuvent influencer la survie et la reproduction dans un environnement donné."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Variation héréditaire → différences de succès reproducteur\nPlusieurs générations → changement possible des fréquences"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Le mécanisme porte sur les générations d’une population."
+      }
+    ],
+    "questions": [
+      {
+        "question": "À quelle échelle décrit-on l’évolution par sélection naturelle ?",
+        "options": [
+          "Le choix conscient d’un individu",
+          "Les générations d’une population",
+          "Une seule journée de croissance"
+        ],
+        "answer": 1,
+        "explanation": "La sélection naturelle modifie les fréquences de caractères héréditaires dans une population au fil des générations."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "biology"
+    ]
+  },
+  {
+    "id": "photosynthesis",
+    "title": "Photosynthèse : transformer l’énergie lumineuse",
+    "terms": [
+      "photosynthèse",
+      "chloroplaste",
+      "chlorophylle"
+    ],
+    "body": "La photosynthèse convertit une partie de l’énergie lumineuse en énergie chimique. Dans le bilan simplifié usuel, du dioxyde de carbone et de l’eau permettent de former des glucides et du dioxygène. Chez les plantes, cette activité se déroule dans les chloroplastes. Les plantes réalisent aussi la respiration cellulaire.",
+    "example": "Lumière + CO₂ + eau → matière organique + O₂\nCette écriture est un bilan simplifié, pas une seule réaction élémentaire.",
+    "output": "L’énergie lumineuse est convertie et stockée sous forme chimique.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "La photosynthèse convertit une partie de l’énergie lumineuse en énergie chimique."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Lumière + CO₂ + eau → matière organique + O₂\nCette écriture est un bilan simplifié, pas une seule réaction élémentaire."
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "L’énergie lumineuse est convertie et stockée sous forme chimique."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Quel organite est associé à la photosynthèse chez les plantes ?",
+        "options": [
+          "Le chloroplaste",
+          "Le ribosome uniquement",
+          "Le noyau uniquement"
+        ],
+        "answer": 0,
+        "explanation": "Les chloroplastes contiennent les structures impliquées dans la photosynthèse."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "biology"
+    ]
+  },
+  {
+    "id": "respiration",
+    "title": "Respiration cellulaire : transférer de l’énergie",
+    "terms": [
+      "respiration cellulaire",
+      "glycolyse",
+      "mitochondrie",
+      "atp",
+      "cycle de krebs"
+    ],
+    "body": "Les cellules transfèrent l’énergie chimique de molécules vers des formes utilisables, notamment l’ATP. Dans la respiration aérobie, le dioxygène participe au processus et les produits finaux comprennent du dioxyde de carbone et de l’eau. La glycolyse a lieu dans le cytosol ; plusieurs étapes ultérieures se déroulent dans les mitochondries des cellules eucaryotes.",
+    "example": "Glucose → étapes de dégradation → transfert d’énergie vers l’ATP\nBilan aérobie simplifié : glucose + O₂ → CO₂ + eau",
+    "output": "L’ATP sert de relais dans les transferts d’énergie de la cellule.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Les cellules transfèrent l’énergie chimique de molécules vers des formes utilisables, notamment l’ATP."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Glucose → étapes de dégradation → transfert d’énergie vers l’ATP\nBilan aérobie simplifié : glucose + O₂ → CO₂ + eau"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "L’ATP sert de relais dans les transferts d’énergie de la cellule."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Où a lieu la glycolyse ?",
+        "options": [
+          "Dans le cytosol",
+          "Uniquement dans le noyau",
+          "À l’extérieur de toutes les cellules"
+        ],
+        "answer": 0,
+        "explanation": "La glycolyse se déroule dans le cytosol, avant les étapes mitochondriales de la respiration aérobie eucaryote."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "biology"
+    ]
+  },
+  {
+    "id": "membrane",
+    "title": "Comprendre les échanges à travers une membrane",
+    "terms": [
+      "membrane",
+      "diffusion",
+      "osmose",
+      "transport actif"
+    ],
+    "body": "Une membrane sépare deux milieux tout en permettant certains échanges. La diffusion tend à suivre un gradient de concentration sans apport direct d’énergie. Un transport actif peut déplacer une substance contre un gradient grâce à une source d’énergie. L’osmose concerne le déplacement de l’eau à travers une membrane sélectivement perméable.",
+    "example": "Gradient : concentration élevée → concentration plus faible\nDiffusion simple : déplacement suivant ce gradient\nTransport actif : déplacement possible contre le gradient",
+    "output": "Le sens du gradient et l’apport d’énergie permettent de distinguer les mécanismes.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Une membrane sépare deux milieux tout en permettant certains échanges."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Gradient : concentration élevée → concentration plus faible\nDiffusion simple : déplacement suivant ce gradient\nTransport actif : déplacement possible contre le gradient"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Le sens du gradient et l’apport d’énergie permettent de distinguer les mécanismes."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Quel mécanisme peut déplacer une substance contre son gradient grâce à une source d’énergie ?",
+        "options": [
+          "La diffusion simple",
+          "Le transport actif",
+          "Une mesure de longueur"
+        ],
+        "answer": 1,
+        "explanation": "Un transport actif utilise une source d’énergie pour permettre un déplacement contre le gradient."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "biology"
+    ]
+  },
+  {
+    "id": "enzymes",
+    "title": "Le rôle d’une enzyme",
+    "terms": [
+      "enzyme",
+      "catalyse",
+      "activation",
+      "cinétique enzymatique"
+    ],
+    "body": "Une enzyme est un catalyseur biologique qui facilite une réaction en abaissant la barrière d’activation. Elle n’est pas consommée par le bilan de la réaction. Son activité dépend de conditions comme la température et le pH ; une hausse de température n’améliore pas indéfiniment son activité.",
+    "example": "Réaction sans catalyseur : barrière d’activation plus élevée\nAvec enzyme : voie de réaction facilitée\nLe bilan énergétique global de la réaction ne change pas.",
+    "output": "Une enzyme facilite une transformation, sans fournir gratuitement l’énergie globale de cette transformation.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Une enzyme est un catalyseur biologique qui facilite une réaction en abaissant la barrière d’activation."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Réaction sans catalyseur : barrière d’activation plus élevée\nAvec enzyme : voie de réaction facilitée\nLe bilan énergétique global de la réaction ne change pas."
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Une enzyme facilite une transformation, sans fournir gratuitement l’énergie globale de cette transformation."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Que fait une enzyme dans une réaction ?",
+        "options": [
+          "Elle abaisse la barrière d’activation",
+          "Elle change tous les produits en éléments chimiques",
+          "Elle est toujours consommée totalement"
+        ],
+        "answer": 0,
+        "explanation": "La catalyse propose une voie de réaction avec une barrière d’activation plus faible."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "biology"
+    ]
+  },
+  {
+    "id": "ecology",
+    "title": "Lire une relation dans un écosystème",
+    "terms": [
+      "écosystème",
+      "écologie",
+      "chaîne alimentaire",
+      "réseau trophique",
+      "population"
+    ],
+    "body": "Un écosystème associe des êtres vivants et leur milieu. Une chaîne alimentaire simplifie les relations de transfert de matière et d’énergie, tandis qu’un réseau représente plusieurs relations. Une modification d’un groupe peut avoir des effets sur d’autres groupes ; une seule observation ne suffit pas à prouver une cause.",
+    "example": "Producteur → consommateur primaire → consommateur secondaire\nExemple simplifié : herbe → insecte herbivore → oiseau",
+    "output": "Le schéma décrit une relation de consommation simplifiée.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Un écosystème associe des êtres vivants et leur milieu."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Producteur → consommateur primaire → consommateur secondaire\nExemple simplifié : herbe → insecte herbivore → oiseau"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Le schéma décrit une relation de consommation simplifiée."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Dans ce schéma, quel organisme est le producteur ?",
+        "options": [
+          "L’oiseau",
+          "L’insecte",
+          "L’herbe"
+        ],
+        "answer": 2,
+        "explanation": "L’herbe produit de la matière organique grâce à la photosynthèse ; l’insecte et l’oiseau sont des consommateurs."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "biology"
+    ]
+  },
+  {
+    "id": "body-systems",
+    "title": "Relier les fonctions des organes",
+    "terms": [
+      "circulation",
+      "cœur",
+      "poumon",
+      "respiration humaine",
+      "digestion",
+      "organe",
+      "système nerveux",
+      "neurone"
+    ],
+    "body": "Les organes coopèrent au sein de systèmes. Par exemple, les échanges respiratoires apportent du dioxygène au sang et éliminent du dioxyde de carbone ; la circulation transporte des substances entre les tissus. Comprendre ces fonctions relève ici de la biologie générale, sans interprétation d’un symptôme ni décision de soin.",
+    "example": "Échanges dans les poumons ↔ circulation sanguine ↔ tissus\nChaque système contribue à une fonction d’ensemble.",
+    "output": "Une fonction de l’organisme dépend de plusieurs organes en interaction.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Les organes coopèrent au sein de systèmes."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Échanges dans les poumons ↔ circulation sanguine ↔ tissus\nChaque système contribue à une fonction d’ensemble."
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Une fonction de l’organisme dépend de plusieurs organes en interaction."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Quel système assure principalement le transport du sang entre les organes ?",
+        "options": [
+          "Le système circulatoire",
+          "Le système digestif seul",
+          "Le squelette seul"
+        ],
+        "answer": 0,
+        "explanation": "Le système circulatoire assure ce transport grâce au cœur et aux vaisseaux."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "biology"
+    ]
+  },
+  {
+    "id": "atoms",
+    "title": "Distinguer atome, ion et élément",
+    "terms": [
+      "atome",
+      "proton",
+      "neutron",
+      "électron",
+      "numéro atomique",
+      "tableau périodique"
+    ],
+    "body": "Le noyau d’un atome contient des protons et des neutrons. Le numéro atomique correspond au nombre de protons et identifie l’élément chimique. Un atome neutre possède autant d’électrons que de protons ; un ion a gagné ou perdu des électrons, sans changer d’élément pour autant.",
+    "example": "Atome neutre fictif : 11 protons et 11 électrons\nPerte d’un électron : 11 protons et 10 électrons\nCharge de l’ion : +1",
+    "output": "Le nombre de protons identifie l’élément ; les électrons influencent sa charge.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Le noyau d’un atome contient des protons et des neutrons."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Atome neutre fictif : 11 protons et 11 électrons\nPerte d’un électron : 11 protons et 10 électrons\nCharge de l’ion : +1"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Le nombre de protons identifie l’élément ; les électrons influencent sa charge."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Un atome neutre de 8 protons possède combien d’électrons ?",
+        "options": [
+          "4",
+          "8",
+          "16"
+        ],
+        "answer": 1,
+        "explanation": "La neutralité exige autant d’électrons que de protons, donc 8."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "chemistry"
+    ]
+  },
+  {
+    "id": "moles",
+    "title": "Relier quantité de matière et masse",
+    "terms": [
+      "mole",
+      "quantité de matière",
+      "masse molaire",
+      "avogadro"
+    ],
+    "body": "La quantité de matière n s’exprime en moles. Lorsque la masse m et la masse molaire M sont connues dans des unités compatibles, n = m/M. La masse molaire en g/mol relie une masse en grammes à une quantité en moles.",
+    "example": "m = 18 g ; M = 18 g/mol\nn = 18 / 18 = 1 mol",
+    "output": "Le quotient de la masse par la masse molaire donne une quantité de matière.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "La quantité de matière n s’exprime en moles."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "m = 18 g ; M = 18 g/mol\nn = 18 / 18 = 1 mol"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Le quotient de la masse par la masse molaire donne une quantité de matière."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Avec m = 10 g et M = 20 g/mol, n vaut…",
+        "options": [
+          "2 mol",
+          "0,5 mol",
+          "200 mol"
+        ],
+        "answer": 1,
+        "explanation": "n = m/M = 10/20 = 0,5 mol."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "chemistry"
+    ]
+  },
+  {
+    "id": "reactions",
+    "title": "Équilibrer une équation chimique",
+    "terms": [
+      "équation chimique",
+      "réaction chimique",
+      "stœchiométrie",
+      "équilibrer"
+    ],
+    "body": "Une équation chimique équilibrée conserve le nombre d’atomes de chaque élément. On ajuste les coefficients devant les espèces, sans modifier leurs formules chimiques. Le coefficient 2 devant H₂O représente deux molécules d’eau, pas une nouvelle formule.",
+    "example": "2 H₂ + O₂ → 2 H₂O\nHydrogène : 4 atomes de chaque côté\nOxygène : 2 atomes de chaque côté",
+    "output": "Les coefficients permettent de conserver les atomes.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Une équation chimique équilibrée conserve le nombre d’atomes de chaque élément."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "2 H₂ + O₂ → 2 H₂O\nHydrogène : 4 atomes de chaque côté\nOxygène : 2 atomes de chaque côté"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Les coefficients permettent de conserver les atomes."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Dans 2 H₂O, combien d’atomes d’hydrogène sont représentés ?",
+        "options": [
+          "2",
+          "4",
+          "6"
+        ],
+        "answer": 1,
+        "explanation": "Chaque H₂O contient 2 atomes d’hydrogène ; deux molécules en contiennent 4."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "chemistry"
+    ]
+  },
+  {
+    "id": "ph",
+    "title": "Lire un pH avec ses hypothèses",
+    "terms": [
+      "ph",
+      "acide",
+      "base",
+      "acidité",
+      "solution aqueuse"
+    ],
+    "body": "Le pH renseigne sur l’acidité d’une solution aqueuse. Dans le cadre usuel à 25 °C, un pH inférieur à 7 est acide, un pH de 7 est neutre et un pH supérieur à 7 est basique. L’échelle est logarithmique : un écart d’une unité correspond à un facteur dix sur la grandeur liée à l’acidité, pas à une simple différence linéaire.",
+    "example": "À 25 °C, pH 3 : acide\npH 7 : neutre\npH 10 : basique",
+    "output": "Les conditions de température et de solution doivent rester précisées.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Le pH renseigne sur l’acidité d’une solution aqueuse."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "À 25 °C, pH 3 : acide\npH 7 : neutre\npH 10 : basique"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Les conditions de température et de solution doivent rester précisées."
+      }
+    ],
+    "questions": [
+      {
+        "question": "À 25 °C, une solution aqueuse de pH 5 est…",
+        "options": [
+          "acide",
+          "neutre",
+          "basique"
+        ],
+        "answer": 0,
+        "explanation": "À cette température et dans ce cadre, 5 est inférieur à 7 : la solution est acide."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "chemistry"
+    ]
+  },
+  {
+    "id": "bonding",
+    "title": "Comparer deux types de liaison",
+    "terms": [
+      "liaison chimique",
+      "liaison covalente",
+      "liaison ionique",
+      "molécule"
+    ],
+    "body": "Dans une liaison covalente, des atomes partagent des électrons. Une liaison ionique est associée à l’attraction entre ions de charges opposées. Ces descriptions sont des modèles utiles pour comprendre certaines propriétés ; toutes les substances ne sont pas constituées de petites molécules isolées.",
+    "example": "Covalente : mise en commun d’électrons\nIonique : attraction entre cations et anions\nNaCl solide : réseau d’ions, pas une petite molécule isolée de sel",
+    "output": "Le type de modèle aide à expliquer la structure de la substance.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Dans une liaison covalente, des atomes partagent des électrons."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Covalente : mise en commun d’électrons\nIonique : attraction entre cations et anions\nNaCl solide : réseau d’ions, pas une petite molécule isolée de sel"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Le type de modèle aide à expliquer la structure de la substance."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Dans une liaison covalente, les électrons sont principalement…",
+        "options": [
+          "partagés entre les atomes",
+          "transformés en protons",
+          "tous supprimés"
+        ],
+        "answer": 0,
+        "explanation": "Le modèle covalent repose sur un partage d’électrons entre les atomes."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "chemistry"
+    ]
+  },
+  {
+    "id": "newton",
+    "title": "Relier force et accélération",
+    "terms": [
+      "newton",
+      "accélération",
+      "résultante des forces",
+      "force nette"
+    ],
+    "body": "Dans un référentiel adapté et pour un système de masse constante, la résultante des forces est liée à l’accélération : ΣF = ma. Une force nette nulle correspond à une accélération nulle, ce qui peut signifier un repos ou un mouvement rectiligne uniforme. Force et vitesse ne sont pas la même grandeur.",
+    "example": "m = 2 kg ; a = 3 m/s²\nForce résultante : F = 2 × 3 = 6 N",
+    "output": "Le calcul concerne la résultante de toutes les forces sur le système.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Dans un référentiel adapté et pour un système de masse constante, la résultante des forces est liée à l’accélération : ΣF = ma."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "m = 2 kg ; a = 3 m/s²\nForce résultante : F = 2 × 3 = 6 N"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Le calcul concerne la résultante de toutes les forces sur le système."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Pour m = 4 kg et a = 2 m/s², la résultante vaut…",
+        "options": [
+          "2 N",
+          "6 N",
+          "8 N"
+        ],
+        "answer": 2,
+        "explanation": "F = ma = 4 × 2 = 8 N."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "physics"
+    ]
+  },
+  {
+    "id": "waves",
+    "title": "Relier fréquence et période",
+    "terms": [
+      "onde",
+      "fréquence",
+      "période",
+      "oscillation",
+      "signal sinusoïdal"
+    ],
+    "body": "Pour un phénomène périodique, la période T est la durée d’un cycle et la fréquence f le nombre de cycles par seconde. Lorsque T est en secondes, f = 1/T en hertz. Ne confonds pas fréquence et amplitude : une oscillation plus ample n’est pas nécessairement plus rapide.",
+    "example": "T = 0,02 s\nf = 1 / 0,02 = 50 Hz",
+    "output": "Le phénomène effectue 50 cycles par seconde.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Pour un phénomène périodique, la période T est la durée d’un cycle et la fréquence f le nombre de cycles par seconde."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "T = 0,02 s\nf = 1 / 0,02 = 50 Hz"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Le phénomène effectue 50 cycles par seconde."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Si T = 0,5 s, la fréquence vaut…",
+        "options": [
+          "0,5 Hz",
+          "2 Hz",
+          "5 Hz"
+        ],
+        "answer": 1,
+        "explanation": "f = 1/T = 1/0,5 = 2 Hz."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "physics"
+    ]
+  },
+  {
+    "id": "density",
+    "title": "Calculer une masse volumique",
+    "terms": [
+      "masse volumique",
+      "densité",
+      "volume",
+      "flottabilité"
+    ],
+    "body": "La masse volumique ρ est le rapport de la masse au volume : ρ = m/V. Les unités doivent être cohérentes. Un même nombre peut changer selon l’unité choisie, et une conversion est nécessaire avant de comparer deux matériaux.",
+    "example": "m = 200 g ; V = 100 cm³\nρ = 200/100 = 2 g/cm³",
+    "output": "Le matériau de cet exemple a une masse volumique de 2 g/cm³.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "La masse volumique ρ est le rapport de la masse au volume : ρ = m/V."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "m = 200 g ; V = 100 cm³\nρ = 200/100 = 2 g/cm³"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Le matériau de cet exemple a une masse volumique de 2 g/cm³."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Avec m = 300 g et V = 100 cm³, ρ vaut…",
+        "options": [
+          "3 g/cm³",
+          "30 g/cm³",
+          "0,3 g/cm³"
+        ],
+        "answer": 0,
+        "explanation": "ρ = 300/100 = 3 g/cm³."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "physics"
+    ]
+  },
+  {
+    "id": "scarcity",
+    "title": "Reconnaître un coût d’opportunité",
+    "terms": [
+      "rareté",
+      "coût d’opportunité",
+      "facteur de production",
+      "ressources économiques"
+    ],
+    "body": "Une ressource limitée oblige à choisir entre plusieurs usages. Le coût d’opportunité correspond à la meilleure possibilité à laquelle on renonce en faisant un choix. Ce n’est pas nécessairement une dépense d’argent. Il faut préciser les alternatives de la situation.",
+    "example": "Une heure disponible : réviser les maths ou préparer une affiche\nChoisir l’affiche fait renoncer à l’heure de révision\nDans cet exemple, le temps est la ressource limitée.",
+    "output": "Un choix peut avoir un coût même sans paiement.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Une ressource limitée oblige à choisir entre plusieurs usages."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Une heure disponible : réviser les maths ou préparer une affiche\nChoisir l’affiche fait renoncer à l’heure de révision\nDans cet exemple, le temps est la ressource limitée."
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Un choix peut avoir un coût même sans paiement."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Si l’on choisit A et renonce à la meilleure alternative B, le coût d’opportunité correspond à…",
+        "options": [
+          "B",
+          "toutes les dépenses de la vie",
+          "zéro dans tous les cas"
+        ],
+        "answer": 0,
+        "explanation": "Le coût d’opportunité est la meilleure alternative abandonnée, ici B."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "business"
+    ]
+  },
+  {
+    "id": "market",
+    "title": "Lire offre et demande",
+    "terms": [
+      "offre",
+      "demande",
+      "équilibre du marché",
+      "prix du marché"
+    ],
+    "body": "Dans un modèle simple, la demande représente les quantités souhaitées à différents prix et l’offre les quantités proposées. Le point d’équilibre se trouve où les quantités offertes et demandées coïncident. Une variation du prix sur une courbe se distingue d’un déplacement de toute la courbe.",
+    "example": "Prix fictif : 500 FCFA\nQuantité offerte : 20 ; quantité demandée : 20\nCes valeurs décrivent un équilibre du modèle.",
+    "output": "Un équilibre concerne simultanément un prix et une quantité.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Dans un modèle simple, la demande représente les quantités souhaitées à différents prix et l’offre les quantités proposées."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Prix fictif : 500 FCFA\nQuantité offerte : 20 ; quantité demandée : 20\nCes valeurs décrivent un équilibre du modèle."
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Un équilibre concerne simultanément un prix et une quantité."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Dans ce modèle, un équilibre correspond à…",
+        "options": [
+          "une quantité offerte égale à la quantité demandée",
+          "un prix toujours nul",
+          "une disparition de tous les coûts"
+        ],
+        "answer": 0,
+        "explanation": "Les quantités offertes et demandées sont égales au prix d’équilibre dans ce modèle."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "business"
+    ]
+  },
+  {
+    "id": "inflation",
+    "title": "Distinguer variation nominale et pouvoir d’achat",
+    "terms": [
+      "inflation",
+      "pib",
+      "produit intérieur brut",
+      "macroéconomie",
+      "pouvoir d’achat"
+    ],
+    "body": "Une valeur nominale est exprimée aux prix courants. Pour comparer des périodes, une valeur réelle tient compte de l’évolution des prix. Une hausse d’un montant nominal ne signifie donc pas automatiquement une hausse équivalente du pouvoir d’achat. Les indicateurs ont un périmètre et une méthode qu’il faut lire.",
+    "example": "Indice de prix fictif : 100 → 110\nHausse relative : (110 − 100)/100 × 100 = 10 %",
+    "output": "Dans cet exercice, l’indice a augmenté de 10 %.",
+    "steps": [
+      {
+        "title": "Repérer la règle",
+        "text": "Une valeur nominale est exprimée aux prix courants."
+      },
+      {
+        "title": "Suivre le calcul ou l’exemple",
+        "code": "Indice de prix fictif : 100 → 110\nHausse relative : (110 − 100)/100 × 100 = 10 %"
+      },
+      {
+        "title": "Vérifier et expliquer",
+        "text": "Dans cet exercice, l’indice a augmenté de 10 %."
+      }
+    ],
+    "questions": [
+      {
+        "question": "Un montant qui augmente de 5 % garantit-il une hausse du pouvoir d’achat de 5 % ?",
+        "options": [
+          "Oui, toujours",
+          "Non, il faut aussi considérer les prix",
+          "Seulement si on change la couleur du graphique"
+        ],
+        "answer": 1,
+        "explanation": "L’évolution des prix doit être prise en compte pour apprécier le pouvoir d’achat."
+      }
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "scope": "Notion associée ; ne remplace pas une transcription du contenu source.",
+    "subjects": [
+      "business"
+    ]
+  }
+]

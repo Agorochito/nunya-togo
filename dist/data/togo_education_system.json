@@ -1,0 +1,54 @@
+{
+  "minAge": 13,
+  "classes": [
+    {
+      "cycle": "Primaire",
+      "classes": [
+        "CP1",
+        "CP2",
+        "CE1",
+        "CE2",
+        "CM1",
+        "CM2"
+      ],
+      "focus": false,
+      "exam": {
+        "CM2": "CEPD"
+      }
+    },
+    {
+      "cycle": "Collège",
+      "classes": [
+        "6ème",
+        "5ème",
+        "4ème",
+        "3ème"
+      ],
+      "focus": true,
+      "exam": {
+        "3ème": "BEPC"
+      }
+    },
+    {
+      "cycle": "Lycée",
+      "classes": [
+        "Seconde",
+        "Première",
+        "Terminale"
+      ],
+      "focus": true,
+      "exam": {
+        "Première": "BAC I",
+        "Terminale": "BAC II"
+      }
+    }
+  ],
+  "tracks": [
+    "général",
+    "technique",
+    "professionnel"
+  ],
+  "verified": false,
+  "source_url": "https://ecole.gouv.tg/",
+  "under13Policy": "supervised-later"
+}

@@ -1,0 +1,36 @@
+# Décisions — extension de Nunya
+
+Date : 1er novembre 2026.
+
+- Les demandes directes du propriétaire priment sur le périmètre du cahier de route et du brief : développer les domaines dès maintenant et ne pas limiter la bibliothèque à 17 cours.
+- Deux entrées distinctes : Mes cours (révision scolaire) et Mon avenir (métiers et compétences). Les ressources tierces sont identifiées comme telles, jamais comptées comme des cours originaux validés.
+- Le nombre affiché provient de données réelles. Un cours contient des modules/leçons ; une vidéo n’est pas artificiellement renommée « parcours complet ».
+- Seuls les contenus dont les droits le permettent peuvent être adaptés ou enregistrés hors ligne. Les vidéos YouTube restent intégrées dans leur lecteur officiel.
+- Le programme et les calendriers français/belges de Khan Academy ne sont pas le programme ni le calendrier togolais. Les correspondances scolaires nécessitent une relecture.
+- Âge minimum configurable 13 ans ; le niveau guide les recommandations, jamais l’âge. Primaire modélisé pour la suite, comptes supervisés non activés.
+- Par défaut : pilote scolaire Mathématiques, seconde, rédaction originale à relire. Aucun sujet d’annale n’est redistribué.
+- Dates 2027 et coefficients fournis dans le brief : non vérifiés ; aucun calcul de réussite ou compte à rebours officiel fondé sur ces valeurs. Une date personnelle de révision reste possible.
+- Conserver l’application statique publiée pendant cette extension : légère, partageable et déjà hors ligne. La migration Next.js/Supabase ne doit pas casser les progrès existants ; schéma et contrats préparés séparément. L’authentification Google/email, une IA distante et la synchronisation réelle exigent une configuration serveur et des services identifiés. Ne pas afficher de succès simulé.
+- Ne pas présenter des cours rédigés par Codex comme relus par un enseignant. Métadonnées status=brouillon, reviewer=null tant que personne ne les a relus.
+- Les fonctions enseignant/admin ne sont pas exposées aux élèves. Le générateur d’exercices produit des brouillons locaux et exige une validation humaine ; aucune promotion automatique en « validé ».
+- Sources officielles d’abord : ministères togolais et portails institutionnels. Une annonce ancienne prouve l’existence d’une filière, pas l’ouverture actuelle des inscriptions.
+- L’intégration de milliers de ressources passe par des exports/catalogues publics autorisés, dédupliqués et segmentés ; pas par des milliers de cartes vides ou des leçons génériques dupliquées.
+
+## Questions non bloquantes
+
+Relecteurs togolais à identifier ; calendrier officiel à obtenir ; établissements et conditions d’accès à vérifier ; sens éwé et disponibilité de la marque à confirmer ; fournisseur/budget IA à choisir après évaluation ; projet Supabase à provisionner avant synchronisation.
+
+## Décisions directes ultérieures
+
+- Le propriétaire ne possède aucun projet Supabase et demande de garder la base locale : IndexedDB, profils locaux et sauvegardes ; pas de création de compte fournisseur ni de coût engagé. Supabase reste une option pour plus tard.
+- L’éditeur de code doit être dans les cours de programmation et les articles concernés. Suppression de l’entrée « atelier de code » à l’échelle du site ; résultat affiché dans la leçon.
+- BAC II : recherche élargie au portail des compositions régionales et à l’Office du Bac. 28 documents de Terminale trouvés dans le dossier officiel régional, dont des corrigés. Leur nature reste visible ; ils ne sont pas présentés comme des annales nationales.
+
+## Académie 5 — décisions du 2 novembre
+
+- Demande directe : plusieurs domaines développés simultanément. Trois initiations en six étapes (0 découverte puis cinq étapes) et douze parcours courts de découverte ; durées calculées sur les séances réelles (~4,4 h pour chacune des trois initiations), jamais les 40 h illustratives.
+- Les deux thèmes et tous leurs fonds suivent une seule couleur d’accent. Personnalisation discrète dans Profil & confort, système clair/sombre respecté lors de la première visite.
+- LearnFree : huit références manuelles et accompagnements Nunya originaux. Ses conditions ne donnent pas un droit clair de traduction intégrale et interdisent l’aspiration ; aucune collecte automatique du catalogue. Class Central reste une piste de découverte, pas le propriétaire des cours ni une licence de republication.
+- La mention « source consultée » qualifie la recherche, jamais la validation pédagogique, l’ouverture d’une offre ou l’admissibilité. Les contenus nouveaux et métiers restent en brouillon.
+- L’outil interne de génération APC reste hors de l’application élève. Sans empreintes autorisées ni relecteur humain, `publishable:false`.
+- Dépôt GitHub public demandé par le propriétaire, configuration Vercel prête. Les sessions locales, fichiers d’environnement, identifiants Sites et historique de travail ne sont pas nécessaires au dépôt public ; publier un instantané de source nettoyé. Les données des élèves n’existent que dans leur navigateur.

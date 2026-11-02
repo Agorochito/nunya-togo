@@ -1,0 +1,88 @@
+{
+  "id": "documents-pratique",
+  "title": "Documents : structurer et présenter ses idées",
+  "en": "Create readable documents",
+  "domain": "tech",
+  "glyph": "Aa",
+  "desc": "Un cours original en français, avec exemples, exercices corrigés et une application à ton projet.",
+  "enDesc": "Original French lessons and practice.",
+  "category": "COMPÉTENCES PRATIQUES · NUNYA",
+  "type": "subject",
+  "level": "Débutant",
+  "duration": 40,
+  "track": "future",
+  "author": "Nunya",
+  "status": "brouillon",
+  "reviewer": null,
+  "license": "CC BY-SA 4.0",
+  "lessons": [
+    {
+      "title": "Organiser le contenu avant la mise en forme",
+      "body": "Commence par l’objectif et le public du document. Prépare un titre, deux ou trois sections et les informations essentielles. Un compte rendu de club peut préciser le but, les décisions et les prochaines actions. N’ajoute pas de données personnelles qui ne sont pas nécessaires. La structure doit rester compréhensible même si les couleurs et les images disparaissent.",
+      "code": "Titre : Réunion du club\n1. Objectif\n2. Décisions\n3. Prochaines actions",
+      "output": "La structure aide le lecteur à trouver une information.",
+      "question": "Quel plan aide à retrouver les décisions ?",
+      "options": [
+        "Un paragraphe unique sans titre.",
+        "Des sections nommées selon leur rôle.",
+        "Un titre différent à chaque ligne."
+      ],
+      "answer": 1,
+      "explanation": "Des titres clairs permettent de parcourir le document et de comprendre son organisation.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon"
+    },
+    {
+      "title": "Utiliser des titres et des listes cohérents",
+      "body": "Les styles de titre aident à garder une hiérarchie cohérente. Un titre de section et un sous-titre n’ont pas le même rôle. Une liste peut regrouper des éléments parallèles ; une liste numérotée peut préciser un ordre. Ne remplace pas la structure par des espaces répétés, qui risquent de se déplacer sur un autre écran ou à l’impression.",
+      "code": "Titre principal\nSection : Prochaines actions\n1. Relire le texte\n2. Vérifier les informations",
+      "output": "La numérotation indique ici un ordre de travail.",
+      "question": "Une liste numérotée est particulièrement utile pour…",
+      "options": [
+        "indiquer des étapes ordonnées",
+        "cacher les actions",
+        "remplacer tous les titres"
+      ],
+      "answer": 0,
+      "explanation": "Les numéros peuvent montrer l’ordre attendu des étapes.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon"
+    },
+    {
+      "title": "Nommer les fichiers et garder une version",
+      "body": "Un nom de fichier aide à reconnaître un document sans l’ouvrir. Utilise un nom court, un sujet et éventuellement une date ou un numéro de version. Avant un changement important, conserve une copie distincte. Vérifie où la copie est stockée et si elle peut être rouverte. Une sauvegarde ne consiste pas seulement à croire qu’un fichier existe quelque part.",
+      "code": "club-compte-rendu-v1\nclub-compte-rendu-v2-relue",
+      "output": "Le nom permet de distinguer les versions.",
+      "question": "Une sauvegarde utile doit notamment…",
+      "options": [
+        "porter un nom secret sans rapport",
+        "pouvoir être retrouvée et rouverte",
+        "rester uniquement dans une fenêtre non enregistrée"
+      ],
+      "answer": 1,
+      "explanation": "Une copie n’aide que si elle est accessible et utilisable au moment nécessaire.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon"
+    },
+    {
+      "title": "Relire et exporter un document",
+      "body": "Relis le fond avant de vérifier la présentation : noms, dates, unités, actions et informations à confirmer. Contrôle ensuite les titres, les coupures de page et la lisibilité à l’impression. Un PDF peut conserver une présentation, mais il faut ouvrir le fichier exporté pour le vérifier. Les formats et les options disponibles varient selon l’outil.",
+      "code": "Contrôle : informations → structure → présentation → fichier exporté.",
+      "output": "La vérification continue après l’export.",
+      "question": "Après avoir exporté un PDF, tu dois…",
+      "options": [
+        "supposer qu’il est toujours correct",
+        "ouvrir le fichier et vérifier le résultat",
+        "effacer immédiatement la version de travail"
+      ],
+      "answer": 1,
+      "explanation": "L’export peut modifier la mise en page ; ouvrir le fichier permet de voir le résultat réel.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon"
+    }
+  ]
+}

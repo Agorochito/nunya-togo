@@ -1,0 +1,77 @@
+{
+  "id": "algorithms",
+  "title": "La logique avant le code",
+  "en": "La logique avant le code",
+  "category": "LOGIQUE & ALGORITHMES",
+  "domain": "tech",
+  "desc": "Décompose un problème, trouve une méthode et apprends à penser comme un programmeur.",
+  "enDesc": "Décompose un problème, trouve une méthode et apprends à penser comme un programmeur.",
+  "glyph": "↳",
+  "color": "#dcead8",
+  "type": "subject",
+  "level": "Débutant",
+  "duration": 40,
+  "lessons": [
+    {
+      "title": "Une recette pour résoudre un problème",
+      "body": "Un algorithme est une suite d’étapes précises pour obtenir un résultat. Avant de coder, on peut écrire ces étapes en français. Pour préparer un trajet, on choisit une destination, on compare les possibilités, puis on vérifie le coût. L’ordre et les informations de départ comptent.",
+      "code": "1. Lire le prix du trajet\n2. Lire le nombre de trajets\n3. Multiplier\n4. Afficher le budget",
+      "output": "Un budget obtenu étape par étape.",
+      "question": "Quelle description est un algorithme ?",
+      "options": [
+        "Sois intelligent",
+        "Lis deux nombres, additionne-les, affiche le résultat",
+        "Un ordinateur"
+      ],
+      "answer": 1,
+      "explanation": "Les instructions sont ordonnées, précises et réalisables."
+    },
+    {
+      "title": "Repérer les informations utiles",
+      "body": "Résoudre un problème commence par distinguer les entrées, le traitement et la sortie. Si tu calcules un budget, les entrées sont le prix et la quantité. Le traitement est la multiplication. La sortie est le montant total.",
+      "code": "Entrées : 200 FCFA, 4 trajets\nTraitement : 200 × 4\nSortie : 800 FCFA",
+      "output": "800 FCFA",
+      "question": "Dans cet exemple, quelle est la sortie ?",
+      "options": [
+        "Le nombre de trajets",
+        "Le montant total",
+        "Le nom du chauffeur"
+      ],
+      "answer": 1,
+      "explanation": "La sortie est le résultat produit par le traitement."
+    },
+    {
+      "title": "Choisir et répéter",
+      "body": "Certaines étapes dépendent d’une condition. D’autres se répètent. Pour vérifier une liste d’achats, on peut répéter un contrôle pour chaque produit et décider si le budget suffit. Une condition a une réponse vraie ou fausse.",
+      "code": "Pour chaque article :\n  Si prix ≤ budget restant :\n    Ajouter au panier\n  Sinon :\n    Passer au suivant",
+      "output": "Une décision répétée pour chaque article.",
+      "question": "Quel mot indique une répétition ?",
+      "options": [
+        "Pour chaque",
+        "Sinon",
+        "Prix"
+      ],
+      "answer": 0,
+      "explanation": "« Pour chaque » applique les mêmes étapes à plusieurs éléments."
+    },
+    {
+      "title": "Trouver une erreur de logique",
+      "body": "Un programme peut suivre des instructions correctes dans un mauvais ordre. Tester avec un petit exemple aide à détecter l’erreur. Explique ton raisonnement sur papier, vérifie une étape à la fois, puis compare le résultat attendu et le résultat obtenu.",
+      "code": "But : calculer la moyenne de 10 et 14\nIncorrect : 10 + 14 / 2 = 17\nCorrect : (10 + 14) / 2 = 12",
+      "output": "Les parenthèses changent l’ordre du calcul.",
+      "question": "Quelle moyenne obtient-on pour 8 et 16 ?",
+      "options": [
+        "12",
+        "16",
+        "24"
+      ],
+      "answer": 0,
+      "explanation": "On additionne 8 et 16, puis on divise le total 24 par 2 : 12."
+    }
+  ],
+  "author": "Nunya",
+  "reviewer": null,
+  "status": "brouillon",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

@@ -1,0 +1,77 @@
+{
+  "id": "hospitality",
+  "title": "Accueillir, communiquer & organiser",
+  "en": "Accueillir, communiquer & organiser",
+  "category": "TOURISME & SERVICES",
+  "domain": "services",
+  "desc": "Découvre les compétences de l’accueil à travers des situations simples.",
+  "enDesc": "Découvre les compétences de l’accueil à travers des situations simples.",
+  "glyph": "☷",
+  "color": "#f2e3cc",
+  "type": "subject",
+  "level": "Débutant",
+  "duration": 40,
+  "lessons": [
+    {
+      "title": "Comprendre une demande",
+      "body": "Un accueil utile commence par écouter. Reformule la demande pour vérifier ta compréhension. Ne promets pas un service dont tu ne connais pas la disponibilité. Une réponse claire et respectueuse est plus utile qu’une réponse rapide et incertaine.",
+      "code": "« Si je comprends bien, vous cherchez\nun lieu pour un groupe de six personnes ? »",
+      "output": "Reformuler permet de vérifier le besoin.",
+      "question": "Pourquoi reformuler ?",
+      "options": [
+        "Pour vérifier qu’on a compris",
+        "Pour interrompre la personne",
+        "Pour promettre sans vérifier"
+      ],
+      "answer": 0,
+      "explanation": "Reformuler confirme les informations avant de proposer une solution."
+    },
+    {
+      "title": "Organiser une réservation",
+      "body": "Un tableau simple peut suivre une date, une référence, une capacité et un statut. Ne collecte que les informations nécessaires. Vérifie les disponibilités avant de confirmer une réservation.",
+      "code": "Référence : RES-021\nDate : 15/07\nGroupe : 6 personnes\nStatut : à confirmer",
+      "output": "Un suivi distingue demande et confirmation.",
+      "question": "Avant de confirmer, que faut-il vérifier ?",
+      "options": [
+        "La disponibilité",
+        "Le nombre de couleurs du tableau",
+        "La météo de l’année passée"
+      ],
+      "answer": 0,
+      "explanation": "Une confirmation dépend d’une disponibilité réelle."
+    },
+    {
+      "title": "Calculer une prestation",
+      "body": "Le prix total d’une prestation simple se calcule avec le prix unitaire et la quantité. Indique clairement ce qui est compris. Les montants de cet exercice sont fictifs et ne représentent aucun tarif réel au Togo.",
+      "code": "Exemple fictif : 2 000 FCFA par personne\nGroupe : 4 personnes\nTotal : 8 000 FCFA",
+      "output": "4 × 2 000 = 8 000",
+      "question": "Pour 3 personnes au même prix, le total est…",
+      "options": [
+        "5 000 FCFA",
+        "6 000 FCFA",
+        "9 000 FCFA"
+      ],
+      "answer": 1,
+      "explanation": "3 × 2 000 = 6 000 FCFA."
+    },
+    {
+      "title": "Présenter un lieu avec respect",
+      "body": "Une présentation de lieu distingue les faits vérifiés, les conseils et les goûts personnels. Demande l’accord avant de photographier des personnes et respecte les règles locales. Une information incertaine doit être vérifiée plutôt qu’inventée.",
+      "code": "Description factuelle\nAccès à vérifier\nRègles du lieu\nRespect des personnes",
+      "output": "Informer clairement, sans inventer.",
+      "question": "Si tu ne connais pas une information…",
+      "options": [
+        "Invente une réponse",
+        "Dis-le et cherche à vérifier",
+        "Change discrètement le prix"
+      ],
+      "answer": 1,
+      "explanation": "Reconnaître l’incertitude aide à fournir une information fiable."
+    }
+  ],
+  "author": "Nunya",
+  "reviewer": null,
+  "status": "brouillon",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

@@ -1,0 +1,95 @@
+{
+  "id": "histoire-methodes",
+  "title": "Histoire-Géographie : lire les documents",
+  "en": "Histoire-Géographie : lire les documents",
+  "domain": "humanities",
+  "glyph": "◷",
+  "color": "#e7dfcf",
+  "desc": "Repères, cartes, documents et réponses organisées : entraîne ta méthode.",
+  "enDesc": "Repères, cartes, documents et réponses organisées : entraîne ta méthode.",
+  "type": "subject",
+  "category": "RÉVISION SCOLAIRE",
+  "level": "Débutant",
+  "duration": 40,
+  "track": "school",
+  "author": "Nunya — brouillon de travail",
+  "reviewer": null,
+  "status": "brouillon",
+  "curriculumVerified": false,
+  "lessons": [
+    {
+      "title": "Situer un document",
+      "body": "Avant d’interpréter un document, identifie sa nature, son auteur, sa date et son sujet. Le contexte peut expliquer le point de vue de l’auteur. Une source n’est pas automatiquement neutre.",
+      "code": "Nature → auteur → date → contexte\nPuis : que montre le document ?",
+      "output": "Une lecture commence par identifier la source.",
+      "question": "Quel élément situe un document dans le temps ?",
+      "options": [
+        "Sa date",
+        "La couleur du papier",
+        "La taille de la police"
+      ],
+      "answer": 0,
+      "explanation": "La date permet de le relier à une période et à un contexte.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Lire une carte",
+      "body": "Une carte sélectionne des informations. Le titre indique son sujet ; la légende explique les symboles ; l’échelle relie une distance sur la carte à une distance réelle. L’orientation aide à se repérer.",
+      "code": "Titre + légende + échelle + orientation",
+      "output": "Quatre repères avant l’interprétation.",
+      "question": "Où trouver le sens des symboles ?",
+      "options": [
+        "Dans la légende",
+        "Dans le cadre uniquement",
+        "Dans le nom du fichier"
+      ],
+      "answer": 0,
+      "explanation": "La légende indique la signification des couleurs et des symboles.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Organiser une chronologie",
+      "body": "Une chronologie ordonne des événements. Être antérieur signifie se produire avant ; être postérieur signifie se produire après. L’ordre temporel ne suffit pas à prouver une relation de cause à effet.",
+      "code": "Exemple fictif :\nAnnée 1 : ouverture d’une école\nAnnée 2 : création d’un club",
+      "output": "La création du club est postérieure à l’ouverture.",
+      "question": "Postérieur veut dire…",
+      "options": [
+        "Avant",
+        "Après",
+        "Au même endroit"
+      ],
+      "answer": 1,
+      "explanation": "Postérieur situe un événement après un autre dans le temps.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Comparer deux sources",
+      "body": "Comparer consiste à relever des points communs, des différences et leurs explications possibles. Croise les informations et distingue les faits rapportés des jugements. Indique les limites des documents disponibles.",
+      "code": "Source A : un témoignage\nSource B : un tableau de données\nQuestion : que confirment-ils ensemble ?",
+      "output": "Deux sources peuvent se compléter sans être identiques.",
+      "question": "Une différence entre sources doit être…",
+      "options": [
+        "Examinée avec le contexte",
+        "Supprimée automatiquement",
+        "Ignorée"
+      ],
+      "answer": 0,
+      "explanation": "Les auteurs, les dates et les méthodes peuvent expliquer une différence.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    }
+  ],
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

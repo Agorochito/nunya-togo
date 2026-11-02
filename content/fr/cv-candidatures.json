@@ -1,0 +1,88 @@
+{
+  "id": "cv-candidatures",
+  "title": "CV et candidatures : montrer ses preuves",
+  "en": "CV and applications",
+  "domain": "business",
+  "glyph": "Aa",
+  "desc": "Un cours original en français, avec exemples, exercices corrigés et une application à ton projet.",
+  "enDesc": "Original French lessons and practice.",
+  "category": "COMPÉTENCES PRATIQUES · NUNYA",
+  "type": "subject",
+  "level": "Débutant",
+  "duration": 40,
+  "track": "future",
+  "author": "Nunya",
+  "status": "brouillon",
+  "reviewer": null,
+  "license": "CC BY-SA 4.0",
+  "lessons": [
+    {
+      "title": "Relier son CV à une offre",
+      "body": "Un CV aide une personne à repérer ce que tu peux apporter à une mission précise. Commence par lire les tâches de l’offre, puis choisis deux expériences, projets scolaires ou activités qui donnent une preuve utile. Tu peux être débutant et présenter honnêtement un projet de classe. Ne transforme pas une initiation en diplôme, et n’invente ni emploi ni compétence. Dans le brouillon, conserve seulement les informations que tu décides de partager.",
+      "code": "Besoin fictif : organiser des informations.\nPreuve : tableau de suivi de 12 livres du club.",
+      "output": "Une preuve précise rend une compétence plus compréhensible.",
+      "question": "Quelle formulation donne une preuve ?",
+      "options": [
+        "Je sais tout faire.",
+        "J’ai créé un tableau de suivi de 12 livres, puis corrigé deux doublons.",
+        "Je suis le meilleur candidat."
+      ],
+      "answer": 1,
+      "explanation": "Le tableau, son périmètre et la correction sont des éléments observables.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon"
+    },
+    {
+      "title": "Décrire une expérience sans exagérer",
+      "body": "Présente une activité par une action, un contexte et un résultat que tu peux expliquer. Les résultats peuvent être modestes : une page devenue lisible sur téléphone, une consigne clarifiée, un total vérifié. Si une situation est fictive, indique-le. Utilise des titres simples pour les rubriques du CV et un ordre cohérent. Un document lisible en texte aide aussi quand une plateforme extrait automatiquement les informations.",
+      "code": "Action : relire une page du club.\nRésultat : les champs ont maintenant un libellé.\nLimite : test avec deux camarades seulement.",
+      "output": "Une limite honnête est compatible avec une réalisation utile.",
+      "question": "Une activité fictive doit être…",
+      "options": [
+        "présentée comme un emploi réel",
+        "supprimée dans tous les cas",
+        "clairement indiquée comme exercice ou projet fictif"
+      ],
+      "answer": 2,
+      "explanation": "Un projet fictif peut illustrer un apprentissage, sans être confondu avec une expérience professionnelle.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon"
+    },
+    {
+      "title": "Écrire une lettre ciblée",
+      "body": "Une lettre courte relie une demande, une motivation précise et une preuve. Évite de recopier le CV ou d’envoyer le même texte à toutes les organisations. Tu peux expliquer ce que tu souhaites apprendre pendant un stage, montrer un travail et proposer un échange. Vérifie le nom de l’organisme, la mission et les pièces demandées avant l’envoi. Le générateur local de Nunya t’aide à préparer un brouillon ; il n’envoie aucune candidature.",
+      "code": "Objet : candidature à un stage de découverte.\nMotivation : comprendre la gestion d’un petit stock.\nPreuve : tableau fictif de suivi des livres.",
+      "output": "La demande et la preuve parlent de la même mission.",
+      "question": "Quel élément rend la lettre plus précise ?",
+      "options": [
+        "Une phrase identique pour toutes les offres.",
+        "Un lien entre la mission et une expérience que tu peux expliquer.",
+        "Une promesse d’être expert après un jour."
+      ],
+      "answer": 1,
+      "explanation": "Le lien entre une mission et une preuve montre que la candidature a été préparée.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon"
+    },
+    {
+      "title": "Vérifier l’offre et les données partagées",
+      "body": "Une annonce peut imiter une entreprise ou proposer un emploi garanti contre un paiement urgent. Vérifie l’organisation par ses coordonnées publiques et lis les modalités sur son site officiel. Ne partage jamais un code de confirmation, un mot de passe ou un accès mobile money. Une demande inhabituelle mérite une vérification indépendante. Pour un premier contact, limite les informations personnelles ; Nunya ne garantit pas l’authenticité d’une annonce externe.",
+      "code": "Annonce fictive : « Stage garanti, verse des frais et transmets le code SMS. »\nAction prudente : ne rien transmettre ; vérifier par le canal officiel.",
+      "output": "Un signal suspect doit déclencher une vérification.",
+      "question": "Que faire si une annonce demande un code secret reçu par SMS ?",
+      "options": [
+        "Ne pas le transmettre et vérifier l’annonce indépendamment.",
+        "L’envoyer parce que le logo paraît officiel.",
+        "Le publier dans son CV."
+      ],
+      "answer": 0,
+      "explanation": "Un code secret donne potentiellement accès à un compte ; il n’est pas une pièce normale de candidature.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon"
+    }
+  ]
+}

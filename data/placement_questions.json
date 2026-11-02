@@ -1,0 +1,964 @@
+[
+  {
+    "id": "python:0",
+    "q": "Quelle instruction affiche le mot Nunya ?",
+    "o": [
+      "print(\"Nunya\")",
+      "print(Nunya)",
+      "affiche(\"Nunya\")"
+    ],
+    "a": 0,
+    "context": "print(\"Bonjour, le Togo !\")",
+    "skill": "code",
+    "difficulty": 2
+  },
+  {
+    "id": "python:1",
+    "q": "Après score = 3 puis score = score + 2, que vaut score ?",
+    "o": [
+      "3",
+      "5",
+      "32"
+    ],
+    "a": 1,
+    "context": "prenom = \"Ama\"\nage = 16\nprint(prenom)\nprint(age + 1)",
+    "skill": "code",
+    "difficulty": 2
+  },
+  {
+    "id": "python:2",
+    "q": "Que donne (2 + 3) * 4 ?",
+    "o": [
+      "14",
+      "20",
+      "24"
+    ],
+    "a": 1,
+    "context": "prix = 250\nquantite = 3\ntotal = prix * quantite\nprint(total)",
+    "skill": "code",
+    "difficulty": 2
+  },
+  {
+    "id": "python:3",
+    "q": "Avec note = 8, quel message s’affiche ?",
+    "o": [
+      "Bravo !",
+      "On continue à apprendre.",
+      "Aucun message"
+    ],
+    "a": 1,
+    "context": "note = 14\nif note >= 10:\n    print(\"Bravo !\")\nelse:\n    print(\"On continue à apprendre.\")",
+    "skill": "code",
+    "difficulty": 2
+  },
+  {
+    "id": "python:4",
+    "q": "Combien de fois range(4) fait-il répéter la boucle ?",
+    "o": [
+      "3 fois",
+      "4 fois",
+      "5 fois"
+    ],
+    "a": 1,
+    "context": "for nombre in range(3):\n    print(\"Je progresse !\")",
+    "skill": "code",
+    "difficulty": 2
+  },
+  {
+    "id": "python:5",
+    "q": "Quelle expression donne Kara ?",
+    "o": [
+      "villes[0]",
+      "villes[1]",
+      "villes[2]"
+    ],
+    "a": 1,
+    "context": "villes = [\"Lomé\", \"Kara\", \"Sokodé\"]\nprint(villes[0])\nprint(len(villes))",
+    "skill": "code",
+    "difficulty": 2
+  },
+  {
+    "id": "python:6",
+    "q": "Quel mot-clé renvoie le résultat d’une fonction ?",
+    "o": [
+      "print",
+      "return",
+      "for"
+    ],
+    "a": 1,
+    "context": "def saluer(prenom):\n    return \"Bonjour \" + prenom\n\nprint(saluer(\"Kossi\"))",
+    "skill": "code",
+    "difficulty": 2
+  },
+  {
+    "id": "python:7",
+    "q": "Avec 300 FCFA par jour pendant 4 jours, quel est le total ?",
+    "o": [
+      "700 FCFA",
+      "1 200 FCFA",
+      "1 500 FCFA"
+    ],
+    "a": 1,
+    "context": "def budget_semaine(prix_jour, jours):\n    return prix_jour * jours\n\ntotal = budget_semaine(500, 5)\nprint(total)",
+    "skill": "code",
+    "difficulty": 2
+  },
+  {
+    "id": "web:0",
+    "q": "Quel langage décrit la structure du contenu ?",
+    "o": [
+      "CSS",
+      "HTML",
+      "Python"
+    ],
+    "a": 1,
+    "context": "HTML → le contenu\nCSS → le style\nJavaScript → les interactions",
+    "skill": "code",
+    "difficulty": 2
+  },
+  {
+    "id": "web:1",
+    "q": "Quelle balise sert à écrire un paragraphe ?",
+    "o": [
+      "<p>",
+      "<h1>",
+      "<img>"
+    ],
+    "a": 0,
+    "context": "<h1>Bienvenue à Lomé</h1>\n<p>Voici ma première page.</p>",
+    "skill": "code",
+    "difficulty": 2
+  },
+  {
+    "id": "web:2",
+    "q": "Quelle propriété change la couleur du texte ?",
+    "o": [
+      "background",
+      "font-size",
+      "color"
+    ],
+    "a": 2,
+    "context": "h1 {\n  color: green;\n  font-size: 28px;\n}",
+    "skill": "code",
+    "difficulty": 2
+  },
+  {
+    "id": "web:3",
+    "q": "Que fait le signe + entre deux textes ?",
+    "o": [
+      "Il colle les textes ensemble",
+      "Il soustrait les textes",
+      "Il supprime la variable"
+    ],
+    "a": 0,
+    "context": "const prenom = \"Ama\";\nconsole.log(\"Bonjour \" + prenom);",
+    "skill": "code",
+    "difficulty": 2
+  },
+  {
+    "id": "web:4",
+    "q": "Quel événement correspond à un clic ?",
+    "o": [
+      "hover",
+      "click",
+      "load"
+    ],
+    "a": 1,
+    "context": "const bouton = document.querySelector(\"button\");\nbouton.addEventListener(\"click\", () => {\n  bouton.textContent = \"Bravo !\";\n});",
+    "skill": "code",
+    "difficulty": 2
+  },
+  {
+    "id": "web:5",
+    "q": "Pour rendre une page plus accessible, que faut-il privilégier ?",
+    "o": [
+      "Un texte minuscule",
+      "Un contraste lisible et des titres clairs",
+      "Uniquement des images"
+    ],
+    "a": 1,
+    "context": "<h1>Ama — apprentie développeuse</h1>\n<p>J’aime créer des choses utiles.</p>\n<button>Dire bonjour</button>",
+    "skill": "code",
+    "difficulty": 2
+  },
+  {
+    "id": "digital:0",
+    "q": "Où tes photos sont-elles conservées durablement ?",
+    "o": [
+      "Dans le stockage",
+      "Uniquement dans la mémoire vive",
+      "Dans le clavier"
+    ],
+    "a": 0,
+    "context": "Matériel → ce que tu peux toucher\nLogiciel → les programmes\nStockage → les fichiers conservés",
+    "skill": "digital",
+    "difficulty": 1
+  },
+  {
+    "id": "digital:1",
+    "q": "Quel nom est le plus facile à retrouver ?",
+    "o": [
+      "document-final-final2",
+      "cours-python-variables.pdf",
+      "truc"
+    ],
+    "a": 1,
+    "context": "Cours/\n  Python/\n    lecon-01.pdf\n  Projets/\n    budget.py",
+    "skill": "digital",
+    "difficulty": 1
+  },
+  {
+    "id": "digital:2",
+    "q": "Quelle habitude économise généralement les données ?",
+    "o": [
+      "Lancer automatiquement les vidéos",
+      "Lire une leçon textuelle enregistrée",
+      "Télécharger plusieurs fois le même fichier"
+    ],
+    "a": 1,
+    "context": "1. Se connecter\n2. Ouvrir Mes téléchargements\n3. Enregistrer un parcours\n4. Revenir hors connexion",
+    "skill": "digital",
+    "difficulty": 1
+  },
+  {
+    "id": "digital:3",
+    "q": "Un inconnu te demande ton code de connexion. Que fais-tu ?",
+    "o": [
+      "Je le lui envoie",
+      "Je le publie",
+      "Je ne le partage pas"
+    ],
+    "a": 2,
+    "context": "Phrase de passe → longue et unique\nDeuxième facteur → protection supplémentaire\nCode de connexion → à garder privé",
+    "skill": "digital",
+    "difficulty": 1
+  },
+  {
+    "id": "digital:4",
+    "q": "Un message est très partagé. Cela prouve-t-il qu’il est vrai ?",
+    "o": [
+      "Oui, toujours",
+      "Non, il faut vérifier les sources",
+      "Oui, si le titre est convaincant"
+    ],
+    "a": 1,
+    "context": "Qui publie ?\nQuelle date ?\nQuelles preuves ?\nUne autre source confirme-t-elle ?",
+    "skill": "digital",
+    "difficulty": 1
+  },
+  {
+    "id": "digital:5",
+    "q": "Avant de publier la photo d’un camarade, tu dois…",
+    "o": [
+      "Demander son accord",
+      "Ajouter un filtre",
+      "Publier vite"
+    ],
+    "a": 0,
+    "context": "Avant de publier :\n✓ Mes sources sont indiquées\n✓ J’ai le droit d’utiliser les images\n✓ Je respecte la vie privée",
+    "skill": "digital",
+    "difficulty": 1
+  },
+  {
+    "id": "algorithms:0",
+    "q": "Quelle description est un algorithme ?",
+    "o": [
+      "Sois intelligent",
+      "Lis deux nombres, additionne-les, affiche le résultat",
+      "Un ordinateur"
+    ],
+    "a": 1,
+    "context": "1. Lire le prix du trajet\n2. Lire le nombre de trajets\n3. Multiplier\n4. Afficher le budget",
+    "skill": "code",
+    "difficulty": 1
+  },
+  {
+    "id": "algorithms:1",
+    "q": "Dans cet exemple, quelle est la sortie ?",
+    "o": [
+      "Le nombre de trajets",
+      "Le montant total",
+      "Le nom du chauffeur"
+    ],
+    "a": 1,
+    "context": "Entrées : 200 FCFA, 4 trajets\nTraitement : 200 × 4\nSortie : 800 FCFA",
+    "skill": "code",
+    "difficulty": 1
+  },
+  {
+    "id": "algorithms:2",
+    "q": "Quel mot indique une répétition ?",
+    "o": [
+      "Pour chaque",
+      "Sinon",
+      "Prix"
+    ],
+    "a": 0,
+    "context": "Pour chaque article :\n  Si prix ≤ budget restant :\n    Ajouter au panier\n  Sinon :\n    Passer au suivant",
+    "skill": "code",
+    "difficulty": 1
+  },
+  {
+    "id": "algorithms:3",
+    "q": "Quelle moyenne obtient-on pour 8 et 16 ?",
+    "o": [
+      "12",
+      "16",
+      "24"
+    ],
+    "a": 0,
+    "context": "But : calculer la moyenne de 10 et 14\nIncorrect : 10 + 14 / 2 = 17\nCorrect : (10 + 14) / 2 = 12",
+    "skill": "code",
+    "difficulty": 1
+  },
+  {
+    "id": "javascript:0",
+    "q": "Quelle déclaration permet de réaffecter une valeur ?",
+    "o": [
+      "let",
+      "const",
+      "console"
+    ],
+    "a": 0,
+    "context": "const ville = \"Lomé\";\nlet points = 2;\npoints = points + 3;\nconsole.log(points);",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "javascript:1",
+    "q": "Quel signe sert ici à comparer ?",
+    "o": [
+      "=",
+      "===",
+      "+"
+    ],
+    "a": 1,
+    "context": "const disponible = true;\nif (disponible === true) {\n  console.log(\"Bienvenue !\");\n} else {\n  console.log(\"À bientôt !\");\n}",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "javascript:2",
+    "q": "Que renvoie total(100, 4) ?",
+    "o": [
+      "104",
+      "400",
+      "1004"
+    ],
+    "a": 1,
+    "context": "function total(prix, nombre) {\n  return prix * nombre;\n}\nconsole.log(total(200, 3));",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "javascript:3",
+    "q": "Combien de valeurs sont parcourues ?",
+    "o": [
+      "2",
+      "3",
+      "4"
+    ],
+    "a": 1,
+    "context": "const prix = [100, 200, 300];\nlet somme = 0;\nfor (const montant of prix) {\n  somme = somme + montant;\n}\nconsole.log(somme);",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "sql:0",
+    "q": "Que représente une ligne dans cet exemple ?",
+    "o": [
+      "Un livre",
+      "Tous les titres",
+      "Une couleur"
+    ],
+    "a": 0,
+    "context": "id | titre          | stock\n1  | Découvrir Python | 3\n2  | Jardiner         | 5",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "sql:1",
+    "q": "Quel mot indique la table ?",
+    "o": [
+      "SELECT",
+      "FROM",
+      "titre"
+    ],
+    "a": 1,
+    "context": "SELECT titre, stock\nFROM livres;",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "sql:2",
+    "q": "Quel livre passe le filtre ?",
+    "o": [
+      "Découvrir Python, stock 3",
+      "Jardiner, stock 5",
+      "Les deux"
+    ],
+    "a": 1,
+    "context": "SELECT titre\nFROM livres\nWHERE stock > 3;",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "sql:3",
+    "q": "Le résultat 2 indique…",
+    "o": [
+      "Le nombre total d’exemplaires",
+      "Le nombre de lignes de livres",
+      "Le prix des livres"
+    ],
+    "a": 1,
+    "context": "SELECT COUNT(*)\nFROM livres;",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "git:0",
+    "q": "À quoi sert principalement Git ?",
+    "o": [
+      "Versionner des changements",
+      "Dessiner des images",
+      "Remplacer Internet"
+    ],
+    "a": 0,
+    "context": "Version 1 : un titre\nVersion 2 : un paragraphe\nVersion 3 : une image",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "git:1",
+    "q": "Quel message est le plus utile ?",
+    "o": [
+      "truc",
+      "Ajoute le bouton de téléchargement",
+      "aaaa"
+    ],
+    "a": 1,
+    "context": "git add page.html\ngit commit -m \"Ajoute une présentation du projet\"",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "git:2",
+    "q": "Une branche permet de…",
+    "o": [
+      "Tester une évolution séparément",
+      "Supprimer tous les fichiers",
+      "Créer une connexion réseau"
+    ],
+    "a": 0,
+    "context": "main ──●──●────────●\n          ╲        ╱\n           ●──●──●  nouvelle idée",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "git:3",
+    "q": "Que faut-il garder hors d’un dépôt public ?",
+    "o": [
+      "Une notice du projet",
+      "Une clé secrète",
+      "Un exemple sans données privées"
+    ],
+    "a": 1,
+    "context": "Avant de partager :\n✓ Relire les fichiers\n✓ Vérifier les informations privées\n✓ Expliquer les changements",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "maths:0",
+    "q": "Quelle fraction vaut 1/2 ?",
+    "o": [
+      "2/4",
+      "1/4",
+      "3/4"
+    ],
+    "a": 0,
+    "context": "1/2 = 2/4 = 3/6\nUne moitié reste une moitié.",
+    "skill": "maths",
+    "difficulty": 1
+  },
+  {
+    "id": "maths:1",
+    "q": "À prix unitaire constant, 6 cahiers coûtent…",
+    "o": [
+      "1 250 FCFA",
+      "1 500 FCFA",
+      "2 000 FCFA"
+    ],
+    "a": 1,
+    "context": "1 cahier → 250 FCFA\n4 cahiers → 4 × 250 = 1 000 FCFA",
+    "skill": "maths",
+    "difficulty": 1
+  },
+  {
+    "id": "maths:2",
+    "q": "Que valent 25 % de 100 ?",
+    "o": [
+      "4",
+      "25",
+      "75"
+    ],
+    "a": 1,
+    "context": "Prix : 2 000 FCFA\nRéduction : 10 % = 200 FCFA\nNouveau prix : 1 800 FCFA",
+    "skill": "maths",
+    "difficulty": 1
+  },
+  {
+    "id": "maths:3",
+    "q": "La probabilité d’un événement impossible est…",
+    "o": [
+      "0",
+      "1/2",
+      "1"
+    ],
+    "a": 0,
+    "context": "Probabilité de pile = 1/2\nProbabilité de face = 1/2\n1/2 + 1/2 = 1",
+    "skill": "maths",
+    "difficulty": 1
+  },
+  {
+    "id": "security:0",
+    "q": "Quelle demande est un signal d’alerte ?",
+    "o": [
+      "Une demande de code de connexion",
+      "Une explication de cours",
+      "Une date publique"
+    ],
+    "a": 0,
+    "context": "Message : « Donne ton code tout de suite ! »\nRéflexe : ne pas transmettre le code.",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "security:1",
+    "q": "Si toutes les copies restent sur le même téléphone…",
+    "o": [
+      "La perte du téléphone peut tout supprimer",
+      "Il n’y a plus aucun risque",
+      "Internet les protège forcément"
+    ],
+    "a": 0,
+    "context": "Original sur le téléphone\n+ copie sur un autre support\n+ vérification de la restauration",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "security:2",
+    "q": "Une appli de lecture a-t-elle toujours besoin de tes contacts ?",
+    "o": [
+      "Oui",
+      "Non",
+      "Seulement le dimanche"
+    ],
+    "a": 1,
+    "context": "Fonction : lire un cours\nQuestion : les contacts sont-ils nécessaires ?",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "security:3",
+    "q": "Avant de publier une photo d’un camarade…",
+    "o": [
+      "Demande son accord",
+      "Cache seulement ton nom",
+      "Publie sans réfléchir"
+    ],
+    "a": 0,
+    "context": "Avant de publier :\nQui est visible ?\nQuelles données apparaissent ?\nAi-je l’accord nécessaire ?",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "data:0",
+    "q": "Quelle donnée est la plus interprétable ?",
+    "o": [
+      "20",
+      "20 élèves présents le 12 juin",
+      "Beaucoup"
+    ],
+    "a": 1,
+    "context": "Valeur : 20\nUnité : élèves\nContexte : présents ce matin",
+    "skill": "maths",
+    "difficulty": 3
+  },
+  {
+    "id": "data:1",
+    "q": "Quelle est la moyenne de 2, 4 et 6 ?",
+    "o": [
+      "3",
+      "4",
+      "6"
+    ],
+    "a": 1,
+    "context": "Valeurs : 4, 6, 8\nSomme : 18\nMoyenne : 18 / 3 = 6",
+    "skill": "maths",
+    "difficulty": 3
+  },
+  {
+    "id": "data:2",
+    "q": "Pour suivre une quantité chaque semaine, on peut utiliser…",
+    "o": [
+      "Une courbe chronologique",
+      "Un titre sans données",
+      "Un mot de passe"
+    ],
+    "a": 0,
+    "context": "Barres → comparer des catégories\nCourbe → suivre une évolution",
+    "skill": "maths",
+    "difficulty": 3
+  },
+  {
+    "id": "data:3",
+    "q": "Une association prouve-t-elle une cause ?",
+    "o": [
+      "Toujours",
+      "Non, pas à elle seule",
+      "Oui, si le graphique est beau"
+    ],
+    "a": 1,
+    "context": "Résultat observé ≠ cause prouvée\nPetit échantillon ≠ population entière",
+    "skill": "maths",
+    "difficulty": 3
+  },
+  {
+    "id": "terminale-analyse:0",
+    "q": "Quel est le domaine de g(x) = 1/(x + 2) ?",
+    "o": [
+      "Tous les réels",
+      "Les réels sauf −2",
+      "Les réels sauf 2"
+    ],
+    "a": 1,
+    "context": "f(x) = (x² − 1)/(x − 1)\nContrainte : x ≠ 1\nPour x ≠ 1 : f(x) = x + 1\nf(1) reste non défini.",
+    "skill": "maths",
+    "difficulty": 3
+  },
+  {
+    "id": "terminale-analyse:1",
+    "q": "Pour x ≠ 3, (x² − 9)/(x − 3) a pour limite en 3…",
+    "o": [
+      "0",
+      "3",
+      "6"
+    ],
+    "a": 2,
+    "context": "Pour x ≠ 1 : (x² − 1)/(x − 1) = x + 1\nQuand x se rapproche de 1 : x + 1 se rapproche de 2.\nDonc la limite est 2, même si f(1) n’existe pas.",
+    "skill": "maths",
+    "difficulty": 3
+  },
+  {
+    "id": "terminale-analyse:2",
+    "q": "Quelle est la dérivée de 3x² + 2x − 5 ?",
+    "o": [
+      "3x + 2",
+      "6x + 2",
+      "6x − 5"
+    ],
+    "a": 1,
+    "context": "f(x) = x² − 4x + 3\nf′(x) = 2x − 4\nEn a = 1 : f(1) = 0 et f′(1) = −2\nTangente : y = −2(x − 1) = −2x + 2",
+    "skill": "maths",
+    "difficulty": 3
+  },
+  {
+    "id": "terminale-analyse:3",
+    "q": "La fonction h(x) = x² + 2x atteint son minimum en…",
+    "o": [
+      "−1",
+      "0",
+      "1"
+    ],
+    "a": 0,
+    "context": "f(x) = x² − 4x + 3 ; f′(x) = 2x − 4\nf′(x) < 0 si x < 2 ; f′(x) > 0 si x > 2\nf décroît puis croît.\nf(2) = −1 : minimum sur ℝ.",
+    "skill": "maths",
+    "difficulty": 3
+  },
+  {
+    "id": "terminale-analyse:4",
+    "q": "Si u(0) = 2 et r = 3, u(5) vaut…",
+    "o": [
+      "15",
+      "17",
+      "21"
+    ],
+    "a": 1,
+    "context": "Épargne fictive : u(0) = 1 000 FCFA\nAjout constant : r = 500 FCFA par semaine\nu(4) = 1 000 + 4 × 500 = 3 000 FCFA",
+    "skill": "maths",
+    "difficulty": 3
+  },
+  {
+    "id": "terminale-analyse:5",
+    "q": "Avec u(0) = 4 et q = 2, u(3) vaut…",
+    "o": [
+      "12",
+      "24",
+      "32"
+    ],
+    "a": 2,
+    "context": "Valeur initiale fictive : 100\nHausse de 10 % : 100 × 1,10 = 110\nPuis baisse de 10 % : 110 × 0,90 = 99",
+    "skill": "maths",
+    "difficulty": 3
+  },
+  {
+    "id": "bureautique:0",
+    "q": "Quelle colonne doit préciser son unité ?",
+    "o": [
+      "Le prix",
+      "Le titre du tableau uniquement",
+      "Aucune"
+    ],
+    "a": 0,
+    "context": "Produit | Quantité | Prix unitaire (FCFA)\nCahier | 3 | 250\nStylo | 2 | 100",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "bureautique:1",
+    "q": "Si B2 vaut 4 et C2 vaut 100, =B2*C2 affiche…",
+    "o": [
+      "104",
+      "400",
+      "25"
+    ],
+    "a": 1,
+    "context": "B2 contient 3 ; C2 contient 250\nD2 contient =B2*C2\nD2 affiche 750",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "bureautique:2",
+    "q": "Une hausse sur un graphique prouve à elle seule sa cause ?",
+    "o": [
+      "Oui",
+      "Non",
+      "Seulement si le graphique est en couleur"
+    ],
+    "a": 1,
+    "context": "Contrôle : en-têtes → unités → valeurs → calcul témoin\nPuis : titre du graphique → axes → limite de l’analyse",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "bureautique:3",
+    "q": "Quel nom de fichier facilite le suivi ?",
+    "o": [
+      "final-final-vraiment",
+      "document1",
+      "budget-sortie-2026-11-v1"
+    ],
+    "a": 2,
+    "context": "Titre : Budget fictif de sortie\nObjectif → données → calcul → résultat → limite\nFichier : budget-sortie-2026-11-v1",
+    "skill": "code",
+    "difficulty": 3
+  },
+  {
+    "id": "maths-seconde:0",
+    "q": "Combien vaut 8 − 2 × 3 ?",
+    "o": [
+      "18",
+      "2",
+      "6"
+    ],
+    "a": 1,
+    "context": "A = 3 + 2 × (7 − 4)\nA = 3 + 2 × 3\nA = 3 + 6 = 9",
+    "skill": "maths",
+    "difficulty": 3
+  },
+  {
+    "id": "maths-seconde:1",
+    "q": "Quelle est la solution de 2x + 5 = 13 ?",
+    "o": [
+      "4",
+      "9",
+      "6"
+    ],
+    "a": 0,
+    "context": "3x + 2 = 14\n3x = 12\nx = 4\nVérification : 3 × 4 + 2 = 14",
+    "skill": "maths",
+    "difficulty": 3
+  },
+  {
+    "id": "maths-seconde:2",
+    "q": "Quelle expression est égale à 2(x + 4) ?",
+    "o": [
+      "2x + 4",
+      "2x + 8",
+      "x + 8"
+    ],
+    "a": 1,
+    "context": "Développer : 3(x + 2) = 3x + 6\nFactoriser : 5x + 10 = 5(x + 2)",
+    "skill": "maths",
+    "difficulty": 3
+  },
+  {
+    "id": "maths-seconde:3",
+    "q": "Pour f(x) = 3x − 2, quelle est l’image de 4 ?",
+    "o": [
+      "10",
+      "6",
+      "14"
+    ],
+    "a": 0,
+    "context": "f(x) = 2x + 1\nf(3) = 2 × 3 + 1 = 7",
+    "skill": "maths",
+    "difficulty": 3
+  },
+  {
+    "id": "maths-seconde:4",
+    "q": "Au même prix, 2 cahiers coûtent…",
+    "o": [
+      "500 FCFA",
+      "750 FCFA",
+      "1 000 FCFA"
+    ],
+    "a": 0,
+    "context": "3 cahiers coûtent 750 FCFA.\n1 cahier : 750 / 3 = 250 FCFA\n5 cahiers : 5 × 250 = 1 250 FCFA",
+    "skill": "maths",
+    "difficulty": 3
+  },
+  {
+    "id": "maths-seconde:5",
+    "q": "Dans ce triangle, quel côté est le plus long ?",
+    "o": [
+      "3 cm",
+      "4 cm",
+      "5 cm"
+    ],
+    "a": 2,
+    "context": "Côtés de l’angle droit : 3 cm et 4 cm\nh² = 3² + 4² = 9 + 16 = 25\nh = 5 cm",
+    "skill": "maths",
+    "difficulty": 3
+  },
+  {
+    "id": "maths-seconde:6",
+    "q": "Quelle est la médiane de 1, 3, 8 ?",
+    "o": [
+      "3",
+      "4",
+      "8"
+    ],
+    "a": 0,
+    "context": "Série : 2, 9, 4, 6, 7\nOrdre : 2, 4, 6, 7, 9\nValeur centrale : 6",
+    "skill": "maths",
+    "difficulty": 3
+  },
+  {
+    "id": "maths-seconde:7",
+    "q": "Quel budget faut-il pour 10 personnes ?",
+    "o": [
+      "5 000 FCFA",
+      "7 000 FCFA",
+      "12 000 FCFA"
+    ],
+    "a": 1,
+    "context": "Budget pour n personnes : B(n) = 500n + 2 000\nPour 12 personnes : B(12) = 6 000 + 2 000\nB(12) = 8 000 FCFA",
+    "skill": "maths",
+    "difficulty": 3
+  },
+  {
+    "id": "francais-methodes:0",
+    "q": "Quel énoncé résume le passage ?",
+    "o": [
+      "Une bibliothèque va ouvrir pour les élèves",
+      "Les prêts sont toujours interdits",
+      "Le club ferme"
+    ],
+    "a": 0,
+    "context": "« Le club ouvre une bibliothèque. Les élèves pourront y lire et emprunter des livres. Des bénévoles organiseront les prêts. »",
+    "skill": "reading",
+    "difficulty": 1
+  },
+  {
+    "id": "francais-methodes:1",
+    "q": "Après avoir cité un exemple, il faut…",
+    "o": [
+      "Expliquer ce qu’il montre",
+      "Changer de sujet",
+      "Répéter la consigne"
+    ],
+    "a": 0,
+    "context": "Idée → élément du texte → explication\n« Le projet facilite la lecture, car les élèves\npourront emprunter des livres. »",
+    "skill": "reading",
+    "difficulty": 1
+  },
+  {
+    "id": "francais-methodes:2",
+    "q": "À quoi sert un argument ?",
+    "o": [
+      "À donner une raison",
+      "À décorer le texte",
+      "À remplacer toutes les preuves"
+    ],
+    "a": 0,
+    "context": "Idée : les leçons courtes facilitent la régularité.\nArgument : on trouve plus facilement dix minutes.\nExemple : réviser une notion après les cours.",
+    "skill": "reading",
+    "difficulty": 1
+  },
+  {
+    "id": "francais-methodes:3",
+    "q": "Que vérifier avant l’orthographe de détail ?",
+    "o": [
+      "La réponse à la consigne",
+      "La couleur de l’encre",
+      "Le nombre de mots rares"
+    ],
+    "a": 0,
+    "context": "1. Ai-je répondu à la consigne ?\n2. Mes idées s’enchaînent-elles ?\n3. Ai-je vérifié les accords ?",
+    "skill": "reading",
+    "difficulty": 1
+  },
+  {
+    "id": "anglais-bases:0",
+    "q": "Que signifie « I am a student » ?",
+    "o": [
+      "Je suis élève",
+      "Je suis une ville",
+      "Je lis un livre"
+    ],
+    "a": 0,
+    "context": "My name is Ama.\nI am a student.\nI live in Lomé.",
+    "skill": "reading",
+    "difficulty": 2
+  },
+  {
+    "id": "anglais-bases:1",
+    "q": "Quelle forme complète « She … English » ?",
+    "o": [
+      "learn",
+      "learns",
+      "learning"
+    ],
+    "a": 1,
+    "context": "I learn. → J’apprends.\nShe learns. → Elle apprend.\nWe learn. → Nous apprenons.",
+    "skill": "reading",
+    "difficulty": 2
+  },
+  {
+    "id": "anglais-bases:2",
+    "q": "Que demande « Choose one answer » ?",
+    "o": [
+      "Lire tous les livres",
+      "Choisir une réponse",
+      "Dessiner une carte"
+    ],
+    "a": 1,
+    "context": "Read the text. → Lis le texte.\nChoose one answer. → Choisis une réponse.\nWrite a sentence. → Écris une phrase.",
+    "skill": "reading",
+    "difficulty": 2
+  },
+  {
+    "id": "anglais-bases:3",
+    "q": "Quel mot signifie « enregistrer » ?",
+    "o": [
+      "Save",
+      "Delete",
+      "Close"
+    ],
+    "a": 0,
+    "context": "Save → enregistrer\nDownload → télécharger\nFile → fichier\nError → erreur",
+    "skill": "reading",
+    "difficulty": 2
+  }
+]

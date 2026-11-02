@@ -1,0 +1,95 @@
+{
+  "id": "environnement",
+  "title": "Environnement : observer les ressources",
+  "en": "Environnement : observer les ressources",
+  "domain": "environment",
+  "glyph": "♧",
+  "color": "#dde8d4",
+  "desc": "Eau, déchets, énergie et mesure : apprends à poser les bonnes questions.",
+  "enDesc": "Eau, déchets, énergie et mesure : apprends à poser les bonnes questions.",
+  "type": "subject",
+  "category": "DÉCOUVERTE MÉTIER",
+  "level": "Débutant",
+  "duration": 40,
+  "track": "future",
+  "author": "Nunya — brouillon de travail",
+  "reviewer": null,
+  "status": "brouillon",
+  "curriculumVerified": false,
+  "lessons": [
+    {
+      "title": "Observer avant d’agir",
+      "body": "Un projet environnemental commence par une observation située : où, quand, avec quelle méthode ? Une impression seule ne mesure pas une évolution. Note les conditions et cherche des informations comparables.",
+      "code": "Lieu → date → méthode → observation",
+      "output": "Une trace permet de comparer plus tard.",
+      "question": "Quelle donnée est la plus utile ?",
+      "options": [
+        "Beaucoup de déchets",
+        "12 objets comptés sur la même zone à une date donnée",
+        "Une rumeur"
+      ],
+      "answer": 1,
+      "explanation": "Une méthode et un contexte rendent l’observation interprétable.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Réduire, réutiliser, trier",
+      "body": "Limiter un déchet à la source et prolonger l’usage d’un objet peuvent éviter de produire davantage. Le tri dépend des filières réellement disponibles localement. Ne présume pas qu’un matériau sera recyclé partout.",
+      "code": "Éviter un déchet → réutiliser\n→ trier selon les filières disponibles",
+      "output": "La filière locale compte.",
+      "question": "Le même objet est-il toujours recyclable partout ?",
+      "options": [
+        "Oui",
+        "Non",
+        "Seulement s’il est bleu"
+      ],
+      "answer": 1,
+      "explanation": "Le traitement dépend notamment des infrastructures et des consignes locales.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Mesurer une consommation",
+      "body": "Comparer une consommation demande une unité et une durée identiques. Une baisse peut avoir plusieurs causes. Pour mesurer l’effet d’une action, note aussi les changements d’usage ou de fréquentation.",
+      "code": "Avant : 20 unités par semaine\nAprès : 16 unités par semaine\nDifférence : 4 unités",
+      "output": "Une baisse observée de 4 unités.",
+      "question": "Peut-on attribuer automatiquement la baisse à une seule cause ?",
+      "options": [
+        "Oui",
+        "Non",
+        "Oui si elle est petite"
+      ],
+      "answer": 1,
+      "explanation": "Il faut examiner les autres facteurs qui ont pu changer.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Présenter un projet responsable",
+      "body": "Une proposition présente le besoin, les personnes concernées, une petite action testable et une méthode de suivi. N’annonce pas un impact chiffré qui n’a pas été mesuré. Associe les acteurs locaux à l’évaluation.",
+      "code": "Besoin → action → indicateur → retour",
+      "output": "Un projet vérifiable plutôt qu’une promesse vague.",
+      "question": "Un impact chiffré doit être…",
+      "options": [
+        "Mesuré ou clairement estimé avec une méthode",
+        "Inventé",
+        "Toujours spectaculaire"
+      ],
+      "answer": 0,
+      "explanation": "La méthode et les limites doivent accompagner un chiffre.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    }
+  ],
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

@@ -1,0 +1,95 @@
+{
+  "id": "construction",
+  "title": "Bâtiment : plans, mesures et organisation",
+  "en": "Bâtiment : plans, mesures et organisation",
+  "domain": "construction",
+  "glyph": "⌂",
+  "color": "#eee2ce",
+  "desc": "Une première lecture des dimensions et du travail de projet, sans manipulation technique.",
+  "enDesc": "Une première lecture des dimensions et du travail de projet, sans manipulation technique.",
+  "type": "subject",
+  "category": "DÉCOUVERTE MÉTIER",
+  "level": "Débutant",
+  "duration": 40,
+  "track": "future",
+  "author": "Nunya — brouillon de travail",
+  "reviewer": null,
+  "status": "brouillon",
+  "curriculumVerified": false,
+  "lessons": [
+    {
+      "title": "Lire une dimension",
+      "body": "Un plan représente un espace avec des conventions. Les dimensions et les unités doivent être comprises avant tout calcul. Une mesure inscrite sur un plan n’est pas nécessairement la longueur du trait sur la feuille.",
+      "code": "Longueur réelle : 4 m\nLargeur réelle : 3 m",
+      "output": "Les valeurs décrivent l’espace, pas seulement le dessin.",
+      "question": "Que faut-il vérifier avec une dimension ?",
+      "options": [
+        "Son unité",
+        "La couleur du stylo uniquement",
+        "Le nombre de photos"
+      ],
+      "answer": 0,
+      "explanation": "Les unités évitent de confondre mètres, centimètres et autres grandeurs.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Calculer une aire",
+      "body": "L’aire d’un rectangle est le produit de sa longueur par sa largeur. Les dimensions doivent être dans la même unité. Le résultat s’exprime dans une unité d’aire, par exemple le mètre carré.",
+      "code": "A = longueur × largeur\nA = 4 m × 3 m = 12 m²",
+      "output": "12 m²",
+      "question": "Une surface de 5 m sur 2 m a une aire de…",
+      "options": [
+        "7 m²",
+        "10 m²",
+        "25 m²"
+      ],
+      "answer": 1,
+      "explanation": "5 × 2 = 10 m².",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Comprendre une échelle",
+      "body": "Une échelle relie le dessin à la réalité. À l’échelle 1:100, une longueur dessinée représente cent fois cette longueur réelle dans la même unité. Convertis ensuite si nécessaire.",
+      "code": "1 cm sur le plan → 100 cm réels\n100 cm = 1 m",
+      "output": "À 1:100, 1 cm représente 1 m.",
+      "question": "À cette échelle, 3 cm représentent…",
+      "options": [
+        "3 m",
+        "30 m",
+        "300 m"
+      ],
+      "answer": 0,
+      "explanation": "3 × 100 cm = 300 cm = 3 m.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Organiser sans improviser la sécurité",
+      "body": "Un chantier demande des compétences, une coordination et des règles de sécurité professionnelles. Cette initiation travaille seulement le raisonnement et l’organisation. Ne réalise pas de manipulation électrique ou structurelle à partir de ces leçons.",
+      "code": "Tâche → compétence requise → validation\n→ ordre des interventions",
+      "output": "Les interventions relèvent de professionnels formés.",
+      "question": "Ces leçons autorisent-elles à réaliser une installation électrique ?",
+      "options": [
+        "Oui",
+        "Non",
+        "Si on va vite"
+      ],
+      "answer": 1,
+      "explanation": "Une formation pratique et les règles professionnelles restent indispensables.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    }
+  ],
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

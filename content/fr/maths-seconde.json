@@ -1,0 +1,167 @@
+{
+  "id": "maths-seconde",
+  "title": "Mathématiques : consolider ses bases",
+  "en": "Mathématiques : consolider ses bases",
+  "domain": "maths",
+  "glyph": "x²",
+  "color": "#e5def3",
+  "desc": "Calcul, équations, fonctions et géométrie : des fiches, méthodes et exercices originaux.",
+  "enDesc": "Calcul, équations, fonctions et géométrie : des fiches, méthodes et exercices originaux.",
+  "type": "subject",
+  "category": "RÉVISION SCOLAIRE",
+  "level": "Débutant",
+  "duration": 80,
+  "track": "school",
+  "author": "Nunya — brouillon de travail",
+  "reviewer": null,
+  "status": "brouillon",
+  "curriculumVerified": false,
+  "lessons": [
+    {
+      "title": "Calculer dans le bon ordre",
+      "body": "Dans une expression, on commence par les parenthèses, puis les puissances, puis les multiplications et divisions, puis les additions et soustractions. Des opérations de même priorité se traitent de gauche à droite. Écris chaque étape pour éviter une erreur de signe.",
+      "code": "A = 3 + 2 × (7 − 4)\nA = 3 + 2 × 3\nA = 3 + 6 = 9",
+      "output": "9",
+      "question": "Combien vaut 8 − 2 × 3 ?",
+      "options": [
+        "18",
+        "2",
+        "6"
+      ],
+      "answer": 1,
+      "explanation": "La multiplication passe d’abord : 2 × 3 = 6, puis 8 − 6 = 2.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Résoudre une équation",
+      "body": "Résoudre une équation consiste à trouver les valeurs qui rendent une égalité vraie. Pour conserver une égalité, on fait la même opération des deux côtés. Vérifie ensuite le résultat en remplaçant l’inconnue dans l’expression de départ.",
+      "code": "3x + 2 = 14\n3x = 12\nx = 4\nVérification : 3 × 4 + 2 = 14",
+      "output": "x = 4",
+      "question": "Quelle est la solution de 2x + 5 = 13 ?",
+      "options": [
+        "4",
+        "9",
+        "6"
+      ],
+      "answer": 0,
+      "explanation": "On retire 5 des deux côtés : 2x = 8. On divise ensuite par 2 : x = 4.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Développer et factoriser",
+      "body": "Développer utilise la distributivité : a(b + c) = ab + ac. Factoriser fait le chemin inverse en repérant un facteur commun. Les deux formes représentent la même expression mais peuvent faciliter des calculs différents.",
+      "code": "Développer : 3(x + 2) = 3x + 6\nFactoriser : 5x + 10 = 5(x + 2)",
+      "output": "Deux écritures d’une même expression.",
+      "question": "Quelle expression est égale à 2(x + 4) ?",
+      "options": [
+        "2x + 4",
+        "2x + 8",
+        "x + 8"
+      ],
+      "answer": 1,
+      "explanation": "Le 2 multiplie les deux termes : 2 × x et 2 × 4.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Comprendre une fonction",
+      "body": "Une fonction associe à un nombre de départ au plus une image. Pour calculer f(3), on remplace x par 3 dans la formule. L’image est un résultat ; un antécédent est une valeur de départ qui donne ce résultat.",
+      "code": "f(x) = 2x + 1\nf(3) = 2 × 3 + 1 = 7",
+      "output": "7 est l’image de 3 par f.",
+      "question": "Pour f(x) = 3x − 2, quelle est l’image de 4 ?",
+      "options": [
+        "10",
+        "6",
+        "14"
+      ],
+      "answer": 0,
+      "explanation": "On remplace x par 4 : 3 × 4 − 2 = 12 − 2 = 10.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "La méthode de proportionnalité",
+      "body": "Un tableau est proportionnel si l’on passe d’une ligne à l’autre avec un même coefficient. Le retour à l’unité permet souvent de trouver une valeur manquante. Vérifie que la situation suppose bien un prix unitaire constant.",
+      "code": "3 cahiers coûtent 750 FCFA.\n1 cahier : 750 / 3 = 250 FCFA\n5 cahiers : 5 × 250 = 1 250 FCFA",
+      "output": "1 250 FCFA",
+      "question": "Au même prix, 2 cahiers coûtent…",
+      "options": [
+        "500 FCFA",
+        "750 FCFA",
+        "1 000 FCFA"
+      ],
+      "answer": 0,
+      "explanation": "Le prix unitaire est 250 FCFA : 2 × 250 = 500 FCFA.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Utiliser le théorème de Pythagore",
+      "body": "Dans un triangle rectangle, le carré de l’hypoténuse est égal à la somme des carrés des deux autres côtés. L’hypoténuse est le côté opposé à l’angle droit. Identifie le triangle rectangle avant d’utiliser la formule.",
+      "code": "Côtés de l’angle droit : 3 cm et 4 cm\nh² = 3² + 4² = 9 + 16 = 25\nh = 5 cm",
+      "output": "L’hypoténuse mesure 5 cm.",
+      "question": "Dans ce triangle, quel côté est le plus long ?",
+      "options": [
+        "3 cm",
+        "4 cm",
+        "5 cm"
+      ],
+      "answer": 2,
+      "explanation": "L’hypoténuse est le côté le plus long d’un triangle rectangle.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Lire des statistiques",
+      "body": "La médiane partage une série ordonnée en deux groupes de même effectif, ou se situe entre les deux valeurs centrales si l’effectif est pair. Elle ne se calcule pas comme la moyenne. Commence toujours par ranger les valeurs.",
+      "code": "Série : 2, 9, 4, 6, 7\nOrdre : 2, 4, 6, 7, 9\nValeur centrale : 6",
+      "output": "La médiane est 6.",
+      "question": "Quelle est la médiane de 1, 3, 8 ?",
+      "options": [
+        "3",
+        "4",
+        "8"
+      ],
+      "answer": 0,
+      "explanation": "La série est déjà ordonnée ; la valeur du milieu est 3.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Situation-problème : préparer une sortie",
+      "body": "Une réponse mathématique complète comprend les données utiles, le calcul, son résultat avec unité et une phrase de conclusion. Dans cet exemple fictif, une sortie scolaire coûte 500 FCFA par personne et un coût fixe de 2 000 FCFA.",
+      "code": "Budget pour n personnes : B(n) = 500n + 2 000\nPour 12 personnes : B(12) = 6 000 + 2 000\nB(12) = 8 000 FCFA",
+      "output": "Le budget pour 12 personnes est de 8 000 FCFA.",
+      "question": "Quel budget faut-il pour 10 personnes ?",
+      "options": [
+        "5 000 FCFA",
+        "7 000 FCFA",
+        "12 000 FCFA"
+      ],
+      "answer": 1,
+      "explanation": "500 × 10 + 2 000 = 7 000 FCFA. Barème indicatif : formule, substitution, calcul, conclusion.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    }
+  ],
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

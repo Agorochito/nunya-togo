@@ -1,0 +1,95 @@
+{
+  "id": "telecom-bases",
+  "title": "Réseaux & télécoms : les fondations",
+  "en": "Réseaux & télécoms : les fondations",
+  "domain": "telecom",
+  "glyph": "⌁",
+  "color": "#dce6f2",
+  "desc": "Comprends les échanges de données, les adresses et les premiers réflexes de diagnostic.",
+  "enDesc": "Comprends les échanges de données, les adresses et les premiers réflexes de diagnostic.",
+  "type": "subject",
+  "category": "DÉCOUVERTE MÉTIER",
+  "level": "Débutant",
+  "duration": 40,
+  "track": "future",
+  "author": "Nunya — brouillon de travail",
+  "reviewer": null,
+  "status": "brouillon",
+  "curriculumVerified": false,
+  "lessons": [
+    {
+      "title": "Un réseau relie des appareils",
+      "body": "Un réseau permet à des appareils d’échanger des données. Un réseau local peut fonctionner sans accès à Internet. Internet relie de nombreux réseaux ; le web est l’un des services qui l’utilisent.",
+      "code": "Téléphone ↔ routeur ↔ ordinateur\nRéseau local ≠ Internet",
+      "output": "Des échanges locaux sont possibles sans accès extérieur.",
+      "question": "Un réseau local a-t-il toujours besoin d’Internet ?",
+      "options": [
+        "Oui",
+        "Non",
+        "Seulement pour les fichiers texte"
+      ],
+      "answer": 1,
+      "explanation": "Un réseau local peut relier des appareils entre eux sans connexion extérieure.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Une adresse pour communiquer",
+      "body": "Une adresse IP participe à l’identification d’un point de connexion sur un réseau. Un nom de domaine est plus facile à retenir ; le DNS aide à le relier à des adresses. Ce sont des rôles différents.",
+      "code": "Nom de domaine → recherche DNS → adresse IP",
+      "output": "Un nom lisible aide à trouver une destination.",
+      "question": "Le DNS aide notamment à…",
+      "options": [
+        "Relier un nom à une adresse",
+        "Charger une batterie",
+        "Dessiner un logo"
+      ],
+      "answer": 0,
+      "explanation": "Le DNS résout les noms afin de trouver des informations d’adressage.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Débit et délai",
+      "body": "Le débit décrit une quantité de données transférées par unité de temps. La latence décrit un délai. Une connexion peut transférer beaucoup de données et avoir malgré tout un délai perceptible lors d’un échange.",
+      "code": "Débit → quantité par seconde\nLatence → délai de réponse",
+      "output": "Deux mesures pour comprendre une connexion.",
+      "question": "Quelle mesure concerne le délai ?",
+      "options": [
+        "La latence",
+        "Le nom du fichier",
+        "La couleur du routeur"
+      ],
+      "answer": 0,
+      "explanation": "La latence correspond au temps d’attente dans une communication.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Diagnostiquer par étapes",
+      "body": "Un diagnostic commence par observer le problème et vérifier les causes simples. Est-ce un seul appareil ? Un seul site ? Une connexion locale ? Note les essais pour éviter de répéter des actions au hasard.",
+      "code": "1. Décrire le problème\n2. Comparer un autre appareil\n3. Vérifier un autre service\n4. Noter le résultat",
+      "output": "Une méthode réduit les essais inutiles.",
+      "question": "Quel premier réflexe est utile ?",
+      "options": [
+        "Décrire précisément le problème",
+        "Tout effacer immédiatement",
+        "Partager un mot de passe"
+      ],
+      "answer": 0,
+      "explanation": "Une description précise aide à isoler la cause sans action destructive.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    }
+  ],
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

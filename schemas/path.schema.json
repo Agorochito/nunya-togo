@@ -1,0 +1,177 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Nunya Path",
+  "type": "object",
+  "required": [
+    "id",
+    "career_id",
+    "title_fr",
+    "prerequisites",
+    "total_hours",
+    "outcomes_fr",
+    "stages",
+    "status",
+    "reviewer"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "outcomes_fr": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 3,
+      "maxItems": 6
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title_fr",
+          "goal_fr",
+          "estimated_hours",
+          "steps",
+          "checkpoint_id"
+        ],
+        "properties": {
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "type",
+                "title_fr",
+                "minutes",
+                "source",
+                "license",
+                "offline",
+                "required",
+                "unlock_rule",
+                "body",
+                "practice",
+                "status"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9-]+$"
+                },
+                "type": {
+                  "enum": [
+                    "leçon",
+                    "exercice",
+                    "projet",
+                    "checkpoint"
+                  ]
+                },
+                "minutes": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 20
+                },
+                "source": {
+                  "const": "nunya"
+                },
+                "offline": {
+                  "type": "boolean"
+                },
+                "status": {
+                  "enum": [
+                    "brouillon",
+                    "relu",
+                    "validé"
+                  ]
+                },
+                "reviewer": {
+                  "type": [
+                    "null",
+                    "string"
+                  ]
+                },
+                "body": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "minItems": 1
+                },
+                "practice": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "id",
+                      "type",
+                      "prompt",
+                      "answer",
+                      "explanation"
+                    ],
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "enum": [
+                          "mcq",
+                          "numeric",
+                          "short",
+                          "fill"
+                        ]
+                      },
+                      "prompt": {
+                        "type": "string",
+                        "minLength": 8
+                      },
+                      "answer": {
+                        "type": [
+                          "integer",
+                          "number",
+                          "string"
+                        ]
+                      },
+                      "options": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "minItems": 2
+                      },
+                      "hints": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "minItems": 1
+                }
+              }
+            },
+            "minItems": 1,
+            "maxItems": 10
+          }
+        }
+      },
+      "minItems": 3,
+      "maxItems": 6
+    },
+    "total_hours": {
+      "type": "number",
+      "minimum": 0
+    },
+    "status": {
+      "enum": [
+        "brouillon",
+        "relu",
+        "validé"
+      ]
+    }
+  }
+}

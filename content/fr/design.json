@@ -1,0 +1,77 @@
+{
+  "id": "design",
+  "title": "Créer une expérience qui aide",
+  "en": "Créer une expérience qui aide",
+  "category": "DESIGN & COMMUNICATION",
+  "domain": "creative",
+  "desc": "Imagine une interface lisible, dessine une maquette et teste-la avec quelqu’un.",
+  "enDesc": "Imagine une interface lisible, dessine une maquette et teste-la avec quelqu’un.",
+  "glyph": "✺",
+  "color": "#e9dded",
+  "type": "subject",
+  "level": "Débutant",
+  "duration": 40,
+  "lessons": [
+    {
+      "title": "Concevoir pour quelqu’un",
+      "body": "Le design commence par une tâche et les personnes qui doivent la réaliser. Un écran utile aide à comprendre quoi faire. Avant de choisir les couleurs, écris l’action principale et les obstacles que l’interface doit réduire.",
+      "code": "Personne : une lycéenne\nObjectif : retrouver un cours\nAction principale : continuer la leçon",
+      "output": "Le design sert une tâche concrète.",
+      "question": "Par quoi commencer ?",
+      "options": [
+        "Les besoins des utilisateurs",
+        "Une animation au hasard",
+        "Un écran plein de boutons"
+      ],
+      "answer": 0,
+      "explanation": "Les besoins aident à choisir les éléments réellement utiles."
+    },
+    {
+      "title": "Rendre le texte lisible",
+      "body": "Une hiérarchie claire aide à parcourir une page : un titre principal, des sous-titres et des paragraphes courts. Utilise un contraste suffisant et ne fais pas dépendre une information de la couleur seule.",
+      "code": "Titre → idée principale\nSous-titre → partie\nTexte → explication\nBouton → action précise",
+      "output": "Chaque élément joue un rôle.",
+      "question": "Un bouton clair peut s’appeler…",
+      "options": [
+        "Clique ici ici",
+        "Télécharger la leçon",
+        "???"
+      ],
+      "answer": 1,
+      "explanation": "Un verbe et un objet expliquent ce qui va se passer."
+    },
+    {
+      "title": "Dessiner une maquette",
+      "body": "Une maquette représente l’organisation d’un écran. Papier et crayon suffisent. Dessine les zones importantes, puis demande à une personne de montrer où elle cliquerait pour réaliser une tâche. Observe avant d’expliquer.",
+      "code": "[Titre du cours]\n[Progression]\n[Continuer]\n[Liste des leçons]",
+      "output": "Une structure simple à tester.",
+      "question": "Quel outil suffit pour une première maquette ?",
+      "options": [
+        "Du papier et un crayon",
+        "Un serveur coûteux",
+        "Un téléphone neuf"
+      ],
+      "answer": 0,
+      "explanation": "Une maquette papier permet déjà de vérifier l’organisation et les libellés."
+    },
+    {
+      "title": "Améliorer grâce aux retours",
+      "body": "Un test observe une tâche, pas la valeur de la personne. Demande par exemple : « Comment enregistrerais-tu cette leçon ? » Si la personne hésite, l’interface peut être améliorée. Change un élément, puis teste à nouveau.",
+      "code": "Observer → écouter → modifier\n→ tester une nouvelle fois",
+      "output": "Le produit progresse avec les retours.",
+      "question": "Que faire si un bouton est difficile à trouver ?",
+      "options": [
+        "Blâmer la personne",
+        "Revoir son emplacement ou son libellé",
+        "Ajouter dix boutons"
+      ],
+      "answer": 1,
+      "explanation": "L’hésitation révèle une occasion d’améliorer l’interface."
+    }
+  ],
+  "author": "Nunya",
+  "reviewer": null,
+  "status": "brouillon",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

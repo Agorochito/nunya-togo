@@ -1,0 +1,77 @@
+{
+  "id": "git",
+  "title": "Git : garde une trace de tes projets",
+  "en": "Git : garde une trace de tes projets",
+  "category": "OUTILS DU DÉVELOPPEUR",
+  "domain": "tech",
+  "desc": "Comprends les versions, les commits et le travail à plusieurs.",
+  "enDesc": "Comprends les versions, les commits et le travail à plusieurs.",
+  "glyph": "git",
+  "color": "#f3dfd4",
+  "type": "subject",
+  "level": "Débutant",
+  "duration": 40,
+  "lessons": [
+    {
+      "title": "Pourquoi conserver des versions ?",
+      "body": "Quand un projet évolue, il est utile de retrouver ses anciens états. Git conserve un historique des changements choisis. Il fonctionne localement ; un hébergeur distant est un service complémentaire. Git et GitHub ne sont donc pas la même chose.",
+      "code": "Version 1 : un titre\nVersion 2 : un paragraphe\nVersion 3 : une image",
+      "output": "Un historique de l’évolution du projet.",
+      "question": "À quoi sert principalement Git ?",
+      "options": [
+        "Versionner des changements",
+        "Dessiner des images",
+        "Remplacer Internet"
+      ],
+      "answer": 0,
+      "explanation": "Git suit l’évolution des fichiers et aide à travailler sur un projet."
+    },
+    {
+      "title": "Comprendre un commit",
+      "body": "Un commit est un état enregistré accompagné d’un message. On prépare les modifications, puis on les enregistre. Un message précis décrit ce qui change, afin de comprendre l’historique plus tard.",
+      "code": "git add page.html\ngit commit -m \"Ajoute une présentation du projet\"",
+      "output": "Une étape enregistrée avec un message explicite.",
+      "question": "Quel message est le plus utile ?",
+      "options": [
+        "truc",
+        "Ajoute le bouton de téléchargement",
+        "aaaa"
+      ],
+      "answer": 1,
+      "explanation": "Un message descriptif explique le changement sans devoir ouvrir tous les fichiers."
+    },
+    {
+      "title": "Explorer une branche",
+      "body": "Une branche permet de développer une idée à côté du travail principal. Quand les changements sont prêts, on peut les rapprocher du projet principal. Cela demande parfois de résoudre des modifications qui se contredisent.",
+      "code": "main ──●──●────────●\n          ╲        ╱\n           ●──●──●  nouvelle idée",
+      "output": "Deux lignes de travail peuvent être réunies.",
+      "question": "Une branche permet de…",
+      "options": [
+        "Tester une évolution séparément",
+        "Supprimer tous les fichiers",
+        "Créer une connexion réseau"
+      ],
+      "answer": 0,
+      "explanation": "Une branche garde une ligne de travail indépendante avant une éventuelle fusion."
+    },
+    {
+      "title": "Collaborer avec attention",
+      "body": "Avant de partager un dépôt, vérifie les fichiers que tu envoies. Ne publie pas de mots de passe, de clés secrètes ni de données personnelles. Relis les changements proposés par les autres et donne un retour précis et respectueux.",
+      "code": "Avant de partager :\n✓ Relire les fichiers\n✓ Vérifier les informations privées\n✓ Expliquer les changements",
+      "output": "Un projet plus compréhensible et plus sûr.",
+      "question": "Que faut-il garder hors d’un dépôt public ?",
+      "options": [
+        "Une notice du projet",
+        "Une clé secrète",
+        "Un exemple sans données privées"
+      ],
+      "answer": 1,
+      "explanation": "Une clé secrète donne des accès et ne doit pas être publiée."
+    }
+  ],
+  "author": "Nunya",
+  "reviewer": null,
+  "status": "brouillon",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

@@ -1,0 +1,17 @@
+{
+  "checked": "2026-11-01",
+  "sources": [
+    "https://ecole.gouv.tg/primaire/mod/folder/view.php?id=4",
+    "https://ecole.gouv.tg/college/mod/folder/view.php?id=22&lang=fr",
+    "https://ecole.gouv.tg/lycee/mod/folder/view.php?id=1&lang=fr",
+    "https://ecole.gouv.tg/lycee/mod/folder/view.php?id=2"
+  ],
+  "documents": 492,
+  "byExam": {
+    "CEPD": 64,
+    "BEPC": 118,
+    "BAC I": 282,
+    "BAC II": 28
+  },
+  "notice": "Les dossiers d’annales nationales BAC II sont vides. Les compositions régionales de Terminale, dont certains corrigés, sont référencées distinctement pour préparer le BAC II."
+}

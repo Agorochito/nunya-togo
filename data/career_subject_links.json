@@ -1,0 +1,917 @@
+[
+  {
+    "career_id": "cybersecurite",
+    "domain_id": "tech",
+    "subjects": [
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "developpement-web",
+    "domain_id": "tech",
+    "subjects": [
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "donnees-ia",
+    "domain_id": "tech",
+    "subjects": [
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "technicien-informatique",
+    "domain_id": "tech",
+    "subjects": [
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "medecin",
+    "domain_id": "health",
+    "subjects": [
+      {
+        "id": "biology",
+        "title_fr": "SVT"
+      },
+      {
+        "id": "physics",
+        "title_fr": "Physique-Chimie"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "infirmier",
+    "domain_id": "health",
+    "subjects": [
+      {
+        "id": "biology",
+        "title_fr": "SVT"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "sage-femme",
+    "domain_id": "health",
+    "subjects": [
+      {
+        "id": "biology",
+        "title_fr": "SVT"
+      },
+      {
+        "id": "physics",
+        "title_fr": "Physique-Chimie"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "pharmacien",
+    "domain_id": "health",
+    "subjects": [
+      {
+        "id": "physics",
+        "title_fr": "Physique-Chimie"
+      },
+      {
+        "id": "biology",
+        "title_fr": "SVT"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "technicien-laboratoire",
+    "domain_id": "health",
+    "subjects": [
+      {
+        "id": "biology",
+        "title_fr": "SVT"
+      },
+      {
+        "id": "physics",
+        "title_fr": "Physique-Chimie"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "sante-publique",
+    "domain_id": "health",
+    "subjects": [
+      {
+        "id": "biology",
+        "title_fr": "SVT"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      },
+      {
+        "id": "history",
+        "title_fr": "Histoire-Géographie"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "technicien-agricole",
+    "domain_id": "agri",
+    "subjects": [
+      {
+        "id": "biology",
+        "title_fr": "SVT"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "history",
+        "title_fr": "Histoire-Géographie"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "entrepreneur-agroalimentaire",
+    "domain_id": "agri",
+    "subjects": [
+      {
+        "id": "biology",
+        "title_fr": "SVT"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "aquaculteur",
+    "domain_id": "agri",
+    "subjects": [
+      {
+        "id": "biology",
+        "title_fr": "SVT"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "physics",
+        "title_fr": "Physique-Chimie"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "technicien-solaire",
+    "domain_id": "energy",
+    "subjects": [
+      {
+        "id": "physics",
+        "title_fr": "Physique-Chimie"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "technicien-maintenance",
+    "domain_id": "energy",
+    "subjects": [
+      {
+        "id": "physics",
+        "title_fr": "Physique-Chimie"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "technicien-froid",
+    "domain_id": "energy",
+    "subjects": [
+      {
+        "id": "physics",
+        "title_fr": "Physique-Chimie"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "agent-logistique",
+    "domain_id": "logistics",
+    "subjects": [
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      },
+      {
+        "id": "history",
+        "title_fr": "Histoire-Géographie"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "gestionnaire-stocks",
+    "domain_id": "logistics",
+    "subjects": [
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "assistant-transit",
+    "domain_id": "logistics",
+    "subjects": [
+      {
+        "id": "french",
+        "title_fr": "Français"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      },
+      {
+        "id": "history",
+        "title_fr": "Histoire-Géographie"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "entrepreneur",
+    "domain_id": "business",
+    "subjects": [
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "assistant-gestion",
+    "domain_id": "business",
+    "subjects": [
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "assistant-comptable",
+    "domain_id": "business",
+    "subjects": [
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "designer-interfaces",
+    "domain_id": "creative",
+    "subjects": [
+      {
+        "id": "french",
+        "title_fr": "Français"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "charge-communication",
+    "domain_id": "creative",
+    "subjects": [
+      {
+        "id": "french",
+        "title_fr": "Français"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      },
+      {
+        "id": "history",
+        "title_fr": "Histoire-Géographie"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "createur-visuel",
+    "domain_id": "creative",
+    "subjects": [
+      {
+        "id": "french",
+        "title_fr": "Français"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "agent-accueil",
+    "domain_id": "services",
+    "subjects": [
+      {
+        "id": "french",
+        "title_fr": "Français"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      },
+      {
+        "id": "history",
+        "title_fr": "Histoire-Géographie"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "projet-touristique",
+    "domain_id": "services",
+    "subjects": [
+      {
+        "id": "history",
+        "title_fr": "Histoire-Géographie"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "assistant-hotellerie",
+    "domain_id": "services",
+    "subjects": [
+      {
+        "id": "french",
+        "title_fr": "Français"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "technicien-reseaux",
+    "domain_id": "telecom",
+    "subjects": [
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "physics",
+        "title_fr": "Physique-Chimie"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "support-telecom",
+    "domain_id": "telecom",
+    "subjects": [
+      {
+        "id": "french",
+        "title_fr": "Français"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "technicien-infrastructure",
+    "domain_id": "telecom",
+    "subjects": [
+      {
+        "id": "physics",
+        "title_fr": "Physique-Chimie"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "services-fintech",
+    "domain_id": "fintech",
+    "subjects": [
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "assistant-services-financiers",
+    "domain_id": "fintech",
+    "subjects": [
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "analyste-operations-financieres",
+    "domain_id": "fintech",
+    "subjects": [
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "enseignant",
+    "domain_id": "education",
+    "subjects": [
+      {
+        "id": "french",
+        "title_fr": "Français"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "mediateur-numerique",
+    "domain_id": "education",
+    "subjects": [
+      {
+        "id": "french",
+        "title_fr": "Français"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      },
+      {
+        "id": "civics",
+        "title_fr": "ECM"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "concepteur-activites",
+    "domain_id": "education",
+    "subjects": [
+      {
+        "id": "french",
+        "title_fr": "Français"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "english",
+        "title_fr": "Anglais"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "projet-environnemental",
+    "domain_id": "environment",
+    "subjects": [
+      {
+        "id": "biology",
+        "title_fr": "SVT"
+      },
+      {
+        "id": "history",
+        "title_fr": "Histoire-Géographie"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "technicien-eau",
+    "domain_id": "environment",
+    "subjects": [
+      {
+        "id": "biology",
+        "title_fr": "SVT"
+      },
+      {
+        "id": "physics",
+        "title_fr": "Physique-Chimie"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "projet-recyclage",
+    "domain_id": "environment",
+    "subjects": [
+      {
+        "id": "biology",
+        "title_fr": "SVT"
+      },
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "history",
+        "title_fr": "Histoire-Géographie"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "technicien-batiment",
+    "domain_id": "construction",
+    "subjects": [
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "physics",
+        "title_fr": "Physique-Chimie"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "dessinateur-batiment",
+    "domain_id": "construction",
+    "subjects": [
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "physics",
+        "title_fr": "Physique-Chimie"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  },
+  {
+    "career_id": "assistant-suivi-chantier",
+    "domain_id": "construction",
+    "subjects": [
+      {
+        "id": "maths",
+        "title_fr": "Mathématiques"
+      },
+      {
+        "id": "physics",
+        "title_fr": "Physique-Chimie"
+      },
+      {
+        "id": "french",
+        "title_fr": "Français"
+      }
+    ],
+    "verified": false,
+    "last_checked": "2026-11-01",
+    "note_fr": "Pistes de matières utiles pour découvrir le métier ; ne sont ni des conditions d’admission ni un programme validé."
+  }
+]

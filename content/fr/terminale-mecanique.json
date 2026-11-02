@@ -1,0 +1,80 @@
+{
+  "id": "terminale-mecanique",
+  "title": "Terminale : travail, puissance et énergie",
+  "en": "Terminale : travail, puissance et énergie",
+  "domain": "physics",
+  "glyph": "E",
+  "color": "#dce9ec",
+  "desc": "Révision ciblée de Terminale : explications, calculs détaillés et exercices. Ce parcours ne couvre pas tout le programme du BAC II.",
+  "enDesc": "Révision ciblée",
+  "type": "subject",
+  "category": "TERMINALE · PRÉPARER LE BAC II",
+  "level": "Approfondissement",
+  "duration": 48,
+  "track": "school",
+  "source_url": "https://ecole.gouv.tg/lycee/course/view.php?id=413",
+  "status": "brouillon",
+  "curriculumVerified": false,
+  "reviewer": null,
+  "lessons": [
+    {
+      "title": "Le travail d’une force constante",
+      "body": "Le travail mesure un transfert d’énergie associé à une force et à un déplacement. Pour une force constante sur un déplacement rectiligne, W = F × d × cos(θ), où θ est l’angle entre la force et le déplacement. Les unités sont le newton, le mètre et le joule. Le travail est positif si la force favorise le déplacement, négatif si elle s’y oppose et nul si elle lui est perpendiculaire. On ne doit pas confondre force et énergie.",
+      "code": "F = 20 N ; d = 3 m ; θ = 0°\nW = 20 × 3 × cos(0°)\nW = 60 J",
+      "output": "La force transfère 60 joules.",
+      "question": "Une force perpendiculaire au déplacement produit un travail…",
+      "options": [
+        "nul",
+        "toujours positif",
+        "égal à F × d"
+      ],
+      "answer": 0,
+      "explanation": "cos(90°) = 0, donc W = 0 même si la force et le déplacement ne sont pas nuls."
+    },
+    {
+      "title": "La puissance moyenne",
+      "body": "La puissance moyenne est le travail transféré divisé par la durée : P = W/Δt. Elle s’exprime en watts, avec 1 W = 1 J/s. Pour un même travail, une durée plus courte correspond à une puissance moyenne plus élevée. Avant de calculer, convertis les minutes en secondes. Un résultat en watts est une puissance et ne remplace pas un bilan d’énergie en joules.",
+      "code": "Travail : W = 1 200 J\nDurée : Δt = 20 s\nP = 1 200 / 20 = 60 W",
+      "output": "Puissance moyenne : 60 watts.",
+      "question": "Un travail de 600 J effectué en 10 s correspond à…",
+      "options": [
+        "6 W",
+        "60 W",
+        "6 000 W"
+      ],
+      "answer": 1,
+      "explanation": "P = 600/10 = 60 J/s, donc 60 W."
+    },
+    {
+      "title": "L’énergie cinétique",
+      "body": "Dans un référentiel donné, l’énergie cinétique d’un solide en translation vaut Ec = ½mv². La masse doit être exprimée en kilogrammes et la vitesse en mètres par seconde. La vitesse est au carré : doubler la vitesse multiplie cette énergie par quatre. L’énergie cinétique dépend du référentiel et n’est jamais négative dans ce modèle. Un bilan exige de préciser le système étudié et les forces qui agissent sur lui.",
+      "code": "m = 2 kg ; v = 3 m/s\nEc = ½ × 2 × 3² = 9 J\nÀ 6 m/s : Ec = ½ × 2 × 6² = 36 J",
+      "output": "La vitesse double et l’énergie est multipliée par quatre.",
+      "question": "À masse constante, si la vitesse est multipliée par 3, Ec est multipliée par…",
+      "options": [
+        "3",
+        "6",
+        "9"
+      ],
+      "answer": 2,
+      "explanation": "La vitesse intervient au carré : 3² = 9."
+    },
+    {
+      "title": "Construire un bilan d’énergie mécanique",
+      "body": "L’énergie mécanique est la somme de l’énergie cinétique et de l’énergie potentielle. Près de la surface terrestre, on peut écrire Ep = mgh après avoir choisi un niveau de référence. L’énergie mécanique se conserve dans un modèle où les forces non conservatives ne travaillent pas. Avec des frottements, elle peut diminuer au profit d’autres formes d’énergie : l’énergie totale ne disparaît pas. N’utilise donc pas la conservation sans annoncer les hypothèses.",
+      "code": "Chute idéale depuis h = 5 m ; départ au repos\nOn prend g = 10 m/s² et on néglige les frottements.\nmgh = ½mv² → v² = 2gh = 100\nVitesse au niveau de référence : 10 m/s",
+      "output": "Résultat du modèle idéal : 10 m/s.",
+      "question": "Dans ce modèle, si l’on double la masse en gardant h identique, la vitesse finale…",
+      "options": [
+        "double",
+        "reste la même",
+        "est divisée par deux"
+      ],
+      "answer": 1,
+      "explanation": "La masse se simplifie dans mgh = ½mv². La vitesse finale du modèle ne dépend pas de la masse."
+    }
+  ],
+  "author": "Nunya",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

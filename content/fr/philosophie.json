@@ -1,0 +1,95 @@
+{
+  "id": "philosophie",
+  "title": "Philosophie : poser un problème",
+  "en": "Philosophie : poser un problème",
+  "domain": "humanities",
+  "glyph": "?",
+  "color": "#e9dfec",
+  "desc": "Distinguer une opinion, une question et un argument avant de construire une réflexion.",
+  "enDesc": "Distinguer une opinion, une question et un argument avant de construire une réflexion.",
+  "type": "subject",
+  "category": "RÉVISION SCOLAIRE",
+  "level": "Débutant",
+  "duration": 40,
+  "track": "school",
+  "author": "Nunya — brouillon de travail",
+  "reviewer": null,
+  "status": "brouillon",
+  "curriculumVerified": false,
+  "lessons": [
+    {
+      "title": "Une question qui demande réflexion",
+      "body": "Une question philosophique invite à préciser des concepts et examiner plusieurs réponses possibles. Elle ne se résout pas toujours par une simple mesure. Commence par reformuler les mots importants du sujet.",
+      "code": "« Être libre, est-ce faire tout ce que l’on veut ? »\nMots à préciser : libre, vouloir, pouvoir.",
+      "output": "Définir les mots ouvre le problème.",
+      "question": "La première étape utile est…",
+      "options": [
+        "Clarifier les termes du sujet",
+        "Réciter une réponse sans lien",
+        "Choisir une citation au hasard"
+      ],
+      "answer": 0,
+      "explanation": "Clarifier les termes permet de comprendre ce que l’on doit discuter.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Opinion et argument",
+      "body": "Une opinion exprime un point de vue. Un argument essaie de donner une raison que l’on peut discuter. Un exemple aide à comprendre, mais un seul exemple ne démontre pas toujours une affirmation générale.",
+      "code": "Opinion : « Je préfère apprendre seul. »\nArgument : « Le calme m’aide à me concentrer. »",
+      "output": "Le second énoncé donne une raison.",
+      "question": "Un argument doit pouvoir être…",
+      "options": [
+        "Examiné et discuté",
+        "Seulement mémorisé",
+        "Toujours une insulte"
+      ],
+      "answer": 0,
+      "explanation": "On peut chercher si les raisons proposées sont cohérentes et suffisantes.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Construire une objection",
+      "body": "Une objection montre une limite d’un raisonnement. Elle ne consiste pas seulement à affirmer le contraire. Cherche une condition oubliée ou un cas qui oblige à nuancer l’idée de départ.",
+      "code": "Idée : apprendre seul permet de se concentrer.\nObjection : échanger peut aider à comprendre\nun problème que l’on ne résout pas seul.",
+      "output": "Une objection rend la réflexion plus précise.",
+      "question": "Que fait une objection ?",
+      "options": [
+        "Elle examine une limite",
+        "Elle remplace toute explication",
+        "Elle attaque un prénom"
+      ],
+      "answer": 0,
+      "explanation": "Elle oblige à vérifier la portée et les conditions d’un argument.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Organiser une réflexion",
+      "body": "Une réflexion suit une question, examine des raisons et aboutit à une conclusion nuancée. Chaque partie doit faire avancer le problème. La conclusion répond à ce qui a été réellement discuté, sans ajouter une affirmation sans preuve.",
+      "code": "Question → argument → objection → nuance",
+      "output": "Une progression rend le raisonnement lisible.",
+      "question": "Une conclusion doit…",
+      "options": [
+        "Répondre au problème discuté",
+        "Changer complètement de sujet",
+        "Inventer une preuve"
+      ],
+      "answer": 0,
+      "explanation": "Elle rassemble les résultats du raisonnement et indique ses limites.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    }
+  ],
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

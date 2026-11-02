@@ -1,0 +1,88 @@
+{
+  "id": "tableurs-pratique",
+  "title": "Tableurs : organiser, calculer et vérifier",
+  "en": "Spreadsheets: organize and check",
+  "domain": "business",
+  "glyph": "Aa",
+  "desc": "Un cours original en français, avec exemples, exercices corrigés et une application à ton projet.",
+  "enDesc": "Original French lessons and practice.",
+  "category": "COMPÉTENCES PRATIQUES · NUNYA",
+  "type": "subject",
+  "level": "Débutant",
+  "duration": 40,
+  "track": "future",
+  "author": "Nunya",
+  "status": "brouillon",
+  "reviewer": null,
+  "license": "CC BY-SA 4.0",
+  "lessons": [
+    {
+      "title": "Construire une petite table",
+      "body": "Une feuille de calcul organise des valeurs en lignes et en colonnes. Donne un nom clair à chaque colonne et garde une même unité dans une colonne. Une table de suivi de cahiers peut contenir quantité, prix unitaire et total. Une cellule vide n’est pas nécessairement zéro : elle peut signaler une information manquante. Ces règles restent utiles dans différents logiciels, même si les boutons changent.",
+      "code": "Article | Quantité | Prix unitaire FCFA\nCahier | 3 | 250",
+      "output": "Une ligne décrit un article et chaque colonne possède un rôle.",
+      "question": "Une cellule vide doit être interprétée…",
+      "options": [
+        "automatiquement comme zéro",
+        "selon le sens de la donnée manquante",
+        "comme le plus grand nombre"
+      ],
+      "answer": 1,
+      "explanation": "Il faut savoir si la valeur est inconnue, non applicable ou réellement nulle.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon"
+    },
+    {
+      "title": "Calculer un total et le contrôler",
+      "body": "Une formule commence généralement par le signe égal. Si B2 contient 3 et C2 contient 250, la formule =B2*C2 donne 750. Vérifie le résultat avec un calcul simple avant de recopier la formule. Les séparateurs et les noms de fonctions peuvent varier selon la langue du logiciel ; le raisonnement reste le même.",
+      "code": "B2 = 3 ; C2 = 250\nD2 : =B2*C2",
+      "output": "D2 affiche 750 dans cet exemple.",
+      "question": "Avec B2 = 4 et C2 = 300, =B2*C2 donne…",
+      "options": [
+        "304",
+        "1 200",
+        "750"
+      ],
+      "answer": 1,
+      "explanation": "4 × 300 = 1 200. Les valeurs de la table et les unités doivent aussi être contrôlées.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon"
+    },
+    {
+      "title": "Comprendre une référence qui se déplace",
+      "body": "Quand une formule est recopiée, une référence relative peut suivre le déplacement. Copier =B2*C2 de D2 vers D3 donne habituellement =B3*C3. Vérifie les cellules visées, surtout si une formule utilise une valeur fixe. Des références absolues avec des signes dollar peuvent servir à fixer une cellule ; leur usage dépend du calcul voulu.",
+      "code": "D2 : =B2*C2\nCopie une ligne plus bas\nD3 : =B3*C3",
+      "output": "La formule suit la ligne de l’article suivant.",
+      "question": "En copiant une ligne plus bas, B2 devient en référence relative…",
+      "options": [
+        "B3",
+        "C2",
+        "$B$2"
+      ],
+      "answer": 0,
+      "explanation": "Le numéro de ligne augmente d’une unité ; la colonne B reste la même.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon"
+    },
+    {
+      "title": "Choisir un graphique honnête",
+      "body": "Un graphique doit répondre à une question. Pour comparer des quantités par catégorie, des barres peuvent être utiles. Donne un titre précis, une unité et une échelle lisible. Vérifie que les données sélectionnées sont les bonnes et qu’un changement d’échelle ne donne pas une impression trompeuse. Un graphique ne prouve pas une cause et ne corrige pas une table mal préparée.",
+      "code": "Question : combien de livres ont été prêtés chaque jour ?\nDonnées fictives : lundi 4, mardi 6.\nTitre : Prêts fictifs sur deux jours.",
+      "output": "Le titre et l’unité décrivent le périmètre.",
+      "question": "Avant de partager un graphique, il faut…",
+      "options": [
+        "retirer les unités",
+        "vérifier les données, le titre et l’échelle",
+        "choisir la couleur avant toute vérification"
+      ],
+      "answer": 1,
+      "explanation": "La lisibilité et l’exactitude du graphique dépendent d’abord des données et de leur présentation.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon"
+    }
+  ]
+}

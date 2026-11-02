@@ -1,0 +1,2455 @@
+[
+  {
+    "id": "cybersecurite",
+    "domain_id": "tech",
+    "title_fr": "Cybersécurité",
+    "summary_fr": "Aider à protéger les données, les appareils et les usages numériques.",
+    "daily_life_fr": "Lire des alertes, documenter un incident fictif et expliquer des gestes de protection à une équipe.",
+    "skills": [
+      "Raisonnement",
+      "Réseaux",
+      "Documentation",
+      "Éthique"
+    ],
+    "school_subjects": [
+      "maths",
+      "english",
+      "french"
+    ],
+    "where_to_study_togo": [
+      "IAI-Togo : consulter le catalogue informatique ; spécialisation cybersécurité et conditions à confirmer.",
+      "Université de Lomé : explorer les formations informatiques puis demander les possibilités de spécialisation."
+    ],
+    "where_to_work_togo": [
+      "Équipes informatiques d’organisations",
+      "Services de sécurité numérique ; aucune offre d’emploi annoncée"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "ancy",
+        "title": "Agence nationale de la cybersécurité — missions",
+        "url": "https://ancy.gouv.tg/",
+        "source_type": "officiel",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "cyber-vivier",
+        "title": "ANCy — vivier national de compétences, appel clos le 30 octobre 2026",
+        "url": "https://ancy.gouv.tg/communique-de-presse-appel-a-manifestation-dinteret-pour-la-constitution-dun-vivier-national-de-competences-en-cybersecurite/",
+        "source_type": "officiel",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "iai",
+        "title": "IAI-Togo — formation continue",
+        "url": "https://www.iai-togo.tg/index.php/formation-continue/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://ancy.gouv.tg/",
+    "source_type": "officiel",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "developpement-web",
+    "domain_id": "tech",
+    "title_fr": "Développeur / développeuse web",
+    "summary_fr": "Construire des pages et des outils qui répondent à un besoin précis.",
+    "daily_life_fr": "Clarifier une demande, coder une petite fonction et tester la page avec une autre personne.",
+    "skills": [
+      "HTML/CSS",
+      "JavaScript",
+      "Accessibilité",
+      "Tests"
+    ],
+    "school_subjects": [
+      "maths",
+      "english",
+      "french"
+    ],
+    "where_to_study_togo": [
+      "IAI-Togo : filière Génie logiciel présentée dans son catalogue.",
+      "Université de Lomé : consulter le catalogue du Génie logiciel ; intitulé actuel et admission à confirmer."
+    ],
+    "where_to_work_togo": [
+      "Services numériques d’entreprises ou d’associations",
+      "Agences et projets web"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "iai",
+        "title": "IAI-Togo — formation continue",
+        "url": "https://www.iai-togo.tg/index.php/formation-continue/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "ul-catalogue",
+        "title": "Université de Lomé — choisir sa formation",
+        "url": "https://univ-lome.tg/choisir-sa-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://www.iai-togo.tg/index.php/formation-continue/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "donnees-ia",
+    "domain_id": "tech",
+    "title_fr": "Données et IA — bases",
+    "summary_fr": "Organiser des données et expliquer ce qu’une analyse permet réellement de conclure.",
+    "daily_life_fr": "Nettoyer un tableau fictif, calculer un indicateur et présenter les limites d’une conclusion.",
+    "skills": [
+      "Tableur",
+      "Statistiques",
+      "Python",
+      "Esprit critique"
+    ],
+    "school_subjects": [
+      "maths",
+      "english",
+      "french"
+    ],
+    "where_to_study_togo": [
+      "Université de Lomé : repérer les filières scientifiques et informatiques ; spécialisation exacte à confirmer.",
+      "IAI-Togo : bases de programmation et de bases de données ; formation dédiée à la data à vérifier."
+    ],
+    "where_to_work_togo": [
+      "Équipes de suivi-évaluation",
+      "Services d’études et d’analyse ; exemples de lieux de travail, sans recrutement présumé"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "ul-etablissements",
+        "title": "Université de Lomé — établissements",
+        "url": "https://univ-lome.tg/etablissements/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "iai",
+        "title": "IAI-Togo — formation continue",
+        "url": "https://www.iai-togo.tg/index.php/formation-continue/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univ-lome.tg/etablissements/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "technicien-informatique",
+    "domain_id": "tech",
+    "title_fr": "Technicien / technicienne informatique",
+    "summary_fr": "Aider les personnes à utiliser leurs appareils et documenter des problèmes.",
+    "daily_life_fr": "Décrire un symptôme, vérifier une hypothèse et consigner une solution sans toucher à des données privées.",
+    "skills": [
+      "Diagnostic",
+      "Communication",
+      "Systèmes",
+      "Sécurité"
+    ],
+    "school_subjects": [
+      "maths",
+      "english",
+      "french"
+    ],
+    "where_to_study_togo": [
+      "Université de Lomé : catalogue Maintenance et réseaux informatiques ; admission à confirmer.",
+      "IAI-Togo : consulter les formations informatiques disponibles."
+    ],
+    "where_to_work_togo": [
+      "Support informatique d’établissements",
+      "Prestataires de maintenance"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "ul-catalogue",
+        "title": "Université de Lomé — choisir sa formation",
+        "url": "https://univ-lome.tg/choisir-sa-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "iai",
+        "title": "IAI-Togo — formation continue",
+        "url": "https://www.iai-togo.tg/index.php/formation-continue/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univ-lome.tg/choisir-sa-formation/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "medecin",
+    "domain_id": "health",
+    "title_fr": "Médecin",
+    "summary_fr": "Découvrir un métier de santé qui demande une longue formation reconnue et une pratique encadrée.",
+    "daily_life_fr": "Comprendre le rôle de l’écoute, du travail d’équipe et de la rigueur scientifique ; aucun acte médical n’est enseigné ici.",
+    "skills": [
+      "Observation",
+      "Communication",
+      "Sciences du vivant",
+      "Éthique"
+    ],
+    "school_subjects": [
+      "biology",
+      "physics",
+      "maths",
+      "french"
+    ],
+    "where_to_study_togo": [
+      "Faculté des sciences de la santé de l’Université de Lomé : consulter les filières et l’admission.",
+      "Université de Kara : catalogue des sciences de la santé ; conditions à confirmer."
+    ],
+    "where_to_work_togo": [
+      "Établissements sanitaires autorisés",
+      "Structures de recherche après formation adaptée"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "ul-etablissements",
+        "title": "Université de Lomé — établissements",
+        "url": "https://univ-lome.tg/etablissements/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univ-lome.tg/etablissements/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "infirmier",
+    "domain_id": "health",
+    "title_fr": "Infirmier / infirmière",
+    "summary_fr": "Comprendre le rôle d’un professionnel de soins, sans apprendre à pratiquer un acte clinique sur Nunya.",
+    "daily_life_fr": "Observer comment une équipe organise ses informations et communique avec respect.",
+    "skills": [
+      "Écoute",
+      "Organisation",
+      "Sciences",
+      "Travail d’équipe"
+    ],
+    "school_subjects": [
+      "biology",
+      "maths",
+      "french"
+    ],
+    "where_to_study_togo": [
+      "ENAM : une publication officielle confirme des concours de formation en 2026 ; session passée, nouvelle admission à vérifier.",
+      "FSS de Kara : le site présente un parcours de sciences infirmières ; actualité de l’accès à confirmer."
+    ],
+    "where_to_work_togo": [
+      "Hôpitaux et centres de santé autorisés",
+      "Services de santé ; accès lié aux qualifications professionnelles"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "enam",
+        "title": "Togo Officiel — concours ENAM et EISJD 2026, calendrier passé",
+        "url": "https://www.republiquetogolaise.tg/sante/2807-12133-sante-ouverture-des-concours-dentree-a-lenam-et-leisjd",
+        "source_type": "officiel",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "uk-health",
+        "title": "Faculté des sciences de la santé de Kara — autres formations",
+        "url": "https://fss-uk.tg/etudes-formations/autres-formations/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://www.republiquetogolaise.tg/sante/2807-12133-sante-ouverture-des-concours-dentree-a-lenam-et-leisjd",
+    "source_type": "officiel",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "sage-femme",
+    "domain_id": "health",
+    "title_fr": "Sage-femme",
+    "summary_fr": "Découvrir une profession réglementée liée à la santé des femmes et des nouveau-nés.",
+    "daily_life_fr": "Comprendre l’importance de l’écoute, de la confidentialité et de la coordination des professionnels ; pas de conseil de soin.",
+    "skills": [
+      "Communication",
+      "Rigueur",
+      "Sciences du vivant",
+      "Éthique"
+    ],
+    "school_subjects": [
+      "biology",
+      "physics",
+      "french"
+    ],
+    "where_to_study_togo": [
+      "FSS de Kara : le site décrit une licence en maïeutique (ENSF) ; conditions et reconnaissance à reconfirmer auprès de l’établissement."
+    ],
+    "where_to_work_togo": [
+      "Maternités et établissements sanitaires autorisés",
+      "Programmes de santé après formation reconnue"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "uk-health",
+        "title": "Faculté des sciences de la santé de Kara — autres formations",
+        "url": "https://fss-uk.tg/etudes-formations/autres-formations/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://fss-uk.tg/etudes-formations/autres-formations/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "pharmacien",
+    "domain_id": "health",
+    "title_fr": "Pharmacien / pharmacienne",
+    "summary_fr": "Explorer les sciences et responsabilités associées à la pharmacie, sans conseil sur les médicaments.",
+    "daily_life_fr": "Découvrir le rôle de la qualité, de la traçabilité et de l’information dans un environnement professionnel encadré.",
+    "skills": [
+      "Chimie",
+      "Rigueur",
+      "Traçabilité",
+      "Communication"
+    ],
+    "school_subjects": [
+      "physics",
+      "biology",
+      "maths",
+      "french"
+    ],
+    "where_to_study_togo": [
+      "Université de Lomé : consulter directement la FSS pour les formations de pharmacie et leurs conditions.",
+      "La page FSS de Kara annonce certains parcours comme bientôt disponibles : ne pas présumer une admission ouverte."
+    ],
+    "where_to_work_togo": [
+      "Pharmacies et structures autorisées",
+      "Laboratoires et organisations du médicament selon qualification"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "ul-etablissements",
+        "title": "Université de Lomé — établissements",
+        "url": "https://univ-lome.tg/etablissements/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "uk-health",
+        "title": "Faculté des sciences de la santé de Kara — autres formations",
+        "url": "https://fss-uk.tg/etudes-formations/autres-formations/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univ-lome.tg/etablissements/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "technicien-laboratoire",
+    "domain_id": "health",
+    "title_fr": "Technicien / technicienne de laboratoire",
+    "summary_fr": "Découvrir la mesure et la qualité des données biologiques, sans manipulation clinique.",
+    "daily_life_fr": "Relever des valeurs fictives, vérifier une unité et conserver un compte rendu clair.",
+    "skills": [
+      "Mesure",
+      "Qualité",
+      "Biologie",
+      "Organisation"
+    ],
+    "school_subjects": [
+      "biology",
+      "physics",
+      "maths"
+    ],
+    "where_to_study_togo": [
+      "Université de Lomé, ESTBA : la page présente les analyses médicales et biologiques ; concours et conditions actuelles à vérifier."
+    ],
+    "where_to_work_togo": [
+      "Laboratoires autorisés",
+      "Structures sanitaires, de recherche ou de contrôle selon spécialité"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "ul-estba",
+        "title": "Université de Lomé — ESTBA",
+        "url": "https://univ-lome.tg/ecole-superieure-des-techniques-biologiques-et-alimentaires-estba/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univ-lome.tg/ecole-superieure-des-techniques-biologiques-et-alimentaires-estba/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "sante-publique",
+    "domain_id": "health",
+    "title_fr": "Chargé / chargée de projet en santé publique",
+    "summary_fr": "Explorer comment un projet collectif utilise des informations pour améliorer un service de santé.",
+    "daily_life_fr": "Définir un objectif, suivre un indicateur fictif et présenter des limites sans exposer de données personnelles.",
+    "skills": [
+      "Analyse de données",
+      "Communication",
+      "Gestion de projet",
+      "Éthique"
+    ],
+    "school_subjects": [
+      "biology",
+      "maths",
+      "french",
+      "history"
+    ],
+    "where_to_study_togo": [
+      "Université de Lomé : demander le catalogue actualisé du Centre de formation en santé publique ; accès à confirmer.",
+      "Université de Kara : explorer les formations de santé et les spécialisations auprès de la faculté."
+    ],
+    "where_to_work_togo": [
+      "Organisations et programmes de santé",
+      "Structures publiques ou associatives selon qualification"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "ul-catalogue",
+        "title": "Université de Lomé — choisir sa formation",
+        "url": "https://univ-lome.tg/choisir-sa-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "uk-health",
+        "title": "Faculté des sciences de la santé de Kara — autres formations",
+        "url": "https://fss-uk.tg/etudes-formations/autres-formations/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univ-lome.tg/choisir-sa-formation/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "technicien-agricole",
+    "domain_id": "agri",
+    "title_fr": "Technicien / technicienne agricole",
+    "summary_fr": "Observer une production et organiser des informations utiles à une exploitation.",
+    "daily_life_fr": "Tenir un carnet de mesures, comparer des observations et signaler ce qui exige l’avis d’un professionnel.",
+    "skills": [
+      "Observation",
+      "Mesure",
+      "Organisation",
+      "Tableur"
+    ],
+    "school_subjects": [
+      "biology",
+      "maths",
+      "history"
+    ],
+    "where_to_study_togo": [
+      "Université de Kara, ISMA : explorer les parcours agricoles du catalogue.",
+      "Université de Lomé, ESA : consulter les offres et modalités actuelles."
+    ],
+    "where_to_work_togo": [
+      "Exploitations agricoles",
+      "Services d’appui et organisations agricoles"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "ul-etablissements",
+        "title": "Université de Lomé — établissements",
+        "url": "https://univ-lome.tg/etablissements/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univkara.tg/offres-de-formation/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "entrepreneur-agroalimentaire",
+    "domain_id": "agri",
+    "title_fr": "Entrepreneur / entrepreneuse agroalimentaire",
+    "summary_fr": "Explorer la transformation et la commercialisation de produits avec un budget fictif.",
+    "daily_life_fr": "Recueillir un besoin, suivre des coûts et documenter un projet sans réaliser de manipulation alimentaire à risque.",
+    "skills": [
+      "Gestion",
+      "Qualité",
+      "Communication",
+      "Calcul"
+    ],
+    "school_subjects": [
+      "biology",
+      "maths",
+      "french"
+    ],
+    "where_to_study_togo": [
+      "Université de Lomé, ESTBA : industries agroalimentaires dans le catalogue.",
+      "Université de Kara, ISMA : consulter les parcours de transformation et de gestion agricole."
+    ],
+    "where_to_work_togo": [
+      "Petites entreprises agroalimentaires",
+      "Coopératives et unités de transformation"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "ul-estba",
+        "title": "Université de Lomé — ESTBA",
+        "url": "https://univ-lome.tg/ecole-superieure-des-techniques-biologiques-et-alimentaires-estba/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "commerce",
+        "title": "Ministère chargé du commerce — formation des PME au commerce électronique",
+        "url": "https://commerce.gouv.tg/les-dirigeants-des-pme-pmi-et-les-startups-se-forment-sur-les-aspects-pratiques-du-commerce-electronique/",
+        "source_type": "officiel",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univ-lome.tg/ecole-superieure-des-techniques-biologiques-et-alimentaires-estba/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "aquaculteur",
+    "domain_id": "agri",
+    "title_fr": "Aquaculteur / aquacultrice",
+    "summary_fr": "Découvrir l’organisation d’une activité d’élevage aquatique.",
+    "daily_life_fr": "Lire un tableau fictif de suivi, organiser une tâche et préparer des questions à poser à un professionnel.",
+    "skills": [
+      "Observation",
+      "Biologie",
+      "Gestion",
+      "Mesure"
+    ],
+    "school_subjects": [
+      "biology",
+      "maths",
+      "physics"
+    ],
+    "where_to_study_togo": [
+      "IFAD Aquaculture, réseau AED : filière présentée publiquement ; session et critères d’admission à vérifier."
+    ],
+    "where_to_work_togo": [
+      "Exploitations aquacoles",
+      "Structures de production et de transformation spécialisées"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "aed",
+        "title": "AED — filières professionnelles et compétences",
+        "url": "https://aed-ifad.tg/faq/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "aed-admissions",
+        "title": "AED — admissions, conditions à reconfirmer pour chaque session",
+        "url": "https://aed-ifad.tg/admissions/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://aed-ifad.tg/faq/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "technicien-solaire",
+    "domain_id": "energy",
+    "title_fr": "Technicien / technicienne solaire",
+    "summary_fr": "Comprendre puissance et énergie avant une formation technique encadrée.",
+    "daily_life_fr": "Lire des données fictives, calculer une énergie et documenter un besoin ; aucune installation électrique réelle.",
+    "skills": [
+      "Mathématiques appliquées",
+      "Physique",
+      "Documentation",
+      "Sécurité"
+    ],
+    "school_subjects": [
+      "physics",
+      "maths",
+      "english"
+    ],
+    "where_to_study_togo": [
+      "AED/IFAD : filière Métiers des énergies renouvelables présentée dans la FAQ.",
+      "Université de Kara : consulter le génie énergétique de l’ENP-CK ; conditions à confirmer."
+    ],
+    "where_to_work_togo": [
+      "Entreprises spécialisées en énergie",
+      "Maintenance et projets solaires, après qualification adaptée"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "aed",
+        "title": "AED — filières professionnelles et compétences",
+        "url": "https://aed-ifad.tg/faq/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "energy",
+        "title": "Ministère chargé de l’énergie — pompage solaire pour l’irrigation",
+        "url": "https://energie.gouv.tg/formation-sur-les-spis-dans-les-savanes-dans-le-cadre-du-pravost/",
+        "source_type": "officiel",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://aed-ifad.tg/faq/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "technicien-maintenance",
+    "domain_id": "energy",
+    "title_fr": "Technicien / technicienne de maintenance",
+    "summary_fr": "Raisonner sur le fonctionnement d’un équipement sans intervenir sur du matériel dangereux.",
+    "daily_life_fr": "Décrire un symptôme fictif, ordonner des vérifications et tenir une fiche d’intervention.",
+    "skills": [
+      "Diagnostic",
+      "Mesure",
+      "Rigueur",
+      "Communication"
+    ],
+    "school_subjects": [
+      "physics",
+      "maths",
+      "english"
+    ],
+    "where_to_study_togo": [
+      "Université de Lomé : explorer les formations de génie mécanique et électrique.",
+      "Université de Kara : consulter l’offre de l’ENP-CK et ses conditions."
+    ],
+    "where_to_work_togo": [
+      "Ateliers et services de maintenance",
+      "Entreprises industrielles et techniques"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "ul-catalogue",
+        "title": "Université de Lomé — choisir sa formation",
+        "url": "https://univ-lome.tg/choisir-sa-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univ-lome.tg/choisir-sa-formation/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "technicien-froid",
+    "domain_id": "energy",
+    "title_fr": "Technicien / technicienne du froid",
+    "summary_fr": "Découvrir les mesures, la chaîne du froid et l’organisation d’une maintenance.",
+    "daily_life_fr": "Lire des relevés fictifs, reconnaître une anomalie et rédiger un compte rendu ; aucune manipulation de fluide ou d’installation.",
+    "skills": [
+      "Physique",
+      "Mesure",
+      "Traçabilité",
+      "Organisation"
+    ],
+    "school_subjects": [
+      "physics",
+      "maths",
+      "french"
+    ],
+    "where_to_study_togo": [
+      "AED/IFAD : Bac Pro Froid et conditionnement de l’air présenté ; admission de la prochaine session à confirmer."
+    ],
+    "where_to_work_togo": [
+      "Entreprises du froid et de la climatisation",
+      "Services techniques de structures utilisant des équipements frigorifiques"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "aed",
+        "title": "AED — filières professionnelles et compétences",
+        "url": "https://aed-ifad.tg/faq/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://aed-ifad.tg/faq/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "agent-logistique",
+    "domain_id": "logistics",
+    "title_fr": "Agent / agente logistique",
+    "summary_fr": "Organiser un flux de marchandises et ses informations.",
+    "daily_life_fr": "Suivre un envoi fictif, identifier un document et signaler un écart de quantité.",
+    "skills": [
+      "Organisation",
+      "Tableur",
+      "Communication",
+      "Rigueur"
+    ],
+    "school_subjects": [
+      "maths",
+      "french",
+      "english",
+      "history"
+    ],
+    "where_to_study_togo": [
+      "ANPE : demander une orientation vers une formation logistique reconnue ; établissement et session à vérifier.",
+      "SEGUCE Togo : consulter les séances d’information sur les procédures, distinctes d’un diplôme de logistique."
+    ],
+    "where_to_work_togo": [
+      "Entreprises de transport et entrepôts",
+      "Chaîne portuaire et acteurs du commerce extérieur"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "port",
+        "title": "Port autonome de Lomé — La Pilotine 033, dossier transport et logistique",
+        "url": "https://www.togo-port.net/wp-content/uploads/pilotines/Pilotine-033.pdf",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "seguce",
+        "title": "SEGUCE Togo — procédures et formation des utilisateurs du guichet unique",
+        "url": "https://www.segucetogo.tg/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "anpe",
+        "title": "ANPE — programmes et mesures d’appui à l’insertion, document 2025",
+        "url": "https://anpetogo.org/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://www.togo-port.net/wp-content/uploads/pilotines/Pilotine-033.pdf",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "gestionnaire-stocks",
+    "domain_id": "logistics",
+    "title_fr": "Gestionnaire de stocks",
+    "summary_fr": "Suivre les entrées et sorties avec des données fiables.",
+    "daily_life_fr": "Comparer un inventaire fictif au tableau de suivi et expliquer une différence.",
+    "skills": [
+      "Calcul",
+      "Tableur",
+      "Organisation",
+      "Contrôle"
+    ],
+    "school_subjects": [
+      "maths",
+      "french"
+    ],
+    "where_to_study_togo": [
+      "Explorer une formation de gestion ou de logistique avec l’ANPE ; spécialité et reconnaissance à confirmer."
+    ],
+    "where_to_work_togo": [
+      "Entrepôts et commerces",
+      "Services d’approvisionnement"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "port",
+        "title": "Port autonome de Lomé — La Pilotine 033, dossier transport et logistique",
+        "url": "https://www.togo-port.net/wp-content/uploads/pilotines/Pilotine-033.pdf",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "anpe",
+        "title": "ANPE — programmes et mesures d’appui à l’insertion, document 2025",
+        "url": "https://anpetogo.org/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://www.togo-port.net/wp-content/uploads/pilotines/Pilotine-033.pdf",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "assistant-transit",
+    "domain_id": "logistics",
+    "title_fr": "Assistant / assistante transit",
+    "summary_fr": "Découvrir comment les informations circulent dans une opération de commerce extérieur.",
+    "daily_life_fr": "Classer des pièces fictives et suivre les étapes d’un dossier ; aucune déclaration réelle ni conseil douanier.",
+    "skills": [
+      "Documentation",
+      "Communication",
+      "Organisation",
+      "Anglais"
+    ],
+    "school_subjects": [
+      "french",
+      "english",
+      "history",
+      "maths"
+    ],
+    "where_to_study_togo": [
+      "SEGUCE Togo : ressources de procédures et formations d’utilisateurs.",
+      "Rechercher avec l’ANPE une formation de transit reconnue ; conditions à confirmer."
+    ],
+    "where_to_work_togo": [
+      "Entreprises de transit et de transport",
+      "Services logistiques d’importation et d’exportation"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "seguce",
+        "title": "SEGUCE Togo — procédures et formation des utilisateurs du guichet unique",
+        "url": "https://www.segucetogo.tg/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "port",
+        "title": "Port autonome de Lomé — La Pilotine 033, dossier transport et logistique",
+        "url": "https://www.togo-port.net/wp-content/uploads/pilotines/Pilotine-033.pdf",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "anpe",
+        "title": "ANPE — programmes et mesures d’appui à l’insertion, document 2025",
+        "url": "https://anpetogo.org/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://www.segucetogo.tg/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "entrepreneur",
+    "domain_id": "business",
+    "title_fr": "Entrepreneur / entrepreneuse",
+    "summary_fr": "Tester une idée utile et construire un premier budget.",
+    "daily_life_fr": "Écouter un besoin, poser une hypothèse de coût et recueillir un retour sur un prototype.",
+    "skills": [
+      "Écoute",
+      "Calcul",
+      "Gestion",
+      "Communication"
+    ],
+    "school_subjects": [
+      "maths",
+      "french",
+      "english"
+    ],
+    "where_to_study_togo": [
+      "ANPE : consulter les dispositifs d’appui à l’insertion et à l’activité indépendante.",
+      "Universités de Lomé et de Kara : explorer les parcours de gestion ; accès à confirmer."
+    ],
+    "where_to_work_togo": [
+      "Projet d’activité indépendant",
+      "Petites entreprises et coopératives selon projet"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "anpe",
+        "title": "ANPE — programmes et mesures d’appui à l’insertion, document 2025",
+        "url": "https://anpetogo.org/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "commerce",
+        "title": "Ministère chargé du commerce — formation des PME au commerce électronique",
+        "url": "https://commerce.gouv.tg/les-dirigeants-des-pme-pmi-et-les-startups-se-forment-sur-les-aspects-pratiques-du-commerce-electronique/",
+        "source_type": "officiel",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://anpetogo.org/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "assistant-gestion",
+    "domain_id": "business",
+    "title_fr": "Assistant / assistante de gestion",
+    "summary_fr": "Classer et suivre les informations utiles à une organisation.",
+    "daily_life_fr": "Mettre à jour un tableau fictif, préparer un document et vérifier une échéance.",
+    "skills": [
+      "Bureautique",
+      "Rigueur",
+      "Communication",
+      "Organisation"
+    ],
+    "school_subjects": [
+      "maths",
+      "french",
+      "english"
+    ],
+    "where_to_study_togo": [
+      "Université de Kara : consulter l’administration des entreprises et les parcours de gestion.",
+      "Université de Lomé : explorer les offres de gestion et d’assistance administrative."
+    ],
+    "where_to_work_togo": [
+      "Entreprises",
+      "Associations et administrations selon recrutement"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "ul-catalogue",
+        "title": "Université de Lomé — choisir sa formation",
+        "url": "https://univ-lome.tg/choisir-sa-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univkara.tg/offres-de-formation/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "assistant-comptable",
+    "domain_id": "business",
+    "title_fr": "Assistant / assistante comptable",
+    "summary_fr": "Comprendre les pièces et contrôles d’un suivi financier élémentaire.",
+    "daily_life_fr": "Classer des justificatifs fictifs et rapprocher des montants ; ce parcours ne remplace pas une formation comptable.",
+    "skills": [
+      "Calcul",
+      "Rigueur",
+      "Tableur",
+      "Confidentialité"
+    ],
+    "school_subjects": [
+      "maths",
+      "french"
+    ],
+    "where_to_study_togo": [
+      "Université de Kara : Comptabilité, contrôle et audit dans le catalogue ; vérifier l’admission.",
+      "Université de Lomé : parcours Finances-Comptabilités du catalogue, à reconfirmer."
+    ],
+    "where_to_work_togo": [
+      "Services comptables",
+      "Cabinets et organisations selon qualification"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "ul-catalogue",
+        "title": "Université de Lomé — choisir sa formation",
+        "url": "https://univ-lome.tg/choisir-sa-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univkara.tg/offres-de-formation/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "designer-interfaces",
+    "domain_id": "creative",
+    "title_fr": "Designer d’interfaces",
+    "summary_fr": "Rendre une interface claire pour les personnes qui l’utilisent.",
+    "daily_life_fr": "Observer une tâche, dessiner deux écrans et noter ce qu’un test révèle.",
+    "skills": [
+      "Écoute",
+      "Dessin d’interface",
+      "Accessibilité",
+      "Tests"
+    ],
+    "school_subjects": [
+      "french",
+      "english",
+      "maths"
+    ],
+    "where_to_study_togo": [
+      "IAI-Togo pour les bases du logiciel ; formation de design d’interface spécifique à rechercher.",
+      "ISICA, Université de Lomé : piste en communication ; ne constitue pas une équivalence de formation UX."
+    ],
+    "where_to_work_togo": [
+      "Équipes de produits numériques",
+      "Agences de conception et projets indépendants"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "iai",
+        "title": "IAI-Togo — formation continue",
+        "url": "https://www.iai-togo.tg/index.php/formation-continue/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "ul-catalogue",
+        "title": "Université de Lomé — choisir sa formation",
+        "url": "https://univ-lome.tg/choisir-sa-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://www.iai-togo.tg/index.php/formation-continue/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "charge-communication",
+    "domain_id": "creative",
+    "title_fr": "Chargé / chargée de communication",
+    "summary_fr": "Préparer un message adapté à son public.",
+    "daily_life_fr": "Rédiger une annonce fictive, vérifier ses informations et améliorer un support avec des retours.",
+    "skills": [
+      "Rédaction",
+      "Écoute",
+      "Organisation",
+      "Communication visuelle"
+    ],
+    "school_subjects": [
+      "french",
+      "english",
+      "history"
+    ],
+    "where_to_study_togo": [
+      "Université de Lomé, ISICA : communication dans le catalogue.",
+      "Université de Kara : métiers de la communication dans le catalogue ; conditions à confirmer."
+    ],
+    "where_to_work_togo": [
+      "Entreprises et associations",
+      "Structures de communication"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "ul-catalogue",
+        "title": "Université de Lomé — choisir sa formation",
+        "url": "https://univ-lome.tg/choisir-sa-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univ-lome.tg/choisir-sa-formation/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "createur-visuel",
+    "domain_id": "creative",
+    "title_fr": "Créateur / créatrice de supports visuels",
+    "summary_fr": "Organiser textes et images pour expliquer une idée avec des droits clairs.",
+    "daily_life_fr": "Dessiner une affiche originale, choisir une hiérarchie de lecture et indiquer les crédits.",
+    "skills": [
+      "Composition",
+      "Rédaction courte",
+      "Accessibilité",
+      "Droits d’usage"
+    ],
+    "school_subjects": [
+      "french",
+      "english"
+    ],
+    "where_to_study_togo": [
+      "ISICA, Université de Lomé : consulter les formations liées à la communication et aux arts graphiques.",
+      "Université de Kara : explorer les parcours de communication ; formation précise à confirmer."
+    ],
+    "where_to_work_togo": [
+      "Agences et services de communication",
+      "Projets culturels ou commerciaux"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "ul-catalogue",
+        "title": "Université de Lomé — choisir sa formation",
+        "url": "https://univ-lome.tg/choisir-sa-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univ-lome.tg/choisir-sa-formation/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "agent-accueil",
+    "domain_id": "services",
+    "title_fr": "Agent / agente d’accueil",
+    "summary_fr": "Écouter une demande et orienter avec des informations fiables.",
+    "daily_life_fr": "Confirmer une réservation fictive, expliquer une étape et transmettre une demande clairement.",
+    "skills": [
+      "Écoute",
+      "Langues",
+      "Organisation",
+      "Bureautique"
+    ],
+    "school_subjects": [
+      "french",
+      "english",
+      "history"
+    ],
+    "where_to_study_togo": [
+      "Université de Kara : parcours Langues étrangères appliquées, tourisme et communication interculturelle ; admission à confirmer.",
+      "Demander à l’ANPE une orientation vers une formation d’accueil reconnue."
+    ],
+    "where_to_work_togo": [
+      "Établissements d’hébergement",
+      "Entreprises et structures recevant du public"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "tourism",
+        "title": "Ministère du tourisme — formation des professionnels à Kara, juillet 2025",
+        "url": "https://tourisme.gouv.tg/professionnalisation-du-secteur-touristique-un-atelier-de-renforcement-de-capacites-a-kara-en-prelude-a-ledition-2025-des-evala/",
+        "source_type": "officiel",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "anpe",
+        "title": "ANPE — programmes et mesures d’appui à l’insertion, document 2025",
+        "url": "https://anpetogo.org/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univkara.tg/offres-de-formation/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "projet-touristique",
+    "domain_id": "services",
+    "title_fr": "Porteur / porteuse de projet touristique",
+    "summary_fr": "Concevoir un service d’accueil respectueux d’un lieu et de ses habitants.",
+    "daily_life_fr": "Préparer une présentation fictive, vérifier une information et organiser un petit budget.",
+    "skills": [
+      "Langues",
+      "Gestion",
+      "Écoute",
+      "Organisation"
+    ],
+    "school_subjects": [
+      "history",
+      "french",
+      "english",
+      "maths"
+    ],
+    "where_to_study_togo": [
+      "Université de Kara : explorer les langues étrangères appliquées et les formations de gestion.",
+      "Vérifier auprès des organismes compétents les formations touristiques et leurs conditions."
+    ],
+    "where_to_work_togo": [
+      "Projets d’accueil et de visite",
+      "Structures touristiques et culturelles"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "tourism",
+        "title": "Ministère du tourisme — formation des professionnels à Kara, juillet 2025",
+        "url": "https://tourisme.gouv.tg/professionnalisation-du-secteur-touristique-un-atelier-de-renforcement-de-capacites-a-kara-en-prelude-a-ledition-2025-des-evala/",
+        "source_type": "officiel",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univkara.tg/offres-de-formation/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "assistant-hotellerie",
+    "domain_id": "services",
+    "title_fr": "Assistant / assistante en hôtellerie",
+    "summary_fr": "Découvrir l’organisation des réservations et du service.",
+    "daily_life_fr": "Préparer un planning fictif et transmettre une consigne sans exposer les données des clients.",
+    "skills": [
+      "Organisation",
+      "Communication",
+      "Langues",
+      "Confidentialité"
+    ],
+    "school_subjects": [
+      "french",
+      "english",
+      "maths"
+    ],
+    "where_to_study_togo": [
+      "Consulter l’ANPE pour identifier une formation hôtelière reconnue ; l’atelier ministériel cité n’est pas une admission ouverte."
+    ],
+    "where_to_work_togo": [
+      "Hôtels et structures d’hébergement",
+      "Services de réservation"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "tourism",
+        "title": "Ministère du tourisme — formation des professionnels à Kara, juillet 2025",
+        "url": "https://tourisme.gouv.tg/professionnalisation-du-secteur-touristique-un-atelier-de-renforcement-de-capacites-a-kara-en-prelude-a-ledition-2025-des-evala/",
+        "source_type": "officiel",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "anpe",
+        "title": "ANPE — programmes et mesures d’appui à l’insertion, document 2025",
+        "url": "https://anpetogo.org/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://tourisme.gouv.tg/professionnalisation-du-secteur-touristique-un-atelier-de-renforcement-de-capacites-a-kara-en-prelude-a-ledition-2025-des-evala/",
+    "source_type": "officiel",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "technicien-reseaux",
+    "domain_id": "telecom",
+    "title_fr": "Technicien / technicienne réseaux",
+    "summary_fr": "Comprendre les échanges entre appareils et documenter une connexion.",
+    "daily_life_fr": "Lire un schéma fictif, ordonner des vérifications et expliquer un incident simulé.",
+    "skills": [
+      "Logique",
+      "Réseaux",
+      "Documentation",
+      "Anglais technique"
+    ],
+    "school_subjects": [
+      "maths",
+      "physics",
+      "english"
+    ],
+    "where_to_study_togo": [
+      "Université de Lomé : Maintenance et réseaux informatiques dans le catalogue.",
+      "IAI-Togo : consulter les formations disponibles ; spécialisation réseaux à confirmer."
+    ],
+    "where_to_work_togo": [
+      "Services informatiques",
+      "Prestataires réseaux et télécommunications"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "ul-catalogue",
+        "title": "Université de Lomé — choisir sa formation",
+        "url": "https://univ-lome.tg/choisir-sa-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "arcep",
+        "title": "ARCEP Togo — services aux professionnels",
+        "url": "https://arcep.tg/professionnels/services-en-ligne/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univ-lome.tg/choisir-sa-formation/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "support-telecom",
+    "domain_id": "telecom",
+    "title_fr": "Conseiller / conseillère support télécoms",
+    "summary_fr": "Aider une personne à décrire un problème de connexion et suivre une demande.",
+    "daily_life_fr": "Écouter, reformuler et consigner les vérifications sans demander de mot de passe.",
+    "skills": [
+      "Communication",
+      "Rigueur",
+      "Numérique",
+      "Patience"
+    ],
+    "school_subjects": [
+      "french",
+      "english",
+      "maths"
+    ],
+    "where_to_study_togo": [
+      "Consulter les formations informatiques et de relation client avec l’ANPE ; offre précise à vérifier."
+    ],
+    "where_to_work_togo": [
+      "Services de relation client",
+      "Équipes de support d’opérateurs ou de prestataires"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "arcep",
+        "title": "ARCEP Togo — services aux professionnels",
+        "url": "https://arcep.tg/professionnels/services-en-ligne/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "anpe",
+        "title": "ANPE — programmes et mesures d’appui à l’insertion, document 2025",
+        "url": "https://anpetogo.org/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://arcep.tg/professionnels/services-en-ligne/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "technicien-infrastructure",
+    "domain_id": "telecom",
+    "title_fr": "Technicien / technicienne d’infrastructure numérique",
+    "summary_fr": "Découvrir le suivi de matériel et d’équipements réseau.",
+    "daily_life_fr": "Tenir un inventaire fictif, lire un schéma et préparer une fiche ; aucune intervention électrique ou sur réseau réel.",
+    "skills": [
+      "Mesure",
+      "Organisation",
+      "Physique",
+      "Documentation"
+    ],
+    "school_subjects": [
+      "physics",
+      "maths",
+      "english"
+    ],
+    "where_to_study_togo": [
+      "Université de Lomé : explorer les formations informatiques et de génie électrique.",
+      "La formation pratique et les habilitations nécessaires sont à vérifier pour le poste visé."
+    ],
+    "where_to_work_togo": [
+      "Entreprises techniques",
+      "Services d’infrastructure d’organisations"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "ul-catalogue",
+        "title": "Université de Lomé — choisir sa formation",
+        "url": "https://univ-lome.tg/choisir-sa-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "arcep",
+        "title": "ARCEP Togo — services aux professionnels",
+        "url": "https://arcep.tg/professionnels/services-en-ligne/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univ-lome.tg/choisir-sa-formation/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "services-fintech",
+    "domain_id": "fintech",
+    "title_fr": "Concepteur / conceptrice de services fintech",
+    "summary_fr": "Imaginer un service numérique financier et ses protections.",
+    "daily_life_fr": "Dessiner un parcours fictif, vérifier un calcul et identifier une donnée sensible sans effectuer de transaction.",
+    "skills": [
+      "Programmation",
+      "Gestion",
+      "Protection des données",
+      "Tests"
+    ],
+    "school_subjects": [
+      "maths",
+      "english",
+      "french"
+    ],
+    "where_to_study_togo": [
+      "IAI-Togo pour le logiciel et Université de Lomé pour la gestion : pistes complémentaires, pas un diplôme fintech présumé."
+    ],
+    "where_to_work_togo": [
+      "Équipes de services numériques financiers",
+      "Entreprises de paiement selon réglementation et recrutement"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "bceao",
+        "title": "BCEAO — établissements de monnaie électronique",
+        "url": "https://www.bceao.int/fr/documents/etablissements-de-monnaie-electronique",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "iai",
+        "title": "IAI-Togo — formation continue",
+        "url": "https://www.iai-togo.tg/index.php/formation-continue/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "ul-catalogue",
+        "title": "Université de Lomé — choisir sa formation",
+        "url": "https://univ-lome.tg/choisir-sa-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://www.bceao.int/fr/documents/etablissements-de-monnaie-electronique",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "assistant-services-financiers",
+    "domain_id": "fintech",
+    "title_fr": "Assistant / assistante de services financiers",
+    "summary_fr": "Découvrir la rigueur et la confidentialité nécessaires aux services financiers.",
+    "daily_life_fr": "Classer un dossier fictif, suivre une demande et vérifier les pièces attendues sans collecter de données réelles.",
+    "skills": [
+      "Calcul",
+      "Confidentialité",
+      "Communication",
+      "Organisation"
+    ],
+    "school_subjects": [
+      "maths",
+      "french",
+      "english"
+    ],
+    "where_to_study_togo": [
+      "Universités de Lomé et de Kara : explorer les parcours de gestion et de finance ; accès à confirmer."
+    ],
+    "where_to_work_togo": [
+      "Banques et services financiers autorisés",
+      "Services de traitement administratif selon qualification"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "bceao",
+        "title": "BCEAO — établissements de monnaie électronique",
+        "url": "https://www.bceao.int/fr/documents/etablissements-de-monnaie-electronique",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "ul-catalogue",
+        "title": "Université de Lomé — choisir sa formation",
+        "url": "https://univ-lome.tg/choisir-sa-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://www.bceao.int/fr/documents/etablissements-de-monnaie-electronique",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "analyste-operations-financieres",
+    "domain_id": "fintech",
+    "title_fr": "Analyste d’opérations financières — découverte",
+    "summary_fr": "Vérifier la cohérence d’opérations fictives et expliquer un écart.",
+    "daily_life_fr": "Comparer un tableau de transactions inventées, repérer un doublon et rédiger un bilan limité aux données disponibles.",
+    "skills": [
+      "Tableur",
+      "Analyse",
+      "Calcul",
+      "Confidentialité"
+    ],
+    "school_subjects": [
+      "maths",
+      "french",
+      "english"
+    ],
+    "where_to_study_togo": [
+      "Université de Kara : comptabilité, contrôle et audit dans le catalogue.",
+      "IAI-Togo : bases de données et programmation comme compétences complémentaires."
+    ],
+    "where_to_work_togo": [
+      "Services d’opérations et de contrôle",
+      "Équipes de suivi de services financiers"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "bceao",
+        "title": "BCEAO — établissements de monnaie électronique",
+        "url": "https://www.bceao.int/fr/documents/etablissements-de-monnaie-electronique",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "iai",
+        "title": "IAI-Togo — formation continue",
+        "url": "https://www.iai-togo.tg/index.php/formation-continue/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://www.bceao.int/fr/documents/etablissements-de-monnaie-electronique",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "enseignant",
+    "domain_id": "education",
+    "title_fr": "Enseignant / enseignante",
+    "summary_fr": "Préparer une activité qui aide une personne à comprendre et à s’exercer.",
+    "daily_life_fr": "Formuler un objectif, proposer un exemple et recueillir une réponse avant d’adapter l’explication.",
+    "skills": [
+      "Explication",
+      "Écoute",
+      "Organisation",
+      "Évaluation"
+    ],
+    "school_subjects": [
+      "french",
+      "maths",
+      "english"
+    ],
+    "where_to_study_togo": [
+      "Université de Kara, ISPAU : catalogue de formations d’enseignement.",
+      "Université de Lomé, INSE : consulter les formations et les conditions actuelles."
+    ],
+    "where_to_work_togo": [
+      "Établissements d’enseignement selon qualification",
+      "Structures éducatives"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "ul-etablissements",
+        "title": "Université de Lomé — établissements",
+        "url": "https://univ-lome.tg/etablissements/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "focen",
+        "title": "FOCEN — formation continue des enseignants",
+        "url": "https://drheducation.gouv.tg/formation/",
+        "source_type": "officiel",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univkara.tg/offres-de-formation/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "mediateur-numerique",
+    "domain_id": "education",
+    "title_fr": "Médiateur / médiatrice numérique",
+    "summary_fr": "Accompagner une personne dans un usage numérique simple et sûr.",
+    "daily_life_fr": "Découper une tâche en étapes, laisser la personne essayer et repérer un blocage.",
+    "skills": [
+      "Pédagogie",
+      "Numérique",
+      "Accessibilité",
+      "Communication"
+    ],
+    "school_subjects": [
+      "french",
+      "english",
+      "civics"
+    ],
+    "where_to_study_togo": [
+      "FOCEN et DPIP : ressources destinées aux enseignants ; pas une formation professionnelle ouverte à tous présumée.",
+      "Chercher avec l’ANPE une formation d’accompagnement numérique adaptée."
+    ],
+    "where_to_work_togo": [
+      "Structures d’accompagnement",
+      "Associations et espaces d’apprentissage"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "focen",
+        "title": "FOCEN — formation continue des enseignants",
+        "url": "https://drheducation.gouv.tg/formation/",
+        "source_type": "officiel",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "dpip",
+        "title": "DPIP Togo — apprentissage et développement professionnel continu",
+        "url": "https://www.open.edu/openlearncreate/course/index.php?categoryid=550",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "anpe",
+        "title": "ANPE — programmes et mesures d’appui à l’insertion, document 2025",
+        "url": "https://anpetogo.org/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://drheducation.gouv.tg/formation/",
+    "source_type": "officiel",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "concepteur-activites",
+    "domain_id": "education",
+    "title_fr": "Concepteur / conceptrice d’activités pédagogiques",
+    "summary_fr": "Organiser une petite activité avec objectif, pratique et retour.",
+    "daily_life_fr": "Écrire une consigne courte, tester un exercice original et revoir l’activité selon le résultat.",
+    "skills": [
+      "Rédaction",
+      "Pédagogie",
+      "Tests",
+      "Organisation"
+    ],
+    "school_subjects": [
+      "french",
+      "maths",
+      "english"
+    ],
+    "where_to_study_togo": [
+      "Université de Kara : formations de sciences de l’éducation et pédagogie, selon le catalogue.",
+      "DPIP : pistes de développement professionnel pour les publics enseignants concernés."
+    ],
+    "where_to_work_togo": [
+      "Équipes pédagogiques",
+      "Projets de ressources éducatives"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "dpip",
+        "title": "DPIP Togo — apprentissage et développement professionnel continu",
+        "url": "https://www.open.edu/openlearncreate/course/index.php?categoryid=550",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univkara.tg/offres-de-formation/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "projet-environnemental",
+    "domain_id": "environment",
+    "title_fr": "Chargé / chargée de projet environnemental",
+    "summary_fr": "Observer une situation et suivre les résultats d’un projet responsable.",
+    "daily_life_fr": "Définir un indicateur fictif, organiser des relevés et expliquer ce qui n’a pas été mesuré.",
+    "skills": [
+      "Observation",
+      "Gestion de projet",
+      "Données",
+      "Communication"
+    ],
+    "school_subjects": [
+      "biology",
+      "history",
+      "maths"
+    ],
+    "where_to_study_togo": [
+      "Université de Lomé, ESTBA : Gestion de l’eau et de l’environnement.",
+      "Université de Kara : parcours de développement durable et environnement ; niveau et accès à vérifier."
+    ],
+    "where_to_work_togo": [
+      "Associations et services environnementaux",
+      "Entreprises et projets territoriaux selon qualification"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "ul-estba",
+        "title": "Université de Lomé — ESTBA",
+        "url": "https://univ-lome.tg/ecole-superieure-des-techniques-biologiques-et-alimentaires-estba/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univ-lome.tg/ecole-superieure-des-techniques-biologiques-et-alimentaires-estba/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "technicien-eau",
+    "domain_id": "environment",
+    "title_fr": "Technicien / technicienne eau et environnement",
+    "summary_fr": "Découvrir la mesure et la documentation liées à l’eau, sans conclure à sa potabilité.",
+    "daily_life_fr": "Lire un relevé fictif, vérifier ses unités et noter la méthode ; aucune analyse sanitaire réelle.",
+    "skills": [
+      "Mesure",
+      "Rigueur",
+      "Biologie",
+      "Données"
+    ],
+    "school_subjects": [
+      "biology",
+      "physics",
+      "maths"
+    ],
+    "where_to_study_togo": [
+      "Université de Lomé, ESTBA : Gestion de l’eau et de l’environnement.",
+      "Université de Kara, ENP-CK : hydrologie dans le catalogue ; admission à confirmer."
+    ],
+    "where_to_work_togo": [
+      "Services et laboratoires spécialisés",
+      "Projets de suivi de l’eau selon qualification"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "ul-estba",
+        "title": "Université de Lomé — ESTBA",
+        "url": "https://univ-lome.tg/ecole-superieure-des-techniques-biologiques-et-alimentaires-estba/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://univ-lome.tg/ecole-superieure-des-techniques-biologiques-et-alimentaires-estba/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "projet-recyclage",
+    "domain_id": "environment",
+    "title_fr": "Porteur / porteuse de projet de recyclage",
+    "summary_fr": "Explorer un besoin de tri ou de réemploi avec un projet fictif.",
+    "daily_life_fr": "Décrire un flux de matériaux, chiffrer une hypothèse et préparer les questions de sécurité à soumettre à un professionnel.",
+    "skills": [
+      "Organisation",
+      "Gestion",
+      "Observation",
+      "Communication"
+    ],
+    "school_subjects": [
+      "biology",
+      "maths",
+      "history"
+    ],
+    "where_to_study_togo": [
+      "Explorer les formations de gestion et d’environnement à Lomé ou Kara ; spécialisation et reconnaissance à confirmer."
+    ],
+    "where_to_work_togo": [
+      "Projets de réemploi et de gestion des déchets",
+      "Entreprises et associations du secteur"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "invest",
+        "title": "Portail institutionnel eOpportunities — secteurs de projets",
+        "url": "https://projets.investirautogo.tg/opportunities",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "ul-estba",
+        "title": "Université de Lomé — ESTBA",
+        "url": "https://univ-lome.tg/ecole-superieure-des-techniques-biologiques-et-alimentaires-estba/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://projets.investirautogo.tg/opportunities",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "technicien-batiment",
+    "domain_id": "construction",
+    "title_fr": "Technicien / technicienne du bâtiment",
+    "summary_fr": "Lire des mesures et organiser les informations d’un chantier simulé.",
+    "daily_life_fr": "Calculer une surface fictive, lire un plan simple et rédiger un suivi ; aucune intervention sur chantier.",
+    "skills": [
+      "Géométrie",
+      "Mesure",
+      "Organisation",
+      "Documentation"
+    ],
+    "school_subjects": [
+      "maths",
+      "physics",
+      "french"
+    ],
+    "where_to_study_togo": [
+      "AED/IFAD : filières Gros-œuvre et Aménagement-finition du bâtiment.",
+      "Universités de Lomé et de Kara : génie civil dans les catalogues ; conditions à confirmer."
+    ],
+    "where_to_work_togo": [
+      "Entreprises de construction",
+      "Bureaux techniques et services de suivi"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "aed",
+        "title": "AED — filières professionnelles et compétences",
+        "url": "https://aed-ifad.tg/faq/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "ul-catalogue",
+        "title": "Université de Lomé — choisir sa formation",
+        "url": "https://univ-lome.tg/choisir-sa-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://aed-ifad.tg/faq/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "dessinateur-batiment",
+    "domain_id": "construction",
+    "title_fr": "Dessinateur / dessinatrice du bâtiment — découverte",
+    "summary_fr": "Représenter des dimensions et communiquer un plan lisible.",
+    "daily_life_fr": "Dessiner un espace fictif à l’échelle et vérifier les dimensions avec une autre personne.",
+    "skills": [
+      "Géométrie",
+      "Dessin technique",
+      "Rigueur",
+      "Communication"
+    ],
+    "school_subjects": [
+      "maths",
+      "physics",
+      "french"
+    ],
+    "where_to_study_togo": [
+      "Explorer une formation de bâtiment ou de génie civil ; option de dessin technique et outils à confirmer auprès de l’établissement."
+    ],
+    "where_to_work_togo": [
+      "Bureaux d’études",
+      "Entreprises du bâtiment selon qualification"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "aed",
+        "title": "AED — filières professionnelles et compétences",
+        "url": "https://aed-ifad.tg/faq/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "ul-catalogue",
+        "title": "Université de Lomé — choisir sa formation",
+        "url": "https://univ-lome.tg/choisir-sa-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "uk",
+        "title": "Université de Kara — offres de formation",
+        "url": "https://univkara.tg/offres-de-formation/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://aed-ifad.tg/faq/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  },
+  {
+    "id": "assistant-suivi-chantier",
+    "domain_id": "construction",
+    "title_fr": "Assistant / assistante de suivi de chantier",
+    "summary_fr": "Découvrir l’organisation des tâches, documents et quantités d’un projet technique.",
+    "daily_life_fr": "Mettre à jour un planning fictif et signaler un écart sans décider d’une intervention technique.",
+    "skills": [
+      "Organisation",
+      "Calcul",
+      "Bureautique",
+      "Communication"
+    ],
+    "school_subjects": [
+      "maths",
+      "physics",
+      "french"
+    ],
+    "where_to_study_togo": [
+      "AED/IFAD : découvrir les filières de bâtiment.",
+      "Demander aux établissements les formations et stages encadrés correspondant au rôle visé."
+    ],
+    "where_to_work_togo": [
+      "Entreprises de travaux",
+      "Équipes de suivi technique selon formation"
+    ],
+    "abroad_notes_fr": "Pour étudier ou travailler ailleurs, vérifie séparément la reconnaissance de la formation, les critères de candidature et les démarches officielles. Aucune équivalence ni admission n’est garantie.",
+    "sources": [
+      {
+        "id": "aed",
+        "title": "AED — filières professionnelles et compétences",
+        "url": "https://aed-ifad.tg/faq/",
+        "source_type": "institution",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      },
+      {
+        "id": "budget",
+        "title": "Ministère des finances — programmation 2026–2028, priorités sectorielles",
+        "url": "https://finances.gouv.tg/wp-content/uploads/2025/11/DPBEP_2026-2028_AN.pdf",
+        "source_type": "officiel",
+        "retrieved_on": "2026-11-01",
+        "reuse": "Résumé original ; lien vers la source, aucun contenu de cours copié."
+      }
+    ],
+    "verified": false,
+    "status": "brouillon",
+    "reviewer": null,
+    "last_checked": "2026-11-01",
+    "retrieved_on": "2026-11-01",
+    "confidence": "moyenne",
+    "source_url": "https://aed-ifad.tg/faq/",
+    "source_type": "institution",
+    "scope_fr": "Description d’orientation originale. Les sources confirment des institutions ou activités ; elles ne prouvent pas des postes ouverts ni les admissions de la prochaine rentrée. À relire par un professionnel.",
+    "admissions_verified": false
+  }
+]

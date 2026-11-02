@@ -1,0 +1,55 @@
+{
+  "exams": [
+    {
+      "exam": "BAC I",
+      "start": "2027-05-24",
+      "end": "2027-05-28",
+      "verified": false,
+      "source_url": null,
+      "source_type": "community",
+      "last_checked": "2026-11-01",
+      "showOfficialCountdown": false,
+      "notice": "Valeur fournie par le propriétaire, non confirmée par une décision officielle."
+    },
+    {
+      "exam": "BEPC",
+      "start": "2027-06-15",
+      "end": "2027-06-17",
+      "verified": false,
+      "source_url": null,
+      "source_type": "community",
+      "last_checked": "2026-11-01",
+      "showOfficialCountdown": false,
+      "notice": "Valeur fournie par le propriétaire, non confirmée par une décision officielle."
+    },
+    {
+      "exam": "BAC II",
+      "start": "2027-06-21",
+      "end": "2027-06-25",
+      "verified": false,
+      "source_url": null,
+      "source_type": "community",
+      "last_checked": "2026-11-01",
+      "showOfficialCountdown": false,
+      "notice": "Valeur fournie par le propriétaire, non confirmée par une décision officielle."
+    }
+  ],
+  "bepcCoefficients": {
+    "Français": 4,
+    "Mathématiques": 3,
+    "Anglais": 2,
+    "Histoire-Géographie": 2,
+    "SVT": 2,
+    "PCT": 2,
+    "LV2/EDHC/ECM": 1,
+    "EPS": 1
+  },
+  "coefficientsVerified": false,
+  "reportedPassPoints": 180,
+  "passCalculatorEnabled": false,
+  "issue": "La somme déclarée des coefficients vaut 17 ; le seuil de 180 points et les bonus facultatifs ne sont pas confirmés.",
+  "source_type": "community",
+  "source_url": null,
+  "last_checked": "2026-11-01",
+  "verified": false
+}

@@ -1,0 +1,95 @@
+{
+  "id": "finance-numerique",
+  "title": "Paiements numériques : comprendre les usages",
+  "en": "Paiements numériques : comprendre les usages",
+  "domain": "fintech",
+  "glyph": "≋",
+  "color": "#e2e7cf",
+  "desc": "Découvre les flux d’un paiement, la traçabilité et les réflexes de confidentialité.",
+  "enDesc": "Découvre les flux d’un paiement, la traçabilité et les réflexes de confidentialité.",
+  "type": "subject",
+  "category": "DÉCOUVERTE MÉTIER",
+  "level": "Débutant",
+  "duration": 40,
+  "track": "future",
+  "author": "Nunya — brouillon de travail",
+  "reviewer": null,
+  "status": "brouillon",
+  "curriculumVerified": false,
+  "lessons": [
+    {
+      "title": "Un paiement, plusieurs étapes",
+      "body": "Un paiement numérique implique une demande, des vérifications et une confirmation. Un message reçu n’est pas toujours une preuve suffisante de règlement. Vérifie l’état dans le service officiel utilisé, sans transmettre de code secret.",
+      "code": "Demande → vérification → traitement → confirmation",
+      "output": "Chaque étape a un rôle.",
+      "question": "Une capture d’écran suffit-elle toujours à prouver un paiement ?",
+      "options": [
+        "Oui",
+        "Non",
+        "Oui si elle est colorée"
+      ],
+      "answer": 1,
+      "explanation": "Une image peut être modifiée ; l’état doit être vérifié dans le service concerné.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Suivre des entrées et sorties",
+      "body": "Un registre distingue les montants entrants et sortants. Le solde théorique se calcule à partir du solde initial, des entrées et des sorties. Les données de cet exercice sont fictives et ne concernent aucun compte réel.",
+      "code": "Solde : 2 000 FCFA\nEntrée : 500 FCFA\nSortie : 300 FCFA\nNouveau solde : 2 200 FCFA",
+      "output": "2 000 + 500 − 300 = 2 200",
+      "question": "Avec un solde de 1 000 et une sortie de 200, il reste…",
+      "options": [
+        "800",
+        "1 200",
+        "200"
+      ],
+      "answer": 0,
+      "explanation": "1 000 − 200 = 800 FCFA.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Protéger les informations",
+      "body": "Un code secret et un code de validation ne doivent pas être partagés. Un agent légitime ne doit pas être cru sur la seule base d’un appel pressant. Utilise les canaux officiels pour vérifier une demande.",
+      "code": "Code de validation → privé\nDemande urgente → vérifier\nTransaction → contrôler dans le service",
+      "output": "La prudence protège l’accès au compte.",
+      "question": "Faut-il communiquer un code reçu à un inconnu ?",
+      "options": [
+        "Non",
+        "Oui",
+        "Si l’appel est urgent"
+      ],
+      "answer": 0,
+      "explanation": "Le code peut permettre d’accéder au service ou de valider une action.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Distinguer un service et un conseil",
+      "body": "Comprendre les outils de paiement ne signifie pas conseiller un placement ou garantir un gain. Les métiers financiers exigent des compétences et des règles particulières. Cette initiation porte sur les concepts et les usages responsables.",
+      "code": "Concept → exercice pédagogique\nDécision financière réelle → contexte et conseil adapté",
+      "output": "Une découverte de domaine, sans recommandation financière.",
+      "question": "Ce cours garantit-il un rendement ?",
+      "options": [
+        "Oui",
+        "Non",
+        "Seulement après un quiz"
+      ],
+      "answer": 1,
+      "explanation": "Il ne propose aucun produit ni promesse de gain.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    }
+  ],
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

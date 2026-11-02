@@ -1,0 +1,77 @@
+{
+  "id": "javascript",
+  "title": "JavaScript, de l’idée à l’action",
+  "en": "JavaScript, de l’idée à l’action",
+  "category": "PROGRAMMATION",
+  "domain": "tech",
+  "desc": "Variables, conditions, fonctions : fais réagir tes premières interfaces.",
+  "enDesc": "Variables, conditions, fonctions : fais réagir tes premières interfaces.",
+  "glyph": "JS",
+  "color": "#f5edbb",
+  "type": "subject",
+  "level": "Débutant",
+  "duration": 40,
+  "lessons": [
+    {
+      "title": "Garder une valeur",
+      "body": "En JavaScript, const sert à déclarer une variable dont on ne réaffectera pas la valeur. let convient à une variable que l’on veut modifier. Un texte s’écrit entre guillemets ; un nombre peut être utilisé dans un calcul.",
+      "code": "const ville = \"Lomé\";\nlet points = 2;\npoints = points + 3;\nconsole.log(points);",
+      "output": "5",
+      "question": "Quelle déclaration permet de réaffecter une valeur ?",
+      "options": [
+        "let",
+        "const",
+        "console"
+      ],
+      "answer": 0,
+      "explanation": "let autorise une réaffectation. const l’empêche."
+    },
+    {
+      "title": "Choisir avec une condition",
+      "body": "if exécute un bloc si une condition est vraie. else exécute une autre action. Le symbole === compare des valeurs sans conversion automatique de type. Il ne faut pas le confondre avec =, qui affecte une valeur.",
+      "code": "const disponible = true;\nif (disponible === true) {\n  console.log(\"Bienvenue !\");\n} else {\n  console.log(\"À bientôt !\");\n}",
+      "output": "Bienvenue !",
+      "question": "Quel signe sert ici à comparer ?",
+      "options": [
+        "=",
+        "===",
+        "+"
+      ],
+      "answer": 1,
+      "explanation": "=== compare ; = affecte une valeur."
+    },
+    {
+      "title": "Réutiliser une fonction",
+      "body": "Une fonction réalise une tâche. Les paramètres sont les informations reçues. return produit un résultat que l’on peut utiliser ailleurs. Donne à la fonction un nom qui décrit clairement son rôle.",
+      "code": "function total(prix, nombre) {\n  return prix * nombre;\n}\nconsole.log(total(200, 3));",
+      "output": "600",
+      "question": "Que renvoie total(100, 4) ?",
+      "options": [
+        "104",
+        "400",
+        "1004"
+      ],
+      "answer": 1,
+      "explanation": "La fonction multiplie les deux paramètres : 100 × 4 = 400."
+    },
+    {
+      "title": "Parcourir une liste",
+      "body": "Un tableau contient plusieurs valeurs. La boucle for...of parcourt les valeurs dans l’ordre. On peut ainsi préparer un total, rechercher un élément ou afficher une liste de résultats.",
+      "code": "const prix = [100, 200, 300];\nlet somme = 0;\nfor (const montant of prix) {\n  somme = somme + montant;\n}\nconsole.log(somme);",
+      "output": "600",
+      "question": "Combien de valeurs sont parcourues ?",
+      "options": [
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": 1,
+      "explanation": "Le tableau contient trois valeurs : 100, 200 et 300."
+    }
+  ],
+  "author": "Nunya",
+  "reviewer": null,
+  "status": "brouillon",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

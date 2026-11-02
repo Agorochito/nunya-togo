@@ -1,0 +1,95 @@
+{
+  "id": "anglais-bases",
+  "title": "Anglais : les bases pour communiquer",
+  "en": "Anglais : les bases pour communiquer",
+  "domain": "language",
+  "glyph": "Hello",
+  "color": "#dde8ee",
+  "desc": "Des explications en français pour lire et construire tes premières phrases anglaises.",
+  "enDesc": "Des explications en français pour lire et construire tes premières phrases anglaises.",
+  "type": "subject",
+  "category": "RÉVISION SCOLAIRE",
+  "level": "Débutant",
+  "duration": 40,
+  "track": "school",
+  "author": "Nunya — brouillon de travail",
+  "reviewer": null,
+  "status": "brouillon",
+  "curriculumVerified": false,
+  "lessons": [
+    {
+      "title": "Se présenter simplement",
+      "body": "Une phrase de présentation peut commencer par « My name is… » ou « I am… ». Le pronom I signifie « je » et s’écrit avec une majuscule. Apprends une structure courte avant d’ajouter des détails.",
+      "code": "My name is Ama.\nI am a student.\nI live in Lomé.",
+      "output": "Je m’appelle Ama. Je suis élève. J’habite à Lomé.",
+      "question": "Que signifie « I am a student » ?",
+      "options": [
+        "Je suis élève",
+        "Je suis une ville",
+        "Je lis un livre"
+      ],
+      "answer": 0,
+      "explanation": "I am signifie « je suis » et student désigne un élève ou un étudiant.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Le présent simple",
+      "body": "Le présent simple exprime notamment des habitudes. Avec I, you, we et they, on emploie la base verbale. À la troisième personne du singulier, une terminaison en -s apparaît souvent. Certaines formes sont irrégulières.",
+      "code": "I learn. → J’apprends.\nShe learns. → Elle apprend.\nWe learn. → Nous apprenons.",
+      "output": "La forme dépend du sujet.",
+      "question": "Quelle forme complète « She … English » ?",
+      "options": [
+        "learn",
+        "learns",
+        "learning"
+      ],
+      "answer": 1,
+      "explanation": "Au présent simple, learn prend ici un -s avec she.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Lire une consigne",
+      "body": "Les consignes scolaires utilisent souvent les mêmes verbes. « Read » demande de lire, « write » d’écrire, « choose » de choisir. Commence par identifier l’action avant de chercher tous les mots inconnus.",
+      "code": "Read the text. → Lis le texte.\nChoose one answer. → Choisis une réponse.\nWrite a sentence. → Écris une phrase.",
+      "output": "Les verbes indiquent la tâche à faire.",
+      "question": "Que demande « Choose one answer » ?",
+      "options": [
+        "Lire tous les livres",
+        "Choisir une réponse",
+        "Dessiner une carte"
+      ],
+      "answer": 1,
+      "explanation": "Choose signifie choisir et one answer signifie une réponse.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Le vocabulaire technique utile",
+      "body": "Le vocabulaire anglais revient souvent dans les interfaces informatiques. Associe chaque terme à une action concrète. « Save » enregistre, « download » télécharge, « file » désigne un fichier.",
+      "code": "Save → enregistrer\nDownload → télécharger\nFile → fichier\nError → erreur",
+      "output": "Reconnaître quelques mots aide à se repérer.",
+      "question": "Quel mot signifie « enregistrer » ?",
+      "options": [
+        "Save",
+        "Delete",
+        "Close"
+      ],
+      "answer": 0,
+      "explanation": "Save enregistre ; delete supprime et close ferme.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    }
+  ],
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

@@ -1,0 +1,113 @@
+{
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "title_fr",
+    "minutes",
+    "source",
+    "license",
+    "offline",
+    "required",
+    "unlock_rule",
+    "body",
+    "practice",
+    "status"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "type": {
+      "enum": [
+        "leçon",
+        "exercice",
+        "projet",
+        "checkpoint"
+      ]
+    },
+    "minutes": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 20
+    },
+    "source": {
+      "const": "nunya"
+    },
+    "offline": {
+      "type": "boolean"
+    },
+    "status": {
+      "enum": [
+        "brouillon",
+        "relu",
+        "validé"
+      ]
+    },
+    "reviewer": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "body": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "practice": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "prompt",
+          "answer",
+          "explanation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "mcq",
+              "numeric",
+              "short",
+              "fill"
+            ]
+          },
+          "prompt": {
+            "type": "string",
+            "minLength": 8
+          },
+          "answer": {
+            "type": [
+              "integer",
+              "number",
+              "string"
+            ]
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 2
+          },
+          "hints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "minItems": 1
+    }
+  }
+}

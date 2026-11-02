@@ -1,0 +1,80 @@
+{
+  "id": "plan-activite",
+  "title": "De mon idée à un plan d’activité",
+  "en": "De mon idée à un plan d’activité",
+  "domain": "business",
+  "glyph": "↗",
+  "color": "#e3e7d1",
+  "desc": "Un canevas original avec besoin, public, moyens et budget fictif. À construire étape par étape.",
+  "enDesc": "Un canevas original avec besoin, public, moyens et budget fictif. À construire étape par étape.",
+  "type": "subject",
+  "category": "COMPÉTENCES & PROJET LOCAL",
+  "level": "Découverte",
+  "duration": 40,
+  "track": "future",
+  "source_url": "https://faiej.tg/fr/formation-initiale-en-entrepreneuriat?language_content_entity=fr",
+  "status": "brouillon",
+  "reviewer": null,
+  "curriculumVerified": false,
+  "lessons": [
+    {
+      "title": "Partir d’un besoin concret",
+      "body": "Une idée d’activité commence par un problème ou un besoin observé. Décris le public concerné et ce qui l’aiderait, sans supposer d’emblée qu’il achètera ta solution. Une petite enquête peut tester une hypothèse, avec des questions ouvertes et sans collecter d’informations personnelles inutiles. Pour apprendre, on peut inventer une situation et signaler qu’elle est fictive.",
+      "code": "Hypothèse fictive : des élèves veulent mieux organiser leurs révisions.\nProposition : une fiche hebdomadaire simple.\nQuestion : comment organisent-ils leurs séances aujourd’hui ?",
+      "output": "Une hypothèse à confronter à des observations.",
+      "question": "Quelle question évite de suggérer la réponse ?",
+      "options": [
+        "Tu adores mon idée, non ?",
+        "Comment fais-tu aujourd’hui ?",
+        "Tu vas acheter, oui ?"
+      ],
+      "answer": 1,
+      "explanation": "La question ouverte laisse la personne décrire ses pratiques au lieu de confirmer l’idée proposée."
+    },
+    {
+      "title": "Décrire une proposition simple",
+      "body": "Une proposition précise ce que l’on apporte, à qui et dans quelles conditions. Elle n’a pas besoin d’être compliquée. Compare-la aux solutions déjà utilisées et indique une différence vérifiable. Ne confonds pas une préférence exprimée avec une commande réelle. Dans ton canevas, sépare ce que tu sais de ce que tu imagines et de ce que tu dois encore vérifier.",
+      "code": "Public : élèves d’un groupe fictif\nBesoin : organiser trois matières\nProposition : une fiche imprimable\nÀ vérifier : lisibilité et utilité après une semaine",
+      "output": "Une proposition avec une limite de connaissance.",
+      "question": "Une intention d’achat est-elle une vente encaissée ?",
+      "options": [
+        "Non",
+        "Oui",
+        "Seulement par message"
+      ],
+      "answer": 0,
+      "explanation": "Une vente encaissée est une transaction réalisée. Une intention reste une indication à vérifier."
+    },
+    {
+      "title": "Tester un budget fictif",
+      "body": "Les recettes correspondent ici au prix multiplié par le nombre de ventes. Le résultat simplifié est la différence entre recettes et coûts. Cette simulation ne prend pas automatiquement en compte impôts, crédit, amortissement ou imprévus. Un résultat positif dans un scénario fictif ne prouve donc pas la rentabilité d’une entreprise réelle. Modifie une hypothèse à la fois pour comprendre son effet.",
+      "code": "Exercice : 10 unités × 500 FCFA = 5 000 FCFA\nCoûts fictifs : 3 500 FCFA\nRésultat simplifié : 5 000 − 3 500 = 1 500 FCFA",
+      "output": "1 500 FCFA dans ce scénario simplifié.",
+      "question": "Si seulement 6 unités sont vendues à 500 FCFA et les coûts restent 3 500 FCFA, le résultat vaut…",
+      "options": [
+        "500 FCFA",
+        "−500 FCFA",
+        "3 000 FCFA"
+      ],
+      "answer": 1,
+      "explanation": "Recettes = 6 × 500 = 3 000 FCFA. Résultat = 3 000 − 3 500 = −500 FCFA."
+    },
+    {
+      "title": "Choisir la prochaine vérification",
+      "body": "Un plan d’activité sert à décider quoi apprendre ensuite. Liste les moyens nécessaires, une inconnue importante, un petit test et un critère de retour. Les dispositifs comme le FAIEJ et l’ANPE ont leurs propres conditions : les parcours Nunya ne donnent ni accès automatique à un financement ni garantie d’acceptation. Garde ton canevas comme un brouillon à améliorer.",
+      "code": "Prochaine étape : faire lire une maquette fictive.\nCritère : la personne comprend la consigne sans aide.\nRetour : ce qui fonctionne, ce qui reste flou.",
+      "output": "Un test petit, observable et réversible.",
+      "question": "Quel retour aide le plus à améliorer une maquette ?",
+      "options": [
+        "C’est nul",
+        "Je ne comprends pas où commencer",
+        "Tout est parfait sans test"
+      ],
+      "answer": 1,
+      "explanation": "Le retour désigne un problème précis que l’on peut chercher à résoudre."
+    }
+  ],
+  "author": "Nunya",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

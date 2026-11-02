@@ -1,0 +1,84 @@
+{
+  "id": "ou-projet-fr",
+  "title": "OpenLearn : préparer un projet en français",
+  "en": "OpenLearn : préparer un projet en français",
+  "domain": "business",
+  "glyph": "◇",
+  "color": "#dce6eb",
+  "desc": "Sélection de notions adaptée en français à partir d’un cours gratuit OpenLearn. Explications, exemples et quiz dans Nunya ; adaptation partielle à relire.",
+  "enDesc": "Adaptation française partielle",
+  "category": "OPENLEARN · ADAPTATION FRANÇAISE",
+  "type": "subject",
+  "level": "Découverte",
+  "duration": 48,
+  "track": "future",
+  "provider": "The Open University / OpenLearn",
+  "author": "The Open University ; adaptation française et exercices par Nunya",
+  "source_url": "https://www.open.edu/openlearn/money-business/leadership-management/project-management-the-start-the-project-journey/content-section-0",
+  "original_title": "Project management: the start of the project journey",
+  "license": "CC BY-NC — conditions de la source",
+  "license_url": "https://about.open.ac.uk/strategy-and-policies/policies-and-statements/copyright-openlearn",
+  "source_notes": "Sélection et reformulation française non officielle. Exemples et quiz Nunya. Aucun média tiers, badge, diplôme ou cours complet revendiqué.",
+  "status": "brouillon",
+  "reviewer": null,
+  "adaptation_coverage": "partial",
+  "lessons": [
+    {
+      "title": "Définir le projet et son résultat",
+      "body": "Un projet vise un résultat particulier dans un cadre de temps et de ressources. Il se distingue d’une opération répétée en continu. Commence par exprimer le résultat attendu et un critère permettant de reconnaître qu’il est atteint. L’exemple Nunya est fictif : préparer une exposition scolaire avec trois panneaux avant une date convenue.",
+      "code": "Résultat : trois panneaux lisibles\nÉchéance : date convenue avec le groupe\nCritère : chaque panneau présente une idée et sa source",
+      "output": "Un résultat vérifiable plutôt qu’une intention vague.",
+      "question": "Quelle formulation décrit un résultat vérifiable ?",
+      "options": [
+        "Faire quelque chose de bien",
+        "Produire trois panneaux relus",
+        "Travailler beaucoup"
+      ],
+      "answer": 1,
+      "explanation": "Trois panneaux relus constituent un livrable que l’on peut observer et vérifier."
+    },
+    {
+      "title": "Repérer les acteurs et leurs attentes",
+      "body": "Un projet concerne plusieurs personnes ou groupes : ceux qui réalisent le travail, ceux qui utilisent le résultat et ceux qui peuvent l’influencer. Il faut comprendre leurs attentes et les contraintes, plutôt que supposer un accord général. Dans ton exercice, note un rôle, une attente et une question à clarifier pour chaque acteur fictif.",
+      "code": "Élèves : comprendre le message\nÉquipe : connaître les tâches\nEncadrant : vérifier les sources\nQuestion : qui valide la version finale ?",
+      "output": "Une carte simple des rôles et attentes.",
+      "question": "Faut-il seulement considérer les personnes qui réalisent les tâches ?",
+      "options": [
+        "Oui",
+        "Non",
+        "Seulement à la fin"
+      ],
+      "answer": 1,
+      "explanation": "Les utilisateurs et les personnes influençant le projet comptent aussi dans sa préparation."
+    },
+    {
+      "title": "Vérifier la faisabilité et l’incertitude",
+      "body": "Une idée peut être intéressante tout en demandant trop de temps ou de moyens. Une vérification de faisabilité examine ce qui est réalisable et ce qui reste incertain. Distingue une contrainte déjà connue d’un risque futur. Prévois une réponse proportionnée et un petit test quand une hypothèse importante peut être vérifiée avant de s’engager.",
+      "code": "Contrainte : trois séances disponibles\nRisque : une impression tardive\nRéponse : préparer une version manuscrite de secours\nTest : faire relire le premier panneau tôt",
+      "output": "Des contraintes et des risques rendus visibles.",
+      "question": "Quel élément est un risque futur dans cet exemple ?",
+      "options": [
+        "Le retard d’impression possible",
+        "Le nombre de séances déjà fixé",
+        "Le titre du projet"
+      ],
+      "answer": 0,
+      "explanation": "Un retard possible est un événement incertain. Les trois séances constituent une contrainte connue."
+    },
+    {
+      "title": "Avancer par étapes et apprendre du retour",
+      "body": "Le cycle d’un projet relie préparation, réalisation et bilan. Selon le contexte, on peut planifier des étapes successives ou essayer rapidement un prototype, puis l’améliorer. Le suivi compare le résultat au besoin et aide à adapter le travail. Après ton projet fictif, garde une réussite, une difficulté et une amélioration pour la prochaine fois.",
+      "code": "Préparer → essayer un premier panneau → recevoir un retour\nAméliorer → finaliser → faire le bilan",
+      "output": "Une première version permet d’apprendre avant de tout produire.",
+      "question": "Pourquoi montrer un prototype tôt ?",
+      "options": [
+        "Pour éviter toute vérification",
+        "Pour obtenir un retour avant de finaliser",
+        "Pour prouver que le projet est terminé"
+      ],
+      "answer": 1,
+      "explanation": "Un retour précoce aide à corriger le résultat pendant qu’il est encore facile à modifier."
+    }
+  ],
+  "last_verified": null
+}

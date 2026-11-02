@@ -1,0 +1,95 @@
+{
+  "id": "citoyennete",
+  "title": "ECM : dialoguer et vivre ensemble",
+  "en": "ECM : dialoguer et vivre ensemble",
+  "domain": "humanities",
+  "glyph": "◇",
+  "color": "#e3e9d7",
+  "desc": "Écoute, respect des personnes, information fiable et participation à un projet collectif.",
+  "enDesc": "Écoute, respect des personnes, information fiable et participation à un projet collectif.",
+  "type": "subject",
+  "category": "RÉVISION SCOLAIRE",
+  "level": "Débutant",
+  "duration": 40,
+  "track": "school",
+  "author": "Nunya — brouillon de travail",
+  "reviewer": null,
+  "status": "brouillon",
+  "curriculumVerified": false,
+  "lessons": [
+    {
+      "title": "Exprimer un désaccord",
+      "body": "On peut contester une idée sans attaquer la personne. Décris le point précis, explique ta raison et propose une autre solution. Écouter une réponse ne signifie pas renoncer à son avis.",
+      "code": "« Je comprends ton idée. Je propose une autre\nsolution parce que nous avons peu de temps. »",
+      "output": "Un désaccord peut rester respectueux.",
+      "question": "Que faut-il discuter ?",
+      "options": [
+        "L’idée et les raisons",
+        "L’apparence de la personne",
+        "Une rumeur personnelle"
+      ],
+      "answer": 0,
+      "explanation": "Un dialogue utile porte sur les arguments et respecte les personnes.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Vérifier avant de partager",
+      "body": "Une information en ligne peut être incomplète ou fausse. Cherche la source, la date et les éléments qui la soutiennent. Une image ou un message très partagé ne suffit pas à établir un fait.",
+      "code": "Source → date → preuves → comparaison",
+      "output": "Quatre réflexes de vérification.",
+      "question": "Un grand nombre de partages prouve-t-il une information ?",
+      "options": [
+        "Oui",
+        "Non",
+        "Toujours si le titre est court"
+      ],
+      "answer": 1,
+      "explanation": "La popularité n’est pas une preuve ; il faut examiner les sources.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Partager des responsabilités",
+      "body": "Un projet collectif fonctionne mieux avec des rôles compréhensibles et des engagements réalistes. Note qui fait quoi et quand. Si une difficulté apparaît, informe le groupe pour ajuster le travail.",
+      "code": "Tâche → responsable → date → état",
+      "output": "Une organisation rend les engagements visibles.",
+      "question": "Si une tâche prend du retard, il faut…",
+      "options": [
+        "En parler pour adapter le plan",
+        "Disparaître sans explication",
+        "Inventer un résultat"
+      ],
+      "answer": 0,
+      "explanation": "Informer le groupe permet de rechercher une solution ensemble.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Respecter la vie privée",
+      "body": "Une personne doit pouvoir garder des informations pour elle. Avant de publier une photo ou un détail personnel, demande si le partage est nécessaire et autorisé. Un projet scolaire peut fonctionner sans exposer les participants.",
+      "code": "Collecter moins\nDemander l’accord\nProtéger les informations",
+      "output": "Des réflexes utiles dans les projets collectifs.",
+      "question": "Pour un sondage scolaire anonyme, faut-il toujours demander le nom ?",
+      "options": [
+        "Oui",
+        "Non",
+        "Seulement en majuscules"
+      ],
+      "answer": 1,
+      "explanation": "Un sondage peut souvent être réalisé sans identité personnelle.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    }
+  ],
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

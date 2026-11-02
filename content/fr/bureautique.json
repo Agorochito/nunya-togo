@@ -1,0 +1,80 @@
+{
+  "id": "bureautique",
+  "title": "Documents & tableurs pour mes projets",
+  "en": "Documents & tableurs pour mes projets",
+  "domain": "tech",
+  "glyph": "▦",
+  "color": "#e3e7d1",
+  "desc": "Organiser un tableau, calculer et rédiger une fiche claire. Ces compétences servent dans tous les domaines.",
+  "enDesc": "Organiser un tableau, calculer et rédiger une fiche claire. Ces compétences servent dans tous les domaines.",
+  "type": "subject",
+  "category": "COMPÉTENCES & PROJET LOCAL",
+  "level": "Découverte",
+  "duration": 40,
+  "track": "future",
+  "source_url": "https://stages.aed-ifad.tg/",
+  "status": "brouillon",
+  "reviewer": null,
+  "curriculumVerified": false,
+  "lessons": [
+    {
+      "title": "Un tableau qui répond à une question",
+      "body": "Un tableau devient utile quand chaque colonne a un sens précis et que chaque ligne décrit le même type d’objet. Choisis des en-têtes courts, indique les unités et évite de mélanger plusieurs informations dans une seule cellule. Par exemple, sépare un prix unitaire et une quantité pour pouvoir les calculer. Les noms et numéros de personnes ne sont pas nécessaires à un exercice de budget.",
+      "code": "Produit | Quantité | Prix unitaire (FCFA)\nCahier | 3 | 250\nStylo | 2 | 100",
+      "output": "Une ligne par produit, une colonne par information.",
+      "question": "Quelle colonne doit préciser son unité ?",
+      "options": [
+        "Le prix",
+        "Le titre du tableau uniquement",
+        "Aucune"
+      ],
+      "answer": 0,
+      "explanation": "Une unité évite de confondre un montant en FCFA avec une quantité ou une durée."
+    },
+    {
+      "title": "Le principe d’une formule",
+      "body": "Dans un tableur, une formule commence généralement par = et peut utiliser les adresses des cellules. B2 désigne la cellule de la colonne B et de la ligne 2. =B2*C2 multiplie leurs valeurs. Une formule ne prouve pas que les données sont correctes : il faut vérifier un exemple à la main et contrôler les unités. Les noms de fonctions varient selon le logiciel et sa langue.",
+      "code": "B2 contient 3 ; C2 contient 250\nD2 contient =B2*C2\nD2 affiche 750",
+      "output": "Le montant calculé est 750 FCFA.",
+      "question": "Si B2 vaut 4 et C2 vaut 100, =B2*C2 affiche…",
+      "options": [
+        "104",
+        "400",
+        "25"
+      ],
+      "answer": 1,
+      "explanation": "La formule multiplie : 4 × 100 = 400."
+    },
+    {
+      "title": "Vérifier avant de présenter",
+      "body": "Une erreur de saisie peut se propager dans un graphique ou une synthèse. Vérifie les valeurs manquantes, les doublons, les unités et les dates avant de conclure. Un graphique doit avoir un titre informatif et des axes lisibles. Il faut aussi expliquer ce qu’il ne permet pas de dire : une différence observée ne suffit pas à prouver une cause.",
+      "code": "Contrôle : en-têtes → unités → valeurs → calcul témoin\nPuis : titre du graphique → axes → limite de l’analyse",
+      "output": "Un résultat doit être compréhensible et vérifiable.",
+      "question": "Une hausse sur un graphique prouve à elle seule sa cause ?",
+      "options": [
+        "Oui",
+        "Non",
+        "Seulement si le graphique est en couleur"
+      ],
+      "answer": 1,
+      "explanation": "Un graphique décrit une évolution. Démontrer une cause demande d’autres informations et une méthode adaptée."
+    },
+    {
+      "title": "Rédiger une fiche partageable",
+      "body": "Une fiche professionnelle ou scolaire doit permettre de comprendre le besoin, la méthode, le résultat et la prochaine étape. Utilise des titres, des phrases courtes et une date. Choisis un nom de fichier explicite et conserve une copie modifiable avant d’exporter. Pour un exemple scolaire, un pseudonyme suffit et aucune donnée confidentielle n’est nécessaire.",
+      "code": "Titre : Budget fictif de sortie\nObjectif → données → calcul → résultat → limite\nFichier : budget-sortie-2026-11-v1",
+      "output": "Une fiche que l’on peut relire et améliorer.",
+      "question": "Quel nom de fichier facilite le suivi ?",
+      "options": [
+        "final-final-vraiment",
+        "document1",
+        "budget-sortie-2026-11-v1"
+      ],
+      "answer": 2,
+      "explanation": "Un sujet, une date et une version rendent le document plus facile à reconnaître."
+    }
+  ],
+  "author": "Nunya",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

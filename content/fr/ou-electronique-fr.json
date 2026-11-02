@@ -1,0 +1,84 @@
+{
+  "id": "ou-electronique-fr",
+  "title": "OpenLearn : découvrir l’électronique en français",
+  "en": "OpenLearn : découvrir l’électronique en français",
+  "domain": "physics",
+  "glyph": "Ω",
+  "color": "#dce6eb",
+  "desc": "Sélection de notions adaptée en français à partir d’un cours gratuit OpenLearn. Explications, exemples et quiz dans Nunya ; adaptation partielle à relire.",
+  "enDesc": "Adaptation française partielle",
+  "category": "OPENLEARN · ADAPTATION FRANÇAISE",
+  "type": "subject",
+  "level": "Découverte",
+  "duration": 48,
+  "track": "future",
+  "provider": "The Open University / OpenLearn",
+  "author": "The Open University ; adaptation française et exercices par Nunya",
+  "source_url": "https://www.open.edu/openlearn/science-maths-technology/an-introduction-electronics/content-section-0",
+  "original_title": "An introduction to electronics",
+  "license": "CC BY-NC — conditions de la source",
+  "license_url": "https://about.open.ac.uk/strategy-and-policies/policies-and-statements/copyright-openlearn",
+  "source_notes": "Sélection et reformulation française non officielle. Exemples et quiz Nunya. Aucun média tiers, badge, diplôme ou cours complet revendiqué.",
+  "status": "brouillon",
+  "reviewer": null,
+  "adaptation_coverage": "partial",
+  "lessons": [
+    {
+      "title": "Distinguer tension, courant et résistance",
+      "body": "La tension représente une différence de potentiel électrique et s’exprime en volts (V). Le courant mesure un débit de charge et s’exprime en ampères (A). La résistance s’exprime en ohms (Ω). Ces grandeurs décrivent des aspects différents d’un circuit : on ne les additionne pas comme si elles avaient la même unité. Dans cette adaptation, on raisonne uniquement sur des schémas et des valeurs fictives, sans manipulation d’installation.",
+      "code": "Tension U : volt (V)\nCourant I : ampère (A)\nRésistance R : ohm (Ω)",
+      "output": "Trois grandeurs, trois unités.",
+      "question": "L’unité du courant électrique est…",
+      "options": [
+        "le volt",
+        "l’ampère",
+        "l’ohm"
+      ],
+      "answer": 1,
+      "explanation": "L’ampère mesure le courant ; le volt mesure une tension et l’ohm une résistance."
+    },
+    {
+      "title": "Utiliser la loi d’Ohm dans un modèle",
+      "body": "Pour une résistance idéale dans les conditions du modèle, la relation est U = RI. On peut en déduire I = U/R lorsque R n’est pas nul. Convertis les milliampères en ampères et les kilo-ohms en ohms avant le calcul. La relation d’une résistance idéale n’est pas une description universelle de tous les composants électroniques.",
+      "code": "Modèle : U = 6 V ; R = 300 Ω\nI = 6 / 300 = 0,020 A\n0,020 A = 20 mA",
+      "output": "Le courant calculé est 20 mA.",
+      "question": "Pour U = 9 V et R = 450 Ω, I vaut…",
+      "options": [
+        "20 mA",
+        "2 A",
+        "50 mA"
+      ],
+      "answer": 0,
+      "explanation": "9/450 = 0,020 A, soit 20 mA."
+    },
+    {
+      "title": "Un diviseur de tension à vide",
+      "body": "Deux résistances en série peuvent former un diviseur. Si la sortie aux bornes de R2 ne fournit pratiquement aucun courant à une autre charge, U_sortie = U_entrée × R2/(R1 + R2). L’hypothèse de sortie à vide compte : ajouter une charge peut modifier le résultat. Cet exercice est un calcul, pas une consigne de montage réel.",
+      "code": "U_entrée = 10 V ; R1 = 1 000 Ω ; R2 = 1 000 Ω\nU_sortie = 10 × 1 000/(1 000 + 1 000)\nU_sortie = 5 V",
+      "output": "La sortie à vide vaut 5 V dans ce modèle.",
+      "question": "Avec deux résistances égales et une entrée de 8 V, la sortie à vide vaut…",
+      "options": [
+        "8 V",
+        "2 V",
+        "4 V"
+      ],
+      "answer": 2,
+      "explanation": "Le rapport R2/(R1 + R2) vaut 1/2. La tension de sortie vaut donc 8/2 = 4 V."
+    },
+    {
+      "title": "Relier capteur, traitement et action",
+      "body": "Un système électronique peut recueillir une information, appliquer une règle et commander une action. Un capteur produit un signal lié à une grandeur ; la logique traite ce signal ; un actionneur agit. Dans un exemple fictif d’éclairage automatique, on peut décrire cette chaîne sur papier et discuter de ses limites, comme une mesure bruitée ou une règle mal choisie.",
+      "code": "Information : niveau de lumière fictif\nRègle : comparer à un seuil\nAction : commander un éclairage simulé\nRetour : vérifier si l’action correspond au besoin",
+      "output": "Un système peut être décrit comme une chaîne de fonctions.",
+      "question": "Quel élément transforme une commande en action ?",
+      "options": [
+        "L’actionneur",
+        "La date du document",
+        "Le titre du schéma"
+      ],
+      "answer": 0,
+      "explanation": "L’actionneur réalise l’action commandée. Un capteur recueille une information."
+    }
+  ],
+  "last_verified": null
+}

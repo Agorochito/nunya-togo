@@ -1,0 +1,25 @@
+{
+  "version": 3,
+  "date": "2026-11-01",
+  "resources": 11181,
+  "articles": 7066,
+  "videos": 4115,
+  "guidedCourses": 38,
+  "originalCourses": 36,
+  "adaptedCourses": 2,
+  "totalLessons": 166,
+  "originalLessons": 158,
+  "collections": 84,
+  "bySubject": {
+    "tech": 7068,
+    "business": 124,
+    "maths": 3169,
+    "physics": 197,
+    "biology": 223,
+    "chemistry": 400
+  },
+  "sourceReports": [
+    "khan_import_report.json",
+    "mdn_import_report.json"
+  ]
+}

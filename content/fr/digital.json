@@ -1,0 +1,102 @@
+{
+  "id": "digital",
+  "title": "À l’aise avec le numérique",
+  "en": "Feel at home with digital tools",
+  "category": "CULTURE NUMÉRIQUE",
+  "desc": "Les bons réflexes pour explorer, comprendre et utiliser le numérique.",
+  "enDesc": "Practical skills to explore, understand and use digital tools.",
+  "type": "digital",
+  "level": "Tous niveaux",
+  "duration": 60,
+  "lessons": [
+    {
+      "title": "Comprendre ton appareil",
+      "body": "Un appareil comporte du matériel (écran, processeur, mémoire) et des logiciels (applications, système). Le stockage conserve les fichiers. La mémoire vive sert au travail en cours. Une application légère demande moins de ressources.",
+      "code": "Matériel → ce que tu peux toucher\nLogiciel → les programmes\nStockage → les fichiers conservés",
+      "output": "Un téléphone contient du matériel et des logiciels.",
+      "question": "Où tes photos sont-elles conservées durablement ?",
+      "options": [
+        "Dans le stockage",
+        "Uniquement dans la mémoire vive",
+        "Dans le clavier"
+      ],
+      "answer": 0,
+      "explanation": "Le stockage garde les fichiers, y compris quand l’appareil est éteint."
+    },
+    {
+      "title": "Organiser tes fichiers",
+      "body": "Donne à tes fichiers des noms faciles à retrouver et classe-les dans des dossiers. Une extension indique souvent le type : .pdf pour un document, .jpg pour une image, .py pour un programme Python. Faire une copie sur un autre support protège contre la perte de l’appareil.",
+      "code": "Cours/\n  Python/\n    lecon-01.pdf\n  Projets/\n    budget.py",
+      "output": "Une organisation qui t’aide à retrouver tes documents.",
+      "question": "Quel nom est le plus facile à retrouver ?",
+      "options": [
+        "document-final-final2",
+        "cours-python-variables.pdf",
+        "truc"
+      ],
+      "answer": 1,
+      "explanation": "Un nom descriptif donne le sujet et le type de document sans devoir l’ouvrir."
+    },
+    {
+      "title": "Économiser ses données",
+      "body": "Le texte consomme généralement moins de données que la vidéo. Télécharge les leçons lors d’une connexion disponible, puis utilise-les hors ligne. Sur Nunya, les leçons sont en texte : aucune vidéo ne démarre automatiquement.",
+      "code": "1. Se connecter\n2. Ouvrir Mes téléchargements\n3. Enregistrer un parcours\n4. Revenir hors connexion",
+      "output": "Tes cours restent sur cet appareil.",
+      "question": "Quelle habitude économise généralement les données ?",
+      "options": [
+        "Lancer automatiquement les vidéos",
+        "Lire une leçon textuelle enregistrée",
+        "Télécharger plusieurs fois le même fichier"
+      ],
+      "answer": 1,
+      "explanation": "Une leçon textuelle enregistrée se lit sans nouvelle consommation de données."
+    },
+    {
+      "title": "Protéger ses comptes",
+      "body": "Choisis une phrase de passe longue et unique pour chaque compte. Un gestionnaire de mots de passe peut aider à les conserver. Quand elle est disponible, active l’authentification à deux facteurs. Ne partage jamais un code de connexion reçu par message.",
+      "code": "Phrase de passe → longue et unique\nDeuxième facteur → protection supplémentaire\nCode de connexion → à garder privé",
+      "output": "Plusieurs protections valent mieux qu’une seule.",
+      "question": "Un inconnu te demande ton code de connexion. Que fais-tu ?",
+      "options": [
+        "Je le lui envoie",
+        "Je le publie",
+        "Je ne le partage pas"
+      ],
+      "answer": 2,
+      "explanation": "Un code de connexion permet d’accéder à ton compte. Il doit rester privé, même si le message paraît urgent."
+    },
+    {
+      "title": "Vérifier une information",
+      "body": "Avant de partager une information, cherche qui la publie, à quelle date et sur quelles preuves elle repose. Compare avec une autre source fiable. Un message très partagé peut quand même être faux. Une image peut être sortie de son contexte.",
+      "code": "Qui publie ?\nQuelle date ?\nQuelles preuves ?\nUne autre source confirme-t-elle ?",
+      "output": "Quatre questions pour prendre du recul.",
+      "question": "Un message est très partagé. Cela prouve-t-il qu’il est vrai ?",
+      "options": [
+        "Oui, toujours",
+        "Non, il faut vérifier les sources",
+        "Oui, si le titre est convaincant"
+      ],
+      "answer": 1,
+      "explanation": "La popularité d’une publication ne prouve pas sa fiabilité. La source et les preuves sont plus utiles."
+    },
+    {
+      "title": "Créer avec responsabilité",
+      "body": "Respecte le travail des autres : indique tes sources et vérifie les licences avant de réutiliser une image. Demande l’accord d’une personne avant de publier sa photo. Pour un premier projet scolaire, utilise tes propres textes et évite les informations personnelles.",
+      "code": "Avant de publier :\n✓ Mes sources sont indiquées\n✓ J’ai le droit d’utiliser les images\n✓ Je respecte la vie privée",
+      "output": "Un projet utile et respectueux des autres.",
+      "question": "Avant de publier la photo d’un camarade, tu dois…",
+      "options": [
+        "Demander son accord",
+        "Ajouter un filtre",
+        "Publier vite"
+      ],
+      "answer": 0,
+      "explanation": "L’accord de la personne est essentiel. Respecter sa vie privée compte autant que la technique."
+    }
+  ],
+  "author": "Nunya",
+  "reviewer": null,
+  "status": "brouillon",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

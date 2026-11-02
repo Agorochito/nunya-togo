@@ -1,0 +1,80 @@
+{
+  "id": "aquaculture",
+  "title": "Aquaculture : découvrir la filière",
+  "en": "Aquaculture : découvrir la filière",
+  "domain": "agri",
+  "glyph": "≈",
+  "color": "#e3e7d1",
+  "desc": "Observer une chaîne de valeur, lire un tableau et préparer un projet fictif. Une initiation sans intervention sur un élevage.",
+  "enDesc": "Observer une chaîne de valeur, lire un tableau et préparer un projet fictif. Une initiation sans intervention sur un élevage.",
+  "type": "subject",
+  "category": "COMPÉTENCES & PROJET LOCAL",
+  "level": "Découverte",
+  "duration": 40,
+  "track": "future",
+  "source_url": "https://aed-ifad.tg/faq/",
+  "status": "brouillon",
+  "reviewer": null,
+  "curriculumVerified": false,
+  "lessons": [
+    {
+      "title": "Voir toute la chaîne de valeur",
+      "body": "Une filière aquacole relie plusieurs activités : production, observation des conditions d’élevage, organisation des intrants, transformation et commercialisation. Ces métiers demandent des formations pratiques encadrées. Pour découvrir la filière, on peut d’abord dessiner cette chaîne et repérer les informations que chaque acteur transmet au suivant. Le projet Nunya utilise des données fictives et ne prescrit ni densité, ni traitement, ni ration pour des animaux réels.",
+      "code": "Production → suivi → transformation → distribution\nÀ chaque étape : une information à enregistrer.",
+      "output": "Une chaîne de valeur comporte plusieurs métiers.",
+      "question": "Quel document aide à garder la trace d’un lot fictif ?",
+      "options": [
+        "Une fiche datée avec un identifiant de lot",
+        "Un prix sans date",
+        "Une photo sans contexte"
+      ],
+      "answer": 0,
+      "explanation": "Un identifiant et une date permettent de relier plusieurs observations au même lot."
+    },
+    {
+      "title": "Créer un carnet d’observation",
+      "body": "Un carnet utile distingue la date, l’unité, la valeur observée et la méthode de mesure. Une valeur manquante ne doit pas devenir zéro : zéro est une mesure possible, tandis qu’une case vide signifie qu’aucune mesure n’est disponible. Pour un exercice, invente quatre observations cohérentes et indique clairement qu’elles sont fictives. Dans un élevage réel, les mesures et leur interprétation doivent suivre un protocole professionnel.",
+      "code": "Date | Lot | Mesure fictive | Unité | Méthode\n01/11 | A | 12 | unités | comptage fictif\n02/11 | A | non mesuré | — | —",
+      "output": "Une absence de mesure reste identifiable.",
+      "question": "Une case non mesurée doit être notée…",
+      "options": [
+        "0 automatiquement",
+        "non mesuré",
+        "avec une valeur au hasard"
+      ],
+      "answer": 1,
+      "explanation": "Noter « non mesuré » préserve la différence entre absence d’information et mesure nulle."
+    },
+    {
+      "title": "Faire un calcul de suivi",
+      "body": "Un tableau peut servir à vérifier des quantités plutôt qu’à prendre une décision technique d’élevage. Dans ce modèle fictif, un stock initial augmente avec les entrées et diminue avec les sorties. Les unités doivent rester les mêmes. Compare le stock calculé à un comptage fictif et note l’écart sans inventer sa cause. Cette méthode est aussi utile pour un magasin ou un atelier.",
+      "code": "Stock initial : 20 unités\nEntrées : 8 ; sorties : 5\nStock théorique : 20 + 8 − 5 = 23 unités\nComptage fictif : 22 → écart de −1",
+      "output": "Le stock théorique vaut 23 unités.",
+      "question": "Avec 10 au départ, 4 entrées et 3 sorties, le stock théorique vaut…",
+      "options": [
+        "11",
+        "17",
+        "9"
+      ],
+      "answer": 0,
+      "explanation": "10 + 4 − 3 = 11. Une différence avec le comptage doit être documentée puis vérifiée."
+    },
+    {
+      "title": "Préparer ses questions de formation",
+      "body": "Avant de choisir une formation, distingue un centre, une filière, un diplôme et une condition d’entrée. Le site de l’AED décrit une filière IFAD en aquaculture, mais une fiche générale ne confirme pas qu’une inscription est ouverte aujourd’hui. Prépare des questions sur les contenus, l’alternance, le coût, l’encadrement et les conditions actualisées. Nunya fournit des bases de découverte, pas la qualification professionnelle.",
+      "code": "Mes questions :\n1. Quelles compétences seront pratiquées ?\n2. Quelles conditions s’appliquent cette année ?\n3. Quel accompagnement et quel diplôme ?",
+      "output": "Une comparaison fondée sur des informations à vérifier.",
+      "question": "Une ancienne annonce d’admission prouve-t-elle une ouverture actuelle ?",
+      "options": [
+        "Oui, toujours",
+        "Seulement si elle a un logo",
+        "Non, il faut vérifier la session actuelle"
+      ],
+      "answer": 2,
+      "explanation": "Les dates et modalités changent. Il faut une information actualisée de l’organisme de formation."
+    }
+  ],
+  "author": "Nunya",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

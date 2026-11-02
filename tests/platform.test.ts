@@ -1,0 +1,31 @@
+import {describe,it,expect,vi} from 'vitest';import {readFileSync} from 'node:fs';import {spawnSync} from 'node:child_process';import {answerWithQuota,openAiCompatibleProvider,retrieveContexts} from '../lib/ai/provider';
+const data=(p:string)=>JSON.parse(readFileSync(new URL('../dist/'+p,import.meta.url),'utf8'));
+describe('catalogue integrity',()=>{
+ it('keeps thousands of actual resources across school subjects',()=>{const m=data('library/manifest.json');expect(m.resources).toBe(11181);for(const s of ['maths','physics','chemistry','biology','business'])expect(m.bySubject[s]).toBeGreaterThan(100)});
+ it('keeps unverified exam dates out of official countdowns',()=>{const e=data('data/togo_exams.json');expect(e.passCalculatorEnabled).toBe(false);for(const x of e.exams)if(!x.verified)expect(x.showOfficialCountdown).toBe(false)});
+ it('preserves downloads when a shell cache version changes',()=>{const code=readFileSync(new URL('../dist/sw.js',import.meta.url),'utf8');expect(code).toContain('/^nunya-v[0-9]/');for(const k of ['nunya-library-v1','nunya-python-v1'])expect(/^nunya-v[0-9]/.test(k)).toBe(false)});
+ it('strips injected script, handlers, unsafe links and embedded forms',()=>{const result=spawnSync('python3',['scripts/sanitize-articles.py'],{input:JSON.stringify({html:'<p onclick="steal()">Bonjour</p><script>evil()</script><a href="javascript:evil()">Lien</a><iframe src="https://evil.test">secret</iframe><img src=x onerror=evil()>'})+'\n',encoding:'utf8'});expect(result.status).toBe(0);const html=JSON.parse(result.stdout).html;expect(html).toContain('Bonjour');expect(html).not.toMatch(/evil|secret|onclick|iframe|img|script|javascript:/)});
+});
+describe('future server AI boundary (not enabled in pilot)',()=>{
+ const request={question:'Explique une variable',ageBand:'unspecified' as const,language:'fr' as const,hintsAlreadyShown:0,contexts:[]};
+ it('does not call a provider when a quota reservation is denied',async()=>{const answer=vi.fn();await expect(answerWithQuota('p',request,{reserve:async()=>({allowed:false,remaining:0})},{answer})).rejects.toThrow('quota');expect(answer).not.toHaveBeenCalled()});
+ it('requires identity before reserving a quota',async()=>{const reserve=vi.fn();await expect(answerWithQuota('',request,{reserve},{answer:vi.fn()})).rejects.toThrow('Authentification');expect(reserve).not.toHaveBeenCalled()});
+ it('returns the atomic remaining quota with the provider response',async()=>{const result=await answerWithQuota('p',request,{reserve:async()=>({allowed:true,remaining:14})},{answer:async()=>({text:'Un nom pour une valeur.',model:'test'})});expect(result.remaining).toBe(14)});
+ it('requires HTTPS and limits retrieval to relevant supplied chapters',()=>{expect(()=>openAiCompatibleProvider({endpoint:'http://test',key:'test',model:'test'})).toThrow('HTTPS');expect(retrieveContexts('variable',[{id:'1',text:'Une variable contient une valeur.',source:'Nunya'},{id:'2',text:'Une cellule vivante.',source:'Nunya'}]).map(c=>c.id)).toEqual(['1'])});
+});
+
+describe('exam import and classroom tooling',()=>{
+ it('includes real Terminale practice documents without labelling them national BAC II papers',()=>{const rows=data('data/official_exam_documents.json');expect(rows).toHaveLength(492);const terminale=rows.filter((r:{exam:string})=>r.exam==='BAC II');expect(terminale).toHaveLength(28);expect(terminale.every((r:{document_type:string,url:string})=>r.document_type==='composition-regionale-terminale'&&r.url.startsWith('https://ecole.gouv.tg/'))).toBe(true)});
+ it('generates mathematically consistent original variants with a complete marking scheme',()=>{for(const seed of [1,3,99]){const run=spawnSync(process.execPath,['scripts/generate-exercise.mjs',String(seed)],{encoding:'utf8'});expect(run.status).toBe(0);const e=JSON.parse(run.stdout);expect(e.status).toBe('brouillon');expect(e.questions.reduce((n:number,q:{points:number})=>n+q.points,0)).toBe(e.totalPoints);expect(e.questions[3].answer).toBe(10+seed%12)}});
+});
+
+describe('local project portfolio',()=>{
+ it('offers a real activity for every career sector and only references existing courses',()=>{const projects=data('data/togo_projects.json');expect(projects).toHaveLength(13);expect(new Set(projects.map((p:{id:string})=>p.id)).size).toBe(13);for(const p of projects){expect(p.tasks).toHaveLength(3);expect(p.review).toHaveLength(4);for(const c of p.courses)expect(()=>readFileSync(new URL('../content/fr/'+c+'.json',import.meta.url))).not.toThrow()}});
+ it('keeps Togolese platform sources, reuse boundaries and implementation notes',()=>{const sources=data('data/togo_platforms.json');expect(sources).toHaveLength(9);for(const p of sources){expect(p.url).toMatch(/^https:\/\//);expect(p.implemented.length).toBeGreaterThan(40);expect(p.affiliation).toBe(false)}});
+});
+
+import vm from 'node:vm';
+describe('appearance and simulation boundaries',()=>{
+ it('accepts only hex colours and chooses readable text for bright and dark accents',()=>{const s=readFileSync(new URL('../dist/personalization.js',import.meta.url),'utf8'),context:any={};vm.createContext(context);vm.runInContext(s.slice(s.indexOf('function validAccent'),s.indexOf('function applyAccent'))+';globalThis.api={validAccent,accentText,contrastAccent};',context);expect(context.api.validAccent('#6D5BE7')).toBe('#6d5be7');expect(context.api.validAccent('red;display:none')).toBe(null);for(const color of ['#ffffff','#000000','#ffff00','#6d5be7','#00ff00','#ff0055'])for(const bg of ['#f8f9f5','#17271e'])expect(context.api.contrastAccent(context.api.accentText(color,bg),bg)).toBeGreaterThanOrEqual(4.5)});
+ it('keeps zero budgets, bounds invalid inputs and calculates losses',()=>{const s=readFileSync(new URL('../dist/local-projects.js',import.meta.url),'utf8'),context:any={};vm.createContext(context);vm.runInContext(s.slice(s.indexOf('function normalizeProjectBudget'),s.indexOf('function projectBudgetPreview'))+';globalThis.budget=normalizeProjectBudget;',context);expect(context.budget({quantity:0,price:500,costs:3500}).result).toBe(-3500);expect(context.budget({quantity:10,price:500,costs:3500}).result).toBe(1500);expect(context.budget({quantity:-1,price:Infinity,costs:NaN}).revenue).toBe(0)});
+});

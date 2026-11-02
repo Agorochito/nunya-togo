@@ -1,0 +1,77 @@
+{
+  "id": "maths",
+  "title": "Les maths qui servent vraiment",
+  "en": "Les maths qui servent vraiment",
+  "category": "MATHÉMATIQUES",
+  "domain": "maths",
+  "desc": "Fractions, proportions et probabilités à travers des situations de la vie quotidienne.",
+  "enDesc": "Fractions, proportions et probabilités à travers des situations de la vie quotidienne.",
+  "glyph": "½",
+  "color": "#e8e0f3",
+  "type": "subject",
+  "level": "Débutant",
+  "duration": 40,
+  "lessons": [
+    {
+      "title": "Des parts à comparer",
+      "body": "Une fraction décrit un nombre de parts sur un total de parts égales. Le numérateur est en haut, le dénominateur en bas. Deux fractions peuvent représenter la même quantité : partager chaque moitié en deux donne deux quarts pour une moitié.",
+      "code": "1/2 = 2/4 = 3/6\nUne moitié reste une moitié.",
+      "output": "Des écritures différentes pour une même quantité.",
+      "question": "Quelle fraction vaut 1/2 ?",
+      "options": [
+        "2/4",
+        "1/4",
+        "3/4"
+      ],
+      "answer": 0,
+      "explanation": "Deux parts sur quatre représentent la moitié du total."
+    },
+    {
+      "title": "Le prix suit la quantité",
+      "body": "Deux grandeurs sont proportionnelles quand on passe de l’une à l’autre avec le même coefficient. Si un cahier coûte 250 FCFA, quatre cahiers coûtent quatre fois plus. Vérifie que le prix unitaire reste identique avant d’appliquer cette méthode.",
+      "code": "1 cahier → 250 FCFA\n4 cahiers → 4 × 250 = 1 000 FCFA",
+      "output": "1 000 FCFA",
+      "question": "À prix unitaire constant, 6 cahiers coûtent…",
+      "options": [
+        "1 250 FCFA",
+        "1 500 FCFA",
+        "2 000 FCFA"
+      ],
+      "answer": 1,
+      "explanation": "6 × 250 = 1 500 FCFA."
+    },
+    {
+      "title": "Comprendre un pourcentage",
+      "body": "Un pourcentage est une proportion sur 100. Pour calculer 10 % d’un montant, on multiplie par 10 puis on divise par 100. Ne confonds pas le montant de la réduction et le prix restant à payer.",
+      "code": "Prix : 2 000 FCFA\nRéduction : 10 % = 200 FCFA\nNouveau prix : 1 800 FCFA",
+      "output": "Le prix baisse de 200 FCFA.",
+      "question": "Que valent 25 % de 100 ?",
+      "options": [
+        "4",
+        "25",
+        "75"
+      ],
+      "answer": 1,
+      "explanation": "25 % signifie 25 sur 100 : le quart de 100 vaut 25."
+    },
+    {
+      "title": "Du hasard aux données",
+      "body": "Une probabilité décrit une possibilité entre 0 et 1. Avec une pièce équilibrée, les deux faces ont chacune une chance sur deux. Quelques essais ne garantissent pas une répartition exacte ; la variation fait partie du hasard.",
+      "code": "Probabilité de pile = 1/2\nProbabilité de face = 1/2\n1/2 + 1/2 = 1",
+      "output": "Les probabilités des deux issues totalisent 1.",
+      "question": "La probabilité d’un événement impossible est…",
+      "options": [
+        "0",
+        "1/2",
+        "1"
+      ],
+      "answer": 0,
+      "explanation": "0 représente l’impossibilité ; 1 représente la certitude."
+    }
+  ],
+  "author": "Nunya",
+  "reviewer": null,
+  "status": "brouillon",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

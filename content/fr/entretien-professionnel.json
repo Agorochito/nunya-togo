@@ -1,0 +1,88 @@
+{
+  "id": "entretien-professionnel",
+  "title": "Préparer son premier entretien",
+  "en": "Prepare for an interview",
+  "domain": "business",
+  "glyph": "Aa",
+  "desc": "Un cours original en français, avec exemples, exercices corrigés et une application à ton projet.",
+  "enDesc": "Original French lessons and practice.",
+  "category": "COMPÉTENCES PRATIQUES · NUNYA",
+  "type": "subject",
+  "level": "Débutant",
+  "duration": 40,
+  "track": "future",
+  "author": "Nunya",
+  "status": "brouillon",
+  "reviewer": null,
+  "license": "CC BY-SA 4.0",
+  "lessons": [
+    {
+      "title": "Préparer une présentation courte",
+      "body": "Une présentation de début d’entretien peut contenir ton objectif, une expérience utile et ce que tu souhaites apprendre. Il ne s’agit pas de réciter toute ta vie. Choisis des phrases simples et un exemple vrai. Pour t’entraîner, enregistre-toi localement ou lis le texte à voix haute sans envoyer de données à un service. Le but est de devenir plus clair, pas de mémoriser une réponse parfaite.",
+      "code": "Je cherche un stage de découverte.\nJ’ai organisé les informations d’un projet de classe.\nJe souhaite apprendre comment une équipe vérifie son travail.",
+      "output": "Trois idées suffisent pour commencer une conversation.",
+      "question": "Une présentation utile doit surtout…",
+      "options": [
+        "énumérer tous les événements de sa vie",
+        "relier son objectif à un exemple précis",
+        "promettre de tout maîtriser"
+      ],
+      "answer": 1,
+      "explanation": "Un objectif et un exemple aident l’interlocuteur à comprendre ton point de départ.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon"
+    },
+    {
+      "title": "Expliquer un projet et son résultat",
+      "body": "Décris la situation, ton rôle, l’action réalisée et ce que tu as observé. Si tu as travaillé en groupe, distingue la contribution collective de la tienne. Tu peux mentionner une difficulté et la manière dont tu l’as traitée. N’invente pas de résultat chiffré : un résultat qualitatif précis vaut mieux qu’un nombre fabriqué.",
+      "code": "Situation : page du club peu lisible.\nMon rôle : vérifier les champs.\nAction : ajouter des libellés.\nObservation : deux camarades retrouvent le champ demandé.",
+      "output": "Le rôle personnel et l’observation sont distingués.",
+      "question": "Dans un projet de groupe, il faut…",
+      "options": [
+        "s’attribuer tout le travail",
+        "cacher le travail collectif",
+        "expliquer sa contribution et celle du groupe"
+      ],
+      "answer": 2,
+      "explanation": "Décrire les contributions honnêtement permet de discuter réellement du projet.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon"
+    },
+    {
+      "title": "Poser une question utile",
+      "body": "Prépare une question sur les missions, l’accompagnement ou la façon dont le travail est évalué. Une question montre aussi que tu vérifies si le cadre te convient. Avant l’entretien, lis les informations publiques de l’organisme. Tu peux demander une précision plutôt que deviner. Les conditions de stage et d’emploi dépendent de l’organisme et de ta situation ; vérifie-les auprès des interlocuteurs compétents.",
+      "code": "Question possible : « Quel type de tâche un débutant réalise-t-il avec accompagnement ? »",
+      "output": "La question porte sur le travail et l’apprentissage.",
+      "question": "Quelle question aide à comprendre le cadre ?",
+      "options": [
+        "Comment les missions et l’accompagnement sont-ils organisés ?",
+        "Pouvez-vous garantir mon succès sans condition ?",
+        "Puis-je ignorer toutes les consignes ?"
+      ],
+      "answer": 0,
+      "explanation": "Comprendre les tâches et l’accompagnement aide à préparer la suite.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon"
+    },
+    {
+      "title": "Relire son entraînement",
+      "body": "Après une simulation, choisis une chose claire et une chose à améliorer. Vérifie que tu as répondu à la question, donné un exemple et reconnu une limite. Entraîne-toi à reformuler une phrase longue. Le retour automatique de Nunya est une grille de relecture, pas l’avis d’un recruteur. Aucun entretien n’est envoyé ni noté comme une sélection réelle.",
+      "code": "À garder : exemple précis.\nÀ améliorer : réponse trop longue.\nProchain essai : expliquer le projet en quatre phrases.",
+      "output": "Une amélioration concrète rend le prochain essai utile.",
+      "question": "Quel retour est le plus exploitable ?",
+      "options": [
+        "Tu es forcément recruté.",
+        "Raccourcis la réponse et conserve ton exemple précis.",
+        "Tu dois tout changer sans savoir pourquoi."
+      ],
+      "answer": 1,
+      "explanation": "Une action concrète permet de préparer un nouvel essai.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon"
+    }
+  ]
+}

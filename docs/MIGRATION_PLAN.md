@@ -1,0 +1,13 @@
+# Évolution après le pilote local
+
+Le propriétaire a explicitement choisi de conserver la base locale. Le déploiement Sites ou Vercel sert aujourd’hui les mêmes fichiers statiques ; aucune clé serveur ni base externe n’est nécessaire.
+
+1. Stabiliser les identifiants Domain → Career → Path → Stage → Step. Garder les anciens alias de routes et les identifiants de cours / ressources. Les schémas sont dans `schemas/` ; les séances sont des JSON indépendants, générés par `prepare-academy.py`.
+2. Avant migration : export JSON par profil, tests de lecture de l’ancien format et sauvegarde sans écraser. `academySafeState` borne les imports ; IndexedDB conserve les snapshots existants. Documenter la version de schéma.
+3. Choisir le backend et les coûts avec le propriétaire ; Supabase est une option, pas une dépendance active. Authentification serveur réelle, politiques par propriétaire, séparation contenu public / notes et CV privés. Aucune clé privilégiée dans le navigateur.
+4. Synchronisation explicite avec outbox, accusé serveur et conservation des versions en conflit. Le mode hors ligne fonctionne avant authentification ; la connexion ne doit pas effacer le profil local.
+5. Migrer l’interface vers Next.js seulement si le besoin serveur le justifie ; garder pages légères, JSON différés, mêmes routes ou redirections et tests de progression / hors ligne.
+6. Portfolio public : opt-in révocable, champs limités, prévisualisation avant publication. Mentorat / offres : modération, signalement, critères et sources. Aucun accès aux CV par défaut.
+7. IA éventuelle : adaptateur serveur, quota, budget, protection des données, indication des réponses assistées et évaluation en français avant lancement. L’aide et la correction actuelles fonctionnent sans IA.
+
+Changer de domaine (Sites → Vercel) change l’origine navigateur. Les notes et caches locaux ne suivent pas automatiquement : exporter depuis l’ancien site, importer sur le nouveau. Aucune récupération automatique de données d’une autre origine n’est promise.

@@ -1,0 +1,77 @@
+{
+  "id": "sql",
+  "title": "Les données parlent : découvre SQL",
+  "en": "Les données parlent : découvre SQL",
+  "category": "BASES DE DONNÉES",
+  "domain": "tech",
+  "desc": "Organise des informations et pose tes premières questions à une base de données.",
+  "enDesc": "Organise des informations et pose tes premières questions à une base de données.",
+  "glyph": "SQL",
+  "color": "#dce9f3",
+  "type": "subject",
+  "level": "Débutant",
+  "duration": 40,
+  "lessons": [
+    {
+      "title": "Des informations en tableau",
+      "body": "Une table organise des données en lignes et en colonnes. Chaque ligne décrit un élément ; chaque colonne décrit une propriété. Une petite bibliothèque peut avoir une table livres avec un titre, un auteur et un identifiant.",
+      "code": "id | titre          | stock\n1  | Découvrir Python | 3\n2  | Jardiner         | 5",
+      "output": "Deux livres, trois colonnes.",
+      "question": "Que représente une ligne dans cet exemple ?",
+      "options": [
+        "Un livre",
+        "Tous les titres",
+        "Une couleur"
+      ],
+      "answer": 0,
+      "explanation": "Une ligne contient les informations sur un livre."
+    },
+    {
+      "title": "Choisir des colonnes",
+      "body": "SQL est un langage pour interroger une base de données. SELECT précise les colonnes à lire ; FROM indique la table. La requête ne modifie pas les données.",
+      "code": "SELECT titre, stock\nFROM livres;",
+      "output": "Les titres et les quantités disponibles.",
+      "question": "Quel mot indique la table ?",
+      "options": [
+        "SELECT",
+        "FROM",
+        "titre"
+      ],
+      "answer": 1,
+      "explanation": "FROM indique la table dans laquelle lire les données."
+    },
+    {
+      "title": "Filtrer avec WHERE",
+      "body": "WHERE garde les lignes qui satisfont une condition. Il permet de poser une question précise à un tableau. Par exemple, on peut rechercher seulement les livres dont le stock est supérieur à trois.",
+      "code": "SELECT titre\nFROM livres\nWHERE stock > 3;",
+      "output": "Jardiner",
+      "question": "Quel livre passe le filtre ?",
+      "options": [
+        "Découvrir Python, stock 3",
+        "Jardiner, stock 5",
+        "Les deux"
+      ],
+      "answer": 1,
+      "explanation": "Seul le stock 5 est strictement supérieur à 3."
+    },
+    {
+      "title": "Compter et interpréter",
+      "body": "COUNT(*) compte des lignes. Un nombre n’est utile que si l’on comprend ce qu’il représente. Compter les titres différents n’est pas la même chose qu’additionner les exemplaires disponibles.",
+      "code": "SELECT COUNT(*)\nFROM livres;",
+      "output": "2",
+      "question": "Le résultat 2 indique…",
+      "options": [
+        "Le nombre total d’exemplaires",
+        "Le nombre de lignes de livres",
+        "Le prix des livres"
+      ],
+      "answer": 1,
+      "explanation": "COUNT(*) compte les lignes, ici deux titres. Le stock total serait 3 + 5 = 8."
+    }
+  ],
+  "author": "Nunya",
+  "reviewer": null,
+  "status": "brouillon",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

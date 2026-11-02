@@ -1,0 +1,95 @@
+{
+  "id": "agro-projet",
+  "title": "Agroalimentaire : de l’idée au suivi",
+  "en": "Agroalimentaire : de l’idée au suivi",
+  "domain": "agri",
+  "glyph": "❧",
+  "color": "#e2ebcf",
+  "desc": "Chaîne de valeur, quantités et observation : explore un projet agroalimentaire.",
+  "enDesc": "Chaîne de valeur, quantités et observation : explore un projet agroalimentaire.",
+  "type": "subject",
+  "category": "DÉCOUVERTE MÉTIER",
+  "level": "Débutant",
+  "duration": 40,
+  "track": "future",
+  "author": "Nunya — brouillon de travail",
+  "reviewer": null,
+  "status": "brouillon",
+  "curriculumVerified": false,
+  "lessons": [
+    {
+      "title": "Cartographier une chaîne de valeur",
+      "body": "Un produit agricole peut passer par la production, la récolte, la transformation, le stockage et la vente. Dessiner ces étapes aide à comprendre quels métiers interviennent et où une difficulté apparaît.",
+      "code": "Champ → récolte → transformation\n→ conditionnement → transport → vente",
+      "output": "Plusieurs acteurs participent au produit final.",
+      "question": "Le conditionnement appartient-il à la chaîne ?",
+      "options": [
+        "Oui",
+        "Non",
+        "Seulement pour les logiciels"
+      ],
+      "answer": 0,
+      "explanation": "Il participe à la préparation du produit pour son stockage, son transport ou sa vente.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Suivre les quantités",
+      "body": "Un registre permet de comparer une quantité reçue et une quantité utilisée. Vérifie que les unités sont identiques. Un écart observé doit être expliqué ; il ne prouve pas à lui seul une faute ou une cause précise.",
+      "code": "Quantité reçue : 30 kg\nQuantité utilisée : 24 kg\nQuantité restante théorique : 6 kg",
+      "output": "30 − 24 = 6 kg",
+      "question": "Avec 18 kg reçus et 7 kg utilisés, il reste…",
+      "options": [
+        "11 kg",
+        "25 kg",
+        "7 kg"
+      ],
+      "answer": 0,
+      "explanation": "18 − 7 = 11 kg, avant prise en compte d’autres mouvements.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Documenter une observation",
+      "body": "Une trace utile précise la date, le lot et la méthode d’observation. Utilise des identifiants clairs pour retrouver les informations. Les diagnostics et règles sanitaires doivent venir de professionnels et de références reconnues.",
+      "code": "Lot A-12 | date | observation | unité",
+      "output": "Un identifiant relie une information à un lot.",
+      "question": "Quel élément aide à retrouver un lot ?",
+      "options": [
+        "Une référence claire",
+        "Un surnom qui change",
+        "Aucune date"
+      ],
+      "answer": 0,
+      "explanation": "Une référence stable facilite le suivi et la vérification.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Tester une amélioration",
+      "body": "Une amélioration commence par un besoin précis et un essai limité. Définis ce que tu veux observer avant le test. Discute les résultats avec les personnes concernées et indique ce qui reste incertain.",
+      "code": "Besoin → essai → mesure → retour",
+      "output": "Un essai sert à apprendre avant de développer.",
+      "question": "Pourquoi définir l’indicateur avant le test ?",
+      "options": [
+        "Pour savoir quoi observer",
+        "Pour garantir un succès",
+        "Pour éviter toute mesure"
+      ],
+      "answer": 0,
+      "explanation": "L’indicateur permet de comparer le résultat à l’objectif initial.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    }
+  ],
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

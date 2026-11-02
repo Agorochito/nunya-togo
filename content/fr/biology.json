@@ -1,0 +1,77 @@
+{
+  "id": "biology",
+  "title": "Comprendre le vivant",
+  "en": "Comprendre le vivant",
+  "category": "BIOLOGIE & SANTÉ",
+  "domain": "sciences",
+  "desc": "Cellules, organes et observation : une porte d’entrée vers les sciences et les métiers du soin.",
+  "enDesc": "Cellules, organes et observation : une porte d’entrée vers les sciences et les métiers du soin.",
+  "glyph": "◎",
+  "color": "#d9eae5",
+  "type": "subject",
+  "level": "Débutant",
+  "duration": 40,
+  "lessons": [
+    {
+      "title": "La cellule, unité du vivant",
+      "body": "Les êtres vivants sont constitués de cellules. Certaines formes de vie n’en ont qu’une ; notre organisme en contient de très nombreuses. Une membrane délimite la cellule et contrôle ses échanges. Cette initiation scientifique ne donne pas de conseils de diagnostic ou de traitement.",
+      "code": "Cellule → tissu → organe → organisme",
+      "output": "Plusieurs niveaux d’organisation du vivant.",
+      "question": "Quelle structure délimite une cellule ?",
+      "options": [
+        "La membrane",
+        "Un dossier informatique",
+        "Une règle"
+      ],
+      "answer": 0,
+      "explanation": "La membrane cellulaire forme une frontière qui participe aux échanges."
+    },
+    {
+      "title": "Observer sans conclure trop vite",
+      "body": "Une observation décrit ce que l’on constate. Une hypothèse propose une explication à vérifier. Une seule observation ne suffit généralement pas pour établir une cause. Dans un travail scientifique, on note les conditions et on compare plusieurs résultats.",
+      "code": "Observation : cette plante pousse vers la fenêtre.\nHypothèse : la lumière influence sa croissance.",
+      "output": "Une observation n’est pas encore une preuve de cause.",
+      "question": "Une hypothèse est…",
+      "options": [
+        "Une explication à tester",
+        "Toujours une certitude",
+        "Une mesure de longueur"
+      ],
+      "answer": 0,
+      "explanation": "Une hypothèse doit être confrontée à des observations ou à une expérience adaptée."
+    },
+    {
+      "title": "Des organes qui coopèrent",
+      "body": "Un organe regroupe des tissus qui assurent certaines fonctions. Les organes travaillent ensemble dans des systèmes : le cœur contribue à la circulation du sang ; les poumons participent aux échanges gazeux. Les interactions comptent autant que les pièces isolées.",
+      "code": "Cellules spécialisées → tissus\nTissus organisés → organes\nOrganes coordonnés → systèmes",
+      "output": "Le corps est un ensemble de systèmes liés.",
+      "question": "Quel organe contribue à faire circuler le sang ?",
+      "options": [
+        "Le cœur",
+        "L’écran",
+        "La feuille"
+      ],
+      "answer": 0,
+      "explanation": "Le cœur est une pompe musculaire qui contribue à la circulation sanguine."
+    },
+    {
+      "title": "Les métiers du soin",
+      "body": "Médecins, infirmiers et techniciens de laboratoire ont des missions différentes et complémentaires. Ils suivent des formations reconnues et des règles professionnelles. Les bases de biologie, la communication et la rigueur sont des compétences à explorer dès le lycée.",
+      "code": "Observer avec rigueur\nCommuniquer clairement\nRespecter la confidentialité\nPoursuivre une formation reconnue",
+      "output": "Une découverte des compétences, pas une qualification.",
+      "question": "Ces leçons permettent-elles d’exercer un métier de santé ?",
+      "options": [
+        "Oui, immédiatement",
+        "Non, une formation reconnue reste nécessaire",
+        "Oui, après un quiz"
+      ],
+      "answer": 1,
+      "explanation": "Une initiation en ligne ne remplace pas les études et autorisations professionnelles requises."
+    }
+  ],
+  "author": "Nunya",
+  "reviewer": null,
+  "status": "brouillon",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

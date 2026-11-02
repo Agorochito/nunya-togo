@@ -1,0 +1,77 @@
+{
+  "id": "data",
+  "title": "Lire, comprendre & raconter les données",
+  "en": "Lire, comprendre & raconter les données",
+  "category": "DONNÉES & STATISTIQUES",
+  "domain": "maths",
+  "desc": "Passe d’un tableau à une conclusion prudente, avec des exemples concrets.",
+  "enDesc": "Passe d’un tableau à une conclusion prudente, avec des exemples concrets.",
+  "glyph": "▥",
+  "color": "#e1e5f4",
+  "type": "subject",
+  "level": "Débutant",
+  "duration": 40,
+  "lessons": [
+    {
+      "title": "Une donnée a un contexte",
+      "body": "Une donnée est une information recueillie. Sans unité, date ou méthode, elle peut être difficile à interpréter. « 20 » ne dit pas s’il s’agit de personnes, de kilogrammes ou de minutes.",
+      "code": "Valeur : 20\nUnité : élèves\nContexte : présents ce matin",
+      "output": "Le contexte donne un sens au nombre.",
+      "question": "Quelle donnée est la plus interprétable ?",
+      "options": [
+        "20",
+        "20 élèves présents le 12 juin",
+        "Beaucoup"
+      ],
+      "answer": 1,
+      "explanation": "La valeur, l’unité et la date rendent l’information plus claire."
+    },
+    {
+      "title": "Calculer une moyenne",
+      "body": "La moyenne additionne les valeurs puis divise le total par leur nombre. Elle résume une série, mais peut masquer des écarts. Pour comprendre un groupe, regarde aussi les valeurs individuelles.",
+      "code": "Valeurs : 4, 6, 8\nSomme : 18\nMoyenne : 18 / 3 = 6",
+      "output": "6",
+      "question": "Quelle est la moyenne de 2, 4 et 6 ?",
+      "options": [
+        "3",
+        "4",
+        "6"
+      ],
+      "answer": 1,
+      "explanation": "(2 + 4 + 6) / 3 = 12 / 3 = 4."
+    },
+    {
+      "title": "Choisir un graphique",
+      "body": "Des barres comparent des catégories. Une courbe peut montrer une évolution dans le temps. N’oublie pas les titres, les unités et une échelle compréhensible. Un graphique très décoré n’est pas forcément plus informatif.",
+      "code": "Barres → comparer des catégories\nCourbe → suivre une évolution",
+      "output": "Le graphique dépend de la question.",
+      "question": "Pour suivre une quantité chaque semaine, on peut utiliser…",
+      "options": [
+        "Une courbe chronologique",
+        "Un titre sans données",
+        "Un mot de passe"
+      ],
+      "answer": 0,
+      "explanation": "Une courbe sur un axe temporel aide à suivre l’évolution."
+    },
+    {
+      "title": "Interpréter avec prudence",
+      "body": "Deux grandeurs peuvent évoluer ensemble sans que l’une cause l’autre. Une enquête sur quelques personnes ne décrit pas forcément toute une population. Présente la méthode, les limites et les questions encore ouvertes.",
+      "code": "Résultat observé ≠ cause prouvée\nPetit échantillon ≠ population entière",
+      "output": "Une conclusion précise respecte les limites des données.",
+      "question": "Une association prouve-t-elle une cause ?",
+      "options": [
+        "Toujours",
+        "Non, pas à elle seule",
+        "Oui, si le graphique est beau"
+      ],
+      "answer": 1,
+      "explanation": "D’autres facteurs peuvent expliquer l’association observée."
+    }
+  ],
+  "author": "Nunya",
+  "reviewer": null,
+  "status": "brouillon",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

@@ -1,0 +1,28 @@
+{
+  "name": "nunya",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint dist/*.js scripts/*.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check:content": "node scripts/check-content.mjs && node scripts/check-library.mjs",
+    "check:academy": "node scripts/validate-academy.mjs",
+    "test:e2e": "node scripts/test-academy-flow.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "build": "node scripts/build-academy.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "ajv": "^8.20.0",
+    "axe-core": "^4.14.0",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.14.0",
+    "katex": "^0.19.1",
+    "lighthouse": "^13.6.0",
+    "marked": "^17.0.5",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "id": "agriculture",
+  "title": "Agriculture : observer & innover",
+  "en": "Agriculture : observer & innover",
+  "category": "AGRICULTURE & AGROALIMENTAIRE",
+  "domain": "agri",
+  "desc": "Comprends un système de culture et découvre comment les données peuvent aider à l’observer.",
+  "enDesc": "Comprends un système de culture et découvre comment les données peuvent aider à l’observer.",
+  "glyph": "❧",
+  "color": "#dce8c8",
+  "type": "subject",
+  "level": "Débutant",
+  "duration": 40,
+  "lessons": [
+    {
+      "title": "Une culture dans son environnement",
+      "body": "Une culture dépend d’un ensemble de facteurs : sol, eau, lumière et pratiques. Les besoins varient selon l’espèce et le contexte local. Avant de proposer une amélioration, observe et note les conditions avec une personne compétente.",
+      "code": "Plante + sol + eau + lumière\n+ pratiques + environnement",
+      "output": "Un système avec plusieurs facteurs liés.",
+      "question": "Avant de changer une pratique, il est utile de…",
+      "options": [
+        "Observer le contexte",
+        "Copier au hasard",
+        "Ignorer le sol"
+      ],
+      "answer": 0,
+      "explanation": "Observer les conditions locales aide à comprendre ce qui peut expliquer les résultats."
+    },
+    {
+      "title": "Un carnet d’observation",
+      "body": "Un carnet daté permet de suivre les changements. Note la parcelle, la date, l’observation et son unité. Utilise la même méthode pour pouvoir comparer les mesures. Une observation ne permet pas à elle seule d’identifier une maladie ou un traitement.",
+      "code": "Date | Parcelle | Hauteur observée\n01/06 | A | 12 cm\n08/06 | A | 16 cm",
+      "output": "Une évolution de 4 cm entre deux observations.",
+      "question": "Quelle information rend la comparaison plus claire ?",
+      "options": [
+        "La date et l’unité",
+        "Seulement la couleur du carnet",
+        "Un titre sans mesure"
+      ],
+      "answer": 0,
+      "explanation": "La date situe l’observation et l’unité rend la mesure compréhensible."
+    },
+    {
+      "title": "Du champ au produit",
+      "body": "Une chaîne de valeur comprend plusieurs étapes : production, récolte, transformation éventuelle, transport et vente. Des pertes peuvent apparaître entre les étapes. Les repérer permet de poser de meilleures questions aux professionnels.",
+      "code": "Production → récolte → stockage\n→ transformation → transport → vente",
+      "output": "Plusieurs métiers participent à un même produit.",
+      "question": "Le transport fait-il partie de la chaîne de valeur ?",
+      "options": [
+        "Non",
+        "Oui",
+        "Seulement pour les ordinateurs"
+      ],
+      "answer": 1,
+      "explanation": "Le transport relie les étapes et les lieux de production, de transformation et de vente."
+    },
+    {
+      "title": "Un petit tableau utile",
+      "body": "Un tableau peut aider à comparer des observations sans outil complexe. Pour deux lots fictifs, calcule une différence ou une moyenne et formule une question. Les conclusions agronomiques nécessitent davantage de données et une expertise adaptée.",
+      "code": "Lot A : 20 kg\nLot B : 25 kg\nÉcart : 25 − 20 = 5 kg",
+      "output": "Le lot B produit 5 kg de plus dans cet exemple.",
+      "question": "Peut-on conclure à la cause avec ces seules données ?",
+      "options": [
+        "Oui, certainement",
+        "Non, il manque le contexte",
+        "Oui, si le tableau est joli"
+      ],
+      "answer": 1,
+      "explanation": "On connaît l’écart, mais pas les facteurs qui l’expliquent."
+    }
+  ],
+  "author": "Nunya",
+  "reviewer": null,
+  "status": "brouillon",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

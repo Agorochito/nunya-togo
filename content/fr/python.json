@@ -1,0 +1,130 @@
+{
+  "id": "python",
+  "title": "Premiers pas avec Python",
+  "en": "First steps with Python",
+  "category": "PROGRAMMATION",
+  "desc": "De ta première ligne de code à tes premières idées qui prennent vie.",
+  "enDesc": "From your first line of code to bringing your own ideas to life.",
+  "type": "python",
+  "level": "Débutant",
+  "duration": 80,
+  "lessons": [
+    {
+      "title": "Bonjour, le monde !",
+      "body": "Un programme est une suite d’instructions que l’ordinateur suit dans l’ordre. En Python, la fonction print() affiche un message. Le texte doit être placé entre guillemets. Lis cet exemple, puis essaie de prévoir son résultat.",
+      "code": "print(\"Bonjour, le Togo !\")",
+      "output": "Bonjour, le Togo !",
+      "question": "Quelle instruction affiche le mot Nunya ?",
+      "options": [
+        "print(\"Nunya\")",
+        "print(Nunya)",
+        "affiche(\"Nunya\")"
+      ],
+      "answer": 0,
+      "explanation": "print(\"Nunya\") affiche le texte entre guillemets. Sans guillemets, Python cherche une variable appelée Nunya."
+    },
+    {
+      "title": "Les variables : des petites boîtes",
+      "body": "Une variable permet de garder une valeur en mémoire. Choisis un nom clair, puis utilise le signe = pour lui donner une valeur. Ici, age est un nombre et prenom est du texte. Tu peux changer la valeur d’une variable plus tard.",
+      "code": "prenom = \"Ama\"\nage = 16\nprint(prenom)\nprint(age + 1)",
+      "output": "Ama\n17",
+      "question": "Après score = 3 puis score = score + 2, que vaut score ?",
+      "options": [
+        "3",
+        "5",
+        "32"
+      ],
+      "answer": 1,
+      "explanation": "score contient d’abord 3. On ajoute 2, puis on range le résultat 5 dans la même variable."
+    },
+    {
+      "title": "Calculer avec Python",
+      "body": "Python peut servir de calculatrice : + additionne, - soustrait, * multiplie et / divise. Les parenthèses indiquent les calculs à faire en premier. Exemple : trois cahiers à 250 FCFA chacun.",
+      "code": "prix = 250\nquantite = 3\ntotal = prix * quantite\nprint(total)",
+      "output": "750",
+      "question": "Que donne (2 + 3) * 4 ?",
+      "options": [
+        "14",
+        "20",
+        "24"
+      ],
+      "answer": 1,
+      "explanation": "Les parenthèses passent en premier : 2 + 3 = 5, puis 5 × 4 = 20."
+    },
+    {
+      "title": "Faire des choix avec if",
+      "body": "Une condition permet au programme de choisir une action. if veut dire « si » et else veut dire « sinon ». Le symbole >= signifie « supérieur ou égal ». Les espaces au début des lignes sont importants en Python : ils indiquent ce qui appartient à chaque bloc.",
+      "code": "note = 14\nif note >= 10:\n    print(\"Bravo !\")\nelse:\n    print(\"On continue à apprendre.\")",
+      "output": "Bravo !",
+      "question": "Avec note = 8, quel message s’affiche ?",
+      "options": [
+        "Bravo !",
+        "On continue à apprendre.",
+        "Aucun message"
+      ],
+      "answer": 1,
+      "explanation": "8 est inférieur à 10. La condition est fausse, donc le bloc else est exécuté."
+    },
+    {
+      "title": "Répéter avec une boucle",
+      "body": "Une boucle répète une instruction. for nombre in range(3) fait prendre à nombre les valeurs 0, 1 et 2. La limite finale, 3, n’est pas incluse. Une boucle évite de recopier les mêmes instructions.",
+      "code": "for nombre in range(3):\n    print(\"Je progresse !\")",
+      "output": "Je progresse !\nJe progresse !\nJe progresse !",
+      "question": "Combien de fois range(4) fait-il répéter la boucle ?",
+      "options": [
+        "3 fois",
+        "4 fois",
+        "5 fois"
+      ],
+      "answer": 1,
+      "explanation": "range(4) produit 0, 1, 2, 3 : quatre valeurs, donc quatre répétitions."
+    },
+    {
+      "title": "Rassembler des données",
+      "body": "Une liste rassemble plusieurs valeurs entre crochets. On accède à chaque élément avec son indice. Attention : le premier indice est 0 ! len() donne le nombre d’éléments de la liste.",
+      "code": "villes = [\"Lomé\", \"Kara\", \"Sokodé\"]\nprint(villes[0])\nprint(len(villes))",
+      "output": "Lomé\n3",
+      "question": "Quelle expression donne Kara ?",
+      "options": [
+        "villes[0]",
+        "villes[1]",
+        "villes[2]"
+      ],
+      "answer": 1,
+      "explanation": "Les indices commencent à 0 : Lomé est à l’indice 0 et Kara à l’indice 1."
+    },
+    {
+      "title": "Créer une fonction",
+      "body": "Une fonction regroupe des instructions que l’on peut réutiliser. def crée la fonction ; son nom permet de l’appeler. Un paramètre, comme prenom, lui permet de travailler avec différentes données.",
+      "code": "def saluer(prenom):\n    return \"Bonjour \" + prenom\n\nprint(saluer(\"Kossi\"))",
+      "output": "Bonjour Kossi",
+      "question": "Quel mot-clé renvoie le résultat d’une fonction ?",
+      "options": [
+        "print",
+        "return",
+        "for"
+      ],
+      "answer": 1,
+      "explanation": "return transmet une valeur au code qui a appelé la fonction. print affiche une valeur à l’écran."
+    },
+    {
+      "title": "Ton mini-projet : un budget",
+      "body": "Tu connais maintenant les variables, les calculs, les conditions, les boucles, les listes et les fonctions. Relie ces notions dans un premier projet : calculer un budget de transport hebdomadaire. Sur papier, adapte le prix et le nombre de jours à ton quotidien.",
+      "code": "def budget_semaine(prix_jour, jours):\n    return prix_jour * jours\n\ntotal = budget_semaine(500, 5)\nprint(total)",
+      "output": "2500",
+      "question": "Avec 300 FCFA par jour pendant 4 jours, quel est le total ?",
+      "options": [
+        "700 FCFA",
+        "1 200 FCFA",
+        "1 500 FCFA"
+      ],
+      "answer": 1,
+      "explanation": "300 × 4 = 1 200 FCFA. Tu viens d’utiliser une logique de programmation pour résoudre un problème concret !"
+    }
+  ],
+  "author": "Nunya",
+  "reviewer": null,
+  "status": "brouillon",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

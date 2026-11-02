@@ -1,0 +1,108 @@
+{
+  "id": "terminale-analyse",
+  "title": "Terminale : fonctions, dérivées et suites",
+  "en": "Terminale : fonctions, dérivées et suites",
+  "domain": "maths",
+  "glyph": "f′",
+  "color": "#e4ddf0",
+  "desc": "Révision ciblée de Terminale : explications, calculs détaillés et exercices. Ce parcours ne couvre pas tout le programme du BAC II.",
+  "enDesc": "Révision ciblée",
+  "type": "subject",
+  "category": "TERMINALE · PRÉPARER LE BAC II",
+  "level": "Approfondissement",
+  "duration": 72,
+  "track": "school",
+  "source_url": "https://ecole.gouv.tg/lycee/course/view.php?id=407",
+  "status": "brouillon",
+  "curriculumVerified": false,
+  "reviewer": null,
+  "lessons": [
+    {
+      "title": "Le domaine avant le calcul",
+      "body": "Le domaine de définition indique les valeurs pour lesquelles une expression a un sens. Un dénominateur ne peut pas être nul ; sous une racine carrée réelle, la quantité doit être positive ou nulle. Écris ces contraintes avant de simplifier. Par exemple, simplifier un quotient n’autorise pas à réintroduire une valeur exclue dans la formule de départ. Cette précaution sert ensuite à étudier une limite ou une dérivée.",
+      "code": "f(x) = (x² − 1)/(x − 1)\nContrainte : x ≠ 1\nPour x ≠ 1 : f(x) = x + 1\nf(1) reste non défini.",
+      "output": "Domaine : ℝ privé de 1.",
+      "question": "Quel est le domaine de g(x) = 1/(x + 2) ?",
+      "options": [
+        "Tous les réels",
+        "Les réels sauf −2",
+        "Les réels sauf 2"
+      ],
+      "answer": 1,
+      "explanation": "Le dénominateur s’annule lorsque x + 2 = 0, donc en −2. On exclut cette valeur."
+    },
+    {
+      "title": "Une limite sans valeur au point",
+      "body": "Une limite décrit le comportement d’une fonction lorsque x se rapproche d’un nombre ou devient très grand. La limite en un point peut exister même si la fonction n’y est pas définie. Face à une forme 0/0, on ne conclut pas que la limite vaut zéro : on cherche une transformation valable autour du point. Après factorisation, on étudie une expression équivalente pour les valeurs autorisées.",
+      "code": "Pour x ≠ 1 : (x² − 1)/(x − 1) = x + 1\nQuand x se rapproche de 1 : x + 1 se rapproche de 2.\nDonc la limite est 2, même si f(1) n’existe pas.",
+      "output": "Limite en 1 : 2.",
+      "question": "Pour x ≠ 3, (x² − 9)/(x − 3) a pour limite en 3…",
+      "options": [
+        "0",
+        "3",
+        "6"
+      ],
+      "answer": 2,
+      "explanation": "x² − 9 = (x − 3)(x + 3). Autour de 3, le quotient vaut x + 3, qui tend vers 6."
+    },
+    {
+      "title": "Calculer une dérivée et une tangente",
+      "body": "La dérivée en un point mesure le taux de variation instantané d’une fonction. Pour un polynôme, on dérive terme par terme : la dérivée de x² est 2x, celle de x est 1 et celle d’une constante est 0. Une tangente en a s’écrit y = f′(a)(x − a) + f(a). Il faut calculer à la fois la pente f′(a) et la valeur f(a), puis développer si nécessaire.",
+      "code": "f(x) = x² − 4x + 3\nf′(x) = 2x − 4\nEn a = 1 : f(1) = 0 et f′(1) = −2\nTangente : y = −2(x − 1) = −2x + 2",
+      "output": "La pente de la tangente en 1 est −2.",
+      "question": "Quelle est la dérivée de 3x² + 2x − 5 ?",
+      "options": [
+        "3x + 2",
+        "6x + 2",
+        "6x − 5"
+      ],
+      "answer": 1,
+      "explanation": "On dérive chaque terme : 3 × 2x + 2 × 1 − 0 = 6x + 2."
+    },
+    {
+      "title": "Du signe de la dérivée aux variations",
+      "body": "Sur un intervalle, une dérivée positive indique une fonction croissante et une dérivée négative une fonction décroissante. On commence par résoudre f′(x) = 0, puis on étudie son signe entre ces valeurs. Une dérivée nulle en un point ne suffit pas à garantir un minimum : il faut observer le changement de signe. Le tableau de variations relie ces informations aux valeurs de la fonction.",
+      "code": "f(x) = x² − 4x + 3 ; f′(x) = 2x − 4\nf′(x) < 0 si x < 2 ; f′(x) > 0 si x > 2\nf décroît puis croît.\nf(2) = −1 : minimum sur ℝ.",
+      "output": "Minimum : −1, atteint en x = 2.",
+      "question": "La fonction h(x) = x² + 2x atteint son minimum en…",
+      "options": [
+        "−1",
+        "0",
+        "1"
+      ],
+      "answer": 0,
+      "explanation": "h′(x) = 2x + 2 s’annule en −1 et passe de négatif à positif. La fonction y atteint un minimum, égal à −1."
+    },
+    {
+      "title": "Reconnaître une suite arithmétique",
+      "body": "Une suite associe une valeur à chaque indice entier. Une suite arithmétique ajoute toujours la même raison r : u(n+1) = u(n) + r. Avec un premier terme u(0), la formule explicite est u(n) = u(0) + nr. Attention à l’indice du premier terme : avec u(1), la formule devient u(n) = u(1) + (n − 1)r. Vérifie la formule au premier indice avant de l’utiliser.",
+      "code": "Épargne fictive : u(0) = 1 000 FCFA\nAjout constant : r = 500 FCFA par semaine\nu(4) = 1 000 + 4 × 500 = 3 000 FCFA",
+      "output": "Après quatre ajouts : 3 000 FCFA.",
+      "question": "Si u(0) = 2 et r = 3, u(5) vaut…",
+      "options": [
+        "15",
+        "17",
+        "21"
+      ],
+      "answer": 1,
+      "explanation": "u(5) = u(0) + 5r = 2 + 5 × 3 = 17."
+    },
+    {
+      "title": "Une suite géométrique et ses hypothèses",
+      "body": "Une suite géométrique multiplie chaque terme par une même raison q. Si u(0) est le premier terme, u(n) = u(0) × qⁿ. Une hausse de 10 % correspond à q = 1,10 et une baisse de 10 % à q = 0,90. Une hausse puis une baisse du même pourcentage ne s’annulent pas. Dans une situation réelle, vérifie que le taux reste constant : le modèle est une hypothèse, pas une prédiction garantie.",
+      "code": "Valeur initiale fictive : 100\nHausse de 10 % : 100 × 1,10 = 110\nPuis baisse de 10 % : 110 × 0,90 = 99",
+      "output": "Le résultat final vaut 99, pas 100.",
+      "question": "Avec u(0) = 4 et q = 2, u(3) vaut…",
+      "options": [
+        "12",
+        "24",
+        "32"
+      ],
+      "answer": 2,
+      "explanation": "u(3) = 4 × 2³ = 4 × 8 = 32."
+    }
+  ],
+  "author": "Nunya",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

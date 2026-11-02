@@ -1,0 +1,87 @@
+{
+  "source_url": "https://ecole.gouv.tg/college/mod/folder/view.php?id=22&lang=fr",
+  "verified": false,
+  "last_checked": "2026-11-01",
+  "pilotClass": "Seconde",
+  "series": [
+    {
+      "id": "A",
+      "label": "A — à confirmer",
+      "verified": false
+    },
+    {
+      "id": "C",
+      "label": "C — à confirmer",
+      "verified": false
+    },
+    {
+      "id": "D",
+      "label": "D — à confirmer",
+      "verified": false
+    },
+    {
+      "id": "other",
+      "label": "Autre / à préciser",
+      "verified": false
+    }
+  ],
+  "subjects": [
+    {
+      "id": "maths",
+      "label": "Mathématiques",
+      "course": "maths-seconde",
+      "library": "maths",
+      "folderVerified": true
+    },
+    {
+      "id": "physics",
+      "label": "Physique-Chimie / Technologie",
+      "course": "physics",
+      "library": "physics",
+      "folderVerified": true
+    },
+    {
+      "id": "biology",
+      "label": "SVT",
+      "course": "biology",
+      "library": "biology",
+      "folderVerified": true
+    },
+    {
+      "id": "french",
+      "label": "Français",
+      "course": "francais-methodes",
+      "library": "language",
+      "folderVerified": true
+    },
+    {
+      "id": "english",
+      "label": "Anglais",
+      "course": "anglais-bases",
+      "library": "language",
+      "folderVerified": true
+    },
+    {
+      "id": "history",
+      "label": "Histoire-Géographie",
+      "course": "histoire-methodes",
+      "library": "humanities",
+      "folderVerified": true
+    },
+    {
+      "id": "civics",
+      "label": "ECM",
+      "course": "citoyennete",
+      "library": "humanities",
+      "folderVerified": true
+    },
+    {
+      "id": "philosophy",
+      "label": "Philosophie",
+      "course": "philosophie",
+      "library": "humanities",
+      "folderVerified": false
+    }
+  ],
+  "notice": "Le dossier officiel confirme les matières des épreuves BEPC répertoriées. Les correspondances chapitre-classe-série restent à relire ; aucun alignement officiel complet n’est revendiqué."
+}

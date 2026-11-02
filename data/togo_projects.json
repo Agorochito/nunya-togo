@@ -1,0 +1,387 @@
+[
+  {
+    "id": "tech",
+    "sector": "tech",
+    "title": "Un outil utile à mon lycée",
+    "mission": "Imagine une petite page qui explique un service fictif de ton lycée.",
+    "tasks": [
+      "Définir un besoin et son public",
+      "Dessiner trois éléments de la page",
+      "Créer une première version HTML et noter un test"
+    ],
+    "courses": [
+      "web",
+      "javascript",
+      "digital"
+    ],
+    "deliverable": "Une maquette ou un fichier HTML et trois observations de test.",
+    "platforms": [
+      "ul",
+      "ifad-ent"
+    ],
+    "review": [
+      "J’ai expliqué mon objectif",
+      "J’ai montré au moins une étape de raisonnement",
+      "J’ai indiqué mes hypothèses ou limites",
+      "J’ai proposé une amélioration"
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "reviewer": null
+  },
+  {
+    "id": "health",
+    "sector": "health",
+    "title": "Lire une information de santé avec méthode",
+    "mission": "Prépare une fiche de lecture à partir d’un document public, sans donnée de patient ni conseil personnel.",
+    "tasks": [
+      "Identifier auteur, date et objectif",
+      "Distinguer un résultat chiffré de son interprétation",
+      "Rédiger une synthèse et une limite de la source"
+    ],
+    "courses": [
+      "information-sante",
+      "biology",
+      "data"
+    ],
+    "deliverable": "Une fiche de lecture sur une page, relue avant diffusion.",
+    "platforms": [
+      "efha"
+    ],
+    "review": [
+      "J’ai expliqué mon objectif",
+      "J’ai montré au moins une étape de raisonnement",
+      "J’ai indiqué mes hypothèses ou limites",
+      "J’ai proposé une amélioration"
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "reviewer": null
+  },
+  {
+    "id": "agri",
+    "sector": "agri",
+    "title": "La fiche d’un projet aquacole fictif",
+    "mission": "Explore une chaîne de valeur sans intervenir sur un élevage réel.",
+    "tasks": [
+      "Dessiner production, suivi, transformation et vente",
+      "Organiser quatre observations fictives dans un tableau",
+      "Calculer un budget d’exercice et noter deux questions à poser à un formateur"
+    ],
+    "courses": [
+      "aquaculture",
+      "agro-projet",
+      "bureautique"
+    ],
+    "deliverable": "Une fiche filière, un tableau et un budget fictif.",
+    "platforms": [
+      "ifad",
+      "agri-elearn",
+      "adace"
+    ],
+    "review": [
+      "J’ai expliqué mon objectif",
+      "J’ai montré au moins une étape de raisonnement",
+      "J’ai indiqué mes hypothèses ou limites",
+      "J’ai proposé une amélioration"
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "reviewer": null
+  },
+  {
+    "id": "energy",
+    "sector": "energy",
+    "title": "Le carnet d’usage de l’énergie",
+    "mission": "Raisonne sur des données fictives, sans manipuler d’installation.",
+    "tasks": [
+      "Choisir trois appareils fictifs et leurs puissances",
+      "Calculer énergie = puissance × durée",
+      "Comparer deux scénarios en distinguant calcul et hypothèses"
+    ],
+    "courses": [
+      "physics",
+      "terminale-mecanique",
+      "data"
+    ],
+    "deliverable": "Un tableau comparatif avec unités et hypothèses.",
+    "platforms": [
+      "ifad"
+    ],
+    "review": [
+      "J’ai expliqué mon objectif",
+      "J’ai montré au moins une étape de raisonnement",
+      "J’ai indiqué mes hypothèses ou limites",
+      "J’ai proposé une amélioration"
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "reviewer": null
+  },
+  {
+    "id": "logistics",
+    "sector": "logistics",
+    "title": "Organiser une livraison fictive",
+    "mission": "Construis un petit planning de stocks et de transport.",
+    "tasks": [
+      "Lister produits, quantités et unités",
+      "Préparer trois étapes avec responsable et délai",
+      "Vérifier le stock final et noter un risque de retard"
+    ],
+    "courses": [
+      "logistics",
+      "bureautique",
+      "gestion-projet"
+    ],
+    "deliverable": "Un tableau de stock et un planning.",
+    "platforms": [
+      "anpe",
+      "ifad"
+    ],
+    "review": [
+      "J’ai expliqué mon objectif",
+      "J’ai montré au moins une étape de raisonnement",
+      "J’ai indiqué mes hypothèses ou limites",
+      "J’ai proposé une amélioration"
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "reviewer": null
+  },
+  {
+    "id": "business",
+    "sector": "business",
+    "title": "Mon premier canevas d’activité",
+    "mission": "Teste une idée sur papier avec des hypothèses fictives.",
+    "tasks": [
+      "Décrire un besoin, un public et une proposition",
+      "Comparer deux hypothèses de demande",
+      "Calculer recettes, coûts et résultat de l’exercice"
+    ],
+    "courses": [
+      "plan-activite",
+      "business",
+      "bureautique"
+    ],
+    "deliverable": "Un canevas, un budget et une question à vérifier.",
+    "platforms": [
+      "adace",
+      "anpe"
+    ],
+    "review": [
+      "J’ai expliqué mon objectif",
+      "J’ai montré au moins une étape de raisonnement",
+      "J’ai indiqué mes hypothèses ou limites",
+      "J’ai proposé une amélioration"
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "reviewer": null
+  },
+  {
+    "id": "creative",
+    "sector": "creative",
+    "title": "Une affiche qui se comprend",
+    "mission": "Crée le brouillon d’une affiche pour un événement scolaire fictif.",
+    "tasks": [
+      "Choisir un message et son public",
+      "Hiérarchiser titre, date et action",
+      "Tester la lisibilité et noter une amélioration"
+    ],
+    "courses": [
+      "design",
+      "francais-methodes",
+      "gestion-projet"
+    ],
+    "deliverable": "Une affiche et une courte justification des choix.",
+    "platforms": [
+      "anpe"
+    ],
+    "review": [
+      "J’ai expliqué mon objectif",
+      "J’ai montré au moins une étape de raisonnement",
+      "J’ai indiqué mes hypothèses ou limites",
+      "J’ai proposé une amélioration"
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "reviewer": null
+  },
+  {
+    "id": "services",
+    "sector": "services",
+    "title": "Un accueil clair et inclusif",
+    "mission": "Prépare un scénario d’accueil pour une visite fictive.",
+    "tasks": [
+      "Lister les informations dont le visiteur a besoin",
+      "Rédiger un dialogue court en français et une phrase en anglais",
+      "Prévoir une adaptation pour une personne ayant une difficulté de lecture"
+    ],
+    "courses": [
+      "hospitality",
+      "anglais-bases",
+      "francais-methodes"
+    ],
+    "deliverable": "Un scénario de deux minutes et une fiche pratique.",
+    "platforms": [
+      "anpe"
+    ],
+    "review": [
+      "J’ai expliqué mon objectif",
+      "J’ai montré au moins une étape de raisonnement",
+      "J’ai indiqué mes hypothèses ou limites",
+      "J’ai proposé une amélioration"
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "reviewer": null
+  },
+  {
+    "id": "telecom",
+    "sector": "telecom",
+    "title": "Le schéma d’un réseau fictif",
+    "mission": "Explique une connexion à partir d’un schéma, sans intervenir sur un réseau réel.",
+    "tasks": [
+      "Nommer appareil, routeur et accès internet",
+      "Dessiner le trajet d’une requête",
+      "Rédiger trois vérifications simples et leurs limites"
+    ],
+    "courses": [
+      "telecom-bases",
+      "digital",
+      "security"
+    ],
+    "deliverable": "Un schéma légendé et un compte rendu fictif.",
+    "platforms": [
+      "ul",
+      "ifad-ent"
+    ],
+    "review": [
+      "J’ai expliqué mon objectif",
+      "J’ai montré au moins une étape de raisonnement",
+      "J’ai indiqué mes hypothèses ou limites",
+      "J’ai proposé une amélioration"
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "reviewer": null
+  },
+  {
+    "id": "fintech",
+    "sector": "fintech",
+    "title": "La maquette d’un paiement fictif",
+    "mission": "Imagine un parcours de paiement sur papier, sans argent réel, numéro ni code secret.",
+    "tasks": [
+      "Dessiner choix, vérification et confirmation",
+      "Prévoir un message d’erreur compréhensible",
+      "Créer un tableau de trois transactions entièrement fictives"
+    ],
+    "courses": [
+      "finance-numerique",
+      "design",
+      "security"
+    ],
+    "deliverable": "Trois écrans dessinés et une liste de précautions.",
+    "platforms": [
+      "adace"
+    ],
+    "review": [
+      "J’ai expliqué mon objectif",
+      "J’ai montré au moins une étape de raisonnement",
+      "J’ai indiqué mes hypothèses ou limites",
+      "J’ai proposé une amélioration"
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "reviewer": null
+  },
+  {
+    "id": "education",
+    "sector": "education",
+    "title": "Expliquer une idée en cinq minutes",
+    "mission": "Prépare une mini-leçon pour un autre apprenant.",
+    "tasks": [
+      "Écrire un objectif que l’on peut observer",
+      "Préparer un exemple puis une question",
+      "Prévoir un indice et une façon de vérifier la compréhension"
+    ],
+    "courses": [
+      "enseigner",
+      "francais-methodes",
+      "bureautique"
+    ],
+    "deliverable": "Une fiche avec objectif, déroulé et retour.",
+    "platforms": [
+      "focen",
+      "dpip-rel",
+      "ifad-ent"
+    ],
+    "review": [
+      "J’ai expliqué mon objectif",
+      "J’ai montré au moins une étape de raisonnement",
+      "J’ai indiqué mes hypothèses ou limites",
+      "J’ai proposé une amélioration"
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "reviewer": null
+  },
+  {
+    "id": "environment",
+    "sector": "environment",
+    "title": "Le tableau d’un quartier imaginaire",
+    "mission": "Organise des observations environnementales fictives.",
+    "tasks": [
+      "Choisir une question et trois indicateurs",
+      "Construire un tableau en distinguant mesure et estimation",
+      "Proposer une amélioration et ce qu’il faudrait vérifier"
+    ],
+    "courses": [
+      "environnement",
+      "data",
+      "bureautique"
+    ],
+    "deliverable": "Un tableau, un graphique dessiné et ses limites.",
+    "platforms": [
+      "agri-elearn"
+    ],
+    "review": [
+      "J’ai expliqué mon objectif",
+      "J’ai montré au moins une étape de raisonnement",
+      "J’ai indiqué mes hypothèses ou limites",
+      "J’ai proposé une amélioration"
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "reviewer": null
+  },
+  {
+    "id": "construction",
+    "sector": "construction",
+    "title": "Une pièce sur plan",
+    "mission": "Travaille uniquement sur un dessin pédagogique.",
+    "tasks": [
+      "Dessiner une pièce rectangulaire avec dimensions",
+      "Calculer surface et périmètre avec unités",
+      "Préparer un tableau de quantités fictives et citer une hypothèse"
+    ],
+    "courses": [
+      "construction",
+      "maths-seconde",
+      "bureautique"
+    ],
+    "deliverable": "Un plan légendé et un calcul détaillé.",
+    "platforms": [
+      "ifad"
+    ],
+    "review": [
+      "J’ai expliqué mon objectif",
+      "J’ai montré au moins une étape de raisonnement",
+      "J’ai indiqué mes hypothèses ou limites",
+      "J’ai proposé une amélioration"
+    ],
+    "author": "Nunya",
+    "status": "brouillon",
+    "reviewer": null
+  }
+]

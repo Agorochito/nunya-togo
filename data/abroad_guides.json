@@ -1,0 +1,316 @@
+[
+  {
+    "id": "etats-unis",
+    "title_fr": "États-Unis",
+    "title_en": "United States",
+    "overview_fr": "Construis un projet d’études adapté à tes objectifs et à ton budget. EducationUSA Lomé est un point d’information officiel au Togo ; l’admission et les aides dépendent de chaque établissement.",
+    "steps": [
+      {
+        "id": "choisir",
+        "title_fr": "Comparer les formations",
+        "text_fr": "Note trois formations qui correspondent à ton projet. Compare leur contenu et les critères publiés par chaque établissement.",
+        "documents": [
+          "Liste personnelle de formations",
+          "Liens des services d’admission"
+        ]
+      },
+      {
+        "id": "exigences",
+        "title_fr": "Lire les critères",
+        "text_fr": "Relève les pièces, les tests et les dates demandés par chaque formation, sans supposer que les règles sont identiques partout.",
+        "documents": [
+          "Tableau des critères",
+          "Calendrier officiel de chaque candidature"
+        ]
+      },
+      {
+        "id": "dossier",
+        "title_fr": "Préparer un dossier personnel",
+        "text_fr": "Rassemble les relevés et diplômes demandés. Prépare tes textes et, si nécessaire, les demandes de recommandation.",
+        "documents": [
+          "Relevés et diplômes demandés",
+          "Textes de candidature",
+          "Recommandations si demandées"
+        ]
+      },
+      {
+        "id": "financement",
+        "title_fr": "Comparer le coût et les aides",
+        "text_fr": "Établis ton budget à partir des coûts officiels. Consulte les possibilités d’aide présentées par EducationUSA et les établissements ; aucune bourse n’est garantie.",
+        "documents": [
+          "Budget prévisionnel",
+          "Conditions officielles des aides"
+        ]
+      },
+      {
+        "id": "formalites",
+        "title_fr": "Consulter les démarches officielles",
+        "text_fr": "Après une admission, consulte les informations du Département d’État et les instructions consulaires applicables à ta situation. Nunya ne décide pas du visa.",
+        "documents": [
+          "Admission et documents demandés par les autorités",
+          "Checklist officielle actualisée"
+        ]
+      }
+    ],
+    "tests_fr": "Les tests de langue ou d’admission dépendent de la formation. Vérifie les tests acceptés et leurs éventuelles dispenses sur le site de l’établissement.",
+    "finance_fr": "Consulte les aides propres aux établissements et les ressources EducationUSA. Compare aussi les dépenses qui ne seraient pas couvertes.",
+    "visa_url": "https://travel.state.gov/content/travel/en/us-visas/study.html",
+    "sources": [
+      {
+        "url": "https://educationusa.state.gov/centers/educationusa-lome",
+        "title": "EducationUSA Lomé",
+        "last_checked": "2026-11-01"
+      },
+      {
+        "url": "https://educationusa.state.gov/your-5-steps-us-study",
+        "title": "EducationUSA : préparer son projet",
+        "last_checked": "2026-11-01"
+      },
+      {
+        "url": "https://travel.state.gov/content/travel/en/us-visas/study.html",
+        "title": "Département d’État : études et échanges",
+        "last_checked": "2026-11-01"
+      }
+    ],
+    "last_verified": "2026-11-01",
+    "verified": true,
+    "verification_scope": "Sources officielles consultées ; critères individuels à confirmer.",
+    "notice_fr": "Informations générales, non officielles — vérifie toujours sur le site officiel. Cette fiche ne remplace pas les consignes de l’établissement ou des autorités.",
+    "testimonials_fr": "À venir"
+  },
+  {
+    "id": "france",
+    "title_fr": "France",
+    "title_en": "France",
+    "overview_fr": "Campus France Togo présente les démarches pour étudier en France. Le Togo figure parmi les pays de la procédure Études en France. Vérifie le parcours correspondant à ta formation et à ton niveau.",
+    "steps": [
+      {
+        "id": "choisir",
+        "title_fr": "Définir ton projet",
+        "text_fr": "Compare quelques formations et leurs prérequis. Vérifie les modalités d’admission directement auprès de l’établissement.",
+        "documents": [
+          "Liste de formations",
+          "Critères de chaque établissement"
+        ]
+      },
+      {
+        "id": "procedure",
+        "title_fr": "Identifier la bonne procédure",
+        "text_fr": "Consulte Campus France Togo et le calendrier de ta rentrée. La procédure dépend notamment de la formation et de ton niveau.",
+        "documents": [
+          "Lien du calendrier actuel",
+          "Liste de pièces de la procédure choisie"
+        ]
+      },
+      {
+        "id": "dossier",
+        "title_fr": "Rassembler les pièces demandées",
+        "text_fr": "Classe les documents scolaires et prépare les textes de candidature demandés. Utilise uniquement les modalités de dépôt indiquées par les services officiels.",
+        "documents": [
+          "Relevés et diplômes demandés",
+          "Projet d’études",
+          "Traductions si exigées"
+        ]
+      },
+      {
+        "id": "financement",
+        "title_fr": "Rechercher un financement",
+        "text_fr": "Utilise Campus Bourses et les informations des établissements pour identifier des aides qui correspondent à ton profil. Vérifie séparément chaque critère et chaque date.",
+        "documents": [
+          "Budget prévisionnel",
+          "Conditions des aides retenues"
+        ]
+      },
+      {
+        "id": "formalites",
+        "title_fr": "Vérifier France-Visas",
+        "text_fr": "Consulte l’assistant et les consignes officielles adaptées à ton cas. Une admission ou une bourse ne vaut pas une décision de visa.",
+        "documents": [
+          "Admission",
+          "Liste de justificatifs affichée par France-Visas"
+        ]
+      }
+    ],
+    "tests_fr": "Les exigences linguistiques et les autres épreuves dépendent de la formation. Consulte la fiche du programme et la procédure officielle qui te concerne.",
+    "finance_fr": "Campus Bourses permet de repérer des financements par profil. Le calendrier d’une bourse peut être différent de celui d’une admission.",
+    "visa_url": "https://www.france-visas.gouv.fr/etudiant",
+    "sources": [
+      {
+        "url": "https://www.togo.campusfrance.org/",
+        "title": "Campus France Togo",
+        "last_checked": "2026-11-01"
+      },
+      {
+        "url": "https://www.campusfrance.org/fr/candidature-procedure-etudes-en-france",
+        "title": "Procédure Études en France",
+        "last_checked": "2026-11-01"
+      },
+      {
+        "url": "https://www.campusfrance.org/fr/bourses-etudiants-etrangers",
+        "title": "Campus France : financements",
+        "last_checked": "2026-11-01"
+      },
+      {
+        "url": "https://www.france-visas.gouv.fr/etudiant",
+        "title": "France-Visas : étudiant",
+        "last_checked": "2026-11-01"
+      }
+    ],
+    "last_verified": "2026-11-01",
+    "verified": true,
+    "verification_scope": "Sources officielles consultées ; critères individuels à confirmer.",
+    "notice_fr": "Informations générales, non officielles — vérifie toujours sur le site officiel. Cette fiche ne remplace pas les consignes de l’établissement ou des autorités.",
+    "testimonials_fr": "À venir"
+  },
+  {
+    "id": "canada",
+    "title_fr": "Canada",
+    "title_en": "Canada",
+    "overview_fr": "ÉduCanada et Canada.ca permettent de préparer un projet d’études au Canada. Compare les programmes et leurs coûts, puis vérifie les démarches applicables à ta situation sur les sites officiels.",
+    "steps": [
+      {
+        "id": "choisir",
+        "title_fr": "Comparer les établissements",
+        "text_fr": "Utilise les outils ÉduCanada pour trouver des programmes. Consulte ensuite le site de chaque établissement et les informations officielles sur les établissements désignés.",
+        "documents": [
+          "Liste de programmes",
+          "Liens d’admission"
+        ]
+      },
+      {
+        "id": "criteres",
+        "title_fr": "Lire les conditions",
+        "text_fr": "Note les critères scolaires, linguistiques et les dates propres au programme. Vérifie les exigences supplémentaires éventuelles de la province concernée.",
+        "documents": [
+          "Tableau des critères du programme",
+          "Calendrier de candidature"
+        ]
+      },
+      {
+        "id": "dossier",
+        "title_fr": "Préparer la candidature",
+        "text_fr": "Organise les documents demandés par l’établissement. Garde une copie personnelle des pièces et des confirmations.",
+        "documents": [
+          "Relevés et diplômes demandés",
+          "Textes de candidature si demandés"
+        ]
+      },
+      {
+        "id": "financement",
+        "title_fr": "Vérifier chaque bourse",
+        "text_fr": "Consulte le portail ÉduCanada et les aides des établissements. Certains programmes limitent les pays ou les profils admissibles ; la présence d’une bourse dans le catalogue ne confirme pas ton admissibilité.",
+        "documents": [
+          "Budget prévisionnel",
+          "Critères de nationalité et de niveau de chaque aide"
+        ]
+      },
+      {
+        "id": "formalites",
+        "title_fr": "Lire Canada.ca",
+        "text_fr": "Consulte les informations officielles sur les études et les démarches adaptées à ta situation. Nunya ne fournit pas de conseil en immigration.",
+        "documents": [
+          "Admission",
+          "Checklist officielle adaptée à ta situation"
+        ]
+      }
+    ],
+    "tests_fr": "Vérifie la langue d’enseignement et les preuves acceptées auprès du programme choisi. Un test accepté par une école ne l’est pas nécessairement par toutes.",
+    "finance_fr": "Les bourses ÉduCanada ont des conditions propres. Vérifie notamment le pays, le niveau d’études et l’organisme qui dépose la candidature.",
+    "visa_url": "https://www.canada.ca/fr/immigration-refugies-citoyennete/services/etudier-canada.html",
+    "sources": [
+      {
+        "url": "https://www.educanada.ca/scholarships-bourses/non_can/index.aspx?lang=fra",
+        "title": "ÉduCanada : candidats internationaux",
+        "last_checked": "2026-11-01"
+      },
+      {
+        "url": "https://www.canada.ca/fr/immigration-refugies-citoyennete/services/etudier-canada.html",
+        "title": "Canada.ca : étudier au Canada",
+        "last_checked": "2026-11-01"
+      }
+    ],
+    "last_verified": "2026-11-01",
+    "verified": true,
+    "verification_scope": "Sources officielles consultées ; critères individuels à confirmer.",
+    "notice_fr": "Informations générales, non officielles — vérifie toujours sur le site officiel. Cette fiche ne remplace pas les consignes de l’établissement ou des autorités.",
+    "testimonials_fr": "À venir"
+  },
+  {
+    "id": "allemagne",
+    "title_fr": "Allemagne",
+    "title_en": "Germany",
+    "overview_fr": "Le DAAD aide à explorer les études et les financements en Allemagne. La reconnaissance des diplômes et les exigences linguistiques se vérifient pour la formation choisie.",
+    "steps": [
+      {
+        "id": "choisir",
+        "title_fr": "Explorer les formations",
+        "text_fr": "Recherche un programme adapté à ton projet et note sa langue d’enseignement. Consulte aussi le service international de l’établissement.",
+        "documents": [
+          "Liste de programmes",
+          "Coordonnées officielles du service international"
+        ]
+      },
+      {
+        "id": "admission",
+        "title_fr": "Vérifier l’accès au programme",
+        "text_fr": "Utilise les informations DAAD et les outils officiels indiqués pour vérifier ton diplôme. Demande confirmation à l’établissement avant de supposer une équivalence.",
+        "documents": [
+          "Diplômes et relevés demandés",
+          "Exigences du programme"
+        ]
+      },
+      {
+        "id": "langue",
+        "title_fr": "Préparer la langue demandée",
+        "text_fr": "Vérifie le niveau et les certificats acceptés par ta formation. Les programmes en allemand et en anglais peuvent avoir des exigences différentes.",
+        "documents": [
+          "Liste des tests acceptés",
+          "Plan personnel de préparation"
+        ]
+      },
+      {
+        "id": "financement",
+        "title_fr": "Chercher les aides adaptées",
+        "text_fr": "Consulte la base de bourses DAAD et les informations de l’établissement. Contrôle les conditions de pays, diplôme, expérience et calendrier de chaque appel.",
+        "documents": [
+          "Budget prévisionnel",
+          "Conditions de la bourse retenue"
+        ]
+      },
+      {
+        "id": "formalites",
+        "title_fr": "Consulter les autorités allemandes",
+        "text_fr": "Lis les informations du ministère fédéral des Affaires étrangères et de la représentation compétente pour ton dossier. Vérifie les pièces actuelles sur leur site.",
+        "documents": [
+          "Admission",
+          "Liste officielle de justificatifs"
+        ]
+      }
+    ],
+    "tests_fr": "Les certificats linguistiques acceptés et les niveaux requis dépendent du programme. Fais confirmer les exigences par l’établissement.",
+    "finance_fr": "Le DAAD présente différents financements, souvent destinés aux diplômés et chercheurs. Consulte les critères exacts de chaque programme ; aucune aide n’est automatique.",
+    "visa_url": "https://www.auswaertiges-amt.de/en/visa-service/buergerservice/faq/08-studentenvisum-606690",
+    "sources": [
+      {
+        "url": "https://www.daad.de/en/studying-in-germany/requirements/overview/",
+        "title": "DAAD : conditions d’accès",
+        "last_checked": "2026-11-01"
+      },
+      {
+        "url": "https://www.daad.de/en/studying-in-germany/scholarships/daad-scholarships/",
+        "title": "DAAD : bourses",
+        "last_checked": "2026-11-01"
+      },
+      {
+        "url": "https://www.auswaertiges-amt.de/en/visa-service/buergerservice/faq/08-studentenvisum-606690",
+        "title": "Ministère fédéral : démarches étudiantes",
+        "last_checked": "2026-11-01"
+      }
+    ],
+    "last_verified": "2026-11-01",
+    "verified": true,
+    "verification_scope": "Sources officielles consultées ; critères individuels à confirmer.",
+    "notice_fr": "Informations générales, non officielles — vérifie toujours sur le site officiel. Cette fiche ne remplace pas les consignes de l’établissement ou des autorités.",
+    "testimonials_fr": "À venir"
+  }
+]

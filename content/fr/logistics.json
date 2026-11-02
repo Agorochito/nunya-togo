@@ -1,0 +1,77 @@
+{
+  "id": "logistics",
+  "title": "Les coulisses du transport",
+  "en": "Les coulisses du transport",
+  "category": "TRANSPORT & LOGISTIQUE",
+  "domain": "logistics",
+  "desc": "Stocks, trajets et organisation : découvre comment un produit arrive à destination.",
+  "enDesc": "Stocks, trajets et organisation : découvre comment un produit arrive à destination.",
+  "glyph": "⇄",
+  "color": "#dce6f2",
+  "type": "subject",
+  "level": "Débutant",
+  "duration": 40,
+  "lessons": [
+    {
+      "title": "Du départ à l’arrivée",
+      "body": "La logistique organise les flux de produits et d’informations. Elle relie notamment l’approvisionnement, le stockage, le transport et la livraison. Un bon suivi permet de savoir où se trouve un produit et quelle étape vient ensuite.",
+      "code": "Fournisseur → dépôt → transport\n→ point de livraison → destinataire",
+      "output": "Un produit suit plusieurs étapes coordonnées.",
+      "question": "La logistique concerne…",
+      "options": [
+        "Seulement la conduite",
+        "Les flux de produits et d’informations",
+        "Uniquement les logos"
+      ],
+      "answer": 1,
+      "explanation": "Les informations de suivi sont nécessaires pour coordonner les mouvements de produits."
+    },
+    {
+      "title": "Comprendre un stock",
+      "body": "Le stock final est le stock initial augmenté des entrées et diminué des sorties. La même unité doit être utilisée tout au long du calcul. Un comptage réel permet de comparer le registre avec ce qui est présent.",
+      "code": "Stock initial : 40 cartons\nEntrées : 15 cartons\nSorties : 12 cartons\nStock final : 43 cartons",
+      "output": "40 + 15 − 12 = 43",
+      "question": "Avec 10 articles, 4 entrées et 3 sorties, il reste…",
+      "options": [
+        "11",
+        "17",
+        "3"
+      ],
+      "answer": 0,
+      "explanation": "10 + 4 − 3 = 11 articles."
+    },
+    {
+      "title": "Planifier un trajet",
+      "body": "Une livraison se prépare avec des contraintes : destination, durée, capacité et horaires. Le trajet le plus court n’est pas toujours le plus adapté. La sécurité et les règles de circulation priment sur une simple estimation de vitesse.",
+      "code": "Départ : dépôt\nArrivée : destinataire\nÀ vérifier : horaire, capacité, accès",
+      "output": "Une planification tient compte de plusieurs contraintes.",
+      "question": "Quel facteur compte dans la planification ?",
+      "options": [
+        "La capacité du véhicule",
+        "La couleur de la facture uniquement",
+        "Un temps inventé"
+      ],
+      "answer": 0,
+      "explanation": "La capacité limite la quantité qui peut être transportée."
+    },
+    {
+      "title": "Tracer une livraison",
+      "body": "La traçabilité conserve les informations utiles sur une étape : référence, date, quantité et statut. Évite d’enregistrer ou de diffuser des données personnelles qui ne sont pas nécessaires. Les noms et adresses de clients doivent être protégés.",
+      "code": "Référence : COL-014\nQuantité : 3 cartons\nStatut : livré\nDate : 12/06",
+      "output": "Une trace claire sans détails privés inutiles.",
+      "question": "Quelle information permet d’identifier un colis sans nom de client ?",
+      "options": [
+        "Une référence de colis",
+        "Un mot de passe",
+        "Une photo privée"
+      ],
+      "answer": 0,
+      "explanation": "Une référence suit le colis sans révéler inutilement l’identité du destinataire."
+    }
+  ],
+  "author": "Nunya",
+  "reviewer": null,
+  "status": "brouillon",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

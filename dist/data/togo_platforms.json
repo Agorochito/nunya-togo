@@ -1,0 +1,151 @@
+[
+  {
+    "id": "adace",
+    "name": "ADACE / FAIEJ",
+    "url": "https://play.google.com/store/apps/details?hl=fr&id=com.faiej",
+    "sectors": [
+      "business",
+      "agri",
+      "fintech"
+    ],
+    "type": "fiche officielle de l’application",
+    "finding": "Parcours par situations, construction progressive d’un plan d’affaires et documents de synthèse.",
+    "implemented": "Canevas de projet original, simulation de budget et export local. Aucun contenu du jeu ADACE copié.",
+    "access": "Application et services externes distincts de Nunya ; conditions à vérifier.",
+    "last_checked": "2026-11-01",
+    "rights": "Métadonnées et analyse originales uniquement ; aucun cours tiers réhébergé.",
+    "affiliation": false
+  },
+  {
+    "id": "ifad",
+    "name": "AED / IFAD",
+    "url": "https://aed-ifad.tg/faq/",
+    "sectors": [
+      "agri",
+      "construction",
+      "energy",
+      "logistics"
+    ],
+    "type": "organisme public de formation",
+    "finding": "Filières professionnelles : aquaculture, élevage, bâtiment, froid et énergies renouvelables ; apprentissage lié à la pratique.",
+    "implemented": "Découverte de l’aquaculture, activités de plan et de chaîne du froid, portfolio de réalisations.",
+    "access": "Formations professionnelles avec conditions d’entrée ; aucune inscription ouverte présumée.",
+    "last_checked": "2026-11-01",
+    "rights": "Métadonnées et analyse originales uniquement ; aucun cours tiers réhébergé.",
+    "affiliation": false
+  },
+  {
+    "id": "ifad-ent",
+    "name": "Espace de formation AED",
+    "url": "https://stages.aed-ifad.tg/",
+    "sectors": [
+      "tech",
+      "education",
+      "telecom",
+      "business"
+    ],
+    "type": "catalogue institutionnel",
+    "finding": "Compétences de tableur et de documents, projets pédagogiques et autonomie de l’apprenant.",
+    "implemented": "Cours original de bureautique et bilan de projet enregistré sur l’appareil.",
+    "access": "Certains cours sont destinés au personnel ou nécessitent un compte ; pas d’accès revendiqué au contenu fermé.",
+    "last_checked": "2026-11-01",
+    "rights": "Métadonnées et analyse originales uniquement ; aucun cours tiers réhébergé.",
+    "affiliation": false
+  },
+  {
+    "id": "agri-elearn",
+    "name": "Formation agricole à distance du ministère",
+    "url": "https://agriculture.gouv.tg/ouverture-des-cours-en-ligne-pour-les-centres-de-formation-agricole-et-rural-a-travers-la-plateforme-de-formation-e-learning/",
+    "sectors": [
+      "agri",
+      "environment"
+    ],
+    "type": "annonce ministérielle historique",
+    "finding": "Formation à distance pour des centres agricoles et ruraux.",
+    "implemented": "Fiches d’observation et de projet, sans activité de terrain obligatoire.",
+    "access": "Annonce de 2020, existence historique uniquement ; activité actuelle et accès non confirmés.",
+    "last_checked": "2026-11-01",
+    "rights": "Métadonnées et analyse originales uniquement ; aucun cours tiers réhébergé.",
+    "affiliation": false
+  },
+  {
+    "id": "focen",
+    "name": "FOCEN / DPIP",
+    "url": "https://education.gouv.tg/lancement-de-la-plateforme-de-formation-continue-des-enseignants-un-pas-decisif-vers-une-ecole-performante-et-innovante/",
+    "sectors": [
+      "education"
+    ],
+    "type": "ministère de l’Éducation nationale",
+    "finding": "Ressources et formation continue des enseignants, intégration pédagogique du numérique.",
+    "implemented": "Projet de mini-leçon avec objectif, activité et auto-évaluation.",
+    "access": "Plateforme destinée aux enseignants ; Nunya ne remplace pas cette formation.",
+    "last_checked": "2026-11-01",
+    "rights": "Métadonnées et analyse originales uniquement ; aucun cours tiers réhébergé.",
+    "affiliation": false
+  },
+  {
+    "id": "dpip-rel",
+    "name": "DPIP Togo / OpenLearn Create",
+    "url": "https://www.open.edu/openlearncreate/course/index.php?categoryid=550",
+    "sectors": [
+      "education"
+    ],
+    "type": "espace de développement professionnel togolais",
+    "finding": "Pédagogie active, TIC et ressources éducatives libres ; parcours annoncé de 16 heures.",
+    "implemented": "Objectif observable, activité et grille de retour dans le projet Éducation.",
+    "access": "Cours externe gratuit annoncé, inscription pour le suivi ; aucun import du cours dans cette version.",
+    "last_checked": "2026-11-01",
+    "rights": "Métadonnées et analyse originales uniquement ; aucun cours tiers réhébergé.",
+    "affiliation": false
+  },
+  {
+    "id": "ul",
+    "name": "Université de Lomé · DRSI",
+    "url": "https://univ-lome.tg/direction-des-ressources-et-supports-informatiques-drsi/",
+    "sectors": [
+      "tech",
+      "telecom",
+      "education"
+    ],
+    "type": "université publique",
+    "finding": "Compétences numériques appliquées à plusieurs filières, calcul et traitement de documents.",
+    "implemented": "Bureautique transversale et livrables pratiques, pas uniquement programmation.",
+    "access": "Cours universitaires distincts ; aucun accès aux unités d’enseignement payantes ou fermées revendiqué.",
+    "last_checked": "2026-11-01",
+    "rights": "Métadonnées et analyse originales uniquement ; aucun cours tiers réhébergé.",
+    "affiliation": false
+  },
+  {
+    "id": "efha",
+    "name": "Efha Medicals · SafeBlood",
+    "url": "https://kofcorporation.com/projets/safeblood-elearning",
+    "sectors": [
+      "health"
+    ],
+    "type": "fiche du développeur togolais de la plateforme",
+    "finding": "Organisation de formation spécialisée en modules, quiz et suivi.",
+    "implemented": "Parcours original non clinique sur les informations de santé et données fictives, en complément de biologie.",
+    "access": "Formation professionnelle spécialisée ; aucun cours de transfusion ou acte de soin importé.",
+    "last_checked": "2026-11-01",
+    "rights": "Métadonnées et analyse originales uniquement ; aucun cours tiers réhébergé.",
+    "affiliation": false
+  },
+  {
+    "id": "anpe",
+    "name": "ANPE Togo · entrepreneuriat",
+    "url": "https://www.anpetogo.net/entrepreneuriat/programmes",
+    "sectors": [
+      "business",
+      "services",
+      "creative",
+      "logistics"
+    ],
+    "type": "agence nationale pour l’emploi",
+    "finding": "Orientation de projets et préparation des compétences et du plan d’affaires.",
+    "implemented": "Projet, compétences à renforcer et prochaine étape dans le portfolio.",
+    "access": "Conditions propres aux dispositifs ; pas d’offre d’emploi ou de financement garanti.",
+    "last_checked": "2026-11-01",
+    "rights": "Métadonnées et analyse originales uniquement ; aucun cours tiers réhébergé.",
+    "affiliation": false
+  }
+]

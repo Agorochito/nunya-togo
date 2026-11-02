@@ -1,0 +1,102 @@
+{
+  "id": "web",
+  "title": "Crée ta première page web",
+  "en": "Build your first web page",
+  "category": "DÉVELOPPEMENT WEB",
+  "desc": "Du HTML au JavaScript : donne une place à tes idées sur le web.",
+  "enDesc": "From HTML to JavaScript: give your ideas a home on the web.",
+  "type": "web",
+  "level": "Débutant",
+  "duration": 60,
+  "lessons": [
+    {
+      "title": "Le web, comment ça marche ?",
+      "body": "Un navigateur affiche des pages web. HTML décrit le contenu, CSS définit l’apparence, et JavaScript ajoute de l’interactivité. Une page peut aussi être un fichier local : elle n’a pas toujours besoin d’Internet pour s’ouvrir.",
+      "code": "HTML → le contenu\nCSS → le style\nJavaScript → les interactions",
+      "output": "Une page structurée, stylée et interactive.",
+      "question": "Quel langage décrit la structure du contenu ?",
+      "options": [
+        "CSS",
+        "HTML",
+        "Python"
+      ],
+      "answer": 1,
+      "explanation": "HTML est le langage de balisage qui structure les titres, paragraphes, liens et autres éléments."
+    },
+    {
+      "title": "Tes premières balises HTML",
+      "body": "Une balise indique la nature d’un élément. <h1> est le titre principal et <p> un paragraphe. La plupart des balises s’ouvrent et se ferment. Le texte se place entre les deux.",
+      "code": "<h1>Bienvenue à Lomé</h1>\n<p>Voici ma première page.</p>",
+      "output": "Bienvenue à Lomé\nVoici ma première page.",
+      "question": "Quelle balise sert à écrire un paragraphe ?",
+      "options": [
+        "<p>",
+        "<h1>",
+        "<img>"
+      ],
+      "answer": 0,
+      "explanation": "<p> définit un paragraphe. <h1> définit le titre principal et <img> insère une image."
+    },
+    {
+      "title": "Mettre des couleurs avec CSS",
+      "body": "CSS associe un sélecteur à des propriétés. Le sélecteur h1 cible tous les titres h1. color change la couleur du texte, tandis que font-size change sa taille. Chaque déclaration se termine par un point-virgule.",
+      "code": "h1 {\n  color: green;\n  font-size: 28px;\n}",
+      "output": "Un titre vert, d’une taille de 28 pixels.",
+      "question": "Quelle propriété change la couleur du texte ?",
+      "options": [
+        "background",
+        "font-size",
+        "color"
+      ],
+      "answer": 2,
+      "explanation": "color change la couleur du texte. background change le fond de l’élément."
+    },
+    {
+      "title": "Découvrir JavaScript",
+      "body": "JavaScript permet à une page de réagir. const crée une variable dont on ne réaffecte pas la valeur. console.log() affiche une information dans la console du navigateur, utile pour vérifier ton programme.",
+      "code": "const prenom = \"Ama\";\nconsole.log(\"Bonjour \" + prenom);",
+      "output": "Bonjour Ama",
+      "question": "Que fait le signe + entre deux textes ?",
+      "options": [
+        "Il colle les textes ensemble",
+        "Il soustrait les textes",
+        "Il supprime la variable"
+      ],
+      "answer": 0,
+      "explanation": "Avec des chaînes de caractères, + concatène : il rassemble les textes en un seul."
+    },
+    {
+      "title": "Un bouton qui réagit",
+      "body": "Le DOM est la représentation de la page que JavaScript peut modifier. querySelector sélectionne un élément. addEventListener attend un événement, comme un clic, puis exécute une fonction.",
+      "code": "const bouton = document.querySelector(\"button\");\nbouton.addEventListener(\"click\", () => {\n  bouton.textContent = \"Bravo !\";\n});",
+      "output": "Après un clic, le bouton affiche Bravo !",
+      "question": "Quel événement correspond à un clic ?",
+      "options": [
+        "hover",
+        "click",
+        "load"
+      ],
+      "answer": 1,
+      "explanation": "click est déclenché lorsqu’on active le bouton avec la souris, le toucher ou le clavier."
+    },
+    {
+      "title": "Mini-projet : ta carte de présentation",
+      "body": "Crée une page qui te présente : un titre avec ton prénom, un paragraphe sur ce que tu aimes apprendre, et un bouton. Écris d’abord le HTML sur papier. Ajoute un style lisible avec un contraste suffisant. Tu peux tester le fichier dans un navigateur quand tu as accès à un ordinateur.",
+      "code": "<h1>Ama — apprentie développeuse</h1>\n<p>J’aime créer des choses utiles.</p>\n<button>Dire bonjour</button>",
+      "output": "Une petite page de présentation personnelle.",
+      "question": "Pour rendre une page plus accessible, que faut-il privilégier ?",
+      "options": [
+        "Un texte minuscule",
+        "Un contraste lisible et des titres clairs",
+        "Uniquement des images"
+      ],
+      "answer": 1,
+      "explanation": "Des titres structurés et un bon contraste aident plus de personnes à comprendre et utiliser ta page."
+    }
+  ],
+  "author": "Nunya",
+  "reviewer": null,
+  "status": "brouillon",
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}

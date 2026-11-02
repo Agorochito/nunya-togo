@@ -1,0 +1,95 @@
+{
+  "id": "francais-methodes",
+  "title": "Français : comprendre et argumenter",
+  "en": "Français : comprendre et argumenter",
+  "domain": "language",
+  "glyph": "Aa",
+  "color": "#f0dfe3",
+  "desc": "Lecture, réponse construite et rédaction, avec des méthodes à réutiliser en classe.",
+  "enDesc": "Lecture, réponse construite et rédaction, avec des méthodes à réutiliser en classe.",
+  "type": "subject",
+  "category": "RÉVISION SCOLAIRE",
+  "level": "Débutant",
+  "duration": 40,
+  "track": "school",
+  "author": "Nunya — brouillon de travail",
+  "reviewer": null,
+  "status": "brouillon",
+  "curriculumVerified": false,
+  "lessons": [
+    {
+      "title": "Identifier une idée principale",
+      "body": "Un paragraphe développe une idée principale avec des précisions ou des exemples. Pour la retrouver, demande-toi ce que l’auteur cherche surtout à faire comprendre. Un détail peut être exact sans résumer l’ensemble du passage.",
+      "code": "« Le club ouvre une bibliothèque. Les élèves pourront y lire et emprunter des livres. Des bénévoles organiseront les prêts. »",
+      "output": "L’idée principale est l’ouverture d’une bibliothèque scolaire.",
+      "question": "Quel énoncé résume le passage ?",
+      "options": [
+        "Une bibliothèque va ouvrir pour les élèves",
+        "Les prêts sont toujours interdits",
+        "Le club ferme"
+      ],
+      "answer": 0,
+      "explanation": "Le passage annonce un projet de bibliothèque ; les autres phrases le précisent.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Construire une réponse",
+      "body": "Une réponse claire commence par une idée, s’appuie sur un élément du texte puis explique le lien. Évite de recopier un extrait sans dire ce qu’il prouve. Utilise tes mots et respecte la consigne.",
+      "code": "Idée → élément du texte → explication\n« Le projet facilite la lecture, car les élèves\npourront emprunter des livres. »",
+      "output": "Une réponse relie une affirmation à un élément précis.",
+      "question": "Après avoir cité un exemple, il faut…",
+      "options": [
+        "Expliquer ce qu’il montre",
+        "Changer de sujet",
+        "Répéter la consigne"
+      ],
+      "answer": 0,
+      "explanation": "L’explication montre comment l’exemple soutient ton idée.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Un paragraphe argumenté",
+      "body": "Un argument donne une raison de soutenir une idée. Un exemple rend cette raison concrète. Des connecteurs comme « d’abord », « cependant » et « ainsi » aident à suivre le raisonnement, sans remplacer son contenu.",
+      "code": "Idée : les leçons courtes facilitent la régularité.\nArgument : on trouve plus facilement dix minutes.\nExemple : réviser une notion après les cours.",
+      "output": "Une idée, une raison et une illustration.",
+      "question": "À quoi sert un argument ?",
+      "options": [
+        "À donner une raison",
+        "À décorer le texte",
+        "À remplacer toutes les preuves"
+      ],
+      "answer": 0,
+      "explanation": "Un argument explique pourquoi une idée peut être défendue.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    },
+    {
+      "title": "Relire avec une méthode",
+      "body": "La relecture est plus efficace en plusieurs passages. Vérifie d’abord que tu réponds au sujet, puis l’ordre des idées, puis les accords et la ponctuation. Une phrase courte et précise vaut mieux qu’une longue phrase confuse.",
+      "code": "1. Ai-je répondu à la consigne ?\n2. Mes idées s’enchaînent-elles ?\n3. Ai-je vérifié les accords ?",
+      "output": "Trois passages pour améliorer une rédaction.",
+      "question": "Que vérifier avant l’orthographe de détail ?",
+      "options": [
+        "La réponse à la consigne",
+        "La couleur de l’encre",
+        "Le nombre de mots rares"
+      ],
+      "answer": 0,
+      "explanation": "Une réponse bien orthographiée peut malgré tout être hors sujet.",
+      "author": "Nunya",
+      "reviewer": null,
+      "status": "brouillon",
+      "last_verified": null
+    }
+  ],
+  "last_verified": null,
+  "source_notes": "Explications et exercices originaux, relecture pédagogique à organiser."
+}
