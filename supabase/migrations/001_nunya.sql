@@ -1,4 +1,4 @@
--- Migration prepared for a dedicated Supabase project. Not applied by the static pilot.
+-- Schéma initial. Appliqué au projet Supabase « nunya » (eu-west-3) le 3 novembre 2026 ; le site statique ne s’y connecte pas encore.
 create extension if not exists pgcrypto;
 create table public.profiles (id uuid primary key references auth.users(id) on delete cascade, display_name text, age_band text, status text, school_class text, school_series text, preferred_track text not null default 'both', created_at timestamptz not null default now());
 create table public.staff_roles (user_id uuid primary key references auth.users(id) on delete cascade, role text not null check(role in ('reviewer','admin')));
