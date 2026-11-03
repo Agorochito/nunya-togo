@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint dist/*.js scripts/*.mjs",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
+    "test": "vitest run --globals",
     "check:content": "node scripts/check-content.mjs && node scripts/check-library.mjs",
     "check:academy": "node scripts/validate-academy.mjs",
     "test:e2e": "node scripts/test-academy-flow.mjs",

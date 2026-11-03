@@ -1,0 +1,292 @@
+/* Nunya onboarding — lightweight styles.
+   Designed for entry-level Android phones and Safari on iPhone.
+   All touch targets >= 44px, readable contrast, smooth transitions. */
+
+/* ── overlay ─────────────────────────────────────────────────────── */
+.ob-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #f8f9f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* ── screen container ────────────────────────────────────────────── */
+.ob-screen {
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+}
+
+/* ── enter / exit transitions ────────────────────────────────────── */
+.ob-enter {
+  animation: obSlideIn .28s ease-out both;
+}
+.ob-exit {
+  animation: obSlideOut .2s ease-in both;
+  position: absolute;
+  pointer-events: none;
+}
+@keyframes obSlideIn {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes obSlideOut {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(-40px); }
+}
+.ob-fade-out {
+  animation: obFadeOut .22s ease-in both;
+}
+@keyframes obFadeOut {
+  to { opacity: 0; }
+}
+
+/* ── progress bar ────────────────────────────────────────────────── */
+.ob-progress {
+  height: 4px;
+  background: #e7e9e2;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.ob-progress-fill {
+  height: 100%;
+  background: #236a4e;
+  border-radius: 4px;
+  transition: width .3s ease;
+}
+.ob-step-indicator {
+  font-size: 11px;
+  color: #7a827a;
+  margin: 0 0 28px;
+}
+
+/* ── back button ─────────────────────────────────────────────────── */
+.ob-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: 0;
+  color: #7a827a;
+  font-size: 12px;
+  padding: 10px 0;
+  min-height: 44px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+.ob-back:hover {
+  color: #236a4e;
+}
+.ob-back:focus-visible {
+  outline: 3px solid #d98342;
+  outline-offset: 4px;
+}
+
+/* ── typography ──────────────────────────────────────────────────── */
+.ob-title {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -.6px;
+  line-height: 1.3;
+  color: #26382e;
+  margin: 0 0 10px;
+}
+.ob-body {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #5a6b54;
+  margin: 0 0 24px;
+}
+.ob-note {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #7a827a;
+  margin: 0 0 20px;
+}
+.ob-privacy {
+  font-size: 10px;
+  color: #9ca197;
+  margin: 28px 0 0;
+  text-align: center;
+}
+
+/* ── text input ──────────────────────────────────────────────────── */
+.ob-input {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #dfe5d7;
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+  font-size: 15px;
+  color: #26382e;
+  margin-bottom: 24px;
+  min-height: 48px;
+}
+.ob-input::placeholder {
+  color: #b0b8a8;
+}
+.ob-input:focus {
+  outline: 2px solid #236a4e;
+  outline-offset: 2px;
+  border-color: #236a4e;
+}
+
+/* ── option buttons (single-select cards) ────────────────────────── */
+.ob-options {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.ob-option {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  padding: 14px 16px;
+  min-height: 48px;
+  border: 1px solid #e1e6d9;
+  border-radius: 10px;
+  background: #fff;
+  font: inherit;
+  font-size: 14px;
+  color: #26382e;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.ob-option:hover {
+  background: #f0f4e9;
+  border-color: #c4d3b8;
+}
+.ob-option:focus-visible {
+  outline: 3px solid #d98342;
+  outline-offset: 2px;
+}
+.ob-option.ob-selected {
+  border-color: #236a4e;
+  background: #edf3e5;
+  font-weight: 600;
+}
+.ob-option.ob-selected::before {
+  content: '✓';
+  color: #236a4e;
+  font-weight: 700;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+/* ── disabled "coming soon" options ──────────────────────────────── */
+.ob-option.ob-disabled {
+  display: flex;
+  justify-content: space-between;
+  cursor: default;
+  color: #a1ab97;
+  background: #f6f7f3;
+  border-color: #eceee8;
+}
+.ob-option.ob-disabled:hover {
+  background: #f6f7f3;
+  border-color: #eceee8;
+}
+.ob-soon {
+  font-size: 10px;
+  letter-spacing: .5px;
+  color: #b9c1af;
+  background: #eceee8;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: lowercase;
+}
+
+/* ── option with description (skill level) ───────────────────────── */
+.ob-option-desc {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+.ob-option-desc strong {
+  font-size: 14px;
+}
+.ob-option-desc span {
+  font-size: 12px;
+  color: #7a827a;
+  font-weight: 400;
+}
+.ob-option-desc.ob-selected span {
+  color: #4e7542;
+}
+
+/* ── primary action button ───────────────────────────────────────── */
+.ob-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #236a4e;
+  color: #fff;
+  border: 0;
+  padding: 14px 24px;
+  min-height: 48px;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background .15s;
+}
+.ob-primary:hover {
+  background: #17553c;
+}
+.ob-primary:focus-visible {
+  outline: 3px solid #d98342;
+  outline-offset: 4px;
+}
+.ob-actions {
+  margin-top: 4px;
+}
+
+/* ── friendly screens (under-13, ready) ──────────────────────────── */
+.ob-friendly,
+.ob-ready {
+  text-align: center;
+  padding: 20px 0;
+}
+.ob-emoji {
+  display: block;
+  font-size: 40px;
+  margin-bottom: 16px;
+}
+.ob-ready .ob-title,
+.ob-friendly .ob-title {
+  font-size: 22px;
+}
+.ob-ready .ob-body,
+.ob-friendly .ob-body {
+  max-width: 340px;
+  margin: 0 auto 28px;
+}
+.ob-ready .ob-primary,
+.ob-friendly .ob-primary {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* ── reduced motion ──────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .ob-enter, .ob-exit, .ob-fade-out {
+    animation: none !important;
+  }
+  .ob-progress-fill {
+    transition: none !important;
+  }
+}

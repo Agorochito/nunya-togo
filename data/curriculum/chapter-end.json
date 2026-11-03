@@ -1,0 +1,244 @@
+{
+  "py-m1-01": {
+    "question": "Pourquoi la console peut-elle encore afficher l’ancien résultat après une modification du code ?",
+    "options": [
+      "Python relance toujours le programme dès que le code change.",
+      "La console conserve le résultat de la dernière exécution jusqu’à ce que le programme soit relancé.",
+      "L’éditeur et la console affichent toujours le même contenu.",
+      "La console affiche uniquement les erreurs."
+    ],
+    "answer": 1,
+    "explanation": "Modifier le code dans l’éditeur ne relance pas Python. La console affiche le résultat de la dernière exécution ; relance le programme pour voir le résultat correspondant aux nouvelles instructions."
+  },
+  "py-m1-02": {
+    "question": "Que fait Python avec print(\"Bonjour\") ?",
+    "options": [
+      "Il affiche le texte Bonjour, sans les guillemets.",
+      "Il affiche le texte avec les guillemets visibles.",
+      "Il transforme Bonjour en nom de variable.",
+      "Il affiche le mot print."
+    ],
+    "answer": 0,
+    "explanation": "print demande d’afficher le texte placé entre parenthèses. Les guillemets délimitent ce texte dans le code, mais ne sont pas affichés."
+  },
+  "py-m1-03": {
+    "question": "Que se passe-t-il lorsqu’une ligne commence par # ?",
+    "options": [
+      "Python répète la ligne précédente.",
+      "Python exécute seulement les mots après le signe.",
+      "Python ignore cette ligne comme instruction et la laisse expliquer le code aux personnes.",
+      "Python affiche automatiquement la ligne dans la console."
+    ],
+    "answer": 2,
+    "explanation": "Le signe # commence un commentaire. Python ne l’exécute pas ; le commentaire sert à expliquer l’intention du programme à une personne qui le lit."
+  },
+  "py-m1-04": {
+    "question": "Python signale une erreur de syntaxe avant d’exécuter le programme. Que faut-il faire d’abord ?",
+    "options": [
+      "Ajouter des commentaires partout.",
+      "Examiner l’écriture du code et corriger le signe ou la structure manquante.",
+      "Changer le texte affiché dans la console.",
+      "Relancer sans modifier le code."
+    ],
+    "answer": 1,
+    "explanation": "Une erreur de syntaxe indique que Python ne comprend pas l’écriture du programme. Il faut relire les signes et la structure près de l’endroit signalé, corriger, puis relancer."
+  },
+  "py-m1-05": {
+    "question": "Pour construire une carte de présentation affichée sur plusieurs lignes, quelle approche convient ?",
+    "options": [
+      "Écrire seulement le résultat attendu dans la console.",
+      "Mettre toutes les informations dans un commentaire.",
+      "Utiliser plusieurs instructions print dans l’ordre voulu.",
+      "Remplacer les instructions par le nom du projet."
+    ],
+    "answer": 2,
+    "explanation": "Un petit projet assemble plusieurs instructions connues pour répondre à une consigne complète. Plusieurs appels à print, exécutés dans l’ordre, peuvent afficher les différentes lignes de la carte."
+  },
+  "py-m2-01": {
+    "question": "Après `score = 8`, que désigne le nom score dans une instruction qui l’utilise ?",
+    "options": [
+      "Le nombre de caractères du mot score.",
+      "La valeur actuellement reliée à ce nom, ici 8.",
+      "Une instruction qui affiche automatiquement 8.",
+      "Le texte \"8\" dans tous les cas."
+    ],
+    "answer": 1,
+    "explanation": "Une variable relie un nom à une valeur. Après `score = 8`, Python utilise la valeur numérique 8 lorsque le programme emploie le nom score."
+  },
+  "py-m2-02": {
+    "question": "Quelle affirmation distingue correctement 7, 7.0 et \"7\" en Python ?",
+    "options": [
+      "Ce sont trois nombres entiers identiques.",
+      "7 et 7.0 sont toujours du texte, tandis que \"7\" est un nombre.",
+      "7 est un entier, 7.0 un décimal et \"7\" du texte.",
+      "Les guillemets ne changent jamais le type."
+    ],
+    "answer": 2,
+    "explanation": "Le type dépend de la valeur écrite : 7 est un entier, 7.0 un nombre décimal et \"7\" une chaîne de caractères. Une conversion explicite peut transformer un texte compatible en nombre."
+  },
+  "py-m2-03": {
+    "question": "Lorsqu’on assemble deux chaînes de caractères, qu’est-ce qui détermine les espaces visibles dans le résultat ?",
+    "options": [
+      "Python ajoute toujours un espace entre les chaînes.",
+      "Les espaces présents dans les chaînes et ceux ajoutés explicitement.",
+      "La longueur du nom de la variable.",
+      "Le nombre de parenthèses dans le programme."
+    ],
+    "answer": 1,
+    "explanation": "Une chaîne est une suite de caractères, et les espaces en font partie. Python n’ajoute pas automatiquement l’espace souhaité lors d’un assemblage : il faut le placer dans une chaîne ou l’ajouter explicitement."
+  },
+  "py-m2-04": {
+    "question": "Quelle valeur est un booléen Python, et non du texte ?",
+    "options": [
+      "\"True\"",
+      "\"False\"",
+      "True",
+      "\"Vrai\""
+    ],
+    "answer": 2,
+    "explanation": "Les booléens Python s’écrivent True et False, avec une majuscule initiale et sans guillemets. Avec des guillemets, ces mêmes caractères deviennent du texte."
+  },
+  "py-m2-05": {
+    "question": "Une personne saisit 12 quand le programme utilise input(). Quelle est la valeur renvoyée avant conversion ?",
+    "options": [
+      "Le nombre entier 12 automatiquement.",
+      "Le texte \"12\".",
+      "Le booléen True.",
+      "La valeur None."
+    ],
+    "answer": 1,
+    "explanation": "input() renvoie une chaîne de caractères, même si la saisie ressemble à un nombre. Il faut convertir ce texte, par exemple avec int() pour un entier, avant de faire des calculs numériques."
+  },
+  "py-m2-06": {
+    "question": "Avec 17 et 5, quelle opération donne le reste de la division entière ?",
+    "options": [
+      "17 / 5",
+      "17 // 5",
+      "17 % 5",
+      "17 + 5"
+    ],
+    "answer": 2,
+    "explanation": "L’opérateur % calcule le reste : 17 % 5 vaut 2. La division / donne un quotient décimal, tandis que // donne le quotient entier."
+  },
+  "py-m2-07": {
+    "question": "Dans une f-string, comment insérer la valeur d’une variable nommée prix dans un message ?",
+    "options": [
+      "Écrire prix entre accolades dans une chaîne précédée de f.",
+      "Écrire le nom prix après le message, sans séparateur.",
+      "Entourer prix de crochets dans un commentaire.",
+      "Remplacer la variable par son nom entre guillemets."
+    ],
+    "answer": 0,
+    "explanation": "Une f-string commence par f avant les guillemets. Les accolades délimitent une expression, comme {prix}, qui sera remplacée par sa valeur ; un format comme :.2f peut afficher deux décimales."
+  },
+  "py-m3-01": {
+    "question": "Que produit l’expression `age >= 18` ?",
+    "options": [
+      "Elle attribue 18 à age.",
+      "Elle compare age à 18 et produit True ou False.",
+      "Elle affiche automatiquement age.",
+      "Elle convertit age en texte."
+    ],
+    "answer": 1,
+    "explanation": "Les opérateurs de comparaison vérifient une relation entre des valeurs. Le résultat est un booléen : True si la relation est satisfaite, sinon False."
+  },
+  "py-m3-02": {
+    "question": "Dans une structure if/else, quand le bloc else est-il exécuté ?",
+    "options": [
+      "À chaque passage, avant le if.",
+      "Seulement lorsque la condition du if est fausse.",
+      "Seulement lorsque la condition du if est vraie.",
+      "Jamais si le programme contient une comparaison."
+    ],
+    "answer": 1,
+    "explanation": "if choisit le premier bloc lorsque sa condition est vraie. else fournit l’autre branche, exécutée lorsque cette condition est fausse."
+  },
+  "py-m3-03": {
+    "question": "Dans une suite if, elif, else, pourquoi l’ordre des conditions compte-t-il ?",
+    "options": [
+      "Python teste les conditions dans l’ordre et exécute la première branche vraie.",
+      "Python exécute toujours toutes les branches elif.",
+      "else est testé avant if.",
+      "L’ordre ne change que l’affichage du code."
+    ],
+    "answer": 0,
+    "explanation": "Python examine les conditions dans l’ordre. Dès qu’une condition if ou elif est vraie, sa branche s’exécute et les autres branches de cette structure sont ignorées ; else couvre les cas restants."
+  },
+  "py-m3-04": {
+    "question": "Une règle exige que deux conditions soient vraies en même temps. Quel opérateur convient ?",
+    "options": [
+      "or",
+      "not",
+      "and",
+      "elif"
+    ],
+    "answer": 2,
+    "explanation": "and combine des conditions et ne vaut True que si toutes les conditions reliées sont vraies. or accepte qu’au moins l’une soit vraie, tandis que not inverse un booléen."
+  },
+  "py-m3-05": {
+    "question": "Pour calculer une moyenne à partir de plusieurs notes, quelle opération faut-il effectuer ?",
+    "options": [
+      "Additionner les notes et diviser par leur nombre.",
+      "Multiplier toutes les notes par leur nombre.",
+      "Diviser le nombre de notes par leur somme.",
+      "Soustraire la plus petite note de la plus grande."
+    ],
+    "answer": 0,
+    "explanation": "Une moyenne se calcule en additionnant les valeurs puis en divisant le total par le nombre de valeurs. Il faut aussi vérifier que ce nombre n’est pas nul avant la division."
+  },
+  "py-m4-01": {
+    "question": "Combien de fois la boucle `for i in range(3)` s’exécute-t-elle ?",
+    "options": [
+      "Deux fois, avec 1 puis 2.",
+      "Trois fois, avec 0, 1 puis 2.",
+      "Quatre fois, avec 0, 1, 2 puis 3.",
+      "Elle ne s’exécute pas sans valeur de départ."
+    ],
+    "answer": 1,
+    "explanation": "range(3) fournit 0, 1 et 2 : la borne 3 n’est pas incluse. Le bloc de la boucle s’exécute donc trois fois."
+  },
+  "py-m4-02": {
+    "question": "Que doit généralement faire une boucle while pour éviter de répéter indéfiniment la même condition vraie ?",
+    "options": [
+      "Faire évoluer une valeur utilisée par la condition.",
+      "Supprimer toutes les instructions du bloc.",
+      "Remplacer while par un commentaire.",
+      "Conserver la condition vraie après chaque tour."
+    ],
+    "answer": 0,
+    "explanation": "while répète tant que sa condition est vraie. Le bloc doit faire évoluer au moins une valeur liée à cette condition afin qu’elle puisse devenir fausse et que la boucle s’arrête."
+  },
+  "py-m4-03": {
+    "question": "Quelle différence y a-t-il entre break et continue dans une boucle ?",
+    "options": [
+      "break termine la boucle ; continue passe au tour suivant.",
+      "break passe au tour suivant ; continue termine la boucle.",
+      "Les deux arrêtent définitivement le programme.",
+      "Les deux relancent le tour courant."
+    ],
+    "answer": 0,
+    "explanation": "break quitte immédiatement la boucle. continue abandonne le reste du tour actuel et reprend la boucle au tour suivant."
+  },
+  "py-m4-04": {
+    "question": "Dans une boucle qui traite des résultats, à quoi servent souvent un total et un compteur distincts ?",
+    "options": [
+      "Le total additionne les valeurs ; le compteur compte les éléments traités.",
+      "Le total compte les éléments ; le compteur additionne les valeurs.",
+      "Les deux doivent toujours contenir la même valeur.",
+      "Le compteur remplace la condition de la boucle."
+    ],
+    "answer": 0,
+    "explanation": "Un accumulateur conserve une somme qui évolue à chaque tour. Un compteur conserve le nombre d’éléments ou d’événements ; ces deux valeurs n’ont donc pas nécessairement le même rôle."
+  },
+  "py-m4-05": {
+    "question": "Dans un jeu de devinette, que doit faire la boucle après chaque proposition incorrecte ?",
+    "options": [
+      "Arrêter sans vérifier la proposition.",
+      "Indiquer si la proposition est trop petite ou trop grande, puis permettre une nouvelle tentative.",
+      "Modifier automatiquement la valeur secrète.",
+      "Compter une victoire avant la bonne réponse."
+    ],
+    "answer": 1,
+    "explanation": "Le jeu compare chaque proposition à la valeur secrète. Si elle est incorrecte, il peut indiquer le sens de l’écart et recommencer ; la boucle s’arrête lorsque la bonne valeur est trouvée ou qu’une règle d’arrêt est atteinte."
+  }
+}

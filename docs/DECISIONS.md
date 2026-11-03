@@ -45,3 +45,11 @@ Relecteurs togolais à identifier ; calendrier officiel à obtenir ; établissem
 
 - Les prérequis conditionnent la progression, sans empêcher une lecture ou un essai libre. Un test de module permet de valider des acquis ; le questionnaire de départ conseille seulement et ne valide rien.
 - Le contrôle sémantique complet du vocabulaire et de la difficulté demeure humain. Les validateurs garantissent des champs, bornes, références et sorties de programmes, pas l’absence de tout jargon.
+
+## Interface 5.2 — décisions du 3 novembre
+
+- Le test d’accueil, pour le domaine « Programmation & données », recommande le cours Python : les bases (module 1) au lieu du parcours métier Données & IA. Les parcours métiers restent proposés dans Mon avenir ; l’élève n’y est plus inscrit d’office. Création web et Culture numérique gardent leurs parcours.
+- Les résultats du test s’affichent en mots (Bases solides ≥ 70, En progrès ≥ 35, À découvrir), seuils identiques au choix du point de départ ; aucun pourcentage n’est montré.
+- Un seul test de départ (accueil). Le test Python de 10 questions n’est plus proposé ; son adresse reste valide. Les modules se valident par leur test de 5 questions.
+- L’ancien cours court « Premiers pas avec Python » est remplacé par « Python : les bases » partout où il était listé ; les progrès anciens restent stockés.
+- Supabase : projet « nunya » créé le 3 novembre dans l’organisation du propriétaire (offre gratuite, région eu-west-3 Paris, la plus proche du Togo parmi celles proposées). Migrations 001 à 003 appliquées : schéma, RLS, fonction de rôle déplacée dans un schéma privé, quota d’IA réservé aux utilisateurs connectés, index. Le site reste entièrement local : aucune connexion, synchronisation ou authentification n’est encore branchée dans `dist/`. Les clés publiques sont dans `.env` (ignoré par git).

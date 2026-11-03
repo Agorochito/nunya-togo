@@ -1,3 +1,18 @@
+# Vérifications — version 5.2.0, 3 novembre 2026
+
+Corrections d’interface en huit étapes, chacune comparée avant/après par captures (360 px et 1440 px, clair et sombre).
+
+- Construction (`npm run build`) : lint du programme, graphe des prérequis et 278 cas de code Python réussis ; 22 leçons, 7 301 mots d’explication.
+- Tests unitaires : 74 réussis (academy, curriculum, platform, study, assessment-engine, placement-mapping). Le registre npm n’étant pas joignable depuis l’environnement de vérification, ils ont été lancés avec un exécuteur minimal compatible ; un test de `study` demande la bibliothèque complète, absente de cette copie. À relancer avec `npm test` sur la machine de développement.
+- `tsc --noEmit`, `check:academy`, `check:curriculum-links` : réussis. Syntaxe de tous les fichiers `dist/*.js` et `scripts/*.mjs` vérifiée.
+- Parcours navigateur : 30 adresses × 3 configurations (téléphone clair, téléphone sombre, ordinateur) sans erreur JavaScript, sans débordement horizontal, sans page bloquée sur « Préparation de ton espace… ».
+- Mise à jour hors ligne : un navigateur ayant le cache `nunya-v5.1.7` passe à `nunya-v5.2.0` et charge le nouveau bundle après rechargement.
+- Couleurs : aucune surface verte de l’ancien thème mesurée sur 11 pages (clair et sombre).
+
+Non mesuré : essais sur téléphones réels, lecteur d’écran, relecture humaine des textes.
+
+## Historique 5.1.0
+
 # Vérifications — version 5.1.0, 2 novembre 2026
 
 32 tests Vitest, lint et TypeScript réussis. 22 leçons passent les contrôles de structure (300–700 mots par explication, deux exemples, quatre exercices, trois quiz, erreurs, glossaire et récapitulatif), le graphe de prérequis et les références du catalogue. Les 278 cas d’exécution des exemples et solutions passent avec Python 3. Les solutions sont vérifiées avec les saisies et sorties attendues ; ce contrôle ne prétend pas juger toute la pédagogie.
