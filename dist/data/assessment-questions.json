@@ -1,0 +1,274 @@
+[
+  {
+    "id": "algo1a", "category": "algo", "difficulty": 1,
+    "question": "Qu’est-ce qu’un algorithme ?",
+    "choices": [
+      { "id": "a", "text": "Un type de virus informatique" },
+      { "id": "b", "text": "Une série d’étapes pour résoudre un problème" },
+      { "id": "c", "text": "Un composant physique de l’ordinateur" }
+    ],
+    "correctId": "b",
+    "explanation": "Un algorithme, c’est comme une recette : une suite d’instructions pour arriver à un résultat."
+  },
+  {
+    "id": "algo1b", "category": "algo", "difficulty": 1,
+    "question": "À quoi sert une variable en programmation ?",
+    "choices": [
+      { "id": "a", "text": "À stocker une valeur en mémoire" },
+      { "id": "b", "text": "À dessiner des formes à l’écran" },
+      { "id": "c", "text": "À connecter l’ordinateur à Internet" }
+    ],
+    "correctId": "a",
+    "explanation": "Une variable est comme une boîte dans laquelle on range une information (un nombre, un texte…) pour l’utiliser plus tard."
+  },
+  {
+    "id": "algo2a", "category": "algo", "difficulty": 2,
+    "question": "Que fait une boucle dans un programme ?",
+    "choices": [
+      { "id": "a", "text": "Elle arrête le programme" },
+      { "id": "b", "text": "Elle répète des instructions plusieurs fois" },
+      { "id": "c", "text": "Elle affiche des images" },
+      { "id": "d", "text": "Elle supprime des fichiers" }
+    ],
+    "correctId": "b",
+    "explanation": "Une boucle permet de répéter un bloc d’instructions sans avoir à les réécrire. Par exemple, afficher les nombres de 1 à 100."
+  },
+  {
+    "id": "algo2b", "category": "algo", "difficulty": 2,
+    "question": "En Python, que fait l’instruction print(\"Bonjour\") ?",
+    "choices": [
+      { "id": "a", "text": "Elle imprime une feuille" },
+      { "id": "b", "text": "Elle affiche « Bonjour » à l’écran" },
+      { "id": "c", "text": "Elle enregistre « Bonjour » dans un fichier" }
+    ],
+    "correctId": "b",
+    "explanation": "print() affiche du texte dans la console. C’est souvent la première commande qu’on apprend en Python !"
+  },
+  {
+    "id": "algo3a", "category": "algo", "difficulty": 3,
+    "question": "Qu’est-ce qu’une fonction en programmation ?",
+    "choices": [
+      { "id": "a", "text": "Un bloc de code réutilisable qui effectue une tâche précise" },
+      { "id": "b", "text": "Un fichier qui contient des images" },
+      { "id": "c", "text": "Un type de boucle spéciale" },
+      { "id": "d", "text": "Un message d’erreur" }
+    ],
+    "correctId": "a",
+    "explanation": "Une fonction regroupe des instructions qu’on peut appeler par leur nom. Ça évite de copier-coller le même code partout."
+  },
+  {
+    "id": "algo3b", "category": "algo", "difficulty": 3,
+    "question": "En Python, que contient la variable x après : x = [3, 7, 1] ?",
+    "choices": [
+      { "id": "a", "text": "Le nombre 371" },
+      { "id": "b", "text": "Une liste de trois éléments : 3, 7 et 1" },
+      { "id": "c", "text": "Une erreur" }
+    ],
+    "correctId": "b",
+    "explanation": "Les crochets [ ] créent une liste en Python. Ici, x contient trois éléments auxquels on peut accéder un par un."
+  },
+
+  {
+    "id": "web1a", "category": "web", "difficulty": 1,
+    "question": "Que signifie HTML ?",
+    "choices": [
+      { "id": "a", "text": "High Tech Modern Language" },
+      { "id": "b", "text": "HyperText Markup Language" },
+      { "id": "c", "text": "Home Tool for Making Layouts" }
+    ],
+    "correctId": "b",
+    "explanation": "HTML (HyperText Markup Language) est le langage qui structure le contenu des pages web : titres, paragraphes, images…"
+  },
+  {
+    "id": "web1b", "category": "web", "difficulty": 1,
+    "question": "Quel langage sert à mettre en forme (couleurs, tailles…) une page web ?",
+    "choices": [
+      { "id": "a", "text": "Python" },
+      { "id": "b", "text": "CSS" },
+      { "id": "c", "text": "Excel" }
+    ],
+    "correctId": "b",
+    "explanation": "CSS (Cascading Style Sheets) permet de changer les couleurs, les polices, les espacements et l’apparence d’une page web."
+  },
+  {
+    "id": "web2a", "category": "web", "difficulty": 2,
+    "question": "Quelle balise HTML crée un lien vers un autre site ?",
+    "choices": [
+      { "id": "a", "text": "<link>" },
+      { "id": "b", "text": "<a>" },
+      { "id": "c", "text": "<p>" },
+      { "id": "d", "text": "<img>" }
+    ],
+    "correctId": "b",
+    "explanation": "La balise <a> (pour « anchor ») crée un lien hypertexte. On écrit par exemple <a href=\"https://...\">Cliquez ici</a>."
+  },
+  {
+    "id": "web2b", "category": "web", "difficulty": 2,
+    "question": "Que fait la propriété CSS « color: red; » ?",
+    "choices": [
+      { "id": "a", "text": "Elle change le fond en rouge" },
+      { "id": "b", "text": "Elle change la couleur du texte en rouge" },
+      { "id": "c", "text": "Elle ajoute une bordure rouge" }
+    ],
+    "correctId": "b",
+    "explanation": "« color » en CSS change la couleur du texte. Pour le fond, on utilise « background-color »."
+  },
+  {
+    "id": "web3a", "category": "web", "difficulty": 3,
+    "question": "À quoi sert JavaScript sur une page web ?",
+    "choices": [
+      { "id": "a", "text": "À structurer le contenu (comme HTML)" },
+      { "id": "b", "text": "À ajouter de l’interactivité (menus, animations, formulaires…)" },
+      { "id": "c", "text": "À stocker les images du site" }
+    ],
+    "correctId": "b",
+    "explanation": "JavaScript rend les pages interactives : réagir aux clics, valider un formulaire, afficher des animations, etc."
+  },
+  {
+    "id": "web3b", "category": "web", "difficulty": 3,
+    "question": "Qu’est-ce que le « responsive design » ?",
+    "choices": [
+      { "id": "a", "text": "Un site qui répond très vite" },
+      { "id": "b", "text": "Un design qui s’adapte à la taille de l’écran (téléphone, tablette, ordinateur)" },
+      { "id": "c", "text": "Un site qui fonctionne sans Internet" },
+      { "id": "d", "text": "Un site disponible dans plusieurs langues" }
+    ],
+    "correctId": "b",
+    "explanation": "Le responsive design permet à un site de s’afficher correctement aussi bien sur un petit téléphone que sur un grand écran."
+  },
+
+  {
+    "id": "dig1a", "category": "digital", "difficulty": 1,
+    "question": "Qu’est-ce qu’un navigateur web ?",
+    "choices": [
+      { "id": "a", "text": "Un câble qui connecte l’ordinateur à Internet" },
+      { "id": "b", "text": "Un logiciel pour consulter des sites web (Chrome, Firefox…)" },
+      { "id": "c", "text": "Un moteur de recherche comme Google" }
+    ],
+    "correctId": "b",
+    "explanation": "Un navigateur est le logiciel qui affiche les pages web. Google est un moteur de recherche, pas un navigateur."
+  },
+  {
+    "id": "dig1b", "category": "digital", "difficulty": 1,
+    "question": "Parmi ces éléments, lequel est un périphérique d’entrée ?",
+    "choices": [
+      { "id": "a", "text": "L’écran" },
+      { "id": "b", "text": "L’imprimante" },
+      { "id": "c", "text": "Le clavier" }
+    ],
+    "correctId": "c",
+    "explanation": "Un périphérique d’entrée envoie des informations à l’ordinateur. Le clavier et la souris en sont des exemples."
+  },
+  {
+    "id": "dig2a", "category": "digital", "difficulty": 2,
+    "question": "Qu’est-ce qu’une adresse IP ?",
+    "choices": [
+      { "id": "a", "text": "Le nom d’un site web" },
+      { "id": "b", "text": "Un identifiant unique attribué à un appareil sur un réseau" },
+      { "id": "c", "text": "Un mot de passe pour se connecter à Internet" }
+    ],
+    "correctId": "b",
+    "explanation": "Chaque appareil connecté à un réseau reçoit une adresse IP, un peu comme une adresse postale pour recevoir des données."
+  },
+  {
+    "id": "dig2b", "category": "digital", "difficulty": 2,
+    "question": "À quoi sert la mémoire RAM d’un ordinateur ?",
+    "choices": [
+      { "id": "a", "text": "À stocker les fichiers de façon permanente" },
+      { "id": "b", "text": "À garder temporairement les données en cours d’utilisation" },
+      { "id": "c", "text": "À afficher les images à l’écran" },
+      { "id": "d", "text": "À se connecter au Wi-Fi" }
+    ],
+    "correctId": "b",
+    "explanation": "La RAM est une mémoire rapide mais temporaire : elle garde les données des applications ouvertes et se vide quand on éteint l’ordinateur."
+  },
+  {
+    "id": "dig3a", "category": "digital", "difficulty": 3,
+    "question": "Qu’est-ce que le chiffrement des données ?",
+    "choices": [
+      { "id": "a", "text": "Compresser un fichier pour qu’il prenne moins de place" },
+      { "id": "b", "text": "Transformer des données pour que seul le destinataire puisse les lire" },
+      { "id": "c", "text": "Supprimer définitivement des fichiers" }
+    ],
+    "correctId": "b",
+    "explanation": "Le chiffrement protège les données en les rendant illisibles sans la bonne clé. C’est utilisé pour les messages, les paiements en ligne, etc."
+  },
+  {
+    "id": "dig3b", "category": "digital", "difficulty": 3,
+    "question": "Qu’est-ce qu’un logiciel « open source » ?",
+    "choices": [
+      { "id": "a", "text": "Un logiciel gratuit sans publicité" },
+      { "id": "b", "text": "Un logiciel dont le code source est librement accessible et modifiable" },
+      { "id": "c", "text": "Un logiciel qui fonctionne uniquement en ligne" },
+      { "id": "d", "text": "Un logiciel créé par le gouvernement" }
+    ],
+    "correctId": "b",
+    "explanation": "« Open source » signifie que n’importe qui peut lire, modifier et partager le code du logiciel. Firefox et Linux en sont des exemples."
+  },
+  {
+    "id": "ded1a", "category": "deduction", "difficulty": 1,
+    "question": "Une page ne montre le bouton « Valider » qu’après la sélection d’une réponse. Le bouton est visible. Que peux-tu conclure ?",
+    "choices": [
+      { "id": "a", "text": "Une réponse a été sélectionnée" },
+      { "id": "b", "text": "La réponse est forcément correcte" },
+      { "id": "c", "text": "Le test est terminé" }
+    ],
+    "correctId": "a",
+    "explanation": "La règle dit que le bouton apparaît après une sélection. On peut donc déduire qu’une réponse a été choisie, mais pas qu’elle est correcte."
+  },
+  {
+    "id": "ded1b", "category": "deduction", "difficulty": 1,
+    "question": "Un fichier est enregistré sur l’appareil. Une connexion Internet est coupée. Quelle action reste possible sans autre service en ligne ?",
+    "choices": [
+      { "id": "a", "text": "Ouvrir ce fichier enregistré localement" },
+      { "id": "b", "text": "Télécharger un fichier distant qui n’a jamais été enregistré" },
+      { "id": "c", "text": "Envoyer un message à un site distant" }
+    ],
+    "correctId": "a",
+    "explanation": "Un fichier déjà présent sur l’appareil reste lisible hors connexion ; les actions qui demandent un serveur ne le sont pas."
+  },
+  {
+    "id": "ded2a", "category": "deduction", "difficulty": 2,
+    "question": "Un exercice commence avec 2 points. Chaque bonne réponse ajoute 3 points et chaque erreur retire 1 point. Quel score obtient-on après deux bonnes réponses et une erreur ?",
+    "choices": [
+      { "id": "a", "text": "6 points" },
+      { "id": "b", "text": "7 points" },
+      { "id": "c", "text": "8 points" }
+    ],
+    "correctId": "b",
+    "explanation": "On part de 2, on ajoute 3 deux fois, puis on retire 1 : 2 + 3 + 3 - 1 = 7."
+  },
+  {
+    "id": "ded2b", "category": "deduction", "difficulty": 2,
+    "question": "Une application vérifie d’abord qu’un champ n’est pas vide, puis accepte la réponse. Le champ est vide et l’application la refuse. Quelle règle explique le refus ?",
+    "choices": [
+      { "id": "a", "text": "Une réponse doit être saisie avant d’être vérifiée" },
+      { "id": "b", "text": "Toute réponse vide est correcte" },
+      { "id": "c", "text": "La connexion Internet détermine la réponse" }
+    ],
+    "correctId": "a",
+    "explanation": "Le contrôle du champ vient avant l’acceptation : sans valeur, l’application ne peut pas valider la réponse."
+  },
+  {
+    "id": "ded3a", "category": "deduction", "difficulty": 3,
+    "question": "Une leçon B est accessible seulement après A. La leçon C est accessible seulement après B. C est accessible. Quelles leçons ont nécessairement été validées ?",
+    "choices": [
+      { "id": "a", "text": "A et B" },
+      { "id": "b", "text": "B seulement" },
+      { "id": "c", "text": "A seulement" }
+    ],
+    "correctId": "a",
+    "explanation": "Pour accéder à C, B doit être validée ; pour accéder à B, A doit l’être aussi. Les deux conditions sont nécessaires."
+  },
+  {
+    "id": "ded3b", "category": "deduction", "difficulty": 3,
+    "question": "Un programme applique deux fois la règle « multiplier par 2, puis soustraire 3 », en partant de 5. Quel résultat obtient-on ?",
+    "choices": [
+      { "id": "a", "text": "8" },
+      { "id": "b", "text": "11" },
+      { "id": "c", "text": "14" }
+    ],
+    "correctId": "b",
+    "explanation": "Première application : 5 × 2 - 3 = 7. Deuxième : 7 × 2 - 3 = 11."
+  }
+]

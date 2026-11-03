@@ -1,0 +1,89 @@
+{
+  "introTitle": {
+    "fr": "Avant de commencer…",
+    "en": "Before we start…"
+  },
+  "introBody": {
+    "fr": "Ce n’est pas un examen : pas de note ni de chrono. Les questions vérifient ce que tu comprends déjà et ta façon de raisonner pour choisir un bon point de départ.",
+    "en": "This is not an exam: no grades and no timer. The questions check what you already understand and how you reason, so we can choose a good starting point."
+  },
+  "introAction": {
+    "fr": "C’est parti !",
+    "en": "Let's go!"
+  },
+  "questionIndicator": {
+    "fr": "Question {current} sur {total}",
+    "en": "Question {current} of {total}"
+  },
+  "iDontKnow": {
+    "fr": "Je ne sais pas",
+    "en": "I don't know"
+  },
+  "nextQuestion": {
+    "fr": "Question suivante",
+    "en": "Next question"
+  },
+  "finishTest": {
+    "fr": "Terminer",
+    "en": "Finish"
+  },
+  "feedbackCorrect": {
+    "fr": "Bonne réponse !",
+    "en": "Correct answer!"
+  },
+  "feedbackWrong": {
+    "fr": "Pas tout à fait, mais c’est en essayant qu’on apprend !",
+    "en": "Not quite, but we learn by trying!"
+  },
+  "feedbackDontKnow": {
+    "fr": "C’est courageux de le dire ! Voici l’explication :",
+    "en": "It's brave to say so! Here's the explanation:"
+  },
+  "encouragements": {
+    "fr": [
+      "Tu avances bien, continue ! 💪",
+      "Chaque question est une occasion d’apprendre.",
+      "Tu gères ! 🌟",
+      "Bien joué, on continue ! 🚀",
+      "Tu es sur la bonne voie !",
+      "Super, encore quelques questions !",
+      "Bravo, tu t’en sors très bien !",
+      "Tu fais des progrès, c’est top ! ✨",
+      "Continue comme ça !",
+      "Génial, plus que quelques questions !"
+    ],
+    "en": [
+      "You're doing well, keep going! 💪",
+      "Every question is a chance to learn.",
+      "You've got this! 🌟",
+      "Well done, let's keep going! 🚀",
+      "You're on the right track!",
+      "Great, just a few more questions!",
+      "Bravo, you're doing very well!",
+      "You're making progress, awesome! ✨",
+      "Keep it up!",
+      "Awesome, just a few more to go!"
+    ]
+  },
+  "resumeTitle": {
+    "fr": "Tu avais commencé un test",
+    "en": "You had started a test"
+  },
+  "resumeBody": {
+    "fr": "On dirait que tu as été interrompu·e. Veux-tu reprendre là où tu en étais ?",
+    "en": "It looks like you were interrupted. Would you like to pick up where you left off?"
+  },
+  "resumeYes": {
+    "fr": "Reprendre",
+    "en": "Resume"
+  },
+  "resumeNo": {
+    "fr": "Recommencer",
+    "en": "Start over"
+  },
+  "introEmoji": "📝",
+  "backLabel": {
+    "fr": "Retour",
+    "en": "Back"
+  }
+}

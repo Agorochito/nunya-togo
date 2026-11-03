@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="fr-TG">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#22684c">
+<title>Nunya — Test d'évaluation</title>
+<link rel="stylesheet" href="./assessment-ui.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 14px; line-height: 1.5; color: #26382e; background: #f8f9f5; }
+  button, input { font: inherit; }
+  button { cursor: pointer; border: 0; background: none; color: inherit; -webkit-tap-highlight-color: transparent; }
+  .test-controls { position: fixed; bottom: 16px; right: 16px; z-index: 2000; display: flex; gap: 8px; flex-wrap: wrap; max-width: 260px; }
+  .test-controls button { background: #236a4e; color: #fff; padding: 10px 14px; border-radius: 8px; font-size: 11px; font-weight: 600; min-height: 44px; }
+  .test-controls button.danger { background: #a04030; }
+</style>
+</head>
+<body>
+  <div class="test-controls">
+    <button onclick="NunyaAssessmentUI.start()">Lancer le test</button>
+    <button onclick="NunyaAssessmentUI.start('intermediate')">Lancer (intermédiaire)</button>
+    <button onclick="NunyaAssessmentUI.start('advanced')">Lancer (avancé)</button>
+    <button class="danger" onclick="localStorage.removeItem('nunya-assessment-session'); localStorage.removeItem('nunya-state'); location.reload();">Effacer les données</button>
+  </div>
+  <!-- Inline data so the page works with file:// protocol (no fetch) -->
+  <script src="./_test-assessment-data.js"></script>
+  <!-- Config must load before engine -->
+  <script src="./assessment-config.js"></script>
+  <script src="./assessment-engine.js"></script>
+  <script src="./assessment-ui.js"></script>
+  <script>NunyaAssessmentUI.start();</script>
+</body>
+</html>

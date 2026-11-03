@@ -2,13 +2,29 @@
 
 [Site public](https://nunya-togo.vercel.app/) · [Programme Python](https://nunya-togo.vercel.app/#/apprendre/python-bases) · [Première leçon](https://nunya-togo.vercel.app/#/apprendre/python-bases/m1/py-m1-01)
 
+## Version 5.2.0 — interface revue sur téléphone
+
+Corrections d’interface du 3 novembre 2026, vérifiées sur téléphone (360 px) et ordinateur, en thème clair et sombre :
+
+- Barre du bas : **Accueil · Coder · Mes cours · Mon avenir · Plus**. La loupe place le curseur dans le champ de recherche.
+- Leçons : premier écran compact, résultat de « Vérifier mon code » ramené à l’écran, mini-quiz avec de vraies cartes de réponse.
+- Test d’accueil : le domaine « Programmation & données » mène au cours **Python : les bases** ; les résultats s’affichent en mots (Bases solides, En progrès, À découvrir), sans pourcentage. Un seul test de départ ; les modules se valident avec leur test de 5 questions.
+- L’ancien cours court « Premiers pas avec Python » n’apparaît plus dans les listes ; ses liens mènent au nouveau programme.
+- Une seule palette (couleur d’accent) partout, y compris le test de départ en thème sombre ; plus de restes du thème vert.
+- Textes revus (Mon avenir, Aide, leçon 1, apostrophes typographiques, message « Moins de 13 ans » affiché dès le choix).
+- Version du cache du service worker : `nunya-v5.2.0`. Les téléphones qui ont déjà ouvert Nunya reçoivent la mise à jour au rechargement suivant.
+
+Détails et preuves : [historique](CHANGELOG.md), [résultats](docs/TEST_RESULTS.md), [décisions](docs/DECISIONS.md).
+
 ## Version 5.1.0 — programme depuis zéro
 
-Trois entrées : **Apprendre à coder**, **Mes cours & examens**, **Mon avenir**. Le nouveau cours Python comprend les modules 1 à 4 : 22 leçons originales en français, 7 298 mots d’explication, 44 exemples avec traces, 88 exercices de code et 66 questions. Les quatre projets et points d’étape font partie de ces modules. Les modules 5 à 10 et les autres langages restent explicitement en préparation ; ce n’est pas encore le cours Python complet de 25–30 heures.
+Trois entrées : **Apprendre à coder**, **Mes cours & examens**, **Mon avenir**. Le nouveau cours Python comprend les modules 1 à 4 : 22 leçons originales en français, 7 301 mots d’explication, 44 exemples avec traces, 88 exercices de code et 66 questions. Les quatre projets et points d’étape font partie de ces modules. Les modules 5 à 10 et les autres langages restent explicitement en préparation ; ce n’est pas encore le cours Python complet de 25–30 heures.
 
 Les leçons associent lecture et atelier CodeMirror. Pyodide s’exécute dans un Worker local, avec saisies simulées, tests visibles et autres cas, indices gradués, erreurs expliquées, arrêt et console bornée. Le moteur facultatif s’enregistre séparément pour le hors ligne. Aucune limite stricte de mémoire n’est garantie par le navigateur.
 
-Le programme montre prérequis, lecture libre et conditions de progression ; un questionnaire de dix questions conseille un début et chaque module a une validation avec défi de code. La recherche classe cours, leçons, parcours et ressources, accepte les accents et certaines fautes. La reprise, les essais, indices, avis et carnet d’erreurs restent sur l’appareil, sans compte ni collecte distante.
+À la première visite, un accueil guidé demande le domaine, un prénom ou pseudo facultatif, une tranche d’âge, la situation scolaire et l’expérience. La navigation reste inaccessible jusqu’à la fin du test ; les moins de 13 ans voient une information adaptée et ne poursuivent pas le parcours. Dix questions adaptatives évaluent le domaine choisi et le raisonnement-déduction. Le bilan recommande l’un des parcours disponibles et son point de départ selon le plus faible des deux résultats : sous 35 %, consolider les premières notions ; de 35 à 70 %, pratiquer les bases ; au-dessus de 70 %, approfondir. Le parcours reste progressif : ses points d’étape vérifient les acquis avant de débloquer la suite. Il s’agit d’une recommandation de départ, pas d’une génération de cours différente ni d’une note scolaire. Le profil, les réponses et la progression restent sur l’appareil, sans compte ni collecte distante. Lire un chapitre et répondre correctement à son mini-quiz permet de continuer, avec des essais illimités. Pour un module déjà connu, un test de cinq questions le valide à partir de quatre bonnes réponses. La recherche classe cours, leçons, parcours et ressources, accepte les accents et certaines fautes.
+
+Chaque leçon Python comporte une question de compréhension de fin de chapitre, une réponse personnelle facultative et une explication de référence statique. Les questions sont adaptées au contenu de chaque chapitre ; réponses et textes restent enregistrés localement. Aucune correction par IA n’est utilisée.
 
 Source des nouvelles leçons : `content/fr/python-bases/<module>/*.md`, exercices JSON voisins. Les fichiers de `data/curriculum` et `dist/data/curriculum` sont générés par `scripts/prepare-curriculum.py`. Aucun doublon de source de rédaction. Les trois parcours métiers techniques référencent ce programme. Les anciennes notices et unités courtes restent des repères à migrer, pas des cours complets équivalents.
 
@@ -46,11 +62,13 @@ Le dossier dist/ est prêt à servir. Après modification du JavaScript/CSS, ex�
 - Mathématiques, physique, chimie, SVT, économie, numérique ; parcours guidés aussi en langues, humanités, commerce, agriculture, santé, transport, énergie, design, télécoms, finance numérique, éducation, environnement et bâtiment. La profondeur varie selon les domaines.
 - 13 domaines métiers, 30 chemins composés de cours ouvrables dans Nunya, avec références institutionnelles togolaises et matières scolaires associées.
 - Mes cours / Mon avenir ; profil, classe et série ; 492 documents officiels consultables depuis le site : CEPD 64, BEPC 118, BAC I 282, Terminale / préparation BAC II 28. Ces derniers sont des compositions régionales et corrigés, distincts des annales nationales.
+- Lancement centré sur l’informatique : études à l’étranger, opportunités et portfolio sont masqués par défaut ; les autres domaines sont indiqués « bientôt ». Les interrupteurs réversibles sont dans `dist/feature-flags.js`.
 - Deux parcours ciblés de Terminale en analyse et mécanique, inspirés des rubriques du portail officiel. Couverture partielle, à relire ; pas un programme complet garanti.
 - Espace de ressource : lecteur vidéo facultatif, texte, étapes et pratique dans une même page. Articles MDN complets découpés en sections. Les vidéos utilisent leur présentation française et, pour 1 267 vidéos, une fiche de notion associée parmi 61 fiches originales avec QCM corrigé. Les autres proposent une pratique écrite avec repère et auto-évaluation ; pas de transcription intégrale ni de correction automatique inventée. Miniatures YouTube chargées à la demande dans le catalogue.
 - Éditeur et résultat dans les leçons Python, JavaScript et HTML/CSS ; aucun onglet de code global. Dans les articles MDN, un éditeur contextualisé permet d’essayer un exemple. SQL, pseudocode, dépendances et input() ne sont pas exécutés par le pilote.
 - Python local facultatif (~12 Mo), JavaScript dans un Worker éphémère, HTML en iframe sandbox sans script ni réseau. Arrêt des boucles : Python 8 secondes après démarrage, JavaScript 2 secondes. Aucune limite stricte de mémoire WASM garantie.
-- Point de départ adaptatif de 10 questions, banque de plus de 40 questions ; progression séquentielle, mini-tests pour sauter les acquis, notes, révisions espacées et carnet d’erreurs.
+- Accueil obligatoire à la première visite ; test adaptatif de 10 questions sur le domaine choisi et le raisonnement, bilan local et parcours conseillé. Les questions et le niveau de départ s’adaptent aux réponses ; les leçons et parcours disponibles restent les mêmes pour tous.
+- Progression séquentielle, mini-tests pour sauter les acquis, notes, révisions espacées et carnet d’erreurs.
 - Palette complète (fonds, cartes et textes) coordonnée à une seule couleur en clair et sombre ; cuivre par défaut. Couleur d’accent personnalisable dans les réglages (préréglages et code hexadécimal), thème sombre, taille de texte, police espacée, voix française locale si installée, profils locaux séparés et glossaire FR/EN.
 - 13 mini-projets liés aux domaines, portfolio local, canevas et simulation de budget. Activités originales fondées sur l’analyse de 9 plateformes et organismes togolais, dont ADACE/FAIEJ, AED/IFAD et FOCEN.
 - Deux adaptations françaises partielles de cours gratuits OpenLearn : électronique et préparation de projet. Cours source en anglais, attribution visible ; aucune traduction complète, attestation ou certification Open University revendiquée.
@@ -59,7 +77,9 @@ Le dossier dist/ est prêt à servir. Après modification du JavaScript/CSS, ex�
 
 ## Tester avec des élèves
 
-Ouvrir le site avec une connexion ; choisir un parcours scolaire ou métier ; lire puis pratiquer sans vidéo ; ouvrir éventuellement une vidéo ; exécuter une petite modification de code dans une leçon de programmation ; enregistrer un parcours et un article ; activer le mode avion et rouvrir le même site dans le même navigateur ; vérifier les progrès après rechargement. Exporter un avis pour le remettre à l’équipe et conserver une sauvegarde de progression.
+Pour vérifier l’accueil de première visite, effacer les données du site dans le navigateur ou utiliser un profil vierge, puis recharger : l’accueil personnalisé doit apparaître avant les autres rubriques. Choisir un domaine, compléter le profil et le test de 10 questions ; vérifier que le bilan montre les résultats de compréhension et de déduction, recommande un point de départ, puis ouvre bien le parcours conseillé. Refaire le test avec des réponses différentes pour comparer les recommandations. Les réponses et le profil étant enregistrés localement, un rechargement reprend l’étape enregistrée ; effacer les données réinitialise le parcours.
+
+Pour le reste du pilote, ouvrir le site avec une connexion ; choisir un parcours scolaire ou métier ; lire puis pratiquer sans vidéo ; ouvrir éventuellement une vidéo ; exécuter une petite modification de code dans une leçon de programmation ; enregistrer un parcours et un article ; activer le mode avion et rouvrir le même site dans le même navigateur ; vérifier les progrès après rechargement. Exporter un avis pour le remettre à l’équipe et conserver une sauvegarde de progression.
 
 Les profils locaux sont pratiques sur un appareil partagé, mais ne sont pas des comptes protégés par mot de passe. Les avis ne sont pas automatiquement transmis. Les téléchargements doivent être recréés sur un nouvel appareil. L’éviction des données du navigateur reste possible ; exporter régulièrement.
 

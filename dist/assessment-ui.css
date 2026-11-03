@@ -1,0 +1,249 @@
+/* Nunya assessment UI — styles.
+   Consistent with onboarding (ob-) but prefixed as-.
+   Touch targets >= 44px, readable contrast, smooth transitions.        */
+
+/* ── overlay ─────────────────────────────────────────────────────── */
+.as-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1010;
+  background: var(--theme-bg, #f8f6f4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* ── screen container ────────────────────────────────────────────── */
+.as-screen {
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+}
+
+/* ── transitions ─────────────────────────────────────────────────── */
+.as-enter { animation: asSlideIn .28s ease-out both; }
+.as-exit  { animation: asSlideOut .2s ease-in both; position: absolute; pointer-events: none; }
+@keyframes asSlideIn  { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes asSlideOut { from { opacity: 1; transform: translateX(0); }   to { opacity: 0; transform: translateX(-40px); } }
+.as-fade-out { animation: asFadeOut .22s ease-in both; }
+@keyframes asFadeOut  { to { opacity: 0; } }
+
+/* ── progress bar ────────────────────────────────────────────────── */
+.as-progress {
+  height: 4px;
+  background: var(--theme-line, #e4e3e3);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.as-progress-fill {
+  height: 100%;
+  background: var(--accent, #9a6544);
+  border-radius: 4px;
+  transition: width .3s ease;
+}
+.as-indicator {
+  font-size: 11px;
+  color: var(--theme-muted, #68645f);
+  margin: 0 0 20px;
+}
+
+/* ── typography ──────────────────────────────────────────────────── */
+.as-title {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -.6px;
+  line-height: 1.3;
+  color: var(--theme-ink, #252422);
+  margin: 0 0 10px;
+}
+.as-question {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--theme-ink, #252422);
+  margin: 0 0 20px;
+}
+.as-body {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--theme-muted, #68645f);
+  margin: 0 0 24px;
+}
+
+/* ── center layout (intro, resume) ───────────────────────────────── */
+.as-center {
+  text-align: center;
+  padding: 20px 0;
+}
+/* Même repère visuel que l’accueil (✳) au lieu d’un emoji */
+.as-emoji {
+  display: grid;
+  width: 72px;
+  height: 72px;
+  place-items: center;
+  margin: 0 auto 22px;
+  border-radius: 22px;
+  background: var(--theme-soft, #f6f1ee);
+  color: var(--accent-text, #795440);
+  font-size: 42px;
+  line-height: 1;
+}
+.as-center .as-title { font-size: 22px; }
+.as-center .as-body  { max-width: 340px; margin: 0 auto 28px; }
+.as-center .as-primary { max-width: 300px; margin: 0 auto; }
+
+/* ── answer choices ──────────────────────────────────────────────── */
+.as-choices {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.as-choice {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  text-align: left;
+  padding: 14px 16px;
+  min-height: 48px;
+  border: 1px solid var(--theme-line, #e4e3e3);
+  border-radius: 10px;
+  background: var(--theme-surface, #fefdfd);
+  font: inherit;
+  font-size: 14px;
+  color: var(--theme-ink, #252422);
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.as-choice:hover { background: var(--theme-soft, #f6f1ee); border-color: var(--accent-text, #795440); }
+.as-choice:focus-visible { outline: 3px solid var(--accent-text, #795440); outline-offset: 2px; }
+.as-choice.as-selected {
+  border-color: var(--accent-text, #795440);
+  background: var(--theme-soft, #f6f1ee);
+  font-weight: 600;
+}
+.as-choice:disabled {
+  opacity: .7;
+  cursor: default;
+}
+
+/* ── "I don't know" button ───────────────────────────────────────── */
+.as-dontknow-wrap {
+  text-align: center;
+  margin-top: 4px;
+}
+.as-dontknow {
+  background: none;
+  border: 0;
+  color: var(--theme-muted, #68645f);
+  font: inherit;
+  font-size: 13px;
+  padding: 12px 16px;
+  min-height: 44px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.as-dontknow:hover { color: var(--accent-text, #795440); }
+.as-dontknow:focus-visible { outline: 3px solid var(--accent-text, #795440); outline-offset: 2px; }
+.as-dontknow:disabled { opacity: .5; cursor: default; }
+
+/* ── primary button ──────────────────────────────────────────────── */
+.as-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--accent, #9a6544);
+  color: var(--accent-on, #fff);
+  border: 0;
+  padding: 14px 24px;
+  min-height: 48px;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background .15s;
+}
+.as-primary:hover { filter: brightness(.92); }
+.as-primary:focus-visible { outline: 3px solid var(--accent-text, #795440); outline-offset: 4px; }
+
+/* ── secondary button ────────────────────────────────────────────── */
+.as-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--theme-surface, #fefdfd);
+  color: var(--accent-text, #795440);
+  border: 1px solid var(--theme-line, #e4e3e3);
+  padding: 14px 24px;
+  min-height: 48px;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background .15s;
+}
+.as-secondary:hover { background: var(--theme-soft, #f6f1ee); }
+.as-secondary:focus-visible { outline: 3px solid var(--accent-text, #795440); outline-offset: 4px; }
+
+/* ── actions row (resume screen) ─────────────────────────────────── */
+.as-actions-row {
+  display: grid;
+  gap: 10px;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* ── feedback card ───────────────────────────────────────────────── */
+.as-fb {
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.as-fb-correct {
+  background: var(--theme-soft, #f6f1ee);
+  border: 1px solid var(--accent-text, #795440);
+}
+.as-fb-wrong {
+  background: var(--theme-soft, #f6f1ee);
+  border: 1px solid var(--theme-line, #e4e3e3);
+}
+.as-fb-dontknow {
+  background: var(--theme-raised, #f2f1ef);
+  border: 1px solid var(--theme-line, #e4e3e3);
+}
+.as-fb-header {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 10px;
+  color: var(--theme-ink, #252422);
+}
+.as-fb-correct .as-fb-header { color: var(--accent-text, #795440); }
+.as-fb-wrong .as-fb-header   { color: var(--theme-ink, #252422); }
+.as-fb-dontknow .as-fb-header { color: var(--theme-ink, #252422); }
+.as-fb-explanation {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--theme-muted, #68645f);
+  margin: 0 0 12px;
+}
+.as-fb-encourage {
+  font-size: 13px;
+  color: var(--theme-muted, #68645f);
+  margin: 0;
+  font-style: italic;
+}
+
+/* ── reduced motion ──────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .as-enter, .as-exit, .as-fade-out { animation: none !important; }
+  .as-progress-fill { transition: none !important; }
+}
