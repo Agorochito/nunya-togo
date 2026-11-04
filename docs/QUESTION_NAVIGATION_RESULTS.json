@@ -1,0 +1,18 @@
+{
+  "results": [
+    {
+      "width": 360,
+      "maths": "5 questions, wrong answer, previous, reload, offline, and next lesson passed",
+      "axeViolations": 0
+    },
+    {
+      "width": 1440,
+      "maths": "5 questions, wrong answer, previous, reload, offline, and next lesson passed",
+      "axeViolations": 0
+    },
+    {
+      "career": "question 2 remains within the same step"
+    }
+  ],
+  "errors": []
+}

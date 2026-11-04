@@ -1,5 +1,13 @@
 # Historique
 
+## 5.2.1 — 4 novembre 2026
+
+- Une question à la fois, compteur, vérification, précédent et suivant dans la même leçon.
+- Série de cinq questions pour chacune des huit leçons du pilote de maths : 32 questions originales supplémentaires.
+- Sauvegarde des réponses et de la position, préservation des validations précédentes, progression scolaire correctement indiquée dans le sommaire.
+- Passage explicite à la leçon suivante uniquement après la série ; parcours métier utilisant la même navigation.
+- Audit du nouveau prompt maître et matrice interne des cours cibles par niveau, sans publier de formations vides.
+
 ## 5.2.0 — 3 novembre 2026
 
 - Navigation mobile : « Coder » dans la barre du bas, Bibliothèque dans « Plus » ; loupe avec curseur dans le champ ; titres de page corrigés (Confidentialité, page introuvable).
