@@ -249,7 +249,8 @@
   const renderBeforeOnboarding = render;
   render = function () {
     const required = FEATURES.onboarding && !state.academy.onboarded;
-    const showingResults = FEATURES.onboarding && state.onboarding?.step === 'results';
+    // Les résultats remplacent seulement l’accueil : sur les autres pages, les cartes « curr-entry » restent visibles.
+    const showingResults = FEATURES.onboarding && state.onboarding?.step === 'results' && aRoute.kind === 'accueil';
     document.body.classList.toggle('a-onboarding-active', required);
     document.body.classList.toggle('a-onboarding-results-active', showingResults);
     if (required && aLoading && aRoute.kind === 'accueil') {

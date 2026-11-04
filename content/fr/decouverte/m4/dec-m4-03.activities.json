@@ -1,0 +1,59 @@
+[
+  {
+    "id": "dec-m4-03-a1",
+    "type": "qcm",
+    "question_fr": "Règle : si la note est supérieure ou égale à 10, alors « Admis », sinon « Ajourné ». La note est 10. Que s’affiche-t-il ?",
+    "options_fr": [
+      "Admis",
+      "Ajourné",
+      "Rien",
+      "Une erreur"
+    ],
+    "answer": 0,
+    "explanation_fr": "10 est égal à 10 : la condition « supérieure ou égale » est vraie."
+  },
+  {
+    "id": "dec-m4-03-a2",
+    "type": "associer",
+    "question_fr": "Règle : si la batterie est en dessous de 20 %, alors mode économie, sinon mode normal. Associe chaque niveau au mode.",
+    "pairs_fr": [
+      [
+        "15 %",
+        "Mode économie"
+      ],
+      [
+        "20 %",
+        "Mode normal"
+      ],
+      [
+        "80 %",
+        "Mode normal"
+      ],
+      [
+        "5 %",
+        "Mode économie"
+      ]
+    ],
+    "explanation_fr": "20 % n’est pas en dessous de 20 % : c’est le cas limite, qui reste en mode normal."
+  },
+  {
+    "id": "dec-m4-03-a3",
+    "type": "vraifaux",
+    "statement_fr": "Une condition est toujours soit vraie, soit fausse.",
+    "answer": true,
+    "explanation_fr": "Vrai : c’est ce qui permet à l’ordinateur de choisir sans hésiter entre « alors » et « sinon »."
+  },
+  {
+    "id": "dec-m4-03-a4",
+    "type": "qcm",
+    "question_fr": "Pour entrer au match, il faut un billet et avoir plus de 12 ans. Kodjo a 14 ans mais pas de billet. Peut-il entrer ?",
+    "options_fr": [
+      "Oui, il a plus de 12 ans.",
+      "Non, les deux conditions doivent être vraies.",
+      "Oui, une seule condition suffit.",
+      "On ne peut pas savoir."
+    ],
+    "answer": 1,
+    "explanation_fr": "Avec « et », il faut que les deux conditions soient vraies. Ici, l’une est fausse."
+  }
+]

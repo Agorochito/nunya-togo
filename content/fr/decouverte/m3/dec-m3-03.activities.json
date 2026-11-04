@@ -1,0 +1,47 @@
+[
+  {
+    "id": "dec-m3-03-a1",
+    "type": "qcm",
+    "question_fr": "Quel mot de passe est le plus solide ?",
+    "options_fr": [
+      "Kossi2008",
+      "123456789",
+      "mangue-pirogue-lagune-73",
+      "motdepasse"
+    ],
+    "answer": 2,
+    "explanation_fr": "Il est long, mélange plusieurs mots sans lien et ne contient aucune information personnelle."
+  },
+  {
+    "id": "dec-m3-03-a2",
+    "type": "vraifaux",
+    "statement_fr": "On peut donner le code de vérification reçu par SMS à un ami de confiance.",
+    "answer": false,
+    "explanation_fr": "Faux : ce code ouvre ton compte. Personne n’en a besoin à part toi."
+  },
+  {
+    "id": "dec-m3-03-a3",
+    "type": "ordre",
+    "question_fr": "Remets dans l’ordre l’activation de la vérification en deux étapes sur WhatsApp.",
+    "items_fr": [
+      "Ouvrir Paramètres, puis Compte.",
+      "Choisir « Vérification en deux étapes ».",
+      "Saisir un code PIN à 6 chiffres.",
+      "Ajouter une adresse e-mail de secours."
+    ],
+    "explanation_fr": "Le PIN protège le compte ; l’e-mail permet de le récupérer si tu l’oublies."
+  },
+  {
+    "id": "dec-m3-03-a4",
+    "type": "qcm",
+    "question_fr": "Tu utilises le même mot de passe partout, et un site se fait voler ses données. Quel est le risque ?",
+    "options_fr": [
+      "Aucun, ton téléphone est protégé.",
+      "Les pirates peuvent essayer ce mot de passe sur tes autres comptes.",
+      "Ton forfait va baisser.",
+      "Ton téléphone va s’éteindre."
+    ],
+    "answer": 1,
+    "explanation_fr": "C’est pourquoi chaque compte important doit avoir son propre mot de passe."
+  }
+]

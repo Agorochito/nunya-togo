@@ -1,0 +1,37 @@
+[
+  {
+    "id": "dec-m1-03-a1",
+    "type": "qcm",
+    "question_fr": "Le message « Espace de stockage insuffisant » s’affiche. Que faut-il libérer ?",
+    "options_fr": ["La mémoire vive", "Le stockage", "La batterie", "Le processeur"],
+    "answer": 1,
+    "explanation_fr": "Le stockage garde les fichiers : c’est lui qui est plein. On libère de la place en supprimant ou en déplaçant des fichiers."
+  },
+  {
+    "id": "dec-m1-03-a2",
+    "type": "qcm",
+    "question_fr": "Une photo pèse environ 4 Mo. Combien de photos peux-tu garder, au maximum, dans 1 Go libre, soit environ 1 000 Mo ?",
+    "options_fr": ["25", "250", "2 500", "4 000"],
+    "answer": 1,
+    "explanation_fr": "1 000 ÷ 4 = 250. Environ 250 photos tiennent dans 1 Go libre."
+  },
+  {
+    "id": "dec-m1-03-a3",
+    "type": "vraifaux",
+    "statement_fr": "La mémoire vive garde tes photos quand tu éteins le téléphone.",
+    "answer": false,
+    "explanation_fr": "Faux : la mémoire vive se vide à l’extinction. Tes photos restent dans le stockage."
+  },
+  {
+    "id": "dec-m1-03-a4",
+    "type": "ordre",
+    "question_fr": "Range du plus léger au plus lourd.",
+    "items_fr": [
+      "Un message texte",
+      "Une photo",
+      "Une minute de vidéo",
+      "Un film complet"
+    ],
+    "explanation_fr": "Un message texte pèse quelques kilo-octets, une photo quelques Mo, une minute de vidéo souvent plus de 100 Mo, un film complet plusieurs centaines de Mo ou quelques Go."
+  }
+]

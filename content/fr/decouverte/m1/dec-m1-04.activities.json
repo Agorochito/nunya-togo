@@ -1,0 +1,47 @@
+[
+  {
+    "id": "dec-m1-04-a1",
+    "type": "qcm",
+    "question_fr": "Un ami t’envoie par message un fichier pour installer un jeu « gratuit » qui est payant dans la boutique. Que fais-tu ?",
+    "options_fr": [
+      "Je l’installe vite, avant qu’il soit supprimé.",
+      "Je ne l’installe pas : je passe par la boutique officielle.",
+      "Je l’installe et j’accepte toutes les autorisations.",
+      "Je le transfère à tous mes contacts."
+    ],
+    "answer": 1,
+    "explanation_fr": "Un fichier reçu par message peut cacher un programme malveillant. La boutique officielle vérifie les applications."
+  },
+  {
+    "id": "dec-m1-04-a2",
+    "type": "associer",
+    "question_fr": "Quelle autorisation a du sens pour chaque application ?",
+    "pairs_fr": [
+      ["Appel vidéo", "Caméra et micro"],
+      ["Carte et itinéraire", "Position"],
+      ["Scanner de documents", "Appareil photo"],
+      ["Calculatrice", "Aucune autorisation particulière"]
+    ],
+    "explanation_fr": "Chaque autorisation doit servir à ce que fait l’application. Une calculatrice n’a besoin de rien de personnel."
+  },
+  {
+    "id": "dec-m1-04-a3",
+    "type": "vraifaux",
+    "statement_fr": "Une mise à jour peut corriger une faille de sécurité.",
+    "answer": true,
+    "explanation_fr": "Vrai : c’est même l’une des raisons principales de faire les mises à jour."
+  },
+  {
+    "id": "dec-m1-04-a4",
+    "type": "qcm",
+    "question_fr": "Un jeu demande l’accès à tes SMS. Quelle est la meilleure réaction ?",
+    "options_fr": [
+      "Accepter, sinon le jeu ne marchera pas.",
+      "Refuser : un jeu n’a pas besoin de lire tes SMS.",
+      "Éteindre le téléphone.",
+      "Supprimer tous tes SMS."
+    ],
+    "answer": 1,
+    "explanation_fr": "Tes SMS peuvent contenir des codes de confirmation. Un jeu n’a aucune raison de les lire : refuse."
+  }
+]

@@ -2,6 +2,14 @@
 
 [Site public](https://nunya-togo.vercel.app/) · [Programme Python](https://nunya-togo.vercel.app/#/apprendre/python-bases) · [Première leçon](https://nunya-togo.vercel.app/#/apprendre/python-bases/m1/py-m1-01)
 
+## Version 5.4.0 — Nunya Aide
+
+Assistant d’apprentissage par IA open source (Groq, modèles à poids ouverts gpt-oss), sans compte : il explique autrement, donne des exemples et des indices sans solution complète. Accessible depuis chaque page et dans les leçons. Fonction serveur `supabase/functions/nunya-aide/`, réglages et activation dans [docs/AI_STRATEGY.md](docs/AI_STRATEGY.md).
+
+## Version 5.3.0 — niveau 0 « Découverte du numérique » (brouillon)
+
+Nouveau cours d’entrée, sans prérequis ni code à écrire : [programme](https://nunya-togo.vercel.app/#/apprendre/decouverte). 4 modules, 20 leçons de 8 à 10 minutes : appareils, Internet et le web, fichiers et sécurité, logique de programmation. Chaque leçon a 4 activités corrigées et « Explique avec tes mots », gardé sur l’appareil. Contenu en `content/fr/decouverte/`, vérifié et généré par `scripts/prepare-discovery.py` pendant `npm run build`. Tout est en relecture : voir [le plan du niveau 0](docs/NIVEAU0_PLAN.md). Cache `nunya-v5.3.0`.
+
 ## Version 5.2.0 — interface revue sur téléphone
 
 Corrections d’interface du 3 novembre 2026, vérifiées sur téléphone (360 px) et ordinateur, en thème clair et sombre :

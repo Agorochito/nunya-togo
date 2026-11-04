@@ -1,3 +1,26 @@
+# Vérifications — version 5.4.0, 3 novembre 2026 (Nunya Aide)
+
+- Fonction serveur : 8 tests avec un faux Supabase et un faux fournisseur (origines autorisées, session obligatoire, requête invalide, service non configuré, quotas élève et global, consignes et contexte envoyés, repli vers gpt-oss-20b, nouvel essai sans options de raisonnement, question rendue si tout échoue, troncature des entrées). Déployée sur Supabase (`nunya-aide`, version 1).
+- Base : quotas testés en SQL dans une transaction annulée (14 → 0 puis refus, plafond global, refus sans session ; fonction appelable seulement par le rôle serveur). Aucune alerte de sécurité Supabase nouvelle.
+- Site, avec un faux Supabase, téléphone 360 px et ordinateur 1280 px, clair et sombre : 110 vérifications, 0 erreur JavaScript (écran d’information, contexte de la leçon, réponse en markdown sans HTML du modèle, retrait du contexte, quota atteint, fournisseur indisponible, service non activé, aide après une activité ratée, indice Python avec code joint, page Aide, focus rendu à la fermeture, panneau chargé seulement au clic).
+- Bundle principal (avec boot-guard) : 149 686 octets gzip, sous le budget unique de 150 000 (`scripts/js-budget.mjs`, lu par `check:content` et `check:academy`). Le 3 novembre, 153 511 octets dépassaient ce budget : les vues du cours Découverte sont désormais chargées à la demande (`runtime/discovery-views.js`, 5,3 Ko gzip, précaché par le service worker). Panneau Nunya Aide à part : 3,9 Ko gzip.
+- Vérifié dans un navigateur le 4 novembre (serveur local) : programme Découverte, leçon 1 (4 activités : QCM, association, ordre, vrai/faux ; retour « Pas encore », lien Nunya Aide, leçon terminée et sauvegardée), ouverture de la leçon 2 et panneau de progression. Le service worker n’a pas pu être testé dans ce navigateur ; les 45 fichiers précachés existent.
+- Non-régression : 34 adresses × 3 configurations, parcours Découverte (208 vérifications), 80 activités résolues, passage de `nunya-v5.2.0` à `nunya-v5.4.0`, cours hors ligne.
+
+Non mesuré : appel réel à Groq et à la connexion anonyme (réseau fermé depuis l’environnement de vérification) ; qualité des réponses du modèle en français, à évaluer avec des enseignants.
+
+# Vérifications — version 5.3.0, 3 novembre 2026 (niveau 0)
+
+- Construction (`npm run build`) : `prepare-discovery.py` valide les 20 leçons (151 à 188 mots d’explication, 8 à 10 minutes, 4 activités chacune, réponses et identifiants cohérents) ; le reste de la chaîne Python inchangé (278 cas réussis).
+- Les 80 activités ont été résolues une à une dans l’interface, dans l’ordre : chaque leçon s’ouvre après la précédente, 20/20 terminées à la fin. Bonne réponse des QCM répartie à l’écran sur les 4 rangs (8, 8, 8, 9) ; vrai ou faux : 8 vrais, 11 faux.
+- Tests unitaires : 79 réussis dont 5 nouveaux (`tests/discovery.test.ts`) ; le test `study` qui demande la bibliothèque complète reste à lancer sur la machine de développement.
+- `tsc --noEmit`, `check:academy`, `check:curriculum-links` : réussis.
+- Parcours complet automatisé dans 4 configurations (téléphone 360 px et ordinateur 1280 px, clair et sombre) : 208 vérifications, 0 erreur JavaScript. Leçon 2 verrouillée au départ ; mauvaise réponse → « Pas encore » avec le nombre d’éléments justes ; changer de réponse efface l’ancien verdict ; remise en ordre au clavier avec le focus conservé ; leçon terminée → leçon suivante ouverte et persistance après rechargement ; « Explique avec tes mots » : réponse possible affichée après une phrase écrite ; recherche, Ma progression, redirection de `#/apprendre/ordinateur` et `#/apprendre/logique`.
+- 34 adresses × 3 configurations sans erreur ni débordement horizontal.
+- Mise à jour : un navigateur en `nunya-v5.2.0` passe à `nunya-v5.3.0` ; après « Emporter le cours », la leçon 1 s’ouvre hors connexion avec ses 4 activités.
+
+Non mesuré : durée réelle des leçons avec des élèves, compréhension du vocabulaire, relecture par un enseignant.
+
 # Vérifications — version 5.2.0, 3 novembre 2026
 
 Corrections d’interface en huit étapes, chacune comparée avant/après par captures (360 px et 1440 px, clair et sombre).

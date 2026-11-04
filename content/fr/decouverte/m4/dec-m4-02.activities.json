@@ -1,0 +1,47 @@
+[
+  {
+    "id": "dec-m4-02-a1",
+    "type": "ordre",
+    "question_fr": "Remets dans l’ordre les étapes du calcul d’une moyenne avec coefficients.",
+    "items_fr": [
+      "Multiplier chaque note par son coefficient.",
+      "Additionner les points obtenus.",
+      "Additionner les coefficients.",
+      "Diviser le total des points par le total des coefficients."
+    ],
+    "explanation_fr": "La division se fait en dernier, quand les deux totaux sont connus."
+  },
+  {
+    "id": "dec-m4-02-a2",
+    "type": "qcm",
+    "question_fr": "Maths 12 (coefficient 3), français 15 (coefficient 2), anglais 9 (coefficient 1) : quel est le total des points ?",
+    "options_fr": [
+      "36",
+      "45",
+      "75",
+      "12,5"
+    ],
+    "answer": 2,
+    "explanation_fr": "12 × 3 = 36, 15 × 2 = 30, 9 × 1 = 9 ; 36 + 30 + 9 = 75."
+  },
+  {
+    "id": "dec-m4-02-a3",
+    "type": "vraifaux",
+    "statement_fr": "Un même sous-problème, comme additionner une liste de nombres, peut resservir dans d’autres problèmes.",
+    "answer": true,
+    "explanation_fr": "Vrai : c’est un des grands avantages du découpage. En programmation, ces morceaux deviennent des fonctions."
+  },
+  {
+    "id": "dec-m4-02-a4",
+    "type": "qcm",
+    "question_fr": "Pour organiser une sortie de classe, tu as : choisir le lieu, demander l’autorisation, réserver le transport. Quel sous-problème manque ?",
+    "options_fr": [
+      "Calculer le coût et collecter l’argent.",
+      "Changer de lycée.",
+      "Acheter un téléphone.",
+      "Supprimer ses photos."
+    ],
+    "answer": 0,
+    "explanation_fr": "Sans budget ni argent collecté, le transport ne peut pas être réservé."
+  }
+]

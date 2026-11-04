@@ -1,0 +1,58 @@
+[
+  {
+    "id": "dec-m4-01-a1",
+    "type": "qcm",
+    "question_fr": "Qu’est-ce qu’un algorithme ?",
+    "options_fr": [
+      "Un appareil électronique.",
+      "Une suite d’instructions précises qui mène à un résultat.",
+      "Un mot de passe très long.",
+      "Une application de calcul."
+    ],
+    "answer": 1,
+    "explanation_fr": "Un algorithme est une méthode, pas un objet : on peut l’écrire sur papier avant de le programmer."
+  },
+  {
+    "id": "dec-m4-01-a2",
+    "type": "associer",
+    "question_fr": "Associe chaque instruction vague à sa version précise.",
+    "pairs_fr": [
+      [
+        "Mets un peu d’eau",
+        "Verse 1 litre d’eau"
+      ],
+      [
+        "Attends un moment",
+        "Attends 10 minutes"
+      ],
+      [
+        "Avance un peu",
+        "Avance de 200 mètres"
+      ],
+      [
+        "Ajoute du sucre",
+        "Ajoute 2 cuillères de sucre"
+      ]
+    ],
+    "explanation_fr": "Une instruction précise donne une quantité, une durée ou une distance."
+  },
+  {
+    "id": "dec-m4-01-a3",
+    "type": "vraifaux",
+    "statement_fr": "Un ordinateur sait combien mettre quand on lui dit « mets un peu de sel ».",
+    "answer": false,
+    "explanation_fr": "Faux : « un peu » n’a pas de valeur précise. Il faut écrire une quantité."
+  },
+  {
+    "id": "dec-m4-01-a4",
+    "type": "ordre",
+    "question_fr": "Remets dans l’ordre l’algorithme pour appeler quelqu’un.",
+    "items_fr": [
+      "Déverrouiller le téléphone.",
+      "Ouvrir l’application Téléphone.",
+      "Composer le numéro.",
+      "Appuyer sur Appeler."
+    ],
+    "explanation_fr": "Chaque étape a besoin de la précédente : l’ordre fait partie de l’algorithme."
+  }
+]
