@@ -1,0 +1,58 @@
+[
+  {
+    "id": "dec-m2-03-a1",
+    "type": "associer",
+    "question_fr": "Navigateur ou moteur de recherche ?",
+    "pairs_fr": [
+      [
+        "Chrome",
+        "Navigateur"
+      ],
+      [
+        "Google",
+        "Moteur de recherche"
+      ],
+      [
+        "Firefox",
+        "Navigateur"
+      ],
+      [
+        "Bing",
+        "Moteur de recherche"
+      ]
+    ],
+    "explanation_fr": "Chrome et Firefox affichent les pages ; Google et Bing cherchent des pages."
+  },
+  {
+    "id": "dec-m2-03-a2",
+    "type": "qcm",
+    "question_fr": "Un résultat de recherche porte la mention « Sponsorisé ». Qu’est-ce que cela veut dire ?",
+    "options_fr": [
+      "C’est le site le plus fiable.",
+      "C’est une publicité payée.",
+      "C’est un site du gouvernement.",
+      "C’est une page sans danger garanti."
+    ],
+    "answer": 1,
+    "explanation_fr": "Une entreprise a payé pour apparaître en haut. Ce n’est pas forcément la meilleure réponse."
+  },
+  {
+    "id": "dec-m2-03-a3",
+    "type": "vraifaux",
+    "statement_fr": "Si tu tapes une adresse exacte dans la barre d’adresse, le navigateur ouvre directement le site, sans faire de recherche.",
+    "answer": true,
+    "explanation_fr": "Vrai : des mots lancent une recherche ; une adresse exacte mène directement au site."
+  },
+  {
+    "id": "dec-m2-03-a4",
+    "type": "ordre",
+    "question_fr": "Remets dans l’ordre pour retrouver facilement un site utile.",
+    "items_fr": [
+      "Ouvrir le navigateur.",
+      "Taper des mots-clés dans la barre d’adresse.",
+      "Vérifier l’adresse du résultat.",
+      "Ajouter la page aux favoris."
+    ],
+    "explanation_fr": "On cherche, on vérifie, puis on enregistre la page pour la prochaine fois."
+  }
+]

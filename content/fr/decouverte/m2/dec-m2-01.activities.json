@@ -1,0 +1,58 @@
+[
+  {
+    "id": "dec-m2-01-a1",
+    "type": "qcm",
+    "question_fr": "Qu’est-ce qu’un serveur ?",
+    "options_fr": [
+      "Un ordinateur allumé en permanence qui fournit un service.",
+      "Le câble qui relie ton chargeur au téléphone.",
+      "Une application pour regarder des vidéos.",
+      "Le code secret de ton Wi-Fi."
+    ],
+    "answer": 0,
+    "explanation_fr": "Un serveur garde et distribue des informations : messages, vidéos, pages web."
+  },
+  {
+    "id": "dec-m2-01-a2",
+    "type": "ordre",
+    "question_fr": "Remets dans l’ordre le trajet d’une photo envoyée par messagerie.",
+    "items_fr": [
+      "Le téléphone découpe la photo en paquets.",
+      "Les paquets partent par l’antenne de l’opérateur.",
+      "Le serveur de la messagerie les reçoit.",
+      "Le téléphone du destinataire reconstitue la photo."
+    ],
+    "explanation_fr": "Découpage, envoi, passage par le serveur, puis reconstitution à l’arrivée."
+  },
+  {
+    "id": "dec-m2-01-a3",
+    "type": "vraifaux",
+    "statement_fr": "Avec les données mobiles, ton téléphone se connecte à Internet par une antenne de ton opérateur.",
+    "answer": true,
+    "explanation_fr": "Vrai : en Wi-Fi, il passe par un boîtier proche ; avec les données mobiles, par l’antenne-relais de l’opérateur."
+  },
+  {
+    "id": "dec-m2-01-a4",
+    "type": "associer",
+    "question_fr": "Associe chaque mot à sa définition.",
+    "pairs_fr": [
+      [
+        "Wi-Fi",
+        "Connexion sans fil à un boîtier proche"
+      ],
+      [
+        "Données mobiles",
+        "Connexion par l’antenne de l’opérateur"
+      ],
+      [
+        "Adresse IP",
+        "Numéro d’un appareil sur le réseau"
+      ],
+      [
+        "Paquet",
+        "Petit morceau d’une information"
+      ]
+    ],
+    "explanation_fr": "Wi-Fi et données mobiles sont deux façons d’entrer sur Internet ; adresses et paquets permettent aux informations d’arriver."
+  }
+]

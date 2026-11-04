@@ -1,0 +1,58 @@
+[
+  {
+    "id": "dec-m3-02-a1",
+    "type": "qcm",
+    "question_fr": "Quel nom de fichier est le plus clair ?",
+    "options_fr": [
+      "IMG_2041.jpg",
+      "Nouveau document (3).docx",
+      "svt_expose-photosynthese_2026-04-02.docx",
+      "truc final final.docx"
+    ],
+    "answer": 2,
+    "explanation_fr": "Il dit la matière, le sujet et la date, sans espaces."
+  },
+  {
+    "id": "dec-m3-02-a2",
+    "type": "ordre",
+    "question_fr": "Remets ces noms dans l’ordre où l’appareil les trie (ordre alphabétique).",
+    "items_fr": [
+      "notes_2025-11-03",
+      "notes_2026-01-15",
+      "notes_2026-02-09",
+      "notes_2026-10-01"
+    ],
+    "explanation_fr": "Avec l’année d’abord, l’ordre alphabétique est aussi l’ordre des dates."
+  },
+  {
+    "id": "dec-m3-02-a3",
+    "type": "vraifaux",
+    "statement_fr": "Le dossier Téléchargements range automatiquement tes fichiers par matière.",
+    "answer": false,
+    "explanation_fr": "Faux : tout y arrive en vrac. C’est à toi de ranger et de faire le tri."
+  },
+  {
+    "id": "dec-m3-02-a4",
+    "type": "associer",
+    "question_fr": "Dans quel dossier ranger chaque fichier ?",
+    "pairs_fr": [
+      [
+        "Photo d’un cours de physique",
+        "Lycée › Physique"
+      ],
+      [
+        "Reçu de paiement des frais de scolarité",
+        "Administratif"
+      ],
+      [
+        "Exposé d’histoire",
+        "Lycée › Histoire"
+      ],
+      [
+        "Bulletin du premier trimestre",
+        "Administratif"
+      ]
+    ],
+    "explanation_fr": "Les cours vont dans leur matière ; les papiers officiels dans Administratif."
+  }
+]

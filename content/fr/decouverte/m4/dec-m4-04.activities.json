@@ -1,0 +1,59 @@
+[
+  {
+    "id": "dec-m4-04-a1",
+    "type": "qcm",
+    "question_fr": "« Répète 3 fois : avance de 2 pas. » Combien de pas au total ?",
+    "options_fr": [
+      "2",
+      "3",
+      "5",
+      "6"
+    ],
+    "answer": 3,
+    "explanation_fr": "3 tours de 2 pas : 3 × 2 = 6 pas."
+  },
+  {
+    "id": "dec-m4-04-a2",
+    "type": "associer",
+    "question_fr": "Quel type de répétition pour chaque situation ?",
+    "pairs_fr": [
+      [
+        "Saluer chacun des 30 élèves",
+        "Pour chaque"
+      ],
+      [
+        "Pomper tant que le réservoir n’est pas plein",
+        "Tant que"
+      ],
+      [
+        "Faire 10 pompes",
+        "Nombre de fois connu"
+      ],
+      [
+        "Lire chaque message non lu",
+        "Pour chaque"
+      ]
+    ],
+    "explanation_fr": "Une liste à parcourir : pour chaque. Une condition à surveiller : tant que. Un nombre fixe : nombre de fois connu."
+  },
+  {
+    "id": "dec-m4-04-a3",
+    "type": "qcm",
+    "question_fr": "« Le nombre vaut 1. Tant que le nombre est inférieur à 10, afficher le nombre. » Que se passe-t-il ?",
+    "options_fr": [
+      "Le programme affiche 1 à 9.",
+      "Le programme affiche 1 sans jamais s’arrêter.",
+      "Le programme n’affiche rien.",
+      "Le programme affiche 10."
+    ],
+    "answer": 1,
+    "explanation_fr": "Le nombre ne change jamais : la condition reste vraie. Il faudrait ajouter « augmenter le nombre de 1 »."
+  },
+  {
+    "id": "dec-m4-04-a4",
+    "type": "vraifaux",
+    "statement_fr": "Avec une boucle « tant que », on connaît toujours à l’avance le nombre de répétitions.",
+    "answer": false,
+    "explanation_fr": "Faux : elle s’arrête quand la condition devient fausse, ce qui peut arriver après un nombre de tours inconnu au départ."
+  }
+]

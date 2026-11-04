@@ -1,0 +1,59 @@
+[
+  {
+    "id": "dec-m3-01-a1",
+    "type": "associer",
+    "question_fr": "Associe chaque extension au type de fichier.",
+    "pairs_fr": [
+      [
+        ".pdf",
+        "Document à lire"
+      ],
+      [
+        ".jpg",
+        "Photo"
+      ],
+      [
+        ".mp3",
+        "Son"
+      ],
+      [
+        ".mp4",
+        "Vidéo"
+      ]
+    ],
+    "explanation_fr": "L’extension renseigne sur le contenu et sur l’application qui l’ouvre."
+  },
+  {
+    "id": "dec-m3-01-a2",
+    "type": "qcm",
+    "question_fr": "Quelle est l’extension du fichier rapport.final.docx ?",
+    "options_fr": [
+      "rapport",
+      ".final",
+      ".docx",
+      "rapport.final"
+    ],
+    "answer": 2,
+    "explanation_fr": "L’extension est ce qui suit le dernier point : .docx."
+  },
+  {
+    "id": "dec-m3-01-a3",
+    "type": "vraifaux",
+    "statement_fr": "Renommer photo.jpg en photo.pdf la transforme en document PDF.",
+    "answer": false,
+    "explanation_fr": "Faux : le contenu reste une photo. Pour changer de format, il faut une application de conversion."
+  },
+  {
+    "id": "dec-m3-01-a4",
+    "type": "qcm",
+    "question_fr": "Tu reçois par message un fichier jeu-gratuit.apk. Qu’est-ce que c’est ?",
+    "options_fr": [
+      "Une photo du jeu.",
+      "Une application Android à installer : prudence.",
+      "Une chanson.",
+      "Un document PDF."
+    ],
+    "answer": 1,
+    "explanation_fr": "Un .apk installe une application. Hors de la boutique officielle, il peut contenir un programme malveillant."
+  }
+]

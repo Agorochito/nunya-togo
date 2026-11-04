@@ -1,0 +1,59 @@
+[
+  {
+    "id": "dec-m2-05-a1",
+    "type": "qcm",
+    "question_fr": "Une vidéo consomme 10 Mo par minute. Combien de minutes peux-tu regarder avec 1 Go (environ 1 000 Mo) ?",
+    "options_fr": [
+      "10 minutes",
+      "100 minutes",
+      "1 000 minutes",
+      "10 000 minutes"
+    ],
+    "answer": 1,
+    "explanation_fr": "1 000 ÷ 10 = 100 : environ 100 minutes, soit un peu plus d’une heure et demie."
+  },
+  {
+    "id": "dec-m2-05-a2",
+    "type": "associer",
+    "question_fr": "Associe chaque réglage à son effet.",
+    "pairs_fr": [
+      [
+        "Lecture automatique coupée",
+        "Les vidéos ne démarrent que si tu appuies"
+      ],
+      [
+        "Téléchargement automatique coupé",
+        "Les photos reçues ne se chargent pas seules"
+      ],
+      [
+        "Mises à jour en Wi-Fi seulement",
+        "Les grosses mises à jour attendent le Wi-Fi"
+      ],
+      [
+        "Économiseur de données",
+        "Les applications consomment moins en arrière-plan"
+      ]
+    ],
+    "explanation_fr": "Ces quatre réglages évitent que ton forfait soit utilisé sans que tu le décides."
+  },
+  {
+    "id": "dec-m2-05-a3",
+    "type": "vraifaux",
+    "statement_fr": "Une vidéo regardée avec le Wi-Fi du lycée ne consomme pas ton forfait de données mobiles.",
+    "answer": true,
+    "explanation_fr": "Vrai : en Wi-Fi, ton téléphone passe par le boîtier du lycée, pas par ton forfait."
+  },
+  {
+    "id": "dec-m2-05-a4",
+    "type": "qcm",
+    "question_fr": "Où vois-tu quelles applications consomment le plus de données ?",
+    "options_fr": [
+      "Dans la galerie de photos.",
+      "Dans les réglages, rubrique données ou consommation.",
+      "Dans la calculatrice.",
+      "Sur l’écran de verrouillage."
+    ],
+    "answer": 1,
+    "explanation_fr": "Les réglages affichent la consommation de chaque application sur la période choisie."
+  }
+]

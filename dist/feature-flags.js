@@ -13,6 +13,9 @@ const FEATURES = {
   /** Show the "Portfolio & CV" section in the sidebar. */
   showPortfolio: false,
 
+  /** Nunya Aide : assistant IA open source (fonction Supabase « nunya-aide »). */
+  aide: true,
+
   /** Show non-IT domains as "bientôt" during the IT-focused launch. */
   otherDomainsComingSoon: true
 };

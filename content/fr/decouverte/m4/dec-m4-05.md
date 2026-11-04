@@ -1,0 +1,65 @@
+---
+{
+  "id": "dec-m4-05",
+  "title_fr": "Trouver et corriger une erreur de logique",
+  "course": "decouverte",
+  "module": "m4",
+  "order": 5,
+  "minutes": 9,
+  "outcomes": [
+    "Tester un algorithme avec des exemples dont on connaît la réponse.",
+    "Localiser et corriger une erreur de logique."
+  ],
+  "idea_fr": "Un algorithme peut fonctionner sans message d’erreur et donner pourtant un résultat faux. On le teste, on suit chaque étape et on corrige celle qui se trompe.",
+  "analogy_fr": "Comme un mécanicien qui cherche une panne : il essaie, observe où le moteur cale, répare cette pièce, puis réessaie.",
+  "example": {
+    "title_fr": "Un élève admis refusé à tort",
+    "steps_fr": [
+      "Règle écrite : si la note est supérieure à 10, alors « Admis », sinon « Ajourné ».",
+      "Test avec 10 : on attend « Admis », la règle affiche « Ajourné ».",
+      "L’étape fautive est la condition : « supérieure à » exclut 10.",
+      "Correction : « supérieure ou égale à 10 ». Nouveau test avec 10 : « Admis »."
+    ]
+  },
+  "reflect": {
+    "question_fr": "L’algorithme « additionner trois notes, puis diviser par 2 » doit calculer une moyenne. Explique avec tes mots comment tu trouves l’erreur avec un exemple, puis comment tu la corriges.",
+    "model_fr": "Je teste avec 10, 10 et 10 : la moyenne attendue est 10, mais l’algorithme donne 30 ÷ 2 = 15. L’addition est juste, c’est la division qui se trompe. Il faut diviser par 3, le nombre de notes. Nouveau test : 30 ÷ 3 = 10."
+  },
+  "recap_fr": [
+    "Une erreur de logique donne un résultat faux sans message d’erreur.",
+    "Tester, comparer, suivre les étapes, corriger, retester.",
+    "Les cas limites révèlent beaucoup d’erreurs."
+  ],
+  "glossary": [
+    {
+      "term": "Bogue",
+      "definition": "Erreur dans un programme ou un algorithme."
+    },
+    {
+      "term": "Erreur de logique",
+      "definition": "Erreur qui donne un mauvais résultat sans empêcher le programme de fonctionner."
+    },
+    {
+      "term": "Tester",
+      "definition": "Essayer un algorithme avec un exemple dont on connaît la bonne réponse."
+    }
+  ],
+  "tags": [
+    "bogue",
+    "erreur",
+    "tester",
+    "corriger",
+    "logique",
+    "débogage"
+  ],
+  "status": "brouillon",
+  "reviewer": null
+}
+---
+Une erreur dans un programme s’appelle un bogue. Certaines empêchent le programme de démarrer. D’autres sont plus discrètes : le programme tourne, n’affiche aucun message d’erreur, mais donne un mauvais résultat. Ce sont des erreurs de logique : l’ordinateur fait exactement ce qui est écrit, mais ce qui est écrit ne correspond pas à ce qu’on voulait.
+
+Pour les trouver, suis une méthode. D’abord, teste avec un exemple dont tu connais la bonne réponse. Compare le résultat obtenu au résultat attendu. S’ils diffèrent, suis l’algorithme étape par étape, en notant les valeurs, jusqu’à trouver la première étape qui se trompe. Corrige-la, puis refais le test, et d’autres encore.
+
+Choisis bien tes exemples. Teste un cas ordinaire, mais aussi les cas limites : la valeur exactement à la frontière d’une condition, zéro, une liste vide. Beaucoup d’erreurs s’y cachent.
+
+Se tromper fait partie du métier. Les programmeurs passent une grande partie de leur temps à tester et à corriger. Avec cette méthode, tu es prêt à commencer Python : les bases.

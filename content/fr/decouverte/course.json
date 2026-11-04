@@ -1,0 +1,34 @@
+{
+  "id": "decouverte",
+  "title_fr": "Découverte du numérique",
+  "summary_fr": "Comprends ton téléphone et ton ordinateur, Internet, tes fichiers et ta sécurité, puis apprends à penser comme un programmeur, sans écrire de code.",
+  "level_fr": "Niveau 0 · aucun prérequis",
+  "status": "brouillon",
+  "reviewer": null,
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Ordinateur et téléphone",
+      "summary_fr": "Ce qui se passe dans un appareil, matériel et logiciel, mémoires et applications.",
+      "status": "ouvert"
+    },
+    {
+      "id": "m2",
+      "title_fr": "Internet et le web",
+      "summary_fr": "Comment l’information voyage, trouver une page et économiser ses données.",
+      "status": "ouvert"
+    },
+    {
+      "id": "m3",
+      "title_fr": "Fichiers, logiciels et sécurité de base",
+      "summary_fr": "Ranger ses fichiers, protéger ses comptes et ne rien perdre.",
+      "status": "ouvert"
+    },
+    {
+      "id": "m4",
+      "title_fr": "Penser comme un programmeur",
+      "summary_fr": "Algorithmes, décisions et répétitions, sans écrire de code.",
+      "status": "ouvert"
+    }
+  ]
+}

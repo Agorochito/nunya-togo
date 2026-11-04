@@ -1,0 +1,59 @@
+[
+  {
+    "id": "dec-m2-04-a1",
+    "type": "qcm",
+    "question_fr": "Tu veux savoir comment calculer l’aire d’un triangle. Quels mots taper pour la recherche la plus efficace ?",
+    "options_fr": [
+      "Bonjour, est-ce que quelqu’un peut m’expliquer comment on fait ?",
+      "aire triangle formule",
+      "triangle",
+      "maths"
+    ],
+    "answer": 1,
+    "explanation_fr": "Trois mots précis décrivent exactement ce que tu cherches."
+  },
+  {
+    "id": "dec-m2-04-a2",
+    "type": "associer",
+    "question_fr": "Associe chaque question à ce qu’elle vérifie.",
+    "pairs_fr": [
+      [
+        "Qui ?",
+        "L’auteur ou l’organisation"
+      ],
+      [
+        "Quand ?",
+        "La date de publication"
+      ],
+      [
+        "Pourquoi ?",
+        "Le but : informer, vendre ou faire réagir"
+      ],
+      [
+        "Ailleurs ?",
+        "La confirmation par d’autres sources"
+      ]
+    ],
+    "explanation_fr": "Ces quatre questions suffisent pour juger la plupart des informations."
+  },
+  {
+    "id": "dec-m2-04-a3",
+    "type": "vraifaux",
+    "statement_fr": "Un message transféré par beaucoup de personnes est forcément vrai.",
+    "answer": false,
+    "explanation_fr": "Faux : une rumeur peut circuler très vite. Le nombre de partages ne prouve rien."
+  },
+  {
+    "id": "dec-m2-04-a4",
+    "type": "qcm",
+    "question_fr": "À quoi servent les guillemets dans une recherche, par exemple \"mémoire vive\" ?",
+    "options_fr": [
+      "À chercher l’expression exacte.",
+      "À rendre la recherche plus rapide.",
+      "À cacher la recherche.",
+      "À traduire les mots."
+    ],
+    "answer": 0,
+    "explanation_fr": "Avec les guillemets, le moteur cherche les mots ensemble et dans cet ordre."
+  }
+]
