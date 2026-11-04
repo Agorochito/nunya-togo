@@ -4,11 +4,11 @@ const FEATURES = {
   /** Show the onboarding welcome flow on first visit. */
   onboarding: true,
 
-  /** Show the "Études à l'étranger" section in the sidebar. */
-  showAbroad: false,
+  /** Show the "Études à l'étranger" section in the sidebar. Réouverte le 4 novembre 2026 (décision du propriétaire). */
+  showAbroad: true,
 
-  /** Show the "Opportunités" section in the sidebar. */
-  showOpportunities: false,
+  /** Show the "Opportunités" section in the sidebar. Réouverte le 4 novembre 2026 (décision du propriétaire). */
+  showOpportunities: true,
 
   /** Show the "Portfolio & CV" section in the sidebar. */
   showPortfolio: false,

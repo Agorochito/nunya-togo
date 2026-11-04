@@ -1,5 +1,11 @@
 # Historique
 
+## 5.4.0 — compléments du 4 novembre 2026
+
+- Bibliothèque : nouvelle page **Tous les cours Nunya** (`#/bibliotheque/cours`), avec les 42 cours en lecture libre, sans programme ni test, en trois familles (programmation et numérique, révisions scolaires, métiers et compétences pratiques). Entrée « Voir tous les cours » sur l’accueil de la bibliothèque. Les cours restent des brouillons à relire.
+- **Études à l’étranger** et **Opportunités** réouvertes dans le menu (`FEATURES.showAbroad`, `FEATURES.showOpportunities`). Le portfolio reste masqué.
+- Poids du site : les vues de la Découverte et les pages de la bibliothèque (compétences, thèmes, collections, tous les cours) sont chargées à la demande et précachées. Bundle principal : 148 677 octets gzip pour un budget unique de 150 000 (`scripts/js-budget.mjs`).
+
 ## 5.4.0 — 3 novembre 2026 · Nunya Aide
 
 - Nouvel assistant **Nunya Aide**, IA open source (Groq, modèles à poids ouverts gpt-oss) : explique une notion floue, reformule la leçon, donne un autre exemple et des indices pour les exercices, sans donner la solution complète.
