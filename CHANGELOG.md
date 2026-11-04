@@ -3,6 +3,7 @@
 ## 5.4.0 — compléments du 4 novembre 2026
 
 - Bibliothèque : nouvelle page **Tous les cours Nunya** (`#/bibliotheque/cours`), avec les 42 cours en lecture libre, sans programme ni test, en trois familles (programmation et numérique, révisions scolaires, métiers et compétences pratiques). Entrée « Voir tous les cours » sur l’accueil de la bibliothèque. Les cours restent des brouillons à relire.
+- Intègre la 5.2.1 publiée sur `main` (navigation question par question, séries de maths). Cache `nunya-v5.4.0` pour l’ensemble.
 - **Études à l’étranger** et **Opportunités** réouvertes dans le menu (`FEATURES.showAbroad`, `FEATURES.showOpportunities`). Le portfolio reste masqué.
 - Poids du site : les vues de la Découverte et les pages de la bibliothèque (compétences, thèmes, collections, tous les cours) sont chargées à la demande et précachées. Bundle principal : 148 677 octets gzip pour un budget unique de 150 000 (`scripts/js-budget.mjs`).
 
@@ -23,6 +24,13 @@
 - Les choix des questions sont mélangés (ordre fixe par question) ; la ponctuation française ne se retrouve plus seule en début de ligne dans les leçons.
 - Correction : après le test d’accueil, tant que l’élève n’avait pas cliqué « Terminer », les cartes principales d’Apprendre à coder étaient masquées sur toutes les pages.
 - Cache `nunya-v5.3.0` et ressources `?v=5.3.0`.
+## 5.2.1 — 4 novembre 2026
+
+- Une question à la fois, compteur, vérification, précédent et suivant dans la même leçon.
+- Série de cinq questions pour chacune des huit leçons du pilote de maths : 32 questions originales supplémentaires.
+- Sauvegarde des réponses et de la position, préservation des validations précédentes, progression scolaire correctement indiquée dans le sommaire.
+- Passage explicite à la leçon suivante uniquement après la série ; parcours métier utilisant la même navigation.
+- Audit du nouveau prompt maître et matrice interne des cours cibles par niveau, sans publier de formations vides.
 
 ## 5.2.0 — 3 novembre 2026
 

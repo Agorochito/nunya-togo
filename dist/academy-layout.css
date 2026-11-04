@@ -121,3 +121,6 @@
  .aide-sheet{inset:auto 0 0 0;width:100vw;height:92dvh;max-height:92dvh;border-left:0;border-top:1px solid var(--theme-line);border-radius:18px 18px 0 0;box-shadow:0 -12px 40px rgba(0,0,0,.2)}
  .aide-msg{max-width:96%}
 }
+
+/* Question navigation stays within a lesson until its series is checked. */
+.a-practice-position{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 0 20px;margin-bottom:18px;border-bottom:1px solid var(--theme-line);font-size:14px}.a-practice-position span,.a-practice-note{color:var(--theme-muted)}.a-question h2{scroll-margin-top:110px}.a-question h2:focus{outline:2px solid var(--accent-text);outline-offset:5px}.a-lesson-footer .primary{max-width:100%;white-space:normal}@media(max-width:700px){.a-question h2{scroll-margin-top:150px}.a-lesson-footer{flex-wrap:wrap}.a-lesson-footer .primary{width:100%}}

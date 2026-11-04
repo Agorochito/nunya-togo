@@ -1,0 +1,699 @@
+{
+  "audit_date": "2026-11-04",
+  "production_base_commit": "c4c548ba282fb9d00913fd5916f3775c85826b6e",
+  "scope": "Audit interne des besoins du prompt maître ; ce fichier ne publie pas des cours.",
+  "canonical_existing": {
+    "course": "python-bases",
+    "modules": 4,
+    "lessons": 22,
+    "code_exercises": 88,
+    "quizzes": 66,
+    "estimated_minutes": 440,
+    "status": "brouillon"
+  },
+  "target_families": 24,
+  "target_level_courses": 72,
+  "courses": [
+    {
+      "id": "py-debutant",
+      "family": "PY",
+      "level": "debutant",
+      "target_title": "Python — les fondamentaux",
+      "status": "partiel",
+      "evidence": [
+        "content/fr/python-bases",
+        "data/curriculum/python-bases.json"
+      ],
+      "next_action": "Compléter le programme débutant, puis valider projet et relecture."
+    },
+    {
+      "id": "py-intermediaire",
+      "family": "PY",
+      "level": "intermediaire",
+      "target_title": "Python — écrire des applications structurées",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "py-avance",
+      "family": "PY",
+      "level": "avance",
+      "target_title": "Python — conception et performance",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "html-debutant",
+      "family": "HTML",
+      "level": "debutant",
+      "target_title": "HTML — créer sa première page",
+      "status": "apercu_historique",
+      "evidence": [
+        "content/fr/web.json"
+      ],
+      "next_action": "Construire un cours complet et des exercices propres au niveau ; le court aperçu ne suffit pas."
+    },
+    {
+      "id": "html-intermediaire",
+      "family": "HTML",
+      "level": "intermediaire",
+      "target_title": "HTML — formulaires et contenus accessibles",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "html-avance",
+      "family": "HTML",
+      "level": "avance",
+      "target_title": "HTML — architecture de documents web",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "css-debutant",
+      "family": "CSS",
+      "level": "debutant",
+      "target_title": "CSS — mettre en forme une page",
+      "status": "apercu_historique",
+      "evidence": [
+        "content/fr/web.json"
+      ],
+      "next_action": "Construire un cours complet et des exercices propres au niveau ; le court aperçu ne suffit pas."
+    },
+    {
+      "id": "css-intermediaire",
+      "family": "CSS",
+      "level": "intermediaire",
+      "target_title": "CSS — interfaces adaptatives",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "css-avance",
+      "family": "CSS",
+      "level": "avance",
+      "target_title": "CSS — systèmes d’interface",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "js-debutant",
+      "family": "JS",
+      "level": "debutant",
+      "target_title": "JavaScript — les fondamentaux",
+      "status": "apercu_historique",
+      "evidence": [
+        "content/fr/javascript.json"
+      ],
+      "next_action": "Construire un cours complet et des exercices propres au niveau ; le court aperçu ne suffit pas."
+    },
+    {
+      "id": "js-intermediaire",
+      "family": "JS",
+      "level": "intermediaire",
+      "target_title": "JavaScript — interfaces et API",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "js-avance",
+      "family": "JS",
+      "level": "avance",
+      "target_title": "JavaScript — applications robustes",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "ts-debutant",
+      "family": "TS",
+      "level": "debutant",
+      "target_title": "TypeScript — démarrer avec les types",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "ts-intermediaire",
+      "family": "TS",
+      "level": "intermediaire",
+      "target_title": "TypeScript — modéliser un domaine",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "ts-avance",
+      "family": "TS",
+      "level": "avance",
+      "target_title": "TypeScript — concevoir des bibliothèques",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "sql-debutant",
+      "family": "SQL",
+      "level": "debutant",
+      "target_title": "SQL — interroger des données",
+      "status": "apercu_historique",
+      "evidence": [
+        "content/fr/sql.json"
+      ],
+      "next_action": "Construire un cours complet et des exercices propres au niveau ; le court aperçu ne suffit pas."
+    },
+    {
+      "id": "sql-intermediaire",
+      "family": "SQL",
+      "level": "intermediaire",
+      "target_title": "SQL — relier et modifier les données",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "sql-avance",
+      "family": "SQL",
+      "level": "avance",
+      "target_title": "SQL — analyser et optimiser",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "bash-debutant",
+      "family": "BASH",
+      "level": "debutant",
+      "target_title": "Bash — découvrir le terminal",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "bash-intermediaire",
+      "family": "BASH",
+      "level": "intermediaire",
+      "target_title": "Bash — automatiser des tâches",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "bash-avance",
+      "family": "BASH",
+      "level": "avance",
+      "target_title": "Bash — scripts fiables",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "java-debutant",
+      "family": "JAVA",
+      "level": "debutant",
+      "target_title": "Java — premiers programmes",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "java-intermediaire",
+      "family": "JAVA",
+      "level": "intermediaire",
+      "target_title": "Java — applications structurées",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "java-avance",
+      "family": "JAVA",
+      "level": "avance",
+      "target_title": "Java — architecture et concurrence",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "c-debutant",
+      "family": "C",
+      "level": "debutant",
+      "target_title": "C — comprendre les bases",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "c-intermediaire",
+      "family": "C",
+      "level": "intermediaire",
+      "target_title": "C — mémoire et structures",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "c-avance",
+      "family": "C",
+      "level": "avance",
+      "target_title": "C — programmation système robuste",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "cpp-debutant",
+      "family": "CPP",
+      "level": "debutant",
+      "target_title": "C++ — les fondamentaux modernes",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "cpp-intermediaire",
+      "family": "CPP",
+      "level": "intermediaire",
+      "target_title": "C++ — ressources et abstraction",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "cpp-avance",
+      "family": "CPP",
+      "level": "avance",
+      "target_title": "C++ — conception générique et performance",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "csharp-debutant",
+      "family": "CSHARP",
+      "level": "debutant",
+      "target_title": "C# — premiers programmes",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "csharp-intermediaire",
+      "family": "CSHARP",
+      "level": "intermediaire",
+      "target_title": "C# — applications avec .NET",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "csharp-avance",
+      "family": "CSHARP",
+      "level": "avance",
+      "target_title": "C# — services maintenables",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "go-debutant",
+      "family": "GO",
+      "level": "debutant",
+      "target_title": "Go — les fondamentaux",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "go-intermediaire",
+      "family": "GO",
+      "level": "intermediaire",
+      "target_title": "Go — services et concurrence",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "go-avance",
+      "family": "GO",
+      "level": "avance",
+      "target_title": "Go — systèmes fiables",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "rust-debutant",
+      "family": "RUST",
+      "level": "debutant",
+      "target_title": "Rust — démarrer",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "rust-intermediaire",
+      "family": "RUST",
+      "level": "intermediaire",
+      "target_title": "Rust — modéliser et sécuriser",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "rust-avance",
+      "family": "RUST",
+      "level": "avance",
+      "target_title": "Rust — applications avancées",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "swift-debutant",
+      "family": "SWIFT",
+      "level": "debutant",
+      "target_title": "Swift — les fondamentaux",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "swift-intermediaire",
+      "family": "SWIFT",
+      "level": "intermediaire",
+      "target_title": "Swift — construire une application",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "swift-avance",
+      "family": "SWIFT",
+      "level": "avance",
+      "target_title": "Swift — architecture et concurrence",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "kotlin-debutant",
+      "family": "KOTLIN",
+      "level": "debutant",
+      "target_title": "Kotlin — les fondamentaux",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "kotlin-intermediaire",
+      "family": "KOTLIN",
+      "level": "intermediaire",
+      "target_title": "Kotlin — applications et données",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "kotlin-avance",
+      "family": "KOTLIN",
+      "level": "avance",
+      "target_title": "Kotlin — conception avancée",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "ruby-debutant",
+      "family": "RUBY",
+      "level": "debutant",
+      "target_title": "Ruby — les fondamentaux",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "ruby-intermediaire",
+      "family": "RUBY",
+      "level": "intermediaire",
+      "target_title": "Ruby — structurer un projet",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "ruby-avance",
+      "family": "RUBY",
+      "level": "avance",
+      "target_title": "Ruby — conception et web",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "php-debutant",
+      "family": "PHP",
+      "level": "debutant",
+      "target_title": "PHP — créer des pages dynamiques",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "php-intermediaire",
+      "family": "PHP",
+      "level": "intermediaire",
+      "target_title": "PHP — applications structurées",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "php-avance",
+      "family": "PHP",
+      "level": "avance",
+      "target_title": "PHP — architecture web fiable",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "scala-debutant",
+      "family": "SCALA",
+      "level": "debutant",
+      "target_title": "Scala — démarrer",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "scala-intermediaire",
+      "family": "SCALA",
+      "level": "intermediaire",
+      "target_title": "Scala — objets et programmation fonctionnelle",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "scala-avance",
+      "family": "SCALA",
+      "level": "avance",
+      "target_title": "Scala — applications composables",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "perl-debutant",
+      "family": "PERL",
+      "level": "debutant",
+      "target_title": "Perl — scripts et texte",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "perl-intermediaire",
+      "family": "PERL",
+      "level": "intermediaire",
+      "target_title": "Perl — automatiser proprement",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "perl-avance",
+      "family": "PERL",
+      "level": "avance",
+      "target_title": "Perl — maintenir des outils existants",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "r-debutant",
+      "family": "R",
+      "level": "debutant",
+      "target_title": "R — analyser ses premières données",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "r-intermediaire",
+      "family": "R",
+      "level": "intermediaire",
+      "target_title": "R — analyses reproductibles",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "r-avance",
+      "family": "R",
+      "level": "avance",
+      "target_title": "R — modèles et applications analytiques",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "dart-debutant",
+      "family": "DART",
+      "level": "debutant",
+      "target_title": "Dart — les fondamentaux",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "dart-intermediaire",
+      "family": "DART",
+      "level": "intermediaire",
+      "target_title": "Dart — applications structurées",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "dart-avance",
+      "family": "DART",
+      "level": "avance",
+      "target_title": "Dart — conception avancée",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "lua-debutant",
+      "family": "LUA",
+      "level": "debutant",
+      "target_title": "Lua — les fondamentaux",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "lua-intermediaire",
+      "family": "LUA",
+      "level": "intermediaire",
+      "target_title": "Lua — modules et événements",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "lua-avance",
+      "family": "LUA",
+      "level": "avance",
+      "target_title": "Lua — intégration et performance",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "matlab-debutant",
+      "family": "MATLAB",
+      "level": "debutant",
+      "target_title": "MATLAB — calculer et visualiser",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "matlab-intermediaire",
+      "family": "MATLAB",
+      "level": "intermediaire",
+      "target_title": "MATLAB — méthodes numériques",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "matlab-avance",
+      "family": "MATLAB",
+      "level": "avance",
+      "target_title": "MATLAB — calcul scientifique structuré",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "haskell-debutant",
+      "family": "HASKELL",
+      "level": "debutant",
+      "target_title": "Haskell — penser en fonctions",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "haskell-intermediaire",
+      "family": "HASKELL",
+      "level": "intermediaire",
+      "target_title": "Haskell — composer des programmes",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    },
+    {
+      "id": "haskell-avance",
+      "family": "HASKELL",
+      "level": "avance",
+      "target_title": "Haskell — abstractions et fiabilité",
+      "status": "a_construire",
+      "evidence": [],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+    }
+  ],
+  "complementary_series": [
+    "React",
+    "Node.js et Express",
+    "Vue et Angular",
+    "Python web",
+    "Java, PHP et C# web",
+    "Git et collaboration",
+    "Algorithmique",
+    "HTTP et API REST",
+    "GraphQL",
+    "Bases de données",
+    "Linux, réseaux et systèmes",
+    "Docker, CI/CD et cloud",
+    "Qualité logicielle",
+    "Conception de systèmes",
+    "UX/UI pour développeurs",
+    "Mobile",
+    "Données et apprentissage automatique",
+    "IA générative",
+    "Objets connectés et robotique",
+    "Blockchain"
+  ]
+}

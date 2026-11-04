@@ -1,5 +1,7 @@
 # Contenus et validations à poursuivre
 
+Mise à jour du 4 novembre : voir `COURSE_COVERAGE_AUDIT.md` et `data/review/course_coverage_2026-11-04.json` pour le rapprochement avec le nouveau prompt maître (24 familles, 72 cours cibles par niveau, tous explicitement distingués des contenus réellement disponibles). Conserver Python M1–M4 ; compléter ses prérequis et modules suivants, éprouver le module fonctions et HTML/CSS, puis terminer les six cours fondamentaux avant les niveaux suivants.
+
 Priorité v5 : faire relire et essayer les 22 leçons Python M1–M4 ; corriger à partir des essais, puis développer M5–M10, HTML, CSS et JavaScript. Les autres langages restent en préparation. Migrer ensuite le pilote de mathématiques vers la même profondeur et le même catalogue. Ne pas présenter les anciennes unités courtes comme déjà conformes à cette nouvelle barre.
 
 - Revue d’interface du 3 novembre : la leçon 1 de Python demande environ onze écrans de défilement sur un téléphone de 360 px, loin des 5 à 10 minutes visées par le cahier de route. Étudier un découpage en sections plus courtes (ou un sommaire repliable) avec les premiers élèves testeurs.

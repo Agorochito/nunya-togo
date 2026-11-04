@@ -1,0 +1,460 @@
+{
+  "schema_version": 1,
+  "status": "brouillon",
+  "reviewer": null,
+  "updated_at": "2026-11-04",
+  "courses": {
+    "maths-seconde": {
+      "0": [
+        {
+          "type": "numeric",
+          "prompt": "Combien vaut 3 + 4 × 2 ?",
+          "answer": 11,
+          "explanation": "On calcule 4 × 2 = 8 avant l’addition : 3 + 8 = 11.",
+          "hints": [
+            "Quelle opération a la priorité ?",
+            "Commence par 4 × 2.",
+            "Ajoute ensuite 3 à 8."
+          ],
+          "id": "course-maths-seconde-0-extra-1"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien vaut (8 − 2) × 3 ?",
+          "answer": 18,
+          "explanation": "Les parenthèses passent d’abord : 8 − 2 = 6, puis 6 × 3 = 18.",
+          "hints": [
+            "Repère les parenthèses.",
+            "Calcule 8 − 2 avant de multiplier.",
+            "Le calcul devient 6 × 3."
+          ],
+          "id": "course-maths-seconde-0-extra-2"
+        },
+        {
+          "type": "mcq",
+          "prompt": "Combien vaut 20 ÷ 5 × 2 ?",
+          "options": [
+            "8",
+            "2",
+            "20"
+          ],
+          "answer": 0,
+          "explanation": "Division et multiplication ont la même priorité : on va de gauche à droite, soit 20 ÷ 5 = 4, puis 4 × 2 = 8.",
+          "hints": [
+            "Division et multiplication ont-elles des priorités différentes ?",
+            "À priorité égale, avance de gauche à droite.",
+            "Commence par 20 ÷ 5."
+          ],
+          "id": "course-maths-seconde-0-extra-3"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien vaut −3 + 2 × 4 ?",
+          "answer": 5,
+          "explanation": "Le produit vaut 8. On calcule ensuite −3 + 8 = 5.",
+          "hints": [
+            "Le signe − devant 3 appartient au nombre.",
+            "Calcule d’abord 2 × 4.",
+            "Pars de −3 et ajoute 8."
+          ],
+          "id": "course-maths-seconde-0-extra-4"
+        }
+      ],
+      "1": [
+        {
+          "type": "numeric",
+          "prompt": "Résous 3x − 6 = 9. Quelle est la valeur de x ?",
+          "answer": 5,
+          "explanation": "Ajoute 6 des deux côtés : 3x = 15. Divise ensuite par 3 : x = 5. Vérification : 3 × 5 − 6 = 9.",
+          "hints": [
+            "Quelle opération annule le −6 ?",
+            "Ajoute 6 aux deux membres de l’égalité.",
+            "Tu obtiens 3x = 15 ; divise les deux côtés par 3."
+          ],
+          "id": "course-maths-seconde-1-extra-1"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Résous x ÷ 4 + 2 = 5. Quelle est la valeur de x ?",
+          "answer": 12,
+          "explanation": "Retire 2 des deux côtés : x ÷ 4 = 3. Multiplie ensuite par 4 : x = 12.",
+          "hints": [
+            "Isole d’abord x ÷ 4.",
+            "Retire 2 à gauche et à droite.",
+            "Pour annuler une division par 4, multiplie par 4."
+          ],
+          "id": "course-maths-seconde-1-extra-2"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Résous −2x + 3 = 11. Quelle est la valeur de x ?",
+          "answer": -4,
+          "explanation": "Retire 3 : −2x = 8. Divise par −2 : x = −4. Vérification : −2 × (−4) + 3 = 11.",
+          "hints": [
+            "Isole le terme contenant x.",
+            "Après avoir retiré 3, tu as −2x = 8.",
+            "Divise 8 par −2 ; le résultat est négatif."
+          ],
+          "id": "course-maths-seconde-1-extra-3"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Exemple fictif : 250x + 500 = 1 750. Combien vaut x ?",
+          "answer": 5,
+          "explanation": "Retire le coût fixe : 1 750 − 500 = 1 250. Puis x = 1 250 ÷ 250 = 5. Les montants de cette situation sont fictifs.",
+          "hints": [
+            "Sépare le montant fixe et le montant qui dépend de x.",
+            "Retire 500 aux deux côtés.",
+            "Combien de fois 250 est-il contenu dans 1 250 ?"
+          ],
+          "id": "course-maths-seconde-1-extra-4"
+        }
+      ],
+      "2": [
+        {
+          "type": "mcq",
+          "prompt": "Quelle expression est égale à −3(x − 2) ?",
+          "options": [
+            "−3x − 2",
+            "−3x − 6",
+            "−3x + 6"
+          ],
+          "answer": 2,
+          "explanation": "−3 multiplie chacun des termes : −3 × x = −3x et −3 × (−2) = +6.",
+          "hints": [
+            "Distribue −3 sur les deux termes.",
+            "Quel signe donne le produit de deux nombres négatifs ?",
+            "Le deuxième produit est −3 × (−2) = +6."
+          ],
+          "id": "course-maths-seconde-2-extra-1"
+        },
+        {
+          "type": "mcq",
+          "prompt": "Quelle factorisation de 6x + 9 est correcte ?",
+          "options": [
+            "6(x + 9)",
+            "3(2x + 3)",
+            "3(2x + 9)"
+          ],
+          "answer": 1,
+          "explanation": "3 est un facteur commun : 6x = 3 × 2x et 9 = 3 × 3. Donc 6x + 9 = 3(2x + 3).",
+          "hints": [
+            "Cherche un nombre qui divise 6 et 9.",
+            "Le nombre 3 convient.",
+            "À l’intérieur des parenthèses, divise chaque terme par 3."
+          ],
+          "id": "course-maths-seconde-2-extra-2"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Pour x = 5, combien vaut 2(x + 3) ?",
+          "answer": 16,
+          "explanation": "Remplace x par 5 : 2(5 + 3) = 2 × 8 = 16. On peut aussi calculer 2x + 6 = 10 + 6.",
+          "hints": [
+            "Remplace d’abord x par 5.",
+            "Calcule la parenthèse 5 + 3.",
+            "Multiplie 8 par 2."
+          ],
+          "id": "course-maths-seconde-2-extra-3"
+        },
+        {
+          "type": "mcq",
+          "prompt": "Un élève écrit 5(x − 1) = 5x − 1. Quelle est la correction ?",
+          "options": [
+            "5x − 5",
+            "5x + 5",
+            "x − 5"
+          ],
+          "answer": 0,
+          "explanation": "Le 5 doit aussi multiplier −1 : 5 × (−1) = −5. La bonne écriture est 5x − 5.",
+          "hints": [
+            "Le facteur extérieur multiplie-t-il seulement x ?",
+            "Il multiplie aussi le deuxième terme.",
+            "Calcule 5 × (−1)."
+          ],
+          "id": "course-maths-seconde-2-extra-4"
+        }
+      ],
+      "3": [
+        {
+          "type": "numeric",
+          "prompt": "Pour f(x) = 2x + 1, quelle est l’image de −3 ?",
+          "answer": -5,
+          "explanation": "Remplace x par −3 : f(−3) = 2 × (−3) + 1 = −6 + 1 = −5.",
+          "hints": [
+            "Une image est le résultat de la fonction.",
+            "Remplace chaque x par −3.",
+            "Calcule −6 + 1."
+          ],
+          "id": "course-maths-seconde-3-extra-1"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Pour f(x) = 2x + 1, quel antécédent donne l’image 9 ?",
+          "answer": 4,
+          "explanation": "Chercher cet antécédent revient à résoudre 2x + 1 = 9 : 2x = 8, donc x = 4.",
+          "hints": [
+            "Cette fois, le résultat est connu et le nombre de départ est recherché.",
+            "Écris l’équation 2x + 1 = 9.",
+            "Retire 1, puis divise par 2."
+          ],
+          "id": "course-maths-seconde-3-extra-2"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Pour g(x) = x², combien vaut g(−2) ?",
+          "answer": 4,
+          "explanation": "g(−2) = (−2)² = (−2) × (−2) = 4. Les parenthèses gardent le signe du nombre remplacé.",
+          "hints": [
+            "x² signifie x multiplié par lui-même.",
+            "Remplace les deux facteurs par −2.",
+            "Deux facteurs négatifs donnent un produit positif."
+          ],
+          "id": "course-maths-seconde-3-extra-3"
+        },
+        {
+          "type": "mcq",
+          "prompt": "La fonction h est définie par h(x) = 5. Que vaut h(100) ?",
+          "options": [
+            "100",
+            "5",
+            "500"
+          ],
+          "answer": 1,
+          "explanation": "Cette fonction est constante : elle associe 5 à chaque nombre de son domaine. Le nombre de départ ne change pas le résultat.",
+          "hints": [
+            "La formule contient-elle x ?",
+            "Elle indique toujours le même résultat.",
+            "Lis le nombre écrit après le signe égal."
+          ],
+          "id": "course-maths-seconde-3-extra-4"
+        }
+      ],
+      "4": [
+        {
+          "type": "numeric",
+          "prompt": "Exemple fictif : 4 kg coûtent 1 200 FCFA, au même prix par kg. Combien coûtent 7 kg ?",
+          "answer": 2100,
+          "explanation": "Un kg coûte 1 200 ÷ 4 = 300 FCFA. Donc 7 kg coûtent 7 × 300 = 2 100 FCFA.",
+          "hints": [
+            "Commence par le prix d’un kg.",
+            "Divise 1 200 par 4.",
+            "Multiplie le prix unitaire 300 par 7."
+          ],
+          "id": "course-maths-seconde-4-extra-1"
+        },
+        {
+          "type": "mcq",
+          "prompt": "2 cahiers coûtent 600 FCFA et 3 cahiers coûtent 800 FCFA. Les prix sont-ils proportionnels ?",
+          "options": [
+            "Oui",
+            "Non",
+            "Impossible à comparer"
+          ],
+          "answer": 1,
+          "explanation": "Le premier prix unitaire est 600 ÷ 2 = 300 ; le second est 800 ÷ 3, différent de 300. Le coefficient n’est pas constant.",
+          "hints": [
+            "Compare les prix pour un seul cahier.",
+            "Divise chaque prix par le nombre de cahiers.",
+            "Avec 300 FCFA par cahier, 3 cahiers coûteraient 900, pas 800."
+          ],
+          "id": "course-maths-seconde-4-extra-2"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Exemple fictif : 8 tickets identiques coûtent 2 400 FCFA. Quel est le prix d’un ticket ?",
+          "answer": 300,
+          "explanation": "Au même prix unitaire, on divise le prix total par le nombre de tickets : 2 400 ÷ 8 = 300 FCFA.",
+          "hints": [
+            "Tu cherches le prix pour une seule unité.",
+            "Partage 2 400 en 8 parts égales.",
+            "Vérifie ton résultat en le multipliant par 8."
+          ],
+          "id": "course-maths-seconde-4-extra-3"
+        },
+        {
+          "type": "mcq",
+          "prompt": "Un trajet fictif coûte 500 FCFA fixes, puis 200 FCFA par km. Le prix total est-il proportionnel au nombre de km ?",
+          "options": [
+            "Oui, car on multiplie par 200",
+            "Oui, car le prix augmente",
+            "Non, car il y a un coût fixe"
+          ],
+          "answer": 2,
+          "explanation": "Le coût fixe empêche la proportionnalité : le rapport prix/distance varie. Une augmentation régulière n’est pas suffisante.",
+          "hints": [
+            "Compare le prix à 1 km et à 2 km.",
+            "Ils valent 700 et 900 FCFA.",
+            "Doubler 1 km ne double pas le prix total."
+          ],
+          "id": "course-maths-seconde-4-extra-4"
+        }
+      ],
+      "5": [
+        {
+          "type": "numeric",
+          "prompt": "Un triangle rectangle a des côtés de l’angle droit de 6 cm et 8 cm. Quelle est son hypoténuse, en cm ?",
+          "answer": 10,
+          "explanation": "h² = 6² + 8² = 36 + 64 = 100. La longueur positive dont le carré vaut 100 est 10.",
+          "hints": [
+            "L’hypoténuse est opposée à l’angle droit.",
+            "Additionne les carrés 6² et 8².",
+            "Quel nombre positif a pour carré 100 ?"
+          ],
+          "id": "course-maths-seconde-5-extra-1"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Un triangle rectangle a une hypoténuse de 13 cm et un autre côté de 5 cm. Combien mesure le troisième côté, en cm ?",
+          "answer": 12,
+          "explanation": "Si b est le côté cherché, b² + 5² = 13². Donc b² = 169 − 25 = 144, d’où b = 12 cm.",
+          "hints": [
+            "Le côté de 13 cm est l’hypoténuse.",
+            "Soustrais le carré du côté connu au carré de l’hypoténuse.",
+            "Le nombre positif dont le carré vaut 144 est recherché."
+          ],
+          "id": "course-maths-seconde-5-extra-2"
+        },
+        {
+          "type": "mcq",
+          "prompt": "Dans un triangle rectangle, h est l’hypoténuse. Quelle formule est correcte ?",
+          "options": [
+            "h² = a² + b²",
+            "h = a + b",
+            "a² = h² + b²"
+          ],
+          "answer": 0,
+          "explanation": "Le carré de l’hypoténuse égale la somme des carrés des deux autres côtés. On n’additionne pas directement les longueurs.",
+          "hints": [
+            "Repère le plus grand côté h.",
+            "La relation porte sur des carrés.",
+            "Le carré de h doit être seul d’un côté de l’égalité."
+          ],
+          "id": "course-maths-seconde-5-extra-3"
+        },
+        {
+          "type": "mcq",
+          "prompt": "Un triangle a pour côtés 2 cm, 3 cm et 4 cm. Peut-il être rectangle ?",
+          "options": [
+            "Oui",
+            "Non",
+            "Tous les triangles le sont"
+          ],
+          "answer": 1,
+          "explanation": "S’il était rectangle, le côté 4 serait son hypoténuse. Mais 4² = 16 et 2² + 3² = 13 ; l’égalité nécessaire ne tient pas.",
+          "hints": [
+            "Teste la relation avec le plus grand côté.",
+            "Compare 4² à 2² + 3².",
+            "Les résultats 16 et 13 sont différents."
+          ],
+          "id": "course-maths-seconde-5-extra-4"
+        }
+      ],
+      "6": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la médiane de 9, 2, 5 ?",
+          "answer": 5,
+          "explanation": "Range la série : 2, 5, 9. Le nombre central est 5.",
+          "hints": [
+            "La série doit être ordonnée.",
+            "Range les nombres du plus petit au plus grand.",
+            "Choisis la valeur du milieu."
+          ],
+          "id": "course-maths-seconde-6-extra-1"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la médiane de 2, 4, 8, 10 ?",
+          "answer": 6,
+          "explanation": "Il y a quatre valeurs : les deux centrales sont 4 et 8. Leur moyenne est (4 + 8) ÷ 2 = 6.",
+          "hints": [
+            "L’effectif est pair.",
+            "Repère les deux valeurs centrales 4 et 8.",
+            "Calcule leur somme, puis divise par 2."
+          ],
+          "id": "course-maths-seconde-6-extra-2"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la médiane de 1, 2, 8, 9 ?",
+          "answer": 5,
+          "explanation": "Les deux valeurs centrales sont 2 et 8. La médiane est (2 + 8) ÷ 2 = 5 ; elle peut ne pas figurer dans la série.",
+          "hints": [
+            "Avec quatre nombres, il y a deux valeurs centrales.",
+            "Ces valeurs sont 2 et 8.",
+            "Le nombre à mi-chemin entre 2 et 8 est recherché."
+          ],
+          "id": "course-maths-seconde-6-extra-3"
+        },
+        {
+          "type": "mcq",
+          "prompt": "Quelle est la médiane de 1, 3, 5, 7, 100 ?",
+          "options": [
+            "100",
+            "5",
+            "23,2"
+          ],
+          "answer": 1,
+          "explanation": "La série est déjà ordonnée. Sa troisième valeur, au milieu des cinq nombres, est 5. Une grande valeur à la fin ne remplace pas la médiane.",
+          "hints": [
+            "Compte les valeurs de la série.",
+            "Avec cinq valeurs, la valeur centrale est la troisième.",
+            "Ne choisis ni le maximum ni la moyenne de toute la série."
+          ],
+          "id": "course-maths-seconde-6-extra-4"
+        }
+      ],
+      "7": [
+        {
+          "type": "numeric",
+          "prompt": "Sortie fictive : 500 FCFA par personne et 2 000 FCFA fixes. Quel budget faut-il pour 18 personnes ?",
+          "answer": 11000,
+          "explanation": "B(18) = 500 × 18 + 2 000 = 9 000 + 2 000 = 11 000 FCFA.",
+          "hints": [
+            "Le coût fixe s’ajoute une seule fois.",
+            "Calcule d’abord 500 × 18.",
+            "Ajoute 2 000 au résultat 9 000."
+          ],
+          "id": "course-maths-seconde-7-extra-1"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Avec ce même tarif fictif, un budget de 12 000 FCFA permet au maximum combien de personnes ?",
+          "answer": 20,
+          "explanation": "500n + 2 000 ≤ 12 000. Il reste 10 000 pour les personnes ; 10 000 ÷ 500 = 20.",
+          "hints": [
+            "Réserve d’abord le montant fixe.",
+            "Retire 2 000 de 12 000.",
+            "Divise le reste par le prix par personne."
+          ],
+          "id": "course-maths-seconde-7-extra-2"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Si 10 personnes partagent uniquement les 2 000 FCFA de coût fixe, combien paie chacune, en FCFA ?",
+          "answer": 200,
+          "explanation": "La part de coût fixe est 2 000 ÷ 10 = 200 FCFA par personne. Ce n’est pas encore le prix total par personne.",
+          "hints": [
+            "La question porte seulement sur le coût fixe.",
+            "Partage 2 000 en 10 parts égales.",
+            "Vérifie que 10 fois ta réponse redonne 2 000."
+          ],
+          "id": "course-maths-seconde-7-extra-3"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Au même tarif fictif, une personne supplémentaire augmente le budget de combien de FCFA ?",
+          "answer": 500,
+          "explanation": "Le coût fixe reste 2 000. Seul le coût variable augmente : une personne de plus ajoute 500 FCFA.",
+          "hints": [
+            "Quel montant dépend du nombre de personnes ?",
+            "Le coût fixe ne change pas.",
+            "Ajoute le tarif d’une seule personne."
+          ],
+          "id": "course-maths-seconde-7-extra-4"
+        }
+      ]
+    }
+  }
+}
