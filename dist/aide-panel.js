@@ -25,29 +25,29 @@ export function init(api){
   const {lesson,exercise,work,editor}=live(),ex=lesson()?.exercises?.[exercise];if(!ex)return null;
   const w=work(ex),code=String((editor?editor.get():w.code)||'');return {code:code.trim()?code.slice(0,2400):'',attempts:w.attempts};
  }
- let messages=[],contextKey=null,context=null,useContext=true,busy=false,remaining=null,opener=null,draft='';
+ let messages=[],contextKey=null,context=null,useContext=true,busy=false,remaining=null,opener=null,draft='',pending=null;
 
  /* ---------- Session anonyme Supabase (sans bibliothèque externe) ---------- */
  const readSession=()=>{try{const s=JSON.parse(localStorage.getItem(AIDE.sessionKey)||'null');return s&&s.access_token&&s.refresh_token?s:null}catch{return null}};
  const saveSession=s=>{try{s?localStorage.setItem(AIDE.sessionKey,JSON.stringify({access_token:s.access_token,refresh_token:s.refresh_token,expires_at:s.expires_at||Math.floor(Date.now()/1000)+(s.expires_in||3600)})):localStorage.removeItem(AIDE.sessionKey)}catch{}};
  class AideError extends Error{constructor(code,left){super(code);this.code=code;this.remaining=left}}
- async function auth(path,body){
-  const r=await fetch(AIDE.url+'/auth/v1/'+path,{method:'POST',headers:{apikey:AIDE.key,'Content-Type':'application/json'},body:JSON.stringify(body)});
-  const data=await r.json().catch(()=>({}));
+ async function auth(path,body,signal){
+  const r=await fetch(AIDE.url+'/auth/v1/'+path,{method:'POST',signal,headers:{apikey:AIDE.key,'Content-Type':'application/json'},body:JSON.stringify(body)});
+  const data=await r.json().catch(e=>{if(signal?.aborted)throw e;return {}});
   if(!r.ok){if(/anonymous/i.test(data.error_code||data.code||data.msg||data.message||''))throw new AideError('not_configured');if(r.status===429)throw new AideError('auth_rate');throw new AideError('unknown')}
   return data;
  }
- async function session(){
+ async function session(signal){
   let s=readSession();
   if(s&&s.expires_at-60>Date.now()/1000)return s;
-  if(s){try{s=await auth('token?grant_type=refresh_token',{refresh_token:s.refresh_token});saveSession(s);return readSession()}catch(e){if(e.code==='not_configured')throw e}}
-  s=await auth('signup',{data:{}});saveSession(s);return readSession();
+  if(s){try{s=await auth('token?grant_type=refresh_token',{refresh_token:s.refresh_token},signal);if(!s.access_token||!s.refresh_token)throw new AideError('unknown');saveSession(s);return readSession()}catch(e){if(e.code==='not_configured'||signal?.aborted)throw e}}
+  s=await auth('signup',{data:{}},signal);if(!s.access_token||!s.refresh_token)throw new AideError('unknown');saveSession(s);return readSession();
  }
- async function call(payload,retry=true){
-  const s=await session();
-  const r=await fetch(`${AIDE.url}/functions/v1/${AIDE.fn}`,{method:'POST',headers:{Authorization:'Bearer '+s.access_token,apikey:AIDE.key,'Content-Type':'application/json'},body:JSON.stringify(payload)});
-  const data=await r.json().catch(()=>({}));
-  if(r.status===401&&retry){saveSession(null);return call(payload,false)}
+ async function call(payload,signal,retry=true){
+  const s=await session(signal);
+  const r=await fetch(`${AIDE.url}/functions/v1/${AIDE.fn}`,{method:'POST',signal,headers:{Authorization:'Bearer '+s.access_token,apikey:AIDE.key,'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  const data=await r.json().catch(e=>{if(signal?.aborted)throw e;return {}});
+  if(r.status===401&&retry){saveSession(null);return call(payload,signal,false)}
   if(!r.ok)throw new AideError(data.error||(r.status===404?'not_configured':'unknown'),data.remaining);
   return data;
  }
@@ -68,6 +68,10 @@ export function init(api){
   return html;
  }
 
+ function cancelPending(){if(pending){pending.cancelled=true;pending.controller.abort()}}
+ // Fermer le panneau annule aussi la demande en cours ; l’événement « close » (touche Échap) le fait en secours.
+ function closePanel(){cancelPending();$('#aide-dialog')?.close()}
+
  /* ---------- Panneau ---------- */
  const ERRORS={
   offline:'Pas de connexion : Nunya Aide a besoin d’Internet. Les explications, indices et mots nouveaux de la leçon restent disponibles.',
@@ -76,6 +80,8 @@ export function init(api){
   quota_global:'Beaucoup d’élèves ont utilisé Nunya Aide aujourd’hui : la limite du jour est atteinte. Réessaie demain.',
   provider_unavailable:'Nunya Aide ne répond pas pour le moment. Ta question n’a pas été décomptée : réessaie dans quelques minutes.',
   auth_rate:'Trop de connexions depuis ce réseau. Réessaie dans un moment.',
+  cancelled:'Question annulée. Tu peux la reposer quand tu veux.',
+  timeout:'Nunya Aide met trop de temps à répondre. Vérifie ta connexion, puis réessaie.',
   unknown:'Nunya Aide n’a pas pu répondre. Réessaie dans un moment.'};
  function suggestions(ctx){
   if(ctx?.kind==='python'&&ctx.exercise)return [['Pourquoi mon code ne passe pas ?',true],['Donne-moi un indice, pas la solution.',true],['Explique-moi cette leçon autrement.',true]];
@@ -88,15 +94,15 @@ export function init(api){
   d=document.createElement('dialog');d.id='aide-dialog';d.className='aide-sheet';d.setAttribute('aria-labelledby','aide-title');
   d.innerHTML=`<header class="aide-head"><span class="aide-logo">${icon}</span><div><h2 id="aide-title">Nunya Aide</h2><p>IA open source · elle peut se tromper</p></div><button type="button" class="aide-close" data-aide="close" aria-label="Fermer Nunya Aide">✕</button></header><div class="aide-body"></div>`;
   document.body.append(d);
-  d.addEventListener('close',()=>{opener?.focus?.({preventScroll:true});opener=null});
-  d.addEventListener('click',e=>{if(e.target===d)d.close()});
+  d.addEventListener('close',()=>{cancelPending();opener?.focus?.({preventScroll:true});opener=null});
+  d.addEventListener('click',e=>{if(e.target===d||e.target.closest('a[href^="#/"]'))closePanel()}); // fond ou lien vers une page : on ferme le panneau
   return d;
  }
  function renderBody(){
   const d=dialog(),body=d.querySelector('.aide-body');
-  if(!state.aide.consent){body.innerHTML=`<section class="aide-consent"><h3>Avant de commencer</h3><ul><li>Nunya Aide t’explique les leçons avec tes mots à toi. Pour un exercice, il donne des indices, pas la solution.</li><li>Ta question et, si tu le veux, l’extrait de la leçon ou ton code sont envoyés à un modèle d’IA open source hébergé par Groq. Nunya n’enregistre pas tes questions.</li><li>Ne partage jamais ton nom complet, ton adresse, ton numéro ou un mot de passe.</li><li>L’IA peut se tromper : vérifie avec la leçon ou demande à ton professeur.</li><li>${AIDE.perDay} questions par jour et par appareil.</li></ul><button type="button" class="primary" data-aide="consent">J’ai compris, commencer</button></section>`;return}
+  if(!state.aide.consent){body.innerHTML=`<section class="aide-consent"><h3>Avant de commencer</h3><ul><li>Nunya Aide t’explique les leçons avec tes mots à toi. Pour un exercice, il donne des indices, pas la solution.</li><li>Ta question, ainsi que l’extrait de la leçon et ton code (sauf si tu choisis « Ne pas l’envoyer »), sont envoyés à un modèle d’IA open source hébergé par Groq, aux États-Unis, en passant par Supabase (Union européenne). Nunya n’enregistre pas tes questions ; Groq peut les garder jusqu’à 30 jours pour lutter contre les abus.</li><li>Ne partage jamais ton nom complet, ton adresse, ton numéro ou un mot de passe.</li><li>L’IA peut se tromper : vérifie avec la leçon ou demande à ton professeur.</li><li>${AIDE.perDay} questions par jour et par appareil. <a href="#/confidentialite">Tes données, en clair →</a></li></ul><button type="button" class="primary" data-aide="consent">J’ai compris, commencer</button></section>`;return}
   const ctx=context,code=useContext?getCode(ctx):null;
-  body.innerHTML=`${ctx?`<div class="aide-context"><span>${useContext?'Nunya Aide voit':'Sans contexte :'} <strong>${esc(ctx.label)}</strong>${code&&code.code?' et ton code':''}</span><button type="button" class="text-button" data-aide="toggle-context">${useContext?'Ne pas l’envoyer':'L’envoyer'}</button></div>`:''}<div class="aide-log" role="log" aria-live="polite" aria-busy="${busy}">${messages.length?'':`<p class="aide-empty">${ctx?'Un passage n’est pas clair ? Pose ta question, même simple.':'Pose une question sur un cours, la programmation, le numérique ou ton orientation.'}</p>`}${messages.map(m=>`<div class="aide-msg aide-${m.role}">${m.role==='user'||m.error?`<p>${esc(m.content)}</p>`:markdown(m.content)}</div>`).join('')}${busy?'<div class="aide-msg aide-assistant aide-typing"><p>Nunya Aide réfléchit…</p></div>':''}</div>${!messages.length&&!busy?`<div class="aide-suggestions">${suggestions(useContext?ctx:null).map(([t,send])=>`<button type="button" data-aide="suggest" data-send="${send}">${esc(t)}</button>`).join('')}</div>`:''}<form class="aide-form" data-aide-form><label class="curr-sr" for="aide-input">Ta question</label><textarea id="aide-input" rows="2" maxlength="800" placeholder="Écris ta question…" ${busy?'disabled':''}>${esc(draft)}</textarea><button type="submit" class="primary" ${busy?'disabled':''}>Envoyer</button></form><p class="aide-foot">${remaining!==null?`Il te reste ${remaining} question${remaining>1?'s':''} aujourd’hui.`:`${AIDE.perDay} questions par jour.`} Ne partage pas d’informations personnelles.</p>`;
+  body.innerHTML=`${ctx?`<div class="aide-context"><span>${useContext?'Nunya Aide voit':'Sans contexte :'} <strong>${esc(ctx.label)}</strong>${code&&code.code?' et ton code':''}</span><button type="button" class="text-button" data-aide="toggle-context">${useContext?'Ne pas l’envoyer':'L’envoyer'}</button></div>`:''}<div class="aide-log" role="log" aria-live="polite" aria-busy="${busy}">${messages.length?'':`<p class="aide-empty">${ctx?'Un passage n’est pas clair ? Pose ta question, même simple.':'Pose une question sur un cours, la programmation, le numérique ou ton orientation.'}</p>`}${messages.map(m=>`<div class="aide-msg aide-${m.role}">${m.role==='user'||m.error?`<p>${esc(m.content)}</p>`:markdown(m.content)}</div>`).join('')}${busy?'<div class="aide-msg aide-assistant aide-typing"><p>Nunya Aide réfléchit…</p><button type="button" class="text-button" data-aide="cancel">Annuler</button></div>':''}</div>${!messages.length&&!busy?`<div class="aide-suggestions">${suggestions(useContext?ctx:null).map(([t,send])=>`<button type="button" data-aide="suggest" data-send="${send}">${esc(t)}</button>`).join('')}</div>`:''}<form class="aide-form" data-aide-form><label class="curr-sr" for="aide-input">Ta question</label><textarea id="aide-input" rows="2" maxlength="800" placeholder="Écris ta question…" ${busy?'disabled':''}>${esc(draft)}</textarea><button type="submit" class="primary" ${busy?'disabled':''}>Envoyer</button></form><p class="aide-foot">${remaining!==null?`Il te reste ${remaining} question${remaining>1?'s':''} aujourd’hui.`:`${AIDE.perDay} questions par jour.`} Ne partage pas d’informations personnelles.</p>`;
   const log=body.querySelector('.aide-log');log.scrollTop=log.scrollHeight;
  }
  // Questions préparées par les boutons des leçons.
@@ -116,9 +122,11 @@ export function init(api){
   messages.push({role:'user',content:question});draft='';busy=true;renderBody();
   const ctx=useContext?context:null,code=useContext?getCode(ctx):null;
   const payload={mode:ctx&&ctx.kind!=='page'?'lesson':'general',question,history,context:ctx?{kind:ctx.kind,course:ctx.course,title:ctx.title,text:ctx.text,exercise:ctx.exercise,code:code?.code||'',attempts:code?code.attempts:undefined}:undefined};
-  try{const data=await call(payload);messages.push({role:'assistant',content:String(data.answer||'')});if(Number.isInteger(data.remaining))remaining=data.remaining}
-  catch(e){const c=e instanceof AideError?e.code:(navigator.onLine?'unknown':'offline');messages.push({role:'assistant',content:ERRORS[c]||ERRORS.unknown,error:true});if(Number.isInteger(e?.remaining))remaining=e.remaining;if(c==='quota_user')remaining=0}
-  busy=false;renderBody();
+  // Délai maximal sur un réseau lent ; « Annuler » ou la fermeture du panneau arrêtent aussi la demande.
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),40000);pending={controller,cancelled:false};
+  try{const data=await call(payload,controller.signal);messages.push({role:'assistant',content:String(data.answer||'')});if(Number.isInteger(data.remaining))remaining=data.remaining}
+  catch(e){const c=controller.signal.aborted?(pending?.cancelled?'cancelled':'timeout'):e instanceof AideError?e.code:(navigator.onLine?'unknown':'offline');messages.push({role:'assistant',content:ERRORS[c]||ERRORS.unknown,error:true});if(Number.isInteger(e?.remaining))remaining=e.remaining;if(c==='quota_user')remaining=0}
+  clearTimeout(timer);pending=null;busy=false;renderBody();
   if($('#aide-dialog')?.open)requestAnimationFrame(()=>$('#aide-input')?.focus({preventScroll:true}));
  }
 
@@ -126,7 +134,8 @@ export function init(api){
  document.addEventListener('click',e=>{
   const b=e.target.closest?.('[data-aide]');if(!b)return;
   const action=b.dataset.aide;
-  if(action==='close'){$('#aide-dialog')?.close();return}
+  if(action==='close'){closePanel();return}
+  if(action==='cancel'){cancelPending();return}
   if(action==='consent'){state.aide.consent=true;persist();renderBody();requestAnimationFrame(()=>$('#aide-input')?.focus());return}
   if(action==='toggle-context'){useContext=!useContext;renderBody();return}
   if(action==='suggest'){const t=b.textContent;if(b.dataset.send==='true')send(t);else{draft=t;renderBody();const i=$('#aide-input');if(i){const at=t.indexOf('…');i.focus();i.setSelectionRange(at,at+1)}}}
