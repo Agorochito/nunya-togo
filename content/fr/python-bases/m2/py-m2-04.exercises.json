@@ -9,7 +9,13 @@
     "visible_tests": [
       {
         "inputs": [],
-        "expected_output": "True"
+        "expected_output": "True",
+        "variables": {
+          "inscription_ouverte": {
+            "type": "bool",
+            "value": true
+          }
+        }
       }
     ],
     "hidden_tests": [],
@@ -36,7 +42,17 @@
     "visible_tests": [
       {
         "inputs": [],
-        "expected_output": "True"
+        "expected_output": "True",
+        "variables": {
+          "places": {
+            "type": "int",
+            "value": 5
+          },
+          "assez": {
+            "type": "bool",
+            "value": true
+          }
+        }
       }
     ],
     "hidden_tests": [],
@@ -63,7 +79,17 @@
     "visible_tests": [
       {
         "inputs": [],
-        "expected_output": "True"
+        "expected_output": "True",
+        "variables": {
+          "reserve": {
+            "type": "int",
+            "value": 4
+          },
+          "demande": {
+            "type": "int",
+            "value": 7
+          }
+        }
       }
     ],
     "hidden_tests": [],
@@ -90,7 +116,13 @@
     "visible_tests": [
       {
         "inputs": [],
-        "expected_output": "False"
+        "expected_output": "False",
+        "variables": {
+          "livre_disponible": {
+            "type": "bool",
+            "value": false
+          }
+        }
       }
     ],
     "hidden_tests": [],

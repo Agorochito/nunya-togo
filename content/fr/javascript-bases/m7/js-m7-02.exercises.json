@@ -1,0 +1,259 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Réparer une frontière",
+    "instruction_fr": "dansPlage(n) renvoie vrai si 2<=n<=5, bornes comprises ; les entrées sont des nombres finis.",
+    "starter_code": "function dansPlage(n){ return n>2&&n<5; }",
+    "solution": "function dansPlage(n){ return n>=2&&n<=5; }",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dansPlage",
+            "args": [
+              2
+            ],
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dansPlage",
+            "args": [
+              5
+            ],
+            "expected": true
+          },
+          {
+            "name": "dansPlage",
+            "args": [
+              1
+            ],
+            "expected": false
+          },
+          {
+            "name": "dansPlage",
+            "args": [
+              6
+            ],
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les valeurs exactement aux bornes doivent passer.",
+      "Deux comparaisons inclusives sont nécessaires.",
+      "function dansPlage(n){ return n>=2&&n<=5; }"
+    ],
+    "explanation_fr": "Les quatre cas testent les deux frontières.",
+    "common_wrong_answers": [],
+    "id": "js-m7-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Compter sans oublier zéro",
+    "instruction_fr": "compterPositifs(valeurs) renvoie le nombre d’éléments strictement supérieurs à zéro.",
+    "starter_code": "function compterPositifs(valeurs){ let n=0;for(const v of valeurs){if(v>=0)n++;}return n;}",
+    "solution": "function compterPositifs(valeurs){ let n=0;for(const v of valeurs){if(v>0)n++;}return n;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compterPositifs",
+            "args": [
+              [
+                0,
+                2,
+                -1,
+                3
+              ]
+            ],
+            "expected": 2
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compterPositifs",
+            "args": [
+              []
+            ],
+            "expected": 0
+          },
+          {
+            "name": "compterPositifs",
+            "args": [
+              [
+                0,
+                0
+              ]
+            ],
+            "expected": 0
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Zéro n’est pas strictement positif.",
+      "Un test avec zéro distingue > et >=.",
+      "function compterPositifs(valeurs){ let n=0;for(const v of valeurs){if(v>0)n++;}return n;}"
+    ],
+    "explanation_fr": "Le tableau vide doit renvoyer un compteur initialisé à zéro.",
+    "common_wrong_answers": [],
+    "id": "js-m7-02-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Comparer une suite de nombres",
+    "instruction_fr": "memesNombres(a,b) compare deux tableaux de nombres par longueur et par éléments dans le même ordre.",
+    "starter_code": "function memesNombres(a,b){ return a===b; }",
+    "solution": "function memesNombres(a,b){if(a.length!==b.length)return false;for(let i=0;i<a.length;i++){if(a[i]!==b[i])return false;}return true;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "memesNombres",
+            "args": [
+              [
+                2,
+                5
+              ],
+              [
+                2,
+                5
+              ]
+            ],
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "memesNombres",
+            "args": [
+              [
+                2,
+                5
+              ],
+              [
+                5,
+                2
+              ]
+            ],
+            "expected": false
+          },
+          {
+            "name": "memesNombres",
+            "args": [
+              [],
+              []
+            ],
+            "expected": true
+          },
+          {
+            "name": "memesNombres",
+            "args": [
+              [
+                1
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Deux objets peuvent avoir les mêmes éléments sans être identiques.",
+      "Compare chaque position après les longueurs.",
+      "function memesNombres(a,b){if(a.length!==b.length)return false;for(let i=0;i<a.length;i++){if(a[i]!==b[i])return false;}return true;}"
+    ],
+    "explanation_fr": "Ce contrat porte uniquement sur des tableaux de nombres.",
+    "common_wrong_answers": [],
+    "id": "js-m7-02-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Copier avant de prolonger",
+    "instruction_fr": "avecFin(valeurs,n) renvoie un nouveau tableau avec n à la fin. Ne modifie pas valeurs.",
+    "starter_code": "function avecFin(valeurs,n){ valeurs.push(n); return valeurs; }",
+    "solution": "function avecFin(valeurs,n){ const copie=[...valeurs];copie.push(n);return copie;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "avecFin",
+            "args": [
+              [
+                1,
+                2
+              ],
+              3
+            ],
+            "expected": [
+              1,
+              2,
+              3
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "avecFin",
+            "args": [
+              [],
+              7
+            ],
+            "expected": [
+              7
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le résultat peut être correct même si l’entrée a été modifiée.",
+      "Construis une copie avec les éléments avant push.",
+      "function avecFin(valeurs,n){ const copie=[...valeurs];copie.push(n);return copie;}"
+    ],
+    "explanation_fr": "Le contrôle vérifie aussi l’entrée après l’appel.",
+    "common_wrong_answers": [],
+    "id": "js-m7-02-e4"
+  }
+]

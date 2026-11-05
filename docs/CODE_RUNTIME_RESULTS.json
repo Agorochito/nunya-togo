@@ -56,6 +56,96 @@
       "engine": "actual JavaScript Worker"
     },
     {
+      "lesson": "js-m3-01",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m3-02",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m3-03",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m4-01",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m4-02",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m4-03",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m5-01",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m5-02",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m5-03",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m6-01",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m6-02",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m6-03",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m7-01",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m7-02",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m7-03",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m8-01",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m8-02",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m8-03",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
       "editDuringAssessment": "old result cannot validate changed code"
     },
     {

@@ -1,0 +1,229 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Décompter jusqu’à zéro",
+    "instruction_fr": "Lis un entier depart de 0 à 6. Affiche depart jusqu’à 1, un par ligne ; conserve restant=0 à la fin.",
+    "starter_code": "let restant=Number(input(\"Départ ?\"));\nwhile(restant>1){console.log(restant);restant=restant-1;}",
+    "solution": "let restant=Number(input(\"Départ ?\"));\nwhile(restant>0){console.log(restant);restant=restant-1;}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "3\n2\n1",
+        "calls": [
+          {
+            "name": "restant",
+            "args": [],
+            "expected": 0
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "restant",
+            "args": [],
+            "expected": 0
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "1",
+        "calls": [
+          {
+            "name": "restant",
+            "args": [],
+            "expected": 0
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Il faut encore un passage quand restant vaut un.",
+      "Après ce passage, la diminution produit zéro.",
+      "let restant=Number(input(\"Départ ?\"));\nwhile(restant>0){console.log(restant);restant=restant-1;}"
+    ],
+    "explanation_fr": "Le test >0 donne exactement les valeurs positives du décompte.",
+    "common_wrong_answers": [],
+    "id": "js-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Compter les demandes",
+    "instruction_fr": "Lis des mots jusqu’à fin, insensible aux espaces extérieurs et à la casse, avec au maximum 4 lectures. Conserve et affiche essais, nombre de lectures effectuées.",
+    "starter_code": "let essais=0;\nlet mot=\"\";\nwhile(mot!==\"fin\"&&essais<4){mot=input(\"Mot ?\");essais=essais+1;}\nconsole.log(essais);",
+    "solution": "let essais=0;\nlet mot=\"\";\nwhile(mot!==\"fin\"&&essais<4){mot=input(\"Mot ?\").trim().toLowerCase();essais=essais+1;}\nconsole.log(essais);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "suite",
+          " FIN "
+        ],
+        "expected_output": "2",
+        "calls": [
+          {
+            "name": "essais",
+            "args": [],
+            "expected": 2
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "fin"
+        ],
+        "expected_output": "1",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ],
+        "expected_output": "4",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Le contrat demande une comparaison sur un texte nettoyé.",
+      "Applique les transformations avant le prochain test.",
+      "let essais=0;\nlet mot=\"\";\nwhile(mot!==\"fin\"&&essais<4){mot=input(\"Mot ?\").trim().toLowerCase();essais=essais+1;}\nconsole.log(essais);"
+    ],
+    "explanation_fr": "Le compteur augmente une fois par lecture, pas seulement par erreur.",
+    "common_wrong_answers": [],
+    "id": "js-m3-02-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Valider en trois essais",
+    "instruction_fr": "Accepte un entier de 1 à 5, en trois lectures au maximum. Refuse les textes vides. Affiche le nombre accepté ou Invalide après trois refus. Conserve essais et valide.",
+    "starter_code": "let essais=0;\nlet valide=false;\nlet nombre=0;\nwhile(!valide&&essais<3){const texte=input(\"Entier ?\").trim();nombre=Number(texte);valide=Number.isInteger(nombre);essais=essais+1;}\nif(valide){console.log(nombre);}else{console.log(\"Invalide\");}",
+    "solution": "let essais=0;\nlet valide=false;\nlet nombre=0;\nwhile(!valide&&essais<3){const texte=input(\"Entier ?\").trim();nombre=Number(texte);valide=texte!==\"\"&&Number.isInteger(nombre)&&nombre>=1&&nombre<=5;essais=essais+1;}\nif(valide){console.log(nombre);}else{console.log(\"Invalide\");}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "0",
+          "4"
+        ],
+        "expected_output": "4",
+        "calls": [
+          {
+            "name": "essais",
+            "args": [],
+            "expected": 2
+          },
+          {
+            "name": "valide",
+            "args": [],
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "1",
+        "calls": [
+          {
+            "name": "essais",
+            "args": [],
+            "expected": 1
+          }
+        ]
+      },
+      {
+        "inputs": [
+          " ",
+          "mot",
+          "6"
+        ],
+        "expected_output": "Invalide",
+        "calls": [
+          {
+            "name": "essais",
+            "args": [],
+            "expected": 3
+          },
+          {
+            "name": "valide",
+            "args": [],
+            "expected": false
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "2.5",
+          "2"
+        ],
+        "expected_output": "2",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Réutilise les critères de présence, d’entier et de plage.",
+      "La boucle continue uniquement si aucun critère valide n’a encore réussi.",
+      "let essais=0;\nlet valide=false;\nlet nombre=0;\nwhile(!valide&&essais<3){const texte=input(\"Entier ?\").trim();nombre=Number(texte);valide=texte!==\"\"&&Number.isInteger(nombre)&&nombre>=1&&nombre<=5;essais=essais+1;}\nif(valide){console.log(nombre);}else{console.log(\"Invalide\");}"
+    ],
+    "explanation_fr": "Le maximum de trois lectures s’applique aussi aux réponses incorrectes.",
+    "common_wrong_answers": [],
+    "id": "js-m3-02-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un pas",
+    "instruction_fr": "Le décompte doit afficher chaque entier de depart jusqu’à 1. Corrige le pas ; depart vaut entre 1 et 6.",
+    "starter_code": "let restant=Number(input(\"Départ ?\"));\nwhile(restant>0){console.log(restant);restant=restant-2;}",
+    "solution": "let restant=Number(input(\"Départ ?\"));\nwhile(restant>0){console.log(restant);restant=restant-1;}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "4\n3\n2\n1",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "1",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "3\n2\n1",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Le code actuel saute une valeur sur deux.",
+      "Le pas doit correspondre à deux entiers consécutifs.",
+      "let restant=Number(input(\"Départ ?\"));\nwhile(restant>0){console.log(restant);restant=restant-1;}"
+    ],
+    "explanation_fr": "Retirer un conserve toutes les valeurs demandées et mène à zéro.",
+    "common_wrong_answers": [],
+    "id": "js-m3-02-e4"
+  }
+]

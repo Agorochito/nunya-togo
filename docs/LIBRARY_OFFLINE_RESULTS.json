@@ -1,0 +1,19 @@
+{
+  "results": [
+    {
+      "resource": "mdn-03388f77d9c35869",
+      "opensWithoutReload": true
+    },
+    {
+      "resource": "mdn-f0ad7c4415deff97",
+      "opensWithoutReload": true
+    },
+    {
+      "libraryUnits": "shareable filtered unit survives reload"
+    },
+    {
+      "offline": "visiting public guide does not replace app shell; downloaded JavaScript final project opens offline"
+    }
+  ],
+  "errors": []
+}

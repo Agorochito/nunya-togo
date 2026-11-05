@@ -1,0 +1,290 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Réutiliser un sous-calcul",
+    "instruction_fr": "La fonction prixLigne est fournie. Complète totalAvecForfait(prix,quantite,forfait) pour retourner prixLigne(prix,quantite)+forfait, sans affichage. Les trois valeurs sont finies et non négatives ; quantite est entière.",
+    "starter_code": "function prixLigne(prix, quantite) { return prix * quantite; }\nfunction totalAvecForfait(prix, quantite, forfait) { return forfait; }",
+    "solution": "function prixLigne(prix, quantite) { return prix * quantite; }\nfunction totalAvecForfait(prix, quantite, forfait) {\n  const sousTotal = prixLigne(prix, quantite);\n  return sousTotal + forfait;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "totalAvecForfait",
+            "args": [
+              12,
+              3,
+              2
+            ],
+            "expected": 38,
+            "tolerance": 1e-09
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "totalAvecForfait",
+            "args": [
+              10,
+              0,
+              5
+            ],
+            "expected": 5,
+            "tolerance": 1e-09
+          },
+          {
+            "name": "totalAvecForfait",
+            "args": [
+              2.5,
+              2,
+              0
+            ],
+            "expected": 5,
+            "tolerance": 1e-09
+          },
+          {
+            "name": "prixLigne",
+            "args": [
+              3,
+              4
+            ],
+            "expected": 12
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Quelle étape possède déjà un nom ?",
+      "Récupère le retour de prixLigne avant d’ajouter le forfait.",
+      "function prixLigne(prix, quantite) { return prix * quantite; }\nfunction totalAvecForfait(prix, quantite, forfait) {\n  const sousTotal = prixLigne(prix, quantite);\n  return sousTotal + forfait;\n}"
+    ],
+    "explanation_fr": "Les fonctions fournies peuvent être réutilisées comme des expressions.",
+    "common_wrong_answers": [],
+    "id": "js-m6-02-e1"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un calcul qui garde un état",
+    "instruction_fr": "Le code possède une variable extérieure totalPrecedent, initialement 0. Écris somme(a,b) pour retourner a+b sans modifier totalPrecedent et sans affichage. Les nombres sont finis. Plusieurs appels identiques doivent rester identiques.",
+    "starter_code": "let totalPrecedent = 0;\nfunction somme(a, b) {\n  totalPrecedent = totalPrecedent + a + b;\n  return totalPrecedent;\n}",
+    "solution": "let totalPrecedent = 0;\nfunction somme(a, b) {\n  return a + b;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "somme",
+            "args": [
+              1,
+              2
+            ],
+            "expected": 3
+          },
+          {
+            "name": "somme",
+            "args": [
+              1,
+              2
+            ],
+            "expected": 3
+          },
+          {
+            "name": "totalPrecedent",
+            "args": [],
+            "expected": 0
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "somme",
+            "args": [
+              0,
+              0
+            ],
+            "expected": 0
+          },
+          {
+            "name": "somme",
+            "args": [
+              -2,
+              5
+            ],
+            "expected": 3
+          },
+          {
+            "name": "totalPrecedent",
+            "args": [],
+            "expected": 0
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le résultat doit-il dépendre des appels précédents ?",
+      "Évite l’affectation à la variable extérieure. Le retour de a+b suffit au contrat.",
+      "let totalPrecedent = 0;\nfunction somme(a, b) {\n  return a + b;\n}"
+    ],
+    "explanation_fr": "La correction retire un effet partagé et rend les appels indépendants.",
+    "common_wrong_answers": [],
+    "id": "js-m6-02-e2"
+  },
+  {
+    "kind": "Un objet de résultat permet de conserver plusieurs informations sans messages de console.",
+    "title_fr": "Retourner un bilan structuré",
+    "instruction_fr": "Complète bilan(capacite,inscrits), en utilisant restantes fourni. Retourne un nouvel objet {restantes:n, complet:n===0}. Contrat : entiers 0 <= inscrits <= capacite. Aucun affichage.",
+    "starter_code": "function restantes(capacite, inscrits) { return capacite - inscrits; }\nfunction bilan(capacite, inscrits) { return {}; }",
+    "solution": "function restantes(capacite, inscrits) { return capacite - inscrits; }\nfunction bilan(capacite, inscrits) {\n  const n = restantes(capacite, inscrits);\n  return { restantes: n, complet: n === 0 };\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan",
+            "args": [
+              8,
+              3
+            ],
+            "expected": {
+              "restantes": 5,
+              "complet": false
+            }
+          },
+          {
+            "name": "bilan",
+            "args": [
+              8,
+              8
+            ],
+            "expected": {
+              "restantes": 0,
+              "complet": true
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan",
+            "args": [
+              0,
+              0
+            ],
+            "expected": {
+              "restantes": 0,
+              "complet": true
+            }
+          },
+          {
+            "name": "bilan",
+            "args": [
+              5,
+              0
+            ],
+            "expected": {
+              "restantes": 5,
+              "complet": false
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le retour doit-il contenir une ou deux informations ?",
+      "Conserve le calcul dans n, puis construis l’objet.",
+      "function restantes(capacite, inscrits) { return capacite - inscrits; }\nfunction bilan(capacite, inscrits) {\n  const n = restantes(capacite, inscrits);\n  return { restantes: n, complet: n === 0 };\n}"
+    ],
+    "explanation_fr": "Le cas capacité zéro est autorisé et possède zéro place restante.",
+    "common_wrong_answers": [],
+    "id": "js-m6-02-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Respecter l’ordre remise puis forfait",
+    "instruction_fr": "Complète montantFinal(montant,taux,forfait). Utilise appliquerRemise fourni, puis ajoute forfait. Contrat : nombres finis, montant et forfait >=0, 0<=taux<=100. Retour sans affichage ; tolérance 1e-9.",
+    "starter_code": "function appliquerRemise(montant, taux) { return montant - montant * taux / 100; }\nfunction montantFinal(montant, taux, forfait) { return appliquerRemise(montant + forfait, taux); }",
+    "solution": "function appliquerRemise(montant, taux) { return montant - montant * taux / 100; }\nfunction montantFinal(montant, taux, forfait) {\n  const reduit = appliquerRemise(montant, taux);\n  return reduit + forfait;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "montantFinal",
+            "args": [
+              100,
+              10,
+              5
+            ],
+            "expected": 95,
+            "tolerance": 1e-09
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "montantFinal",
+            "args": [
+              40,
+              100,
+              3
+            ],
+            "expected": 3,
+            "tolerance": 1e-09
+          },
+          {
+            "name": "montantFinal",
+            "args": [
+              0,
+              50,
+              0
+            ],
+            "expected": 0,
+            "tolerance": 1e-09
+          },
+          {
+            "name": "montantFinal",
+            "args": [
+              12.5,
+              20,
+              2.5
+            ],
+            "expected": 12.5,
+            "tolerance": 1e-09
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le forfait fait-il partie du montant soumis à la remise ?",
+      "Le contrat dit de l’ajouter après la réduction. Calcule d’abord reduit puis retourne reduit+forfait.",
+      "function appliquerRemise(montant, taux) { return montant - montant * taux / 100; }\nfunction montantFinal(montant, taux, forfait) {\n  const reduit = appliquerRemise(montant, taux);\n  return reduit + forfait;\n}"
+    ],
+    "explanation_fr": "La première version applique une règle différente, même si certains cas sans remise masquent la différence.",
+    "common_wrong_answers": [],
+    "id": "js-m6-02-e4"
+  }
+]

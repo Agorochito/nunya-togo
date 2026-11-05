@@ -1,0 +1,222 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Construire une fiche",
+    "instruction_fr": "Lis un titre puis un nombre de places. Construis const fiche avec les propriétés titre, places et ouvert:true. Affiche le titre puis les places sur deux lignes. Les places fournies sont des entiers non négatifs.",
+    "starter_code": "const titre = input(\"Titre ?\");\nconst places = Number(input(\"Places ?\"));\nconst fiche = {};\nconsole.log(titre);\nconsole.log(places);",
+    "solution": "const titre = input(\"Titre ?\");\nconst places = Number(input(\"Places ?\"));\nconst fiche = { titre: titre, places: places, ouvert: true };\nconsole.log(fiche.titre);\nconsole.log(fiche.places);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Semis",
+          "4"
+        ],
+        "expected_output": "Semis\n4",
+        "calls": [
+          {
+            "name": "fiche",
+            "args": [],
+            "expected": {
+              "titre": "Semis",
+              "places": 4,
+              "ouvert": true
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "Compost",
+          "0"
+        ],
+        "expected_output": "Compost\n0",
+        "calls": [
+          {
+            "name": "fiche",
+            "args": [],
+            "expected": {
+              "titre": "Compost",
+              "places": 0,
+              "ouvert": true
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Chaque rubrique doit devenir une propriété de fiche.",
+      "Place les trois associations nom:valeur dans les accolades.",
+      "const titre = input(\"Titre ?\");\nconst places = Number(input(\"Places ?\"));\nconst fiche = { titre: titre, places: places, ouvert: true };\nconsole.log(fiche.titre);\nconsole.log(fiche.places);"
+    ],
+    "explanation_fr": "La fiche réunit les valeurs lues ; un simple affichage ne vérifie pas cette organisation.",
+    "common_wrong_answers": [],
+    "id": "js-m5-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Lire une propriété choisie",
+    "instruction_fr": "La fiche fournie possède ville et jour. Lis une clé, ville ou jour, dans cle ; conserve la propriété choisie dans valeur et affiche-la.",
+    "starter_code": "const fiche = { ville: \"Lomé\", jour: \"samedi\" };\nconst cle = input(\"Clé ?\");\nconst valeur = fiche.cle;\nconsole.log(valeur);",
+    "solution": "const fiche = { ville: \"Lomé\", jour: \"samedi\" };\nconst cle = input(\"Clé ?\");\nconst valeur = fiche[cle];\nconsole.log(valeur);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "ville"
+        ],
+        "expected_output": "Lomé",
+        "calls": [
+          {
+            "name": "valeur",
+            "args": [],
+            "expected": "Lomé"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "jour"
+        ],
+        "expected_output": "samedi",
+        "calls": [
+          {
+            "name": "valeur",
+            "args": [],
+            "expected": "samedi"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La clé est-elle connue directement dans le programme ?",
+      "Les crochets utilisent le contenu de la variable cle.",
+      "const fiche = { ville: \"Lomé\", jour: \"samedi\" };\nconst cle = input(\"Clé ?\");\nconst valeur = fiche[cle];\nconsole.log(valeur);"
+    ],
+    "explanation_fr": "La lecture dynamique ne cherche pas une propriété littéralement nommée cle.",
+    "common_wrong_answers": [],
+    "id": "js-m5-01-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Mettre à jour les places",
+    "instruction_fr": "Lis places puis retrait. Construis atelier avec titre:\"Semis\" et places, puis diminue sa propriété places de retrait et affiche-la. Le contrat garantit 0 <= retrait <= places, avec des entiers.",
+    "starter_code": "const places = Number(input(\"Places ?\"));\nconst retrait = Number(input(\"Retrait ?\"));\nconst atelier = { titre: \"Semis\", places: places };\nconsole.log(atelier.places);",
+    "solution": "const places = Number(input(\"Places ?\"));\nconst retrait = Number(input(\"Retrait ?\"));\nconst atelier = { titre: \"Semis\", places: places };\natelier.places = atelier.places - retrait;\nconsole.log(atelier.places);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "5",
+          "2"
+        ],
+        "expected_output": "3",
+        "calls": [
+          {
+            "name": "atelier",
+            "args": [],
+            "expected": {
+              "titre": "Semis",
+              "places": 3
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "4",
+          "4"
+        ],
+        "expected_output": "0",
+        "calls": [
+          {
+            "name": "atelier",
+            "args": [],
+            "expected": {
+              "titre": "Semis",
+              "places": 0
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "0",
+          "0"
+        ],
+        "expected_output": "0",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Le nom const peut-il garder le même objet pendant une modification ?",
+      "Affecte le calcul à atelier.places.",
+      "const places = Number(input(\"Places ?\"));\nconst retrait = Number(input(\"Retrait ?\"));\nconst atelier = { titre: \"Semis\", places: places };\natelier.places = atelier.places - retrait;\nconsole.log(atelier.places);"
+    ],
+    "explanation_fr": "Le contrat exclut les retraits supérieurs à la capacité ; tu n’as pas à inventer leur traitement ici.",
+    "common_wrong_answers": [],
+    "id": "js-m5-01-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une fausse copie",
+    "instruction_fr": "Lis le nombre initial, non négatif. original contient titre:\"Semis\" et places. Construis une fiche copie indépendante, puis donne-lui places:0. Affiche original.places puis copie.places. original doit rester inchangé.",
+    "starter_code": "const places = Number(input(\"Places ?\"));\nconst original = { titre: \"Semis\", places: places };\nconst copie = original;\ncopie.places = 0;\nconsole.log(original.places);\nconsole.log(copie.places);",
+    "solution": "const places = Number(input(\"Places ?\"));\nconst original = { titre: \"Semis\", places: places };\nconst copie = { titre: original.titre, places: original.places };\ncopie.places = 0;\nconsole.log(original.places);\nconsole.log(copie.places);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "4\n0",
+        "calls": [
+          {
+            "name": "original",
+            "args": [],
+            "expected": {
+              "titre": "Semis",
+              "places": 4
+            }
+          },
+          {
+            "name": "copie",
+            "args": [],
+            "expected": {
+              "titre": "Semis",
+              "places": 0
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "7"
+        ],
+        "expected_output": "7\n0",
+        "calls": [
+          {
+            "name": "original",
+            "args": [],
+            "expected": {
+              "titre": "Semis",
+              "places": 7
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Deux noms suffisent-ils à construire deux objets ?",
+      "Écris de nouvelles accolades et recopie les deux propriétés.",
+      "const places = Number(input(\"Places ?\"));\nconst original = { titre: \"Semis\", places: places };\nconst copie = { titre: original.titre, places: original.places };\ncopie.places = 0;\nconsole.log(original.places);\nconsole.log(copie.places);"
+    ],
+    "explanation_fr": "La correction construit une seconde fiche simple avant de la modifier.",
+    "common_wrong_answers": [],
+    "id": "js-m5-01-e4"
+  }
+]

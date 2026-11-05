@@ -1,0 +1,282 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Préserver une première valeur",
+    "instruction_fr": "Lis deux nombres dans source. Crée copie séparée, remplace copie[0] par -1 puis affiche source[0] et copie[0], une ligne chacun.",
+    "starter_code": "const source=[Number(input(\"A ?\")),Number(input(\"B ?\"))];\nconst copie=source;\ncopie[0]=-1;\nconsole.log(source[0]);\nconsole.log(copie[0]);",
+    "solution": "const source=[Number(input(\"A ?\")),Number(input(\"B ?\"))];\nconst copie=source.slice();\ncopie[0]=-1;\nconsole.log(source[0]);\nconsole.log(copie[0]);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "5",
+          "8"
+        ],
+        "expected_output": "5\n-1",
+        "calls": [
+          {
+            "name": "source",
+            "args": [],
+            "expected": [
+              5,
+              8
+            ]
+          },
+          {
+            "name": "copie",
+            "args": [],
+            "expected": [
+              -1,
+              8
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0",
+          "-3"
+        ],
+        "expected_output": "0\n-1",
+        "calls": [
+          {
+            "name": "source",
+            "args": [],
+            "expected": [
+              0,
+              -3
+            ]
+          },
+          {
+            "name": "copie",
+            "args": [],
+            "expected": [
+              -1,
+              -3
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Deux noms seuls ne créent pas deux collections.",
+      "Crée la copie avant l’affectation à l’indice zéro.",
+      "const source=[Number(input(\"A ?\")),Number(input(\"B ?\"))];\nconst copie=source.slice();\ncopie[0]=-1;\nconsole.log(source[0]);\nconsole.log(copie[0]);"
+    ],
+    "explanation_fr": "slice sépare le tableau modifié de l’original.",
+    "common_wrong_answers": [],
+    "id": "js-m4-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Préparer une proposition",
+    "instruction_fr": "Lis deux mots dans source puis un troisième dans ajout. Prépare proposition indépendante, ajoute ajout seulement à proposition et affiche les deux longueurs, source d’abord.",
+    "starter_code": "const source=[input(\"A ?\"),input(\"B ?\")];\nconst ajout=input(\"Ajout ?\");\nconst proposition=source;\nproposition.push(ajout);\nconsole.log(source.length);\nconsole.log(proposition.length);",
+    "solution": "const source=[input(\"A ?\"),input(\"B ?\")];\nconst ajout=input(\"Ajout ?\");\nconst proposition=source.slice();\nproposition.push(ajout);\nconsole.log(source.length);\nconsole.log(proposition.length);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "club",
+          "livre",
+          "atelier"
+        ],
+        "expected_output": "2\n3",
+        "calls": [
+          {
+            "name": "source",
+            "args": [],
+            "expected": [
+              "club",
+              "livre"
+            ]
+          },
+          {
+            "name": "proposition",
+            "args": [],
+            "expected": [
+              "club",
+              "livre",
+              "atelier"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "A",
+          "B",
+          "C"
+        ],
+        "expected_output": "2\n3",
+        "calls": [
+          {
+            "name": "source",
+            "args": [],
+            "expected": [
+              "A",
+              "B"
+            ]
+          },
+          {
+            "name": "proposition",
+            "args": [],
+            "expected": [
+              "A",
+              "B",
+              "C"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’original doit garder deux éléments.",
+      "L’ajout se fait après la création d’une autre collection.",
+      "const source=[input(\"A ?\"),input(\"B ?\")];\nconst ajout=input(\"Ajout ?\");\nconst proposition=source.slice();\nproposition.push(ajout);\nconsole.log(source.length);\nconsole.log(proposition.length);"
+    ],
+    "explanation_fr": "Les tests contrôlent aussi le contenu des deux listes.",
+    "common_wrong_answers": [],
+    "id": "js-m4-03-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Partager volontairement une liste",
+    "instruction_fr": "Lis deux nombres dans source puis un nombre remplacement. alias doit désigner le même tableau ; via alias, remplace le deuxième élément et affiche source[1].",
+    "starter_code": "const source=[Number(input(\"A ?\")),Number(input(\"B ?\"))];\nconst remplacement=Number(input(\"Remplacement ?\"));\nconst alias=source.slice();\nalias[1]=remplacement;\nconsole.log(source[1]);",
+    "solution": "const source=[Number(input(\"A ?\")),Number(input(\"B ?\"))];\nconst remplacement=Number(input(\"Remplacement ?\"));\nconst alias=source;\nalias[1]=remplacement;\nconsole.log(source[1]);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2",
+          "4",
+          "9"
+        ],
+        "expected_output": "9",
+        "calls": [
+          {
+            "name": "source",
+            "args": [],
+            "expected": [
+              2,
+              9
+            ]
+          },
+          {
+            "name": "alias",
+            "args": [],
+            "expected": [
+              2,
+              9
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1",
+          "0",
+          "-2"
+        ],
+        "expected_output": "-2",
+        "calls": [
+          {
+            "name": "source",
+            "args": [],
+            "expected": [
+              1,
+              -2
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Cette fois, le partage est demandé.",
+      "Ne crée pas de copie si l’original doit voir la modification.",
+      "const source=[Number(input(\"A ?\")),Number(input(\"B ?\"))];\nconst remplacement=Number(input(\"Remplacement ?\"));\nconst alias=source;\nalias[1]=remplacement;\nconsole.log(source[1]);"
+    ],
+    "explanation_fr": "Un alias est un second accès à la même collection.",
+    "common_wrong_answers": [],
+    "id": "js-m4-03-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un retrait d’essai",
+    "instruction_fr": "Lis trois mots dans source. Crée essai indépendant, retire son dernier élément avec pop et conserve dernierRetire. Affiche la longueur de source puis celle d’essai.",
+    "starter_code": "const source=[input(\"A ?\"),input(\"B ?\"),input(\"C ?\")];\nconst essai=source;\nconst dernierRetire=essai.pop();\nconsole.log(source.length);\nconsole.log(essai.length);",
+    "solution": "const source=[input(\"A ?\"),input(\"B ?\"),input(\"C ?\")];\nconst essai=source.slice();\nconst dernierRetire=essai.pop();\nconsole.log(source.length);\nconsole.log(essai.length);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "un",
+          "deux",
+          "trois"
+        ],
+        "expected_output": "3\n2",
+        "calls": [
+          {
+            "name": "source",
+            "args": [],
+            "expected": [
+              "un",
+              "deux",
+              "trois"
+            ]
+          },
+          {
+            "name": "essai",
+            "args": [],
+            "expected": [
+              "un",
+              "deux"
+            ]
+          },
+          {
+            "name": "dernierRetire",
+            "args": [],
+            "expected": "trois"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "A",
+          "B",
+          "C"
+        ],
+        "expected_output": "3\n2",
+        "calls": [
+          {
+            "name": "source",
+            "args": [],
+            "expected": [
+              "A",
+              "B",
+              "C"
+            ]
+          },
+          {
+            "name": "dernierRetire",
+            "args": [],
+            "expected": "C"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le retrait doit concerner seulement la version d’essai.",
+      "La séparation doit précéder pop.",
+      "const source=[input(\"A ?\"),input(\"B ?\"),input(\"C ?\")];\nconst essai=source.slice();\nconst dernierRetire=essai.pop();\nconsole.log(source.length);\nconsole.log(essai.length);"
+    ],
+    "explanation_fr": "Le dernier élément retiré est aussi une valeur à vérifier.",
+    "common_wrong_answers": [],
+    "id": "js-m4-03-e4"
+  }
+]

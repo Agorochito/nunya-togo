@@ -1,0 +1,162 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Compléter une borne",
+    "instruction_fr": "Lis un entier nombre entre 0 et 10. Affiche les entiers de 0 à nombre exclu, un par ligne. Pour 0, n’affiche rien.",
+    "starter_code": "const nombre=Number(input(\"Nombre ?\"));\nfor(let i=0;i<=nombre;i=i+1){console.log(i);}",
+    "solution": "const nombre=Number(input(\"Nombre ?\"));\nfor(let i=0;i<nombre;i=i+1){console.log(i);}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "0\n1\n2",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "0",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "La borne finale est exclue.",
+      "Le test doit être faux quand i atteint nombre.",
+      "const nombre=Number(input(\"Nombre ?\"));\nfor(let i=0;i<nombre;i=i+1){console.log(i);}"
+    ],
+    "explanation_fr": "Le signe < produit les positions attendues sans passage supplémentaire.",
+    "common_wrong_answers": [],
+    "id": "js-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Numéroter à partir de un",
+    "instruction_fr": "Lis un entier nombre entre 0 et 6. Affiche Ligne 1 jusqu’à Ligne nombre, chacune sur sa ligne. Pour 0, n’affiche rien.",
+    "starter_code": "const nombre=Number(input(\"Nombre ?\"));\nfor(let numero=0;numero<nombre;numero=numero+1){console.log(\"Ligne \"+String(numero));}",
+    "solution": "const nombre=Number(input(\"Nombre ?\"));\nfor(let numero=1;numero<=nombre;numero=numero+1){console.log(\"Ligne \"+String(numero));}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2"
+        ],
+        "expected_output": "Ligne 1\nLigne 2",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "Ligne 1",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Les numéros commencent à un.",
+      "La dernière valeur doit être incluse.",
+      "const nombre=Number(input(\"Nombre ?\"));\nfor(let numero=1;numero<=nombre;numero=numero+1){console.log(\"Ligne \"+String(numero));}"
+    ],
+    "explanation_fr": "Le départ et la borne sont choisis ensemble.",
+    "common_wrong_answers": [],
+    "id": "js-m3-01-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Afficher une progression par pas",
+    "instruction_fr": "Lis un entier limite entre 0 et 10. Affiche les nombres pairs de 0 jusqu’à limite incluse, avec un pas de 2.",
+    "starter_code": "const limite=Number(input(\"Limite ?\"));\nfor(let valeur=0;valeur<=limite;valeur=valeur+1){console.log(valeur);}",
+    "solution": "const limite=Number(input(\"Limite ?\"));\nfor(let valeur=0;valeur<=limite;valeur=valeur+2){console.log(valeur);}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "5"
+        ],
+        "expected_output": "0\n2\n4",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "0",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "6"
+        ],
+        "expected_output": "0\n2\n4\n6",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Le bloc doit recevoir seulement les valeurs espacées de deux.",
+      "La mise à jour indique le pas.",
+      "const limite=Number(input(\"Limite ?\"));\nfor(let valeur=0;valeur<=limite;valeur=valeur+2){console.log(valeur);}"
+    ],
+    "explanation_fr": "La condition conserve la borne quand elle est paire.",
+    "common_wrong_answers": [],
+    "id": "js-m3-01-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un départ",
+    "instruction_fr": "Le code doit afficher les numéros de 1 à nombre inclus. Corrige-le ; nombre est un entier de 1 à 5.",
+    "starter_code": "const nombre=Number(input(\"Nombre ?\"));\nfor(let i=2;i<=nombre;i=i+1){console.log(i);}",
+    "solution": "const nombre=Number(input(\"Nombre ?\"));\nfor(let i=1;i<=nombre;i=i+1){console.log(i);}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "1\n2\n3",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "1",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "2"
+        ],
+        "expected_output": "1\n2",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Compare la première valeur demandée et l’initialisation.",
+      "La mise à jour et la borne sont déjà adaptées.",
+      "const nombre=Number(input(\"Nombre ?\"));\nfor(let i=1;i<=nombre;i=i+1){console.log(i);}"
+    ],
+    "explanation_fr": "Commencer à deux oublie le premier numéro.",
+    "common_wrong_answers": [],
+    "id": "js-m3-01-e4"
+  }
+]

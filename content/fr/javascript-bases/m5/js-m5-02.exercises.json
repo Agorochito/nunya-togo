@@ -1,0 +1,254 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Additionner des propriétés",
+    "instruction_fr": "Lis le nombre de places du premier atelier. Le second en a 3. Parcours ateliers pour calculer total, puis affiche-le. La saisie est un entier non négatif.",
+    "starter_code": "const n = Number(input(\"Places du premier ?\"));\nconst ateliers = [{id:\"a\", places:n}, {id:\"b\", places:3}];\nlet total = 0;\nconsole.log(total);",
+    "solution": "const n = Number(input(\"Places du premier ?\"));\nconst ateliers = [{id:\"a\", places:n}, {id:\"b\", places:3}];\nlet total = 0;\nfor (const atelier of ateliers) { total = total + atelier.places; }\nconsole.log(total);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "7",
+        "calls": [
+          {
+            "name": "total",
+            "args": [],
+            "expected": 7
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "3",
+        "calls": [
+          {
+            "name": "total",
+            "args": [],
+            "expected": 3
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Quelle propriété contient la contribution de chaque fiche ?",
+      "Ajoute atelier.places au total pendant le parcours.",
+      "const n = Number(input(\"Places du premier ?\"));\nconst ateliers = [{id:\"a\", places:n}, {id:\"b\", places:3}];\nlet total = 0;\nfor (const atelier of ateliers) { total = total + atelier.places; }\nconsole.log(total);"
+    ],
+    "explanation_fr": "L’accumulateur conserve la somme après chaque tour.",
+    "common_wrong_answers": [],
+    "id": "js-m5-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Sélectionner les ateliers disponibles",
+    "instruction_fr": "Lis seuil, un entier non négatif. Dans selection, conserve les fiches dont places >= seuil, dans l’ordre source. Ne les modifie pas. Affiche selection.length.",
+    "starter_code": "const seuil = Number(input(\"Seuil ?\"));\nconst ateliers = [{id:\"a\",places:0},{id:\"b\",places:2},{id:\"c\",places:5}];\nconst selection = [];\nconsole.log(selection.length);",
+    "solution": "const seuil = Number(input(\"Seuil ?\"));\nconst ateliers = [{id:\"a\",places:0},{id:\"b\",places:2},{id:\"c\",places:5}];\nconst selection = [];\nfor (const atelier of ateliers) { if (atelier.places >= seuil) { selection.push(atelier); } }\nconsole.log(selection.length);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2"
+        ],
+        "expected_output": "2",
+        "calls": [
+          {
+            "name": "selection",
+            "args": [],
+            "expected": [
+              {
+                "id": "b",
+                "places": 2
+              },
+              {
+                "id": "c",
+                "places": 5
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "6"
+        ],
+        "expected_output": "0",
+        "calls": [
+          {
+            "name": "selection",
+            "args": [],
+            "expected": []
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "3",
+        "calls": [
+          {
+            "name": "selection",
+            "args": [],
+            "expected": [
+              {
+                "id": "a",
+                "places": 0
+              },
+              {
+                "id": "b",
+                "places": 2
+              },
+              {
+                "id": "c",
+                "places": 5
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le contrat inclut-il la valeur égale au seuil ?",
+      "Teste >= et ajoute uniquement les fiches retenues.",
+      "const seuil = Number(input(\"Seuil ?\"));\nconst ateliers = [{id:\"a\",places:0},{id:\"b\",places:2},{id:\"c\",places:5}];\nconst selection = [];\nfor (const atelier of ateliers) { if (atelier.places >= seuil) { selection.push(atelier); } }\nconsole.log(selection.length);"
+    ],
+    "explanation_fr": "Un résultat vide est attendu si aucun atelier ne convient.",
+    "common_wrong_answers": [],
+    "id": "js-m5-02-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Trouver une fiche par son identifiant",
+    "instruction_fr": "Lis id. Cherche dans ateliers la fiche correspondante et conserve-la dans trouve, ou null si elle n’existe pas. Les ids sont uniques. Affiche Trouvé si trouve n’est pas null, sinon Introuvable.",
+    "starter_code": "const id = input(\"Identifiant ?\");\nconst ateliers = [{id:\"a\",titre:\"Semis\"},{id:\"b\",titre:\"Compost\"}];\nlet trouve = null;\nconsole.log(\"Introuvable\");",
+    "solution": "const id = input(\"Identifiant ?\");\nconst ateliers = [{id:\"a\",titre:\"Semis\"},{id:\"b\",titre:\"Compost\"}];\nlet trouve = null;\nfor (const atelier of ateliers) { if (atelier.id === id) { trouve = atelier; } }\nif (trouve !== null) { console.log(\"Trouvé\"); } else { console.log(\"Introuvable\"); }",
+    "visible_tests": [
+      {
+        "inputs": [
+          "b"
+        ],
+        "expected_output": "Trouvé",
+        "calls": [
+          {
+            "name": "trouve",
+            "args": [],
+            "expected": {
+              "id": "b",
+              "titre": "Compost"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "a"
+        ],
+        "expected_output": "Trouvé",
+        "calls": [
+          {
+            "name": "trouve",
+            "args": [],
+            "expected": {
+              "id": "a",
+              "titre": "Semis"
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "z"
+        ],
+        "expected_output": "Introuvable",
+        "calls": [
+          {
+            "name": "trouve",
+            "args": [],
+            "expected": null
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La recherche commence sans résultat.",
+      "Remplace trouve uniquement lorsque l’identifiant correspond.",
+      "const id = input(\"Identifiant ?\");\nconst ateliers = [{id:\"a\",titre:\"Semis\"},{id:\"b\",titre:\"Compost\"}];\nlet trouve = null;\nfor (const atelier of ateliers) { if (atelier.id === id) { trouve = atelier; } }\nif (trouve !== null) { console.log(\"Trouvé\"); } else { console.log(\"Introuvable\"); }"
+    ],
+    "explanation_fr": "Ne lis pas une propriété de null.",
+    "common_wrong_answers": [],
+    "id": "js-m5-02-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer le test de sélection",
+    "instruction_fr": "Lis seuil. noms doit contenir les titres ayant au moins seuil places, dans l’ordre. Corrige la comparaison puis affiche le nombre retenu.",
+    "starter_code": "const seuil = Number(input(\"Seuil ?\"));\nconst ateliers = [{titre:\"Semis\",places:2},{titre:\"Compost\",places:4}];\nconst noms = [];\nfor (const atelier of ateliers) { if (atelier.places > seuil) { noms.push(atelier.titre); } }\nconsole.log(noms.length);",
+    "solution": "const seuil = Number(input(\"Seuil ?\"));\nconst ateliers = [{titre:\"Semis\",places:2},{titre:\"Compost\",places:4}];\nconst noms = [];\nfor (const atelier of ateliers) { if (atelier.places >= seuil) { noms.push(atelier.titre); } }\nconsole.log(noms.length);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2"
+        ],
+        "expected_output": "2",
+        "calls": [
+          {
+            "name": "noms",
+            "args": [],
+            "expected": [
+              "Semis",
+              "Compost"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "1",
+        "calls": [
+          {
+            "name": "noms",
+            "args": [],
+            "expected": [
+              "Compost"
+            ]
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "5"
+        ],
+        "expected_output": "0",
+        "calls": [
+          {
+            "name": "noms",
+            "args": [],
+            "expected": []
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Que signifie au moins lorsque les valeurs sont égales ?",
+      "La borne fait partie des valeurs retenues.",
+      "const seuil = Number(input(\"Seuil ?\"));\nconst ateliers = [{titre:\"Semis\",places:2},{titre:\"Compost\",places:4}];\nconst noms = [];\nfor (const atelier of ateliers) { if (atelier.places >= seuil) { noms.push(atelier.titre); } }\nconsole.log(noms.length);"
+    ],
+    "explanation_fr": "Remplace > par >=.",
+    "common_wrong_answers": [],
+    "id": "js-m5-02-e4"
+  }
+]

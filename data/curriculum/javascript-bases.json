@@ -1,17 +1,20 @@
 {
   "id": "javascript-bases",
-  "title_fr": "JavaScript : premiers programmes et décisions",
+  "title_fr": "JavaScript : les fondamentaux en pratique",
   "language": "javascript",
   "runtime": "javascript",
   "level": "debutant",
-  "summary_fr": "Une première série détaillée : console, variables, conversions, comparaisons et décisions. Les boucles, collections, fonctions et le projet complet suivront dans la suite du programme.",
+  "summary_fr": "De la console à un questionnaire complet : variables, conditions, boucles, tableaux, objets, fonctions et débogage. Un socle synchrone en français, avec exercices exécutés dans le navigateur.",
   "prerequisites": [
     "Savoir saisir un texte et ouvrir une page web."
   ],
   "outcomes": [
-    "Écrire et exécuter des instructions JavaScript dans la console.",
-    "Conserver des valeurs et effectuer des conversions explicites.",
-    "Construire et vérifier des décisions avec des conditions."
+    "Écrire et expliquer des programmes avec variables, conversions et conditions.",
+    "Tracer des boucles finies, compter et accumuler.",
+    "Parcourir des tableaux et des objets sans confondre copie et mutation.",
+    "Définir des fonctions à paramètres, valeurs retournées et cas limites.",
+    "Corriger un défaut à partir d’une trace et de tests de contrat.",
+    "Construire un questionnaire local et produire un bilan vérifié."
   ],
   "modules": [
     {
@@ -33,21 +36,74 @@
         "js-m2-02",
         "js-m2-03"
       ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Boucles, compteurs et accumulateurs",
+      "outcome_fr": "Tracer une répétition finie et construire un total.",
+      "lesson_ids": [
+        "js-m3-01",
+        "js-m3-02",
+        "js-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Tableaux et parcours de collections",
+      "outcome_fr": "Accéder à des positions, filtrer et traiter une série de valeurs.",
+      "lesson_ids": [
+        "js-m4-01",
+        "js-m4-02",
+        "js-m4-03"
+      ]
+    },
+    {
+      "id": "m5",
+      "title_fr": "Objets et données structurées",
+      "outcome_fr": "Nommer des propriétés et parcourir des fiches cohérentes.",
+      "lesson_ids": [
+        "js-m5-01",
+        "js-m5-02",
+        "js-m5-03"
+      ]
+    },
+    {
+      "id": "m6",
+      "title_fr": "Fonctions, paramètres et return",
+      "outcome_fr": "Définir des contrats et composer des transformations sans mutation.",
+      "lesson_ids": [
+        "js-m6-01",
+        "js-m6-02",
+        "js-m6-03"
+      ]
+    },
+    {
+      "id": "m7",
+      "title_fr": "Débogage et vérifications",
+      "outcome_fr": "Isoler une erreur et éprouver des cas limites.",
+      "lesson_ids": [
+        "js-m7-01",
+        "js-m7-02",
+        "js-m7-03"
+      ]
+    },
+    {
+      "id": "m8",
+      "title_fr": "Projet : un questionnaire dans la console",
+      "outcome_fr": "Assembler données, correction et bilan reproductible.",
+      "lesson_ids": [
+        "js-m8-01",
+        "js-m8-02",
+        "js-m8-03"
+      ]
     }
   ],
-  "later_modules": [
-    "Boucles, compteurs et accumulateurs",
-    "Tableaux et parcours de collections",
-    "Objets et données structurées",
-    "Fonctions, paramètres et return",
-    "Débogage et vérifications",
-    "Projet : un questionnaire dans la console"
-  ],
+  "later_modules": [],
   "status": "brouillon",
   "reviewer": null,
   "license": "Contenu original Nunya · brouillon",
-  "depth_fr": "Première série débutante de six leçons ; programme complet en cours de construction.",
-  "availability": "premiere-serie",
+  "depth_fr": "Socle débutant de programmation synchrone en console. Les interfaces DOM, les événements, les promesses et Node.js relèvent de cours distincts.",
+  "availability": "programme-redige",
   "lessons": [
     {
       "id": "js-m1-01",
@@ -130,10 +186,264 @@
         "plage",
         "validation"
       ]
+    },
+    {
+      "id": "js-m3-01",
+      "title_fr": "Répéter un nombre fini de fois avec for",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m2-03"
+      ],
+      "tags": [
+        "boucle",
+        "itération",
+        "initialisation"
+      ]
+    },
+    {
+      "id": "js-m3-02",
+      "title_fr": "Utiliser while pour une attente bornée",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m3-01"
+      ],
+      "tags": [
+        "condition de poursuite",
+        "état",
+        "essai borné"
+      ]
+    },
+    {
+      "id": "js-m3-03",
+      "title_fr": "Accumuler un total et compter sous condition",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m3-02"
+      ],
+      "tags": [
+        "accumulateur",
+        "compteur",
+        "initialisation neutre"
+      ]
+    },
+    {
+      "id": "js-m4-01",
+      "title_fr": "Créer un tableau et retrouver une position",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m3-03"
+      ],
+      "tags": [
+        "tableau",
+        "indice",
+        "length",
+        "undefined"
+      ]
+    },
+    {
+      "id": "js-m4-02",
+      "title_fr": "Parcourir, agréger et sélectionner des valeurs",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m4-01"
+      ],
+      "tags": [
+        "agrégation",
+        "sélection",
+        "occurrence"
+      ]
+    },
+    {
+      "id": "js-m4-03",
+      "title_fr": "Distinguer une copie et une modification partagée",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m4-02"
+      ],
+      "tags": [
+        "mutation",
+        "référence",
+        "alias",
+        "copie simple"
+      ]
+    },
+    {
+      "id": "js-m5-01",
+      "title_fr": "Nommer des propriétés et suivre leurs mises à jour",
+      "module": "m5",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m4-03"
+      ],
+      "tags": [
+        "propriété",
+        "référence partagée",
+        "mutation"
+      ]
+    },
+    {
+      "id": "js-m5-02",
+      "title_fr": "Parcourir des fiches pour sélectionner et chercher",
+      "module": "m5",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m5-01"
+      ],
+      "tags": [
+        "sélection",
+        "accumulateur",
+        "identifiant"
+      ]
+    },
+    {
+      "id": "js-m5-03",
+      "title_fr": "Traiter une propriété absente sans perdre zéro",
+      "module": "m5",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m5-02"
+      ],
+      "tags": [
+        "undefined",
+        "null",
+        "garde"
+      ]
+    },
+    {
+      "id": "js-m6-01",
+      "title_fr": "Définir des paramètres et rendre une valeur avec return",
+      "module": "m6",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m5-03"
+      ],
+      "tags": [
+        "paramètre",
+        "argument",
+        "retour"
+      ]
+    },
+    {
+      "id": "js-m6-02",
+      "title_fr": "Composer des calculs et préserver leur indépendance",
+      "module": "m6",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m6-01"
+      ],
+      "tags": [
+        "composition",
+        "calcul pur",
+        "état partagé"
+      ]
+    },
+    {
+      "id": "js-m6-03",
+      "title_fr": "Transformer sans mutation et préciser les cas limites",
+      "module": "m6",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m6-02"
+      ],
+      "tags": [
+        "copie superficielle",
+        "transformation",
+        "cas limite"
+      ]
+    },
+    {
+      "id": "js-m7-01",
+      "title_fr": "Lire une erreur et isoler la première cause",
+      "module": "m7",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m6-03"
+      ],
+      "tags": [
+        "trace",
+        "régression",
+        "ReferenceError"
+      ]
+    },
+    {
+      "id": "js-m7-02",
+      "title_fr": "Construire des tests de contrat et des cas limites",
+      "module": "m7",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m7-01"
+      ],
+      "tags": [
+        "contrat",
+        "cas limite",
+        "identité"
+      ]
+    },
+    {
+      "id": "js-m7-03",
+      "title_fr": "Valider les entrées sans masquer les défauts",
+      "module": "m7",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m7-02"
+      ],
+      "tags": [
+        "garde",
+        "null",
+        "exception"
+      ]
+    },
+    {
+      "id": "js-m8-01",
+      "title_fr": "Projet : définir les questions et normaliser une réponse",
+      "module": "m8",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m7-03"
+      ],
+      "tags": [
+        "modèle de données",
+        "normalisation",
+        "cœur de correction"
+      ]
+    },
+    {
+      "id": "js-m8-02",
+      "title_fr": "Projet : calculer un score et garder une trace utile",
+      "module": "m8",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m8-01"
+      ],
+      "tags": [
+        "bilan",
+        "pourcentage",
+        "réponse absente"
+      ]
+    },
+    {
+      "id": "js-m8-03",
+      "title_fr": "Projet final : assembler, tester et expliquer le questionnaire",
+      "module": "m8",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m8-02"
+      ],
+      "tags": [
+        "assemblage",
+        "variable locale",
+        "test d’intégration"
+      ]
     }
   ],
-  "estimated_minutes": 120,
-  "content_revision": "8e1f6dbccea1",
-  "exercise_count": 24,
-  "quiz_count": 18
+  "estimated_minutes": 480,
+  "content_revision": "77420b592476",
+  "exercise_count": 96,
+  "quiz_count": 72
 }

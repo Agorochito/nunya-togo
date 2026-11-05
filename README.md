@@ -6,7 +6,7 @@
 
 Les 42 unités de découverte possèdent 91 modules et 562 questions. Le bouton suivant distingue une question, un exercice et une leçon ; il conserve la position, les réponses et le travail existant.
 
-Le catalogue de code propose Python (12 modules, 53 leçons, 212 exercices), HTML et CSS (12 leçons et 48 exercices chacun), et une première série JavaScript (6 leçons, 24 exercices ; suite en préparation). Les ateliers HTML/CSS ont un vrai aperçu avec contrôles du DOM et des styles. Python vérifie aussi les valeurs retournées, les copies et les cas limites ; JavaScript s’exécute dans son propre Worker.
+Le catalogue de code propose Python (12 modules, 53 leçons, 212 exercices), HTML et CSS (12 leçons et 48 exercices chacun), et le socle JavaScript synchrone (8 modules, 24 leçons, 96 exercices, projet de questionnaire). Les ateliers HTML/CSS ont un vrai aperçu avec contrôles du DOM et des styles. Python vérifie aussi les variables, les types, les valeurs retournées, les copies et les cas limites ; JavaScript s’exécute dans son propre Worker.
 
 Les collections de la bibliothèque se filtrent par unité avec un lien partageable. Les téléchargements suivent la révision du cours afin de ne pas mélanger un programme récent et un ancien fichier hors ligne. Le cache est `nunya-v5.5.0`.
 

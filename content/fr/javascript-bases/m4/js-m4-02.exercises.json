@@ -1,0 +1,272 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Totaliser une collection",
+    "instruction_fr": "Lis n, entier de 0 à 5, puis n nombres pour remplir valeurs. Conserve leur somme dans total avec un parcours du tableau puis affiche total.",
+    "starter_code": "const n=Number(input(\"Combien ?\"));\nconst valeurs=[];\nfor(let i=0;i<n;i=i+1){valeurs.push(Number(input(\"Valeur ?\")));}\nlet total=0;\nfor(const valeur of valeurs){total=valeur;}\nconsole.log(total);",
+    "solution": "const n=Number(input(\"Combien ?\"));\nconst valeurs=[];\nfor(let i=0;i<n;i=i+1){valeurs.push(Number(input(\"Valeur ?\")));}\nlet total=0;\nfor(const valeur of valeurs){total=total+valeur;}\nconsole.log(total);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3",
+          "5",
+          "-1",
+          "4"
+        ],
+        "expected_output": "8",
+        "calls": [
+          {
+            "name": "total",
+            "args": [],
+            "expected": 8
+          },
+          {
+            "name": "valeurs",
+            "args": [],
+            "expected": [
+              5,
+              -1,
+              4
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "0",
+        "calls": [
+          {
+            "name": "total",
+            "args": [],
+            "expected": 0
+          },
+          {
+            "name": "valeurs",
+            "args": [],
+            "expected": []
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "2",
+          "-2",
+          "-4"
+        ],
+        "expected_output": "-6",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "L’accumulateur conserve les éléments précédents.",
+      "Chaque valeur est ajoutée une seule fois.",
+      "const n=Number(input(\"Combien ?\"));\nconst valeurs=[];\nfor(let i=0;i<n;i=i+1){valeurs.push(Number(input(\"Valeur ?\")));}\nlet total=0;\nfor(const valeur of valeurs){total=total+valeur;}\nconsole.log(total);"
+    ],
+    "explanation_fr": "Le tableau et la somme sont vérifiés séparément.",
+    "common_wrong_answers": [],
+    "id": "js-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Sélectionner avec une borne",
+    "instruction_fr": "Lis seuil. À partir de valeurs=[4,9,2,7], construis retenues avec les valeurs >= seuil dans leur ordre, sans changer valeurs ; affiche retenues.length.",
+    "starter_code": "const seuil=Number(input(\"Seuil ?\"));\nconst valeurs=[4,9,2,7];\nconst retenues=[];\nfor(const valeur of valeurs){if(valeur>seuil){retenues.push(valeur);}}\nconsole.log(retenues.length);",
+    "solution": "const seuil=Number(input(\"Seuil ?\"));\nconst valeurs=[4,9,2,7];\nconst retenues=[];\nfor(const valeur of valeurs){if(valeur>=seuil){retenues.push(valeur);}}\nconsole.log(retenues.length);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "7"
+        ],
+        "expected_output": "2",
+        "calls": [
+          {
+            "name": "retenues",
+            "args": [],
+            "expected": [
+              9,
+              7
+            ]
+          },
+          {
+            "name": "valeurs",
+            "args": [],
+            "expected": [
+              4,
+              9,
+              2,
+              7
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "10"
+        ],
+        "expected_output": "0",
+        "calls": [
+          {
+            "name": "retenues",
+            "args": [],
+            "expected": []
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "4",
+        "calls": [
+          {
+            "name": "retenues",
+            "args": [],
+            "expected": [
+              4,
+              9,
+              2,
+              7
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La valeur égale au seuil doit être conservée.",
+      "Le tableau résultat commence vide puis reçoit les valeurs acceptées.",
+      "const seuil=Number(input(\"Seuil ?\"));\nconst valeurs=[4,9,2,7];\nconst retenues=[];\nfor(const valeur of valeurs){if(valeur>=seuil){retenues.push(valeur);}}\nconsole.log(retenues.length);"
+    ],
+    "explanation_fr": "La comparaison >= respecte la frontière et l’ordre.",
+    "common_wrong_answers": [],
+    "id": "js-m4-02-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Garder les mots non vides",
+    "instruction_fr": "Lis trois textes dans textes. Construis mots en nettoyant les espaces extérieurs et en gardant seulement les textes non vides, dans l’ordre. Affiche mots.length.",
+    "starter_code": "const textes=[input(\"A ?\"),input(\"B ?\"),input(\"C ?\")];\nconst mots=[];\nfor(const texte of textes){mots.push(texte.trim());}\nconsole.log(mots.length);",
+    "solution": "const textes=[input(\"A ?\"),input(\"B ?\"),input(\"C ?\")];\nconst mots=[];\nfor(const texte of textes){const propre=texte.trim();if(propre!==\"\"){mots.push(propre);}}\nconsole.log(mots.length);",
+    "visible_tests": [
+      {
+        "inputs": [
+          " livre ",
+          " ",
+          "club"
+        ],
+        "expected_output": "2",
+        "calls": [
+          {
+            "name": "mots",
+            "args": [],
+            "expected": [
+              "livre",
+              "club"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "",
+          "  ",
+          " "
+        ],
+        "expected_output": "0",
+        "calls": [
+          {
+            "name": "mots",
+            "args": [],
+            "expected": []
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "A",
+          " B ",
+          "C"
+        ],
+        "expected_output": "3",
+        "calls": [
+          {
+            "name": "mots",
+            "args": [],
+            "expected": [
+              "A",
+              "B",
+              "C"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Nettoyer n’est pas supprimer une réponse vide.",
+      "Teste propre avant son ajout.",
+      "const textes=[input(\"A ?\"),input(\"B ?\"),input(\"C ?\")];\nconst mots=[];\nfor(const texte of textes){const propre=texte.trim();if(propre!==\"\"){mots.push(propre);}}\nconsole.log(mots.length);"
+    ],
+    "explanation_fr": "Le filtre porte sur le texte nettoyé, pas sur sa longueur avant nettoyage.",
+    "common_wrong_answers": [],
+    "id": "js-m4-02-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un compteur de cas",
+    "instruction_fr": "Lis trois nombres dans valeurs. Compte dans grands les valeurs >=10 puis affiche grands. Corrige l’incrémentation.",
+    "starter_code": "const valeurs=[Number(input(\"A ?\")),Number(input(\"B ?\")),Number(input(\"C ?\"))];\nlet grands=0;\nfor(const valeur of valeurs){if(valeur>=10){grands=grands+valeur;}}\nconsole.log(grands);",
+    "solution": "const valeurs=[Number(input(\"A ?\")),Number(input(\"B ?\")),Number(input(\"C ?\"))];\nlet grands=0;\nfor(const valeur of valeurs){if(valeur>=10){grands=grands+1;}}\nconsole.log(grands);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "10",
+          "9",
+          "12"
+        ],
+        "expected_output": "2",
+        "calls": [
+          {
+            "name": "grands",
+            "args": [],
+            "expected": 2
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0",
+          "-1",
+          "3"
+        ],
+        "expected_output": "0",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "11",
+          "10",
+          "20"
+        ],
+        "expected_output": "3",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "La question demande combien de cas, pas la somme des grands nombres.",
+      "Un cas accepté ajoute un au compteur.",
+      "const valeurs=[Number(input(\"A ?\")),Number(input(\"B ?\")),Number(input(\"C ?\"))];\nlet grands=0;\nfor(const valeur of valeurs){if(valeur>=10){grands=grands+1;}}\nconsole.log(grands);"
+    ],
+    "explanation_fr": "Le seuil reste inclus ; seul le rôle de l’ajout change.",
+    "common_wrong_answers": [],
+    "id": "js-m4-02-e4"
+  }
+]

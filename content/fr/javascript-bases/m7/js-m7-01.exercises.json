@@ -1,0 +1,230 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Réparer un nom",
+    "instruction_fr": "Définis total(prix,quantite), qui renvoie leur produit sans affichage. Corrige le nom incorrect.",
+    "starter_code": "function total(prix,quantite){ return prix*quantité; }",
+    "solution": "function total(prix,quantite){ return prix*quantite; }",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "total",
+            "args": [
+              250,
+              3
+            ],
+            "expected": 750
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "total",
+            "args": [
+              80,
+              0
+            ],
+            "expected": 0
+          },
+          {
+            "name": "total",
+            "args": [
+              120,
+              4
+            ],
+            "expected": 480
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Compare le nom déclaré et le nom lu.",
+      "Le paramètre quantite ne comporte pas d’accent.",
+      "function total(prix,quantite){ return prix*quantite; }"
+    ],
+    "explanation_fr": "La fonction utilise les deux arguments du même appel.",
+    "common_wrong_answers": [],
+    "id": "js-m7-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Réparer une réduction",
+    "instruction_fr": "apresRemise(prix,taux) renvoie le prix après un taux exprimé sur 100. Les entrées sont positives et le taux entre 0 et 100.",
+    "starter_code": "function apresRemise(prix,taux){ return prix-taux; }",
+    "solution": "function apresRemise(prix,taux){ return prix-prix*taux/100; }",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "apresRemise",
+            "args": [
+              1000,
+              10
+            ],
+            "expected": 900
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "apresRemise",
+            "args": [
+              200,
+              25
+            ],
+            "expected": 150
+          },
+          {
+            "name": "apresRemise",
+            "args": [
+              300,
+              0
+            ],
+            "expected": 300
+          },
+          {
+            "name": "apresRemise",
+            "args": [
+              300,
+              100
+            ],
+            "expected": 0
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le taux doit d’abord devenir un montant.",
+      "Calcule prix*taux/100.",
+      "function apresRemise(prix,taux){ return prix-prix*taux/100; }"
+    ],
+    "explanation_fr": "Les cas 0 et 100 vérifient les bornes.",
+    "common_wrong_answers": [],
+    "id": "js-m7-01-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Distinguer retour et affichage",
+    "instruction_fr": "double(n) doit renvoyer le double de n sans afficher de texte.",
+    "starter_code": "function double(n){ console.log(n*2); }",
+    "solution": "function double(n){ return n*2; }",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "double",
+            "args": [
+              4
+            ],
+            "expected": 8
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "double",
+            "args": [
+              0
+            ],
+            "expected": 0
+          },
+          {
+            "name": "double",
+            "args": [
+              -3
+            ],
+            "expected": -6
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un appelant doit recevoir une valeur.",
+      "Remplace l’affichage interne par return.",
+      "function double(n){ return n*2; }"
+    ],
+    "explanation_fr": "Le résultat renvoyé reste utilisable dans un autre calcul.",
+    "common_wrong_answers": [],
+    "id": "js-m7-01-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Déplacer un retour trop tôt",
+    "instruction_fr": "somme(valeurs) renvoie la somme de tous les nombres ; le tableau vide donne 0.",
+    "starter_code": "function somme(valeurs){ let total=0; for(const v of valeurs){total+=v;return total;} }",
+    "solution": "function somme(valeurs){ let total=0; for(const v of valeurs){total+=v;} return total; }",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "somme",
+            "args": [
+              [
+                2,
+                3,
+                4
+              ]
+            ],
+            "expected": 9
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "somme",
+            "args": [
+              []
+            ],
+            "expected": 0
+          },
+          {
+            "name": "somme",
+            "args": [
+              [
+                7
+              ]
+            ],
+            "expected": 7
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "return arrête immédiatement la fonction.",
+      "Le résultat final doit attendre la fin du parcours.",
+      "function somme(valeurs){ let total=0; for(const v of valeurs){total+=v;} return total; }"
+    ],
+    "explanation_fr": "Le tableau vide doit aussi atteindre un return.",
+    "common_wrong_answers": [],
+    "id": "js-m7-01-e4"
+  }
+]

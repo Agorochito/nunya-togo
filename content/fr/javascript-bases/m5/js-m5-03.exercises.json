@@ -1,0 +1,204 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Conserver une quantité zéro",
+    "instruction_fr": "Lis texte : soit absent, soit un entier non négatif. Le code construit stock. Complète resultat pour qu’il soit Inconnu si quantite est absente, sinon String(stock.quantite). Affiche resultat.",
+    "starter_code": "const texte = input(\"Quantité ou absent ?\");\nconst stock = {};\nif (texte !== \"absent\") { stock.quantite = Number(texte); }\nlet resultat = \"Inconnu\";\nconsole.log(resultat);",
+    "solution": "const texte = input(\"Quantité ou absent ?\");\nconst stock = {};\nif (texte !== \"absent\") { stock.quantite = Number(texte); }\nlet resultat = \"Inconnu\";\nif (stock.quantite !== undefined) { resultat = String(stock.quantite); }\nconsole.log(resultat);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "0",
+        "calls": [
+          {
+            "name": "resultat",
+            "args": [],
+            "expected": "0"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "4",
+        "calls": [
+          {
+            "name": "resultat",
+            "args": [],
+            "expected": "4"
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "absent"
+        ],
+        "expected_output": "Inconnu",
+        "calls": [
+          {
+            "name": "resultat",
+            "args": [],
+            "expected": "Inconnu"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Zéro doit-il être classé comme une absence ?",
+      "Compare la propriété à undefined.",
+      "const texte = input(\"Quantité ou absent ?\");\nconst stock = {};\nif (texte !== \"absent\") { stock.quantite = Number(texte); }\nlet resultat = \"Inconnu\";\nif (stock.quantite !== undefined) { resultat = String(stock.quantite); }\nconsole.log(resultat);"
+    ],
+    "explanation_fr": "La conversion String est effectuée seulement pour une quantité présente.",
+    "common_wrong_answers": [],
+    "id": "js-m5-03-e1"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Protéger une recherche vide",
+    "instruction_fr": "Cherche l’id saisi dans les deux fiches fournies. Affiche le titre si trouve n’est pas null, sinon Introuvable. Ne lis pas de propriété de null.",
+    "starter_code": "const id = input(\"Identifiant ?\");\nconst fiches = [{id:\"a\",titre:\"Semis\"},{id:\"b\",titre:\"Compost\"}];\nlet trouve = null;\nfor (const fiche of fiches) { if (fiche.id === id) { trouve = fiche; } }\nconsole.log(trouve.titre);",
+    "solution": "const id = input(\"Identifiant ?\");\nconst fiches = [{id:\"a\",titre:\"Semis\"},{id:\"b\",titre:\"Compost\"}];\nlet trouve = null;\nfor (const fiche of fiches) { if (fiche.id === id) { trouve = fiche; } }\nif (trouve !== null) { console.log(trouve.titre); } else { console.log(\"Introuvable\"); }",
+    "visible_tests": [
+      {
+        "inputs": [
+          "z"
+        ],
+        "expected_output": "Introuvable",
+        "calls": [
+          {
+            "name": "trouve",
+            "args": [],
+            "expected": null
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "a"
+        ],
+        "expected_output": "Semis",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "b"
+        ],
+        "expected_output": "Compost",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Que contient trouve quand aucun id ne correspond ?",
+      "Vérifie null avant la lecture du titre.",
+      "const id = input(\"Identifiant ?\");\nconst fiches = [{id:\"a\",titre:\"Semis\"},{id:\"b\",titre:\"Compost\"}];\nlet trouve = null;\nfor (const fiche of fiches) { if (fiche.id === id) { trouve = fiche; } }\nif (trouve !== null) { console.log(trouve.titre); } else { console.log(\"Introuvable\"); }"
+    ],
+    "explanation_fr": "Le cas absent doit produire un message au lieu d’une erreur.",
+    "common_wrong_answers": [],
+    "id": "js-m5-03-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Distinguer texte et quantité",
+    "instruction_fr": "Lis mode : texte, zero ou positif. fiche.quantite vaut respectivement \"3\", 0 ou 3. Dans valide, exige un nombre fini non négatif sans convertir le texte. Affiche valide.",
+    "starter_code": "const mode = input(\"Mode ?\");\nconst fiche = { quantite: \"3\" };\nif (mode === \"zero\") { fiche.quantite = 0; }\nif (mode === \"positif\") { fiche.quantite = 3; }\nconst valide = fiche.quantite >= 0;\nconsole.log(valide);",
+    "solution": "const mode = input(\"Mode ?\");\nconst fiche = { quantite: \"3\" };\nif (mode === \"zero\") { fiche.quantite = 0; }\nif (mode === \"positif\") { fiche.quantite = 3; }\nconst valide = typeof fiche.quantite === \"number\" && Number.isFinite(fiche.quantite) && fiche.quantite >= 0;\nconsole.log(valide);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "texte"
+        ],
+        "expected_output": "false",
+        "calls": [
+          {
+            "name": "valide",
+            "args": [],
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "zero"
+        ],
+        "expected_output": "true",
+        "calls": [
+          {
+            "name": "valide",
+            "args": [],
+            "expected": true
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "positif"
+        ],
+        "expected_output": "true",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "La comparaison seule peut-elle convertir une chaîne ?",
+      "Teste le type avant la plage.",
+      "const mode = input(\"Mode ?\");\nconst fiche = { quantite: \"3\" };\nif (mode === \"zero\") { fiche.quantite = 0; }\nif (mode === \"positif\") { fiche.quantite = 3; }\nconst valide = typeof fiche.quantite === \"number\" && Number.isFinite(fiche.quantite) && fiche.quantite >= 0;\nconsole.log(valide);"
+    ],
+    "explanation_fr": "Number.isFinite complète la règle d’une quantité déjà numérique.",
+    "common_wrong_answers": [],
+    "id": "js-m5-03-e3"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Définir une garde pour une fiche partielle",
+    "instruction_fr": "Lis mode : aucun, partiel ou complet. Le code prépare fiche. message doit valoir Contact inconnu si fiche est null ou contact absent ; sinon sa propriété contact. Affiche message.",
+    "starter_code": "const mode = input(\"Mode ?\");\nlet fiche = null;\nif (mode === \"partiel\") { fiche = {}; }\nif (mode === \"complet\") { fiche = { contact: \"demo@example.org\" }; }\nlet message = fiche.contact;\nconsole.log(message);",
+    "solution": "const mode = input(\"Mode ?\");\nlet fiche = null;\nif (mode === \"partiel\") { fiche = {}; }\nif (mode === \"complet\") { fiche = { contact: \"demo@example.org\" }; }\nlet message = \"Contact inconnu\";\nif (fiche !== null && fiche.contact !== undefined) { message = fiche.contact; }\nconsole.log(message);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "aucun"
+        ],
+        "expected_output": "Contact inconnu",
+        "calls": [
+          {
+            "name": "message",
+            "args": [],
+            "expected": "Contact inconnu"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "partiel"
+        ],
+        "expected_output": "Contact inconnu",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "complet"
+        ],
+        "expected_output": "demo@example.org",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Il y a deux causes différentes d’absence.",
+      "Vérifie la fiche avant de lire sa propriété.",
+      "const mode = input(\"Mode ?\");\nlet fiche = null;\nif (mode === \"partiel\") { fiche = {}; }\nif (mode === \"complet\") { fiche = { contact: \"demo@example.org\" }; }\nlet message = \"Contact inconnu\";\nif (fiche !== null && fiche.contact !== undefined) { message = fiche.contact; }\nconsole.log(message);"
+    ],
+    "explanation_fr": "La seconde condition n’est évaluée que si la première permet la lecture.",
+    "common_wrong_answers": [],
+    "id": "js-m5-03-e4"
+  }
+]

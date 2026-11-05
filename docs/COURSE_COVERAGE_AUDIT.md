@@ -9,7 +9,7 @@ Le prompt maître impose une réalisation par lots, avec une cible finale de 72 
 | Python : les bases | 12 | 53 | 212 | Contenu original rédigé ; relecture pédagogique en cours. |
 | CSS : premières interfaces | 4 | 12 | 48 | Contenu original rédigé ; relecture pédagogique en cours. |
 | HTML : premières pages accessibles | 4 | 12 | 48 | Contenu original rédigé ; relecture pédagogique en cours. |
-| JavaScript : premiers programmes et décisions | 2 | 6 | 24 | Première série seulement ; suite en préparation. |
+| JavaScript : les fondamentaux en pratique | 8 | 24 | 96 | Socle synchrone de console rédigé, jusqu’au projet final ; relecture pédagogique en cours. |
 
 Les leçons possèdent chacune 300–700 mots d’explication, deux exemples commentés, quatre exercices, trois questions de compréhension, des erreurs fréquentes, un glossaire et un récapitulatif. Elles sont des brouillons originaux : aucun enseignant réviseur, partenariat ou certificat externe n’est inventé. Les 22 chapitres Python antérieurs, leurs identifiants et leurs questions de fin de chapitre restent conservés.
 
@@ -19,18 +19,20 @@ Le niveau 0 « Découverte du numérique » ajouté par le collaborateur est con
 
 ## Ce qui reste à construire
 
-Git/GitHub et SQL ont toujours des introductions courtes, avec modules et exercices de compréhension ; leurs cours approfondis restent à écrire. Node.js, HTTP et les autres familles ne possèdent pas encore leurs cours complets. Aucun cours intermédiaire ou avancé complet n’est annoncé comme disponible. La première série JavaScript reste explicitement partielle.
+Git/GitHub et SQL ont toujours des introductions courtes, avec modules et exercices de compréhension ; leurs cours approfondis restent à écrire. Node.js, HTTP et les autres familles ne possèdent pas encore leurs cours complets. Aucun cours intermédiaire ou avancé complet n’est annoncé comme disponible. Le socle JavaScript synchrone est rédigé ; DOM, événements et asynchronisme appartiennent à une suite distincte.
 
-La suite doit terminer JavaScript, puis produire et éprouver les socles SQL et Git/GitHub, puis les séries HTTP/API et Node.js après leurs prérequis. Les niveaux intermédiaire et avancé doivent avoir leurs propres leçons, projets et évaluations ; une sélection de niveau ne doit pas réutiliser artificiellement le même contenu. Les autres familles restent suivies dans la matrice JSON de 72 entrées, avec les 20 séries complémentaires. Aucun cours vide n’est ajouté pour augmenter le compteur.
+La suite doit produire et éprouver les socles SQL et Git/GitHub, puis les séries DOM, événements, asynchronisme, HTTP/API et Node.js après leurs prérequis et avec un moteur réel adapté. Les niveaux intermédiaire et avancé doivent avoir leurs propres leçons, projets et évaluations ; une sélection de niveau ne doit pas réutiliser artificiellement le même contenu. Les autres familles restent suivies dans la matrice JSON de 72 entrées, avec les 20 séries complémentaires. Aucun cours vide n’est ajouté pour augmenter le compteur.
 
 ## Vérifications et limites
 
 - Audit initial de 78 écrans de production avant les changements.
-- 151 tests unitaires ; schémas, ordre des prérequis, propriété des modules et liens internes contrôlés.
-- 743 cas Python en CPython, exemples et solutions ; 64 cas JavaScript dans le même protocole que le Worker.
+- 152 tests unitaires ; schémas, ordre des prérequis, propriété des modules et liens internes contrôlés.
+- 743 cas Python en CPython, exemples et solutions ; 274 cas JavaScript dans le même protocole que le Worker.
 - 96 solutions HTML/CSS acceptées et 96 codes de départ rejetés par le vrai vérificateur de navigateur.
 - 42 unités / 182 leçons / 562 questions parcourues sur 360 et 1440 px ; aucun saut vers une leçon suivante avant la fin des questions.
-- Quatre séries / 83 leçons affichées ; navigation des exercices et mini-quiz, mauvaise réponse, retour, rechargement, ancien chapitre revu et reprise hors ligne testés. Axe : zéro violation sur les vues de leçon testées, sans prétention de certification complète.
+- Quatre séries / 101 leçons affichées ; navigation des exercices et mini-quiz, mauvaise réponse, retour, rechargement, ancien chapitre revu et reprise hors ligne testés. Axe : zéro violation sur les vues de leçon testées, sans prétention de certification complète.
 - Fonctions Python, absence de mutation/copie, réservation et JavaScript vérifiés dans les vrais Workers. Délai et arrêt JavaScript testés. Les tests sont formatifs, livrés au navigateur ; ils ne sont pas une frontière d’intégrité d’examen.
 
 Les correspondances aux programmes scolaires, la relecture des nouveaux contenus et les essais avec de vrais élèves restent nécessaires. Les contrôles de liens externes sous réseau restreint retournent des liens non confirmés ; cela ne prouve pas que tous les fournisseurs sont joignables. Comptes et synchronisation distante restent hors de ce lot, conformément au choix de conservation locale.
+
+Les 16 exercices de variables, conversions, chaînes et booléens du module Python 2 vérifient aussi les valeurs et types réellement créés. Le module 1 enseigne précisément l’affichage de textes : produire ces textes y est un objectif valide, pas un contournement. Ces contrôles locaux sont formatifs et ne constituent pas un système d’examen sécurisé.

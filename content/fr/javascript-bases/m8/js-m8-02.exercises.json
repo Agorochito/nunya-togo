@@ -1,0 +1,276 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Compter les réussites",
+    "instruction_fr": "compterVrais(resultats) reçoit un tableau de booléens et renvoie le nombre de true.",
+    "starter_code": "function compterVrais(resultats){return resultats.length;}",
+    "solution": "function compterVrais(resultats){let n=0;for(const ok of resultats){if(ok===true)n++;}return n;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compterVrais",
+            "args": [
+              [
+                true,
+                false,
+                true
+              ]
+            ],
+            "expected": 2
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compterVrais",
+            "args": [
+              []
+            ],
+            "expected": 0
+          },
+          {
+            "name": "compterVrais",
+            "args": [
+              [
+                false
+              ]
+            ],
+            "expected": 0
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La longueur compte aussi les échecs.",
+      "Augmente le compteur seulement pour true.",
+      "function compterVrais(resultats){let n=0;for(const ok of resultats){if(ok===true)n++;}return n;}"
+    ],
+    "explanation_fr": "Chaque résultat correspond à une question.",
+    "common_wrong_answers": [],
+    "id": "js-m8-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Produire un pourcentage honnête",
+    "instruction_fr": "pourcentage(score,total) reçoit des entiers avec 0<=score<=total. Renvoie null pour total 0, sinon Math.round(score*100/total).",
+    "starter_code": "function pourcentage(score,total){return Math.round(score*100/total);}",
+    "solution": "function pourcentage(score,total){if(total===0)return null;return Math.round(score*100/total);}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "pourcentage",
+            "args": [
+              2,
+              3
+            ],
+            "expected": 67
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "pourcentage",
+            "args": [
+              0,
+              0
+            ],
+            "expected": null
+          },
+          {
+            "name": "pourcentage",
+            "args": [
+              0,
+              4
+            ],
+            "expected": 0
+          },
+          {
+            "name": "pourcentage",
+            "args": [
+              4,
+              4
+            ],
+            "expected": 100
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Traite zéro question avant la division.",
+      "Le contrat choisit null lorsque rien n’est évalué.",
+      "function pourcentage(score,total){if(total===0)return null;return Math.round(score*100/total);}"
+    ],
+    "explanation_fr": "Le calcul n’invente pas une réussite pour une série vide.",
+    "common_wrong_answers": [],
+    "id": "js-m8-02-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Corriger une série partielle",
+    "instruction_fr": "corrigerSerie(questions,reponses) renvoie un booléen par question. Compare les textes reponse de référence et de saisie avec trim et minuscules ; une réponse absente donne false. Ne modifie aucune entrée.",
+    "starter_code": "function corrigerSerie(questions,reponses){return [];}",
+    "solution": "function corrigerSerie(questions,reponses){const resultats=[];for(let i=0;i<questions.length;i++){const r=reponses[i];resultats.push(typeof r===\"string\"&&questions[i].reponse.trim().toLowerCase()===r.trim().toLowerCase());}return resultats;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "corrigerSerie",
+            "args": [
+              [
+                {
+                  "reponse": "CSS"
+                },
+                {
+                  "reponse": "oui"
+                }
+              ],
+              [
+                " css ",
+                "non"
+              ]
+            ],
+            "expected": [
+              true,
+              false
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "corrigerSerie",
+            "args": [
+              [
+                {
+                  "reponse": "CSS"
+                },
+                {
+                  "reponse": "oui"
+                }
+              ],
+              [
+                "CSS"
+              ]
+            ],
+            "expected": [
+              true,
+              false
+            ],
+            "unchanged_args": true
+          },
+          {
+            "name": "corrigerSerie",
+            "args": [
+              [],
+              []
+            ],
+            "expected": []
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’index des questions fixe l’ordre du résultat.",
+      "Vérifie le type avant une méthode de texte.",
+      "function corrigerSerie(questions,reponses){const resultats=[];for(let i=0;i<questions.length;i++){const r=reponses[i];resultats.push(typeof r===\"string\"&&questions[i].reponse.trim().toLowerCase()===r.trim().toLowerCase());}return resultats;}"
+    ],
+    "explanation_fr": "Une saisie manquante n’empêche pas de terminer le bilan.",
+    "common_wrong_answers": [],
+    "id": "js-m8-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Construire un bilan",
+    "instruction_fr": "bilan(resultats) reçoit des booléens. Renvoie {score,total,pourcentage}, avec un pourcentage arrondi ou null si total 0.",
+    "starter_code": "function bilan(resultats){return {score:0,total:resultats.length,pourcentage:0};}",
+    "solution": "function bilan(resultats){let score=0;for(const ok of resultats){if(ok)score++;}const total=resultats.length;return {score,total,pourcentage:total===0?null:Math.round(score*100/total)};}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan",
+            "args": [
+              [
+                true,
+                false,
+                true
+              ]
+            ],
+            "expected": {
+              "score": 2,
+              "total": 3,
+              "pourcentage": 67
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan",
+            "args": [
+              []
+            ],
+            "expected": {
+              "score": 0,
+              "total": 0,
+              "pourcentage": null
+            }
+          },
+          {
+            "name": "bilan",
+            "args": [
+              [
+                false,
+                false
+              ]
+            ],
+            "expected": {
+              "score": 0,
+              "total": 2,
+              "pourcentage": 0
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Calcule d’abord score et total.",
+      "Le pourcentage dépend des deux, sauf lorsque total vaut zéro.",
+      "function bilan(resultats){let score=0;for(const ok of resultats){if(ok)score++;}const total=resultats.length;return {score,total,pourcentage:total===0?null:Math.round(score*100/total)};}"
+    ],
+    "explanation_fr": "Le bilan peut être vérifié indépendamment des messages.",
+    "common_wrong_answers": [],
+    "id": "js-m8-02-e4"
+  }
+]

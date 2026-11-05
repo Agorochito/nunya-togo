@@ -17,7 +17,7 @@
     "check:prereqs": "node scripts/check-prereqs.mjs",
     "check:curriculum-links": "node scripts/check-curriculum-links.mjs",
     "check-links": "npm run check:curriculum-links && npm run check:links",
-    "test:browser": "node scripts/test-web-exercises.mjs && node scripts/test-curriculum-global.mjs && node scripts/test-code-runtimes.mjs && node scripts/test-all-discovery-courses.mjs && node scripts/test-backup-onboarding.mjs"
+    "test:browser": "node scripts/test-web-exercises.mjs && node scripts/test-curriculum-global.mjs && node scripts/test-code-runtimes.mjs && node scripts/test-all-discovery-courses.mjs && node scripts/test-backup-onboarding.mjs && node scripts/test-library-offline.mjs"
   },
   "devDependencies": {
     "@codemirror/lang-python": "^6.2.1",

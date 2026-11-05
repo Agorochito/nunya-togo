@@ -5,9 +5,11 @@
 - Réparation commune de la navigation, positions d’exercice et de quiz persistantes, retour à la leçon adjacente lors des révisions.
 - Modules nommés pour 42 unités et 348 questions originales supplémentaires ; couverture mobile et ordinateur de toutes leurs questions.
 - Python étendu aux collections, fonctions, résolution de problèmes, débogage, inventaire et réservation : 31 nouvelles leçons, 124 exercices.
-- Nouveaux premiers cours HTML/CSS et première série JavaScript, avec aperçus et moteurs réels ; périmètres incomplets explicités.
+- Nouveaux socles HTML/CSS et JavaScript synchrone (24 leçons, 96 exercices, questionnaire final), avec aperçus et moteurs réels ; suites DOM/Node et niveaux supérieurs distincts.
 - Registre et compilation multi-cours ; assertions Python sur retours, types et copies ; ancien contrôle de conversion par commentaire rejeté.
 - Unités de collections partageables, cache de packs par révision, bilan de parcours métier à la fin.
+- Ressources sans rafraîchissement manuel, écran clair pour un lien invalide ; visite d’un guide sans écraser la page d’accueil hors ligne.
+- 16 anciens exercices Python sur variables et types renforcés ; 274 cas JavaScript et 743 cas Python vérifiés.
 - Sauvegardes v1/v2 complètes et de code restaurées sans perdre Python ou Découverte ; préférences et niveaux conservés.
 - Questionnaire facultatif, diagnostic quittable et liens partagés directs ; consultation libre sans validation artificielle.
 - Fusion des ajouts du collaborateur : niveau 0, bibliothèque libre, opportunités, études à l’étranger et Nunya Aide préservés sans activation serveur.

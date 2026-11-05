@@ -36,13 +36,13 @@
       },
       {
         "id": "javascript-bases",
-        "modules": 2,
-        "lessons": 6,
-        "code_exercises": 24,
-        "quizzes": 18,
-        "estimated_minutes": 120,
+        "modules": 8,
+        "lessons": 24,
+        "code_exercises": 96,
+        "quizzes": 72,
+        "estimated_minutes": 480,
         "status": "brouillon",
-        "scope": "Première série débutante de six leçons ; programme complet en cours de construction."
+        "scope": "Socle débutant synchrone complet rédigé, jusqu’au questionnaire final ; relecture pédagogique requise. DOM et asynchronisme relèvent de la suite."
       }
     ]
   },
@@ -147,13 +147,13 @@
       "family": "JS",
       "level": "debutant",
       "target_title": "JavaScript — les fondamentaux",
-      "status": "premiere-serie-partielle",
+      "status": "socle-redige-relecture-requise",
       "evidence": [
         "content/fr/javascript-bases",
         "docs/GLOBAL_CURRICULUM_UI_RESULTS.json"
       ],
-      "next_action": "Compléter boucles, tableaux, objets, fonctions, débogage et projet avant de déclarer le socle complet.",
-      "verification_note": "2 modules, 6 leçons, 24 exercices réels ; valeurs, conversions et conditions."
+      "next_action": "Faire relire les 24 leçons et tester la compréhension avec de vrais débutants ; les interfaces DOM et API restent une suite distincte.",
+      "verification_note": "8 modules, 24 leçons, 96 exercices réels ; valeurs, décisions, boucles, tableaux, objets, fonctions, débogage et projet synchrone complet."
     },
     {
       "id": "js-intermediaire",

@@ -9,7 +9,13 @@
     "visible_tests": [
       {
         "inputs": [],
-        "expected_output": "Afi"
+        "expected_output": "Afi",
+        "variables": {
+          "prenom": {
+            "type": "str",
+            "value": "Afi"
+          }
+        }
       }
     ],
     "hidden_tests": [],
@@ -36,7 +42,13 @@
     "visible_tests": [
       {
         "inputs": [],
-        "expected_output": "Club Démo"
+        "expected_output": "Club Démo",
+        "variables": {
+          "nom_du_club": {
+            "type": "str",
+            "value": "Club Démo"
+          }
+        }
       }
     ],
     "hidden_tests": [],
@@ -63,7 +75,13 @@
     "visible_tests": [
       {
         "inputs": [],
-        "expected_output": "8\n5"
+        "expected_output": "8\n5",
+        "variables": {
+          "places": {
+            "type": "int",
+            "value": 5
+          }
+        }
       }
     ],
     "hidden_tests": [],
@@ -90,7 +108,13 @@
     "visible_tests": [
       {
         "inputs": [],
-        "expected_output": "Lomé"
+        "expected_output": "Lomé",
+        "variables": {
+          "ville": {
+            "type": "str",
+            "value": "Lomé"
+          }
+        }
       }
     ],
     "hidden_tests": [],

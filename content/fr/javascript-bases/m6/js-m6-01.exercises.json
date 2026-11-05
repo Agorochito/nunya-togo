@@ -1,0 +1,252 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Retourner un double",
+    "instruction_fr": "Définis doubler(nombre), qui reçoit un nombre fini et retourne son double. N’affiche rien dans la fonction.",
+    "starter_code": "function doubler(nombre) {\n  return nombre;\n}",
+    "solution": "function doubler(nombre) {\n  return nombre * 2;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "doubler",
+            "args": [
+              4
+            ],
+            "expected": 8
+          },
+          {
+            "name": "doubler",
+            "args": [
+              0
+            ],
+            "expected": 0
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "doubler",
+            "args": [
+              -3
+            ],
+            "expected": -6
+          },
+          {
+            "name": "doubler",
+            "args": [
+              1.25
+            ],
+            "expected": 2.5,
+            "tolerance": 1e-09
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Quelle valeur doit recevoir le code appelant ?",
+      "return transmet le calcul nombre * 2.",
+      "function doubler(nombre) {\n  return nombre * 2;\n}"
+    ],
+    "explanation_fr": "Chaque appel possède ses propres paramètres ; la fonction n’a pas besoin de console.log.",
+    "common_wrong_answers": [],
+    "id": "js-m6-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Calculer un montant après remise",
+    "instruction_fr": "Écris montantApresRemise(montant,pourcentage). Contrat : montant fini >=0, pourcentage fini entre 0 et 100 inclus. Retourne montant moins montant*pourcentage/100, sans affichage. Les décimales sont comparées avec une tolérance de 1e-9 ; aucune règle d’arrondi monétaire n’est demandée.",
+    "starter_code": "function montantApresRemise(montant, pourcentage) {\n  return montant;\n}",
+    "solution": "function montantApresRemise(montant, pourcentage) {\n  const reduction = montant * pourcentage / 100;\n  return montant - reduction;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "montantApresRemise",
+            "args": [
+              100,
+              10
+            ],
+            "expected": 90,
+            "tolerance": 1e-09
+          },
+          {
+            "name": "montantApresRemise",
+            "args": [
+              80,
+              0
+            ],
+            "expected": 80,
+            "tolerance": 1e-09
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "montantApresRemise",
+            "args": [
+              50,
+              100
+            ],
+            "expected": 0,
+            "tolerance": 1e-09
+          },
+          {
+            "name": "montantApresRemise",
+            "args": [
+              19.9,
+              12.5
+            ],
+            "expected": 17.4125,
+            "tolerance": 1e-09
+          },
+          {
+            "name": "montantApresRemise",
+            "args": [
+              0,
+              40
+            ],
+            "expected": 0,
+            "tolerance": 1e-09
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Quelle part du montant faut-il retirer ?",
+      "Calcule montant * pourcentage / 100 avant la soustraction.",
+      "function montantApresRemise(montant, pourcentage) {\n  const reduction = montant * pourcentage / 100;\n  return montant - reduction;\n}"
+    ],
+    "explanation_fr": "Les tests couvrent aucune remise, remise totale et décimales, selon le contrat.",
+    "common_wrong_answers": [],
+    "id": "js-m6-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un affichage sans retour",
+    "instruction_fr": "Corrige dureeEnMinutes(heures,minutes) pour retourner heures*60+minutes, sans aucun affichage. Les heures sont des entiers >=0 ; minutes est un entier de 0 à 59.",
+    "starter_code": "function dureeEnMinutes(heures, minutes) {\n  console.log(heures * 60 + minutes);\n}",
+    "solution": "function dureeEnMinutes(heures, minutes) {\n  return heures * 60 + minutes;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dureeEnMinutes",
+            "args": [
+              1,
+              30
+            ],
+            "expected": 90
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dureeEnMinutes",
+            "args": [
+              0,
+              0
+            ],
+            "expected": 0
+          },
+          {
+            "name": "dureeEnMinutes",
+            "args": [
+              2,
+              59
+            ],
+            "expected": 179
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La console est-elle le destinataire du résultat ?",
+      "L’appelant doit recevoir la valeur. Remplace console.log par un retour du calcul.",
+      "function dureeEnMinutes(heures, minutes) {\n  return heures * 60 + minutes;\n}"
+    ],
+    "explanation_fr": "Le calcul était correct, mais son canal de résultat ne correspondait pas au contrat.",
+    "common_wrong_answers": [],
+    "id": "js-m6-01-e3"
+  },
+  {
+    "kind": "Une comparaison retournée directement serait aussi valide ; les tests vérifient le comportement.",
+    "title_fr": "Retourner dans chaque branche",
+    "instruction_fr": "Écris estComplet(places). Pour un entier non négatif, retourne true si places===0, false sinon. Aucun affichage.",
+    "starter_code": "function estComplet(places) {\n  if (places === 0) { return true; }\n}",
+    "solution": "function estComplet(places) {\n  if (places === 0) { return true; }\n  return false;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "estComplet",
+            "args": [
+              3
+            ],
+            "expected": false
+          },
+          {
+            "name": "estComplet",
+            "args": [
+              0
+            ],
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "estComplet",
+            "args": [
+              1
+            ],
+            "expected": false
+          },
+          {
+            "name": "estComplet",
+            "args": [
+              20
+            ],
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Que reçoit l’appelant lorsque le if est faux ?",
+      "Un chemin sans return donne undefined.",
+      "function estComplet(places) {\n  if (places === 0) { return true; }\n  return false;\n}"
+    ],
+    "explanation_fr": "Ajoute un retour false pour les places positives.",
+    "common_wrong_answers": [],
+    "id": "js-m6-01-e4"
+  }
+]

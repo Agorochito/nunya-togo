@@ -1,6 +1,8 @@
 # Vérifications 5.5.0 — 4 novembre 2026
 
-151 tests unitaires réussis ; build, lint, TypeScript, contenus, prérequis et liens internes validés. Les rapports de navigateur suivent dans `GLOBAL_CURRICULUM_UI_RESULTS.json`, `ALL_DISCOVERY_COURSES_RESULTS.json`, `BACKUP_ONBOARDING_RESULTS.json`, `CODE_RUNTIME_RESULTS.json` et `WEB_EXERCISE_RESULTS.json`. Les vérifications automatisées ne remplacent pas la relecture pédagogique.
+152 tests unitaires réussis ; build, lint, TypeScript, contenus, prérequis et liens internes validés. Les rapports de navigateur suivent dans `GLOBAL_CURRICULUM_UI_RESULTS.json`, `ALL_DISCOVERY_COURSES_RESULTS.json`, `BACKUP_ONBOARDING_RESULTS.json`, `CODE_RUNTIME_RESULTS.json` et `WEB_EXERCISE_RESULTS.json` et `LIBRARY_OFFLINE_RESULTS.json`. Les vérifications automatisées ne remplacent pas la relecture pédagogique.
+
+La bibliothèque et deux articles MDN s’ouvrent sans rafraîchissement manuel. Une unité de collection est partageable et reste sélectionnée après rechargement. Le projet JavaScript final est accessible hors ligne après téléchargement, y compris après visite du guide public : celle-ci ne remplace plus la page d’accueil mise en cache. Un lien de ressource invalide affiche une issue claire.
 
 Les liens partagés Python M12, Découverte M4 et bibliothèque sont ouverts dans des profils neufs. Le questionnaire peut être passé et le diagnostic fermé sans résultat inventé. La restauration depuis le sélecteur natif de fichier conserve code, positions et réflexion après rechargement ; un fichier mal formé ne change pas la progression. Les autres preuves et limites sont détaillées dans `COURSE_COVERAGE_AUDIT.md`.
 

@@ -1,0 +1,219 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Construire une fiche",
+    "instruction_fr": "Déclare question avec id q1, enonce Langage de styles ? et reponse CSS. Aucun affichage.",
+    "starter_code": "const question={id:\"q1\",enonce:\"Langage de styles ?\"};",
+    "solution": "const question={id:\"q1\",enonce:\"Langage de styles ?\",reponse:\"CSS\"};",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "question",
+            "args": [],
+            "expected": {
+              "id": "q1",
+              "enonce": "Langage de styles ?",
+              "reponse": "CSS"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "La fiche doit respecter les trois propriétés.",
+      "Ajoute la propriété reponse sans renommer les autres.",
+      "const question={id:\"q1\",enonce:\"Langage de styles ?\",reponse:\"CSS\"};"
+    ],
+    "explanation_fr": "Le contrôle lit la structure réelle de la fiche.",
+    "common_wrong_answers": [],
+    "id": "js-m8-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Normaliser sans traduire",
+    "instruction_fr": "normaliser(texte) renvoie trim puis toLowerCase, et conserve les accents.",
+    "starter_code": "function normaliser(texte){return texte.toLowerCase();}",
+    "solution": "function normaliser(texte){return texte.trim().toLowerCase();}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "normaliser",
+            "args": [
+              " CSS "
+            ],
+            "expected": "css"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "normaliser",
+            "args": [
+              " ÉCOLE "
+            ],
+            "expected": "école"
+          },
+          {
+            "name": "normaliser",
+            "args": [
+              "  "
+            ],
+            "expected": ""
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Deux transformations sont annoncées.",
+      "Enlève les espaces extérieurs puis mets en minuscules.",
+      "function normaliser(texte){return texte.trim().toLowerCase();}"
+    ],
+    "explanation_fr": "La convention conserve les accents.",
+    "common_wrong_answers": [],
+    "id": "js-m8-01-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Comparer deux réponses",
+    "instruction_fr": "estCorrecte(question,reponse) compare question.reponse et reponse après trim et minuscules. Les valeurs sont des chaînes. Ne modifie pas question.",
+    "starter_code": "function estCorrecte(question,reponse){return question.reponse===reponse;}",
+    "solution": "function estCorrecte(question,reponse){return question.reponse.trim().toLowerCase()===reponse.trim().toLowerCase();}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "estCorrecte",
+            "args": [
+              {
+                "reponse": "CSS"
+              },
+              " css "
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "estCorrecte",
+            "args": [
+              {
+                "reponse": "oui"
+              },
+              "non"
+            ],
+            "expected": false,
+            "unchanged_args": true
+          },
+          {
+            "name": "estCorrecte",
+            "args": [
+              {
+                "reponse": "école"
+              },
+              "ecole"
+            ],
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Nettoie les deux côtés de la comparaison.",
+      "Le booléen vient de l’égalité entre les deux textes transformés.",
+      "function estCorrecte(question,reponse){return question.reponse.trim().toLowerCase()===reponse.trim().toLowerCase();}"
+    ],
+    "explanation_fr": "La référence ne doit pas être réécrite pour accepter une réponse.",
+    "common_wrong_answers": [],
+    "id": "js-m8-01-e3"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Compter les questions d’une catégorie",
+    "instruction_fr": "compterCategorie(questions,categorie) compte les fiches dont categorie est exactement la valeur demandée.",
+    "starter_code": "function compterCategorie(questions,categorie){return questions.length;}",
+    "solution": "function compterCategorie(questions,categorie){let n=0;for(const q of questions){if(q.categorie===categorie)n++;}return n;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compterCategorie",
+            "args": [
+              [
+                {
+                  "categorie": "web"
+                },
+                {
+                  "categorie": "algo"
+                },
+                {
+                  "categorie": "web"
+                }
+              ],
+              "web"
+            ],
+            "expected": 2
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compterCategorie",
+            "args": [
+              [],
+              "web"
+            ],
+            "expected": 0
+          },
+          {
+            "name": "compterCategorie",
+            "args": [
+              [
+                {
+                  "categorie": "algo"
+                }
+              ],
+              "web"
+            ],
+            "expected": 0
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une fiche d’une autre catégorie ne doit pas augmenter le compteur.",
+      "Compare la propriété au paramètre à chaque tour.",
+      "function compterCategorie(questions,categorie){let n=0;for(const q of questions){if(q.categorie===categorie)n++;}return n;}"
+    ],
+    "explanation_fr": "Les données et le critère restent séparés.",
+    "common_wrong_answers": [],
+    "id": "js-m8-01-e4"
+  }
+]

@@ -1,0 +1,222 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Construire une somme",
+    "instruction_fr": "Lis n, entier de 0 à 6. Conserve dans total la somme des entiers de 1 à n inclus puis affiche total.",
+    "starter_code": "const n=Number(input(\"Limite ?\"));\nlet total=0;\nfor(let i=1;i<=n;i=i+1){total=i;}\nconsole.log(total);",
+    "solution": "const n=Number(input(\"Limite ?\"));\nlet total=0;\nfor(let i=1;i<=n;i=i+1){total=total+i;}\nconsole.log(total);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "10",
+        "calls": [
+          {
+            "name": "total",
+            "args": [],
+            "expected": 10
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "0",
+        "calls": [
+          {
+            "name": "total",
+            "args": [],
+            "expected": 0
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "1",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Le total doit garder les valeurs précédentes.",
+      "Ajoute i au total au lieu de le remplacer par i.",
+      "const n=Number(input(\"Limite ?\"));\nlet total=0;\nfor(let i=1;i<=n;i=i+1){total=total+i;}\nconsole.log(total);"
+    ],
+    "explanation_fr": "Une somme partielle évolue d’un passage au suivant.",
+    "common_wrong_answers": [],
+    "id": "js-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Totaliser des saisies",
+    "instruction_fr": "Lis n, entier de 0 à 5, puis exactement n nombres. Conserve et affiche leur somme dans total.",
+    "starter_code": "const n=Number(input(\"Combien ?\"));\nlet total=0;\nfor(let i=0;i<n;i=i+1){const valeur=Number(input(\"Valeur ?\"));total=valeur;}\nconsole.log(total);",
+    "solution": "const n=Number(input(\"Combien ?\"));\nlet total=0;\nfor(let i=0;i<n;i=i+1){const valeur=Number(input(\"Valeur ?\"));total=total+valeur;}\nconsole.log(total);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3",
+          "2",
+          "3",
+          "4"
+        ],
+        "expected_output": "9",
+        "calls": [
+          {
+            "name": "total",
+            "args": [],
+            "expected": 9
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "0",
+        "calls": [
+          {
+            "name": "total",
+            "args": [],
+            "expected": 0
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "2",
+          "-5",
+          "2"
+        ],
+        "expected_output": "-3",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Le premier texte annonce un nombre de lectures.",
+      "La somme s’initialise avant ces lectures.",
+      "const n=Number(input(\"Combien ?\"));\nlet total=0;\nfor(let i=0;i<n;i=i+1){const valeur=Number(input(\"Valeur ?\"));total=total+valeur;}\nconsole.log(total);"
+    ],
+    "explanation_fr": "Chaque valeur reçue est ajoutée une fois.",
+    "common_wrong_answers": [],
+    "id": "js-m3-03-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Compter une condition",
+    "instruction_fr": "Lis n de 0 à 5 puis n nombres. Conserve et affiche dans positifs le nombre de valeurs strictement supérieures à zéro.",
+    "starter_code": "const n=Number(input(\"Combien ?\"));\nlet positifs=0;\nfor(let i=0;i<n;i=i+1){const valeur=Number(input(\"Valeur ?\"));positifs=positifs+1;}\nconsole.log(positifs);",
+    "solution": "const n=Number(input(\"Combien ?\"));\nlet positifs=0;\nfor(let i=0;i<n;i=i+1){const valeur=Number(input(\"Valeur ?\"));if(valeur>0){positifs=positifs+1;}}\nconsole.log(positifs);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4",
+          "-1",
+          "3",
+          "0",
+          "2"
+        ],
+        "expected_output": "2",
+        "calls": [
+          {
+            "name": "positifs",
+            "args": [],
+            "expected": 2
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "0",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "2",
+          "0",
+          "-4"
+        ],
+        "expected_output": "0",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "1",
+          "5"
+        ],
+        "expected_output": "1",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Ne compte pas tous les passages.",
+      "Place l’incrémentation dans le if correspondant.",
+      "const n=Number(input(\"Combien ?\"));\nlet positifs=0;\nfor(let i=0;i<n;i=i+1){const valeur=Number(input(\"Valeur ?\"));if(valeur>0){positifs=positifs+1;}}\nconsole.log(positifs);"
+    ],
+    "explanation_fr": "Zéro ne satisfait pas le test strict.",
+    "common_wrong_answers": [],
+    "id": "js-m3-03-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une remise à zéro",
+    "instruction_fr": "Lis n de 0 à 5 puis n nombres. Le programme doit conserver leur somme dans total. Corrige l’endroit de la remise à zéro.",
+    "starter_code": "const n=Number(input(\"Combien ?\"));\nlet total=0;\nfor(let i=0;i<n;i=i+1){total=0;total=total+Number(input(\"Valeur ?\"));}\nconsole.log(total);",
+    "solution": "const n=Number(input(\"Combien ?\"));\nlet total=0;\nfor(let i=0;i<n;i=i+1){total=total+Number(input(\"Valeur ?\"));}\nconsole.log(total);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3",
+          "3",
+          "4",
+          "5"
+        ],
+        "expected_output": "12",
+        "calls": [
+          {
+            "name": "total",
+            "args": [],
+            "expected": 12
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "0",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "2",
+          "-2",
+          "3"
+        ],
+        "expected_output": "1",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Une initialisation se fait avant le parcours.",
+      "La ligne dans la boucle efface le travail déjà fait.",
+      "const n=Number(input(\"Combien ?\"));\nlet total=0;\nfor(let i=0;i<n;i=i+1){total=total+Number(input(\"Valeur ?\"));}\nconsole.log(total);"
+    ],
+    "explanation_fr": "Le total doit survivre à chaque passage.",
+    "common_wrong_answers": [],
+    "id": "js-m3-03-e4"
+  }
+]

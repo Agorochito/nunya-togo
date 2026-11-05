@@ -1,0 +1,258 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Conserver un zéro valide",
+    "instruction_fr": "lireQuantite(texte) accepte un texte non vide qui devient un entier >=0. Renvoie cet entier, sinon null. Les arguments sont toujours des chaînes.",
+    "starter_code": "function lireQuantite(texte){ const n=Number(texte); return n||null; }",
+    "solution": "function lireQuantite(texte){if(texte.trim()===\"\")return null;const n=Number(texte);return Number.isInteger(n)&&n>=0?n:null;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lireQuantite",
+            "args": [
+              "0"
+            ],
+            "expected": 0
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lireQuantite",
+            "args": [
+              "  "
+            ],
+            "expected": null
+          },
+          {
+            "name": "lireQuantite",
+            "args": [
+              "2.5"
+            ],
+            "expected": null
+          },
+          {
+            "name": "lireQuantite",
+            "args": [
+              "-1"
+            ],
+            "expected": null
+          },
+          {
+            "name": "lireQuantite",
+            "args": [
+              "4"
+            ],
+            "expected": 4
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Ne remplace pas zéro par le signal d’erreur.",
+      "Vérifie le vide avant de convertir.",
+      "function lireQuantite(texte){if(texte.trim()===\"\")return null;const n=Number(texte);return Number.isInteger(n)&&n>=0?n:null;}"
+    ],
+    "explanation_fr": "Un test de validité explicite conserve zéro.",
+    "common_wrong_answers": [],
+    "id": "js-m7-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Vérifier une moyenne",
+    "instruction_fr": "moyenne(valeurs) reçoit un tableau de nombres finis. Renvoie null s’il est vide, sinon somme divisée par sa longueur.",
+    "starter_code": "function moyenne(valeurs){let total=0;for(const v of valeurs)total+=v;return total/valeurs.length;}",
+    "solution": "function moyenne(valeurs){if(valeurs.length===0)return null;let total=0;for(const v of valeurs)total+=v;return total/valeurs.length;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moyenne",
+            "args": [
+              [
+                2,
+                4
+              ]
+            ],
+            "expected": 3
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moyenne",
+            "args": [
+              []
+            ],
+            "expected": null
+          },
+          {
+            "name": "moyenne",
+            "args": [
+              [
+                0
+              ]
+            ],
+            "expected": 0
+          },
+          {
+            "name": "moyenne",
+            "args": [
+              [
+                -2,
+                2
+              ]
+            ],
+            "expected": 0
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le tableau vide n’a pas de moyenne définie dans ce contrat.",
+      "Traite ce cas avant la division.",
+      "function moyenne(valeurs){if(valeurs.length===0)return null;let total=0;for(const v of valeurs)total+=v;return total/valeurs.length;}"
+    ],
+    "explanation_fr": "Le résultat null évite une division par zéro.",
+    "common_wrong_answers": [],
+    "id": "js-m7-03-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Limiter un entier correctement",
+    "instruction_fr": "reservation(n,capacite) reçoit deux nombres. Renvoie n si les deux sont entiers, >=0 et n<=capacite ; sinon null.",
+    "starter_code": "function reservation(n,capacite){ return n<=capacite?n:null; }",
+    "solution": "function reservation(n,capacite){if(!Number.isInteger(n)||!Number.isInteger(capacite)||n<0||capacite<0||n>capacite)return null;return n;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "reservation",
+            "args": [
+              3,
+              5
+            ],
+            "expected": 3
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "reservation",
+            "args": [
+              -1,
+              5
+            ],
+            "expected": null
+          },
+          {
+            "name": "reservation",
+            "args": [
+              2.5,
+              5
+            ],
+            "expected": null
+          },
+          {
+            "name": "reservation",
+            "args": [
+              6,
+              5
+            ],
+            "expected": null
+          },
+          {
+            "name": "reservation",
+            "args": [
+              0,
+              0
+            ],
+            "expected": 0
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une comparaison de capacité ne vérifie pas le type de quantité.",
+      "Combine intégralité, signe et plafond.",
+      "function reservation(n,capacite){if(!Number.isInteger(n)||!Number.isInteger(capacite)||n<0||capacite<0||n>capacite)return null;return n;}"
+    ],
+    "explanation_fr": "Les critères refusent plusieurs familles d’entrées invalides.",
+    "common_wrong_answers": [],
+    "id": "js-m7-03-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Ne pas confondre null et zéro",
+    "instruction_fr": "messageResultat(n) reçoit un nombre ou null. Renvoie invalide seulement pour null ; sinon renvoie la chaîne Valeur: suivie du nombre, sans espace.",
+    "starter_code": "function messageResultat(n){if(!n)return \"invalide\";return \"Valeur:\"+n;}",
+    "solution": "function messageResultat(n){if(n===null)return \"invalide\";return \"Valeur:\"+n;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "messageResultat",
+            "args": [
+              0
+            ],
+            "expected": "Valeur:0"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "messageResultat",
+            "args": [
+              null
+            ],
+            "expected": "invalide"
+          },
+          {
+            "name": "messageResultat",
+            "args": [
+              5
+            ],
+            "expected": "Valeur:5"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Zéro et null deviennent tous deux faux dans un test général.",
+      "Compare explicitement à null.",
+      "function messageResultat(n){if(n===null)return \"invalide\";return \"Valeur:\"+n;}"
+    ],
+    "explanation_fr": "La convention d’échec est testée sans rejeter un résultat zéro.",
+    "common_wrong_answers": [],
+    "id": "js-m7-03-e4"
+  }
+]
