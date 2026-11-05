@@ -4,13 +4,16 @@ import {createHandler,parseRequest,buildMessages,cleanAnswer,SYSTEM_PROMPT,envFr
 const env:AideEnv={supabaseUrl:'https://db.test',anonKey:'anon',serviceKey:'service',aiBaseUrl:'https://ai.test/v1',aiKey:'key',aiModels:['openai/gpt-oss-120b','openai/gpt-oss-20b'],allowedOrigins:['https://nunya-togo.vercel.app','http://localhost:4173']};
 type Call={url:string,init:any};
 // Faux Supabase + faux fournisseur : chaque test choisit les réponses.
-function fake(opts:{user?:string|null,reserve?:{status:number,body:string},ai?:Array<{status:number,body?:any}>}={}){
+// raw : corps renvoyé tel quel (réponse illisible) ; hang : le fournisseur ne répond jamais, seul le délai l'interrompt ; authDown : Supabase Auth injoignable.
+function fake(opts:{user?:string|null,authDown?:boolean,reserve?:{status:number,body:string},ai?:Array<{status:number,body?:any,raw?:string,hang?:boolean}>}={}){
  const calls:Call[]=[];const ai=[...(opts.ai||[{status:200,body:{choices:[{message:{content:'Une réponse.'}}]}}])];
  const f=(async(url:string,init:any={})=>{calls.push({url,init});
-  if(url.endsWith('/auth/v1/user'))return opts.user===null?new Response('{}',{status:401}):new Response(JSON.stringify({id:opts.user||'u1'}),{status:200});
+  if(url.endsWith('/auth/v1/user')){if(opts.authDown)throw new TypeError('network');return opts.user===null?new Response('{}',{status:401}):new Response(JSON.stringify({id:opts.user||'u1'}),{status:200})}
   if(url.endsWith('/rpc/reserve_ai_request_for')){const r=opts.reserve||{status:200,body:'14'};return new Response(r.body,{status:r.status})}
   if(url.endsWith('/rpc/release_ai_request_for'))return new Response(null,{status:204});
-  if(url.endsWith('/chat/completions')){const r=ai.shift()||{status:500};return new Response(JSON.stringify(r.body||{error:'x'}),{status:r.status})}
+  if(url.endsWith('/chat/completions')){const r=ai.shift()||{status:500};
+   if(r.hang)return new Promise((_,reject)=>init.signal.addEventListener('abort',()=>reject(new DOMException('aborted','AbortError'))));
+   return new Response(r.raw??JSON.stringify(r.body||{error:'x'}),{status:r.status})}
   return new Response('not found',{status:404})}) as unknown as typeof fetch;
  return {f,calls};
 }
@@ -70,6 +73,34 @@ describe('Nunya Aide · fonction serveur',()=>{
   const r=await createHandler(env,f)(post(ok));
   expect(r.status).toBe(503);expect((await r.json()).remaining).toBe(15);
   expect(calls.some(c=>c.url.endsWith('/rpc/release_ai_request_for'))).toBe(true);
+ });
+ it('does not give the question back when an answer is sent',async()=>{
+  const {f,calls}=fake();
+  expect((await createHandler(env,f)(post(ok))).status).toBe(200);
+  expect(calls.some(c=>c.url.endsWith('/rpc/release_ai_request_for'))).toBe(false);
+ });
+ it('moves on to the next model when an answer is unreadable',async()=>{
+  const {f}=fake({ai:[{status:200,raw:'{pas du json'},{status:200,body:{choices:[{message:{content:'Réponse lisible.'}}]}}]});
+  const data=await (await createHandler(env,f)(post(ok))).json();
+  expect(data.answer).toBe('Réponse lisible.');expect(data.model).toBe('openai/gpt-oss-20b');
+ });
+ it('gives each model its own time limit so the fallback still answers',async()=>{
+  const {f,calls}=fake({ai:[{status:200,hang:true},{status:200,body:{choices:[{message:{content:'Le 20b répond.'}}]}}]});
+  const t0=Date.now();const data=await (await createHandler(env,f,Date.now,{totalMs:2000,perModelMs:100})(post(ok))).json();
+  expect(data.model).toBe('openai/gpt-oss-20b');expect(Date.now()-t0).toBeLessThan(1500);
+  expect(calls.some(c=>c.url.endsWith('/rpc/release_ai_request_for'))).toBe(false);
+ });
+ it('gives the question back and keeps CORS headers on an unexpected error after reserving',async()=>{
+  const {f,calls}=fake({reserve:{status:200,body:'pas un nombre json'}});
+  const r=await createHandler(env,f)(post(ok));
+  expect(r.status).toBe(500);expect(r.headers.get('access-control-allow-origin')).toBe('https://nunya-togo.vercel.app');
+  expect(calls.some(c=>c.url.endsWith('/rpc/release_ai_request_for'))).toBe(true);
+ });
+ it('answers with CORS headers when Supabase Auth cannot be reached, without reserving',async()=>{
+  const {f,calls}=fake({authDown:true});
+  const r=await createHandler(env,f)(post(ok));
+  expect(r.status).toBe(500);expect(r.headers.get('access-control-allow-origin')).toBe('https://nunya-togo.vercel.app');
+  expect(calls.some(c=>c.url.includes('/rpc/'))).toBe(false);
  });
  it('clips oversized input and keeps at most 6 previous turns',()=>{
   const p=parseRequest({question:'a'.repeat(5000),history:Array.from({length:12},(_,i)=>({role:i%2?'assistant':'user',content:'t'+i})),context:{kind:'autre',text:'b'.repeat(9000),code:'c'.repeat(9000),attempts:500}})!;
