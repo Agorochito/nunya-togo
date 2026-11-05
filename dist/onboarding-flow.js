@@ -30,8 +30,27 @@
       <h1 id="a-onboarding-title">${aLabel('Un parcours qui commence par toi.', 'A learning path that starts with you.')}</h1>
       <p>${aLabel('Choisis ce qui t’intéresse, dis-nous où tu en es, puis réponds à quelques questions. Nunya te proposera un point de départ adapté.', 'Choose what interests you, tell us where you are, then answer a few questions. Nunya will suggest a starting point that fits.')}</p>
       <button class="primary" type="button" data-onboarding="begin">${aLabel('Personnaliser mon parcours', 'Personalize my path')} →</button>
-      <small>${aLabel('Ton pseudo et tes réponses restent sur cet appareil.', 'Your nickname and answers stay on this device.')}</small>
+      <button class="secondary" type="button" data-onboarding="skip">${aLabel('Passer pour l’instant', 'Skip for now')}</button>
+      <small>${aLabel('Les questions sont facultatives : tu pourras personnaliser ton parcours plus tard depuis l’accueil. Ton pseudo et tes réponses restent sur cet appareil.', 'The questions are optional: you can personalize your path later from the home page. Your nickname and answers stay on this device.')}</small>
     </div>`);
+  }
+
+  /* Passer les questions garde la seule règle obligatoire : Nunya est conçu pour les 13 ans et plus. */
+  function skipView() {
+    return shell(`<div class="a-onboarding-welcome">
+      <span class="a-onboarding-mark" aria-hidden="true">✳</span>
+      <h1 id="a-onboarding-title">${aLabel('Avant d’explorer', 'Before you explore')}</h1>
+      <p>${aLabel('Nunya est conçu pour les jeunes de 13 ans et plus.', 'Nunya is designed for young people aged 13 and older.')}</p>
+      <button class="primary" type="button" data-onboarding="skip-confirm">${aLabel('J’ai 13 ans ou plus, explorer Nunya', 'I am 13 or older, explore Nunya')} →</button>
+      <button class="secondary" type="button" data-onboarding="skip-young">${aLabel('J’ai moins de 13 ans', 'I am under 13')}</button>
+      <p id="a-onboarding-age-message" class="a-onboarding-privacy" role="status" hidden></p>
+      <button class="a-onboarding-back" type="button" data-onboarding="welcome">← ${aLabel('Retour', 'Back')}</button>
+    </div>`);
+  }
+
+  /* Carte d’accueil tant que le questionnaire n’a pas été fait : il reste possible à tout moment. */
+  function personalizeCard() {
+    return `<section class="curr-entry a-personalize-later"><div><span class="eyebrow">${aLabel('FACULTATIF · 2 MINUTES', 'OPTIONAL · 2 MINUTES')}</span><h2>${aLabel('Personnalise ton parcours', 'Personalize your path')}</h2><p>${aLabel('Réponds à quelques questions quand tu veux : Nunya te proposera un point de départ adapté.', 'Answer a few questions whenever you like: Nunya will suggest a starting point that fits you.')}</p></div><button class="primary" type="button" data-onboarding="begin">${aLabel('Commencer', 'Start')} →</button></section>`;
   }
 
   function chooseDomain() {
@@ -190,7 +209,15 @@
     if (step === 'profile') return profileForm();
     if (step === 'assessment') return resumeAssessment();
     if (step === 'results') return results();
+    if (step === 'skip') return skipView();
     return welcome();
+  }
+
+  /* Le test (configuration, moteur, correspondance et écrans) est chargé au début du test : runtime/assessment.js, précaché. */
+  let assessmentReady = null;
+  function loadAssessment() {
+    window.NunyaAssessmentHost = { state, toast };
+    return assessmentReady || (assessmentReady = import(new URL('./runtime/assessment.js', document.baseURI).href).catch(error => { assessmentReady = null; throw error; }));
   }
 
   function saveAssessmentResults(assessment) {
@@ -227,6 +254,7 @@
     aPersist();
     render();
     try {
+      await loadAssessment();
       const started = await window.NunyaAssessmentUI.start(
         state.profile.level,
         saveAssessmentResults,
@@ -253,6 +281,8 @@
     const showingResults = FEATURES.onboarding && state.onboarding?.step === 'results' && aRoute.kind === 'accueil';
     document.body.classList.toggle('a-onboarding-active', required);
     document.body.classList.toggle('a-onboarding-results-active', showingResults);
+    // Questionnaire lancé plus tard : les cartes de l’accueil ne s’affichent pas au-dessus des questions.
+    document.body.classList.toggle('a-onboarding-later', FEATURES.onboarding && !required && ['domain', 'profile', 'assessment'].includes(state.onboarding?.step) && aRoute.kind === 'accueil');
     if (required && aLoading && aRoute.kind === 'accueil') {
       $('#main').innerHTML = splash();
       return;
@@ -262,15 +292,20 @@
 
   const homeBeforeOnboarding = aHome;
   aHome = function () {
-    if (FEATURES.onboarding && state.onboarding?.step === 'results') return results();
-    if (FEATURES.onboarding && !state.academy.onboarded) return entryView();
-    return homeBeforeOnboarding();
+    if (!FEATURES.onboarding) return homeBeforeOnboarding();
+    const step = state.onboarding?.step;
+    if (step === 'results') return results();
+    // Questionnaire commencé plus tard depuis l’accueil : le menu reste disponible.
+    if (!state.academy.onboarded || ['domain', 'profile', 'assessment'].includes(step)) return entryView();
+    return (state.onboarding?.result ? '' : personalizeCard()) + homeBeforeOnboarding();
   };
 
   const resolveBeforeOnboarding = aResolve;
   aResolve = async function () {
     const route = academyRoute(location.hash);
     if (FEATURES.onboarding && !state.academy.onboarded && route.kind !== 'accueil') {
+      // Un lien partagé n’est pas perdu : on y revient après l’accueil.
+      if (/^#\/[\w\-/%.]+$/.test(location.hash)) state.onboarding = { ...state.onboarding, returnTo: location.hash };
       history.replaceState({}, '', '#/accueil');
     }
     return resolveBeforeOnboarding();
@@ -345,6 +380,21 @@
       state.onboarding.step = 'profile';
     } else if (action === 'resume') {
       void beginAssessment();
+      return;
+    } else if (action === 'skip') {
+      state.onboarding = { ...state.onboarding, step: 'skip' };
+    } else if (action === 'skip-young') {
+      const ageMessage = $('#a-onboarding-age-message');
+      ageMessage.textContent = underThirteenMessage();
+      ageMessage.hidden = false;
+      return;
+    } else if (action === 'skip-confirm') {
+      const returnTo = state.onboarding?.returnTo;
+      state.onboarding = { ...state.onboarding, step: 'skipped', returnTo: undefined };
+      state.profile.age = state.profile.age || '13+';
+      state.academy.onboarded = true;
+      aPersist();
+      if (returnTo) aGo(returnTo, true); else render();
       return;
     } else if (action === 'finish') {
       state.onboarding.step = 'complete';
