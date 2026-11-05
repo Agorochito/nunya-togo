@@ -1,5 +1,13 @@
 # Historique
 
+## 5.4.3 — 5 novembre 2026 · Nunya Aide prêt à activer
+
+- Fonction `nunya-aide` : la question réservée est rendue à l’élève dans tous les cas où aucune réponse ne part (réponse illisible, délai dépassé, erreur inattendue) ; chaque modèle a son propre délai (12 s, 25 s au total) pour que le modèle de secours ait sa chance ; délai sur les appels à Supabase ; erreurs inattendues renvoyées avec les en-têtes CORS et journalisées sans contenu d’élève. 5 tests de plus.
+- Panneau : délai maximal de 40 s, bouton « Annuler » pendant la réflexion, fermeture du panneau = annulation ; une annulation ne recrée jamais de session anonyme.
+- Migration `007_anonymous_protection.sql` (à appliquer avant d’ouvrir les connexions anonymes) : les sessions anonymes n’accèdent pas aux tables de synchronisation ni aux profils, enregistrements limités à 32 Ko, suppression nocturne des comptes anonymes sans activité depuis 30 jours.
+- Confidentialité : nouvelle section « Nunya Aide » (Supabase à Paris, Groq aux États-Unis, ce qui est envoyé, ce qui est gardé) ; l’écran d’information de l’assistant renvoie vers cette page.
+- Cache `nunya-v5.4.3`.
+
 ## 5.4.2 — 5 novembre 2026 · menu sur téléphone
 
 - Le menu ouvert sur téléphone (bouton « Plus » ou ☰) se ferme en touchant à côté, sans activer ce qui se trouve dessous. Échap le fermait déjà ; la barre du bas reste utilisable.
