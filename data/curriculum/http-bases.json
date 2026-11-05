@@ -1,0 +1,242 @@
+{
+  "id": "http-bases",
+  "title_fr": "HTTP et API : construire un client JavaScript",
+  "language": "javascript",
+  "runtime": "http",
+  "level": "debutant",
+  "summary_fr": "Comprendre les requêtes et réponses, attendre une promesse, lire du JSON et construire un client avec gestion des erreurs. Pratique réelle sur une API pédagogique locale, sans serveur distant.",
+  "prerequisites": [
+    "Avoir pratiqué les fonctions, objets et tableaux du socle JavaScript.",
+    "Savoir lire une propriété et retourner une valeur ; async et await sont expliqués ici."
+  ],
+  "outcomes": [
+    "Lire une réponse HTTP et distinguer texte, JSON, statuts et en-têtes.",
+    "Construire une URL et transformer les données reçues.",
+    "Envoyer un corps JSON, traiter une validation et un conflit de disponibilité fictifs.",
+    "Distinguer erreur HTTP, problème de lecture JSON et rejet réseau.",
+    "Annuler une requête et construire un petit client de catalogue avec inscription de démonstration."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Requêtes, promesses et JSON",
+      "outcome_fr": "Comprendre les échanges et attendre les données avant de les utiliser.",
+      "lesson_ids": [
+        "http-m1-01",
+        "http-m1-02",
+        "http-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Lire une API et construire ses URL",
+      "outcome_fr": "Filtrer, vérifier les statuts et organiser les transformations dans des fonctions.",
+      "lesson_ids": [
+        "http-m2-01",
+        "http-m2-02",
+        "http-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Envoyer et valider des données",
+      "outcome_fr": "Composer des requêtes JSON et interpréter leurs réponses sans supposer un stockage.",
+      "lesson_ids": [
+        "http-m3-01",
+        "http-m3-02",
+        "http-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Erreurs, annulation et projet client",
+      "outcome_fr": "Traiter les rejets, annuler et réunir les acquis dans un client de démonstration.",
+      "lesson_ids": [
+        "http-m4-01",
+        "http-m4-02",
+        "http-m4-03"
+      ]
+    }
+  ],
+  "later_modules": [],
+  "availability": "programme-redige",
+  "status": "brouillon",
+  "reviewer": null,
+  "depth_fr": "Socle client HTTP/JavaScript asynchrone sur une API pédagogique locale. Aucun serveur Node.js, réservation réelle, compte ni donnée personnelle. Authentification et API distantes appartiennent à une suite.",
+  "prerequisite_courses": [
+    "javascript-bases"
+  ],
+  "lessons": [
+    {
+      "id": "http-m1-01",
+      "title_fr": "Distinguer la requête, la réponse et son texte",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [],
+      "tags": [
+        "requête",
+        "réponse",
+        "en-tête",
+        "corps"
+      ]
+    },
+    {
+      "id": "http-m1-02",
+      "title_fr": "Attendre une promesse et retourner une valeur asynchrone",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "http-m1-01"
+      ],
+      "tags": [
+        "promesse",
+        "await",
+        "async"
+      ]
+    },
+    {
+      "id": "http-m1-03",
+      "title_fr": "Lire du JSON et retrouver ses objets et tableaux",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "http-m1-02"
+      ],
+      "tags": [
+        "JSON",
+        "analyse",
+        "collection"
+      ]
+    },
+    {
+      "id": "http-m2-01",
+      "title_fr": "Construire et encoder les paramètres d’une URL",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "http-m1-03"
+      ],
+      "tags": [
+        "paramètre",
+        "encodage",
+        "URLSearchParams"
+      ]
+    },
+    {
+      "id": "http-m2-02",
+      "title_fr": "Distinguer status, ok et une réponse d’erreur",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "http-m2-01"
+      ],
+      "tags": [
+        "status",
+        "ok",
+        "erreur HTTP"
+      ]
+    },
+    {
+      "id": "http-m2-03",
+      "title_fr": "Construire des fonctions clientes et transformer les données",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "http-m2-02"
+      ],
+      "tags": [
+        "fonction cliente",
+        "transformation",
+        "contrat de retour"
+      ]
+    },
+    {
+      "id": "http-m3-01",
+      "title_fr": "Envoyer un objet JSON avec une requête POST",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "http-m2-03"
+      ],
+      "tags": [
+        "sérialisation",
+        "corps de requête",
+        "en-tête"
+      ]
+    },
+    {
+      "id": "http-m3-02",
+      "title_fr": "Distinguer format invalide, données refusées et conflit",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "http-m3-01"
+      ],
+      "tags": [
+        "syntaxe JSON",
+        "validation",
+        "conflit HTTP"
+      ]
+    },
+    {
+      "id": "http-m3-03",
+      "title_fr": "Utiliser PUT et DELETE sans inventer une persistance",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "http-m3-02"
+      ],
+      "tags": [
+        "PUT",
+        "204",
+        "persistance"
+      ]
+    },
+    {
+      "id": "http-m4-01",
+      "title_fr": "Séparer erreur HTTP, JSON illisible et rupture de requête",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "http-m3-03"
+      ],
+      "tags": [
+        "exception",
+        "rejet",
+        "diagnostic"
+      ]
+    },
+    {
+      "id": "http-m4-02",
+      "title_fr": "Annuler une attente avec AbortController",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "http-m4-01"
+      ],
+      "tags": [
+        "contrôleur",
+        "signal",
+        "AbortError"
+      ]
+    },
+    {
+      "id": "http-m4-03",
+      "title_fr": "Projet : construire un client de catalogue et de demande fictive",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "http-m4-02"
+      ],
+      "tags": [
+        "état client",
+        "confirmation fictive",
+        "bilan"
+      ]
+    }
+  ],
+  "estimated_minutes": 240,
+  "content_revision": "478a0c929c19",
+  "exercise_count": 48,
+  "quiz_count": 36
+}

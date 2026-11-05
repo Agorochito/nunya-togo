@@ -18,7 +18,9 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
   course['summary_fr']='De ton premier programme aux collections, fonctions et projets : apprends, teste et construis en français.'
  language=course.get('language',course.get('runtime','python'))
  if language not in ['python','javascript','html','css']:raise ValueError('Unsupported offline runtime: '+language)
- course['language']=course['runtime']=language;course.setdefault('level','debutant');course.setdefault('later_modules',[])
+ runtime=course.get('runtime',language)
+ if runtime not in ['python','javascript','html','css','http'] or (runtime=='http' and language!='javascript'):raise ValueError('Unsupported runtime/language pair')
+ course['language']=language;course['runtime']=runtime;course.setdefault('level','debutant');course.setdefault('later_modules',[])
  lessons,index=[],[]
  for module in course['modules']:
   declared=module.get('lesson_ids',[])
@@ -35,7 +37,9 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
    if len(codes)!=len(row['examples']):raise ValueError(f'{path}: each example requires its code block')
    for example,code in zip(row['examples'],codes):example['code']=code
    if row['id'] in chapter_end:row['chapter_end']=chapter_end[row['id']]
-   row['exercises']=json.loads(path.with_suffix('.exercises.json').read_text());rows.append(row)
+   row['exercises']=json.loads(path.with_suffix('.exercises.json').read_text())
+   if runtime=='http':row.setdefault('environment_fr','API pédagogique locale : données fictives, pas de serveur distant ni d’écriture conservée. Les requêtes restent sur cet appareil. await est autorisé dans l’atelier.')
+   rows.append(row)
   rows.sort(key=lambda row:row['order']);actual=[row['id'] for row in rows]
   if declared and declared!=actual:raise ValueError(f"{course['id']}/{module['id']}: manifest and authored lessons differ")
   module['lesson_ids']=actual
@@ -44,7 +48,7 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
    write(out/(row['id']+'.json'),row)
    search.append(dict(kind='Leçons',title=row['title_fr'],route=f"#/apprendre/{course['id']}/{module['id']}/{row['id']}",breadcrumb=f"Apprendre › {course['title_fr']} › {module['title_fr']}",terms=' '.join(row['tags'])+' '+row['title_fr']))
  course['lessons']=index;course['estimated_minutes']=sum(row['minutes'] for row in lessons)
- revision={key:course.get(key) for key in ['id','title_fr','modules','status','reviewer','summary_fr','prerequisites','outcomes','availability']};revision['lessons']=lessons
+ revision={key:course.get(key) for key in ['id','language','runtime','title_fr','modules','status','reviewer','summary_fr','prerequisites','outcomes','availability','prerequisite_courses','next_courses']};revision['lessons']=lessons
  course['content_revision']=hashlib.sha256(json.dumps(revision,ensure_ascii=False,sort_keys=True).encode()).hexdigest()[:12]
  course['exercise_count']=sum(len(row['exercises']) for row in lessons);course['quiz_count']=sum(len(row['quiz']) for row in lessons)
  write(data/(course['id']+'.json'),course,True);write(out/(course['id']+'.json'),dict(course=course,lessons=lessons));courses.append(course)
@@ -52,7 +56,7 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
 legacy=[]
 for path in sorted((r/'content/fr').glob('*.json')):
  course=json.loads(path.read_text());legacy.append(dict(id=course['id'],title_fr=course['title'],status='aperçu',lesson_count=len(course['lessons']),source_file=str(path.relative_to(r))))
-available={course['id'].removesuffix('-bases') for course in courses}
+available={course['id'].removesuffix('-bases') for course in courses};available.add('git')  # Built separately by prepare-git.py before this catalogue.
 # Retain planned courses until actual authored packs replace them.
 catalogue=dict(version=2,courses=courses,plans=[p for p in plans if p['id'] not in available],legacy_references=legacy)
 write(data/'catalogue.json',catalogue,True);write(out/'index.json',catalogue)

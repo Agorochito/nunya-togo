@@ -1,0 +1,330 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Lire le titre d’une fiche",
+    "instruction_fr": "Écris async function titreAtelier(id). Demande /ateliers/id pour un identifiant fourni entre 1 et 3, analyse le JSON et retourne son titre.",
+    "starter_code": "async function titreAtelier(id){const reponse=await fetch(\"/api-pedagogique/v1/ateliers/\"+String(id));const fiche=await reponse.json();return fiche.id;}",
+    "solution": "async function titreAtelier(id){const reponse=await fetch(\"/api-pedagogique/v1/ateliers/\"+String(id));const fiche=await reponse.json();return fiche.titre;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "titreAtelier",
+            "args": [
+              1
+            ],
+            "expected": "Python"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers/1",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "titreAtelier",
+            "args": [
+              3
+            ],
+            "expected": "Web"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers/3",
+            "status": 200
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "titreAtelier",
+            "args": [
+              2
+            ],
+            "expected": "Jardin"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers/2",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La route doit dépendre du paramètre.",
+      "Après lecture, choisis la propriété demandée par le contrat.",
+      "async function titreAtelier(id){const reponse=await fetch(\"/api-pedagogique/v1/ateliers/\"+String(id));const fiche=await reponse.json();return fiche.titre;}"
+    ],
+    "explanation_fr": "Une réponse JSON n’est pas seulement un identifiant.",
+    "common_wrong_answers": [],
+    "id": "http-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Lire une position de collection",
+    "instruction_fr": "Écris async function titrePosition(position). Charge /ateliers et retourne le titre à l’indice position fourni entre 0 et 2.",
+    "starter_code": "async function titrePosition(position){const reponse=await fetch(\"/api-pedagogique/v1/ateliers\");const ateliers=await reponse.json();return ateliers[0].titre;}",
+    "solution": "async function titrePosition(position){const reponse=await fetch(\"/api-pedagogique/v1/ateliers\");const ateliers=await reponse.json();return ateliers[position].titre;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "titrePosition",
+            "args": [
+              0
+            ],
+            "expected": "Python"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "titrePosition",
+            "args": [
+              2
+            ],
+            "expected": "Web"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "titrePosition",
+            "args": [
+              1
+            ],
+            "expected": "Jardin"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le tableau utilise des indices.",
+      "Le paramètre choisit la fiche avant la lecture de titre.",
+      "async function titrePosition(position){const reponse=await fetch(\"/api-pedagogique/v1/ateliers\");const ateliers=await reponse.json();return ateliers[position].titre;}"
+    ],
+    "explanation_fr": "Ne fige pas la première position dans la fonction.",
+    "common_wrong_answers": [],
+    "id": "http-m1-03-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Construire un résumé structuré",
+    "instruction_fr": "Écris async function resumeAtelier(id) pour un identifiant de 1 à 3. Charge la fiche puis retourne un nouvel objet avec seulement titre et places.",
+    "starter_code": "async function resumeAtelier(id){const reponse=await fetch(\"/api-pedagogique/v1/ateliers/\"+String(id));const fiche=await reponse.json();return fiche.titre;}",
+    "solution": "async function resumeAtelier(id){const reponse=await fetch(\"/api-pedagogique/v1/ateliers/\"+String(id));const fiche=await reponse.json();return {titre:fiche.titre,places:fiche.places};}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "resumeAtelier",
+            "args": [
+              1
+            ],
+            "expected": {
+              "titre": "Python",
+              "places": 4
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers/1",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "resumeAtelier",
+            "args": [
+              2
+            ],
+            "expected": {
+              "titre": "Jardin",
+              "places": 0
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers/2",
+            "status": 200
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "resumeAtelier",
+            "args": [
+              3
+            ],
+            "expected": {
+              "titre": "Web",
+              "places": 2
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers/3",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le résultat demandé est un objet, pas un affichage.",
+      "Conserve les deux types reçus : chaîne et nombre.",
+      "async function resumeAtelier(id){const reponse=await fetch(\"/api-pedagogique/v1/ateliers/\"+String(id));const fiche=await reponse.json();return {titre:fiche.titre,places:fiche.places};}"
+    ],
+    "explanation_fr": "Zéro place doit être préservé comme une vraie valeur.",
+    "common_wrong_answers": [],
+    "id": "http-m1-03-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une analyse non attendue",
+    "instruction_fr": "Corrige async function champ(chemin,cle). Les routes fournies renvoient un objet JSON ; retourne la propriété nommée par cle après avoir attendu son analyse.",
+    "starter_code": "async function champ(chemin,cle){const reponse=await fetch(chemin);const donnees=reponse.json();return donnees[cle];}",
+    "solution": "async function champ(chemin,cle){const reponse=await fetch(chemin);const donnees=await reponse.json();return donnees[cle];}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "champ",
+            "args": [
+              "/api-pedagogique/v1/ping",
+              "version"
+            ],
+            "expected": "locale-v1"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ping",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "champ",
+            "args": [
+              "/api-pedagogique/v1/ateliers/2",
+              "places"
+            ],
+            "expected": 0
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers/2",
+            "status": 200
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "champ",
+            "args": [
+              "/api-pedagogique/v1/ateliers/3",
+              "titre"
+            ],
+            "expected": "Web"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers/3",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "json() fournit d’abord une promesse.",
+      "La propriété doit être lue dans la valeur analysée.",
+      "async function champ(chemin,cle){const reponse=await fetch(chemin);const donnees=await reponse.json();return donnees[cle];}"
+    ],
+    "explanation_fr": "Attendre fetch seul ne suffit pas à produire cet objet.",
+    "common_wrong_answers": [],
+    "id": "http-m1-03-e4"
+  }
+]

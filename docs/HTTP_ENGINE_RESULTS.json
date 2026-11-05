@@ -1,0 +1,18 @@
+{
+  "results": {
+    "referenceCases": 162,
+    "exercises": 48,
+    "startersRejected": 48,
+    "examples": 24,
+    "libraryProgrammesReachable": true,
+    "literalOutputRejected": true,
+    "externalRequestBlocked": true,
+    "maskedRequestUrlBlocked": true,
+    "dynamicImportBlockedByCsp": true,
+    "oldServiceWorkerNoNetworkProbe": true,
+    "actualAbort": true,
+    "actualNetworkError": true,
+    "coldOffline": true
+  },
+  "errors": []
+}

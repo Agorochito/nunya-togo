@@ -1,0 +1,657 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Jalon : charger les activités disponibles",
+    "instruction_fr": "Écris async catalogue(ville). Fais GET ateliers avec le paramètre ville correctement encodé. Retourne {etat,titres} en gardant, dans l’ordre, les titres des ateliers places>0 ; etat vaut prêt si la liste est non vide, vide sinon. Une ville vide demande tout.",
+    "starter_code": "async function catalogue(ville) { return {etat:\"prêt\",titres:[]}; }",
+    "solution": "async function catalogue(ville) {\n  const url = new URL(\"/api-pedagogique/v1/ateliers\", \"https://exemple.invalid\");\n  url.searchParams.set(\"ville\", ville);\n  const r = await fetch(url.pathname + url.search);\n  const ateliers = await r.json();\n  const titres = [];\n  for (const atelier of ateliers) { if (atelier.places > 0) { titres.push(atelier.titre); } }\n  return {etat:titres.length > 0 ? \"prêt\" : \"vide\",titres:titres};\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "catalogue",
+            "args": [
+              "Lomé"
+            ],
+            "expected": {
+              "etat": "prêt",
+              "titres": [
+                "Python",
+                "Web"
+              ]
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Lomé"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "catalogue",
+            "args": [
+              "Kara"
+            ],
+            "expected": {
+              "etat": "vide",
+              "titres": []
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Kara"
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "catalogue",
+            "args": [
+              "Inconnue"
+            ],
+            "expected": {
+              "etat": "vide",
+              "titres": []
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Inconnue"
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "catalogue",
+            "args": [
+              ""
+            ],
+            "expected": {
+              "etat": "prêt",
+              "titres": [
+                "Python",
+                "Web"
+              ]
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": ""
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une liste sans activité disponible est-elle une erreur de transport ?",
+      "Lis les données puis construis la sélection avant de choisir l’état.",
+      "async function catalogue(ville) {\n  const url = new URL(\"/api-pedagogique/v1/ateliers\", \"https://exemple.invalid\");\n  url.searchParams.set(\"ville\", ville);\n  const r = await fetch(url.pathname + url.search);\n  const ateliers = await r.json();\n  const titres = [];\n  for (const atelier of ateliers) { if (atelier.places > 0) { titres.push(atelier.titre); } }\n  return {etat:titres.length > 0 ? \"prêt\" : \"vide\",titres:titres};\n}"
+    ],
+    "explanation_fr": "L’API filtre la ville et le client filtre les places ; les deux rôles restent explicites.",
+    "common_wrong_answers": [],
+    "id": "http-m4-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Jalon : présenter la réponse de demande",
+    "instruction_fr": "Écris async demande(id,nom). Envoie POST inscriptions en JSON. Lis le corps puis retourne {etat,statut,nom}. Pour un succès : etat confirmation-fictive et nom reçu. Pour un refus : etat égal au champ erreur reçu et nom:null. Aucun nom réel.",
+    "starter_code": "async function demande(id, nom) { return {etat:\"confirmation-fictive\",statut:201,nom:nom}; }",
+    "solution": "async function demande(id, nom) {\n  const r = await fetch(\"/api-pedagogique/v1/inscriptions\", {method:\"POST\",headers:{\"Content-Type\":\"application/json\"},body:JSON.stringify({atelierId:id,nom:nom})});\n  const corps = await r.json();\n  return {etat:r.ok ? \"confirmation-fictive\" : corps.erreur,statut:r.status,nom:r.ok ? corps.nom : null};\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "demande",
+            "args": [
+              3,
+              " Lina "
+            ],
+            "expected": {
+              "etat": "confirmation-fictive",
+              "statut": 201,
+              "nom": "Lina"
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 201
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "demande",
+            "args": [
+              2,
+              "Afi"
+            ],
+            "expected": {
+              "etat": "Complet",
+              "statut": 409,
+              "nom": null
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 409
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "demande",
+            "args": [
+              99,
+              "Afi"
+            ],
+            "expected": {
+              "etat": "Atelier introuvable",
+              "statut": 404,
+              "nom": null
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 404
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "demande",
+            "args": [
+              1,
+              ""
+            ],
+            "expected": {
+              "etat": "Données invalides",
+              "statut": 422,
+              "nom": null
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 422
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le texte de succès doit-il être utilisé pour tous les statuts ?",
+      "Examine ok puis utilise le champ correspondant du corps.",
+      "async function demande(id, nom) {\n  const r = await fetch(\"/api-pedagogique/v1/inscriptions\", {method:\"POST\",headers:{\"Content-Type\":\"application/json\"},body:JSON.stringify({atelierId:id,nom:nom})});\n  const corps = await r.json();\n  return {etat:r.ok ? \"confirmation-fictive\" : corps.erreur,statut:r.status,nom:r.ok ? corps.nom : null};\n}"
+    ],
+    "explanation_fr": "Les catégories et le nom proviennent de la réponse, et le message de succès reste explicitement fictif.",
+    "common_wrong_answers": [],
+    "id": "http-m4-03-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Jalon : rendre chaque attente explicable",
+    "instruction_fr": "Écris async chargerSecurise(route,annuler). route parmi ateliers, erreur, json-invalide, interruption, lent ; annuler est booléen. Contrôleur neuf ; si demandé, annule avant fetch. Retourne {etat,statut} : annulé/null pour AbortError, réseau/null pour rejet de fetch, http/statut pour !ok, json/statut si json() rejette, prêt/statut sinon.",
+    "starter_code": "async function chargerSecurise(route, annuler) {\n  const r = await fetch(\"/api-pedagogique/v1/\" + route);\n  await r.json();\n  return {etat:\"prêt\",statut:r.status};\n}",
+    "solution": "async function chargerSecurise(route, annuler) {\n  const controleur = new AbortController();\n  if (annuler) { controleur.abort(); }\n  let r;\n  try { r = await fetch(\"/api-pedagogique/v1/\" + route, {signal:controleur.signal}); }\n  catch (erreur) { return {etat:erreur.name === \"AbortError\" ? \"annulé\" : \"réseau\",statut:null}; }\n  if (!r.ok) { return {etat:\"http\",statut:r.status}; }\n  try { await r.json(); } catch (erreur) { return {etat:\"json\",statut:r.status}; }\n  return {etat:\"prêt\",statut:r.status};\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chargerSecurise",
+            "args": [
+              "ateliers",
+              false
+            ],
+            "expected": {
+              "etat": "prêt",
+              "statut": 200
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chargerSecurise",
+            "args": [
+              "erreur",
+              false
+            ],
+            "expected": {
+              "etat": "http",
+              "statut": 503
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/erreur",
+            "status": 503
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chargerSecurise",
+            "args": [
+              "json-invalide",
+              false
+            ],
+            "expected": {
+              "etat": "json",
+              "statut": 200
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/json-invalide",
+            "status": 200
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chargerSecurise",
+            "args": [
+              "interruption",
+              false
+            ],
+            "expected": {
+              "etat": "réseau",
+              "statut": null
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/interruption",
+            "status": 0
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chargerSecurise",
+            "args": [
+              "lent",
+              true
+            ],
+            "expected": {
+              "etat": "annulé",
+              "statut": null
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/lent",
+            "status": 0
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Quel diagnostic peut être connu avant d’obtenir une Response ?",
+      "Sépare les blocs d’acheminement et de lecture, avec le contrôle ok entre eux.",
+      "async function chargerSecurise(route, annuler) {\n  const controleur = new AbortController();\n  if (annuler) { controleur.abort(); }\n  let r;\n  try { r = await fetch(\"/api-pedagogique/v1/\" + route, {signal:controleur.signal}); }\n  catch (erreur) { return {etat:erreur.name === \"AbortError\" ? \"annulé\" : \"réseau\",statut:null}; }\n  if (!r.ok) { return {etat:\"http\",statut:r.status}; }\n  try { await r.json(); } catch (erreur) { return {etat:\"json\",statut:r.status}; }\n  return {etat:\"prêt\",statut:r.status};\n}"
+    ],
+    "explanation_fr": "Un même objet de retour peut distinguer les cas sans créer de faux statut HTTP.",
+    "common_wrong_answers": [],
+    "id": "http-m4-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Projet : catalogue, choix et confirmation fictive",
+    "instruction_fr": "Écris async parcours(route,ville,atelierId,nom,annuler). route est ateliers, erreur, json-invalide ou interruption ; annuler est booléen et les noms sont fictifs. Contrôleur neuf, annulé avant GET si demandé. Sur ateliers, encode le paramètre ville puis charge la liste. Retourne toujours {etat,statut,nom}. Rejet fetch : annulé ou réseau, statut:null, nom:null. !ok : http et son statut. JSON illisible : json et le statut reçu. Atelier absent du catalogue filtré : absent/200/null ; zéro place : complet/200/null, sans POST. Sinon POST inscriptions JSON : refusée/statut/null pour !ok ; confirmation-fictive/201/nom reçu pour succès. Traite aussi rejet et JSON illisible de ce POST selon les mêmes catégories. Aucune écriture ne persiste.",
+    "starter_code": "async function parcours(route, ville, atelierId, nom, annuler) {\n  return {etat:\"confirmation-fictive\",statut:201,nom:nom};\n}",
+    "solution": "async function parcours(route, ville, atelierId, nom, annuler) {\n  const controleur = new AbortController();\n  if (annuler) { controleur.abort(); }\n  const url = new URL(\"/api-pedagogique/v1/\" + route, \"https://exemple.invalid\");\n  if (route === \"ateliers\") { url.searchParams.set(\"ville\", ville); }\n  let r;\n  try { r = await fetch(url.pathname + url.search, {signal:controleur.signal}); }\n  catch (erreur) { return {etat:erreur.name === \"AbortError\" ? \"annulé\" : \"réseau\",statut:null,nom:null}; }\n  if (!r.ok) { return {etat:\"http\",statut:r.status,nom:null}; }\n  let ateliers;\n  try { ateliers = await r.json(); }\n  catch (erreur) { return {etat:\"json\",statut:r.status,nom:null}; }\n  let choisi = null;\n  for (const atelier of ateliers) { if (atelier.id === atelierId) { choisi = atelier; } }\n  if (choisi === null) { return {etat:\"absent\",statut:200,nom:null}; }\n  if (choisi.places === 0) { return {etat:\"complet\",statut:200,nom:null}; }\n  let inscription;\n  try { inscription = await fetch(\"/api-pedagogique/v1/inscriptions\", {method:\"POST\",headers:{\"Content-Type\":\"application/json\"},body:JSON.stringify({atelierId:atelierId,nom:nom})}); }\n  catch (erreur) { return {etat:\"réseau\",statut:null,nom:null}; }\n  let corps;\n  try { corps = await inscription.json(); }\n  catch (erreur) { return {etat:\"json\",statut:inscription.status,nom:null}; }\n  if (!inscription.ok) { return {etat:\"refusée\",statut:inscription.status,nom:null}; }\n  return {etat:\"confirmation-fictive\",statut:inscription.status,nom:corps.nom};\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "parcours",
+            "args": [
+              "ateliers",
+              "Lomé",
+              3,
+              " Lina ",
+              false
+            ],
+            "expected": {
+              "etat": "confirmation-fictive",
+              "statut": 201,
+              "nom": "Lina"
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Lomé"
+            }
+          },
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 201
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "parcours",
+            "args": [
+              "ateliers",
+              "Kara",
+              2,
+              "Afi",
+              false
+            ],
+            "expected": {
+              "etat": "complet",
+              "statut": 200,
+              "nom": null
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Kara"
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "parcours",
+            "args": [
+              "ateliers",
+              "Lomé",
+              99,
+              "Afi",
+              false
+            ],
+            "expected": {
+              "etat": "absent",
+              "statut": 200,
+              "nom": null
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Lomé"
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "parcours",
+            "args": [
+              "ateliers",
+              "Lomé",
+              1,
+              "",
+              false
+            ],
+            "expected": {
+              "etat": "refusée",
+              "statut": 422,
+              "nom": null
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Lomé"
+            }
+          },
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 422
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "parcours",
+            "args": [
+              "erreur",
+              "",
+              1,
+              "Afi",
+              false
+            ],
+            "expected": {
+              "etat": "http",
+              "statut": 503,
+              "nom": null
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/erreur",
+            "status": 503
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "parcours",
+            "args": [
+              "json-invalide",
+              "",
+              1,
+              "Afi",
+              false
+            ],
+            "expected": {
+              "etat": "json",
+              "statut": 200,
+              "nom": null
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/json-invalide",
+            "status": 200
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "parcours",
+            "args": [
+              "interruption",
+              "",
+              1,
+              "Afi",
+              false
+            ],
+            "expected": {
+              "etat": "réseau",
+              "statut": null,
+              "nom": null
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/interruption",
+            "status": 0
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "parcours",
+            "args": [
+              "ateliers",
+              "Lomé",
+              1,
+              "Afi",
+              true
+            ],
+            "expected": {
+              "etat": "annulé",
+              "statut": null,
+              "nom": null
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 0,
+            "query": {
+              "ville": "Lomé"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Construis le chargement robuste avant de traiter le choix et la demande.",
+      "Retourne tôt pour les erreurs, l’absence et le complet ; le POST n’arrive qu’après ces contrôles.",
+      "async function parcours(route, ville, atelierId, nom, annuler) {\n  const controleur = new AbortController();\n  if (annuler) { controleur.abort(); }\n  const url = new URL(\"/api-pedagogique/v1/\" + route, \"https://exemple.invalid\");\n  if (route === \"ateliers\") { url.searchParams.set(\"ville\", ville); }\n  let r;\n  try { r = await fetch(url.pathname + url.search, {signal:controleur.signal}); }\n  catch (erreur) { return {etat:erreur.name === \"AbortError\" ? \"annulé\" : \"réseau\",statut:null,nom:null}; }\n  if (!r.ok) { return {etat:\"http\",statut:r.status,nom:null}; }\n  let ateliers;\n  try { ateliers = await r.json(); }\n  catch (erreur) { return {etat:\"json\",statut:r.status,nom:null}; }\n  let choisi = null;\n  for (const atelier of ateliers) { if (atelier.id === atelierId) { choisi = atelier; } }\n  if (choisi === null) { return {etat:\"absent\",statut:200,nom:null}; }\n  if (choisi.places === 0) { return {etat:\"complet\",statut:200,nom:null}; }\n  let inscription;\n  try { inscription = await fetch(\"/api-pedagogique/v1/inscriptions\", {method:\"POST\",headers:{\"Content-Type\":\"application/json\"},body:JSON.stringify({atelierId:atelierId,nom:nom})}); }\n  catch (erreur) { return {etat:\"réseau\",statut:null,nom:null}; }\n  let corps;\n  try { corps = await inscription.json(); }\n  catch (erreur) { return {etat:\"json\",statut:inscription.status,nom:null}; }\n  if (!inscription.ok) { return {etat:\"refusée\",statut:inscription.status,nom:null}; }\n  return {etat:\"confirmation-fictive\",statut:inscription.status,nom:corps.nom};\n}"
+    ],
+    "explanation_fr": "La correction assemble les contrats et les diagnostics. Complète les tests par une explication des limites : catalogue fixe, absence de stockage et confirmation fictive.",
+    "common_wrong_answers": [],
+    "id": "http-m4-03-e4"
+  }
+]

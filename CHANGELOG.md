@@ -2,6 +2,8 @@
 
 ## 5.5.0 — travaux locaux des 4–5 novembre 2026
 
+- HTTP/API : 12 leçons, 48 exercices et 24 exemples en JavaScript asynchrone sur une API locale réelle du service worker ; erreurs, statuts, JSON et annulation. Confirmation locale par message avant tout échange, journal des requêtes et CSP propre aux Workers JavaScript.
+- Intégration de main jusqu’à 6488b35c : accueil simplifié, diagnostic chargé à la demande et menu mobile fermé au toucher extérieur. Bouton Passer rétabli quand les préférences sont ouvertes plus tard.
 - Git/GitHub : 12 leçons originales, 32 ateliers sur de vrais dépôts locaux et 16 QCM ; 36 questions de compréhension. Archives transférables, opérations sérialisées, persistance après fermeture et fonctionnement hors ligne vérifiés.
 - Catalogue de bibliothèque : programmes approfondis et introductions regroupés sans présenter des notices comme des cours complets.
 - Réparation commune de la navigation, positions d’exercice et de quiz persistantes, retour à la leçon adjacente lors des révisions.

@@ -1,0 +1,348 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Capturer l’échec d’analyse",
+    "instruction_fr": "Écris async lireVersion(route), route étant ping ou json-invalide. Lis la réponse puis son JSON. Retourne {etat:\"ok\",version:donnees.version} si l’analyse réussit ; pour SyntaxError retourne {etat:\"json-invalide\",version:null}. Propage les autres erreurs.",
+    "starter_code": "async function lireVersion(route) {\n  const r = await fetch(\"/api-pedagogique/v1/\" + route);\n  const donnees = await r.json();\n  return {etat:\"ok\",version:donnees.version};\n}",
+    "solution": "async function lireVersion(route) {\n  try {\n    const r = await fetch(\"/api-pedagogique/v1/\" + route);\n    const donnees = await r.json();\n    return {etat:\"ok\",version:donnees.version};\n  } catch (erreur) {\n    if (erreur.name === \"SyntaxError\") { return {etat:\"json-invalide\",version:null}; }\n    throw erreur;\n  }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lireVersion",
+            "args": [
+              "json-invalide"
+            ],
+            "expected": {
+              "etat": "json-invalide",
+              "version": null
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/json-invalide",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lireVersion",
+            "args": [
+              "ping"
+            ],
+            "expected": {
+              "etat": "ok",
+              "version": "locale-v1"
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ping",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Quel await rejette dans le scénario JSON invalide ?",
+      "Le bloc doit inclure la lecture r.json().",
+      "async function lireVersion(route) {\n  try {\n    const r = await fetch(\"/api-pedagogique/v1/\" + route);\n    const donnees = await r.json();\n    return {etat:\"ok\",version:donnees.version};\n  } catch (erreur) {\n    if (erreur.name === \"SyntaxError\") { return {etat:\"json-invalide\",version:null}; }\n    throw erreur;\n  }\n}"
+    ],
+    "explanation_fr": "Un refus d’analyse arrive après la réception ; le statut 200 n’est pas une preuve du contenu.",
+    "common_wrong_answers": [],
+    "id": "http-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Traiter une interruption locale",
+    "instruction_fr": "Écris async lireDisponibilite(route), avec route ping ou interruption. Si fetch puis la lecture JSON réussissent, retourne Disponible. Si fetch rejette dans ce scénario, retourne Réseau interrompu, sans inventer de statut.",
+    "starter_code": "async function lireDisponibilite(route) {\n  const r = await fetch(\"/api-pedagogique/v1/\" + route);\n  await r.json();\n  return \"Disponible\";\n}",
+    "solution": "async function lireDisponibilite(route) {\n  try {\n    const r = await fetch(\"/api-pedagogique/v1/\" + route);\n    await r.json();\n    return \"Disponible\";\n  } catch (erreur) { return \"Réseau interrompu\"; }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lireDisponibilite",
+            "args": [
+              "interruption"
+            ],
+            "expected": "Réseau interrompu"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/interruption",
+            "status": 0
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lireDisponibilite",
+            "args": [
+              "ping"
+            ],
+            "expected": "Disponible"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ping",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une Response est-elle disponible si fetch rejette ?",
+      "Protège l’attente et retourne un message dans la branche de rejet.",
+      "async function lireDisponibilite(route) {\n  try {\n    const r = await fetch(\"/api-pedagogique/v1/\" + route);\n    await r.json();\n    return \"Disponible\";\n  } catch (erreur) { return \"Réseau interrompu\"; }\n}"
+    ],
+    "explanation_fr": "Ce diagnostic est valable pour les deux routes annoncées ; il ne classe pas toute erreur possible.",
+    "common_wrong_answers": [],
+    "id": "http-m4-01-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Conserver trois catégories d’échec",
+    "instruction_fr": "Écris async diagnostiquer(route), route parmi ping, erreur, json-invalide, interruption. Rejet de fetch→{type:\"réseau\",statut:null} ; réponse !ok→{type:\"http\",statut:r.status} ; lecture JSON rejetée→{type:\"json\",statut:r.status} ; sinon {type:\"succès\",statut:r.status}.",
+    "starter_code": "async function diagnostiquer(route) {\n  const r = await fetch(\"/api-pedagogique/v1/\" + route);\n  await r.json();\n  return {type:\"succès\",statut:r.status};\n}",
+    "solution": "async function diagnostiquer(route) {\n  let r;\n  try { r = await fetch(\"/api-pedagogique/v1/\" + route); }\n  catch (erreur) { return {type:\"réseau\",statut:null}; }\n  if (!r.ok) { return {type:\"http\",statut:r.status}; }\n  try { await r.json(); }\n  catch (erreur) { return {type:\"json\",statut:r.status}; }\n  return {type:\"succès\",statut:r.status};\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "diagnostiquer",
+            "args": [
+              "erreur"
+            ],
+            "expected": {
+              "type": "http",
+              "statut": 503
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/erreur",
+            "status": 503
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "diagnostiquer",
+            "args": [
+              "json-invalide"
+            ],
+            "expected": {
+              "type": "json",
+              "statut": 200
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/json-invalide",
+            "status": 200
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "diagnostiquer",
+            "args": [
+              "interruption"
+            ],
+            "expected": {
+              "type": "réseau",
+              "statut": null
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/interruption",
+            "status": 0
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "diagnostiquer",
+            "args": [
+              "ping"
+            ],
+            "expected": {
+              "type": "succès",
+              "statut": 200
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ping",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "À quelle étape disposes-tu déjà d’un statut ?",
+      "Sépare l’attente de fetch, le contrôle ok puis la lecture du corps.",
+      "async function diagnostiquer(route) {\n  let r;\n  try { r = await fetch(\"/api-pedagogique/v1/\" + route); }\n  catch (erreur) { return {type:\"réseau\",statut:null}; }\n  if (!r.ok) { return {type:\"http\",statut:r.status}; }\n  try { await r.json(); }\n  catch (erreur) { return {type:\"json\",statut:r.status}; }\n  return {type:\"succès\",statut:r.status};\n}"
+    ],
+    "explanation_fr": "Les blocs limités préservent la provenance de chaque diagnostic.",
+    "common_wrong_answers": [],
+    "id": "http-m4-01-e3"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Limiter la nouvelle tentative",
+    "instruction_fr": "Écris async retenterLecture(route), route parmi ping, erreur, json-invalide, interruption. Pour une interruption de GET, autorise deux tentatives au total. Ne répète pas un refus HTTP ni un échec JSON. Retourne {etat,tentatives}, etat parmi succès, http, json, réseau.",
+    "starter_code": "async function retenterLecture(route) {\n  try { const r = await fetch(\"/api-pedagogique/v1/\" + route); await r.json(); return {etat:\"succès\",tentatives:1}; }\n  catch (erreur) { return {etat:\"réseau\",tentatives:1}; }\n}",
+    "solution": "async function retenterLecture(route) {\n  for (let tentative = 1; tentative <= 2; tentative = tentative + 1) {\n    let r;\n    try { r = await fetch(\"/api-pedagogique/v1/\" + route); }\n    catch (erreur) { if (tentative === 2) { return {etat:\"réseau\",tentatives:2}; } else { continue; } }\n    if (!r.ok) { return {etat:\"http\",tentatives:tentative}; }\n    try { await r.json(); } catch (erreur) { return {etat:\"json\",tentatives:tentative}; }\n    return {etat:\"succès\",tentatives:tentative};\n  }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "retenterLecture",
+            "args": [
+              "interruption"
+            ],
+            "expected": {
+              "etat": "réseau",
+              "tentatives": 2
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/interruption",
+            "status": 0
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "retenterLecture",
+            "args": [
+              "ping"
+            ],
+            "expected": {
+              "etat": "succès",
+              "tentatives": 1
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ping",
+            "status": 200
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "retenterLecture",
+            "args": [
+              "erreur"
+            ],
+            "expected": {
+              "etat": "http",
+              "tentatives": 1
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/erreur",
+            "status": 503
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "retenterLecture",
+            "args": [
+              "json-invalide"
+            ],
+            "expected": {
+              "etat": "json",
+              "tentatives": 1
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/json-invalide",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Quelle catégorie autorise explicitement un second essai ?",
+      "Sépare le catch de fetch de celui de la lecture JSON.",
+      "async function retenterLecture(route) {\n  for (let tentative = 1; tentative <= 2; tentative = tentative + 1) {\n    let r;\n    try { r = await fetch(\"/api-pedagogique/v1/\" + route); }\n    catch (erreur) { if (tentative === 2) { return {etat:\"réseau\",tentatives:2}; } else { continue; } }\n    if (!r.ok) { return {etat:\"http\",tentatives:tentative}; }\n    try { await r.json(); } catch (erreur) { return {etat:\"json\",tentatives:tentative}; }\n    return {etat:\"succès\",tentatives:tentative};\n  }\n}"
+    ],
+    "explanation_fr": "La boucle a une borne et ne sert qu’à une lecture GET selon cette politique limitée.",
+    "common_wrong_answers": [],
+    "id": "http-m4-01-e4"
+  }
+]

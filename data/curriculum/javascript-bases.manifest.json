@@ -103,5 +103,8 @@
   "reviewer": null,
   "license": "Contenu original Nunya · brouillon",
   "depth_fr": "Socle débutant de programmation synchrone en console. Les interfaces DOM, les événements, les promesses et Node.js relèvent de cours distincts.",
-  "availability": "programme-redige"
+  "availability": "programme-redige",
+  "next_courses": [
+    "http-bases"
+  ]
 }

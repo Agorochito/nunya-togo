@@ -1,0 +1,426 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Lire un refus de syntaxe",
+    "instruction_fr": "Écris async envoyerBrut(texte). Envoie ce texte tel quel en POST inscriptions avec Content-Type JSON. Retourne {statut,erreur}, où erreur est le champ du corps ou null s’il est absent. texte peut être invalide, incomplet ou une demande fictive valide.",
+    "starter_code": "async function envoyerBrut(texte) { return {statut:200, erreur:null}; }",
+    "solution": "async function envoyerBrut(texte) {\n  const r = await fetch(\"/api-pedagogique/v1/inscriptions\", {method:\"POST\", headers:{\"Content-Type\":\"application/json\"}, body:texte});\n  const corps = await r.json();\n  return {statut:r.status, erreur:corps.erreur === undefined ? null : corps.erreur};\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "envoyerBrut",
+            "args": [
+              "{incomplet"
+            ],
+            "expected": {
+              "statut": 400,
+              "erreur": "JSON invalide"
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 400
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "envoyerBrut",
+            "args": [
+              "{}"
+            ],
+            "expected": {
+              "statut": 422,
+              "erreur": "Données invalides"
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 422
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "envoyerBrut",
+            "args": [
+              "{\"atelierId\":1,\"nom\":\"Afi\"}"
+            ],
+            "expected": {
+              "statut": 201,
+              "erreur": null
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 201
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La syntaxe et les champs requis sont-ils le même contrôle ?",
+      "Lis le statut puis le JSON de réponse, même pour un refus.",
+      "async function envoyerBrut(texte) {\n  const r = await fetch(\"/api-pedagogique/v1/inscriptions\", {method:\"POST\", headers:{\"Content-Type\":\"application/json\"}, body:texte});\n  const corps = await r.json();\n  return {statut:r.status, erreur:corps.erreur === undefined ? null : corps.erreur};\n}"
+    ],
+    "explanation_fr": "Un objet vide est analysable mais incomplet, d’où une autre catégorie.",
+    "common_wrong_answers": [],
+    "id": "http-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Contrôler le format annoncé",
+    "instruction_fr": "Écris async testerFormat(format). Envoie {atelierId:1,nom:\"Afi\"} sérialisé avec Content-Type égal à format. Retourne le statut. Les formats testés sont application/json et des formats non JSON.",
+    "starter_code": "async function testerFormat(format) { return 201; }",
+    "solution": "async function testerFormat(format) {\n  const r = await fetch(\"/api-pedagogique/v1/inscriptions\", {method:\"POST\", headers:{\"Content-Type\":format}, body:JSON.stringify({atelierId:1,nom:\"Afi\"})});\n  return r.status;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "testerFormat",
+            "args": [
+              "text/plain"
+            ],
+            "expected": 415
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 415
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "testerFormat",
+            "args": [
+              "application/json"
+            ],
+            "expected": 201
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 201
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "testerFormat",
+            "args": [
+              "application/octet-stream"
+            ],
+            "expected": 415
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 415
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un texte JSON peut-il être annoncé avec un mauvais format ?",
+      "Le test fait varier l’en-tête, pas le corps.",
+      "async function testerFormat(format) {\n  const r = await fetch(\"/api-pedagogique/v1/inscriptions\", {method:\"POST\", headers:{\"Content-Type\":format}, body:JSON.stringify({atelierId:1,nom:\"Afi\"})});\n  return r.status;\n}"
+    ],
+    "explanation_fr": "Le statut reçu décrit le contrat de format de cette route.",
+    "common_wrong_answers": [],
+    "id": "http-m3-02-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Classer les refus métier",
+    "instruction_fr": "Écris async classerInscription(atelierId,nom). Envoie les deux valeurs en JSON. Retourne {statut,etat} : 201→acceptée-fictive, 409→complet, 404→inconnu, 422→invalide. Les essais se limitent à ces statuts et à des noms fictifs.",
+    "starter_code": "async function classerInscription(atelierId, nom) { return {statut:201,etat:\"acceptée-fictive\"}; }",
+    "solution": "async function classerInscription(atelierId, nom) {\n  const r = await fetch(\"/api-pedagogique/v1/inscriptions\", {method:\"POST\", headers:{\"Content-Type\":\"application/json\"}, body:JSON.stringify({atelierId:atelierId,nom:nom})});\n  const etats = {201:\"acceptée-fictive\",409:\"complet\",404:\"inconnu\",422:\"invalide\"};\n  return {statut:r.status, etat:etats[r.status]};\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "classerInscription",
+            "args": [
+              2,
+              "Afi"
+            ],
+            "expected": {
+              "statut": 409,
+              "etat": "complet"
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 409
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "classerInscription",
+            "args": [
+              99,
+              "Afi"
+            ],
+            "expected": {
+              "statut": 404,
+              "etat": "inconnu"
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 404
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "classerInscription",
+            "args": [
+              1,
+              "   "
+            ],
+            "expected": {
+              "statut": 422,
+              "etat": "invalide"
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 422
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "classerInscription",
+            "args": [
+              1,
+              "Afi"
+            ],
+            "expected": {
+              "statut": 201,
+              "etat": "acceptée-fictive"
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 201
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une absence d’atelier et un manque de place demandent-ils le même message ?",
+      "Construis une correspondance entre statuts et catégories.",
+      "async function classerInscription(atelierId, nom) {\n  const r = await fetch(\"/api-pedagogique/v1/inscriptions\", {method:\"POST\", headers:{\"Content-Type\":\"application/json\"}, body:JSON.stringify({atelierId:atelierId,nom:nom})});\n  const etats = {201:\"acceptée-fictive\",409:\"complet\",404:\"inconnu\",422:\"invalide\"};\n  return {statut:r.status, etat:etats[r.status]};\n}"
+    ],
+    "explanation_fr": "Chaque retour conserve aussi le statut réel pour rester explicable.",
+    "common_wrong_answers": [],
+    "id": "http-m3-02-e3"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Valider localement sans supprimer le contrôle API",
+    "instruction_fr": "Écris async inscrireValide(id,nom). Si id n’est pas un entier positif ou nom n’est pas un texte trim de longueur 1–40, retourne {etat:\"invalide-local\",statut:null} avant envoi. Sinon envoie le nom nettoyé en POST JSON et retourne {etat:r.ok?\"acceptée\":\"refusée\",statut:r.status}. Les noms sont fictifs.",
+    "starter_code": "async function inscrireValide(id, nom) { return {etat:\"acceptée\",statut:201}; }",
+    "solution": "async function inscrireValide(id, nom) {\n  if (!Number.isInteger(id) || id < 1 || typeof nom !== \"string\" || nom.trim().length < 1 || nom.trim().length > 40) { return {etat:\"invalide-local\",statut:null}; }\n  const r = await fetch(\"/api-pedagogique/v1/inscriptions\", {method:\"POST\",headers:{\"Content-Type\":\"application/json\"},body:JSON.stringify({atelierId:id,nom:nom.trim()})});\n  return {etat:r.ok ? \"acceptée\" : \"refusée\",statut:r.status};\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "inscrireValide",
+            "args": [
+              1,
+              " Afi "
+            ],
+            "expected": {
+              "etat": "acceptée",
+              "statut": 201
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 201
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "inscrireValide",
+            "args": [
+              1,
+              "  "
+            ],
+            "expected": {
+              "etat": "invalide-local",
+              "statut": null
+            }
+          },
+          {
+            "name": "inscrireValide",
+            "args": [
+              0,
+              "Afi"
+            ],
+            "expected": {
+              "etat": "invalide-local",
+              "statut": null
+            }
+          },
+          {
+            "name": "inscrireValide",
+            "args": [
+              1,
+              false
+            ],
+            "expected": {
+              "etat": "invalide-local",
+              "statut": null
+            }
+          },
+          {
+            "name": "inscrireValide",
+            "args": [
+              1,
+              "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            ],
+            "expected": {
+              "etat": "invalide-local",
+              "statut": null
+            }
+          }
+        ],
+        "http_requests": []
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "inscrireValide",
+            "args": [
+              2,
+              "Afi"
+            ],
+            "expected": {
+              "etat": "refusée",
+              "statut": 409
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 409
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "inscrireValide",
+            "args": [
+              99,
+              "Afi"
+            ],
+            "expected": {
+              "etat": "refusée",
+              "statut": 404
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 404
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La validité du formulaire prouve-t-elle la disponibilité de l’atelier ?",
+      "Sépare les contrôles de présence/type et la réponse du destinataire.",
+      "async function inscrireValide(id, nom) {\n  if (!Number.isInteger(id) || id < 1 || typeof nom !== \"string\" || nom.trim().length < 1 || nom.trim().length > 40) { return {etat:\"invalide-local\",statut:null}; }\n  const r = await fetch(\"/api-pedagogique/v1/inscriptions\", {method:\"POST\",headers:{\"Content-Type\":\"application/json\"},body:JSON.stringify({atelierId:id,nom:nom.trim()})});\n  return {etat:r.ok ? \"acceptée\" : \"refusée\",statut:r.status};\n}"
+    ],
+    "explanation_fr": "Un identifiant positif inconnu passe la règle locale mais reste refusé par l’API.",
+    "common_wrong_answers": [],
+    "id": "http-m3-02-e4"
+  }
+]

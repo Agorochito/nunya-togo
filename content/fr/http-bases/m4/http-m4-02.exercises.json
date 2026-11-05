@@ -1,0 +1,296 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Relier un signal sans annuler",
+    "instruction_fr": "Écris async chargerLent(). Crée un AbortController neuf, envoie GET lent avec son signal, lis le JSON puis retourne {annule:signal.aborted,version:donnees.version}. Ne demande pas d’annulation.",
+    "starter_code": "async function chargerLent() { return {annule:false,version:\"locale-v1\"}; }",
+    "solution": "async function chargerLent() {\n  const controleur = new AbortController();\n  const r = await fetch(\"/api-pedagogique/v1/lent\", {signal:controleur.signal});\n  const donnees = await r.json();\n  return {annule:controleur.signal.aborted,version:donnees.version};\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chargerLent",
+            "args": [],
+            "expected": {
+              "annule": false,
+              "version": "locale-v1"
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/lent",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chargerLent",
+            "args": [],
+            "expected": {
+              "annule": false,
+              "version": "locale-v1"
+            }
+          },
+          {
+            "name": "chargerLent",
+            "args": [],
+            "expected": {
+              "annule": false,
+              "version": "locale-v1"
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/lent",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Créer un contrôleur impose-t-il de l’annuler ?",
+      "Passe signal dans les options de fetch.",
+      "async function chargerLent() {\n  const controleur = new AbortController();\n  const r = await fetch(\"/api-pedagogique/v1/lent\", {signal:controleur.signal});\n  const donnees = await r.json();\n  return {annule:controleur.signal.aborted,version:donnees.version};\n}"
+    ],
+    "explanation_fr": "Le signal reste actif si abort n’est jamais appelé.",
+    "common_wrong_answers": [],
+    "id": "http-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Utiliser un signal déjà annulé",
+    "instruction_fr": "Écris async annulerAvant(). Crée un contrôleur, appelle abort(), puis tente GET lent avec son signal. Retourne Annulé si le rejet a le nom AbortError ; propage les autres erreurs. Un succès inattendu retourne Reçu.",
+    "starter_code": "async function annulerAvant() {\n  const r = await fetch(\"/api-pedagogique/v1/lent\");\n  return \"Reçu\";\n}",
+    "solution": "async function annulerAvant() {\n  const controleur = new AbortController();\n  controleur.abort();\n  try {\n    await fetch(\"/api-pedagogique/v1/lent\", {signal:controleur.signal});\n    return \"Reçu\";\n  } catch (erreur) {\n    if (erreur.name === \"AbortError\") { return \"Annulé\"; }\n    throw erreur;\n  }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "annulerAvant",
+            "args": [],
+            "expected": "Annulé"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/lent",
+            "status": 0
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "annulerAvant",
+            "args": [],
+            "expected": "Annulé"
+          },
+          {
+            "name": "annulerAvant",
+            "args": [],
+            "expected": "Annulé"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/lent",
+            "status": 0
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Quel état le signal possède-t-il avant la tentative ?",
+      "Le fetch doit recevoir exactement ce signal annulé.",
+      "async function annulerAvant() {\n  const controleur = new AbortController();\n  controleur.abort();\n  try {\n    await fetch(\"/api-pedagogique/v1/lent\", {signal:controleur.signal});\n    return \"Reçu\";\n  } catch (erreur) {\n    if (erreur.name === \"AbortError\") { return \"Annulé\"; }\n    throw erreur;\n  }\n}"
+    ],
+    "explanation_fr": "Le journal observe une tentative rejetée, pas un statut HTTP de réponse.",
+    "common_wrong_answers": [],
+    "id": "http-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Annuler après le départ",
+    "instruction_fr": "Écris async annulerApresDepart(). Lance GET lent avec le signal d’un contrôleur, conserve sa promesse puis appelle abort immédiatement. Attends la promesse et retourne Annulé pour AbortError, Reçu pour un succès ; propage les autres erreurs.",
+    "starter_code": "async function annulerApresDepart() {\n  const controleur = new AbortController();\n  const r = await fetch(\"/api-pedagogique/v1/lent\", {signal:controleur.signal});\n  controleur.abort();\n  return \"Reçu\";\n}",
+    "solution": "async function annulerApresDepart() {\n  const controleur = new AbortController();\n  const attente = fetch(\"/api-pedagogique/v1/lent\", {signal:controleur.signal});\n  controleur.abort();\n  try { await attente; return \"Reçu\"; }\n  catch (erreur) { if (erreur.name === \"AbortError\") { return \"Annulé\"; } throw erreur; }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "annulerApresDepart",
+            "args": [],
+            "expected": "Annulé"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/lent",
+            "status": 0
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "annulerApresDepart",
+            "args": [],
+            "expected": "Annulé"
+          },
+          {
+            "name": "annulerApresDepart",
+            "args": [],
+            "expected": "Annulé"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/lent",
+            "status": 0
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le code de départ attend-il déjà la réponse avant d’annuler ?",
+      "Lance fetch sans await immédiat, annule, puis attends la promesse conservée.",
+      "async function annulerApresDepart() {\n  const controleur = new AbortController();\n  const attente = fetch(\"/api-pedagogique/v1/lent\", {signal:controleur.signal});\n  controleur.abort();\n  try { await attente; return \"Reçu\"; }\n  catch (erreur) { if (erreur.name === \"AbortError\") { return \"Annulé\"; } throw erreur; }\n}"
+    ],
+    "explanation_fr": "Cette séquence évite une annulation arrivée après la réussite.",
+    "common_wrong_answers": [],
+    "id": "http-m4-02-e3"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Recommencer avec un nouveau contrôleur",
+    "instruction_fr": "Écris async chargerSelonChoix(annuler), avec un booléen. À chaque appel, crée un contrôleur neuf et lance GET lent avec son signal. Si annuler vaut true, annule immédiatement. Retourne {etat:\"annulé\",version:null} pour AbortError, sinon {etat:\"reçu\",version:donnees.version}. Propage les autres erreurs.",
+    "starter_code": "const controleurPartage = new AbortController();\nasync function chargerSelonChoix(annuler) {\n  if (annuler) { controleurPartage.abort(); }\n  try { const r = await fetch(\"/api-pedagogique/v1/lent\", {signal:controleurPartage.signal}); const d = await r.json(); return {etat:\"reçu\",version:d.version}; }\n  catch (e) { if(e.name === \"AbortError\") return {etat:\"annulé\",version:null}; throw e; }\n}",
+    "solution": "async function chargerSelonChoix(annuler) {\n  const controleur = new AbortController();\n  const attente = fetch(\"/api-pedagogique/v1/lent\", {signal:controleur.signal});\n  if (annuler) { controleur.abort(); }\n  try { const r = await attente; const d = await r.json(); return {etat:\"reçu\",version:d.version}; }\n  catch (erreur) { if (erreur.name === \"AbortError\") { return {etat:\"annulé\",version:null}; } throw erreur; }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chargerSelonChoix",
+            "args": [
+              true
+            ],
+            "expected": {
+              "etat": "annulé",
+              "version": null
+            }
+          },
+          {
+            "name": "chargerSelonChoix",
+            "args": [
+              false
+            ],
+            "expected": {
+              "etat": "reçu",
+              "version": "locale-v1"
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/lent",
+            "status": 0
+          },
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/lent",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chargerSelonChoix",
+            "args": [
+              false
+            ],
+            "expected": {
+              "etat": "reçu",
+              "version": "locale-v1"
+            }
+          },
+          {
+            "name": "chargerSelonChoix",
+            "args": [
+              true
+            ],
+            "expected": {
+              "etat": "annulé",
+              "version": null
+            }
+          },
+          {
+            "name": "chargerSelonChoix",
+            "args": [
+              false
+            ],
+            "expected": {
+              "etat": "reçu",
+              "version": "locale-v1"
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/lent",
+            "status": 200
+          },
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/lent",
+            "status": 0
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un signal annulé peut-il redevenir neuf ?",
+      "Le contrôleur appartient à un appel, pas à tous les appels.",
+      "async function chargerSelonChoix(annuler) {\n  const controleur = new AbortController();\n  const attente = fetch(\"/api-pedagogique/v1/lent\", {signal:controleur.signal});\n  if (annuler) { controleur.abort(); }\n  try { const r = await attente; const d = await r.json(); return {etat:\"reçu\",version:d.version}; }\n  catch (erreur) { if (erreur.name === \"AbortError\") { return {etat:\"annulé\",version:null}; } throw erreur; }\n}"
+    ],
+    "explanation_fr": "Les séquences de tests vérifient une réussite après une annulation antérieure.",
+    "common_wrong_answers": [],
+    "id": "http-m4-02-e4"
+  }
+]

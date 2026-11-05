@@ -1,0 +1,276 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Retourner un statut attendu",
+    "instruction_fr": "Complète async function statut(chemin) : faire GET sur chemin et retourner le code reçu. Ne rien afficher dans la fonction. Les chemins sont fournis par les tests.",
+    "starter_code": "async function statut(chemin){const reponse=fetch(chemin);return reponse.status;}",
+    "solution": "async function statut(chemin){const reponse=await fetch(chemin);return reponse.status;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "statut",
+            "args": [
+              "/api-pedagogique/v1/ping"
+            ],
+            "expected": 200
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ping",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "statut",
+            "args": [
+              "/api-pedagogique/v1/ateliers/99"
+            ],
+            "expected": 404
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers/99",
+            "status": 404
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "statut",
+            "args": [
+              "/api-pedagogique/v1/erreur"
+            ],
+            "expected": 503
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/erreur",
+            "status": 503
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "fetch rend d’abord une promesse.",
+      "L’objet réponse doit être obtenu avant la lecture de status.",
+      "async function statut(chemin){const reponse=await fetch(chemin);return reponse.status;}"
+    ],
+    "explanation_fr": "L’appelant attendra le nombre retourné par la fonction.",
+    "common_wrong_answers": [],
+    "id": "http-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Construire un message client",
+    "instruction_fr": "Écris async function message(prefixe) : demande /texte, lis son corps puis retourne prefixe + texte.trim(). Aucun affichage dans la fonction.",
+    "starter_code": "async function message(prefixe){const reponse=await fetch(\"/api-pedagogique/v1/texte\");const texte=await reponse.text();return prefixe;}",
+    "solution": "async function message(prefixe){const reponse=await fetch(\"/api-pedagogique/v1/texte\");const texte=await reponse.text();return prefixe+texte.trim();}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "message",
+            "args": [
+              "Info : "
+            ],
+            "expected": "Info : Bonjour depuis l’API locale."
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/texte",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "message",
+            "args": [
+              "API : "
+            ],
+            "expected": "API : Bonjour depuis l’API locale."
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/texte",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le corps est déjà correctement attendu.",
+      "Le contrat porte sur la valeur retournée, pas seulement le préfixe.",
+      "async function message(prefixe){const reponse=await fetch(\"/api-pedagogique/v1/texte\");const texte=await reponse.text();return prefixe+texte.trim();}"
+    ],
+    "explanation_fr": "La fonction combine une donnée d’appel et le contenu réellement reçu.",
+    "common_wrong_answers": [],
+    "id": "http-m1-02-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Suivre deux demandes successives",
+    "instruction_fr": "Écris async function deuxStatuts(premier,second) : effectue les deux GET successifs et retourne leurs codes dans un tableau, dans l’ordre.",
+    "starter_code": "async function deuxStatuts(premier,second){const a=await fetch(premier);const b=await fetch(premier);return [a.status,b.status];}",
+    "solution": "async function deuxStatuts(premier,second){const a=await fetch(premier);const b=await fetch(second);return [a.status,b.status];}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "deuxStatuts",
+            "args": [
+              "/api-pedagogique/v1/ping",
+              "/api-pedagogique/v1/texte"
+            ],
+            "expected": [
+              200,
+              200
+            ]
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ping",
+            "status": 200
+          },
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/texte",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "deuxStatuts",
+            "args": [
+              "/api-pedagogique/v1/ateliers/99",
+              "/api-pedagogique/v1/ping"
+            ],
+            "expected": [
+              404,
+              200
+            ]
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers/99",
+            "status": 404
+          },
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ping",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les deux paramètres désignent deux demandes distinctes.",
+      "La deuxième requête doit utiliser second.",
+      "async function deuxStatuts(premier,second){const a=await fetch(premier);const b=await fetch(second);return [a.status,b.status];}"
+    ],
+    "explanation_fr": "Les requêtes observées permettent de vérifier le parcours réel, même si deux codes se ressemblent.",
+    "common_wrong_answers": [],
+    "id": "http-m1-02-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une lecture de corps",
+    "instruction_fr": "Corrige async function textePropre(suffixe) pour retourner le corps de /texte nettoyé, suivi du suffixe. Le code tente actuellement trim sur une promesse.",
+    "starter_code": "async function textePropre(suffixe){const reponse=await fetch(\"/api-pedagogique/v1/texte\");const texte=reponse.text();return texte.trim()+suffixe;}",
+    "solution": "async function textePropre(suffixe){const reponse=await fetch(\"/api-pedagogique/v1/texte\");const texte=await reponse.text();return texte.trim()+suffixe;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "textePropre",
+            "args": [
+              " !"
+            ],
+            "expected": "Bonjour depuis l’API locale. !"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/texte",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "textePropre",
+            "args": [
+              " [vérifié]"
+            ],
+            "expected": "Bonjour depuis l’API locale. [vérifié]"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/texte",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Attendre fetch ne lit pas encore le corps.",
+      "La lecture text() doit elle aussi aboutir avant trim.",
+      "async function textePropre(suffixe){const reponse=await fetch(\"/api-pedagogique/v1/texte\");const texte=await reponse.text();return texte.trim()+suffixe;}"
+    ],
+    "explanation_fr": "Chaque await correspond à une valeur précise attendue.",
+    "common_wrong_answers": [],
+    "id": "http-m1-02-e4"
+  }
+]

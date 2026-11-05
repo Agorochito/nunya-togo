@@ -1,6 +1,6 @@
 # Prochains moteurs : décision technique avant les cours
 
-Recherche du 4 novembre 2026. La recherche décrit les contraintes des prochains moteurs. Mise à jour du 5 novembre : Git est maintenant implémenté localement, sans publication, avec les dépendances épinglées décrites ci-dessous. Aucun service payant, compte ni secret ajouté.
+Recherche du 4 novembre 2026. La recherche décrit les contraintes des prochains moteurs. Mise à jour du 5 novembre : Git et HTTP sont maintenant implémentés localement, sans publication, avec les dépendances épinglées décrites ci-dessous. Aucun service payant, compte ni secret ajouté.
 
 ## Git et GitHub
 
@@ -12,7 +12,11 @@ Git local ne demande pas de compte. Publier un dépôt ou une pull request sur G
 
 ## HTTP
 
-Un atelier HTTP peut utiliser les vrais objets `Request`, `Response` et `fetch`, avec une **API pédagogique locale** identifiée comme telle dans un service worker. Il faut annoncer qu’aucun serveur distant n’est contacté, puis vérifier méthodes, statuts, en-têtes, corps, erreurs et JSON sur les données fictives de cette API. Cela enseigne la logique du client, sans prétendre exécuter un serveur Node.js. [Contrat de l’événement fetch](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/fetch_event).
+Le cours HTTP/API est implémenté : 12 leçons, 48 exercices, 24 exemples et 36 questions. Les vrais objets `Request`, `Response` et `fetch` travaillent sur une **API pédagogique locale** dans le service worker ; données fictives et aucune persistance. Le moteur asynchrone pèse environ 1,8 Ko gzip, son client de confirmation 0,7 Ko et son API 1,5 Ko. Le pack de cours pèse environ 39 Ko gzip.
+
+Le client confirme le protocole `locale-v1` par MessageChannel avant de démarrer le Worker, sans sonde réseau. Une version ancienne du service worker refuse l’atelier proprement. Les requêtes natives sont limitées au préfixe local, sans cookies ; le statut et la forme des échanges sont vérifiés et visibles. Le Worker possède une CSP propre, reproduite par le serveur de QA, qui refuse les imports de modules tout en permettant l’évaluation du code de l’élève. Les références et codes initiaux passent dans `HTTP_ENGINE_RESULTS.json`, y compris à froid hors ligne. La relecture humaine reste nécessaire.
+
+Sources primaires : [Fetch en français](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch), [événement fetch du service worker](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/fetch_event), [await](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/await), [CSP des Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#content_security_policy). Le laboratoire enseigne le client HTTP, sans prétendre exécuter un serveur Node.js.
 
 ## Node.js
 

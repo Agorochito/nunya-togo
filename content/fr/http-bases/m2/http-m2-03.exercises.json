@@ -1,0 +1,383 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Retourner les titres disponibles",
+    "instruction_fr": "Écris async function disponibles(ville). Demande réellement les ateliers de ville, puis retourne les titres dont places>0, dans l’ordre reçu.",
+    "starter_code": "async function disponibles(ville){const p=new URLSearchParams();p.set(\"ville\",ville);const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());const ateliers=await r.json();const titres=[];for(const a of ateliers){titres.push(a.titre);}return titres;}",
+    "solution": "async function disponibles(ville){const p=new URLSearchParams();p.set(\"ville\",ville);const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());const ateliers=await r.json();const titres=[];for(const a of ateliers){if(a.places>0){titres.push(a.titre);}}return titres;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "disponibles",
+            "args": [
+              "Lomé"
+            ],
+            "expected": [
+              "Python",
+              "Web"
+            ]
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Lomé"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "disponibles",
+            "args": [
+              "Kara"
+            ],
+            "expected": []
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Kara"
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "disponibles",
+            "args": [
+              ""
+            ],
+            "expected": [
+              "Python",
+              "Web"
+            ]
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": ""
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La requête réduit la ville ; le client choisit ensuite les places positives.",
+      "Le titre est ajouté seulement dans la branche correspondante.",
+      "async function disponibles(ville){const p=new URLSearchParams();p.set(\"ville\",ville);const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());const ateliers=await r.json();const titres=[];for(const a of ateliers){if(a.places>0){titres.push(a.titre);}}return titres;}"
+    ],
+    "explanation_fr": "Jardin est une fiche existante mais non disponible dans ce contrat.",
+    "common_wrong_answers": [],
+    "id": "http-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Calculer un total de places",
+    "instruction_fr": "Écris async function sommePlaces(ville). Demande la collection filtrée par ville puis retourne la somme de places. Une collection vide doit produire 0.",
+    "starter_code": "async function sommePlaces(ville){const p=new URLSearchParams();p.set(\"ville\",ville);const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());const ateliers=await r.json();return ateliers.length;}",
+    "solution": "async function sommePlaces(ville){const p=new URLSearchParams();p.set(\"ville\",ville);const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());const ateliers=await r.json();let total=0;for(const a of ateliers){total=total+a.places;}return total;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "sommePlaces",
+            "args": [
+              "Lomé"
+            ],
+            "expected": 6
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Lomé"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "sommePlaces",
+            "args": [
+              "Kara"
+            ],
+            "expected": 0
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Kara"
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "sommePlaces",
+            "args": [
+              "Ville inconnue"
+            ],
+            "expected": 0
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Ville inconnue"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La longueur compte les fiches, pas les places.",
+      "Additionne la propriété numérique dans un accumulateur.",
+      "async function sommePlaces(ville){const p=new URLSearchParams();p.set(\"ville\",ville);const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());const ateliers=await r.json();let total=0;for(const a of ateliers){total=total+a.places;}return total;}"
+    ],
+    "explanation_fr": "Le total commence à zéro et reste défini si aucun élément n’est parcouru.",
+    "common_wrong_answers": [],
+    "id": "http-m2-03-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Construire des fiches de présentation",
+    "instruction_fr": "Écris async function fiches(ville). Charge les ateliers filtrés et retourne de nouveaux objets avec seulement id, titre et disponible, ce dernier booléen étant calculé par places>0.",
+    "starter_code": "async function fiches(ville){const p=new URLSearchParams();p.set(\"ville\",ville);const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());return await r.json();}",
+    "solution": "async function fiches(ville){const p=new URLSearchParams();p.set(\"ville\",ville);const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());const ateliers=await r.json();const resultat=[];for(const a of ateliers){resultat.push({id:a.id,titre:a.titre,disponible:a.places>0});}return resultat;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fiches",
+            "args": [
+              "Kara"
+            ],
+            "expected": [
+              {
+                "id": 2,
+                "titre": "Jardin",
+                "disponible": false
+              }
+            ]
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Kara"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fiches",
+            "args": [
+              "Lomé"
+            ],
+            "expected": [
+              {
+                "id": 1,
+                "titre": "Python",
+                "disponible": true
+              },
+              {
+                "id": 3,
+                "titre": "Web",
+                "disponible": true
+              }
+            ]
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Lomé"
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fiches",
+            "args": [
+              "Inconnue"
+            ],
+            "expected": []
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Inconnue"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le résultat demandé a une autre forme que la réponse brute.",
+      "Construis un nouvel objet par fiche sans y copier les propriétés inutiles.",
+      "async function fiches(ville){const p=new URLSearchParams();p.set(\"ville\",ville);const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());const ateliers=await r.json();const resultat=[];for(const a of ateliers){resultat.push({id:a.id,titre:a.titre,disponible:a.places>0});}return resultat;}"
+    ],
+    "explanation_fr": "Le booléen est calculé à partir du nombre de places, sans modifier l’objet reçu.",
+    "common_wrong_answers": [],
+    "id": "http-m2-03-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer la frontière de disponibilité",
+    "instruction_fr": "Corrige async function idsOuverts(ville). Retourne seulement les identifiants avec strictement plus de zéro place ; conserve la requête filtrée et l’ordre reçu.",
+    "starter_code": "async function idsOuverts(ville){const p=new URLSearchParams();p.set(\"ville\",ville);const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());const ateliers=await r.json();const ids=[];for(const a of ateliers){if(a.places>=0){ids.push(a.id);}}return ids;}",
+    "solution": "async function idsOuverts(ville){const p=new URLSearchParams();p.set(\"ville\",ville);const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());const ateliers=await r.json();const ids=[];for(const a of ateliers){if(a.places>0){ids.push(a.id);}}return ids;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "idsOuverts",
+            "args": [
+              "Kara"
+            ],
+            "expected": []
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Kara"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "idsOuverts",
+            "args": [
+              "Lomé"
+            ],
+            "expected": [
+              1,
+              3
+            ]
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Lomé"
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "idsOuverts",
+            "args": [
+              ""
+            ],
+            "expected": [
+              1,
+              3
+            ]
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": ""
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La fiche à zéro place met la frontière à l’épreuve.",
+      "Le signe doit exclure l’égalité.",
+      "async function idsOuverts(ville){const p=new URLSearchParams();p.set(\"ville\",ville);const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());const ateliers=await r.json();const ids=[];for(const a of ateliers){if(a.places>0){ids.push(a.id);}}return ids;}"
+    ],
+    "explanation_fr": "L’existence d’une fiche ne suffit pas à la rendre disponible.",
+    "common_wrong_answers": [],
+    "id": "http-m2-03-e4"
+  }
+]

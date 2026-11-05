@@ -1,0 +1,379 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Demander les titres d’une ville",
+    "instruction_fr": "Complète async function titresVille(ville). Encode ville avec URLSearchParams, demande /ateliers et retourne les titres dans leur ordre. Une ville vide demande toute la collection.",
+    "starter_code": "async function titresVille(ville){const p=new URLSearchParams();const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());const ateliers=await r.json();const titres=[];for(const a of ateliers){titres.push(a.titre);}return titres;}",
+    "solution": "async function titresVille(ville){const p=new URLSearchParams();p.set(\"ville\",ville);const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());const ateliers=await r.json();const titres=[];for(const a of ateliers){titres.push(a.titre);}return titres;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "titresVille",
+            "args": [
+              "Lomé"
+            ],
+            "expected": [
+              "Python",
+              "Web"
+            ]
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Lomé"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "titresVille",
+            "args": [
+              "Kara"
+            ],
+            "expected": [
+              "Jardin"
+            ]
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Kara"
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "titresVille",
+            "args": [
+              ""
+            ],
+            "expected": [
+              "Python",
+              "Jardin",
+              "Web"
+            ]
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": ""
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le nom du paramètre est ville.",
+      "Place sa valeur dans l’objet avant toString.",
+      "async function titresVille(ville){const p=new URLSearchParams();p.set(\"ville\",ville);const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());const ateliers=await r.json();const titres=[];for(const a of ateliers){titres.push(a.titre);}return titres;}"
+    ],
+    "explanation_fr": "La requête doit réellement porter le filtre et ne pas seulement filtrer une constante.",
+    "common_wrong_answers": [],
+    "id": "http-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Limiter après une recherche",
+    "instruction_fr": "Écris async function premiersTitres(ville,limite), avec limite entier de 1 à 3. Envoie les deux paramètres à /ateliers puis retourne les titres reçus.",
+    "starter_code": "async function premiersTitres(ville,limite){const p=new URLSearchParams();p.set(\"ville\",ville);const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());const donnees=await r.json();const titres=[];for(const a of donnees){titres.push(a.titre);}return titres;}",
+    "solution": "async function premiersTitres(ville,limite){const p=new URLSearchParams();p.set(\"ville\",ville);p.set(\"limite\",String(limite));const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());const donnees=await r.json();const titres=[];for(const a of donnees){titres.push(a.titre);}return titres;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "premiersTitres",
+            "args": [
+              "Lomé",
+              1
+            ],
+            "expected": [
+              "Python"
+            ]
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Lomé",
+              "limite": "1"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "premiersTitres",
+            "args": [
+              "",
+              2
+            ],
+            "expected": [
+              "Python",
+              "Jardin"
+            ]
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "",
+              "limite": "2"
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "premiersTitres",
+            "args": [
+              "Kara",
+              1
+            ],
+            "expected": [
+              "Jardin"
+            ]
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Kara",
+              "limite": "1"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les deux rubriques appartiennent à la requête.",
+      "Convertis la limite en texte pour son paramètre.",
+      "async function premiersTitres(ville,limite){const p=new URLSearchParams();p.set(\"ville\",ville);p.set(\"limite\",String(limite));const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());const donnees=await r.json();const titres=[];for(const a of donnees){titres.push(a.titre);}return titres;}"
+    ],
+    "explanation_fr": "Le service applique le filtre avant de limiter le résultat.",
+    "common_wrong_answers": [],
+    "id": "http-m2-01-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Préparer une URL sans appeler sa base fictive",
+    "instruction_fr": "Écris async function compterVille(ville). Construis URL avec le chemin /ateliers et la base illustrative https://exemple.invalid, définis ville, puis appelle seulement pathname+search. Retourne le nombre de fiches.",
+    "starter_code": "async function compterVille(ville){const url=new URL(\"/api-pedagogique/v1/ateliers\",\"https://exemple.invalid\");const r=await fetch(url.pathname+url.search);const donnees=await r.json();return donnees.length;}",
+    "solution": "async function compterVille(ville){const url=new URL(\"/api-pedagogique/v1/ateliers\",\"https://exemple.invalid\");url.searchParams.set(\"ville\",ville);const r=await fetch(url.pathname+url.search);const donnees=await r.json();return donnees.length;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compterVille",
+            "args": [
+              "Lomé"
+            ],
+            "expected": 2
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Lomé"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compterVille",
+            "args": [
+              "Kara"
+            ],
+            "expected": 1
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Kara"
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compterVille",
+            "args": [
+              "Kara & Lomé"
+            ],
+            "expected": 0
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Kara & Lomé"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La base sert seulement à construire les composants.",
+      "Définis searchParams avant de lire pathname et search.",
+      "async function compterVille(ville){const url=new URL(\"/api-pedagogique/v1/ateliers\",\"https://exemple.invalid\");url.searchParams.set(\"ville\",ville);const r=await fetch(url.pathname+url.search);const donnees=await r.json();return donnees.length;}"
+    ],
+    "explanation_fr": "La valeur complète doit rester un seul paramètre, y compris son esperluette.",
+    "common_wrong_answers": [],
+    "id": "http-m2-01-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une valeur prise pour syntaxe",
+    "instruction_fr": "Corrige async function rechercheExacte(ville) pour demander une seule valeur de ville, même si son texte contient & ou =. Retourne les identifiants des fiches reçues.",
+    "starter_code": "async function rechercheExacte(ville){const r=await fetch(\"/api-pedagogique/v1/ateliers?ville=\"+ville);const donnees=await r.json();const ids=[];for(const a of donnees){ids.push(a.id);}return ids;}",
+    "solution": "async function rechercheExacte(ville){const p=new URLSearchParams();p.set(\"ville\",ville);const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());const donnees=await r.json();const ids=[];for(const a of donnees){ids.push(a.id);}return ids;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rechercheExacte",
+            "args": [
+              "Lomé"
+            ],
+            "expected": [
+              1,
+              3
+            ]
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Lomé"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rechercheExacte",
+            "args": [
+              "Lomé&limite=1"
+            ],
+            "expected": []
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Lomé&limite=1"
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rechercheExacte",
+            "args": [
+              "Kara&limite=1"
+            ],
+            "expected": []
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers",
+            "status": 200,
+            "query": {
+              "ville": "Kara&limite=1"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La concaténation brute peut créer un paramètre supplémentaire.",
+      "Passe la valeur à set au lieu de lui confier la structure de l’URL.",
+      "async function rechercheExacte(ville){const p=new URLSearchParams();p.set(\"ville\",ville);const r=await fetch(\"/api-pedagogique/v1/ateliers?\"+p.toString());const donnees=await r.json();const ids=[];for(const a of donnees){ids.push(a.id);}return ids;}"
+    ],
+    "explanation_fr": "Aucune ville de la collection ne porte ces noms contenant &limite=1.",
+    "common_wrong_answers": [],
+    "id": "http-m2-01-e4"
+  }
+]

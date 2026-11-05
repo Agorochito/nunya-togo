@@ -56,3 +56,7 @@ Les données de projets (prix, stocks, réservations et formulaires d’associat
 12 leçons et activités originales Nunya, en français et en relecture. Références primaires conservées dans les leçons : [livre Git en français](https://git-scm.com/book/fr/v2), [documentation Git](https://git-scm.com/docs) et [documentation GitHub](https://docs.github.com/fr). Aucun manuel tiers n’est copié.
 
 Le moteur utilise `isomorphic-git@1.44.10`, `@isomorphic-git/lightning-fs@4.10.5` et `buffer@6.0.3`, épinglés et regroupés localement avec leurs dépendances. Les notices complètes sont générées dans `dist/runtime/git-THIRD-PARTY.txt`. Le moteur ne contacte ni GitHub ni un serveur Git ; les dépôts sont isolés dans le stockage du navigateur. Sources : https://github.com/isomorphic-git/isomorphic-git et https://github.com/isomorphic-git/lightning-fs .
+
+## HTTP/API — 5 novembre 2026
+
+12 leçons, 24 exemples et 48 exercices originaux Nunya, en français et en relecture. Les métadonnées de chaque leçon indiquent ses références : [MDN Fetch](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch), [async/await](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/await), [WHATWG Fetch](https://fetch.spec.whatwg.org/) et [URL](https://url.spec.whatwg.org/). Aucun article tiers n’est recopié. Le contrat et l’API de démonstration stateless sont originaux, avec des ateliers et des noms fictifs. Aucun service externe ou compte nouveau n’est utilisé.

@@ -1,12 +1,16 @@
 # Vérifications 5.5.0 — 5 novembre 2026
 
-156 tests unitaires réussis ; build, lint, TypeScript, contenus, prérequis et liens internes validés. Les rapports de navigateur suivent dans `GLOBAL_CURRICULUM_UI_RESULTS.json`, `ALL_DISCOVERY_COURSES_RESULTS.json`, `BACKUP_ONBOARDING_RESULTS.json`, `CODE_RUNTIME_RESULTS.json` et `WEB_EXERCISE_RESULTS.json` et `LIBRARY_OFFLINE_RESULTS.json`. Les vérifications automatisées ne remplacent pas la relecture pédagogique.
+163 tests unitaires réussis ; build, lint, TypeScript, contenus, prérequis et liens internes validés. Les rapports de navigateur suivent dans `GLOBAL_CURRICULUM_UI_RESULTS.json`, `ALL_DISCOVERY_COURSES_RESULTS.json`, `BACKUP_ONBOARDING_RESULTS.json`, `CODE_RUNTIME_RESULTS.json` et `WEB_EXERCISE_RESULTS.json` et `LIBRARY_OFFLINE_RESULTS.json`, avec les rapports Git et HTTP décrits ci-dessous. Les vérifications automatisées ne remplacent pas la relecture pédagogique.
 
 La bibliothèque et deux articles MDN s’ouvrent sans rafraîchissement manuel. Une unité de collection est partageable et reste sélectionnée après rechargement. Le projet JavaScript final est accessible hors ligne après téléchargement, y compris après visite du guide public : celle-ci ne remplace plus la page d’accueil mise en cache. Un lien de ressource invalide affiche une issue claire.
 
 Les liens partagés Python M12, Découverte M4 et bibliothèque sont ouverts dans des profils neufs. Le questionnaire peut être passé et le diagnostic fermé sans résultat inventé. La restauration depuis le sélecteur natif de fichier conserve code, positions et réflexion après rechargement ; un fichier mal formé ne change pas la progression. Les autres preuves et limites sont détaillées dans `COURSE_COVERAGE_AUDIT.md`.
 
 L’atelier Git est vérifié dans `GIT_ENGINE_RESULTS.json` et `GIT_UI_RESULTS.json` : 32 situations initiales rejetées, 32 objectifs atteints par 101 opérations réelles ; persistance IndexedDB après fermeture, transfert des objets Git par archive et échec atomique d’une archive invalide. Les 12 leçons, 48 activités et 36 questions sont parcourues dans l’interface à 360 et 1440 px, sans sortie prématurée de la série, puis rechargées hors ligne. Axe : zéro violation sur les vues testées.
+
+HTTP : `HTTP_ENGINE_RESULTS.json` contient 162 cas réussis, 48 solutions acceptées, 48 codes de départ rejetés et 24 exemples ; vrais fetch/Request/Response, annulation et erreurs dans Chrome. Refus d’un ancien service worker sans requête de diagnostic au serveur ; imports externes bloqués par la CSP du Worker et URL interne de Request contrôlée malgré une propriété JS masquée. Le serveur de QA `scripts/serve-test.py` reproduit ces en-têtes Vercel. Ces restrictions ne constituent pas un service de compilation isolé pour un examen sécurisé.
+
+`HTTP_UI_RESULTS.json` confirme les 12 leçons, 48 exercices et 36 questions parcourus dans l’interface à 360 et 1440 px, puis la reprise froide hors ligne avec les requêtes encore exécutables. Aucun débordement et zéro violation axe sur les vues testées. Le catalogue complet de code affiche maintenant 5 programmes et 113 leçons ; Git et Découverte sont suivis séparément.
 
 ---
 

@@ -1,0 +1,327 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Conserver code et booléen",
+    "instruction_fr": "Écris async function etatAtelier(id) pour les identifiants testés. Fais GET /ateliers/id et retourne {statut:reponse.status,ok:reponse.ok}.",
+    "starter_code": "async function etatAtelier(id){const r=await fetch(\"/api-pedagogique/v1/ateliers/\"+String(id));return {statut:r.status,ok:true};}",
+    "solution": "async function etatAtelier(id){const r=await fetch(\"/api-pedagogique/v1/ateliers/\"+String(id));return {statut:r.status,ok:r.ok};}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "etatAtelier",
+            "args": [
+              1
+            ],
+            "expected": {
+              "statut": 200,
+              "ok": true
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers/1",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "etatAtelier",
+            "args": [
+              99
+            ],
+            "expected": {
+              "statut": 404,
+              "ok": false
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers/99",
+            "status": 404
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "etatAtelier",
+            "args": [
+              2
+            ],
+            "expected": {
+              "statut": 200,
+              "ok": true
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers/2",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le code et le booléen doivent venir de la réponse.",
+      "Un atelier absent ne doit pas être présenté comme un succès.",
+      "async function etatAtelier(id){const r=await fetch(\"/api-pedagogique/v1/ateliers/\"+String(id));return {statut:r.status,ok:r.ok};}"
+    ],
+    "explanation_fr": "La réponse existe même lorsque ok est faux.",
+    "common_wrong_answers": [],
+    "id": "http-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Lire le bon champ selon le résultat",
+    "instruction_fr": "Écris async function titreOuErreur(chemin). Les chemins testés sont une fiche connue, une fiche absente ou /erreur. Analyse le JSON une fois ; retourne titre si ok est vrai, sinon erreur.",
+    "starter_code": "async function titreOuErreur(chemin){const r=await fetch(chemin);const d=await r.json();return d.titre;}",
+    "solution": "async function titreOuErreur(chemin){const r=await fetch(chemin);const d=await r.json();if(r.ok){return d.titre;}return d.erreur;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "titreOuErreur",
+            "args": [
+              "/api-pedagogique/v1/ateliers/1"
+            ],
+            "expected": "Python"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers/1",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "titreOuErreur",
+            "args": [
+              "/api-pedagogique/v1/ateliers/99"
+            ],
+            "expected": "Atelier introuvable"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers/99",
+            "status": 404
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "titreOuErreur",
+            "args": [
+              "/api-pedagogique/v1/erreur"
+            ],
+            "expected": "Indisponible"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/erreur",
+            "status": 503
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le JSON peut décrire un succès ou un problème.",
+      "Choisis le champ après avoir examiné ok.",
+      "async function titreOuErreur(chemin){const r=await fetch(chemin);const d=await r.json();if(r.ok){return d.titre;}return d.erreur;}"
+    ],
+    "explanation_fr": "Un objet d’erreur n’a pas la même forme qu’une fiche.",
+    "common_wrong_answers": [],
+    "id": "http-m2-02-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Différencier absence et indisponibilité",
+    "instruction_fr": "Écris async function classer(chemin). Retourne Disponible pour ok vrai, Absent pour 404, À réessayer pour 503 et Autre pour les autres réponses. Ne relance pas de requête.",
+    "starter_code": "async function classer(chemin){const r=await fetch(chemin);if(r.ok){return \"Disponible\";}return \"Absent\";}",
+    "solution": "async function classer(chemin){const r=await fetch(chemin);if(r.ok){return \"Disponible\";}if(r.status===404){return \"Absent\";}if(r.status===503){return \"À réessayer\";}return \"Autre\";}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "classer",
+            "args": [
+              "/api-pedagogique/v1/ateliers/99"
+            ],
+            "expected": "Absent"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers/99",
+            "status": 404
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "classer",
+            "args": [
+              "/api-pedagogique/v1/erreur"
+            ],
+            "expected": "À réessayer"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/erreur",
+            "status": 503
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "classer",
+            "args": [
+              "/api-pedagogique/v1/ping"
+            ],
+            "expected": "Disponible"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ping",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Deux réponses non réussies ne portent pas le même code.",
+      "Teste les codes prévus avant le cas restant.",
+      "async function classer(chemin){const r=await fetch(chemin);if(r.ok){return \"Disponible\";}if(r.status===404){return \"Absent\";}if(r.status===503){return \"À réessayer\";}return \"Autre\";}"
+    ],
+    "explanation_fr": "Le message À réessayer est ici un résultat de classement, pas une relance automatique.",
+    "common_wrong_answers": [],
+    "id": "http-m2-02-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un succès toujours vrai",
+    "instruction_fr": "Corrige async function succes(chemin) pour retourner le vrai booléen de succès HTTP. Le code traite à tort tout statut non nul comme une réussite.",
+    "starter_code": "async function succes(chemin){const reponse=await fetch(chemin);return reponse.status!==0;}",
+    "solution": "async function succes(chemin){const reponse=await fetch(chemin);return reponse.ok;}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "succes",
+            "args": [
+              "/api-pedagogique/v1/ping"
+            ],
+            "expected": true
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ping",
+            "status": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "succes",
+            "args": [
+              "/api-pedagogique/v1/erreur"
+            ],
+            "expected": false
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/erreur",
+            "status": 503
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "succes",
+            "args": [
+              "/api-pedagogique/v1/ateliers/99"
+            ],
+            "expected": false
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "GET",
+            "path": "/api-pedagogique/v1/ateliers/99",
+            "status": 404
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "404 et 503 sont des nombres non nuls.",
+      "La question porte sur la plage de succès, pas sur la présence d’un nombre.",
+      "async function succes(chemin){const reponse=await fetch(chemin);return reponse.ok;}"
+    ],
+    "explanation_fr": "ok fournit directement le booléen demandé.",
+    "common_wrong_answers": [],
+    "id": "http-m2-02-e4"
+  }
+]

@@ -1,0 +1,268 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Envoyer une première fiche",
+    "instruction_fr": "Écris async inscrire(atelierId,nom). Pour des ids 1 ou 3 et un nom fictif valide, envoie POST inscriptions en JSON puis retourne le corps JSON de la réponse, sans affichage.",
+    "starter_code": "async function inscrire(atelierId, nom) {\n  return { atelierId: atelierId, nom: nom };\n}",
+    "solution": "async function inscrire(atelierId, nom) {\n  const r = await fetch(\"/api-pedagogique/v1/inscriptions\", { method:\"POST\", headers:{\"Content-Type\":\"application/json\"}, body:JSON.stringify({atelierId:atelierId, nom:nom}) });\n  return await r.json();\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "inscrire",
+            "args": [
+              1,
+              "Afi"
+            ],
+            "expected": {
+              "id": "demo-1",
+              "atelierId": 1,
+              "nom": "Afi"
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 201
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "inscrire",
+            "args": [
+              3,
+              "Kofi"
+            ],
+            "expected": {
+              "id": "demo-1",
+              "atelierId": 3,
+              "nom": "Kofi"
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 201
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Quel objet doit devenir le corps envoyé ?",
+      "Annonce application/json puis sérialise les deux propriétés avec JSON.stringify.",
+      "async function inscrire(atelierId, nom) {\n  const r = await fetch(\"/api-pedagogique/v1/inscriptions\", { method:\"POST\", headers:{\"Content-Type\":\"application/json\"}, body:JSON.stringify({atelierId:atelierId, nom:nom}) });\n  return await r.json();\n}"
+    ],
+    "explanation_fr": "Le retour provient du vrai corps de réponse ; la confirmation reste fictive.",
+    "common_wrong_answers": [],
+    "id": "http-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Préparer avec Headers et Request",
+    "instruction_fr": "Écris async envoyerNom(nom). Prépare un Headers JSON et un Request POST vers inscriptions avec atelierId:1, puis utilise fetch et retourne uniquement le nom reçu. Les noms fictifs sont valides après trim.",
+    "starter_code": "async function envoyerNom(nom) {\n  return nom;\n}",
+    "solution": "async function envoyerNom(nom) {\n  const entetes = new Headers({\"Content-Type\":\"application/json\"});\n  const requete = new Request(\"/api-pedagogique/v1/inscriptions\", {method:\"POST\", headers:entetes, body:JSON.stringify({atelierId:1, nom:nom})});\n  const r = await fetch(requete);\n  const corps = await r.json();\n  return corps.nom;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "envoyerNom",
+            "args": [
+              " Afi "
+            ],
+            "expected": "Afi"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 201
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "envoyerNom",
+            "args": [
+              "Nala"
+            ],
+            "expected": "Nala"
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 201
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le nom reçu peut différer du texte envoyé.",
+      "Prépare le Request puis attends sa réponse et son JSON.",
+      "async function envoyerNom(nom) {\n  const entetes = new Headers({\"Content-Type\":\"application/json\"});\n  const requete = new Request(\"/api-pedagogique/v1/inscriptions\", {method:\"POST\", headers:entetes, body:JSON.stringify({atelierId:1, nom:nom})});\n  const r = await fetch(requete);\n  const corps = await r.json();\n  return corps.nom;\n}"
+    ],
+    "explanation_fr": "La normalisation observée vient du contrat local ; construire Request seul ne réalise pas l’envoi.",
+    "common_wrong_answers": [],
+    "id": "http-m3-01-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Séparer métadonnées et corps",
+    "instruction_fr": "Écris async accuse(atelierId,nom) pour un envoi JSON valide vers inscriptions. Retourne {statut,provenance,nom}, provenant respectivement du statut, de l’en-tête X-Nunya-Api et du JSON reçu.",
+    "starter_code": "async function accuse(atelierId, nom) {\n  return {statut:200, provenance:\"\", nom:nom};\n}",
+    "solution": "async function accuse(atelierId, nom) {\n  const r = await fetch(\"/api-pedagogique/v1/inscriptions\", {method:\"POST\", headers:{\"Content-Type\":\"application/json\"}, body:JSON.stringify({atelierId:atelierId, nom:nom})});\n  const donnees = await r.json();\n  return {statut:r.status, provenance:r.headers.get(\"X-Nunya-Api\"), nom:donnees.nom};\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "accuse",
+            "args": [
+              1,
+              "Afi"
+            ],
+            "expected": {
+              "statut": 201,
+              "provenance": "locale-v1",
+              "nom": "Afi"
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 201
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "accuse",
+            "args": [
+              3,
+              " Lina "
+            ],
+            "expected": {
+              "statut": 201,
+              "provenance": "locale-v1",
+              "nom": "Lina"
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 201
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les trois informations appartiennent-elles au même endroit ?",
+      "Utilise r.status, r.headers.get et le corps analysé.",
+      "async function accuse(atelierId, nom) {\n  const r = await fetch(\"/api-pedagogique/v1/inscriptions\", {method:\"POST\", headers:{\"Content-Type\":\"application/json\"}, body:JSON.stringify({atelierId:atelierId, nom:nom})});\n  const donnees = await r.json();\n  return {statut:r.status, provenance:r.headers.get(\"X-Nunya-Api\"), nom:donnees.nom};\n}"
+    ],
+    "explanation_fr": "Le statut et l’en-tête sont disponibles sur Response ; le nom demande la lecture du JSON.",
+    "common_wrong_answers": [],
+    "id": "http-m3-01-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un corps non sérialisé",
+    "instruction_fr": "Corrige async transmettre(atelierId,nom). Le corps doit être du JSON texte et le résultat retourné doit être le corps JSON reçu. Entrées valides : ids 1 ou 3 et noms fictifs.",
+    "starter_code": "async function transmettre(atelierId, nom) {\n  const r = await fetch(\"/api-pedagogique/v1/inscriptions\", {method:\"POST\", headers:{\"Content-Type\":\"application/json\"}, body:{atelierId:atelierId,nom:nom}});\n  return await r.json();\n}",
+    "solution": "async function transmettre(atelierId, nom) {\n  const r = await fetch(\"/api-pedagogique/v1/inscriptions\", {method:\"POST\", headers:{\"Content-Type\":\"application/json\"}, body:JSON.stringify({atelierId:atelierId,nom:nom})});\n  return await r.json();\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "transmettre",
+            "args": [
+              1,
+              "Afi"
+            ],
+            "expected": {
+              "id": "demo-1",
+              "atelierId": 1,
+              "nom": "Afi"
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 201
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "transmettre",
+            "args": [
+              3,
+              "Kofi"
+            ],
+            "expected": {
+              "id": "demo-1",
+              "atelierId": 3,
+              "nom": "Kofi"
+            }
+          }
+        ],
+        "http_requests": [
+          {
+            "method": "POST",
+            "path": "/api-pedagogique/v1/inscriptions",
+            "status": 201
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un en-tête JSON transforme-t-il automatiquement un objet ?",
+      "Le corps nécessite une sérialisation explicite.",
+      "async function transmettre(atelierId, nom) {\n  const r = await fetch(\"/api-pedagogique/v1/inscriptions\", {method:\"POST\", headers:{\"Content-Type\":\"application/json\"}, body:JSON.stringify({atelierId:atelierId,nom:nom})});\n  return await r.json();\n}"
+    ],
+    "explanation_fr": "JSON.stringify corrige le format effectivement envoyé.",
+    "common_wrong_answers": [],
+    "id": "http-m3-01-e4"
+  }
+]

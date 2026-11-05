@@ -43,6 +43,19 @@
         "estimated_minutes": 480,
         "status": "brouillon",
         "scope": "Socle débutant synchrone complet rédigé, jusqu’au questionnaire final ; relecture pédagogique requise. DOM et asynchronisme relèvent de la suite."
+      },
+      {
+        "id": "http-bases",
+        "modules": 4,
+        "lessons": 12,
+        "code_exercises": 48,
+        "quizzes": 36,
+        "estimated_minutes": 240,
+        "status": "brouillon",
+        "scope": "Client HTTP JavaScript asynchrone sur API pédagogique locale, sans serveur distant ni écriture conservée. Relecture humaine nécessaire.",
+        "evidence": [
+          "docs/HTTP_ENGINE_RESULTS.json"
+        ]
       }
     ]
   },

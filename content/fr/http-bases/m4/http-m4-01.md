@@ -1,0 +1,187 @@
+---
+{
+  "id": "http-m4-01",
+  "title_fr": "Séparer erreur HTTP, JSON illisible et rupture de requête",
+  "course": "http-bases",
+  "module": "m4",
+  "order": 10,
+  "minutes": 20,
+  "prerequisites": [
+    "http-m3-03"
+  ],
+  "outcomes": [
+    "Traiter séparément réponse HTTP, JSON illisible et interruption.",
+    "Construire des retours explicables avec try/catch."
+  ],
+  "idea_fr": "Le statut HTTP, l’acheminement de la requête et la lecture du corps sont des étapes distinctes qui peuvent échouer différemment.",
+  "analogy_fr": "Un courrier peut être refusé par son destinataire, ne pas arriver, ou arriver avec un document illisible : ces trois situations demandent des diagnostics différents.",
+  "examples": [
+    {
+      "inputs": [],
+      "expected_output": "200\nCorps JSON illisible",
+      "trace_fr": [
+        "fetch reçoit une réponse HTTP 200.",
+        "Le premier affichage confirme que cette étape a abouti.",
+        "json() tente ensuite d’analyser un texte incomplet et rejette.",
+        "catch affiche le diagnostic de ce scénario contrôlé."
+      ]
+    },
+    {
+      "inputs": [],
+      "expected_output": "Aucune réponse HTTP exploitable\ntrue",
+      "trace_fr": [
+        "La variable ne contient pas encore de réponse.",
+        "La route déclenche une erreur réseau locale et fetch rejette.",
+        "catch traite ce rejet sans inventer de statut HTTP.",
+        "L’affectation n’a pas eu lieu : reponse reste undefined."
+      ]
+    }
+  ],
+  "common_mistakes": [
+    {
+      "error": "Capturer tous les échecs comme réseau",
+      "why_fr": "L’échec d’analyse ou le refus HTTP est masqué.",
+      "fix_fr": "Sépare les étapes du traitement."
+    },
+    {
+      "error": "Relancer sans borne",
+      "why_fr": "Le client peut continuer indéfiniment.",
+      "fix_fr": "Annonce le nombre de tentatives et les situations autorisées."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Pourquoi une réponse 503 ne suffit-elle pas à déclencher catch ?",
+      "options": [
+        "503 est toujours un succès métier.",
+        "catch ne fonctionne pas avec await.",
+        "fetch reçoit normalement une réponse HTTP qu’il faut examiner."
+      ],
+      "answer": 2,
+      "explanation": "Le rejet de promesse ne se confond pas avec un statut HTTP de refus.",
+      "id": "http-m4-01-q1"
+    },
+    {
+      "question": "Que prouve Content-Type JSON avec statut 200 ?",
+      "options": [
+        "Un format annoncé et une réponse reçue, pas une analyse JSON garantie.",
+        "Un objet déjà validé de toute manière.",
+        "Une absence de corps obligatoire."
+      ],
+      "answer": 0,
+      "explanation": "Le texte peut encore être invalide et json() peut rejeter.",
+      "id": "http-m4-01-q2"
+    },
+    {
+      "question": "Pourquoi la nouvelle tentative est-elle limitée ici à GET interrompu ?",
+      "options": [
+        "Toute répétition est toujours sans effet.",
+        "La politique est annoncée et évite de répéter aveuglément des écritures ou des refus.",
+        "Une panne garantit le succès du deuxième essai."
+      ],
+      "answer": 1,
+      "explanation": "Une stratégie de reprise doit préciser ses cas et ses limites.",
+      "id": "http-m4-01-q3"
+    }
+  ],
+  "glossary": [
+    {
+      "term": "exception",
+      "definition": "Erreur qui interrompt le chemin courant et peut être capturée."
+    },
+    {
+      "term": "rejet",
+      "definition": "Échec d’une promesse, observable avec await et catch."
+    },
+    {
+      "term": "diagnostic",
+      "definition": "Catégorie expliquant où et comment une opération a échoué."
+    }
+  ],
+  "recap_fr": [
+    "Traiter séparément réponse HTTP, JSON illisible et interruption.",
+    "Construire des retours explicables avec try/catch.",
+    "Borner une politique simple de nouvelle tentative."
+  ],
+  "tags": [
+    "exception",
+    "rejet",
+    "diagnostic"
+  ],
+  "status": "brouillon",
+  "reviewer": null,
+  "last_reviewed": null,
+  "language": "javascript",
+  "runtime": "http",
+  "environment_fr": "Worker JavaScript asynchrone ; fetch, Request, Response, Headers et AbortController réels. API pédagogique locale de même origine, fournie par le service worker Nunya et disponible hors ligne après téléchargement. Données fictives ; aucune réservation réelle et aucune écriture persistante entre requêtes. Ni DOM, ni Node.js, ni serveur distant. input est une aide pédagogique Nunya.",
+  "sources": [
+    {
+      "title": "MDN — Utiliser Fetch",
+      "url": "https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch",
+      "scope": "Référence technique ; explications, exemples et exercices originaux Nunya.",
+      "last_checked": "2026-11-05"
+    },
+    {
+      "title": "MDN — Fonctions async",
+      "url": "https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/async_function",
+      "scope": "Référence technique ; explications, exemples et exercices originaux Nunya.",
+      "last_checked": "2026-11-05"
+    },
+    {
+      "title": "WHATWG — Standard Fetch",
+      "url": "https://fetch.spec.whatwg.org/",
+      "scope": "Référence technique ; explications, exemples et exercices originaux Nunya.",
+      "last_checked": "2026-11-05"
+    },
+    {
+      "title": "MDN — Response.json",
+      "url": "https://developer.mozilla.org/fr/docs/Web/API/Response/json",
+      "scope": "Référence technique ; explications, exemples et exercices originaux Nunya.",
+      "last_checked": "2026-11-05"
+    },
+    {
+      "title": "MDN — try…catch",
+      "url": "https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Statements/try...catch",
+      "scope": "Référence technique vérifiée ; aucune reprise de texte.",
+      "last_checked": "2026-11-05"
+    }
+  ]
+}
+---
+
+## Explication pas à pas
+
+Un client fiable ne suppose pas que toute attente aboutit à des données utilisables. Nous avons déjà vu les refus HTTP : une réponse 503 possède un statut et un corps, même si elle indique une indisponibilité. D’autres échecs surviennent avant d’obtenir une réponse, ou pendant l’analyse de son corps. Les confondre dans un message unique empêche de comprendre la prochaine action utile. Cette leçon sépare ces étapes avec try et catch.
+
+Le bloc try contient une opération susceptible de lancer une exception ou une attente dont la promesse peut rejeter. catch reçoit cette erreur lorsque le traitement ne peut pas se poursuivre normalement. Il ne transforme pas automatiquement un statut 404 en exception. Si tu souhaites traiter un statut, examine response.ok ou response.status. Un catch placé uniquement autour de fetch ne capture pas forcément une lecture JSON effectuée ensuite, hors de ce bloc.
+
+La route json-invalide renvoie volontairement un statut 200 et annonce du JSON, mais son texte est incomplet. fetch obtient donc bien une Response ; c’est json() qui rejette pendant l’analyse. L’en-tête décrit un format annoncé, pas une preuve que le contenu est analysable. Pour conserver un diagnostic précis, un bloc de lecture peut retourner une catégorie JSON distincte d’un refus HTTP déjà observé.
+
+La route interruption provoque une erreur réseau locale volontaire. Le navigateur fait rejeter fetch sans fournir une réponse HTTP ordinaire au client. Il ne faut pas inventer un statut 500 dans ce cas. Dans le journal pédagogique, zéro représente cette absence de réponse observée ; ce n’est pas un code HTTP reçu d’un serveur. Aucun serveur extérieur n’est contacté : le service worker fournit cette situation contrôlée pour les essais.
+
+Une nouvelle tentative doit suivre une politique annoncée. Nous autorisons un second essai au maximum pour une lecture GET interrompue. Nous ne répétons ni un refus HTTP ni un corps JSON invalide dans cet exercice. Sur un vrai service, répéter une écriture peut créer plusieurs effets ; une stratégie générale demanderait d’autres garanties. Les fonctions retournent ici des états structurés sans prétendre afficher une interface DOM. Teste succès, statut de refus, JSON illisible et interruption. Explique à quel moment chaque cas est reconnu et vérifie que toutes les branches terminent avec une réponse compréhensible au lieu de laisser l’appelant attendre indéfiniment.
+
+## Exemple guidé 1
+
+```javascript
+try {
+  const r = await fetch("/api-pedagogique/v1/json-invalide");
+  console.log(r.status);
+  await r.json();
+} catch (erreur) {
+  console.log("Corps JSON illisible");
+}
+```
+
+## Exemple guidé 2
+
+```javascript
+let reponse;
+try {
+  reponse = await fetch("/api-pedagogique/v1/interruption");
+} catch (erreur) {
+  console.log("Aucune réponse HTTP exploitable");
+}
+console.log(reponse === undefined);
+```
+
