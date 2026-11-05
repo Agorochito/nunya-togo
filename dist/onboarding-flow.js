@@ -31,7 +31,7 @@
       <h1 id="a-onboarding-title">${aLabel('Un parcours qui commence par toi.', 'A learning path that starts with you.')}</h1>
       <p>${aLabel('Quelques préférences suffisent pour te conseiller un point de départ. Tu peux aussi choisir librement, sans questionnaire.', 'Choose what interests you, tell us where you are, then answer a few questions. Nunya will suggest a starting point that fits.')}</p>
       <button class="primary" type="button" data-onboarding="begin">${aLabel('Personnaliser mon parcours', 'Personalize my path')} →</button><button class="secondary" type="button" data-onboarding="skip">Passer et choisir moi-même</button><button class="text-button" type="button" data-onboarding="restore">J’ai déjà une sauvegarde</button>
-      <small>${aLabel('Ton pseudo et tes réponses restent sur cet appareil.', 'Your nickname and answers stay on this device.')}</small>
+      <small>${aLabel('Tes réponses sont facultatives ; tu peux personnaliser plus tard. Ton pseudo et tes réponses restent sur cet appareil.', 'Your nickname and answers stay on this device.')}</small>
     </div>`);
   }
 
@@ -199,6 +199,13 @@
     return welcome();
   }
 
+  /* Le test (configuration, moteur, correspondance et écrans) est chargé au début du test : runtime/assessment.js, précaché. */
+  let assessmentReady = null;
+  function loadAssessment() {
+    window.NunyaAssessmentHost = { state, toast, academyChoiceOrder };
+    return assessmentReady || (assessmentReady = import(new URL('./runtime/assessment.js', document.baseURI).href).catch(error => { assessmentReady = null; throw error; }));
+  }
+
   function saveAssessmentResults(assessment) {
     const domain = state.onboarding.domain;
     const recommendation = window.NunyaPlacementMapping.getRecommendedPath(
@@ -233,6 +240,7 @@
     aPersist();
     render();
     try {
+      await loadAssessment();
       const started = await window.NunyaAssessmentUI.start(
         state.profile.level,
         saveAssessmentResults,
@@ -259,12 +267,13 @@
     const showingResults = FEATURES.onboarding && state.onboarding?.step === 'results' && aRoute.kind === 'accueil';
     document.body.classList.remove('a-onboarding-active');
     document.body.classList.toggle('a-onboarding-results-active', showingResults);
+    document.body.classList.toggle('a-onboarding-later',FEATURES.onboarding&&['domain','profile','assessment','suggestion'].includes(state.onboarding?.step)&&aRoute.kind==='accueil');
     if (required && aLoading && aRoute.kind === 'accueil') {
       $('#main').innerHTML = splash();
       return;
     }
     renderBeforeOnboarding();
-    if(required&&!$('#main [data-onboarding=skip]'))$('#main').insertAdjacentHTML('beforeend','<button type="button" class="secondary" data-onboarding="skip">Passer et choisir moi-même</button>');
+    if((required||document.body.classList.contains('a-onboarding-later'))&&!$('#main [data-onboarding=skip]'))$('#main').insertAdjacentHTML('beforeend','<button type="button" class="secondary" data-onboarding="skip">Passer et choisir moi-même</button>');
   };
 
   const homeBeforeOnboarding = aHome;
@@ -272,6 +281,7 @@
     if(FEATURES.onboarding&&state.onboarding?.step==='suggestion')return preferenceResults();
     if (FEATURES.onboarding && state.onboarding?.step === 'results') return results();
     if (FEATURES.onboarding && !state.academy.onboarded) return entryView();
+    if(FEATURES.onboarding&&['domain','profile','assessment'].includes(state.onboarding?.step))return entryView();
     return homeBeforeOnboarding();
   };
 

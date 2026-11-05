@@ -17,6 +17,9 @@
     },
     {
       "backup": "native picker restores Python M12 and discovery; persists after reload; malformed file leaves state unchanged"
+    },
+    {
+      "mobileHome": "one start card; optional preferences opened later; outside touch closes menu without navigation"
     }
   ],
   "errors": []

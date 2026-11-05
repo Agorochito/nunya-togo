@@ -24,7 +24,8 @@
   display: none !important;
 }
 
-.a-onboarding-results-active #main > .curr-entry {
+.a-onboarding-results-active #main > .curr-entry,
+.a-onboarding-later #main > .curr-entry {
   display: none !important;
 }
 
