@@ -1,5 +1,12 @@
 # Historique
 
+## 5.4.1 — 5 novembre 2026 · accueil et menu allégés
+
+- Questions de départ facultatives : « Passer pour l’instant » (avec confirmation « J’ai 13 ans ou plus »), retour à la page demandée, personnalisation possible plus tard depuis l’accueil. Le test est chargé au début du test (`runtime/assessment.js`).
+- Accueil : le bonjour d’abord, puis une seule carte « Par où commencer ? » (Python, ou « Reprendre » si une leçon est en cours, et « Personnaliser mon parcours » tant que ce n’est pas fait). La bande « Commence ici » et la carte séparée de personnalisation sont retirées.
+- Menu : le groupe « Préparer mon futur » disparaît ; Études à l’étranger et Opportunités s’ouvrent depuis Mon avenir, qui reste surligné dans le menu. Le portfolio (masqué) rejoint « Mon espace ».
+- Cache `nunya-v5.4.1`.
+
 ## 5.4.0 — compléments du 4 novembre 2026
 
 - Bibliothèque : nouvelle page **Tous les cours Nunya** (`#/bibliotheque/cours`), avec les 42 cours en lecture libre, sans programme ni test, en trois familles (programmation et numérique, révisions scolaires, métiers et compétences pratiques). Entrée « Voir tous les cours » sur l’accueil de la bibliothèque. Les cours restent des brouillons à relire.

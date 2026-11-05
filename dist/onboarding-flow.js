@@ -48,11 +48,6 @@
     </div>`);
   }
 
-  /* Carte d’accueil tant que le questionnaire n’a pas été fait : il reste possible à tout moment. */
-  function personalizeCard() {
-    return `<section class="curr-entry a-personalize-later"><div><span class="eyebrow">${aLabel('FACULTATIF · 2 MINUTES', 'OPTIONAL · 2 MINUTES')}</span><h2>${aLabel('Personnalise ton parcours', 'Personalize your path')}</h2><p>${aLabel('Réponds à quelques questions quand tu veux : Nunya te proposera un point de départ adapté.', 'Answer a few questions whenever you like: Nunya will suggest a starting point that fits you.')}</p></div><button class="primary" type="button" data-onboarding="begin">${aLabel('Commencer', 'Start')} →</button></section>`;
-  }
-
   function chooseDomain() {
     const selected = state.onboarding?.domain;
     return shell(`<h1 id="a-onboarding-title">${aLabel('Qu’est-ce qui t’intéresse ?', 'What interests you?')}</h1>
@@ -297,7 +292,7 @@
     if (step === 'results') return results();
     // Questionnaire commencé plus tard depuis l’accueil : le menu reste disponible.
     if (!state.academy.onboarded || ['domain', 'profile', 'assessment'].includes(step)) return entryView();
-    return (state.onboarding?.result ? '' : personalizeCard()) + homeBeforeOnboarding();
+    return homeBeforeOnboarding();
   };
 
   const resolveBeforeOnboarding = aResolve;
