@@ -1,0 +1,118 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Conserver un produit",
+    "instruction_fr": "Déclare total égal au produit de 7 par 6, puis affiche-le.",
+    "starter_code": "const total = 0;\nconsole.log(total);",
+    "solution": "const total = 7 * 6;\nconsole.log(total);",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "42",
+        "calls": [
+          {
+            "name": "total",
+            "args": [],
+            "expected": 42
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Le produit utilise *.",
+      "Conserve le calcul dans total.",
+      "const total = 7 * 6;\nconsole.log(total);"
+    ],
+    "explanation_fr": "Le résultat est une valeur numérique.",
+    "common_wrong_answers": [],
+    "id": "js-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Calculer un budget fictif",
+    "instruction_fr": "Déclare prix=200, quantite=5 et total=prix*quantite ; affiche total.",
+    "starter_code": "const prix = 200;\nconst quantite = 5;\nconst total = prix;\nconsole.log(total);",
+    "solution": "const prix = 200;\nconst quantite = 5;\nconst total = prix * quantite;\nconsole.log(total);",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "1000",
+        "calls": [
+          {
+            "name": "total",
+            "args": [],
+            "expected": 1000
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Les deux données ont des noms.",
+      "Le total multiplie quantité et prix unitaire.",
+      "const prix = 200;\nconst quantite = 5;\nconst total = prix * quantite;\nconsole.log(total);"
+    ],
+    "explanation_fr": "Le montant vaut 1 000 dans ce scénario fictif.",
+    "common_wrong_answers": [],
+    "id": "js-m1-02-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Mettre à jour un compteur",
+    "instruction_fr": "Déclare let compteur=4, ajoute 3 par affectation puis affiche compteur.",
+    "starter_code": "let compteur = 4;\ncompteur = 3;\nconsole.log(compteur);",
+    "solution": "let compteur = 4;\ncompteur = compteur + 3;\nconsole.log(compteur);",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "7",
+        "calls": [
+          {
+            "name": "compteur",
+            "args": [],
+            "expected": 7
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Réutilise l’ancienne valeur.",
+      "La droite devient compteur + 3.",
+      "let compteur = 4;\ncompteur = compteur + 3;\nconsole.log(compteur);"
+    ],
+    "explanation_fr": "L’affectation conserve la somme plutôt que le seul ajout.",
+    "common_wrong_answers": [],
+    "id": "js-m1-02-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer la priorité",
+    "instruction_fr": "Le total doit valoir (2 + 3) fois 4. Corrige le calcul et affiche total.",
+    "starter_code": "const total = 2 + 3 * 4;\nconsole.log(total);",
+    "solution": "const total = (2 + 3) * 4;\nconsole.log(total);",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "20",
+        "calls": [
+          {
+            "name": "total",
+            "args": [],
+            "expected": 20
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "L’addition doit passer avant le produit.",
+      "Entoure-la de parenthèses.",
+      "const total = (2 + 3) * 4;\nconsole.log(total);"
+    ],
+    "explanation_fr": "Sans parenthèses, la multiplication est prioritaire.",
+    "common_wrong_answers": [],
+    "id": "js-m1-02-e4"
+  }
+]

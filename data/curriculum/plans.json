@@ -1,0 +1,75 @@
+[
+  {
+    "id": "ordinateur",
+    "title_fr": "Bien démarrer avec l’ordinateur et Internet",
+    "summary_fr": "Fichiers, navigateur, recherche et sécurité.",
+    "status": "bientôt"
+  },
+  {
+    "id": "logique",
+    "title_fr": "Penser comme un programmeur",
+    "summary_fr": "Algorithmes, décisions et répétitions sans code.",
+    "status": "bientôt"
+  },
+  {
+    "id": "python-projets",
+    "title_fr": "Python : pratique et projets",
+    "summary_fr": "Stock, carnet de notes et jeu ; après les bases.",
+    "status": "bientôt"
+  },
+  {
+    "id": "html",
+    "title_fr": "HTML : structurer une page",
+    "summary_fr": "Titres, liens, formulaires et accessibilité.",
+    "status": "bientôt"
+  },
+  {
+    "id": "css",
+    "title_fr": "CSS : mettre en forme une page",
+    "summary_fr": "Boîtes, Flexbox, Grid et petits écrans.",
+    "status": "bientôt"
+  },
+  {
+    "id": "javascript",
+    "title_fr": "JavaScript : les bases",
+    "summary_fr": "Valeurs, fonctions, DOM et événements.",
+    "status": "bientôt"
+  },
+  {
+    "id": "web-projet",
+    "title_fr": "Projet web : ma page personnelle",
+    "summary_fr": "Réunir structure, style et interactions.",
+    "status": "bientôt"
+  },
+  {
+    "id": "sql",
+    "title_fr": "Données avec SQL",
+    "summary_fr": "Lire et interroger une petite base.",
+    "status": "bientôt"
+  },
+  {
+    "id": "git",
+    "title_fr": "Git et GitHub : les bases",
+    "summary_fr": "Versions, sauvegardes et collaboration.",
+    "status": "bientôt"
+  },
+  {
+    "id": "nodejs",
+    "title_fr": "Node.js : les bases du serveur",
+    "summary_fr": "JavaScript côté serveur ; après JavaScript.",
+    "status": "bientôt"
+  },
+  {
+    "id": "ia-cyber",
+    "title_fr": "Introduction à l’IA et à la cybersécurité",
+    "summary_fr": "Comprendre, vérifier et protéger.",
+    "status": "bientôt"
+  },
+  {
+    "id": "http",
+    "title_fr": "HTTP et API : comprendre les échanges web",
+    "summary_fr": "Requêtes, réponses, statuts et échanges JSON ; après les bases du Web et de JavaScript.",
+    "status": "bientôt",
+    "level": "intermediaire"
+  }
+]

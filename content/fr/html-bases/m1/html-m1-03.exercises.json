@@ -1,0 +1,139 @@
+[
+  {
+    "title_fr": "Donner une destination",
+    "instruction_fr": "Transforme Programme en lien vers programme.html.",
+    "starter_code": "<p>Programme</p>",
+    "solution": "<p><a href=\"programme.html\">Programme</a></p>",
+    "visible_tests": [
+      {
+        "description_fr": "Lien relatif.",
+        "checks": [
+          {
+            "selector": "a",
+            "textIncludes": "Programme",
+            "attributes": {
+              "href": "programme.html"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quel élément représente un lien ?",
+      "a utilise href pour sa destination.",
+      "Place Programme entre <a href=\"programme.html\"> et </a>."
+    ],
+    "explanation_fr": "Le texte reste lisible et la destination est portée par un attribut.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "id": "html-m1-03-e1"
+  },
+  {
+    "title_fr": "Relier une rubrique",
+    "instruction_fr": "Crée un lien Voir le matériel vers #materiel et donne id=\"materiel\" au h2 Matériel.",
+    "starter_code": "<a>Voir le matériel</a><h2>Matériel</h2>",
+    "solution": "<a href=\"#materiel\">Voir le matériel</a><h2 id=\"materiel\">Matériel</h2>",
+    "visible_tests": [
+      {
+        "description_fr": "Fragment et cible correspondent.",
+        "checks": [
+          {
+            "selector": "a",
+            "attributes": {
+              "href": "#materiel"
+            },
+            "textIncludes": "Voir le matériel"
+          },
+          {
+            "selector": "h2#materiel",
+            "textIncludes": "Matériel"
+          },
+          {
+            "selector": "#materiel",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Un fragment vise quel attribut ?",
+      "Le dièse se place dans href, pas dans id.",
+      "Utilise href=\"#materiel\" et id=\"materiel\"."
+    ],
+    "explanation_fr": "Le contrôle vérifie les deux extrémités de la relation.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m1-03-e2"
+  },
+  {
+    "title_fr": "Réparer un texte imprécis",
+    "instruction_fr": "Conserve l’adresse https://example.org/accessibilite et remplace Cliquez ici par Lire le guide d’accessibilité.",
+    "starter_code": "<a href=\"https://example.org/accessibilite\">Cliquez ici</a>",
+    "solution": "<a href=\"https://example.org/accessibilite\">Lire le guide d’accessibilité</a>",
+    "visible_tests": [
+      {
+        "description_fr": "Destination et texte descriptif.",
+        "checks": [
+          {
+            "selector": "a",
+            "attributes": {
+              "href": "https://example.org/accessibilite"
+            },
+            "textIncludes": "Lire le guide d’accessibilité"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Que trouvera le lecteur après activation ?",
+      "Le texte doit annoncer le guide.",
+      "Change seulement le contenu entre les balises a."
+    ],
+    "explanation_fr": "Le lien devient compréhensible lorsqu’il est lu isolément.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "id": "html-m1-03-e3"
+  },
+  {
+    "title_fr": "Composer une navigation simple",
+    "instruction_fr": "Écris deux liens : Présentation vers #presentation et Contact vers contact.html. Ajoute un h2 Présentation portant id=\"presentation\".",
+    "starter_code": "<!-- Deux destinations, une cible locale. -->",
+    "solution": "<a href=\"#presentation\">Présentation</a><a href=\"contact.html\">Contact</a><h2 id=\"presentation\">Présentation</h2>",
+    "visible_tests": [
+      {
+        "description_fr": "Deux liens utiles et une cible.",
+        "checks": [
+          {
+            "selector": "a",
+            "count": 2
+          },
+          {
+            "selector": "a[href=\"#presentation\"]",
+            "textIncludes": "Présentation"
+          },
+          {
+            "selector": "a[href=\"contact.html\"]",
+            "textIncludes": "Contact"
+          },
+          {
+            "selector": "h2#presentation",
+            "textIncludes": "Présentation"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Une destination reste dans la page, l’autre change de page.",
+      "Le lien local utilise # et un id.",
+      "Donne l’id presentation au h2, sans dièse."
+    ],
+    "explanation_fr": "Cette navigation combine une adresse relative et un fragment local. Vérifie aussi les liens au clavier.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m1-03-e4"
+  }
+]

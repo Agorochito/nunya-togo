@@ -1,0 +1,260 @@
+[
+  {
+    "title_fr": "Jalon 1 : établir le plan",
+    "instruction_fr": "Crée header avec h1 Graines ensemble, nav aria-label=\"Principale\", main id=\"contenu\" et footer contenant Association fictive.",
+    "starter_code": "<!-- Établis les grandes régions. -->",
+    "solution": "<header><h1>Graines ensemble</h1></header><nav aria-label=\"Principale\"></nav><main id=\"contenu\"></main><footer><p>Association fictive.</p></footer>",
+    "visible_tests": [
+      {
+        "description_fr": "Régions essentielles.",
+        "checks": [
+          {
+            "selector": "header h1",
+            "textIncludes": "Graines ensemble"
+          },
+          {
+            "selector": "nav",
+            "attributes": {
+              "aria-label": "Principale"
+            }
+          },
+          {
+            "selector": "main#contenu",
+            "count": 1
+          },
+          {
+            "selector": "footer",
+            "textIncludes": "Association fictive."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quelles fonctions doit remplir la page ?",
+      "Écris les régions dans l’ordre de lecture.",
+      "Donne au main l’id contenu."
+    ],
+    "explanation_fr": "Le jalon contrôle la charpente ; les rubriques et liens viendront ensuite.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "id": "html-m4-03-e1"
+  },
+  {
+    "title_fr": "Jalon 2 : présenter deux ateliers",
+    "instruction_fr": "Dans main, crée section id=\"activites\" avec h2 Activités, deux articles ayant h3 Semis et h3 Compost, chacun suivi d’un paragraphe descriptif.",
+    "starter_code": "<main></main>",
+    "solution": "<main><section id=\"activites\"><h2>Activités</h2><article><h3>Semis</h3><p>Découvrir les graines.</p></article><article><h3>Compost</h3><p>Comprendre le compost.</p></article></section></main>",
+    "visible_tests": [
+      {
+        "description_fr": "Deux fiches dans la même rubrique.",
+        "checks": [
+          {
+            "selector": "section#activites > h2",
+            "textIncludes": "Activités"
+          },
+          {
+            "selector": "#activites article",
+            "count": 2
+          },
+          {
+            "selector": "#activites article:nth-of-type(1) h3",
+            "textIncludes": "Semis"
+          },
+          {
+            "selector": "#activites article:nth-of-type(2) h3",
+            "textIncludes": "Compost"
+          },
+          {
+            "selector": "#activites article p",
+            "count": 2
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Les fiches partagent une même rubrique.",
+      "Utilise article et h3 pour chaque atelier.",
+      "Ajoute un p descriptif dans chacun des deux articles."
+    ],
+    "explanation_fr": "Le contenu descriptif peut être rédigé avec tes mots ; la correction montre un exemple.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m4-03-e2"
+  },
+  {
+    "title_fr": "Jalon 3 : construire la demande locale",
+    "instruction_fr": "Crée form avec p id=\"aide\" Données fictives uniquement., un email id/name contact requis avec label Adresse de contact, obligatoire et aria-describedby=\"aide\", puis button submit Vérifier la demande.",
+    "starter_code": "<form><!-- Ajoute l’aide, le contact et l’action. --></form>",
+    "solution": "<form><p id=\"aide\">Données fictives uniquement.</p><label for=\"contact\">Adresse de contact, obligatoire</label><input type=\"email\" id=\"contact\" name=\"contact\" required aria-describedby=\"aide\"><button type=\"submit\">Vérifier la demande</button></form>",
+    "visible_tests": [
+      {
+        "description_fr": "Contact guidé sans service réel.",
+        "checks": [
+          {
+            "selector": "form p#aide",
+            "textIncludes": "Données fictives uniquement."
+          },
+          {
+            "selector": "label[for=\"contact\"]",
+            "textIncludes": "obligatoire"
+          },
+          {
+            "selector": "input#contact[required]",
+            "attributes": {
+              "type": "email",
+              "name": "contact",
+              "aria-describedby": "aide"
+            }
+          },
+          {
+            "selector": "button[type=\"submit\"]",
+            "textIncludes": "Vérifier la demande"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Le nom, l’obligation et l’aide ont des rôles distincts.",
+      "Relie le label et la description au même contrôle.",
+      "Utilise for=\"contact\" et aria-describedby=\"aide\"."
+    ],
+    "explanation_fr": "Ce jalon ne transmet aucune donnée ; il vérifie les relations et la consigne visible.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m4-03-e3"
+  },
+  {
+    "title_fr": "Projet complet : page et formulaire",
+    "instruction_fr": "Écris un document complet en français, title Graines ensemble. Place un lien initial vers #contenu, header/h1 Graines ensemble, nav vers #activites et #inscription, main#contenu avec ces deux sections/h2 et deux articles/h3 dans activites. Dans inscription : form, p#aide Données fictives uniquement., prénom text id/name prenom, contact email requis id/name contact décrit par aide, select atelier requis id/name atelier avec option vide puis semis et compost. Chaque champ a un label explicite ; les labels contact et atelier disent obligatoire. Ajoute un bouton submit Vérifier la demande et footer Association fictive.",
+    "starter_code": "<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title></title></head><body><!-- Assemble ton projet. --></body></html>",
+    "solution": "<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>Graines ensemble</title></head><body><a href=\"#contenu\">Aller au contenu</a><header><h1>Graines ensemble</h1></header><nav aria-label=\"Principale\"><a href=\"#activites\">Activités</a><a href=\"#inscription\">Inscription</a></nav><main id=\"contenu\"><section id=\"activites\"><h2>Activités</h2><article><h3>Semis</h3><p>Découvrir les graines.</p></article><article><h3>Compost</h3><p>Comprendre le compost.</p></article></section><section id=\"inscription\"><h2>Inscription</h2><form><p id=\"aide\">Données fictives uniquement.</p><label for=\"prenom\">Prénom</label><input id=\"prenom\" name=\"prenom\" type=\"text\"><label for=\"contact\">Adresse de contact, obligatoire</label><input id=\"contact\" name=\"contact\" type=\"email\" required aria-describedby=\"aide\"><label for=\"atelier\">Atelier, obligatoire</label><select id=\"atelier\" name=\"atelier\" required><option value=\"\">Choisir</option><option value=\"semis\">Semis</option><option value=\"compost\">Compost</option></select><button type=\"submit\">Vérifier la demande</button></form></section></main><footer><p>Association fictive.</p></footer></body></html>",
+    "visible_tests": [
+      {
+        "description_fr": "Document, plan et destinations.",
+        "checks": [
+          {
+            "selector": "html",
+            "attributes": {
+              "lang": "fr"
+            }
+          },
+          {
+            "selector": "head title",
+            "textIncludes": "Graines ensemble"
+          },
+          {
+            "selector": "body > a:first-child",
+            "attributes": {
+              "href": "#contenu"
+            }
+          },
+          {
+            "selector": "header h1",
+            "textIncludes": "Graines ensemble"
+          },
+          {
+            "selector": "nav a[href=\"#activites\"]",
+            "exists": true
+          },
+          {
+            "selector": "nav a[href=\"#inscription\"]",
+            "exists": true
+          },
+          {
+            "selector": "main#contenu",
+            "count": 1
+          },
+          {
+            "selector": "#activites h2",
+            "textIncludes": "Activités"
+          },
+          {
+            "selector": "#activites article h3",
+            "count": 2
+          },
+          {
+            "selector": "#inscription h2",
+            "textIncludes": "Inscription"
+          },
+          {
+            "selector": "footer",
+            "textIncludes": "Association fictive."
+          }
+        ]
+      },
+      {
+        "description_fr": "Formulaire, noms et contraintes.",
+        "checks": [
+          {
+            "selector": "#inscription form #aide",
+            "textIncludes": "Données fictives uniquement."
+          },
+          {
+            "selector": "label[for=\"prenom\"]",
+            "textIncludes": "Prénom"
+          },
+          {
+            "selector": "#prenom",
+            "attributes": {
+              "type": "text",
+              "name": "prenom"
+            }
+          },
+          {
+            "selector": "label[for=\"contact\"]",
+            "textIncludes": "obligatoire"
+          },
+          {
+            "selector": "#contact[required]",
+            "attributes": {
+              "type": "email",
+              "name": "contact",
+              "aria-describedby": "aide"
+            }
+          },
+          {
+            "selector": "label[for=\"atelier\"]",
+            "textIncludes": "obligatoire"
+          },
+          {
+            "selector": "select#atelier[required]",
+            "attributes": {
+              "name": "atelier"
+            }
+          },
+          {
+            "selector": "#atelier option:first-child",
+            "attributes": {
+              "value": ""
+            }
+          },
+          {
+            "selector": "#atelier option[value=\"semis\"]",
+            "exists": true
+          },
+          {
+            "selector": "#atelier option[value=\"compost\"]",
+            "exists": true
+          },
+          {
+            "selector": "form button[type=\"submit\"]",
+            "textIncludes": "Vérifier la demande"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Construis et vérifie une région à la fois.",
+      "Réutilise les trois jalons, puis ajoute le prénom et le choix d’atelier.",
+      "Compare chaque href à sa cible, chaque for à son id, et la description à aide."
+    ],
+    "explanation_fr": "La correction est une proposition de structure. Complète les tests par la grille de revue et un parcours clavier. La publication d’un vrai formulaire nécessiterait un service et sa validation.",
+    "kind": "project",
+    "common_wrong_answers": [],
+    "id": "html-m4-03-e4"
+  }
+]

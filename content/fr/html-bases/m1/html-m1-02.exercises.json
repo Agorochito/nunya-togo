@@ -1,0 +1,139 @@
+[
+  {
+    "title_fr": "Compléter le plan",
+    "instruction_fr": "Ajoute un h1 Programme, puis un h2 Horaires et un p Ouverture à 9 h.",
+    "starter_code": "<h1>Programme</h1>",
+    "solution": "<h1>Programme</h1><h2>Horaires</h2><p>Ouverture à 9 h.</p>",
+    "visible_tests": [
+      {
+        "description_fr": "Titre principal, rubrique et paragraphe.",
+        "checks": [
+          {
+            "selector": "h1",
+            "count": 1,
+            "textIncludes": "Programme"
+          },
+          {
+            "selector": "h2",
+            "textIncludes": "Horaires"
+          },
+          {
+            "selector": "p",
+            "textIncludes": "Ouverture à 9 h."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quel niveau vient après le sujet principal ?",
+      "Utilise h2 pour une rubrique.",
+      "Écris le texte horaire dans un p après le h2."
+    ],
+    "explanation_fr": "Le plan distingue le nom de la page et sa rubrique horaire.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "id": "html-m1-02-e1"
+  },
+  {
+    "title_fr": "Réparer un saut de niveau",
+    "instruction_fr": "Remplace le h4 par le bon niveau : Matériel est une sous-partie de Préparer sa visite, qui est en h2.",
+    "starter_code": "<h1>Visite</h1><h2>Préparer sa visite</h2><h4>Matériel</h4>",
+    "solution": "<h1>Visite</h1><h2>Préparer sa visite</h2><h3>Matériel</h3>",
+    "visible_tests": [
+      {
+        "description_fr": "Sous-partie de niveau trois.",
+        "checks": [
+          {
+            "selector": "h3",
+            "textIncludes": "Matériel"
+          },
+          {
+            "selector": "h4",
+            "exists": false
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Observe le niveau de la rubrique parente.",
+      "Une sous-partie directe de h2 se note h3.",
+      "Change ensemble les balises ouvrante et fermante."
+    ],
+    "explanation_fr": "La correction porte sur la hiérarchie et ne cherche pas à obtenir une taille de caractères.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "id": "html-m1-02-e2"
+  },
+  {
+    "title_fr": "Exprimer une importance",
+    "instruction_fr": "Dans un p, écris Attention : inscription obligatoire. Entoure uniquement inscription obligatoire de strong.",
+    "starter_code": "<p>Attention : inscription obligatoire.</p>",
+    "solution": "<p>Attention : <strong>inscription obligatoire</strong>.</p>",
+    "visible_tests": [
+      {
+        "description_fr": "Importance portée par strong.",
+        "checks": [
+          {
+            "selector": "p",
+            "textIncludes": "Attention :"
+          },
+          {
+            "selector": "p strong",
+            "textIncludes": "inscription obligatoire"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quelle partie doit porter l’importance ?",
+      "strong se place à l’intérieur du paragraphe.",
+      "Ouvre strong avant inscription et ferme-le après obligatoire."
+    ],
+    "explanation_fr": "Une importance précise est plus utile qu’un paragraphe entier artificiellement mis en avant.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m1-02-e3"
+  },
+  {
+    "title_fr": "Rédiger une petite annonce",
+    "instruction_fr": "Crée un h1 Nettoyage du quartier, deux h2 Rendez-vous et Équipement, et deux paragraphes : Place du marché. et Apporte des gants. Mets gants dans em.",
+    "starter_code": "<!-- Structure ton annonce. -->",
+    "solution": "<h1>Nettoyage du quartier</h1><h2>Rendez-vous</h2><p>Place du marché.</p><h2>Équipement</h2><p>Apporte des <em>gants</em>.</p>",
+    "visible_tests": [
+      {
+        "description_fr": "Annonce structurée.",
+        "checks": [
+          {
+            "selector": "h1",
+            "textIncludes": "Nettoyage du quartier"
+          },
+          {
+            "selector": "h2",
+            "count": 2
+          },
+          {
+            "selector": "p",
+            "count": 2
+          },
+          {
+            "selector": "p em",
+            "textIncludes": "gants"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Prépare deux rubriques de même niveau.",
+      "Chaque rubrique est suivie d’un paragraphe.",
+      "Place em seulement autour du mot gants."
+    ],
+    "explanation_fr": "La rédaction combine plan, paragraphes et insistance. Vérifie aussi manuellement que les titres décrivent leur contenu.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m1-02-e4"
+  }
+]

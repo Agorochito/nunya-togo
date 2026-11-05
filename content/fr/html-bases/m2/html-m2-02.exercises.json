@@ -1,0 +1,127 @@
+[
+  {
+    "title_fr": "Ajouter une alternative informative",
+    "instruction_fr": "Conserve src et ajoute alt=\"Rectangle vert représentant la parcelle\" à l’image. Le schéma est informatif dans cet exercice.",
+    "starter_code": "<img src='data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"240\" height=\"120\"%3E%3Crect width=\"240\" height=\"120\" fill=\"seagreen\"/%3E%3C/svg%3E'>",
+    "solution": "<img src='data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"240\" height=\"120\"%3E%3Crect width=\"240\" height=\"120\" fill=\"seagreen\"/%3E%3C/svg%3E' alt=\"Rectangle vert représentant la parcelle\">",
+    "visible_tests": [
+      {
+        "description_fr": "Alternative pertinente demandée.",
+        "checks": [
+          {
+            "selector": "img",
+            "attributes": {
+              "src": "data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"240\" height=\"120\"%3E%3Crect width=\"240\" height=\"120\" fill=\"seagreen\"/%3E%3C/svg%3E",
+              "alt": "Rectangle vert représentant la parcelle"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Que doit comprendre une personne qui ne voit pas le schéma ?",
+      "L’information se place dans alt.",
+      "Décris la parcelle, sans écrire le nom du fichier."
+    ],
+    "explanation_fr": "Le contrôle enseigne la présence d’une alternative contextualisée ; d’autres descriptions peuvent convenir dans un autre contexte.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "id": "html-m2-02-e1"
+  },
+  {
+    "title_fr": "Marquer un décor",
+    "instruction_fr": "Cette image sert uniquement de motif sous un titre déjà explicite. Remplace son alternative par une valeur vide, en conservant src.",
+    "starter_code": "<img src='data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"240\" height=\"120\"%3E%3Crect width=\"240\" height=\"120\" fill=\"seagreen\"/%3E%3C/svg%3E' alt=\"Image verte\">",
+    "solution": "<img src='data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"240\" height=\"120\"%3E%3Crect width=\"240\" height=\"120\" fill=\"seagreen\"/%3E%3C/svg%3E' alt=\"\">",
+    "visible_tests": [
+      {
+        "description_fr": "Décor avec alternative vide.",
+        "checks": [
+          {
+            "selector": "img",
+            "attributes": {
+              "src": "data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"240\" height=\"120\"%3E%3Crect width=\"240\" height=\"120\" fill=\"seagreen\"/%3E%3C/svg%3E",
+              "alt": ""
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "L’image ajoute-t-elle une information ?",
+      "Un décor conserve l’attribut alt.",
+      "Donne à alt la valeur \"\"."
+    ],
+    "explanation_fr": "Une alternative vide indique un décor ; elle ne signifie pas que l’attribut a été oublié.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m2-02-e2"
+  },
+  {
+    "title_fr": "Réunir image et légende",
+    "instruction_fr": "Entoure l’image et la légende avec figure. Utilise figcaption pour Parcelle de démonstration. Conserve l’alternative existante.",
+    "starter_code": "<img src='data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"240\" height=\"120\"%3E%3Crect width=\"240\" height=\"120\" fill=\"seagreen\"/%3E%3C/svg%3E' alt=\"Parcelle verte\"><p>Parcelle de démonstration.</p>",
+    "solution": "<figure><img src='data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"240\" height=\"120\"%3E%3Crect width=\"240\" height=\"120\" fill=\"seagreen\"/%3E%3C/svg%3E' alt=\"Parcelle verte\"><figcaption>Parcelle de démonstration.</figcaption></figure>",
+    "visible_tests": [
+      {
+        "description_fr": "Figure légendée.",
+        "checks": [
+          {
+            "selector": "figure img",
+            "attributes": {
+              "alt": "Parcelle verte"
+            }
+          },
+          {
+            "selector": "figure figcaption",
+            "textIncludes": "Parcelle de démonstration."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quel conteneur relie une illustration à sa légende ?",
+      "figure contient img et figcaption.",
+      "Remplace le p de légende par figcaption."
+    ],
+    "explanation_fr": "La légende visible et l’alternative gardent des rôles distincts.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m2-02-e3"
+  },
+  {
+    "title_fr": "Annoncer les dimensions",
+    "instruction_fr": "Ajoute width=\"240\" et height=\"120\" à cette image. Conserve src et son alternative.",
+    "starter_code": "<img src='data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"240\" height=\"120\"%3E%3Crect width=\"240\" height=\"120\" fill=\"seagreen\"/%3E%3C/svg%3E' alt=\"Plan simplifié\">",
+    "solution": "<img src='data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"240\" height=\"120\"%3E%3Crect width=\"240\" height=\"120\" fill=\"seagreen\"/%3E%3C/svg%3E' alt=\"Plan simplifié\" width=\"240\" height=\"120\">",
+    "visible_tests": [
+      {
+        "description_fr": "Dimensions et sens conservés.",
+        "checks": [
+          {
+            "selector": "img",
+            "attributes": {
+              "width": "240",
+              "height": "120",
+              "alt": "Plan simplifié",
+              "src": "data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"240\" height=\"120\"%3E%3Crect width=\"240\" height=\"120\" fill=\"seagreen\"/%3E%3C/svg%3E"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quel rapport largeur/hauteur possède cette illustration ?",
+      "Les attributs reçoivent des nombres sans px.",
+      "Écris width=\"240\" et height=\"120\" dans img."
+    ],
+    "explanation_fr": "Les dimensions annoncées réservent une place ; CSS pourra ensuite adapter la taille à l’espace disponible.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m2-02-e4"
+  }
+]

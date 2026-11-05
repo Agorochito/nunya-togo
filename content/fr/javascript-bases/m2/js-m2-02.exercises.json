@@ -1,0 +1,167 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Choisir selon les places",
+    "instruction_fr": "Lis places ; message doit valoir Complet si places===0, sinon Disponible. Affiche message.",
+    "starter_code": "const places=Number(input(\"Places ?\"));\nlet message=\"Complet\";\nconsole.log(message);",
+    "solution": "const places=Number(input(\"Places ?\"));\nlet message;\nif(places===0){message=\"Complet\";}else{message=\"Disponible\";}\nconsole.log(message);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "Complet",
+        "calls": [
+          {
+            "name": "message",
+            "args": [],
+            "expected": "Complet"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "Disponible",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Écris les deux branches.",
+      "Affecte message dans chacune.",
+      "const places=Number(input(\"Places ?\"));\nlet message;\nif(places===0){message=\"Complet\";}else{message=\"Disponible\";}\nconsole.log(message);"
+    ],
+    "explanation_fr": "Le résultat doit dépendre de la saisie.",
+    "common_wrong_answers": [],
+    "id": "js-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Reconnaître une conversion",
+    "instruction_fr": "Lis un texte converti en nombre ; affiche Valide si Number.isFinite(nombre), sinon Invalide.",
+    "starter_code": "const nombre=Number(input(\"Nombre ?\"));\nconsole.log(\"Valide\");",
+    "solution": "const nombre=Number(input(\"Nombre ?\"));\nif(Number.isFinite(nombre)){console.log(\"Valide\");}else{console.log(\"Invalide\");}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "mot"
+        ],
+        "expected_output": "Invalide",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "2.5"
+        ],
+        "expected_output": "Valide",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "Valide",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Le mot doit prendre une autre branche que le nombre.",
+      "Number.isFinite fournit directement un booléen.",
+      "const nombre=Number(input(\"Nombre ?\"));\nif(Number.isFinite(nombre)){console.log(\"Valide\");}else{console.log(\"Invalide\");}"
+    ],
+    "explanation_fr": "Zéro est un nombre fini.",
+    "common_wrong_answers": [],
+    "id": "js-m2-02-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Appliquer un seuil inclus",
+    "instruction_fr": "Lis duree ; court doit valoir oui si duree<=15, sinon non. Affiche court.",
+    "starter_code": "const duree=Number(input(\"Durée ?\"));\nlet court=\"non\";\nconsole.log(court);",
+    "solution": "const duree=Number(input(\"Durée ?\"));\nlet court;\nif(duree<=15){court=\"oui\";}else{court=\"non\";}\nconsole.log(court);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "15"
+        ],
+        "expected_output": "oui",
+        "calls": [
+          {
+            "name": "court",
+            "args": [],
+            "expected": "oui"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "16"
+        ],
+        "expected_output": "non",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "10"
+        ],
+        "expected_output": "oui",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "La borne quinze est acceptée.",
+      "Le if doit définir la valeur conservée.",
+      "const duree=Number(input(\"Durée ?\"));\nlet court;\nif(duree<=15){court=\"oui\";}else{court=\"non\";}\nconsole.log(court);"
+    ],
+    "explanation_fr": "Les deux branches couvrent les durées numériques fournies.",
+    "common_wrong_answers": [],
+    "id": "js-m2-02-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer le sens des branches",
+    "instruction_fr": "Pour une température fictive supérieure à 30, affiche chaud ; sinon modéré. Corrige les branches.",
+    "starter_code": "const temperature=Number(input(\"Valeur ?\"));\nif(temperature>30){console.log(\"modéré\");}else{console.log(\"chaud\");}",
+    "solution": "const temperature=Number(input(\"Valeur ?\"));\nif(temperature>30){console.log(\"chaud\");}else{console.log(\"modéré\");}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "31"
+        ],
+        "expected_output": "chaud",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "30"
+        ],
+        "expected_output": "modéré",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "20"
+        ],
+        "expected_output": "modéré",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Relie chaque message au test.",
+      "Le cas égal à trente va dans else.",
+      "const temperature=Number(input(\"Valeur ?\"));\nif(temperature>30){console.log(\"chaud\");}else{console.log(\"modéré\");}"
+    ],
+    "explanation_fr": "Le calcul est fictif et ne prescrit aucune décision de santé.",
+    "common_wrong_answers": [],
+    "id": "js-m2-02-e4"
+  }
+]

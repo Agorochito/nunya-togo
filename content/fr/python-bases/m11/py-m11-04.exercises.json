@@ -1,0 +1,733 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Créer une réservation",
+    "instruction_fr": "Retourne le nouvel historique avec la fiche active ajoutée. Refuse par None une borne invalide, un id existant même inactif, ou un conflit actif sur le même équipement. Garde toutes les fiches précédentes et leur ordre. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def reserver(reservations, identifiant, equipement, debut, fin):\n    return None",
+    "solution": "def reserver(reservations, identifiant, equipement, debut, fin):\n    if not (debut >= 0 and debut < fin and fin <= 1440):\n        return None\n    for r in reservations:\n        if r[\"id\"] == identifiant:\n            return None\n        if r[\"active\"] and r[\"equipement\"] == equipement and debut < r[\"fin\"] and r[\"debut\"] < fin:\n            return None\n    copie = []\n    for r in reservations:\n        copie.append(r.copy())\n    copie.append({\"id\":identifiant, \"equipement\":equipement, \"debut\":debut, \"fin\":fin, \"active\":True})\n    return copie",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "reserver",
+            "args": [
+              [],
+              "r1",
+              "A",
+              540,
+              600
+            ],
+            "expected": [
+              {
+                "id": "r1",
+                "equipement": "A",
+                "debut": 540,
+                "fin": 600,
+                "active": true
+              }
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "reserver",
+            "args": [
+              [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 540,
+                  "fin": 600,
+                  "active": true
+                }
+              ],
+              "r2",
+              "A",
+              600,
+              650
+            ],
+            "expected": [
+              {
+                "id": "r1",
+                "equipement": "A",
+                "debut": 540,
+                "fin": 600,
+                "active": true
+              },
+              {
+                "id": "r2",
+                "equipement": "A",
+                "debut": 600,
+                "fin": 650,
+                "active": true
+              }
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "reserver",
+            "args": [
+              [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 540,
+                  "fin": 600,
+                  "active": true
+                }
+              ],
+              "r2",
+              "A",
+              590,
+              650
+            ],
+            "expected": null,
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "reserver",
+            "args": [
+              [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 540,
+                  "fin": 600,
+                  "active": false
+                }
+              ],
+              "r1",
+              "A",
+              700,
+              720
+            ],
+            "expected": null,
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "reserver",
+            "args": [
+              [],
+              "r2",
+              "A",
+              600,
+              600
+            ],
+            "expected": null,
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "reserver",
+            "args": [
+              [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 540,
+                  "fin": 600,
+                  "active": true
+                }
+              ],
+              "r2",
+              "B",
+              590,
+              650
+            ],
+            "expected": [
+              {
+                "id": "r1",
+                "equipement": "A",
+                "debut": 540,
+                "fin": 600,
+                "active": true
+              },
+              {
+                "id": "r2",
+                "equipement": "B",
+                "debut": 590,
+                "fin": 650,
+                "active": true
+              }
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Tous les motifs de refus doivent précéder la construction.",
+      "Copie chaque fiche puis ajoute la nouvelle seulement si tout est valide.",
+      "Le conflit utilise actif, même équipement et comparaisons strictes."
+    ],
+    "explanation_fr": "La création préserve les invariants du modèle. Les tests distinguent l’adjacence autorisée du conflit, puis séparent une ressource différente et un identifiant déjà utilisé.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ reserver\\(reservations,\\ identifiant,\\ equipement,\\ debut,\\ fin\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Copie chaque fiche puis ajoute la nouvelle seulement si tout est valide."
+      }
+    ],
+    "id": "py-m11-04-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Agenda actif par ressource",
+    "instruction_fr": "Retourne la liste triée des identifiants actifs pour equipement, sans retirer les fiches inactives de l’historique reçu. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def agenda_actif(reservations, equipement):\n    return None",
+    "solution": "def agenda_actif(reservations, equipement):\n    ids = []\n    for r in reservations:\n        if r[\"active\"] and r[\"equipement\"] == equipement:\n            ids.append(r[\"id\"])\n    return sorted(ids)",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "agenda_actif",
+            "args": [
+              [
+                {
+                  "id": "r2",
+                  "equipement": "A",
+                  "debut": 1,
+                  "fin": 3,
+                  "active": true
+                },
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 4,
+                  "fin": 6,
+                  "active": true
+                }
+              ],
+              "A"
+            ],
+            "expected": [
+              "r1",
+              "r2"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "agenda_actif",
+            "args": [
+              [],
+              "A"
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "agenda_actif",
+            "args": [
+              [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 1,
+                  "fin": 3,
+                  "active": false
+                },
+                {
+                  "id": "r2",
+                  "equipement": "B",
+                  "debut": 1,
+                  "fin": 3,
+                  "active": true
+                }
+              ],
+              "A"
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’agenda est une vue, pas une suppression.",
+      "Filtre active et equipement.",
+      "Trie seulement la liste des identifiants retenus."
+    ],
+    "explanation_fr": "La vue d’agenda prouve que les fiches annulées ne sont plus des engagements. Leur présence dans l’argument reste utile à l’historique et à l’unicité des identifiants.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ agenda_actif\\(reservations,\\ equipement\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Filtre active et equipement."
+      }
+    ],
+    "id": "py-m11-04-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Détecter un état conflictuel",
+    "instruction_fr": "Retourne True si deux fiches actives du même équipement se chevauchent, sinon False. Les créneaux et identifiants existants sont valides. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def a_des_conflits(reservations):\n    return None",
+    "solution": "def a_des_conflits(reservations):\n    for i in range(len(reservations)):\n        for j in range(i + 1, len(reservations)):\n            a = reservations[i]\n            b = reservations[j]\n            if a[\"active\"] and b[\"active\"] and a[\"equipement\"] == b[\"equipement\"] and a[\"debut\"] < b[\"fin\"] and b[\"debut\"] < a[\"fin\"]:\n                return True\n    return False",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "a_des_conflits",
+            "args": [
+              [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 1,
+                  "fin": 4,
+                  "active": true
+                },
+                {
+                  "id": "r2",
+                  "equipement": "A",
+                  "debut": 3,
+                  "fin": 5,
+                  "active": true
+                }
+              ]
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "a_des_conflits",
+            "args": [
+              [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 1,
+                  "fin": 4,
+                  "active": true
+                },
+                {
+                  "id": "r2",
+                  "equipement": "A",
+                  "debut": 4,
+                  "fin": 5,
+                  "active": true
+                }
+              ]
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "a_des_conflits",
+            "args": [
+              []
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "a_des_conflits",
+            "args": [
+              [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 1,
+                  "fin": 4,
+                  "active": false
+                },
+                {
+                  "id": "r2",
+                  "equipement": "A",
+                  "debut": 3,
+                  "fin": 5,
+                  "active": true
+                }
+              ]
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "a_des_conflits",
+            "args": [
+              [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 1,
+                  "fin": 4,
+                  "active": true
+                },
+                {
+                  "id": "r2",
+                  "equipement": "B",
+                  "debut": 3,
+                  "fin": 5,
+                  "active": true
+                }
+              ]
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Chaque paire doit être comparée une seule fois.",
+      "Le second indice commence à i + 1.",
+      "Applique aux deux fiches les critères actif, équipement et chevauchement."
+    ],
+    "explanation_fr": "Le contrôle examine un état complet au lieu d’une seule demande. Les boucles imbriquées parcourent chaque paire distincte et ignorent une fiche comparée à elle-même.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ a_des_conflits\\(reservations\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Le second indice commence à i + 1."
+      }
+    ],
+    "id": "py-m11-04-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Projet complet : demandes ordonnées",
+    "instruction_fr": "Operations est une liste de dictionnaires : {\"type\":\"reserver\",\"id\":texte,\"equipement\":texte,\"debut\":entier,\"fin\":entier} ou {\"type\":\"annuler\",\"id\":texte}. Un autre type est refusé. Applique les règles précédentes dans l’ordre et retourne {\"reservations\": historique_final, \"refus\": nombre}. Une annulation réussie libère son créneau, jamais son id. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def reserver(reservations, identifiant, equipement, debut, fin):\n    if not (debut >= 0 and debut < fin and fin <= 1440):\n        return None\n    for r in reservations:\n        if r[\"id\"] == identifiant:\n            return None\n        if r[\"active\"] and r[\"equipement\"] == equipement and debut < r[\"fin\"] and r[\"debut\"] < fin:\n            return None\n    copie = []\n    for r in reservations:\n        copie.append(r.copy())\n    copie.append({\"id\":identifiant, \"equipement\":equipement, \"debut\":debut, \"fin\":fin, \"active\":True})\n    return copie\n\ndef annuler(reservations, identifiant):\n    trouve = False\n    for r in reservations:\n        if r[\"id\"] == identifiant and r[\"active\"]:\n            trouve = True\n    if not trouve:\n        return None\n    copie = []\n    for r in reservations:\n        fiche = r.copy()\n        if fiche[\"id\"] == identifiant:\n            fiche[\"active\"] = False\n        copie.append(fiche)\n    return copie\n\ndef traiter_reservations(reservations, operations):\n    return None",
+    "solution": "def reserver(reservations, identifiant, equipement, debut, fin):\n    if not (debut >= 0 and debut < fin and fin <= 1440):\n        return None\n    for r in reservations:\n        if r[\"id\"] == identifiant:\n            return None\n        if r[\"active\"] and r[\"equipement\"] == equipement and debut < r[\"fin\"] and r[\"debut\"] < fin:\n            return None\n    copie = []\n    for r in reservations:\n        copie.append(r.copy())\n    copie.append({\"id\":identifiant, \"equipement\":equipement, \"debut\":debut, \"fin\":fin, \"active\":True})\n    return copie\n\ndef annuler(reservations, identifiant):\n    trouve = False\n    for r in reservations:\n        if r[\"id\"] == identifiant and r[\"active\"]:\n            trouve = True\n    if not trouve:\n        return None\n    copie = []\n    for r in reservations:\n        fiche = r.copy()\n        if fiche[\"id\"] == identifiant:\n            fiche[\"active\"] = False\n        copie.append(fiche)\n    return copie\n\ndef traiter_reservations(reservations, operations):\n    etat = []\n    for r in reservations:\n        etat.append(r.copy())\n    refus = 0\n    for op in operations:\n        suivant = None\n        if op[\"type\"] == \"reserver\":\n            suivant = reserver(etat, op[\"id\"], op[\"equipement\"], op[\"debut\"], op[\"fin\"])\n        elif op[\"type\"] == \"annuler\":\n            suivant = annuler(etat, op[\"id\"])\n        if suivant == None:\n            refus = refus + 1\n        else:\n            etat = suivant\n    return {\"reservations\": etat, \"refus\": refus}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "traiter_reservations",
+            "args": [
+              [],
+              [
+                {
+                  "type": "reserver",
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 540,
+                  "fin": 600,
+                  "active": true
+                },
+                {
+                  "type": "reserver",
+                  "id": "r2",
+                  "equipement": "A",
+                  "debut": 600,
+                  "fin": 660,
+                  "active": true
+                }
+              ]
+            ],
+            "expected": {
+              "reservations": [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 540,
+                  "fin": 600,
+                  "active": true
+                },
+                {
+                  "id": "r2",
+                  "equipement": "A",
+                  "debut": 600,
+                  "fin": 660,
+                  "active": true
+                }
+              ],
+              "refus": 0
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "traiter_reservations",
+            "args": [
+              [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 540,
+                  "fin": 600,
+                  "active": true
+                }
+              ],
+              [
+                {
+                  "type": "annuler",
+                  "id": "r1"
+                },
+                {
+                  "type": "reserver",
+                  "id": "r2",
+                  "equipement": "A",
+                  "debut": 550,
+                  "fin": 580,
+                  "active": true
+                }
+              ]
+            ],
+            "expected": {
+              "reservations": [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 540,
+                  "fin": 600,
+                  "active": false
+                },
+                {
+                  "id": "r2",
+                  "equipement": "A",
+                  "debut": 550,
+                  "fin": 580,
+                  "active": true
+                }
+              ],
+              "refus": 0
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "traiter_reservations",
+            "args": [
+              [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 540,
+                  "fin": 600,
+                  "active": true
+                }
+              ],
+              [
+                {
+                  "type": "reserver",
+                  "id": "r2",
+                  "equipement": "A",
+                  "debut": 590,
+                  "fin": 650,
+                  "active": true
+                },
+                {
+                  "type": "reserver",
+                  "id": "r3",
+                  "equipement": "B",
+                  "debut": 550,
+                  "fin": 580,
+                  "active": true
+                },
+                {
+                  "type": "annuler",
+                  "id": "absent"
+                }
+              ]
+            ],
+            "expected": {
+              "reservations": [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 540,
+                  "fin": 600,
+                  "active": true
+                },
+                {
+                  "id": "r3",
+                  "equipement": "B",
+                  "debut": 550,
+                  "fin": 580,
+                  "active": true
+                }
+              ],
+              "refus": 2
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "traiter_reservations",
+            "args": [
+              [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 540,
+                  "fin": 600,
+                  "active": false
+                }
+              ],
+              [
+                {
+                  "type": "reserver",
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 700,
+                  "fin": 720,
+                  "active": true
+                },
+                {
+                  "type": "reserver",
+                  "id": "r2",
+                  "equipement": "A",
+                  "debut": 600,
+                  "fin": 600,
+                  "active": true
+                },
+                {
+                  "type": "autre"
+                }
+              ]
+            ],
+            "expected": {
+              "reservations": [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 540,
+                  "fin": 600,
+                  "active": false
+                }
+              ],
+              "refus": 3
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "traiter_reservations",
+            "args": [
+              [],
+              []
+            ],
+            "expected": {
+              "reservations": [],
+              "refus": 0
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les helpers fournis sont des fonctions complètes ; tu peux reprendre leurs contrats.",
+      "Chaque demande utilise le dernier état accepté ; None compte un refus.",
+      "Après annuler, transmettre l’état retourné permet à un nouveau créneau valide d’être accepté."
+    ],
+    "explanation_fr": "La synthèse démontre toutes les règles du projet : adjacence, chevauchement, bornes, équipements indépendants, identités stables, annulation et absence de mutation des données reçues.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ reserver\\(reservations,\\ identifiant,\\ equipement,\\ debut,\\ fin\\):\\\n\\ \\ \\ \\ if\\ not\\ \\(debut\\ >=\\ 0\\ and\\ debut\\ <\\ fin\\ and\\ fin\\ <=\\ 1440\\):\\\n\\ \\ \\ \\ \\ \\ \\ \\ return\\ None\\\n\\ \\ \\ \\ for\\ r\\ in\\ reservations:\\\n\\ \\ \\ \\ \\ \\ \\ \\ if\\ r\\[\"id\"\\]\\ ==\\ identifiant:\\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ return\\ None\\\n\\ \\ \\ \\ \\ \\ \\ \\ if\\ r\\[\"active\"\\]\\ and\\ r\\[\"equipement\"\\]\\ ==\\ equipement\\ and\\ debut\\ <\\ r\\[\"fin\"\\]\\ and\\ r\\[\"debut\"\\]\\ <\\ fin:\\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ return\\ None\\\n\\ \\ \\ \\ copie\\ =\\ \\[\\]\\\n\\ \\ \\ \\ for\\ r\\ in\\ reservations:\\\n\\ \\ \\ \\ \\ \\ \\ \\ copie\\.append\\(r\\.copy\\(\\)\\)\\\n\\ \\ \\ \\ copie\\.append\\(\\{\"id\":identifiant,\\ \"equipement\":equipement,\\ \"debut\":debut,\\ \"fin\":fin,\\ \"active\":True\\}\\)\\\n\\ \\ \\ \\ return\\ copie\\\n\\\ndef\\ annuler\\(reservations,\\ identifiant\\):\\\n\\ \\ \\ \\ trouve\\ =\\ False\\\n\\ \\ \\ \\ for\\ r\\ in\\ reservations:\\\n\\ \\ \\ \\ \\ \\ \\ \\ if\\ r\\[\"id\"\\]\\ ==\\ identifiant\\ and\\ r\\[\"active\"\\]:\\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ trouve\\ =\\ True\\\n\\ \\ \\ \\ if\\ not\\ trouve:\\\n\\ \\ \\ \\ \\ \\ \\ \\ return\\ None\\\n\\ \\ \\ \\ copie\\ =\\ \\[\\]\\\n\\ \\ \\ \\ for\\ r\\ in\\ reservations:\\\n\\ \\ \\ \\ \\ \\ \\ \\ fiche\\ =\\ r\\.copy\\(\\)\\\n\\ \\ \\ \\ \\ \\ \\ \\ if\\ fiche\\[\"id\"\\]\\ ==\\ identifiant:\\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ fiche\\[\"active\"\\]\\ =\\ False\\\n\\ \\ \\ \\ \\ \\ \\ \\ copie\\.append\\(fiche\\)\\\n\\ \\ \\ \\ return\\ copie\\\n\\\ndef\\ traiter_reservations\\(reservations,\\ operations\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Chaque demande utilise le dernier état accepté ; None compte un refus."
+      }
+    ],
+    "id": "py-m11-04-e4"
+  }
+]

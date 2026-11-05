@@ -1,0 +1,308 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Calcul brut",
+    "instruction_fr": "Retourne le coût de nombre articles à prix unitaire prix, nombres positifs ou nuls. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def montant_brut(prix, nombre):\n    return None",
+    "solution": "def montant_brut(prix, nombre):\n    return prix * nombre",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "montant_brut",
+            "args": [
+              20,
+              3
+            ],
+            "expected": 60,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "montant_brut",
+            "args": [
+              20,
+              0
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "montant_brut",
+            "args": [
+              2.5,
+              4
+            ],
+            "expected": 10.0,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Chaque article coûte le même prix.",
+      "Le nombre multiplie le prix unitaire.",
+      "Retourne prix * nombre."
+    ],
+    "explanation_fr": "Le montant brut est une règle indépendante de la remise et des frais. La tester seule permet de repérer un défaut avant de combiner plusieurs décisions.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ montant_brut\\(prix,\\ nombre\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Le nombre multiplie le prix unitaire."
+      }
+    ],
+    "id": "py-m8-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Frais séparés",
+    "instruction_fr": "Retourne montant augmenté de frais, deux nombres positifs ou nuls. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def avec_frais(montant, frais):\n    return None",
+    "solution": "def avec_frais(montant, frais):\n    return montant + frais",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "avec_frais",
+            "args": [
+              60,
+              5
+            ],
+            "expected": 65,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "avec_frais",
+            "args": [
+              0,
+              5
+            ],
+            "expected": 5,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "avec_frais",
+            "args": [
+              3.5,
+              0
+            ],
+            "expected": 3.5,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les frais s’ajoutent une seule fois.",
+      "Ils ne sont pas un pourcentage.",
+      "Retourne montant + frais."
+    ],
+    "explanation_fr": "La somme représente un coût fixe distinct du nombre d’articles. Les frais restent présents même lorsque le montant initial vaut zéro, selon le contrat choisi.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ avec_frais\\(montant,\\ frais\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Ils ne sont pas un pourcentage."
+      }
+    ],
+    "id": "py-m8-03-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Devis réduit",
+    "instruction_fr": "Retourne prix * nombre après remise de taux pour cent, puis ajoute frais sans réduire les frais. Entrées positives ou nulles, taux entre 0 et 100. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def devis_reduit(prix, nombre, taux, frais):\n    return None",
+    "solution": "def devis_reduit(prix, nombre, taux, frais):\n    brut = prix * nombre\n    net = brut - brut * taux / 100\n    return net + frais",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "devis_reduit",
+            "args": [
+              20,
+              3,
+              10,
+              5
+            ],
+            "expected": 59.0,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "devis_reduit",
+            "args": [
+              20,
+              0,
+              50,
+              5
+            ],
+            "expected": 5.0,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "devis_reduit",
+            "args": [
+              10,
+              2,
+              100,
+              3
+            ],
+            "expected": 3.0,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le taux agit sur les articles uniquement.",
+      "Calcule brut, puis net, puis ajoute les frais.",
+      "Retourne (prix * nombre) * (1 - taux / 100) + frais."
+    ],
+    "explanation_fr": "L’ordre des étapes traduit une règle commerciale fictive explicite. Réduire les frais aussi donnerait un autre résultat, détecté par les cas où ils sont non nuls.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ devis_reduit\\(prix,\\ nombre,\\ taux,\\ frais\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Calcule brut, puis net, puis ajoute les frais."
+      }
+    ],
+    "id": "py-m8-03-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Décision de capacité",
+    "instruction_fr": "Retourne True si demande est positive ou nulle et peut être ajoutée à inscrits sans dépasser capacite. Capacite et inscrits sont entiers positifs ou nuls. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def peut_ajouter(capacite, inscrits, demande):\n    return None",
+    "solution": "def peut_ajouter(capacite, inscrits, demande):\n    return demande >= 0 and inscrits + demande <= capacite",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "peut_ajouter",
+            "args": [
+              12,
+              5,
+              7
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "peut_ajouter",
+            "args": [
+              12,
+              5,
+              8
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "peut_ajouter",
+            "args": [
+              12,
+              5,
+              -1
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "peut_ajouter",
+            "args": [
+              0,
+              0,
+              0
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La demande doit respecter deux règles.",
+      "Combine non-négativité et capacité totale.",
+      "Compare inscrits + demande à capacite."
+    ],
+    "explanation_fr": "Une décision de disponibilité est distincte du calcul de prix. Le cas exactement complet est accepté, tandis qu’une demande négative reste refusée même si la somme paraît petite.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ peut_ajouter\\(capacite,\\ inscrits,\\ demande\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Combine non-négativité et capacité totale."
+      }
+    ],
+    "id": "py-m8-03-e4"
+  }
+]

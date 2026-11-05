@@ -1,0 +1,56 @@
+{
+  "id": "html-bases",
+  "title_fr": "HTML : premières pages accessibles",
+  "language": "html",
+  "level": "debutant",
+  "summary_fr": "Construire une page associative structurée avec un formulaire local, sans serveur ni collecte réelle. Les niveaux intermédiaire et avancé restent en préparation.",
+  "prerequisites": [],
+  "outcomes": [
+    "Assembler une page associative avec navigation et formulaire.",
+    "Évaluer le livrable avec des critères et une revue humaine."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Écrire et relier les premiers contenus",
+      "outcome_fr": "Construire une page simple, ordonnée et navigable.",
+      "lesson_ids": [
+        "html-m1-01",
+        "html-m1-02",
+        "html-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Structurer des informations et des images",
+      "outcome_fr": "Choisir des listes, régions, alternatives et tableaux adaptés.",
+      "lesson_ids": [
+        "html-m2-01",
+        "html-m2-02",
+        "html-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Construire un formulaire compréhensible",
+      "outcome_fr": "Associer contrôles, libellés, groupes, aides et contraintes.",
+      "lesson_ids": [
+        "html-m3-01",
+        "html-m3-02",
+        "html-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Assembler et vérifier une page associative",
+      "outcome_fr": "Réaliser un projet HTML local avec revue de sa structure et de son usage.",
+      "lesson_ids": [
+        "html-m4-01",
+        "html-m4-02",
+        "html-m4-03"
+      ]
+    }
+  ],
+  "status": "brouillon",
+  "reviewer": null
+}

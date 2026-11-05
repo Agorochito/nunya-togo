@@ -1,0 +1,189 @@
+---
+{
+  "id": "css-m3-03",
+  "title_fr": "Adapter la disposition à la place disponible",
+  "course": "css-bases",
+  "module": "m3",
+  "order": 9,
+  "minutes": 20,
+  "prerequisites": [
+    "css-m3-02"
+  ],
+  "outcomes": [
+    "Appliquer une adaptation à partir d’un seuil explicite.",
+    "Vérifier petite largeur, grande largeur et borne."
+  ],
+  "idea_fr": "Une interface adaptée garde d’abord un contenu utilisable à petite largeur, puis enrichit sa disposition.",
+  "analogy_fr": "Le contenu est une table pliante : on ajoute de la place lorsqu’elle existe, au lieu d’écraser les objets.",
+  "examples": [
+    {
+      "code": "body { margin:0; }\n.grille { display:grid; width:100%; max-width:600px; gap:16px; grid-template-columns:1fr; }\n@media (min-width:600px) { .grille { grid-template-columns:repeat(2,minmax(0,1fr)); } }",
+      "expected_output": "À 375px : une piste de 375px. À 800px : deux pistes de 292px dans une grille de 600px.",
+      "trace_fr": [
+        "La base s’applique partout.",
+        "À partir de 600px, la condition ajoute deux colonnes.",
+        "max-width limite la grille à 600px."
+      ],
+      "inputs": [],
+      "fixture_html": "<div class=\"grille\"><article>Semis</article><article>Compost</article><article>Arrosage</article><article>Récolte</article></div>"
+    },
+    {
+      "code": "body { margin:0; }\n.grille { display:grid; gap:16px; grid-template-columns:1fr; }\n@media (min-width:600px) { .grille { gap:24px; } }",
+      "expected_output": "La grille garde une colonne ; l’écart passe de 16px à 24px à partir de 600px.",
+      "trace_fr": [
+        "La condition ne modifie que gap.",
+        "Les autres déclarations de base restent applicables."
+      ],
+      "inputs": [],
+      "fixture_html": "<div class=\"grille\"><article>Semis</article><article>Compost</article><article>Arrosage</article><article>Récolte</article></div>"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "error": "Confondre min-width et max-width",
+      "why_fr": "Le changement se produit du mauvais côté du seuil.",
+      "fix_fr": "Traduis la condition en phrase avant de coder."
+    },
+    {
+      "error": "Cacher du contenu pour tenir",
+      "why_fr": "Une information utile disparaît.",
+      "fix_fr": "Réorganise la disposition et vérifie le texte."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "La condition min-width:600px est-elle vraie à 600px ?",
+      "options": [
+        "Non, seulement à 601px.",
+        "Seulement sur un téléphone.",
+        "Jamais dans un navigateur.",
+        "Oui."
+      ],
+      "answer": 3,
+      "explanation": "La borne minimale annoncée est incluse.",
+      "id": "css-m3-03-q1"
+    },
+    {
+      "question": "Quel contenu disparaît lorsqu’un bloc @media change seulement gap ?",
+      "options": [
+        "Tous les liens.",
+        "La première carte.",
+        "Aucun contenu ne disparaît par cette seule déclaration.",
+        "Tous les paragraphes."
+      ],
+      "answer": 2,
+      "explanation": "La règle conditionnelle modifie un espacement ; elle ne supprime pas le HTML.",
+      "id": "css-m3-03-q2"
+    },
+    {
+      "question": "Pourquoi tester entre les seuils également ?",
+      "options": [
+        "Le texte ne peut jamais grandir.",
+        "Les contenus et le zoom varient sur une plage de largeurs.",
+        "Les seuils sont aléatoires.",
+        "La grande largeur suffit toujours."
+      ],
+      "answer": 1,
+      "explanation": "Les deux mesures automatiques prouvent un mécanisme, mais une revue continue trouve d’autres problèmes.",
+      "id": "css-m3-03-q3"
+    }
+  ],
+  "glossary": [
+    {
+      "term": "requête de média",
+      "definition": "Condition déterminant l’application de règles CSS."
+    },
+    {
+      "term": "seuil",
+      "definition": "Valeur à partir de laquelle une condition change."
+    },
+    {
+      "term": "fenêtre de mise en page",
+      "definition": "Espace de référence utilisé ici pour évaluer la largeur de la condition."
+    }
+  ],
+  "recap_fr": [
+    "La base reste utilisable.",
+    "Une condition modifie des propriétés ciblées.",
+    "Les tests sont complétés par une revue continue."
+  ],
+  "tags": [
+    "css",
+    "m3",
+    "débutant"
+  ],
+  "status": "brouillon",
+  "reviewer": null,
+  "last_reviewed": null,
+  "technical_checked_on": "2026-11-04",
+  "references": [
+    {
+      "title": "W3C — cascade et héritage",
+      "url": "https://www.w3.org/TR/css-cascade-5/"
+    },
+    {
+      "title": "W3C — modèle de boîte",
+      "url": "https://www.w3.org/TR/css-box-3/"
+    },
+    {
+      "title": "W3C — Flexbox",
+      "url": "https://www.w3.org/TR/css-flexbox-1/"
+    },
+    {
+      "title": "W3C — Grid",
+      "url": "https://www.w3.org/TR/css-grid-1/"
+    },
+    {
+      "title": "W3C — requêtes de média",
+      "url": "https://www.w3.org/TR/mediaqueries-5/"
+    }
+  ],
+  "technical_scope_fr": "CSS, sous-ensemble débutant des modules cités ; faits vérifiés le 4 novembre 2026."
+}
+---
+
+## Explication pas à pas
+
+Deux colonnes sont confortables sur un écran large, mais peuvent rendre les cartes trop étroites sur un téléphone. Une interface adaptable change sa disposition selon la place disponible. Elle ne se résume pas à une version « ordinateur » et une version « téléphone » : les fenêtres, le zoom et les appareils ont des dimensions variées. Partons donc du contenu et de la largeur à partir de laquelle sa disposition devient utile.
+
+Une requête de média conditionne l’application de règles. Avec @media (min-width:600px), les déclarations du bloc s’ajoutent lorsque la fenêtre de mise en page atteint au moins 600 pixels CSS. À exactement 600px, la condition est vraie. Ce seuil n’est pas une propriété magique d’un téléphone ; c’est une décision pédagogique pour notre grille. Dans une vraie interface, choisis le seuil en observant le moment où les cartes et leurs textes disposent d’assez de place.
+
+Une stratégie simple consiste à écrire une colonne dans les règles de base, puis deux colonnes au-dessus du seuil. Les règles générales restent actives ; le bloc conditionnel remplace seulement les propriétés qu’il redéfinit selon la cascade. Conserver gap:16px dans la règle de base évite une répétition inutile. width:100% et une largeur maximale empêchent ici la grille de devenir trop large tout en respectant une petite fenêtre.
+
+Dans un document complet, la métadonnée viewport avec width=device-width aide les navigateurs mobiles à utiliser une fenêtre de mise en page adaptée à l’appareil. Elle appartient au HTML de la page, pas à la feuille CSS de l’atelier. Ne désactive pas le zoom de l’utilisateur. Une adaptation doit aussi conserver l’ordre de lecture, les labels, la taille lisible des contrôles et les informations utiles : cacher le formulaire à petite largeur n’est pas une solution.
+
+Les tests inspectent la grille à 375px et 800px, ainsi qu’au seuil annoncé. Nous fixons body sans marge et une largeur maximale de 600px pour rendre les dimensions reproductibles. Ces mesures de laboratoire vérifient le mécanisme, pas toutes les conditions d’usage. Après la réussite, déplace progressivement la largeur, agrandis le texte et vérifie les contenus longs. La zone de code et l’aperçu peuvent avoir des tailles différentes ; lis la largeur du contexte de test avant d’interpréter le résultat.
+
+## Exemple guidé 1
+
+```css
+body { margin:0; }
+.grille { display:grid; width:100%; max-width:600px; gap:16px; grid-template-columns:1fr; }
+@media (min-width:600px) { .grille { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+```
+
+La structure HTML utilisée dans cet exemple est fournie dans ses données et dans l’atelier.
+
+## Exemple guidé 2
+
+```css
+body { margin:0; }
+.grille { display:grid; gap:16px; grid-template-columns:1fr; }
+@media (min-width:600px) { .grille { gap:24px; } }
+```
+
+La structure HTML utilisée dans cet exemple est fournie dans ses données et dans l’atelier.
+
+## Vérifier et expliquer
+
+Observe l’aperçu à petite et grande largeur, puis parcours les contrôles avec Tab. Explique la règle qui produit chaque résultat. Les tests de style ne remplacent pas la revue de lisibilité et d’usage.
+
+## Références techniques
+
+Explications et activités originales Nunya. Les documents suivants ont servi à vérifier les mécanismes, sans reprise de leçons :
+
+- [W3C — cascade et héritage](https://www.w3.org/TR/css-cascade-5/)
+- [W3C — modèle de boîte](https://www.w3.org/TR/css-box-3/)
+- [W3C — Flexbox](https://www.w3.org/TR/css-flexbox-1/)
+- [W3C — Grid](https://www.w3.org/TR/css-grid-1/)
+- [W3C — requêtes de média](https://www.w3.org/TR/mediaqueries-5/)

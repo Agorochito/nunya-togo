@@ -1,0 +1,309 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Durée autorisée",
+    "instruction_fr": "Retourne True si minutes, entier, est entre 0 et 180 inclus ; sinon False. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def duree_valide(minutes):\n    return None",
+    "solution": "def duree_valide(minutes):\n    return minutes >= 0 and minutes <= 180",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "duree_valide",
+            "args": [
+              0
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "duree_valide",
+            "args": [
+              180
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "duree_valide",
+            "args": [
+              -1
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "duree_valide",
+            "args": [
+              181
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les deux frontières sont incluses.",
+      "Combine une borne basse et une borne haute avec and.",
+      "Compare minutes >= 0 et minutes <= 180."
+    ],
+    "explanation_fr": "Deux bornes évitent d’accepter une durée négative ou trop longue. Les exemples frontaliers traduisent directement les mots du contrat en résultats vérifiables.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ duree_valide\\(minutes\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Combine une borne basse et une borne haute avec and."
+      }
+    ],
+    "id": "py-m8-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Places restantes",
+    "instruction_fr": "Capacite et inscrits sont entiers avec 0 <= inscrits <= capacite. Retourne le nombre de places restantes. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def places_restantes(capacite, inscrits):\n    return None",
+    "solution": "def places_restantes(capacite, inscrits):\n    return capacite - inscrits",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "places_restantes",
+            "args": [
+              12,
+              5
+            ],
+            "expected": 7,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "places_restantes",
+            "args": [
+              4,
+              4
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "places_restantes",
+            "args": [
+              0,
+              0
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les inscrits occupent déjà des places.",
+      "Il faut les retirer de la capacité.",
+      "Retourne capacite - inscrits."
+    ],
+    "explanation_fr": "Les entrées garanties par le contrat simplifient la fonction. Aucune règle cachée d’excès d’inscriptions n’est imposée alors que cette situation est exclue de l’exercice.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ places_restantes\\(capacite,\\ inscrits\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Il faut les retirer de la capacité."
+      }
+    ],
+    "id": "py-m8-01-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Une taille exacte",
+    "instruction_fr": "Retourne True si la liste reponses possède exactement attendu éléments ; attendu est un entier positif ou nul. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def taille_exacte(reponses, attendu):\n    return None",
+    "solution": "def taille_exacte(reponses, attendu):\n    return len(reponses) == attendu",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "taille_exacte",
+            "args": [
+              [
+                "A",
+                "B"
+              ],
+              2
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "taille_exacte",
+            "args": [
+              [],
+              0
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "taille_exacte",
+            "args": [
+              [
+                "A"
+              ],
+              2
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La question porte sur le nombre d’éléments.",
+      "Compare la longueur à attendu avec ==.",
+      "Retourne len(reponses) == attendu."
+    ],
+    "explanation_fr": "Une condition exacte diffère d’une limite minimale. Les cas vide et trop court montrent que le contrat traite des longueurs, pas du contenu des réponses.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ taille_exacte\\(reponses,\\ attendu\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Compare la longueur à attendu avec ==."
+      }
+    ],
+    "id": "py-m8-01-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Au moins une place",
+    "instruction_fr": "Retourne True lorsque capacite est strictement supérieure à inscrits. Les deux arguments sont entiers positifs ou nuls. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def reste_une_place(capacite, inscrits):\n    return None",
+    "solution": "def reste_une_place(capacite, inscrits):\n    return capacite > inscrits",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "reste_une_place",
+            "args": [
+              4,
+              3
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "reste_une_place",
+            "args": [
+              4,
+              4
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "reste_une_place",
+            "args": [
+              0,
+              0
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "reste_une_place",
+            "args": [
+              2,
+              5
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’égalité signifie que toutes les places sont occupées.",
+      "La comparaison doit être stricte.",
+      "Retourne capacite > inscrits."
+    ],
+    "explanation_fr": "Un test à la frontière distingue une place disponible d’une salle complète. Accepter l’égalité autoriserait une inscription que la règle ne permet pas.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ reste_une_place\\(capacite,\\ inscrits\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. La comparaison doit être stricte."
+      }
+    ],
+    "id": "py-m8-01-e4"
+  }
+]

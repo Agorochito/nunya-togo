@@ -40,8 +40,8 @@
         "feedback_fr": "Sans guillemets autour de saisie, int lit la valeur reçue plutôt que le mot saisie."
       }
     ],
-    "required_syntax": [
-      "\\bint\\s*\\("
+    "required_constructs": [
+      "call:int"
     ]
   },
   {
@@ -85,8 +85,8 @@
         "feedback_fr": "Une mesure décimale demande float dans cet exercice, pas int."
       }
     ],
-    "required_syntax": [
-      "\\bfloat\\s*\\(\\s*input\\s*\\("
+    "required_constructs": [
+      "call:float"
     ]
   },
   {
@@ -175,8 +175,8 @@
         "feedback_fr": "Retire les guillemets pour convertir la valeur associée à saisie."
       }
     ],
-    "required_syntax": [
-      "\\bint\\s*\\("
+    "required_constructs": [
+      "call:int"
     ]
   }
 ]

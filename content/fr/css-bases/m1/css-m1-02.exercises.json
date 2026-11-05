@@ -1,0 +1,148 @@
+[
+  {
+    "title_fr": "Prédire puis départager",
+    "instruction_fr": "Les deux règles p ont la même spécificité. Modifie la seconde pour obtenir navy sur tous les p, sans changer le HTML.",
+    "starter_code": "p { color: green; }\np { color: maroon; }",
+    "solution": "p { color: green; }\np { color: navy; }",
+    "visible_tests": [
+      {
+        "description_fr": "Dernière règle ordinaire de même spécificité.",
+        "checks": [
+          {
+            "selector": "p",
+            "style": {
+              "color": "rgb(0, 0, 128)"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quelle règle apparaît après l’autre ?",
+      "Même propriété et même spécificité se départagent ici par l’ordre.",
+      "Donne navy à la dernière déclaration color."
+    ],
+    "explanation_fr": "La conclusion vaut dans le cadre annoncé ; toutes les règles CSS ne se départagent pas uniquement par l’ordre.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><h1>Le jardin</h1><p class=\"intro\">Bienvenue au jardin fictif.</p><p>Une activité par semaine.</p><article class=\"carte\"><h2>Semis</h2><p>Découvrir les graines.</p></article></main>",
+    "id": "css-m1-02-e1"
+  },
+  {
+    "title_fr": "Régler un conflit de classe",
+    "instruction_fr": "Conserve les p en navy, mais rends .intro vert. Le résultat doit rester correct avec la règle p placée après .intro.",
+    "starter_code": ".intro { color: maroon; }\np { color: navy; }",
+    "solution": ".intro { color: green; }\np { color: navy; }",
+    "visible_tests": [
+      {
+        "description_fr": "Classe plus spécifique que type.",
+        "checks": [
+          {
+            "selector": ".intro",
+            "style": {
+              "color": "rgb(0, 128, 0)"
+            }
+          },
+          {
+            "selector": "main > p:not(.intro)",
+            "style": {
+              "color": "rgb(0, 0, 128)"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quel sélecteur est le plus spécifique ?",
+      "La classe peut définir sa propre couleur.",
+      "Change la déclaration de .intro en green."
+    ],
+    "explanation_fr": "La règle p plus tardive ne remplace pas la couleur définie par la classe dans ce contexte.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><h1>Le jardin</h1><p class=\"intro\">Bienvenue au jardin fictif.</p><p>Une activité par semaine.</p><article class=\"carte\"><h2>Semis</h2><p>Découvrir les graines.</p></article></main>",
+    "id": "css-m1-02-e2"
+  },
+  {
+    "title_fr": "Observer un héritage",
+    "instruction_fr": "Donne à main color:navy et une bordure 2px solid green. Les p doivent hériter de navy et ne doivent pas avoir de bordure.",
+    "starter_code": "main { }",
+    "solution": "main { color: navy; border: 2px solid green; }",
+    "visible_tests": [
+      {
+        "description_fr": "Une propriété héritée et une autre non héritée.",
+        "checks": [
+          {
+            "selector": "main",
+            "style": {
+              "border-top-width": "2px",
+              "border-top-style": "solid"
+            }
+          },
+          {
+            "selector": "p",
+            "style": {
+              "color": "rgb(0, 0, 128)",
+              "border-top-style": "none"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quelle propriété du texte se transmet normalement ?",
+      "Applique les deux déclarations à main.",
+      "Les enfants héritent de color mais pas de border."
+    ],
+    "explanation_fr": "Le test vérifie des effets différents sur parent et descendants.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><h1>Le jardin</h1><p class=\"intro\">Bienvenue au jardin fictif.</p><p>Une activité par semaine.</p><article class=\"carte\"><h2>Semis</h2><p>Découvrir les graines.</p></article></main>",
+    "id": "css-m1-02-e3"
+  },
+  {
+    "title_fr": "Réparer une règle trop large",
+    "instruction_fr": "Tous les p sont devenus verts. Obtiens p navy et seulement .intro green avec des règles simples, sans modifier la structure.",
+    "starter_code": "main p { color: green; }",
+    "solution": "p { color: navy; }\n.intro { color: green; }",
+    "visible_tests": [
+      {
+        "description_fr": "Couleurs selon les rôles.",
+        "checks": [
+          {
+            "selector": ".intro",
+            "style": {
+              "color": "rgb(0, 128, 0)"
+            }
+          },
+          {
+            "selector": "main > p:not(.intro)",
+            "style": {
+              "color": "rgb(0, 0, 128)"
+            }
+          },
+          {
+            "selector": ".carte p",
+            "style": {
+              "color": "rgb(0, 0, 128)"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "La sélection actuelle distingue-t-elle l’introduction ?",
+      "Prévois une règle générale et une classe particulière.",
+      "p fixe navy ; .intro fixe green."
+    ],
+    "explanation_fr": "Réduire le conflit rend la feuille plus facile à comprendre que multiplier les priorités.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><h1>Le jardin</h1><p class=\"intro\">Bienvenue au jardin fictif.</p><p>Une activité par semaine.</p><article class=\"carte\"><h2>Semis</h2><p>Découvrir les graines.</p></article></main>",
+    "id": "css-m1-02-e4"
+  }
+]

@@ -1,0 +1,170 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Retirer les bords",
+    "instruction_fr": "Lis un texte et affiche sa version sans espaces extérieurs. Conserve les espaces intérieurs.",
+    "starter_code": "texte = input()\nprint(texte)",
+    "solution": "texte = input()\nprint(texte.strip())",
+    "visible_tests": [
+      {
+        "inputs": [
+          "  bon jour  "
+        ],
+        "expected_output": "bon jour\n"
+      },
+      {
+        "inputs": [
+          "   "
+        ],
+        "expected_output": "\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "A"
+        ],
+        "expected_output": "A\n"
+      }
+    ],
+    "hints": [
+      "Les espaces intérieurs ont un rôle.",
+      "strip retire seulement les espaces des extrémités.",
+      "Affiche texte.strip()."
+    ],
+    "explanation_fr": "Retirer les bords ne signifie pas supprimer tous les espaces : un nom composé garde sa séparation, tandis qu’un texte entièrement blanc devient vide.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^texte\\ =\\ input\\(\\)\\\nprint\\(texte\\)$",
+        "feedback_fr": "La ligne « print(texte) » conserve le défaut de départ. strip retire seulement les espaces des extrémités."
+      }
+    ],
+    "id": "py-m5-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un aperçu court",
+    "instruction_fr": "Lis un texte et affiche ses trois premiers caractères au maximum, même s’il est plus court.",
+    "starter_code": "texte = input()\nprint(texte[3:])",
+    "solution": "texte = input()\nprint(texte[:3])",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Python"
+        ],
+        "expected_output": "Pyt\n"
+      },
+      {
+        "inputs": [
+          "AB"
+        ],
+        "expected_output": "AB\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          ""
+        ],
+        "expected_output": "\n"
+      }
+    ],
+    "hints": [
+      "Il faut conserver le début.",
+      "La borne de fin est exclue.",
+      "Utilise texte[:3]."
+    ],
+    "explanation_fr": "Une tranche accepte une borne trop grande et conserve seulement les caractères disponibles. Le texte vide donne donc simplement une nouvelle chaîne vide.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^texte\\ =\\ input\\(\\)\\\nprint\\(texte\\[3:\\]\\)$",
+        "feedback_fr": "La ligne « print(texte[3:]) » conserve le défaut de départ. La borne de fin est exclue."
+      }
+    ],
+    "id": "py-m5-02-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Comparer des étiquettes",
+    "instruction_fr": "Lis une étiquette et affiche sa version nettoyée aux extrémités et convertie en minuscules.",
+    "starter_code": "texte = input()\nprint(texte.lower())",
+    "solution": "texte = input()\nprint(texte.strip().lower())",
+    "visible_tests": [
+      {
+        "inputs": [
+          "  Club "
+        ],
+        "expected_output": "club\n"
+      },
+      {
+        "inputs": [
+          "VElo"
+        ],
+        "expected_output": "velo\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "  A B  "
+        ],
+        "expected_output": "a b\n"
+      }
+    ],
+    "hints": [
+      "Deux transformations sont demandées.",
+      "Applique strip puis lower au résultat.",
+      "Écris texte.strip().lower()."
+    ],
+    "explanation_fr": "L’enchaînement rend comparables les étiquettes qui diffèrent seulement par la casse et les espaces extérieurs, sans prétendre résoudre toutes les variantes d’écriture.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^texte\\ =\\ input\\(\\)\\\nprint\\(texte\\.lower\\(\\)\\)$",
+        "feedback_fr": "La ligne « print(texte.lower()) » conserve le défaut de départ. Applique strip puis lower au résultat."
+      }
+    ],
+    "id": "py-m5-02-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une tranche",
+    "instruction_fr": "Lis un texte, éventuellement vide, et affiche tout sauf son dernier caractère.",
+    "starter_code": "texte = input()\nprint(texte[-1:])",
+    "solution": "texte = input()\nprint(texte[:-1])",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Code"
+        ],
+        "expected_output": "Cod\n"
+      },
+      {
+        "inputs": [
+          "A"
+        ],
+        "expected_output": "\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          ""
+        ],
+        "expected_output": "\n"
+      }
+    ],
+    "hints": [
+      "Le début peut être omis.",
+      "Il faut une fin à -1, pas un début à -1.",
+      "Place les deux-points avant -1."
+    ],
+    "explanation_fr": "La position des deux-points change le sens de l’extraction. La fin exclue à moins un conserve tout ce qui précède le dernier caractère.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^texte\\ =\\ input\\(\\)\\\nprint\\(texte\\[\\-1:\\]\\)$",
+        "feedback_fr": "La ligne « print(texte[-1:]) » conserve le défaut de départ. Il faut une fin à -1, pas un début à -1."
+      }
+    ],
+    "id": "py-m5-02-e4"
+  }
+]

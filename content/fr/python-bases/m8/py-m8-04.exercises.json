@@ -1,0 +1,343 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Frontière de tarif",
+    "instruction_fr": "Pour nombre entier positif ou nul, retourne nombre * 8 si nombre >= 5, sinon nombre * 10. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def tarif(nombre):\n    return None",
+    "solution": "def tarif(nombre):\n    if nombre >= 5:\n        return nombre * 8\n    return nombre * 10",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tarif",
+            "args": [
+              4
+            ],
+            "expected": 40,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tarif",
+            "args": [
+              5
+            ],
+            "expected": 40,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tarif",
+            "args": [
+              0
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tarif",
+            "args": [
+              6
+            ],
+            "expected": 48,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le seuil cinq appartient au tarif réduit.",
+      "Sépare les deux branches au bon endroit.",
+      "Utilise if nombre >= 5."
+    ],
+    "explanation_fr": "Les voisins du seuil vérifient le changement de règle. La valeur zéro et une quantité plus grande empêchent de confondre la formule avec une réponse constante.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ tarif\\(nombre\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Sépare les deux branches au bon endroit."
+      }
+    ],
+    "id": "py-m8-04-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Tous les cas retenus",
+    "instruction_fr": "Retourne le nombre de textes non vides après strip dans noms. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def compter_utiles(noms):\n    return None",
+    "solution": "def compter_utiles(noms):\n    nombre = 0\n    for nom in noms:\n        if nom.strip() != \"\":\n            nombre = nombre + 1\n    return nombre",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compter_utiles",
+            "args": [
+              [
+                " A ",
+                " ",
+                "B"
+              ]
+            ],
+            "expected": 2,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compter_utiles",
+            "args": [
+              []
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compter_utiles",
+            "args": [
+              [
+                "",
+                " "
+              ]
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compter_utiles",
+            "args": [
+              [
+                "X",
+                "X"
+              ]
+            ],
+            "expected": 2,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le nettoyage précède la décision.",
+      "Les répétitions comptent comme plusieurs réponses.",
+      "Ajoute un pour chaque texte nettoyé non vide."
+    ],
+    "explanation_fr": "Le cas entièrement blanc vérifie le nettoyage et les doublons vérifient que la fonction compte des réponses utiles, sans se transformer en déduplication non demandée.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ compter_utiles\\(noms\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Les répétitions comptent comme plusieurs réponses."
+      }
+    ],
+    "id": "py-m8-04-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Maximum protégé",
+    "instruction_fr": "Retourne la plus grande valeur d’une liste de nombres ; retourne None si elle est vide. N’utilise pas de valeur initiale arbitraire zéro. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def maximum_ou_none(valeurs):\n    return None",
+    "solution": "def maximum_ou_none(valeurs):\n    if len(valeurs) == 0:\n        return None\n    maximum = valeurs[0]\n    for valeur in valeurs:\n        if valeur > maximum:\n            maximum = valeur\n    return maximum",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "maximum_ou_none",
+            "args": [
+              [
+                -5,
+                -2
+              ]
+            ],
+            "expected": -2,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "maximum_ou_none",
+            "args": [
+              []
+            ],
+            "expected": null,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "maximum_ou_none",
+            "args": [
+              [
+                3
+              ]
+            ],
+            "expected": 3,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "maximum_ou_none",
+            "args": [
+              [
+                2,
+                8,
+                1
+              ]
+            ],
+            "expected": 8,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une liste de négatifs peut avoir un maximum négatif.",
+      "Initialise avec un élément réel après le cas vide.",
+      "Pars de valeurs[0] puis compare chaque valeur."
+    ],
+    "explanation_fr": "Un exemple seulement positif cacherait une initialisation erronée à zéro. Le cas vide possède ici une réponse explicite, None, distincte de tous les maxima numériques.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ maximum_ou_none\\(valeurs\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Initialise avec un élément réel après le cas vide."
+      }
+    ],
+    "id": "py-m8-04-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Résultat et conservation",
+    "instruction_fr": "Retourne une liste des valeurs >= seuil dans leur ordre et sans changer valeurs. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def selectionner(valeurs, seuil):\n    return None",
+    "solution": "def selectionner(valeurs, seuil):\n    selection = []\n    for valeur in valeurs:\n        if valeur >= seuil:\n            selection.append(valeur)\n    return selection",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "selectionner",
+            "args": [
+              [
+                2,
+                8,
+                5
+              ],
+              5
+            ],
+            "expected": [
+              8,
+              5
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "selectionner",
+            "args": [
+              [],
+              5
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "selectionner",
+            "args": [
+              [
+                5,
+                5
+              ],
+              5
+            ],
+            "expected": [
+              5,
+              5
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le résultat garde l’ordre et les répétitions.",
+      "Construis une nouvelle liste.",
+      "Ajoute chaque valeur retenue à selection."
+    ],
+    "explanation_fr": "Plusieurs solutions peuvent construire la sélection attendue. Les tests portent sur l’ordre, les frontières et la conservation de l’argument plutôt que sur une copie exacte de la correction.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ selectionner\\(valeurs,\\ seuil\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Construis une nouvelle liste."
+      }
+    ],
+    "id": "py-m8-04-e4"
+  }
+]

@@ -1,0 +1,310 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Coût des lignes",
+    "instruction_fr": "Chaque ligne possède nom, prix et nombre selon les types annoncés. Retourne la somme prix * nombre. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def cout_total(lignes):\n    return None",
+    "solution": "def cout_total(lignes):\n    total = 0\n    for ligne in lignes:\n        total = total + ligne[\"prix\"] * ligne[\"nombre\"]\n    return total",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "cout_total",
+            "args": [
+              [
+                {
+                  "nom": "A",
+                  "prix": 2,
+                  "nombre": 3
+                },
+                {
+                  "nom": "B",
+                  "prix": 1,
+                  "nombre": 4
+                }
+              ]
+            ],
+            "expected": 10,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "cout_total",
+            "args": [
+              []
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "cout_total",
+            "args": [
+              [
+                {
+                  "nom": "A",
+                  "prix": 2.5,
+                  "nombre": 2
+                }
+              ]
+            ],
+            "expected": 5.0,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Chaque ligne porte son propre nombre.",
+      "Calcule le produit avant l’addition au total.",
+      "Ajoute ligne[\"prix\"] * ligne[\"nombre\"]."
+    ],
+    "explanation_fr": "Un budget de lignes demande une somme de produits. Des quantités différentes révèlent une solution qui additionnerait seulement les prix ou le nombre de fiches.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ cout_total\\(lignes\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Calcule le produit avant l’addition au total."
+      }
+    ],
+    "id": "py-m12-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Budget suffisant",
+    "instruction_fr": "Total et budget sont numériques positifs ou nuls. Retourne True si total ne dépasse pas budget, égalité comprise. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def budget_suffit(total, budget):\n    return None",
+    "solution": "def budget_suffit(total, budget):\n    return total <= budget",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "budget_suffit",
+            "args": [
+              10,
+              10
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "budget_suffit",
+            "args": [
+              11,
+              10
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "budget_suffit",
+            "args": [
+              0,
+              0
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Ne pas dépasser inclut l’égalité.",
+      "Le sens de la comparaison porte total face au budget.",
+      "Retourne total <= budget."
+    ],
+    "explanation_fr": "Une borne inclusive permet de dépenser exactement le budget fictif. Le cas zéro et le dépassement voisin contrôlent la décision sans introduire de règle financière réelle.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ budget_suffit\\(total,\\ budget\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Le sens de la comparaison porte total face au budget."
+      }
+    ],
+    "id": "py-m12-02-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Manque positif",
+    "instruction_fr": "Retourne le manque positif si total dépasse budget ; sinon retourne zéro. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def budget_manquant(total, budget):\n    return None",
+    "solution": "def budget_manquant(total, budget):\n    if total > budget:\n        return total - budget\n    return 0",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "budget_manquant",
+            "args": [
+              12,
+              10
+            ],
+            "expected": 2,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "budget_manquant",
+            "args": [
+              8,
+              10
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "budget_manquant",
+            "args": [
+              10,
+              10
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un reste disponible n’est pas un manque négatif.",
+      "Le résultat doit rester positif ou nul.",
+      "Retourne total - budget uniquement en cas de dépassement."
+    ],
+    "explanation_fr": "Le signe est une règle de présentation du bilan. Une différence négative exprimerait autre chose que le manque positif demandé et ne devrait pas être transmise sous le même nom.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ budget_manquant\\(total,\\ budget\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Le résultat doit rester positif ou nul."
+      }
+    ],
+    "id": "py-m12-02-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Scénario avec frais fixes",
+    "instruction_fr": "Retourne le coût de toutes les lignes plus frais une seule fois. Les clés des lignes sont nom, prix et nombre. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def cout_avec_frais(lignes, frais):\n    return None",
+    "solution": "def cout_avec_frais(lignes, frais):\n    total = frais\n    for ligne in lignes:\n        total = total + ligne[\"prix\"] * ligne[\"nombre\"]\n    return total",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "cout_avec_frais",
+            "args": [
+              [
+                {
+                  "nom": "A",
+                  "prix": 2,
+                  "nombre": 3
+                }
+              ],
+              5
+            ],
+            "expected": 11,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "cout_avec_frais",
+            "args": [
+              [],
+              5
+            ],
+            "expected": 5,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "cout_avec_frais",
+            "args": [
+              [
+                {
+                  "nom": "A",
+                  "prix": 1,
+                  "nombre": 2
+                },
+                {
+                  "nom": "B",
+                  "prix": 3,
+                  "nombre": 1
+                }
+              ],
+              4
+            ],
+            "expected": 9,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les frais ne dépendent pas du nombre de lignes.",
+      "Ajoute-les en dehors de la répétition.",
+      "Initialise total à frais avant la boucle."
+    ],
+    "explanation_fr": "Un coût fixe s’ajoute une fois, même sans ligne d’article dans ce contrat. Deux lignes permettent de détecter des frais répétés à tort à chaque passage.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ cout_avec_frais\\(lignes,\\ frais\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Ajoute-les en dehors de la répétition."
+      }
+    ],
+    "id": "py-m12-02-e4"
+  }
+]

@@ -38,3 +38,15 @@ Les pages affichent une licence Creative Commons BY-NC. Conditions : https://abo
 Le lien fourni par le propriétaire est un catalogue universitaire et ne permet pas de supposer que chaque qualification est gratuite. La branche OpenLearn est explicitement gratuite ; la sélection n’est pas l’import intégral de ses quelque 900 cours. Le cours An introduction to sustainable energy a été écarté après redirection vers une page de retrait.
 
 Neuf plateformes ou organismes togolais sont documentés avec URL, portée, accès et idée réellement mise en œuvre dans data/togo_platforms.json. Treize projets originaux dans data/togo_projects.json associent une mission, trois étapes, un livrable et une auto-évaluation. ADACE/FAIEJ inspire le canevas et la simulation ; AED/IFAD les projets de filière et la bureautique ; FOCEN/DPIP la mini-leçon ; les ressources de santé spécialisées ne sont pas importées comme formation clinique. Aucun cours fermé n’a été copié, aucun compte tiers créé.
+
+
+## Lot 5.3.0 — cours et correcteurs
+
+Les nouveaux textes, exemples, exercices et projets sont originaux Nunya, en français, avec statut brouillon et réviseur non renseigné. Les références techniques par leçon sont conservées dans leurs métadonnées. Les collections externes restent attribuées à leurs fournisseurs ; leurs ressources ne sont pas comptées comme des cours complets Nunya.
+
+- Python : documentation officielle du langage et des bibliothèques, https://docs.python.org/fr/3/ ; AST pour les constructions effectivement utilisées : https://docs.python.org/3/library/ast.html .
+- HTML : norme WHATWG, https://html.spec.whatwg.org/ ; CSS : spécifications W3C, https://www.w3.org/Style/CSS/specs.en.html .
+- JavaScript : guide MDN en français, https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide ; ECMAScript, https://tc39.es/ecma262/ .
+- Iframes et restrictions : https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe ; Workers : https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers . Le vérificateur HTML/CSS utilise un script fixe externe sous CSP et une iframe sans accès à l’origine parent. Le code HTML/CSS de l’élève n’exécute pas de JavaScript.
+
+Les données de projets (prix, stocks, réservations et formulaires d’association) sont fictives. Les tests natifs et de navigateur apportent une vérification technique ; ils ne remplacent pas une relecture pédagogique indépendante.

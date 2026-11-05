@@ -1,0 +1,152 @@
+[
+  {
+    "title_fr": "Colorer les paragraphes",
+    "instruction_fr": "Sur la structure fournie, donne à tous les p la couleur navy. Écris uniquement du CSS.",
+    "starter_code": "p { /* couleur */ }",
+    "solution": "p { color: navy; }",
+    "visible_tests": [
+      {
+        "description_fr": "Couleur calculée des paragraphes.",
+        "checks": [
+          {
+            "selector": "p",
+            "style": {
+              "color": "rgb(0, 0, 128)"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quel sélecteur vise tous les paragraphes ?",
+      "La propriété du texte est color.",
+      "Ajoute color: navy; dans les accolades."
+    ],
+    "explanation_fr": "Le navigateur normalise navy en une valeur rgb ; les tests comparent le résultat calculé.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><h1>Le jardin</h1><p class=\"intro\">Bienvenue au jardin fictif.</p><p>Une activité par semaine.</p><article class=\"carte\"><h2>Semis</h2><p>Découvrir les graines.</p></article></main>",
+    "id": "css-m1-01-e1"
+  },
+  {
+    "title_fr": "Utiliser une classe",
+    "instruction_fr": "Rends .intro gras avec font-weight:700. Les autres paragraphes doivent garder font-weight:400.",
+    "starter_code": ".intro { }",
+    "solution": ".intro { font-weight: 700; }",
+    "visible_tests": [
+      {
+        "description_fr": "La classe limite le changement.",
+        "checks": [
+          {
+            "selector": "p.intro",
+            "style": {
+              "font-weight": "700"
+            }
+          },
+          {
+            "selector": "main > p:not(.intro)",
+            "style": {
+              "font-weight": "400"
+            }
+          },
+          {
+            "selector": ".carte p",
+            "style": {
+              "font-weight": "400"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quel élément possède la classe intro ?",
+      "Le sélecteur de classe commence par un point.",
+      "Utilise .intro, pas intro."
+    ],
+    "explanation_fr": "Le contrôle des paragraphes voisins évite une sélection trop large.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><h1>Le jardin</h1><p class=\"intro\">Bienvenue au jardin fictif.</p><p>Une activité par semaine.</p><article class=\"carte\"><h2>Semis</h2><p>Découvrir les graines.</p></article></main>",
+    "id": "css-m1-01-e2"
+  },
+  {
+    "title_fr": "Cibler dans une carte",
+    "instruction_fr": "Donne color:green uniquement aux p contenus dans .carte. Les autres p doivent rester noirs.",
+    "starter_code": "p { color: green; }",
+    "solution": ".carte p { color: green; }",
+    "visible_tests": [
+      {
+        "description_fr": "Un descendant et ses voisins.",
+        "checks": [
+          {
+            "selector": ".carte p",
+            "style": {
+              "color": "rgb(0, 128, 0)"
+            }
+          },
+          {
+            "selector": "main > p",
+            "style": {
+              "color": "rgb(0, 0, 0)"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Le sélecteur actuel touche trop de paragraphes.",
+      "Exprime la relation avec .carte.",
+      "Écris .carte p avant les accolades."
+    ],
+    "explanation_fr": "La correction change la portée du sélecteur, sans imposer un autre texte de contenu.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><h1>Le jardin</h1><p class=\"intro\">Bienvenue au jardin fictif.</p><p>Une activité par semaine.</p><article class=\"carte\"><h2>Semis</h2><p>Découvrir les graines.</p></article></main>",
+    "id": "css-m1-01-e3"
+  },
+  {
+    "title_fr": "Partager une règle",
+    "instruction_fr": "Donne color:navy à h1 et h2 et conserve les paragraphes noirs. Utilise les sélecteurs qui conviennent.",
+    "starter_code": "/* Titres */",
+    "solution": "h1, h2 { color: navy; }",
+    "visible_tests": [
+      {
+        "description_fr": "Titres concernés, paragraphes inchangés.",
+        "checks": [
+          {
+            "selector": "h1",
+            "style": {
+              "color": "rgb(0, 0, 128)"
+            }
+          },
+          {
+            "selector": "h2",
+            "style": {
+              "color": "rgb(0, 0, 128)"
+            }
+          },
+          {
+            "selector": "p",
+            "style": {
+              "color": "rgb(0, 0, 0)"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Les deux titres doivent recevoir la même propriété.",
+      "Tu peux regrouper des sélecteurs avec une virgule.",
+      "h1, h2 peut partager une déclaration color."
+    ],
+    "explanation_fr": "Une règle groupée et deux règles distinctes sont acceptées si leur résultat respecte le contrat.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><h1>Le jardin</h1><p class=\"intro\">Bienvenue au jardin fictif.</p><p>Une activité par semaine.</p><article class=\"carte\"><h2>Semis</h2><p>Découvrir les graines.</p></article></main>",
+    "id": "css-m1-01-e4"
+  }
+]

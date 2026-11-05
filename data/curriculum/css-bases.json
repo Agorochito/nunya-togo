@@ -1,0 +1,232 @@
+{
+  "id": "css-bases",
+  "title_fr": "CSS : premières interfaces",
+  "language": "css",
+  "level": "debutant",
+  "summary_fr": "Présenter une page HTML, organiser ses espaces et adapter une interface avec une feuille de style vérifiable. Les niveaux intermédiaire et avancé restent en préparation.",
+  "prerequisites": [
+    "html-bases"
+  ],
+  "outcomes": [
+    "Livrer une feuille de style adaptable pour une page associative.",
+    "Justifier les boîtes, la disposition et les états de focus."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Appliquer et comprendre les styles",
+      "outcome_fr": "Expliquer une règle, la cascade et des choix de lecture.",
+      "lesson_ids": [
+        "css-m1-01",
+        "css-m1-02",
+        "css-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Dimensionner et rendre les contrôles utilisables",
+      "outcome_fr": "Maîtriser boîtes, unités, espaces et états visibles.",
+      "lesson_ids": [
+        "css-m2-01",
+        "css-m2-02",
+        "css-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Organiser et adapter une interface",
+      "outcome_fr": "Composer Flexbox, Grid et des règles conditionnelles.",
+      "lesson_ids": [
+        "css-m3-01",
+        "css-m3-02",
+        "css-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Consolider et vérifier une feuille de style",
+      "outcome_fr": "Créer un thème simple et livrer une interface adaptée avec revue.",
+      "lesson_ids": [
+        "css-m4-01",
+        "css-m4-02",
+        "css-m4-03"
+      ]
+    }
+  ],
+  "status": "brouillon",
+  "reviewer": null,
+  "runtime": "css",
+  "later_modules": [],
+  "lessons": [
+    {
+      "id": "css-m1-01",
+      "title_fr": "Écrire des règles et cibler les éléments",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [],
+      "tags": [
+        "css",
+        "m1",
+        "débutant"
+      ]
+    },
+    {
+      "id": "css-m1-02",
+      "title_fr": "Comprendre cascade, spécificité et héritage",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "css-m1-01"
+      ],
+      "tags": [
+        "css",
+        "m1",
+        "débutant"
+      ]
+    },
+    {
+      "id": "css-m1-03",
+      "title_fr": "Choisir une typographie et des couleurs lisibles",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "css-m1-02"
+      ],
+      "tags": [
+        "css",
+        "m1",
+        "débutant"
+      ]
+    },
+    {
+      "id": "css-m2-01",
+      "title_fr": "Mesurer une boîte et distinguer ses espaces",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "css-m1-03"
+      ],
+      "tags": [
+        "css",
+        "m2",
+        "débutant"
+      ]
+    },
+    {
+      "id": "css-m2-02",
+      "title_fr": "Combiner unités relatives et limites de largeur",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "css-m2-01"
+      ],
+      "tags": [
+        "css",
+        "m2",
+        "débutant"
+      ]
+    },
+    {
+      "id": "css-m2-03",
+      "title_fr": "Garder des états et un focus visibles",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "css-m2-02"
+      ],
+      "tags": [
+        "css",
+        "m2",
+        "débutant"
+      ]
+    },
+    {
+      "id": "css-m3-01",
+      "title_fr": "Aligner une rangée avec Flexbox",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "css-m2-03"
+      ],
+      "tags": [
+        "css",
+        "m3",
+        "débutant"
+      ]
+    },
+    {
+      "id": "css-m3-02",
+      "title_fr": "Composer une grille de cartes avec Grid",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "css-m3-01"
+      ],
+      "tags": [
+        "css",
+        "m3",
+        "débutant"
+      ]
+    },
+    {
+      "id": "css-m3-03",
+      "title_fr": "Adapter la disposition à la place disponible",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "css-m3-02"
+      ],
+      "tags": [
+        "css",
+        "m3",
+        "débutant"
+      ]
+    },
+    {
+      "id": "css-m4-01",
+      "title_fr": "Réutiliser une palette avec des propriétés personnalisées",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "css-m3-03"
+      ],
+      "tags": [
+        "css",
+        "m4",
+        "débutant"
+      ]
+    },
+    {
+      "id": "css-m4-02",
+      "title_fr": "Réduire les mouvements et faire une revue visuelle",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "css-m4-01"
+      ],
+      "tags": [
+        "css",
+        "m4",
+        "débutant"
+      ]
+    },
+    {
+      "id": "css-m4-03",
+      "title_fr": "Projet : livrer une feuille de style adaptable",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "css-m4-02"
+      ],
+      "tags": [
+        "css",
+        "m4",
+        "débutant"
+      ]
+    }
+  ],
+  "estimated_minutes": 240,
+  "content_revision": "572b026f225b",
+  "exercise_count": 48,
+  "quiz_count": 36
+}

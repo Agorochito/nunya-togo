@@ -1,15 +1,50 @@
 {
   "audit_date": "2026-11-04",
   "production_base_commit": "c4c548ba282fb9d00913fd5916f3775c85826b6e",
-  "scope": "Audit interne des besoins du prompt maître ; ce fichier ne publie pas des cours.",
+  "scope": "État vérifié du premier lot étendu ; la cible de 72 cours sur trois niveaux reste entière.",
   "canonical_existing": {
-    "course": "python-bases",
-    "modules": 4,
-    "lessons": 22,
-    "code_exercises": 88,
-    "quizzes": 66,
-    "estimated_minutes": 440,
-    "status": "brouillon"
+    "courses": [
+      {
+        "id": "python-bases",
+        "modules": 12,
+        "lessons": 53,
+        "code_exercises": 212,
+        "quizzes": 159,
+        "estimated_minutes": 1060,
+        "status": "brouillon",
+        "scope": "Parcours débutant : notions, exercices et projets progressifs."
+      },
+      {
+        "id": "css-bases",
+        "modules": 4,
+        "lessons": 12,
+        "code_exercises": 48,
+        "quizzes": 36,
+        "estimated_minutes": 240,
+        "status": "brouillon",
+        "scope": "Présenter une page HTML, organiser ses espaces et adapter une interface avec une feuille de style vérifiable. Les niveaux intermédiaire et avancé restent en préparation."
+      },
+      {
+        "id": "html-bases",
+        "modules": 4,
+        "lessons": 12,
+        "code_exercises": 48,
+        "quizzes": 36,
+        "estimated_minutes": 240,
+        "status": "brouillon",
+        "scope": "Construire une page associative structurée avec un formulaire local, sans serveur ni collecte réelle. Les niveaux intermédiaire et avancé restent en préparation."
+      },
+      {
+        "id": "javascript-bases",
+        "modules": 2,
+        "lessons": 6,
+        "code_exercises": 24,
+        "quizzes": 18,
+        "estimated_minutes": 120,
+        "status": "brouillon",
+        "scope": "Première série débutante de six leçons ; programme complet en cours de construction."
+      }
+    ]
   },
   "target_families": 24,
   "target_level_courses": 72,
@@ -19,12 +54,13 @@
       "family": "PY",
       "level": "debutant",
       "target_title": "Python — les fondamentaux",
-      "status": "partiel",
+      "status": "socle-redige-a-relire",
       "evidence": [
         "content/fr/python-bases",
-        "data/curriculum/python-bases.json"
+        "docs/GLOBAL_CURRICULUM_UI_RESULTS.json"
       ],
-      "next_action": "Compléter le programme débutant, puis valider projet et relecture."
+      "next_action": "Relecture pédagogique indépendante et essais de terrain ; ne pas confondre progression et maîtrise certifiée.",
+      "verification_note": "12 modules, 53 leçons, 212 exercices ; projet de réservation et bilans présents."
     },
     {
       "id": "py-intermediaire",
@@ -49,11 +85,13 @@
       "family": "HTML",
       "level": "debutant",
       "target_title": "HTML — créer sa première page",
-      "status": "apercu_historique",
+      "status": "premier-cours-redige-a-relire",
       "evidence": [
-        "content/fr/web.json"
+        "content/fr/html-bases",
+        "docs/GLOBAL_CURRICULUM_UI_RESULTS.json"
       ],
-      "next_action": "Construire un cours complet et des exercices propres au niveau ; le court aperçu ne suffit pas."
+      "next_action": "Relecture et poursuite des exigences du programme maître avant les séries intermédiaire et avancée.",
+      "verification_note": "4 modules, 12 leçons, 48 exercices DOM et projet de page associative."
     },
     {
       "id": "html-intermediaire",
@@ -78,11 +116,13 @@
       "family": "CSS",
       "level": "debutant",
       "target_title": "CSS — mettre en forme une page",
-      "status": "apercu_historique",
+      "status": "premier-cours-redige-a-relire",
       "evidence": [
-        "content/fr/web.json"
+        "content/fr/css-bases",
+        "docs/GLOBAL_CURRICULUM_UI_RESULTS.json"
       ],
-      "next_action": "Construire un cours complet et des exercices propres au niveau ; le court aperçu ne suffit pas."
+      "next_action": "Relecture et extension des notions du programme maître dans des cours distincts.",
+      "verification_note": "4 modules, 12 leçons, 48 exercices de styles calculés et projet responsive."
     },
     {
       "id": "css-intermediaire",
@@ -107,11 +147,13 @@
       "family": "JS",
       "level": "debutant",
       "target_title": "JavaScript — les fondamentaux",
-      "status": "apercu_historique",
+      "status": "premiere-serie-partielle",
       "evidence": [
-        "content/fr/javascript.json"
+        "content/fr/javascript-bases",
+        "docs/GLOBAL_CURRICULUM_UI_RESULTS.json"
       ],
-      "next_action": "Construire un cours complet et des exercices propres au niveau ; le court aperçu ne suffit pas."
+      "next_action": "Compléter boucles, tableaux, objets, fonctions, débogage et projet avant de déclarer le socle complet.",
+      "verification_note": "2 modules, 6 leçons, 24 exercices réels ; valeurs, conversions et conditions."
     },
     {
       "id": "js-intermediaire",
@@ -695,5 +737,6 @@
     "IA générative",
     "Objets connectés et robotique",
     "Blockchain"
-  ]
+  ],
+  "updated_for_release": "5.3.0"
 }

@@ -1,0 +1,186 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Convertir une quantité",
+    "instruction_fr": "Lis une saisie dans texte, convertis-la dans quantite puis affiche quantite + 1.",
+    "starter_code": "const texte = input(\"Quantité ?\");\nconst quantite = texte;\nconsole.log(quantite + 1);",
+    "solution": "const texte = input(\"Quantité ?\");\nconst quantite = Number(texte);\nconsole.log(quantite + 1);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "5",
+        "calls": [
+          {
+            "name": "quantite",
+            "args": [],
+            "expected": 4
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "9"
+        ],
+        "expected_output": "10",
+        "calls": [
+          {
+            "name": "quantite",
+            "args": [],
+            "expected": 9
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "input rend une chaîne.",
+      "Number permet l’addition numérique.",
+      "const texte = input(\"Quantité ?\");\nconst quantite = Number(texte);\nconsole.log(quantite + 1);"
+    ],
+    "explanation_fr": "Sans conversion, + peut assembler les caractères.",
+    "common_wrong_answers": [],
+    "id": "js-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Additionner deux saisies",
+    "instruction_fr": "Lis deux nombres, conserve leur somme dans total puis affiche total.",
+    "starter_code": "const a = Number(input(\"A ?\"));\nconst b = Number(input(\"B ?\"));\nconst total = a;\nconsole.log(total);",
+    "solution": "const a = Number(input(\"A ?\"));\nconst b = Number(input(\"B ?\"));\nconst total = a + b;\nconsole.log(total);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4",
+          "7"
+        ],
+        "expected_output": "11",
+        "calls": [
+          {
+            "name": "total",
+            "args": [],
+            "expected": 11
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1.5",
+          "2.5"
+        ],
+        "expected_output": "4",
+        "calls": [
+          {
+            "name": "total",
+            "args": [],
+            "expected": 4
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Chaque réponse doit être convertie.",
+      "Additionne les deux valeurs numériques.",
+      "const a = Number(input(\"A ?\"));\nconst b = Number(input(\"B ?\"));\nconst total = a + b;\nconsole.log(total);"
+    ],
+    "explanation_fr": "Le programme réutilise les valeurs fournies dans chaque essai.",
+    "common_wrong_answers": [],
+    "id": "js-m1-03-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Nettoyer un mot",
+    "instruction_fr": "Lis un nom fictif, conserve le texte sans espaces extérieurs dans nom puis affiche Bonjour suivi d’un espace et du nom.",
+    "starter_code": "const nom = input(\"Nom fictif ?\");\nconsole.log(\"Bonjour \" + nom);",
+    "solution": "const nom = input(\"Nom fictif ?\").trim();\nconsole.log(\"Bonjour \" + nom);",
+    "visible_tests": [
+      {
+        "inputs": [
+          " Lila "
+        ],
+        "expected_output": "Bonjour Lila",
+        "calls": [
+          {
+            "name": "nom",
+            "args": [],
+            "expected": "Lila"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "Kofi"
+        ],
+        "expected_output": "Bonjour Kofi",
+        "calls": [
+          {
+            "name": "nom",
+            "args": [],
+            "expected": "Kofi"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les espaces extérieurs ne font pas partie du nom demandé.",
+      "Applique trim à la chaîne reçue.",
+      "const nom = input(\"Nom fictif ?\").trim();\nconsole.log(\"Bonjour \" + nom);"
+    ],
+    "explanation_fr": "Le nettoyage précède la construction du message.",
+    "common_wrong_answers": [],
+    "id": "js-m1-03-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une concaténation",
+    "instruction_fr": "Le programme doit afficher une somme numérique des deux saisies. Corrige total.",
+    "starter_code": "const a = input(\"A ?\");\nconst b = input(\"B ?\");\nconst total = a + b;\nconsole.log(total);",
+    "solution": "const a = input(\"A ?\");\nconst b = input(\"B ?\");\nconst total = Number(a) + Number(b);\nconsole.log(total);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3",
+          "5"
+        ],
+        "expected_output": "8",
+        "calls": [
+          {
+            "name": "total",
+            "args": [],
+            "expected": 8
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "10",
+          "2"
+        ],
+        "expected_output": "12",
+        "calls": [
+          {
+            "name": "total",
+            "args": [],
+            "expected": 12
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Observe le type des réponses.",
+      "Convertis chaque texte avant de l’additionner.",
+      "const a = input(\"A ?\");\nconst b = input(\"B ?\");\nconst total = Number(a) + Number(b);\nconsole.log(total);"
+    ],
+    "explanation_fr": "Les chaînes 3 et 5 assemblées donnent 35, pas 8.",
+    "common_wrong_answers": [],
+    "id": "js-m1-03-e4"
+  }
+]

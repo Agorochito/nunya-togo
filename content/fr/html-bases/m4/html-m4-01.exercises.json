@@ -1,0 +1,155 @@
+[
+  {
+    "title_fr": "Installer un accès au contenu",
+    "instruction_fr": "Ajoute avant header un lien Aller au contenu vers #contenu et donne cet id à main.",
+    "starter_code": "<header><h1>Le jardin</h1></header><main><p>Bienvenue.</p></main>",
+    "solution": "<a href=\"#contenu\">Aller au contenu</a><header><h1>Le jardin</h1></header><main id=\"contenu\"><p>Bienvenue.</p></main>",
+    "visible_tests": [
+      {
+        "description_fr": "Accès direct au main.",
+        "checks": [
+          {
+            "selector": "body > a:first-child",
+            "attributes": {
+              "href": "#contenu"
+            },
+            "textIncludes": "Aller au contenu"
+          },
+          {
+            "selector": "main#contenu",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quelle région doit être atteinte ?",
+      "Le fragment doit correspondre à l’id du main.",
+      "Place le lien avant header."
+    ],
+    "explanation_fr": "Le test prouve la relation ; vérifie manuellement l’activation et la reprise de navigation au clavier.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "id": "html-m4-01-e1"
+  },
+  {
+    "title_fr": "Réparer une destination",
+    "instruction_fr": "La navigation vise #programme. Corrige l’id de section pour lui correspondre, en conservant le titre Programme.",
+    "starter_code": "<nav aria-label=\"Principale\"><a href=\"#programme\">Programme</a></nav><main><section id=\"programe\"><h2>Programme</h2></section></main>",
+    "solution": "<nav aria-label=\"Principale\"><a href=\"#programme\">Programme</a></nav><main><section id=\"programme\"><h2>Programme</h2></section></main>",
+    "visible_tests": [
+      {
+        "description_fr": "Une cible exacte pour le lien.",
+        "checks": [
+          {
+            "selector": "nav a",
+            "attributes": {
+              "href": "#programme"
+            }
+          },
+          {
+            "selector": "main section#programme",
+            "count": 1
+          },
+          {
+            "selector": "#programe",
+            "exists": false
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Compare chaque lettre des deux valeurs.",
+      "Le lien contient programme avec deux m au total.",
+      "Corrige id=\"programe\" en id=\"programme\"."
+    ],
+    "explanation_fr": "Un petit écart de nom suffit à casser une navigation interne.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "id": "html-m4-01-e2"
+  },
+  {
+    "title_fr": "Relier deux rubriques",
+    "instruction_fr": "Dans nav, ajoute Activités vers #activites et Inscription vers #inscription. Dans main, crée deux sections avec ces ids et leurs h2 correspondants.",
+    "starter_code": "<nav aria-label=\"Principale\"></nav><main></main>",
+    "solution": "<nav aria-label=\"Principale\"><a href=\"#activites\">Activités</a><a href=\"#inscription\">Inscription</a></nav><main><section id=\"activites\"><h2>Activités</h2></section><section id=\"inscription\"><h2>Inscription</h2></section></main>",
+    "visible_tests": [
+      {
+        "description_fr": "Deux liens et deux rubriques.",
+        "checks": [
+          {
+            "selector": "nav a",
+            "count": 2
+          },
+          {
+            "selector": "nav a[href=\"#activites\"]",
+            "textIncludes": "Activités"
+          },
+          {
+            "selector": "nav a[href=\"#inscription\"]",
+            "textIncludes": "Inscription"
+          },
+          {
+            "selector": "main section#activites h2",
+            "textIncludes": "Activités"
+          },
+          {
+            "selector": "main section#inscription h2",
+            "textIncludes": "Inscription"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Dessine d’abord les deux relations lien/cible.",
+      "Place les ids sur les sections.",
+      "Utilise h2 pour les rubriques de même niveau."
+    ],
+    "explanation_fr": "Une navigation utile correspond au plan réel de la page.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m4-01-e3"
+  },
+  {
+    "title_fr": "Relire une fiche autonome",
+    "instruction_fr": "Crée dans main un h1 Programme puis une section avec h2 Ateliers et un article avec h3 Semis et p Activité fictive.",
+    "starter_code": "<main><!-- Organise le programme. --></main>",
+    "solution": "<main><h1>Programme</h1><section><h2>Ateliers</h2><article><h3>Semis</h3><p>Activité fictive.</p></article></section></main>",
+    "visible_tests": [
+      {
+        "description_fr": "Plan et fiche structurés.",
+        "checks": [
+          {
+            "selector": "main > h1",
+            "textIncludes": "Programme"
+          },
+          {
+            "selector": "main section > h2",
+            "textIncludes": "Ateliers"
+          },
+          {
+            "selector": "section article h3",
+            "textIncludes": "Semis"
+          },
+          {
+            "selector": "article p",
+            "textIncludes": "Activité fictive."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Le sujet principal et la fiche n’ont pas le même niveau.",
+      "Utilise h1, puis h2, puis h3.",
+      "article appartient à la section Ateliers."
+    ],
+    "explanation_fr": "Le plan reste compréhensible en ne lisant que les titres.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m4-01-e4"
+  }
+]

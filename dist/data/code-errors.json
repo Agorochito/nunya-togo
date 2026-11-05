@@ -1,0 +1,38 @@
+{
+  "SyntaxError": [
+    "Le moteur ne comprend pas cette écriture.",
+    "Vérifie les guillemets, les parenthèses et les deux-points."
+  ],
+  "NameError": [
+    "Un nom n’est pas défini.",
+    "Vérifie son orthographe et crée la valeur avant de l’utiliser."
+  ],
+  "TypeError": [
+    "Cette opération mélange des types incompatibles.",
+    "Vérifie si tu manipules du texte ou un nombre ; une conversion peut être nécessaire."
+  ],
+  "IndentationError": [
+    "Les espaces au début d’une ligne ne sont pas cohérents.",
+    "Aligne les instructions du même bloc et utilise quatre espaces pour le bloc intérieur."
+  ],
+  "ZeroDivisionError": [
+    "Le programme essaie de diviser par zéro.",
+    "Vérifie le diviseur avant le calcul."
+  ],
+  "ValueError": [
+    "Une valeur ne peut pas être convertie comme demandé.",
+    "Pour int(), donne un entier écrit en chiffres ; évite un mot ou un nombre à virgule."
+  ],
+  "StopIteration": [
+    "Le programme demande plus de saisies que prévu.",
+    "Vérifie le nombre d’appels à input() ou ajoute une réponse dans les saisies de l’essai."
+  ],
+  "ReferenceError": [
+    "Un nom n’est pas défini.",
+    "Vérifie son orthographe et déclare la variable avant son utilisation."
+  ],
+  "RangeError": [
+    "Une limite du programme est dépassée.",
+    "Vérifie la condition des boucles, les saisies et la quantité d’affichage."
+  ]
+}

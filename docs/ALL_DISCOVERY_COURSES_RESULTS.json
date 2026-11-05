@@ -1,0 +1,17 @@
+{
+  "results": [
+    {
+      "width": 360,
+      "courses": 42,
+      "lessons": 182,
+      "questions": 562
+    },
+    {
+      "width": 1440,
+      "courses": 42,
+      "lessons": 182,
+      "questions": 562
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,67 @@
+{
+  "results": [
+    {
+      "lesson": "py-m2-02",
+      "reference": "passed",
+      "freeRun": "preserves assessed success"
+    },
+    {
+      "lesson": "py-m7-03",
+      "reference": "passed",
+      "freeRun": "preserves assessed success"
+    },
+    {
+      "lesson": "py-m7-04",
+      "reference": "passed",
+      "freeRun": "preserves assessed success"
+    },
+    {
+      "lesson": "py-m11-02",
+      "reference": "passed",
+      "freeRun": "preserves assessed success"
+    },
+    {
+      "lesson": "py-m11-04",
+      "reference": "passed",
+      "freeRun": "preserves assessed success"
+    },
+    {
+      "lesson": "js-m1-01",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m1-02",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m1-03",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m2-01",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m2-02",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "lesson": "js-m2-03",
+      "exercises": 4,
+      "engine": "actual JavaScript Worker"
+    },
+    {
+      "editDuringAssessment": "old result cannot validate changed code"
+    },
+    {
+      "javascriptTimeout": "passed",
+      "stopAndRetry": "passed"
+    }
+  ],
+  "errors": []
+}

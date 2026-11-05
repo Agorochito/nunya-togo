@@ -1,0 +1,187 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une lecture protégée",
+    "instruction_fr": "Le stock vaut {\"cahier\": 4, \"stylo\": 7}. Lis un article et affiche sa quantité, ou zéro si la clé manque.",
+    "starter_code": "stock = {\"cahier\": 4, \"stylo\": 7}\narticle = input()\nprint(stock[article])",
+    "solution": "stock = {\"cahier\": 4, \"stylo\": 7}\narticle = input()\nprint(stock.get(article, 0))",
+    "visible_tests": [
+      {
+        "inputs": [
+          "cahier"
+        ],
+        "expected_output": "4\n"
+      },
+      {
+        "inputs": [
+          "gomme"
+        ],
+        "expected_output": "0\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "stylo"
+        ],
+        "expected_output": "7\n"
+      }
+    ],
+    "hints": [
+      "La clé peut manquer.",
+      "get accepte une valeur de remplacement.",
+      "Utilise stock.get(article, 0)."
+    ],
+    "explanation_fr": "La valeur de remplacement rend explicite le cas absent. Elle évite une erreur de clé sans inventer que l’article était réellement enregistré avec une quantité nulle.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^stock\\ =\\ \\{\"cahier\":\\ 4,\\ \"stylo\":\\ 7\\}\\\narticle\\ =\\ input\\(\\)\\\nprint\\(stock\\[article\\]\\)$",
+        "feedback_fr": "La ligne « print(stock[article]) » conserve le défaut de départ. get accepte une valeur de remplacement."
+      }
+    ],
+    "id": "py-m6-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Mettre une quantité à jour",
+    "instruction_fr": "Pars de {\"cahier\": 4}. Lis un article et une quantité entière positive ou nulle. Remplace ou crée cette association, puis affiche la quantité demandée et le nombre de clés.",
+    "starter_code": "stock = {\"cahier\": 4}\narticle = input()\nquantite = int(input())\nprint(stock.get(article, 0))\nprint(len(stock))",
+    "solution": "stock = {\"cahier\": 4}\narticle = input()\nquantite = int(input())\nstock[article] = quantite\nprint(stock[article])\nprint(len(stock))",
+    "visible_tests": [
+      {
+        "inputs": [
+          "cahier",
+          "8"
+        ],
+        "expected_output": "8\n1\n"
+      },
+      {
+        "inputs": [
+          "stylo",
+          "2"
+        ],
+        "expected_output": "2\n2\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "gomme",
+          "0"
+        ],
+        "expected_output": "0\n2\n"
+      }
+    ],
+    "hints": [
+      "Il faut une affectation avant le bilan.",
+      "La même écriture remplace ou ajoute selon la présence de la clé.",
+      "Écris stock[article] = quantite."
+    ],
+    "explanation_fr": "Une quantité nulle peut être enregistrée sous une clé existante. Le nombre de références et la quantité choisie demeurent deux mesures indépendantes de l’inventaire.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^stock\\ =\\ \\{\"cahier\":\\ 4\\}\\\narticle\\ =\\ input\\(\\)\\\nquantite\\ =\\ int\\(input\\(\\)\\)\\\nprint\\(stock\\.get\\(article,\\ 0\\)\\)\\\nprint\\(len\\(stock\\)\\)$",
+        "feedback_fr": "La ligne « print(stock.get(article, 0)) » conserve le défaut de départ. La même écriture remplace ou ajoute selon la présence de la clé."
+      }
+    ],
+    "id": "py-m6-02-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Additionner le contenu",
+    "instruction_fr": "Lis n puis n quantités entières. Associe chaque quantité à la clé numérique tour et affiche le total des valeurs du dictionnaire.",
+    "starter_code": "n = int(input())\nstock = {}\nfor tour in range(n):\n    stock[tour] = int(input())\ntotal = 0\nfor cle in stock:\n    total = total + cle\nprint(total)",
+    "solution": "n = int(input())\nstock = {}\nfor tour in range(n):\n    stock[tour] = int(input())\ntotal = 0\nfor cle in stock:\n    total = total + stock[cle]\nprint(total)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2",
+          "4",
+          "7"
+        ],
+        "expected_output": "11\n"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "0\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "3",
+          "1",
+          "2",
+          "8"
+        ],
+        "expected_output": "11\n"
+      }
+    ],
+    "hints": [
+      "La boucle fournit une clé.",
+      "La quantité se lit grâce à cette clé.",
+      "Additionne stock[cle], pas cle."
+    ],
+    "explanation_fr": "Les clés numériques servent ici seulement à retrouver les entrées successives. Additionner les clés produirait un bilan de positions au lieu du total des quantités.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^n\\ =\\ int\\(input\\(\\)\\)\\\nstock\\ =\\ \\{\\}\\\nfor\\ tour\\ in\\ range\\(n\\):\\\n\\ \\ \\ \\ stock\\[tour\\]\\ =\\ int\\(input\\(\\)\\)\\\ntotal\\ =\\ 0\\\nfor\\ cle\\ in\\ stock:\\\n\\ \\ \\ \\ total\\ =\\ total\\ \\+\\ cle\\\nprint\\(total\\)$",
+        "feedback_fr": "La ligne « total = total + cle » conserve le défaut de départ. La quantité se lit grâce à cette clé."
+      }
+    ],
+    "id": "py-m6-02-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Cumuler des arrivages",
+    "instruction_fr": "Lis n puis n noms d’articles. Compte chaque occurrence dans un dictionnaire, puis lis un nom recherché et affiche son nombre.",
+    "starter_code": "n = int(input())\ncomptes = {}\nfor tour in range(n):\n    nom = input()\n    comptes[nom] = 1\nrecherche = input()\nprint(comptes.get(recherche, 0))",
+    "solution": "n = int(input())\ncomptes = {}\nfor tour in range(n):\n    nom = input()\n    comptes[nom] = comptes.get(nom, 0) + 1\nrecherche = input()\nprint(comptes.get(recherche, 0))",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3",
+          "A",
+          "B",
+          "A",
+          "A"
+        ],
+        "expected_output": "2\n"
+      },
+      {
+        "inputs": [
+          "0",
+          "A"
+        ],
+        "expected_output": "0\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "3",
+          "x",
+          "x",
+          "x",
+          "x"
+        ],
+        "expected_output": "3\n"
+      }
+    ],
+    "hints": [
+      "Une nouvelle occurrence doit conserver le compte précédent.",
+      "get donne zéro pour une première occurrence.",
+      "Ajoute un à comptes.get(nom, 0)."
+    ],
+    "explanation_fr": "La première occurrence crée un compteur et les suivantes l’augmentent. Réaffecter constamment un effacerait la fréquence, ce que les cas répétés permettent de détecter.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^n\\ =\\ int\\(input\\(\\)\\)\\\ncomptes\\ =\\ \\{\\}\\\nfor\\ tour\\ in\\ range\\(n\\):\\\n\\ \\ \\ \\ nom\\ =\\ input\\(\\)\\\n\\ \\ \\ \\ comptes\\[nom\\]\\ =\\ 1\\\nrecherche\\ =\\ input\\(\\)\\\nprint\\(comptes\\.get\\(recherche,\\ 0\\)\\)$",
+        "feedback_fr": "La ligne « comptes[nom] = 1 » conserve le défaut de départ. get donne zéro pour une première occurrence."
+      }
+    ],
+    "id": "py-m6-02-e4"
+  }
+]

@@ -1,0 +1,149 @@
+[
+  {
+    "title_fr": "Nommer un accent commun",
+    "instruction_fr": "Définis --accent:navy sur :root et donne aux liens color:var(--accent).",
+    "starter_code": ":root { }\na { }",
+    "solution": ":root { --accent:navy; }\na { color:var(--accent); }",
+    "visible_tests": [
+      {
+        "description_fr": "Valeur nommée et couleur résolue.",
+        "checks": [
+          {
+            "selector": "html",
+            "style": {
+              "--accent": "navy"
+            }
+          },
+          {
+            "selector": "a",
+            "style": {
+              "color": "rgb(0, 0, 128)"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Où placer une valeur générale ?",
+      "Définis --accent sur :root.",
+      "Réutilise la valeur avec var(--accent)."
+    ],
+    "explanation_fr": "Le test vérifie le résultat ; la revue du code confirme la réutilisation voulue.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "fixture_html": "<section class=\"panneau\"><h2>Thème clair</h2><p>Une activité accessible.</p><a href=\"#atelier\">Voir l’atelier</a></section><section class=\"theme-sombre\"><div class=\"panneau\"><h2>Thème sombre local</h2><p>Les variables peuvent changer selon le contexte.</p><a href=\"#atelier\">Voir l’atelier</a></div></section>",
+    "id": "css-m4-01-e1"
+  },
+  {
+    "title_fr": "Partager un accent avec une bordure",
+    "instruction_fr": "Conserve --accent:navy. Donne à .panneau border:2px solid var(--accent) et aux liens color:var(--accent).",
+    "starter_code": ":root { --accent:navy; }",
+    "solution": ":root { --accent:navy; }\n.panneau { border:2px solid var(--accent); }\na { color:var(--accent); }",
+    "visible_tests": [
+      {
+        "description_fr": "Deux usages d’une même décision.",
+        "checks": [
+          {
+            "selector": ".panneau",
+            "style": {
+              "border-top-width": "2px",
+              "border-top-color": "rgb(0, 0, 128)"
+            }
+          },
+          {
+            "selector": "a",
+            "style": {
+              "color": "rgb(0, 0, 128)"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quels usages partagent la même fonction visuelle ?",
+      "La bordure peut aussi consommer var(--accent).",
+      "La déclaration border conserve épaisseur et style."
+    ],
+    "explanation_fr": "Une palette nommée réduit les changements dispersés ; explique cette intention pendant la revue.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<section class=\"panneau\"><h2>Thème clair</h2><p>Une activité accessible.</p><a href=\"#atelier\">Voir l’atelier</a></section><section class=\"theme-sombre\"><div class=\"panneau\"><h2>Thème sombre local</h2><p>Les variables peuvent changer selon le contexte.</p><a href=\"#atelier\">Voir l’atelier</a></div></section>",
+    "id": "css-m4-01-e2"
+  },
+  {
+    "title_fr": "Créer un thème local",
+    "instruction_fr": "Définis sur :root --texte:navy et --surface:white. Redéfinis dans .theme-sombre --texte:white et --surface:navy. Les panneaux utilisent ces deux valeurs pour color et background-color.",
+    "starter_code": ":root { --texte:navy; --surface:white; }\n.panneau { color:var(--texte); background-color:var(--surface); }",
+    "solution": ":root { --texte:navy; --surface:white; }\n.theme-sombre { --texte:white; --surface:navy; }\n.panneau { color:var(--texte); background-color:var(--surface); }",
+    "visible_tests": [
+      {
+        "description_fr": "Deux contextes de palette.",
+        "checks": [
+          {
+            "selector": "body > .panneau",
+            "style": {
+              "color": "rgb(0, 0, 128)",
+              "background-color": "rgb(255, 255, 255)"
+            }
+          },
+          {
+            "selector": ".theme-sombre .panneau",
+            "style": {
+              "color": "rgb(255, 255, 255)",
+              "background-color": "rgb(0, 0, 128)"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Où faut-il redéfinir les valeurs pour ne toucher qu’une région ?",
+      "Place les propriétés personnalisées sur .theme-sombre.",
+      "Les panneaux continuent d’utiliser les mêmes var."
+    ],
+    "explanation_fr": "Le thème est statique et local ; aucun mécanisme de changement interactif n’est prétendu.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<section class=\"panneau\"><h2>Thème clair</h2><p>Une activité accessible.</p><a href=\"#atelier\">Voir l’atelier</a></section><section class=\"theme-sombre\"><div class=\"panneau\"><h2>Thème sombre local</h2><p>Les variables peuvent changer selon le contexte.</p><a href=\"#atelier\">Voir l’atelier</a></div></section>",
+    "id": "css-m4-01-e3"
+  },
+  {
+    "title_fr": "Réparer un nom incohérent",
+    "instruction_fr": "Le lien doit devenir navy grâce à --accent. Corrige l’incohérence de casse entre la définition et son usage.",
+    "starter_code": ":root { --Accent:navy; }\na { color:var(--accent); }",
+    "solution": ":root { --accent:navy; }\na { color:var(--accent); }",
+    "visible_tests": [
+      {
+        "description_fr": "Nom cohérent et résolution.",
+        "checks": [
+          {
+            "selector": "html",
+            "style": {
+              "--accent": "navy"
+            }
+          },
+          {
+            "selector": "a",
+            "style": {
+              "color": "rgb(0, 0, 128)"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Les noms ont-ils exactement la même casse ?",
+      "Les propriétés personnalisées distinguent Accent et accent.",
+      "Renomme --Accent en --accent."
+    ],
+    "explanation_fr": "La cascade ne devine pas que deux noms différents devaient désigner le même choix.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "fixture_html": "<section class=\"panneau\"><h2>Thème clair</h2><p>Une activité accessible.</p><a href=\"#atelier\">Voir l’atelier</a></section><section class=\"theme-sombre\"><div class=\"panneau\"><h2>Thème sombre local</h2><p>Les variables peuvent changer selon le contexte.</p><a href=\"#atelier\">Voir l’atelier</a></div></section>",
+    "id": "css-m4-01-e4"
+  }
+]

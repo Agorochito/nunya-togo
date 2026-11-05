@@ -1,0 +1,170 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Premier caractère",
+    "instruction_fr": "Lis un texte non vide et affiche son premier caractère.",
+    "starter_code": "mot = input()\nprint(mot[-1])",
+    "solution": "mot = input()\nprint(mot[0])",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Salut"
+        ],
+        "expected_output": "S\n"
+      },
+      {
+        "inputs": [
+          "A"
+        ],
+        "expected_output": "A\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "Velo"
+        ],
+        "expected_output": "V\n"
+      }
+    ],
+    "hints": [
+      "Le premier caractère a une position particulière.",
+      "La numérotation commence à zéro.",
+      "Lis mot[0]."
+    ],
+    "explanation_fr": "Le premier caractère est identifié par zéro, quelle que soit la longueur du mot. Le test avec un seul caractère vérifie aussi cette règle.",
+    "common_wrong_answers": [
+      {
+        "pattern": "\\[-1\\]",
+        "feedback_fr": "-1 lit la fin, pas le début."
+      }
+    ],
+    "id": "py-m5-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Longueur du message",
+    "instruction_fr": "Lis un texte, éventuellement vide, et affiche son nombre de caractères, espaces compris.",
+    "starter_code": "message = input()\nprint(0)",
+    "solution": "message = input()\nprint(len(message))",
+    "visible_tests": [
+      {
+        "inputs": [
+          "A B"
+        ],
+        "expected_output": "3\n"
+      },
+      {
+        "inputs": [
+          ""
+        ],
+        "expected_output": "0\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "Salut"
+        ],
+        "expected_output": "5\n"
+      }
+    ],
+    "hints": [
+      "Il faut compter tous les caractères.",
+      "Utilise len sur la chaîne entière.",
+      "Affiche len(message)."
+    ],
+    "explanation_fr": "La longueur inclut les espaces et peut valoir zéro. On peut la calculer sans lire une position particulière, ce qui rend le cas vide sûr.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^message\\ =\\ input\\(\\)\\\nprint\\(0\\)$",
+        "feedback_fr": "La ligne « print(0) » conserve le défaut de départ. Utilise len sur la chaîne entière."
+      }
+    ],
+    "id": "py-m5-01-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Une fin protégée",
+    "instruction_fr": "Lis un texte. Affiche Vide s’il est vide ; sinon affiche son dernier caractère.",
+    "starter_code": "mot = input()\nprint(mot[-1])",
+    "solution": "mot = input()\nif len(mot) == 0:\n    print(\"Vide\")\nelse:\n    print(mot[-1])",
+    "visible_tests": [
+      {
+        "inputs": [
+          ""
+        ],
+        "expected_output": "Vide\n"
+      },
+      {
+        "inputs": [
+          "Lac"
+        ],
+        "expected_output": "c\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "Z"
+        ],
+        "expected_output": "Z\n"
+      }
+    ],
+    "hints": [
+      "Le texte vide ne possède pas de dernier caractère.",
+      "Sépare le cas len(mot) == 0.",
+      "Place mot[-1] uniquement dans le else."
+    ],
+    "explanation_fr": "Le test de longueur empêche un accès impossible. La branche ordinaire conserve ensuite la même règle pour tous les textes non vides.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^mot\\ =\\ input\\(\\)\\\nprint\\(mot\\[\\-1\\]\\)$",
+        "feedback_fr": "La ligne « print(mot[-1]) » conserve le défaut de départ. Sépare le cas len(mot) == 0."
+      }
+    ],
+    "id": "py-m5-01-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer la dernière position",
+    "instruction_fr": "Lis un texte non vide. Corrige l’indice pour afficher le dernier caractère.",
+    "starter_code": "mot = input()\nprint(mot[len(mot)])",
+    "solution": "mot = input()\nprint(mot[len(mot) - 1])",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Kara"
+        ],
+        "expected_output": "a\n"
+      },
+      {
+        "inputs": [
+          "X"
+        ],
+        "expected_output": "X\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "Club"
+        ],
+        "expected_output": "b\n"
+      }
+    ],
+    "hints": [
+      "La longueur compte les éléments.",
+      "Le dernier indice est une unité avant la longueur.",
+      "Soustrais un dans les crochets."
+    ],
+    "explanation_fr": "La dernière position vaut longueur moins un, car le comptage des positions commence à zéro. La longueur elle-même serait déjà au-delà du texte.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^mot\\ =\\ input\\(\\)\\\nprint\\(mot\\[len\\(mot\\)\\]\\)$",
+        "feedback_fr": "La ligne « print(mot[len(mot)]) » conserve le défaut de départ. Le dernier indice est une unité avant la longueur."
+      }
+    ],
+    "id": "py-m5-01-e4"
+  }
+]

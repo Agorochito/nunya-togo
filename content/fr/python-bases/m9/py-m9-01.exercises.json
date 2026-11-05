@@ -1,0 +1,273 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Deux-points manquants",
+    "instruction_fr": "Répare la définition pour retourner nombre multiplié par deux. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def doubler(nombre)\n    return nombre * 2",
+    "solution": "def doubler(nombre):\n    return nombre * 2",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "doubler",
+            "args": [
+              4
+            ],
+            "expected": 8,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "doubler",
+            "args": [
+              0
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "doubler",
+            "args": [
+              -3
+            ],
+            "expected": -6,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une définition ouvre un bloc.",
+      "La ligne def doit finir par deux-points.",
+      "Ajoute : après la parenthèse de def."
+    ],
+    "explanation_fr": "Une faute de syntaxe empêche tous les cas de démarrer. La réparation conserve la formule annoncée au lieu de contourner la fonction demandée.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ doubler\\(nombre\\)\\\n\\ \\ \\ \\ return\\ nombre\\ \\*\\ 2$",
+        "feedback_fr": "La ligne « def doubler(nombre) » conserve le défaut de départ. La ligne def doit finir par deux-points."
+      }
+    ],
+    "id": "py-m9-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un nom cohérent",
+    "instruction_fr": "Répare le nom pour retourner la somme de a et b. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def additionner(a, b):\n    total = a + b\n    return Total",
+    "solution": "def additionner(a, b):\n    total = a + b\n    return total",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "additionner",
+            "args": [
+              3,
+              5
+            ],
+            "expected": 8,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "additionner",
+            "args": [
+              0,
+              0
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "additionner",
+            "args": [
+              -2,
+              7
+            ],
+            "expected": 5,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Python distingue la casse.",
+      "Le nom lu doit être exactement celui créé.",
+      "Retourne total avec un t minuscule."
+    ],
+    "explanation_fr": "La cohérence d’un nom se vérifie caractère par caractère. Le résultat doit provenir de la somme locale, sans dépendre d’une variable extérieure au traitement.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ additionner\\(a,\\ b\\):\\\n\\ \\ \\ \\ total\\ =\\ a\\ \\+\\ b\\\n\\ \\ \\ \\ return\\ Total$",
+        "feedback_fr": "La ligne « return Total » conserve le défaut de départ. Le nom lu doit être exactement celui créé."
+      }
+    ],
+    "id": "py-m9-01-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Créer avant de lire",
+    "instruction_fr": "Répare l’ordre des instructions pour retourner prix multiplié par nombre. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def cout(prix, nombre):\n    return total\n    total = prix * nombre",
+    "solution": "def cout(prix, nombre):\n    total = prix * nombre\n    return total",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "cout",
+            "args": [
+              5,
+              3
+            ],
+            "expected": 15,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "cout",
+            "args": [
+              7,
+              0
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "cout",
+            "args": [
+              2.5,
+              4
+            ],
+            "expected": 10.0,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le calcul doit exister avant son retour.",
+      "Une instruction après return n’est pas exécutée.",
+      "Place l’affectation avant return total."
+    ],
+    "explanation_fr": "L’ordre d’exécution importe même quand toutes les lignes semblent présentes. Un retour effectué avant l’affectation ne peut pas utiliser la valeur que celle-ci aurait créée.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ cout\\(prix,\\ nombre\\):\\\n\\ \\ \\ \\ return\\ total\\\n\\ \\ \\ \\ total\\ =\\ prix\\ \\*\\ nombre$",
+        "feedback_fr": "La ligne « total = prix * nombre » conserve le défaut de départ. Une instruction après return n’est pas exécutée."
+      }
+    ],
+    "id": "py-m9-01-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Bloc bien aligné",
+    "instruction_fr": "Retourne True si nombre est positif, sinon False. Répare l’indentation sans changer le contrat. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def est_positif(nombre):\n    if nombre > 0:\n    return True\n    return False",
+    "solution": "def est_positif(nombre):\n    if nombre > 0:\n        return True\n    return False",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "est_positif",
+            "args": [
+              3
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "est_positif",
+            "args": [
+              0
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "est_positif",
+            "args": [
+              -1
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le if possède un bloc indenté.",
+      "Le retour False doit rester après ce choix.",
+      "Indente return True sous le if."
+    ],
+    "explanation_fr": "L’indentation exprime la structure de décision en Python. Les trois signes possibles du nombre vérifient que la correction conserve les branches et leur frontière.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ est_positif\\(nombre\\):\\\n\\ \\ \\ \\ if\\ nombre\\ >\\ 0:\\\n\\ \\ \\ \\ return\\ True\\\n\\ \\ \\ \\ return\\ False$",
+        "feedback_fr": "La ligne « return True » conserve le défaut de départ. Le retour False doit rester après ce choix."
+      }
+    ],
+    "id": "py-m9-01-e4"
+  }
+]

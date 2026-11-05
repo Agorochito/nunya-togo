@@ -1,0 +1,152 @@
+[
+  {
+    "title_fr": "Compléter le premier document",
+    "instruction_fr": "Complète la page : langue fr, titre d’onglet Jardin partagé et paragraphe Bienvenue. dans body.",
+    "starter_code": "<!doctype html>\n<html>\n<head><meta charset=\"utf-8\"><title></title></head>\n<body></body>\n</html>",
+    "solution": "<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>Jardin partagé</title></head><body><p>Bienvenue.</p></body></html>",
+    "visible_tests": [
+      {
+        "description_fr": "Langue, titre et paragraphe présents.",
+        "checks": [
+          {
+            "selector": "html",
+            "attributes": {
+              "lang": "fr"
+            }
+          },
+          {
+            "selector": "head title",
+            "textIncludes": "Jardin partagé"
+          },
+          {
+            "selector": "body p",
+            "textIncludes": "Bienvenue."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quel contenu appartient au corps de la page ?",
+      "Place lang dans html et le titre dans head.",
+      "Ajoute <p>Bienvenue.</p> entre les balises body."
+    ],
+    "explanation_fr": "Le contrôle distingue les métadonnées du contenu visible. L’indentation et le choix des guillemets ne sont pas comparés.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "id": "html-m1-01-e1"
+  },
+  {
+    "title_fr": "Séparer deux paragraphes",
+    "instruction_fr": "Écris deux paragraphes dans cet ordre : Semer. puis Arroser.",
+    "starter_code": "<p>Semer. Arroser.</p>",
+    "solution": "<p>Semer.</p><p>Arroser.</p>",
+    "visible_tests": [
+      {
+        "description_fr": "Deux paragraphes dans l’ordre.",
+        "checks": [
+          {
+            "selector": "body > p",
+            "count": 2
+          },
+          {
+            "selector": "body > p:nth-of-type(1)",
+            "textIncludes": "Semer."
+          },
+          {
+            "selector": "body > p:nth-of-type(2)",
+            "textIncludes": "Arroser."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Combien d’idées veux-tu séparer ?",
+      "Un élément p représente un paragraphe.",
+      "Ferme le premier p avant d’ouvrir le second."
+    ],
+    "explanation_fr": "Deux éléments rendent la séparation explicite ; un simple retour à la ligne dans le fichier ne la garantit pas.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m1-01-e2"
+  },
+  {
+    "title_fr": "Réparer une métadonnée",
+    "instruction_fr": "Le texte Jardin est affiché au mauvais endroit. Place Jardin dans title et conserve un paragraphe Ouverture samedi. dans body.",
+    "starter_code": "<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"></head><body><title>Jardin</title><p>Ouverture samedi.</p></body></html>",
+    "solution": "<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>Jardin</title></head><body><p>Ouverture samedi.</p></body></html>",
+    "visible_tests": [
+      {
+        "description_fr": "Titre dans head et texte dans body.",
+        "checks": [
+          {
+            "selector": "head title",
+            "textIncludes": "Jardin"
+          },
+          {
+            "selector": "body title",
+            "exists": false
+          },
+          {
+            "selector": "body p",
+            "textIncludes": "Ouverture samedi."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quel élément rassemble les métadonnées ?",
+      "title doit être un enfant de head.",
+      "Déplace la paire title dans head, sans modifier p."
+    ],
+    "explanation_fr": "Le navigateur peut tolérer des erreurs. Ici, le test vérifie l’emplacement réel du titre.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "id": "html-m1-01-e3"
+  },
+  {
+    "title_fr": "Écrire sa page de départ",
+    "instruction_fr": "Écris un document complet : langue fr, encodage utf-8, title Atelier découverte et un p contenant Aucune expérience nécessaire.",
+    "starter_code": "<!-- Écris ton document ici. -->",
+    "solution": "<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>Atelier découverte</title></head><body><p>Aucune expérience nécessaire.</p></body></html>",
+    "visible_tests": [
+      {
+        "description_fr": "Squelette et contenu contrôlés.",
+        "checks": [
+          {
+            "selector": "html",
+            "attributes": {
+              "lang": "fr"
+            }
+          },
+          {
+            "selector": "head meta[charset]",
+            "attributes": {
+              "charset": "utf-8"
+            }
+          },
+          {
+            "selector": "head title",
+            "textIncludes": "Atelier découverte"
+          },
+          {
+            "selector": "body p",
+            "textIncludes": "Aucune expérience nécessaire."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Distingue informations de page et texte visible.",
+      "Reprends l’ordre html, head, body.",
+      "Ajoute meta et title dans head, puis p dans body."
+    ],
+    "explanation_fr": "La solution de référence montre une structure minimale. Des espaces ou des attributs supplémentaires pertinents restent possibles.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m1-01-e4"
+  }
+]

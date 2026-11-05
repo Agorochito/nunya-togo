@@ -1,0 +1,161 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Appeler la fonction",
+    "instruction_fr": "La fonction sans paramètre doit lire un nom et afficher Bonjour suivi d’un espace puis de ce nom. Ajoute l’appel après sa définition.",
+    "starter_code": "def afficher_bonjour():\n    print(\"Bonjour \" + input())",
+    "solution": "def afficher_bonjour():\n    print(\"Bonjour \" + input())\nafficher_bonjour()",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Awa"
+        ],
+        "expected_output": "Bonjour Awa\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "Jo"
+        ],
+        "expected_output": "Bonjour Jo\n"
+      }
+    ],
+    "hints": [
+      "La définition ne lance pas le bloc.",
+      "Un appel porte le nom suivi de parenthèses.",
+      "Écris afficher_bonjour() après la définition."
+    ],
+    "explanation_fr": "L’appel déclenche le bloc enregistré par la définition. La fonction lit une nouvelle valeur lors de son exécution ; elle ne doit pas être limitée au nom du premier exemple.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ afficher_bonjour\\(\\):\\\n\\ \\ \\ \\ print\\(\"Bonjour\\ \"\\ \\+\\ input\\(\\)\\)$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Un appel porte le nom suivi de parenthèses."
+      }
+    ],
+    "id": "py-m7-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Répéter une carte",
+    "instruction_fr": "Lis n positif ou nul. Appelle une fonction sans paramètre qui affiche Club puis Lecture, et cela n fois.",
+    "starter_code": "def afficher_carte():\n    print(\"Club\")\n    print(\"Lecture\")\nn = int(input())\nafficher_carte()",
+    "solution": "def afficher_carte():\n    print(\"Club\")\n    print(\"Lecture\")\nn = int(input())\nfor tour in range(n):\n    afficher_carte()",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2"
+        ],
+        "expected_output": "Club\nLecture\nClub\nLecture\n"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": ""
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "Club\nLecture\n"
+      }
+    ],
+    "hints": [
+      "Le nombre d’appels dépend de n.",
+      "Une boucle peut contenir un appel.",
+      "Place afficher_carte() dans for tour in range(n)."
+    ],
+    "explanation_fr": "La fonction évite de recopier les deux affichages dans la boucle. Lorsque le nombre demandé est nul, aucune exécution du bloc n’a lieu.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ afficher_carte\\(\\):\\\n\\ \\ \\ \\ print\\(\"Club\"\\)\\\n\\ \\ \\ \\ print\\(\"Lecture\"\\)\\\nn\\ =\\ int\\(input\\(\\)\\)\\\nafficher_carte\\(\\)$",
+        "feedback_fr": "La ligne « afficher_carte() » conserve le défaut de départ. Une boucle peut contenir un appel."
+      }
+    ],
+    "id": "py-m7-01-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Deux appels, deux saisies",
+    "instruction_fr": "Définis afficher_double sans paramètre : elle lit un entier et affiche son double. Appelle-la deux fois.",
+    "starter_code": "def afficher_double():\n    print(int(input()))\nafficher_double()\nafficher_double()",
+    "solution": "def afficher_double():\n    print(int(input()) * 2)\nafficher_double()\nafficher_double()",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3",
+          "5"
+        ],
+        "expected_output": "6\n10\n"
+      },
+      {
+        "inputs": [
+          "0",
+          "-2"
+        ],
+        "expected_output": "0\n-4\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1",
+          "8"
+        ],
+        "expected_output": "2\n16\n"
+      }
+    ],
+    "hints": [
+      "Chaque appel lit sa propre valeur.",
+      "La même transformation doit être appliquée à chaque lecture.",
+      "Multiplie le nombre lu par deux dans le bloc."
+    ],
+    "explanation_fr": "Chaque appel recommence les instructions et reçoit la saisie suivante. La réutilisation concerne le traitement ; elle ne fige pas la donnée du premier appel.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ afficher_double\\(\\):\\\n\\ \\ \\ \\ print\\(int\\(input\\(\\)\\)\\)\\\nafficher_double\\(\\)\\\nafficher_double\\(\\)$",
+        "feedback_fr": "La ligne « print(int(input())) » conserve le défaut de départ. La même transformation doit être appliquée à chaque lecture."
+      }
+    ],
+    "id": "py-m7-01-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer l’ordre des appels",
+    "instruction_fr": "Le programme doit afficher Début, puis le message lu par afficher_etape(), puis Fin. Déplace l’appel après sa définition en conservant cet ordre.",
+    "starter_code": "print(\"Début\")\nafficher_etape()\ndef afficher_etape():\n    print(input())\nprint(\"Fin\")",
+    "solution": "def afficher_etape():\n    print(input())\nprint(\"Début\")\nafficher_etape()\nprint(\"Fin\")",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Dans la fonction"
+        ],
+        "expected_output": "Début\nDans la fonction\nFin\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "Ici"
+        ],
+        "expected_output": "Début\nIci\nFin\n"
+      }
+    ],
+    "hints": [
+      "Le nom doit être défini avant l’appel exécuté.",
+      "La définition peut précéder le premier print sans afficher elle-même.",
+      "Place def et son bloc avant print(\"Début\")."
+    ],
+    "explanation_fr": "L’emplacement d’une définition et celui d’un appel ont des rôles différents. Placer la définition plus tôt ne place pas son affichage plus tôt dans la sortie.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^print\\(\"Début\"\\)\\\nafficher_etape\\(\\)\\\ndef\\ afficher_etape\\(\\):\\\n\\ \\ \\ \\ print\\(input\\(\\)\\)\\\nprint\\(\"Fin\"\\)$",
+        "feedback_fr": "La ligne « def afficher_etape(): » conserve le défaut de départ. La définition peut précéder le premier print sans afficher elle-même."
+      }
+    ],
+    "id": "py-m7-01-e4"
+  }
+]

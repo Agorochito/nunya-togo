@@ -1,8 +1,8 @@
 {
   "id": "python-bases",
   "title_fr": "Python : les bases",
-  "summary_fr": "Pars de zéro : écris, exécute et corrige tes premiers programmes, puis utilise variables, conditions et boucles.",
-  "depth_fr": "Modules 1 à 4 · initiation pratique. Modules 5 à 10 en préparation.",
+  "summary_fr": "De ton premier programme aux collections, fonctions et projets : apprends, teste et construis en français.",
+  "depth_fr": "Parcours débutant : notions, exercices et projets progressifs.",
   "status": "brouillon",
   "reviewer": null,
   "level": "Aucun code préalable",
@@ -62,16 +62,128 @@
         "py-m4-04",
         "py-m4-05"
       ]
+    },
+    {
+      "id": "m5",
+      "title_fr": "Chaînes et listes",
+      "outcomes": [
+        "Lire, nettoyer et découper un texte.",
+        "Construire, filtrer et copier une liste."
+      ],
+      "lesson_ids": [
+        "py-m5-01",
+        "py-m5-02",
+        "py-m5-03",
+        "py-m5-04"
+      ],
+      "estimated_minutes": 80
+    },
+    {
+      "id": "m6",
+      "title_fr": "Choisir une collection",
+      "outcomes": [
+        "Utiliser tuple, dictionnaire et ensemble selon un besoin.",
+        "Conserver ordre, associations ou unicité de façon explicite."
+      ],
+      "lesson_ids": [
+        "py-m6-01",
+        "py-m6-02",
+        "py-m6-03",
+        "py-m6-04"
+      ],
+      "estimated_minutes": 80
+    },
+    {
+      "id": "m7",
+      "title_fr": "Définir des fonctions",
+      "outcomes": [
+        "Distinguer définition, appel, paramètre et argument.",
+        "Retourner un résultat et préserver les arguments selon le contrat."
+      ],
+      "lesson_ids": [
+        "py-m7-01",
+        "py-m7-02",
+        "py-m7-03",
+        "py-m7-04"
+      ],
+      "estimated_minutes": 80
+    },
+    {
+      "id": "m8",
+      "title_fr": "Résoudre un problème",
+      "outcomes": [
+        "Reformuler le besoin en contrat et en exemples.",
+        "Décomposer, tracer et vérifier les cas limites."
+      ],
+      "lesson_ids": [
+        "py-m8-01",
+        "py-m8-02",
+        "py-m8-03",
+        "py-m8-04"
+      ],
+      "estimated_minutes": 80
+    },
+    {
+      "id": "m9",
+      "title_fr": "Comprendre et réparer les erreurs",
+      "outcomes": [
+        "Diagnostiquer syntaxe, noms, types et indices.",
+        "Réparer les erreurs logiques avec des cas de régression."
+      ],
+      "lesson_ids": [
+        "py-m9-01",
+        "py-m9-02",
+        "py-m9-03",
+        "py-m9-04"
+      ],
+      "estimated_minutes": 80
+    },
+    {
+      "id": "m10",
+      "title_fr": "Atelier guidé : inventaire en mémoire",
+      "outcomes": [
+        "Modéliser un stock et ses bilans.",
+        "Appliquer des ajouts et retraits valides dans l’ordre."
+      ],
+      "lesson_ids": [
+        "py-m10-01",
+        "py-m10-02",
+        "py-m10-03",
+        "py-m10-04"
+      ],
+      "estimated_minutes": 80
+    },
+    {
+      "id": "m11",
+      "title_fr": "Projet : réservations d’équipements",
+      "outcomes": [
+        "Contrôler des intervalles semi-ouverts et les conflits de ressource.",
+        "Gérer création, refus et annulation avec un historique conservé."
+      ],
+      "lesson_ids": [
+        "py-m11-01",
+        "py-m11-02",
+        "py-m11-03",
+        "py-m11-04"
+      ],
+      "estimated_minutes": 80
+    },
+    {
+      "id": "m12",
+      "title_fr": "Bilan, transfert et orientation",
+      "outcomes": [
+        "Résoudre une variante avec les acquis communs.",
+        "Expliquer ses choix et identifier une prochaine activité utile."
+      ],
+      "lesson_ids": [
+        "py-m12-01",
+        "py-m12-02",
+        "py-m12-03"
+      ],
+      "estimated_minutes": 60
     }
   ],
-  "later_modules": [
-    "Chaînes et listes",
-    "Fonctions",
-    "Dictionnaires, tuples et ensembles",
-    "Erreurs et débogage",
-    "Modules Python",
-    "Projet final"
-  ],
+  "later_modules": [],
   "lessons": [
     {
       "id": "py-m1-01",
@@ -403,9 +515,416 @@
         "tests",
         "boucles"
       ]
+    },
+    {
+      "id": "py-m5-01",
+      "title_fr": "Lire les positions d’une chaîne",
+      "module": "m5",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m4-05"
+      ],
+      "tags": [
+        "indice",
+        "chaîne"
+      ]
+    },
+    {
+      "id": "py-m5-02",
+      "title_fr": "Nettoyer et découper un texte",
+      "module": "m5",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m5-01"
+      ],
+      "tags": [
+        "tranche",
+        "méthode"
+      ]
+    },
+    {
+      "id": "py-m5-03",
+      "title_fr": "Créer et modifier une liste",
+      "module": "m5",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m5-02"
+      ],
+      "tags": [
+        "liste",
+        "mutation"
+      ]
+    },
+    {
+      "id": "py-m5-04",
+      "title_fr": "Parcourir, filtrer et copier une liste",
+      "module": "m5",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m5-03"
+      ],
+      "tags": [
+        "filtrage",
+        "copie superficielle"
+      ]
+    },
+    {
+      "id": "py-m6-01",
+      "title_fr": "Regrouper des valeurs avec un tuple",
+      "module": "m6",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m5-04"
+      ],
+      "tags": [
+        "tuple",
+        "déballage"
+      ]
+    },
+    {
+      "id": "py-m6-02",
+      "title_fr": "Associer des clés et des valeurs dans un dictionnaire",
+      "module": "m6",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m6-01"
+      ],
+      "tags": [
+        "clé",
+        "dictionnaire"
+      ]
+    },
+    {
+      "id": "py-m6-03",
+      "title_fr": "Retenir des éléments distincts avec un ensemble",
+      "module": "m6",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m6-02"
+      ],
+      "tags": [
+        "ensemble",
+        "appartenance"
+      ]
+    },
+    {
+      "id": "py-m6-04",
+      "title_fr": "Choisir la collection qui répond au besoin",
+      "module": "m6",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m6-03"
+      ],
+      "tags": [
+        "fréquence",
+        "modélisation"
+      ]
+    },
+    {
+      "id": "py-m7-01",
+      "title_fr": "Définir une fonction et suivre ses appels",
+      "module": "m7",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m6-04"
+      ],
+      "tags": [
+        "fonction",
+        "appel"
+      ]
+    },
+    {
+      "id": "py-m7-02",
+      "title_fr": "Fournir des paramètres et des arguments",
+      "module": "m7",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m7-01"
+      ],
+      "tags": [
+        "paramètre",
+        "argument"
+      ]
+    },
+    {
+      "id": "py-m7-03",
+      "title_fr": "Retourner une valeur : le calcul de remise",
+      "module": "m7",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m7-02"
+      ],
+      "tags": [
+        "retour",
+        "None"
+      ]
+    },
+    {
+      "id": "py-m7-04",
+      "title_fr": "Garder des fonctions simples et des données intactes",
+      "module": "m7",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m7-03"
+      ],
+      "tags": [
+        "portée locale",
+        "effet"
+      ]
+    },
+    {
+      "id": "py-m8-01",
+      "title_fr": "Transformer une consigne en contrat vérifiable",
+      "module": "m8",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m7-04"
+      ],
+      "tags": [
+        "contrat",
+        "borne"
+      ]
+    },
+    {
+      "id": "py-m8-02",
+      "title_fr": "Construire des exemples et tracer une solution",
+      "module": "m8",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m8-01"
+      ],
+      "tags": [
+        "trace",
+        "cas limite"
+      ]
+    },
+    {
+      "id": "py-m8-03",
+      "title_fr": "Décomposer un problème en petites fonctions",
+      "module": "m8",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m8-02"
+      ],
+      "tags": [
+        "décomposition",
+        "combinaison"
+      ]
+    },
+    {
+      "id": "py-m8-04",
+      "title_fr": "Choisir les cas qui mettent une solution à l’épreuve",
+      "module": "m8",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m8-03"
+      ],
+      "tags": [
+        "propriété",
+        "vérification"
+      ]
+    },
+    {
+      "id": "py-m9-01",
+      "title_fr": "Lire un message et réparer syntaxe et noms",
+      "module": "m9",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m8-04"
+      ],
+      "tags": [
+        "syntaxe",
+        "NameError"
+      ]
+    },
+    {
+      "id": "py-m9-02",
+      "title_fr": "Distinguer les types avant un calcul",
+      "module": "m9",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m9-01"
+      ],
+      "tags": [
+        "TypeError",
+        "ValueError"
+      ]
+    },
+    {
+      "id": "py-m9-03",
+      "title_fr": "Protéger les indices et reconnaître un résultat absent",
+      "module": "m9",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m9-02"
+      ],
+      "tags": [
+        "IndexError",
+        "absence"
+      ]
+    },
+    {
+      "id": "py-m9-04",
+      "title_fr": "Réparer une erreur logique avec une hypothèse",
+      "module": "m9",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m9-03"
+      ],
+      "tags": [
+        "erreur logique",
+        "régression"
+      ]
+    },
+    {
+      "id": "py-m10-01",
+      "title_fr": "Modéliser un inventaire fictif et ses bilans",
+      "module": "m10",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m9-04"
+      ],
+      "tags": [
+        "inventaire",
+        "référence"
+      ]
+    },
+    {
+      "id": "py-m10-02",
+      "title_fr": "Recevoir du matériel sans perdre l’état initial",
+      "module": "m10",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m10-01"
+      ],
+      "tags": [
+        "réception",
+        "état initial"
+      ]
+    },
+    {
+      "id": "py-m10-03",
+      "title_fr": "Retirer une quantité avec un refus explicite",
+      "module": "m10",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m10-02"
+      ],
+      "tags": [
+        "retrait",
+        "refus"
+      ]
+    },
+    {
+      "id": "py-m10-04",
+      "title_fr": "Assembler un gestionnaire d’inventaire en mémoire",
+      "module": "m10",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m10-03"
+      ],
+      "tags": [
+        "séquence",
+        "état courant"
+      ]
+    },
+    {
+      "id": "py-m11-01",
+      "title_fr": "Définir des créneaux sans chevauchement",
+      "module": "m11",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m10-04"
+      ],
+      "tags": [
+        "intervalle semi-ouvert",
+        "chevauchement"
+      ]
+    },
+    {
+      "id": "py-m11-02",
+      "title_fr": "Chercher une disponibilité parmi les réservations actives",
+      "module": "m11",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m11-01"
+      ],
+      "tags": [
+        "réservation active",
+        "historique"
+      ]
+    },
+    {
+      "id": "py-m11-03",
+      "title_fr": "Annuler sans effacer ni modifier l’historique initial",
+      "module": "m11",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m11-02"
+      ],
+      "tags": [
+        "invariant",
+        "copie intérieure"
+      ]
+    },
+    {
+      "id": "py-m11-04",
+      "title_fr": "Construire et vérifier le projet de réservation",
+      "module": "m11",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m11-03"
+      ],
+      "tags": [
+        "synthèse",
+        "fonction auxiliaire"
+      ]
+    },
+    {
+      "id": "py-m12-01",
+      "title_fr": "Transférer les acquis vers un nouveau jeu de données",
+      "module": "m12",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m11-04"
+      ],
+      "tags": [
+        "transfert",
+        "normalisation"
+      ]
+    },
+    {
+      "id": "py-m12-02",
+      "title_fr": "Réaliser une variante autonome et expliquer ses choix",
+      "module": "m12",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m12-01"
+      ],
+      "tags": [
+        "scénario",
+        "justification"
+      ]
+    },
+    {
+      "id": "py-m12-03",
+      "title_fr": "Faire le bilan et préparer une suite adaptée",
+      "module": "m12",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m12-02"
+      ],
+      "tags": [
+        "bilan",
+        "suite"
+      ]
     }
   ],
-  "estimated_minutes": 440,
+  "estimated_minutes": 1060,
   "license": "Contenu original Nunya · brouillon",
-  "runtime": "python"
+  "runtime": "python",
+  "language": "python",
+  "content_revision": "c25bd7e043f2",
+  "exercise_count": 212,
+  "quiz_count": 159
 }

@@ -1,0 +1,140 @@
+[
+  {
+    "title_fr": "Installer une base de lecture",
+    "instruction_fr": "Donne à body font-size:16px, line-height:1.5, color:navy et background-color:white.",
+    "starter_code": "body { }",
+    "solution": "body { font-size:16px; line-height:1.5; color:navy; background-color:white; }",
+    "visible_tests": [
+      {
+        "description_fr": "Texte et fond vérifiables.",
+        "checks": [
+          {
+            "selector": "body",
+            "style": {
+              "font-size": "16px",
+              "line-height": "24px",
+              "color": "rgb(0, 0, 128)",
+              "background-color": "rgb(255, 255, 255)"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quatre propriétés ont des rôles distincts.",
+      "La hauteur de ligne attendue vaut 1.5 × 16.",
+      "Place les quatre déclarations dans body."
+    ],
+    "explanation_fr": "Les valeurs calculées rendent observable le lien entre taille et interligne.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><h1>Le jardin</h1><p class=\"intro\">Bienvenue au jardin fictif.</p><p>Une activité par semaine.</p><article class=\"carte\"><h2>Semis</h2><p>Découvrir les graines.</p></article></main>",
+    "id": "css-m1-03-e1"
+  },
+  {
+    "title_fr": "Agrandir une introduction",
+    "instruction_fr": "Avec body en 16px, donne à .intro font-size:20px et line-height:1.5. Les autres p gardent 16px.",
+    "starter_code": "body { font-size:16px; }\n.intro { }",
+    "solution": "body { font-size:16px; }\n.intro { font-size:20px; line-height:1.5; }",
+    "visible_tests": [
+      {
+        "description_fr": "Taille ciblée et interligne associé.",
+        "checks": [
+          {
+            "selector": ".intro",
+            "style": {
+              "font-size": "20px",
+              "line-height": "30px"
+            }
+          },
+          {
+            "selector": "main > p:not(.intro)",
+            "style": {
+              "font-size": "16px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quel sélecteur porte cette différence ?",
+      "La classe intro doit recevoir les deux réglages.",
+      "20 × 1.5 produit 30px de hauteur de ligne."
+    ],
+    "explanation_fr": "Le paragraphe voisin permet de vérifier la portée du changement.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><h1>Le jardin</h1><p class=\"intro\">Bienvenue au jardin fictif.</p><p>Une activité par semaine.</p><article class=\"carte\"><h2>Semis</h2><p>Découvrir les graines.</p></article></main>",
+    "id": "css-m1-03-e2"
+  },
+  {
+    "title_fr": "Réparer une paire illisible",
+    "instruction_fr": "Le texte blanc sur fond blanc de .carte disparaît. Conserve le fond blanc et donne au texte navy.",
+    "starter_code": ".carte { color:white; background-color:white; }",
+    "solution": ".carte { color:navy; background-color:white; }",
+    "visible_tests": [
+      {
+        "description_fr": "Paire texte/fond distincte.",
+        "checks": [
+          {
+            "selector": ".carte",
+            "style": {
+              "color": "rgb(0, 0, 128)",
+              "background-color": "rgb(255, 255, 255)"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "La couleur du texte et celle du fond sont-elles différentes ?",
+      "Il faut modifier color.",
+      "navy peut aussi s’écrire #000080."
+    ],
+    "explanation_fr": "Le test vérifie la paire demandée ; la revue de contraste doit considérer les vraies couleurs finales.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><h1>Le jardin</h1><p class=\"intro\">Bienvenue au jardin fictif.</p><p>Une activité par semaine.</p><article class=\"carte\"><h2>Semis</h2><p>Découvrir les graines.</p></article></main>",
+    "id": "css-m1-03-e3"
+  },
+  {
+    "title_fr": "Distinguer poids et taille",
+    "instruction_fr": "Donne à .intro font-weight:700 sans changer sa taille de 16px. Donne à .carte p line-height:24px.",
+    "starter_code": "body { font-size:16px; }",
+    "solution": "body { font-size:16px; }\n.intro { font-weight:700; }\n.carte p { line-height:24px; }",
+    "visible_tests": [
+      {
+        "description_fr": "Deux propriétés indépendantes.",
+        "checks": [
+          {
+            "selector": ".intro",
+            "style": {
+              "font-size": "16px",
+              "font-weight": "700"
+            }
+          },
+          {
+            "selector": ".carte p",
+            "style": {
+              "line-height": "24px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Mettre en gras doit-il agrandir le texte ?",
+      "font-weight et font-size sont indépendants.",
+      "Cible séparément .intro et .carte p."
+    ],
+    "explanation_fr": "Un choix typographique précis conserve les autres paramètres utiles.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><h1>Le jardin</h1><p class=\"intro\">Bienvenue au jardin fictif.</p><p>Une activité par semaine.</p><article class=\"carte\"><h2>Semis</h2><p>Découvrir les graines.</p></article></main>",
+    "id": "css-m1-03-e4"
+  }
+]

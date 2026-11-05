@@ -1,0 +1,180 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Tester une limite",
+    "instruction_fr": "Lis une quantité numérique ; conserve dans accepte le résultat quantité <= 10 puis affiche accepte.",
+    "starter_code": "const quantite = Number(input(\"Quantité ?\"));\nconst accepte = quantite < 10;\nconsole.log(accepte);",
+    "solution": "const quantite = Number(input(\"Quantité ?\"));\nconst accepte = quantite <= 10;\nconsole.log(accepte);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "10"
+        ],
+        "expected_output": "true",
+        "calls": [
+          {
+            "name": "accepte",
+            "args": [],
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "11"
+        ],
+        "expected_output": "false",
+        "calls": [
+          {
+            "name": "accepte",
+            "args": [],
+            "expected": false
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "9"
+        ],
+        "expected_output": "true",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "La limite elle-même doit convenir.",
+      "Le signe doit inclure l’égalité.",
+      "const quantite = Number(input(\"Quantité ?\"));\nconst accepte = quantite <= 10;\nconsole.log(accepte);"
+    ],
+    "explanation_fr": "<= accepte toutes les valeurs jusqu’à dix inclus.",
+    "common_wrong_answers": [],
+    "id": "js-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Comparer deux nombres",
+    "instruction_fr": "Lis a et b, conserve dans identiques leur égalité stricte puis affiche identiques.",
+    "starter_code": "const a=Number(input(\"A ?\"));\nconst b=Number(input(\"B ?\"));\nconst identiques=false;\nconsole.log(identiques);",
+    "solution": "const a=Number(input(\"A ?\"));\nconst b=Number(input(\"B ?\"));\nconst identiques=a===b;\nconsole.log(identiques);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4",
+          "4"
+        ],
+        "expected_output": "true",
+        "calls": [
+          {
+            "name": "identiques",
+            "args": [],
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "4",
+          "5"
+        ],
+        "expected_output": "false",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Les deux saisies sont déjà converties.",
+      "Utilise une comparaison, pas une affectation.",
+      "const a=Number(input(\"A ?\"));\nconst b=Number(input(\"B ?\"));\nconst identiques=a===b;\nconsole.log(identiques);"
+    ],
+    "explanation_fr": "Le booléen dépend des valeurs de chaque essai.",
+    "common_wrong_answers": [],
+    "id": "js-m2-01-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Vérifier une différence textuelle",
+    "instruction_fr": "Lis deux mots ; different doit indiquer leur différence stricte, puis être affiché.",
+    "starter_code": "const a=input(\"Mot A ?\");\nconst b=input(\"Mot B ?\");\nconst different=a===b;\nconsole.log(different);",
+    "solution": "const a=input(\"Mot A ?\");\nconst b=input(\"Mot B ?\");\nconst different=a!==b;\nconsole.log(different);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "oui",
+          "non"
+        ],
+        "expected_output": "true",
+        "calls": [
+          {
+            "name": "different",
+            "args": [],
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "oui",
+          "oui"
+        ],
+        "expected_output": "false",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "La question porte sur une différence.",
+      "Le signe !== est l’opposé de l’égalité stricte.",
+      "const a=input(\"Mot A ?\");\nconst b=input(\"Mot B ?\");\nconst different=a!==b;\nconsole.log(different);"
+    ],
+    "explanation_fr": "Le texte n’est pas converti en nombre.",
+    "common_wrong_answers": [],
+    "id": "js-m2-01-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une comparaison de types",
+    "instruction_fr": "Lis texte, convertis-le dans nombre et compare nombre au nombre 8 ; conserve le booléen dans estHuit.",
+    "starter_code": "const texte=input(\"Nombre ?\");\nconst nombre=texte;\nconst estHuit=nombre===8;\nconsole.log(estHuit);",
+    "solution": "const texte=input(\"Nombre ?\");\nconst nombre=Number(texte);\nconst estHuit=nombre===8;\nconsole.log(estHuit);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "8"
+        ],
+        "expected_output": "true",
+        "calls": [
+          {
+            "name": "nombre",
+            "args": [],
+            "expected": 8
+          },
+          {
+            "name": "estHuit",
+            "args": [],
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "9"
+        ],
+        "expected_output": "false",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "La comparaison stricte conserve les types.",
+      "La conversion doit précéder le test.",
+      "const texte=input(\"Nombre ?\");\nconst nombre=Number(texte);\nconst estHuit=nombre===8;\nconsole.log(estHuit);"
+    ],
+    "explanation_fr": "Un texte 8 n’est pas le nombre 8.",
+    "common_wrong_answers": [],
+    "id": "js-m2-01-e4"
+  }
+]

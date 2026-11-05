@@ -1,0 +1,94 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Compléter un message",
+    "instruction_fr": "Affiche exactement Bonjour Nunya.",
+    "starter_code": "console.log(\"...\");",
+    "solution": "console.log(\"Bonjour Nunya\");",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bonjour Nunya",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Garde les guillemets autour du texte.",
+      "Remplace seulement les trois points.",
+      "console.log(\"Bonjour Nunya\");"
+    ],
+    "explanation_fr": "La chaîne contient le message ; la commande l’affiche.",
+    "common_wrong_answers": [],
+    "id": "js-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Annoncer deux informations",
+    "instruction_fr": "Affiche Atelier puis Demain sur deux lignes.",
+    "starter_code": "console.log(\"Demain\");",
+    "solution": "console.log(\"Atelier\");\nconsole.log(\"Demain\");",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Atelier\nDemain",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Prévois une instruction par ligne de sortie.",
+      "Le titre doit être affiché avant le jour.",
+      "console.log(\"Atelier\");\nconsole.log(\"Demain\");"
+    ],
+    "explanation_fr": "Les instructions sont exécutées de haut en bas.",
+    "common_wrong_answers": [],
+    "id": "js-m1-01-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Distinguer nombre et texte",
+    "instruction_fr": "Affiche le nombre 12 puis le texte places, chacun sur une ligne.",
+    "starter_code": "console.log(\"12 places\");",
+    "solution": "console.log(12);\nconsole.log(\"places\");",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "12\nplaces",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Il faut deux sorties distinctes.",
+      "Le nombre peut être écrit sans guillemets.",
+      "console.log(12);\nconsole.log(\"places\");"
+    ],
+    "explanation_fr": "Deux valeurs affichées séparément donnent deux lignes.",
+    "common_wrong_answers": [],
+    "id": "js-m1-01-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un nom",
+    "instruction_fr": "Corrige le programme pour afficher Salut.",
+    "starter_code": "Console.log(\"Salut\");",
+    "solution": "console.log(\"Salut\");",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Salut",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "JavaScript distingue les majuscules.",
+      "Le nom fourni par l’atelier commence par une minuscule.",
+      "console.log(\"Salut\");"
+    ],
+    "explanation_fr": "Console est un nom différent ; console.log est la commande attendue.",
+    "common_wrong_answers": [],
+    "id": "js-m1-01-e4"
+  }
+]

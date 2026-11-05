@@ -1,0 +1,145 @@
+[
+  {
+    "title_fr": "Activer la grille",
+    "instruction_fr": "Donne à .grille display:grid et gap:16px.",
+    "starter_code": ".grille { }",
+    "solution": ".grille { display:grid; gap:16px; }",
+    "visible_tests": [
+      {
+        "description_fr": "Système et gouttières.",
+        "checks": [
+          {
+            "selector": ".grille",
+            "style": {
+              "display": "grid",
+              "row-gap": "16px",
+              "column-gap": "16px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quel élément contient les quatre cartes ?",
+      "C’est le conteneur qui reçoit display:grid.",
+      "gap ajoute des espaces entre les pistes."
+    ],
+    "explanation_fr": "La structure HTML n’est pas réécrite ; les enfants sont disposés par Grid.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "fixture_html": "<div class=\"grille\"><article class=\"carte\">Semis</article><article class=\"carte\">Compost</article><article class=\"carte\">Arrosage</article><article class=\"carte\">Récolte</article></div>",
+    "id": "css-m3-02-e1"
+  },
+  {
+    "title_fr": "Créer deux colonnes égales",
+    "instruction_fr": "Fixe .grille à width:600px, display:grid, gap:16px et deux colonnes égales. Le test attend ici deux pistes de 292px.",
+    "starter_code": ".grille { display:grid; width:600px; gap:16px; }",
+    "solution": ".grille { display:grid; width:600px; gap:16px; grid-template-columns:repeat(2,minmax(0,1fr)); }",
+    "visible_tests": [
+      {
+        "description_fr": "Calcul de deux pistes.",
+        "checks": [
+          {
+            "selector": ".grille",
+            "style": {
+              "display": "grid",
+              "width": "600px",
+              "column-gap": "16px",
+              "grid-template-columns": "292px 292px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 800,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Soustrais l’écart à la largeur totale.",
+      "Partage 584px en deux parts.",
+      "repeat(2,minmax(0,1fr)) décrit deux pistes égales."
+    ],
+    "explanation_fr": "Une autre écriture de pistes égales est acceptée si elle produit le contrat calculé.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<div class=\"grille\"><article class=\"carte\">Semis</article><article class=\"carte\">Compost</article><article class=\"carte\">Arrosage</article><article class=\"carte\">Récolte</article></div>",
+    "id": "css-m3-02-e2"
+  },
+  {
+    "title_fr": "Réparer trois colonnes trop serrées",
+    "instruction_fr": "La grille doit proposer deux colonnes égales, pas trois. Conserve 600px de largeur et 16px de gap.",
+    "starter_code": ".grille { display:grid; width:600px; gap:16px; grid-template-columns:repeat(3,1fr); }",
+    "solution": ".grille { display:grid; width:600px; gap:16px; grid-template-columns:repeat(2,minmax(0,1fr)); }",
+    "visible_tests": [
+      {
+        "description_fr": "Deux pistes au lieu de trois.",
+        "checks": [
+          {
+            "selector": ".grille",
+            "style": {
+              "grid-template-columns": "292px 292px",
+              "gap": "16px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 800,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Combien de pistes annonce la consigne ?",
+      "Le premier argument de repeat fixe leur nombre.",
+      "Utilise deux répétitions."
+    ],
+    "explanation_fr": "Le nombre de colonnes suit une intention de lecture, pas le nombre total de cartes.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "fixture_html": "<div class=\"grille\"><article class=\"carte\">Semis</article><article class=\"carte\">Compost</article><article class=\"carte\">Arrosage</article><article class=\"carte\">Récolte</article></div>",
+    "id": "css-m3-02-e3"
+  },
+  {
+    "title_fr": "Passer à une colonne de lecture",
+    "instruction_fr": "Donne à .grille une largeur de 300px, une seule colonne flexible et gap:16px. Chaque carte doit suivre la précédente dans l’ordre du document.",
+    "starter_code": ".grille { display:grid; width:300px; grid-template-columns:1fr 1fr; }",
+    "solution": ".grille { display:grid; width:300px; grid-template-columns:minmax(0,1fr); gap:16px; }",
+    "visible_tests": [
+      {
+        "description_fr": "Une piste de lecture.",
+        "checks": [
+          {
+            "selector": ".grille",
+            "style": {
+              "display": "grid",
+              "width": "300px",
+              "grid-template-columns": "300px",
+              "gap": "16px"
+            }
+          },
+          {
+            "selector": ".carte",
+            "style": {
+              "order": "0"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Une seule piste suffit pour empiler les cartes.",
+      "Ne réordonne pas les enfants.",
+      "Décris une colonne 1fr et garde gap."
+    ],
+    "explanation_fr": "Le contrôle d’order complète la dimension : la séquence reste celle du HTML.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<div class=\"grille\"><article class=\"carte\">Semis</article><article class=\"carte\">Compost</article><article class=\"carte\">Arrosage</article><article class=\"carte\">Récolte</article></div>",
+    "id": "css-m3-02-e4"
+  }
+]

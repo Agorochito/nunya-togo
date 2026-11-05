@@ -1,0 +1,139 @@
+[
+  {
+    "title_fr": "Créer la rangée de navigation",
+    "instruction_fr": "Donne à .navigation display:flex et gap:16px.",
+    "starter_code": ".navigation { }",
+    "solution": ".navigation { display:flex; gap:16px; }",
+    "visible_tests": [
+      {
+        "description_fr": "Conteneur flexible et espace.",
+        "checks": [
+          {
+            "selector": ".navigation",
+            "style": {
+              "display": "flex",
+              "column-gap": "16px",
+              "row-gap": "16px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Sur quel élément faut-il activer Flexbox ?",
+      "Le conteneur des liens est .navigation.",
+      "Ajoute display:flex et gap:16px."
+    ],
+    "explanation_fr": "Les liens deviennent des éléments flexibles parce qu’ils sont enfants directs de ce conteneur.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "fixture_html": "<nav class=\"navigation\" aria-label=\"Ateliers\"><a href=\"#semis\">Semis</a><a href=\"#compost\">Compost</a><a href=\"#contact\">Contact</a></nav><div class=\"fiches\"><article class=\"carte\">Semis</article><article class=\"carte\">Compost</article><article class=\"carte\">Arrosage</article></div>",
+    "id": "css-m3-01-e1"
+  },
+  {
+    "title_fr": "Distinguer les axes",
+    "instruction_fr": "Dans .navigation, utilise flex-direction:row, justify-content:space-between et align-items:center. Active Flexbox.",
+    "starter_code": ".navigation { display:flex; }",
+    "solution": ".navigation { display:flex; flex-direction:row; justify-content:space-between; align-items:center; }",
+    "visible_tests": [
+      {
+        "description_fr": "Répartition principale et alignement transversal.",
+        "checks": [
+          {
+            "selector": ".navigation",
+            "style": {
+              "display": "flex",
+              "flex-direction": "row",
+              "justify-content": "space-between",
+              "align-items": "center"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quel axe suit la rangée dans cet exemple ?",
+      "justify-content règle l’axe principal.",
+      "align-items:center règle l’autre axe."
+    ],
+    "explanation_fr": "Les noms des axes sont plus précis que des recettes horizontal/vertical.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<nav class=\"navigation\" aria-label=\"Ateliers\"><a href=\"#semis\">Semis</a><a href=\"#compost\">Compost</a><a href=\"#contact\">Contact</a></nav><div class=\"fiches\"><article class=\"carte\">Semis</article><article class=\"carte\">Compost</article><article class=\"carte\">Arrosage</article></div>",
+    "id": "css-m3-01-e2"
+  },
+  {
+    "title_fr": "Éviter une rangée forcée",
+    "instruction_fr": "Autorise le retour à la ligne de .fiches avec flex-wrap:wrap et conserve un gap de 16px.",
+    "starter_code": ".fiches { display:flex; flex-wrap:nowrap; gap:16px; }",
+    "solution": ".fiches { display:flex; flex-wrap:wrap; gap:16px; }",
+    "visible_tests": [
+      {
+        "description_fr": "Retour à la ligne autorisé.",
+        "checks": [
+          {
+            "selector": ".fiches",
+            "style": {
+              "display": "flex",
+              "flex-wrap": "wrap",
+              "gap": "16px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Que doit-il arriver quand la place manque ?",
+      "nowrap force une seule ligne.",
+      "Remplace-le par wrap."
+    ],
+    "explanation_fr": "Observe aussi une petite largeur : autoriser le retour est un mécanisme, pas une preuve de lisibilité de tout contenu.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "fixture_html": "<nav class=\"navigation\" aria-label=\"Ateliers\"><a href=\"#semis\">Semis</a><a href=\"#compost\">Compost</a><a href=\"#contact\">Contact</a></nav><div class=\"fiches\"><article class=\"carte\">Semis</article><article class=\"carte\">Compost</article><article class=\"carte\">Arrosage</article></div>",
+    "id": "css-m3-01-e3"
+  },
+  {
+    "title_fr": "Partager la place entre cartes",
+    "instruction_fr": "Active Flexbox et wrap sur .fiches avec gap:16px. Donne à ses cartes flex-grow:1, flex-shrink:1 et flex-basis:160px.",
+    "starter_code": ".fiches { }\n.carte { }",
+    "solution": ".fiches { display:flex; flex-wrap:wrap; gap:16px; }\n.fiches > .carte { flex:1 1 160px; }",
+    "visible_tests": [
+      {
+        "description_fr": "Conteneur et paramètres de flexibilité.",
+        "checks": [
+          {
+            "selector": ".fiches",
+            "style": {
+              "display": "flex",
+              "flex-wrap": "wrap",
+              "gap": "16px"
+            }
+          },
+          {
+            "selector": ".fiches > .carte",
+            "style": {
+              "flex-grow": "1",
+              "flex-shrink": "1",
+              "flex-basis": "160px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "La flexibilité est-elle une propriété du parent ou des cartes ?",
+      "Le parent active le système ; les enfants règlent leur participation.",
+      "Le raccourci flex:1 1 160px convient ici."
+    ],
+    "explanation_fr": "Le test accepte le raccourci ou les trois propriétés longues.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<nav class=\"navigation\" aria-label=\"Ateliers\"><a href=\"#semis\">Semis</a><a href=\"#compost\">Compost</a><a href=\"#contact\">Contact</a></nav><div class=\"fiches\"><article class=\"carte\">Semis</article><article class=\"carte\">Compost</article><article class=\"carte\">Arrosage</article></div>",
+    "id": "css-m3-01-e4"
+  }
+]

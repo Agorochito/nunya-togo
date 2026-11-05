@@ -1,0 +1,196 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Vérifier un intervalle",
+    "instruction_fr": "Lis n ; valide doit être vrai pour 2<=n<=8, faux sinon. Affiche valide.",
+    "starter_code": "const n=Number(input(\"Nombre ?\"));\nconst valide=n>=2;\nconsole.log(valide);",
+    "solution": "const n=Number(input(\"Nombre ?\"));\nconst valide=n>=2&&n<=8;\nconsole.log(valide);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "8"
+        ],
+        "expected_output": "true",
+        "calls": [
+          {
+            "name": "valide",
+            "args": [],
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "9"
+        ],
+        "expected_output": "false",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "false",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "2"
+        ],
+        "expected_output": "true",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Deux bornes sont nécessaires.",
+      "Relie-les par &&.",
+      "const n=Number(input(\"Nombre ?\"));\nconst valide=n>=2&&n<=8;\nconsole.log(valide);"
+    ],
+    "explanation_fr": "Le et empêche les valeurs hors de chaque côté.",
+    "common_wrong_answers": [],
+    "id": "js-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Refuser une saisie vide",
+    "instruction_fr": "Lis et nettoie texte. valide doit exiger texte non vide et Number.isFinite(Number(texte)). Affiche valide.",
+    "starter_code": "const texte=input(\"Nombre ?\").trim();\nconst valide=Number.isFinite(Number(texte));\nconsole.log(valide);",
+    "solution": "const texte=input(\"Nombre ?\").trim();\nconst valide=texte!==\"\"&&Number.isFinite(Number(texte));\nconsole.log(valide);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "   "
+        ],
+        "expected_output": "false",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "true",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "abc"
+        ],
+        "expected_output": "false",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "2.5"
+        ],
+        "expected_output": "true",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "La conversion du vide ne suffit pas.",
+      "Garde un test sur le texte.",
+      "const texte=input(\"Nombre ?\").trim();\nconst valide=texte!==\"\"&&Number.isFinite(Number(texte));\nconsole.log(valide);"
+    ],
+    "explanation_fr": "Zéro saisi et absence de réponse sont distingués.",
+    "common_wrong_answers": [],
+    "id": "js-m2-03-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Classer un résultat fictif",
+    "instruction_fr": "Lis score. Affiche début si score<3, suite si 3<=score<6, avancée sinon. Les scores fournis sont entiers de 0 à 8.",
+    "starter_code": "const score=Number(input(\"Score ?\"));\nconsole.log(\"suite\");",
+    "solution": "const score=Number(input(\"Score ?\"));\nif(score<3){console.log(\"début\");}else if(score<6){console.log(\"suite\");}else{console.log(\"avancée\");}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2"
+        ],
+        "expected_output": "début",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "suite",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "5"
+        ],
+        "expected_output": "suite",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "6"
+        ],
+        "expected_output": "avancée",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Les tests sont lus dans l’ordre.",
+      "Le second test ne reçoit que les scores au moins égaux à trois.",
+      "const score=Number(input(\"Score ?\"));\nif(score<3){console.log(\"début\");}else if(score<6){console.log(\"suite\");}else{console.log(\"avancée\");}"
+    ],
+    "explanation_fr": "Les catégories de cet exercice ne sont pas des niveaux de compétence certifiés.",
+    "common_wrong_answers": [],
+    "id": "js-m2-03-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un et/ou",
+    "instruction_fr": "Accepte uniquement un entier de 1 à 4. Corrige le booléen valide.",
+    "starter_code": "const n=Number(input(\"Nombre ?\"));\nconst valide=Number.isInteger(n)&&(n>=1||n<=4);\nconsole.log(valide);",
+    "solution": "const n=Number(input(\"Nombre ?\"));\nconst valide=Number.isInteger(n)&&n>=1&&n<=4;\nconsole.log(valide);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "9"
+        ],
+        "expected_output": "false",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "true",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "2.5"
+        ],
+        "expected_output": "false",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "false",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Une valeur doit respecter les deux limites.",
+      "Avec ||, neuf respecte déjà n>=1.",
+      "const n=Number(input(\"Nombre ?\"));\nconst valide=Number.isInteger(n)&&n>=1&&n<=4;\nconsole.log(valide);"
+    ],
+    "explanation_fr": "Le et combine toutes les exigences.",
+    "common_wrong_answers": [],
+    "id": "js-m2-03-e4"
+  }
+]

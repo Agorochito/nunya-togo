@@ -1,0 +1,230 @@
+{
+  "id": "html-bases",
+  "title_fr": "HTML : premières pages accessibles",
+  "language": "html",
+  "level": "debutant",
+  "summary_fr": "Construire une page associative structurée avec un formulaire local, sans serveur ni collecte réelle. Les niveaux intermédiaire et avancé restent en préparation.",
+  "prerequisites": [],
+  "outcomes": [
+    "Assembler une page associative avec navigation et formulaire.",
+    "Évaluer le livrable avec des critères et une revue humaine."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Écrire et relier les premiers contenus",
+      "outcome_fr": "Construire une page simple, ordonnée et navigable.",
+      "lesson_ids": [
+        "html-m1-01",
+        "html-m1-02",
+        "html-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Structurer des informations et des images",
+      "outcome_fr": "Choisir des listes, régions, alternatives et tableaux adaptés.",
+      "lesson_ids": [
+        "html-m2-01",
+        "html-m2-02",
+        "html-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Construire un formulaire compréhensible",
+      "outcome_fr": "Associer contrôles, libellés, groupes, aides et contraintes.",
+      "lesson_ids": [
+        "html-m3-01",
+        "html-m3-02",
+        "html-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Assembler et vérifier une page associative",
+      "outcome_fr": "Réaliser un projet HTML local avec revue de sa structure et de son usage.",
+      "lesson_ids": [
+        "html-m4-01",
+        "html-m4-02",
+        "html-m4-03"
+      ]
+    }
+  ],
+  "status": "brouillon",
+  "reviewer": null,
+  "runtime": "html",
+  "later_modules": [],
+  "lessons": [
+    {
+      "id": "html-m1-01",
+      "title_fr": "Créer un document et lire son aperçu",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [],
+      "tags": [
+        "html",
+        "m1",
+        "débutant"
+      ]
+    },
+    {
+      "id": "html-m1-02",
+      "title_fr": "Organiser titres, paragraphes et importance",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "html-m1-01"
+      ],
+      "tags": [
+        "html",
+        "m1",
+        "débutant"
+      ]
+    },
+    {
+      "id": "html-m1-03",
+      "title_fr": "Relier pages et rubriques avec des liens",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "html-m1-02"
+      ],
+      "tags": [
+        "html",
+        "m1",
+        "débutant"
+      ]
+    },
+    {
+      "id": "html-m2-01",
+      "title_fr": "Choisir listes et grandes régions de page",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "html-m1-03"
+      ],
+      "tags": [
+        "html",
+        "m2",
+        "débutant"
+      ]
+    },
+    {
+      "id": "html-m2-02",
+      "title_fr": "Décrire les images et leur rôle",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "html-m2-01"
+      ],
+      "tags": [
+        "html",
+        "m2",
+        "débutant"
+      ]
+    },
+    {
+      "id": "html-m2-03",
+      "title_fr": "Présenter des données dans un tableau",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "html-m2-02"
+      ],
+      "tags": [
+        "html",
+        "m2",
+        "débutant"
+      ]
+    },
+    {
+      "id": "html-m3-01",
+      "title_fr": "Relier chaque champ à un libellé",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "html-m2-03"
+      ],
+      "tags": [
+        "html",
+        "m3",
+        "débutant"
+      ]
+    },
+    {
+      "id": "html-m3-02",
+      "title_fr": "Proposer des choix et des boutons explicites",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "html-m3-01"
+      ],
+      "tags": [
+        "html",
+        "m3",
+        "débutant"
+      ]
+    },
+    {
+      "id": "html-m3-03",
+      "title_fr": "Ajouter des contraintes et guider la correction",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "html-m3-02"
+      ],
+      "tags": [
+        "html",
+        "m3",
+        "débutant"
+      ]
+    },
+    {
+      "id": "html-m4-01",
+      "title_fr": "Assembler une page navigable et relire son plan",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "html-m3-03"
+      ],
+      "tags": [
+        "html",
+        "m4",
+        "débutant"
+      ]
+    },
+    {
+      "id": "html-m4-02",
+      "title_fr": "Intégrer des médias et des informations repliables",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "html-m4-01"
+      ],
+      "tags": [
+        "html",
+        "m4",
+        "débutant"
+      ]
+    },
+    {
+      "id": "html-m4-03",
+      "title_fr": "Projet : publier la structure d’une page associative",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "html-m4-02"
+      ],
+      "tags": [
+        "html",
+        "m4",
+        "débutant"
+      ]
+    }
+  ],
+  "estimated_minutes": 240,
+  "content_revision": "db5f6244b057",
+  "exercise_count": 48,
+  "quiz_count": 36
+}

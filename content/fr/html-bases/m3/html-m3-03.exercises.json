@@ -1,0 +1,140 @@
+[
+  {
+    "title_fr": "Rendre la règle visible",
+    "instruction_fr": "Ajoute required à l’email et le mot obligatoire au label. Conserve la relation existante.",
+    "starter_code": "<form><label for=\"contact\">Adresse de contact</label><input id=\"contact\" name=\"contact\" type=\"email\"></form>",
+    "solution": "<form><label for=\"contact\">Adresse de contact, obligatoire</label><input id=\"contact\" name=\"contact\" type=\"email\" required></form>",
+    "visible_tests": [
+      {
+        "description_fr": "Obligation native et visible.",
+        "checks": [
+          {
+            "selector": "input#contact[required]",
+            "attributes": {
+              "type": "email"
+            }
+          },
+          {
+            "selector": "label[for=\"contact\"]",
+            "textIncludes": "obligatoire"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "La règle doit-elle être devinée ?",
+      "Ajoute la contrainte à input et une indication au label.",
+      "required est un attribut booléen : sa présence suffit."
+    ],
+    "explanation_fr": "La contrainte et le texte se complètent ; le test ne demande pas une syntaxe exacte pour l’attribut booléen.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "id": "html-m3-03-e1"
+  },
+  {
+    "title_fr": "Relier une aide",
+    "instruction_fr": "Ajoute aria-describedby=\"aide\" au champ. Le paragraphe id=\"aide\" doit contenir Données fictives uniquement.",
+    "starter_code": "<label for=\"prenom\">Prénom</label><input id=\"prenom\" name=\"prenom\" type=\"text\"><p id=\"aide\"></p>",
+    "solution": "<label for=\"prenom\">Prénom</label><input id=\"prenom\" name=\"prenom\" type=\"text\" aria-describedby=\"aide\"><p id=\"aide\">Données fictives uniquement.</p>",
+    "visible_tests": [
+      {
+        "description_fr": "Description liée et persistante.",
+        "checks": [
+          {
+            "selector": "input#prenom",
+            "attributes": {
+              "aria-describedby": "aide"
+            }
+          },
+          {
+            "selector": "p#aide",
+            "textIncludes": "Données fictives uniquement."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Comment associer un texte d’aide sans remplacer le label ?",
+      "Référence son id avec aria-describedby.",
+      "La valeur aide doit être identique des deux côtés."
+    ],
+    "explanation_fr": "Le champ garde son nom visible et reçoit une information supplémentaire.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m3-03-e2"
+  },
+  {
+    "title_fr": "Borner une quantité",
+    "instruction_fr": "Le champ places est une quantité. Ajoute type=\"number\", min=\"1\", max=\"4\" et required. Rends la plage 1 à 4 visible dans le label.",
+    "starter_code": "<label for=\"places\">Places</label><input id=\"places\" name=\"places\" type=\"text\">",
+    "solution": "<label for=\"places\">Places, de 1 à 4</label><input id=\"places\" name=\"places\" type=\"number\" min=\"1\" max=\"4\" required>",
+    "visible_tests": [
+      {
+        "description_fr": "Quantité avec bornes annoncées.",
+        "checks": [
+          {
+            "selector": "input#places[required]",
+            "attributes": {
+              "type": "number",
+              "min": "1",
+              "max": "4"
+            }
+          },
+          {
+            "selector": "label[for=\"places\"]",
+            "textIncludes": "1 à 4"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "La donnée représente-t-elle un calcul ou un identifiant ?",
+      "Une quantité se prête ici à number, min et max.",
+      "Annonce aussi les deux bornes dans le texte visible."
+    ],
+    "explanation_fr": "Les bornes sont demandées dans le contrat. Elles ne remplacent pas une validation côté serveur.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m3-03-e3"
+  },
+  {
+    "title_fr": "Réparer la sélection obligatoire",
+    "instruction_fr": "Rends le select obligatoire et transforme l’invitation Choisir en option de valeur vide. Conserve l’option Semis.",
+    "starter_code": "<label for=\"atelier\">Atelier, obligatoire</label><select id=\"atelier\" name=\"atelier\"><option value=\"choisir\">Choisir</option><option value=\"semis\">Semis</option></select>",
+    "solution": "<label for=\"atelier\">Atelier, obligatoire</label><select id=\"atelier\" name=\"atelier\" required><option value=\"\">Choisir</option><option value=\"semis\">Semis</option></select>",
+    "visible_tests": [
+      {
+        "description_fr": "Invitation non assimilée à un choix.",
+        "checks": [
+          {
+            "selector": "select#atelier[required]",
+            "exists": true
+          },
+          {
+            "selector": "select option:first-child",
+            "attributes": {
+              "value": ""
+            }
+          },
+          {
+            "selector": "option[value=\"semis\"]",
+            "textIncludes": "Semis"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "L’invitation représente-t-elle un atelier réel ?",
+      "Donne-lui une value vide.",
+      "Ajoute required au select, pas à chaque option."
+    ],
+    "explanation_fr": "Une valeur technique non vide aurait pu faire passer l’invitation pour une réponse.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "id": "html-m3-03-e4"
+  }
+]

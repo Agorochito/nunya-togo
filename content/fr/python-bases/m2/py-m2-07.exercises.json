@@ -40,8 +40,8 @@
         "feedback_fr": "Ajoute f avant le guillemet ouvrant pour évaluer l’expression entre accolades."
       }
     ],
-    "required_syntax": [
-      "\\b(?:[fF][rR]?|[rR][fF])[\"']"
+    "required_constructs": [
+      "fstring"
     ]
   },
   {

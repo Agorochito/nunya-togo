@@ -1,0 +1,140 @@
+[
+  {
+    "title_fr": "Convertir rem en mesure observable",
+    "instruction_fr": "Fixe html à font-size:16px et donne à .carte padding:1rem.",
+    "starter_code": "html { font-size:16px; }\n.carte { }",
+    "solution": "html { font-size:16px; }\n.carte { padding:1rem; }",
+    "visible_tests": [
+      {
+        "description_fr": "Référence de rem contrôlée.",
+        "checks": [
+          {
+            "selector": ".carte",
+            "style": {
+              "padding-top": "16px",
+              "padding-left": "16px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quelle taille sert de référence à rem ?",
+      "La racine vaut ici 16px.",
+      "1rem donne donc 16px de padding."
+    ],
+    "explanation_fr": "La taille racine est fixée pour cette expérience ; les préférences utilisateurs restent importantes dans un vrai site.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "fixture_html": "<style>.cadre{width:400px;max-width:100%}</style><div class=\"cadre\"><article class=\"carte\"><h2>Semis</h2><p>Un texte de démonstration assez long pour lire la largeur de la carte.</p></article></div>",
+    "id": "css-m2-02-e1"
+  },
+  {
+    "title_fr": "Prendre la moitié du cadre",
+    "instruction_fr": "Donne à .carte width:50% et box-sizing:border-box. Le cadre fourni mesure 400px à la largeur de test.",
+    "starter_code": ".carte { width:400px; }",
+    "solution": ".carte { width:50%; box-sizing:border-box; }",
+    "visible_tests": [
+      {
+        "description_fr": "Moitié d’un parent de 400px.",
+        "checks": [
+          {
+            "selector": ".carte",
+            "style": {
+              "width": "200px",
+              "box-sizing": "border-box"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 800,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Le pourcentage dépend-il directement de la fenêtre ?",
+      "Ici, le parent est .cadre.",
+      "La moitié de 400px vaut 200px."
+    ],
+    "explanation_fr": "Le contexte fixe la mesure ; le test n’exige pas une valeur source exacte si le contrat est respecté.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<style>.cadre{width:400px;max-width:100%}</style><div class=\"cadre\"><article class=\"carte\"><h2>Semis</h2><p>Un texte de démonstration assez long pour lire la largeur de la carte.</p></article></div>",
+    "id": "css-m2-02-e2"
+  },
+  {
+    "title_fr": "Remplir puis limiter",
+    "instruction_fr": "Avec html à 16px, donne à .carte width:100%, max-width:20rem et box-sizing:border-box. Dans ce cadre de 400px, elle doit s’arrêter à 320px.",
+    "starter_code": ".carte { width:500px; }",
+    "solution": "html { font-size:16px; }\n.carte { width:100%; max-width:20rem; box-sizing:border-box; }",
+    "visible_tests": [
+      {
+        "description_fr": "Largeur bornée.",
+        "checks": [
+          {
+            "selector": ".carte",
+            "style": {
+              "width": "320px",
+              "max-width": "320px",
+              "box-sizing": "border-box"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 800,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quel réglage empêche de dépasser une limite ?",
+      "Combine width et max-width.",
+      "20rem avec 16px de racine vaut 320px."
+    ],
+    "explanation_fr": "Une carte peut être fluide tout en conservant une limite de lecture.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<style>.cadre{width:400px;max-width:100%}</style><div class=\"cadre\"><article class=\"carte\"><h2>Semis</h2><p>Un texte de démonstration assez long pour lire la largeur de la carte.</p></article></div>",
+    "id": "css-m2-02-e3"
+  },
+  {
+    "title_fr": "Réparer une hauteur qui coupe le texte",
+    "instruction_fr": "La carte ne doit pas imposer une hauteur de 20px. Remets height:auto, donne width:100% et box-sizing:border-box.",
+    "starter_code": ".carte { width:600px; height:20px; overflow:hidden; }",
+    "solution": ".carte { width:100%; height:auto; box-sizing:border-box; }",
+    "visible_tests": [
+      {
+        "description_fr": "Dimension souple et contenu non masqué.",
+        "checks": [
+          {
+            "selector": ".carte",
+            "style": {
+              "width": "400px",
+              "overflow-y": "visible",
+              "box-sizing": "border-box"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 800,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Une hauteur fixe convient-elle à un texte qui peut grossir ?",
+      "Retire la coupure overflow:hidden.",
+      "Laisse la hauteur suivre le contenu avec auto."
+    ],
+    "explanation_fr": "Le test vérifie la largeur et l’absence de masquage ; agrandis aussi le texte pour observer sa place réelle.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "fixture_html": "<style>.cadre{width:400px;max-width:100%}</style><div class=\"cadre\"><article class=\"carte\"><h2>Semis</h2><p>Un texte de démonstration assez long pour lire la largeur de la carte.</p></article></div>",
+    "id": "css-m2-02-e4"
+  }
+]

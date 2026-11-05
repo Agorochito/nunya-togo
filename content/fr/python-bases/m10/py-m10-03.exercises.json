@@ -1,0 +1,348 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Décider avant de retirer",
+    "instruction_fr": "Retourne True si article existe, quantite > 0 et sa quantité est suffisante ; sinon False. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def peut_retirer(stock, article, quantite):\n    return None",
+    "solution": "def peut_retirer(stock, article, quantite):\n    return article in stock and quantite > 0 and stock[article] >= quantite",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "peut_retirer",
+            "args": [
+              {
+                "A": 3
+              },
+              "A",
+              3
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "peut_retirer",
+            "args": [
+              {
+                "A": 3
+              },
+              "A",
+              4
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "peut_retirer",
+            "args": [
+              {},
+              "A",
+              1
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "peut_retirer",
+            "args": [
+              {
+                "A": 3
+              },
+              "A",
+              0
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La présence protège la lecture.",
+      "Les trois conditions doivent être vraies.",
+      "Combine présence, positivité et stock suffisant avec and."
+    ],
+    "explanation_fr": "La décision ne change pas l’inventaire. L’ordre des conditions empêche de lire une clé absente et la frontière autorise le retrait de toute la quantité disponible.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ peut_retirer\\(stock,\\ article,\\ quantite\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Les trois conditions doivent être vraies."
+      }
+    ],
+    "id": "py-m10-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Retrait contrôlé",
+    "instruction_fr": "Retourne une copie avec quantite retirée de article ; retourne None si article manque, quantite <= 0 ou le stock est insuffisant. Garde la clé si le résultat vaut zéro. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def retirer(stock, article, quantite):\n    return None",
+    "solution": "def retirer(stock, article, quantite):\n    if article not in stock or quantite <= 0:\n        return None\n    if stock[article] < quantite:\n        return None\n    copie = stock.copy()\n    copie[article] = copie[article] - quantite\n    return copie",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "retirer",
+            "args": [
+              {
+                "A": 3
+              },
+              "A",
+              3
+            ],
+            "expected": {
+              "A": 0
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "retirer",
+            "args": [
+              {
+                "A": 3
+              },
+              "A",
+              4
+            ],
+            "expected": null,
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "retirer",
+            "args": [
+              {},
+              "A",
+              1
+            ],
+            "expected": null,
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "retirer",
+            "args": [
+              {
+                "A": 3
+              },
+              "A",
+              -1
+            ],
+            "expected": null,
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Refuse avant toute modification.",
+      "Le retrait exact garde la clé avec zéro.",
+      "Copie puis soustrais seulement après les contrôles."
+    ],
+    "explanation_fr": "Un état refusé n’est pas un stock modifié partiellement. Le retour None permet à l’appelant de garder sa référence précédente et d’expliquer que la demande n’a pas été appliquée.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ retirer\\(stock,\\ article,\\ quantite\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Le retrait exact garde la clé avec zéro."
+      }
+    ],
+    "id": "py-m10-03-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Quantités manquantes",
+    "instruction_fr": "Pour demande entier positif ou nul, retourne le nombre d’unités qui manquent pour article, en considérant une clé absente comme zéro. Ne retourne jamais un nombre négatif. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def manque(stock, article, demande):\n    return None",
+    "solution": "def manque(stock, article, demande):\n    disponible = stock.get(article, 0)\n    if demande > disponible:\n        return demande - disponible\n    return 0",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "manque",
+            "args": [
+              {
+                "A": 3
+              },
+              "A",
+              5
+            ],
+            "expected": 2,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "manque",
+            "args": [
+              {
+                "A": 3
+              },
+              "A",
+              2
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "manque",
+            "args": [
+              {},
+              "B",
+              4
+            ],
+            "expected": 4,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Il faut mesurer l’insuffisance uniquement.",
+      "Une disponibilité suffisante donne zéro manque.",
+      "Soustrais disponible de demande seulement si demande est plus grande."
+    ],
+    "explanation_fr": "Le bilan de manque décrit une demande sans l’appliquer. Une clé absente représente ici zéro disponible, ce qui rend son interprétation explicite et vérifiable.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ manque\\(stock,\\ article,\\ demande\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Une disponibilité suffisante donne zéro manque."
+      }
+    ],
+    "id": "py-m10-03-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer le seuil de retrait",
+    "instruction_fr": "Retourne True si article existe et quantite strictement positive peut être retirée, égalité comprise. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def sortie_possible(stock, article, quantite):\n    return article in stock and quantite > 0 and stock[article] > quantite",
+    "solution": "def sortie_possible(stock, article, quantite):\n    return article in stock and quantite > 0 and stock[article] >= quantite",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "sortie_possible",
+            "args": [
+              {
+                "A": 2
+              },
+              "A",
+              2
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "sortie_possible",
+            "args": [
+              {
+                "A": 2
+              },
+              "A",
+              3
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "sortie_possible",
+            "args": [
+              {},
+              "A",
+              1
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La quantité exacte est autorisée.",
+      "La disponibilité doit être supérieure ou égale à la demande.",
+      "Remplace > quantite par >= quantite."
+    ],
+    "explanation_fr": "Le retrait exact est une frontière utile à tester. Une comparaison trop stricte laisserait une unité artificiellement bloquée alors que le modèle autorise un stock nul.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ sortie_possible\\(stock,\\ article,\\ quantite\\):\\\n\\ \\ \\ \\ return\\ article\\ in\\ stock\\ and\\ quantite\\ >\\ 0\\ and\\ stock\\[article\\]\\ >\\ quantite$",
+        "feedback_fr": "La ligne « return article in stock and quantite > 0 and stock[article] > quantite » conserve le défaut de départ. La disponibilité doit être supérieure ou égale à la demande."
+      }
+    ],
+    "id": "py-m10-03-e4"
+  }
+]

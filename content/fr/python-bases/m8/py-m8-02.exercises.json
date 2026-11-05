@@ -1,0 +1,364 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Compteur tracé",
+    "instruction_fr": "Retourne le nombre de valeurs supérieures ou égales à seuil dans la liste. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def compter_seuil(valeurs, seuil):\n    return None",
+    "solution": "def compter_seuil(valeurs, seuil):\n    nombre = 0\n    for valeur in valeurs:\n        if valeur >= seuil:\n            nombre = nombre + 1\n    return nombre",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compter_seuil",
+            "args": [
+              [
+                2,
+                8,
+                8
+              ],
+              8
+            ],
+            "expected": 2,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compter_seuil",
+            "args": [
+              [],
+              8
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compter_seuil",
+            "args": [
+              [
+                1,
+                2
+              ],
+              5
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compter_seuil",
+            "args": [
+              [
+                5,
+                6
+              ],
+              5
+            ],
+            "expected": 2,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le compteur vit pendant tout le parcours.",
+      "Initialise-le avant la boucle.",
+      "Ajoute un pour chaque valeur >= seuil."
+    ],
+    "explanation_fr": "Des valeurs situées de part et d’autre du seuil rendent la décision visible. Le cas égal au seuil vérifie que la frontière annoncée est respectée.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ compter_seuil\\(valeurs,\\ seuil\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Initialise-le avant la boucle."
+      }
+    ],
+    "id": "py-m8-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Recherche complète",
+    "instruction_fr": "Retourne True si cible apparaît dans valeurs, sinon False. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def contient(valeurs, cible):\n    return None",
+    "solution": "def contient(valeurs, cible):\n    for valeur in valeurs:\n        if valeur == cible:\n            return True\n    return False",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "contient",
+            "args": [
+              [
+                1,
+                4
+              ],
+              4
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "contient",
+            "args": [
+              [],
+              4
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "contient",
+            "args": [
+              [
+                3,
+                2
+              ],
+              9
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "contient",
+            "args": [
+              [
+                5
+              ],
+              5
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un premier échec ne prouve pas l’absence totale.",
+      "Retourne False seulement après le parcours.",
+      "Réserve le retour intérieur au cas trouvé."
+    ],
+    "explanation_fr": "Un retour trop tôt oublierait les éléments suivants. La recherche doit permettre à une occurrence située en dernière position de produire le même succès qu’en première.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ contient\\(valeurs,\\ cible\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Retourne False seulement après le parcours."
+      }
+    ],
+    "id": "py-m8-02-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Somme expliquée",
+    "instruction_fr": "Retourne la somme des valeurs strictement positives de valeurs. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def somme_positifs(valeurs):\n    return None",
+    "solution": "def somme_positifs(valeurs):\n    total = 0\n    for valeur in valeurs:\n        if valeur > 0:\n            total = total + valeur\n    return total",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "somme_positifs",
+            "args": [
+              [
+                -2,
+                5,
+                3
+              ]
+            ],
+            "expected": 8,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "somme_positifs",
+            "args": [
+              []
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "somme_positifs",
+            "args": [
+              [
+                0,
+                -1
+              ]
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "somme_positifs",
+            "args": [
+              [
+                1,
+                2,
+                4
+              ]
+            ],
+            "expected": 7,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Sépare le filtre de l’accumulation.",
+      "Le total doit conserver chaque positif précédent.",
+      "Ajoute valeur dans le bloc if valeur > 0."
+    ],
+    "explanation_fr": "Un mélange de signes révèle si le filtre et l’accumulateur jouent bien leurs rôles. La sortie n’est ni la dernière valeur ni le nombre de valeurs retenues.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ somme_positifs\\(valeurs\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Le total doit conserver chaque positif précédent."
+      }
+    ],
+    "id": "py-m8-02-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Bilan combiné",
+    "instruction_fr": "Retourne une paire (total, nombre) pour les valeurs supérieures ou égales à seuil. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def bilan_seuil(valeurs, seuil):\n    return None",
+    "solution": "def bilan_seuil(valeurs, seuil):\n    total = 0\n    nombre = 0\n    for valeur in valeurs:\n        if valeur >= seuil:\n            total = total + valeur\n            nombre = nombre + 1\n    return (total, nombre)",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_seuil",
+            "args": [
+              [
+                2,
+                8,
+                9
+              ],
+              8
+            ],
+            "expected": [
+              17,
+              2
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_seuil",
+            "args": [
+              [],
+              4
+            ],
+            "expected": [
+              0,
+              0
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_seuil",
+            "args": [
+              [
+                1,
+                2
+              ],
+              3
+            ],
+            "expected": [
+              0,
+              0
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les deux mesures portent sur la même sélection.",
+      "Ajoute la valeur au total et un au compteur.",
+      "Retourne (total, nombre) après la boucle."
+    ],
+    "explanation_fr": "La paire conserve deux mesures différentes et dans un ordre annoncé. Le vérificateur compare ses éléments ; une liste équivalente est aussi acceptée pour cette activité.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ bilan_seuil\\(valeurs,\\ seuil\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Ajoute la valeur au total et un au compteur."
+      }
+    ],
+    "id": "py-m8-02-e4"
+  }
+]

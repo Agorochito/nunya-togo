@@ -1,0 +1,415 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Appliquer les ajouts valides",
+    "instruction_fr": "Operations est une liste de triplets (type, article, quantite). Applique seulement les types ajout de quantité > 0 ; ignore tout le reste. Retourne le nouveau stock. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def appliquer_ajouts(stock, operations):\n    return None",
+    "solution": "def appliquer_ajouts(stock, operations):\n    copie = stock.copy()\n    for type_op, article, quantite in operations:\n        if type_op == \"ajout\" and quantite > 0:\n            copie[article] = copie.get(article, 0) + quantite\n    return copie",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "appliquer_ajouts",
+            "args": [
+              {
+                "A": 1
+              },
+              [
+                [
+                  "ajout",
+                  "A",
+                  2
+                ],
+                [
+                  "retrait",
+                  "A",
+                  1
+                ]
+              ]
+            ],
+            "expected": {
+              "A": 3
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "appliquer_ajouts",
+            "args": [
+              {},
+              []
+            ],
+            "expected": {},
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "appliquer_ajouts",
+            "args": [
+              {},
+              [
+                [
+                  "ajout",
+                  "B",
+                  0
+                ],
+                [
+                  "autre",
+                  "A",
+                  4
+                ]
+              ]
+            ],
+            "expected": {},
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Toutes les fiches ne sont pas des réceptions valides.",
+      "Teste le type et la positivité ensemble.",
+      "Actualise seulement la copie dans la branche ajout."
+    ],
+    "explanation_fr": "Cette étape isole la sélection des demandes. Les opérations d’autres types ne sont pas interprétées comme des ajouts et n’introduisent aucun changement caché dans l’état.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ appliquer_ajouts\\(stock,\\ operations\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Teste le type et la positivité ensemble."
+      }
+    ],
+    "id": "py-m10-04-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Compter les demandes invalides simples",
+    "instruction_fr": "Operations est une liste de triplets. Retourne le nombre dont le type n’est ni ajout ni retrait, ou dont la quantité est <= 0. Ne vérifie pas la disponibilité du stock ici. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def compter_invalides(operations):\n    return None",
+    "solution": "def compter_invalides(operations):\n    nombre = 0\n    for type_op, article, quantite in operations:\n        if type_op not in [\"ajout\", \"retrait\"] or quantite <= 0:\n            nombre = nombre + 1\n    return nombre",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compter_invalides",
+            "args": [
+              [
+                [
+                  "ajout",
+                  "A",
+                  2
+                ],
+                [
+                  "autre",
+                  "A",
+                  1
+                ]
+              ]
+            ],
+            "expected": 1,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compter_invalides",
+            "args": [
+              []
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compter_invalides",
+            "args": [
+              [
+                [
+                  "retrait",
+                  "A",
+                  0
+                ],
+                [
+                  "ajout",
+                  "B",
+                  -1
+                ]
+              ]
+            ],
+            "expected": 2,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le contrat vérifie seulement la forme des demandes.",
+      "Une opération est invalide si son type ou sa quantité est mauvais.",
+      "Combine les motifs avec or et compte chaque fiche une seule fois."
+    ],
+    "explanation_fr": "Le compteur de validité simple ne connaît pas les quantités disponibles. Séparer cette règle évite de lui demander un comportement impossible avec les seuls arguments reçus.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ compter_invalides\\(operations\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Une opération est invalide si son type ou sa quantité est mauvais."
+      }
+    ],
+    "id": "py-m10-04-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Traitement séquentiel",
+    "instruction_fr": "Applique ajout/retrait de quantité > 0 dans l’ordre. Refuse les types inconnus et les retraits absents ou insuffisants. Retourne le nouveau stock, en ignorant les refus. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def appliquer_operations(stock, operations):\n    return None",
+    "solution": "def appliquer_operations(stock, operations):\n    copie = stock.copy()\n    for type_op, article, quantite in operations:\n        if quantite > 0:\n            if type_op == \"ajout\":\n                copie[article] = copie.get(article, 0) + quantite\n            elif type_op == \"retrait\" and article in copie and copie[article] >= quantite:\n                copie[article] = copie[article] - quantite\n    return copie",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "appliquer_operations",
+            "args": [
+              {
+                "A": 2
+              },
+              [
+                [
+                  "ajout",
+                  "A",
+                  3
+                ],
+                [
+                  "retrait",
+                  "A",
+                  4
+                ]
+              ]
+            ],
+            "expected": {
+              "A": 1
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "appliquer_operations",
+            "args": [
+              {},
+              [
+                [
+                  "retrait",
+                  "A",
+                  1
+                ]
+              ]
+            ],
+            "expected": {},
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "appliquer_operations",
+            "args": [
+              {
+                "A": 3
+              },
+              [
+                [
+                  "retrait",
+                  "A",
+                  2
+                ],
+                [
+                  "retrait",
+                  "A",
+                  2
+                ]
+              ]
+            ],
+            "expected": {
+              "A": 1
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Chaque demande lit l’état après les précédentes.",
+      "Utilise copie pour vérifier la disponibilité.",
+      "Ne soustrais que si la quantité courante est suffisante."
+    ],
+    "explanation_fr": "La séquence ne réutilise pas le stock initial pour chaque décision. Un retrait refusé laisse l’état courant intact, tandis que les opérations déjà acceptées restent présentes.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ appliquer_operations\\(stock,\\ operations\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Utilise copie pour vérifier la disponibilité."
+      }
+    ],
+    "id": "py-m10-04-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Projet inventaire et refus",
+    "instruction_fr": "Applique les mêmes règles séquentielles et retourne {\"stock\": nouvel_etat, \"refus\": nombre}. Chaque demande non appliquée compte une fois. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def gerer_inventaire(stock, operations):\n    return None",
+    "solution": "def gerer_inventaire(stock, operations):\n    copie = stock.copy()\n    refus = 0\n    for type_op, article, quantite in operations:\n        accepte = False\n        if quantite > 0:\n            if type_op == \"ajout\":\n                copie[article] = copie.get(article, 0) + quantite\n                accepte = True\n            elif type_op == \"retrait\" and article in copie and copie[article] >= quantite:\n                copie[article] = copie[article] - quantite\n                accepte = True\n        if not accepte:\n            refus = refus + 1\n    return {\"stock\": copie, \"refus\": refus}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "gerer_inventaire",
+            "args": [
+              {
+                "A": 2
+              },
+              [
+                [
+                  "retrait",
+                  "A",
+                  3
+                ],
+                [
+                  "ajout",
+                  "A",
+                  1
+                ]
+              ]
+            ],
+            "expected": {
+              "stock": {
+                "A": 3
+              },
+              "refus": 1
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "gerer_inventaire",
+            "args": [
+              {},
+              []
+            ],
+            "expected": {
+              "stock": {},
+              "refus": 0
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "gerer_inventaire",
+            "args": [
+              {},
+              [
+                [
+                  "autre",
+                  "A",
+                  2
+                ],
+                [
+                  "ajout",
+                  "A",
+                  0
+                ],
+                [
+                  "ajout",
+                  "A",
+                  4
+                ],
+                [
+                  "retrait",
+                  "A",
+                  4
+                ]
+              ]
+            ],
+            "expected": {
+              "stock": {
+                "A": 0
+              },
+              "refus": 2
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le retour contient deux mesures annoncées.",
+      "Une variable booléenne peut suivre l’acceptation de chaque demande.",
+      "Compte un refus seulement quand aucune branche n’a appliqué la fiche."
+    ],
+    "explanation_fr": "La synthèse relie représentation, décisions, accumulation et conservation des données. Chaque refus correspond à une demande entière, et le bilan explique l’état réellement construit.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ gerer_inventaire\\(stock,\\ operations\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Une variable booléenne peut suivre l’acceptation de chaque demande."
+      }
+    ],
+    "id": "py-m10-04-e4"
+  }
+]

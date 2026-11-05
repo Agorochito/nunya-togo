@@ -1,0 +1,139 @@
+{
+  "id": "javascript-bases",
+  "title_fr": "JavaScript : premiers programmes et décisions",
+  "language": "javascript",
+  "runtime": "javascript",
+  "level": "debutant",
+  "summary_fr": "Une première série détaillée : console, variables, conversions, comparaisons et décisions. Les boucles, collections, fonctions et le projet complet suivront dans la suite du programme.",
+  "prerequisites": [
+    "Savoir saisir un texte et ouvrir une page web."
+  ],
+  "outcomes": [
+    "Écrire et exécuter des instructions JavaScript dans la console.",
+    "Conserver des valeurs et effectuer des conversions explicites.",
+    "Construire et vérifier des décisions avec des conditions."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Valeurs, variables et conversions",
+      "outcome_fr": "Écrire des sorties et transformer une saisie textuelle en nombre.",
+      "lesson_ids": [
+        "js-m1-01",
+        "js-m1-02",
+        "js-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Conditions et décisions explicites",
+      "outcome_fr": "Comparer, choisir une branche et vérifier des entrées.",
+      "lesson_ids": [
+        "js-m2-01",
+        "js-m2-02",
+        "js-m2-03"
+      ]
+    }
+  ],
+  "later_modules": [
+    "Boucles, compteurs et accumulateurs",
+    "Tableaux et parcours de collections",
+    "Objets et données structurées",
+    "Fonctions, paramètres et return",
+    "Débogage et vérifications",
+    "Projet : un questionnaire dans la console"
+  ],
+  "status": "brouillon",
+  "reviewer": null,
+  "license": "Contenu original Nunya · brouillon",
+  "depth_fr": "Première série débutante de six leçons ; programme complet en cours de construction.",
+  "availability": "premiere-serie",
+  "lessons": [
+    {
+      "id": "js-m1-01",
+      "title_fr": "Lire un programme et afficher dans la console",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [],
+      "tags": [
+        "console",
+        "chaîne",
+        "instruction"
+      ]
+    },
+    {
+      "id": "js-m1-02",
+      "title_fr": "Déclarer des variables et calculer une valeur",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m1-01"
+      ],
+      "tags": [
+        "variable",
+        "affectation",
+        "priorité"
+      ]
+    },
+    {
+      "id": "js-m1-03",
+      "title_fr": "Lire une saisie et convertir explicitement",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m1-02"
+      ],
+      "tags": [
+        "conversion",
+        "concaténation",
+        "NaN"
+      ]
+    },
+    {
+      "id": "js-m2-01",
+      "title_fr": "Comparer des valeurs sans affecter",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m1-03"
+      ],
+      "tags": [
+        "booléen",
+        "égalité stricte",
+        "borne"
+      ]
+    },
+    {
+      "id": "js-m2-02",
+      "title_fr": "Choisir une action avec if et else",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m2-01"
+      ],
+      "tags": [
+        "condition",
+        "bloc",
+        "nombre fini"
+      ]
+    },
+    {
+      "id": "js-m2-03",
+      "title_fr": "Combiner des critères et traiter les cas limites",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m2-02"
+      ],
+      "tags": [
+        "conjonction",
+        "plage",
+        "validation"
+      ]
+    }
+  ],
+  "estimated_minutes": 120,
+  "content_revision": "34a1a2f5729c",
+  "exercise_count": 24,
+  "quiz_count": 18
+}

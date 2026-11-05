@@ -1,0 +1,298 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Nombre de références",
+    "instruction_fr": "Retourne le nombre de clés du stock, quantités nulles comprises. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def nombre_references(stock):\n    return None",
+    "solution": "def nombre_references(stock):\n    return len(stock)",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "nombre_references",
+            "args": [
+              {
+                "a": 4,
+                "b": 0
+              }
+            ],
+            "expected": 2,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "nombre_references",
+            "args": [
+              {}
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "nombre_references",
+            "args": [
+              {
+                "a": 0
+              }
+            ],
+            "expected": 1,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une référence correspond à une clé.",
+      "La quantité n’intervient pas dans ce nombre.",
+      "Retourne len(stock)."
+    ],
+    "explanation_fr": "Le modèle distingue la présence d’une référence et sa disponibilité. Une clé associée à zéro appartient encore au catalogue des articles connus.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ nombre_references\\(stock\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. La quantité n’intervient pas dans ce nombre."
+      }
+    ],
+    "id": "py-m10-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Unités disponibles",
+    "instruction_fr": "Retourne la somme de toutes les quantités du stock. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def total_stock(stock):\n    return None",
+    "solution": "def total_stock(stock):\n    total = 0\n    for code in stock:\n        total = total + stock[code]\n    return total",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "total_stock",
+            "args": [
+              {
+                "a": 4,
+                "b": 0
+              }
+            ],
+            "expected": 4,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "total_stock",
+            "args": [
+              {}
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "total_stock",
+            "args": [
+              {
+                "a": 3,
+                "b": 5
+              }
+            ],
+            "expected": 8,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les valeurs portent les quantités.",
+      "Parcours les clés et lis leurs valeurs.",
+      "Additionne stock[code] dans total."
+    ],
+    "explanation_fr": "Le total d’unités mesure le contenu du stock et non le nombre de clés. Le cas vide possède une somme nulle sans demander de condition spéciale.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ total_stock\\(stock\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Parcours les clés et lis leurs valeurs."
+      }
+    ],
+    "id": "py-m10-01-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Articles disponibles",
+    "instruction_fr": "Retourne la liste triée des codes dont la quantité est strictement positive. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def articles_disponibles(stock):\n    return None",
+    "solution": "def articles_disponibles(stock):\n    codes = []\n    for code in sorted(stock):\n        if stock[code] > 0:\n            codes.append(code)\n    return codes",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "articles_disponibles",
+            "args": [
+              {
+                "B": 0,
+                "A": 3
+              }
+            ],
+            "expected": [
+              "A"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "articles_disponibles",
+            "args": [
+              {}
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "articles_disponibles",
+            "args": [
+              {
+                "B": 2,
+                "A": 1
+              }
+            ],
+            "expected": [
+              "A",
+              "B"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le test exclut la quantité zéro.",
+      "Le contrat demande un ordre trié.",
+      "Parcours sorted(stock) et ajoute les codes positifs."
+    ],
+    "explanation_fr": "La sélection retournée est une nouvelle liste et l’inventaire reste intact. Un ordre de présentation explicite rend les bilans reproductibles sans changer les associations.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ articles_disponibles\\(stock\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Le contrat demande un ordre trié."
+      }
+    ],
+    "id": "py-m10-01-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Alerte sous le seuil",
+    "instruction_fr": "Retourne la liste triée des codes dont la quantité est strictement inférieure à seuil, entier positif ou nul. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def articles_en_alerte(stock, seuil):\n    return None",
+    "solution": "def articles_en_alerte(stock, seuil):\n    codes = []\n    for code in sorted(stock):\n        if stock[code] < seuil:\n            codes.append(code)\n    return codes",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "articles_en_alerte",
+            "args": [
+              {
+                "A": 2,
+                "B": 3
+              },
+              3
+            ],
+            "expected": [
+              "A"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "articles_en_alerte",
+            "args": [
+              {},
+              2
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "articles_en_alerte",
+            "args": [
+              {
+                "A": 0
+              },
+              0
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’égalité n’est pas une alerte dans ce contrat.",
+      "Compare avec < et non <=.",
+      "Ajoute les codes dont stock[code] < seuil."
+    ],
+    "explanation_fr": "Le seuil définit une décision et non une quantité à soustraire. Le test à égalité évite une alerte supplémentaire qui ne serait pas autorisée par la règle.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ articles_en_alerte\\(stock,\\ seuil\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Compare avec < et non <=."
+      }
+    ],
+    "id": "py-m10-01-e4"
+  }
+]

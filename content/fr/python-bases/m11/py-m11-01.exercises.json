@@ -1,0 +1,390 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Valider les bornes",
+    "instruction_fr": "Retourne True si 0 <= debut < fin <= 1440 pour ces deux entiers ; sinon False. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def intervalle_valide(debut, fin):\n    return None",
+    "solution": "def intervalle_valide(debut, fin):\n    return debut >= 0 and debut < fin and fin <= 1440",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "intervalle_valide",
+            "args": [
+              540,
+              600
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "intervalle_valide",
+            "args": [
+              600,
+              600
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "intervalle_valide",
+            "args": [
+              700,
+              600
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "intervalle_valide",
+            "args": [
+              0,
+              1440
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "intervalle_valide",
+            "args": [
+              -1,
+              5
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "intervalle_valide",
+            "args": [
+              1400,
+              1441
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une durée strictement positive est nécessaire.",
+      "Les deux limites de la journée comptent aussi.",
+      "Combine debut >= 0, debut < fin et fin <= 1440."
+    ],
+    "explanation_fr": "La validité est contrôlée avant la disponibilité. Refuser une durée nulle ou inversée évite d’interpréter des comparaisons temporelles sur un créneau qui n’existe pas.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ intervalle_valide\\(debut,\\ fin\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Les deux limites de la journée comptent aussi."
+      }
+    ],
+    "id": "py-m11-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Chevauchement temporel",
+    "instruction_fr": "Les deux intervalles sont valides. Retourne True s’ils se chevauchent selon la convention début inclus et fin exclue. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def chevauche(d1, f1, d2, f2):\n    return None",
+    "solution": "def chevauche(d1, f1, d2, f2):\n    return d1 < f2 and d2 < f1",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chevauche",
+            "args": [
+              540,
+              600,
+              600,
+              660
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chevauche",
+            "args": [
+              540,
+              600,
+              590,
+              650
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chevauche",
+            "args": [
+              500,
+              700,
+              550,
+              600
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chevauche",
+            "args": [
+              600,
+              660,
+              540,
+              600
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chevauche",
+            "args": [
+              1,
+              3,
+              1,
+              3
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’adjacence ne partage aucune durée.",
+      "Les deux débuts doivent précéder la fin opposée.",
+      "Utilise d1 < f2 and d2 < f1."
+    ],
+    "explanation_fr": "Les comparaisons strictes rendent l’adjacence disponible et reconnaissent aussi une inclusion. L’ordre dans lequel les deux créneaux sont fournis ne change pas le conflit temporel.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ chevauche\\(d1,\\ f1,\\ d2,\\ f2\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Les deux débuts doivent précéder la fin opposée."
+      }
+    ],
+    "id": "py-m11-01-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Conflit du même équipement",
+    "instruction_fr": "Les intervalles sont valides. Retourne True si equipement1 égale equipement2 ET si les créneaux se chevauchent. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def conflit(equipement1, d1, f1, equipement2, d2, f2):\n    return None",
+    "solution": "def conflit(equipement1, d1, f1, equipement2, d2, f2):\n    return equipement1 == equipement2 and d1 < f2 and d2 < f1",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "conflit",
+            "args": [
+              "A",
+              1,
+              4,
+              "A",
+              3,
+              5
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "conflit",
+            "args": [
+              "A",
+              1,
+              4,
+              "B",
+              3,
+              5
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "conflit",
+            "args": [
+              "A",
+              1,
+              4,
+              "A",
+              4,
+              6
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un conflit combine identité et temps.",
+      "Deux équipements distincts restent indépendants.",
+      "Ajoute l’égalité des équipements à la condition temporelle."
+    ],
+    "explanation_fr": "La vérification de l’équipement empêche de bloquer tout le matériel pour un seul créneau. Le conflit exige simultanément la même ressource et une durée réellement partagée.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ conflit\\(equipement1,\\ d1,\\ f1,\\ equipement2,\\ d2,\\ f2\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Deux équipements distincts restent indépendants."
+      }
+    ],
+    "id": "py-m11-01-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Durée protégée",
+    "instruction_fr": "Retourne fin - debut si 0 <= debut < fin <= 1440, sinon None. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def duree_creneau(debut, fin):\n    return None",
+    "solution": "def duree_creneau(debut, fin):\n    if debut >= 0 and debut < fin and fin <= 1440:\n        return fin - debut\n    return None",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "duree_creneau",
+            "args": [
+              540,
+              600
+            ],
+            "expected": 60,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "duree_creneau",
+            "args": [
+              600,
+              600
+            ],
+            "expected": null,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "duree_creneau",
+            "args": [
+              700,
+              600
+            ],
+            "expected": null,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "duree_creneau",
+            "args": [
+              0,
+              1440
+            ],
+            "expected": 1440,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le calcul ne doit pas donner une durée inventée pour un refus.",
+      "Valide d’abord les bornes.",
+      "Retourne la différence seulement dans la branche valide."
+    ],
+    "explanation_fr": "La durée est un nombre pour un créneau valable et une absence explicite pour les autres cas. Cette distinction aide l’appelant à séparer mesure et refus.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ duree_creneau\\(debut,\\ fin\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Valide d’abord les bornes."
+      }
+    ],
+    "id": "py-m11-01-e4"
+  }
+]

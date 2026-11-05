@@ -1,0 +1,292 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Remise réutilisable",
+    "instruction_fr": "Retourne montant moins sa remise en pourcentage. Montant est positif ou nul ; pourcentage est entre 0 et 100. Tolérance absolue 0,000000001. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def apres_remise(montant, pourcentage):\n    return None",
+    "solution": "def apres_remise(montant, pourcentage):\n    return montant - montant * pourcentage / 100",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "apres_remise",
+            "args": [
+              100,
+              10
+            ],
+            "expected": 90.0,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "apres_remise",
+            "args": [
+              80,
+              0
+            ],
+            "expected": 80.0,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "apres_remise",
+            "args": [
+              50,
+              100
+            ],
+            "expected": 0.0,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "apres_remise",
+            "args": [
+              19.95,
+              12.5
+            ],
+            "expected": 17.45625,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Quelles informations varient d’une cotisation à l’autre ?",
+      "Calcule la part retirée avant de la soustraire.",
+      "Retourne montant - montant * pourcentage / 100."
+    ],
+    "explanation_fr": "La fonction transmet le nouveau montant sans imprimer. Les tests du taux nul, de la remise totale et d’un décimal vérifient les limites et le contrat numérique.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ apres_remise\\(montant,\\ pourcentage\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Calcule la part retirée avant de la soustraire."
+      }
+    ],
+    "id": "py-m7-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Convertir une durée",
+    "instruction_fr": "Retourne le nombre de minutes correspondant à heures, entier positif ou nul. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def en_minutes(heures):\n    return None",
+    "solution": "def en_minutes(heures):\n    return heures * 60",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "en_minutes",
+            "args": [
+              2
+            ],
+            "expected": 120,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "en_minutes",
+            "args": [
+              0
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "en_minutes",
+            "args": [
+              5
+            ],
+            "expected": 300,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le résultat doit être reçu par l’appelant.",
+      "Une heure correspond à soixante minutes.",
+      "Utilise return heures * 60."
+    ],
+    "explanation_fr": "Le transfert remplace le contexte de cotisation par une durée, mais conserve le même principe : fournir un résultat réutilisable à partir d’un argument.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ en_minutes\\(heures\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Une heure correspond à soixante minutes."
+      }
+    ],
+    "id": "py-m7-03-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Transmettre un total",
+    "instruction_fr": "Retourne prix multiplié par nombre. Ces deux nombres sont positifs ou nuls. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def calculer_total(prix, nombre):\n    return None",
+    "solution": "def calculer_total(prix, nombre):\n    return prix * nombre",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "calculer_total",
+            "args": [
+              200,
+              3
+            ],
+            "expected": 600,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "calculer_total",
+            "args": [
+              0,
+              4
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "calculer_total",
+            "args": [
+              2.5,
+              4
+            ],
+            "expected": 10.0,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le contrat demande une valeur et non un affichage.",
+      "Le calcul est une multiplication.",
+      "Place le produit après return."
+    ],
+    "explanation_fr": "Une valeur retournée peut être ajoutée à d’autres totaux sans devoir relire une sortie de console. Le cas décimal contrôle aussi la nature numérique du résultat.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ calculer_total\\(prix,\\ nombre\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Le calcul est une multiplication."
+      }
+    ],
+    "id": "py-m7-03-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer print et return",
+    "instruction_fr": "La fonction doit retourner le triple de nombre sans rien afficher. Corrige la version qui affiche seulement. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def tripler(nombre):\n    print(nombre * 3)",
+    "solution": "def tripler(nombre):\n    return nombre * 3",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tripler",
+            "args": [
+              4
+            ],
+            "expected": 12,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tripler",
+            "args": [
+              0
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tripler",
+            "args": [
+              -2
+            ],
+            "expected": -6,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’appelant doit recevoir le nombre.",
+      "print produit un affichage, pas le résultat contractuel.",
+      "Remplace print(nombre * 3) par return nombre * 3."
+    ],
+    "explanation_fr": "Le programme initial semble montrer la bonne réponse, mais renvoie None. Le test d’appel distingue ce défaut d’une fonction qui transmet réellement le résultat.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ tripler\\(nombre\\):\\\n\\ \\ \\ \\ print\\(nombre\\ \\*\\ 3\\)$",
+        "feedback_fr": "La ligne « print(nombre * 3) » conserve le défaut de départ. print produit un affichage, pas le résultat contractuel."
+      }
+    ],
+    "id": "py-m7-03-e4"
+  }
+]

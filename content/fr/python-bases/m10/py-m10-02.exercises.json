@@ -1,0 +1,359 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une réception",
+    "instruction_fr": "Retourne le nouveau stock après ajout de quantite à article. Quantite est entière ; retourne None si elle est <= 0. Une nouvelle clé est autorisée. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def recevoir(stock, article, quantite):\n    return None",
+    "solution": "def recevoir(stock, article, quantite):\n    if quantite <= 0:\n        return None\n    copie = stock.copy()\n    copie[article] = copie.get(article, 0) + quantite\n    return copie",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "recevoir",
+            "args": [
+              {
+                "A": 2
+              },
+              "A",
+              3
+            ],
+            "expected": {
+              "A": 5
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "recevoir",
+            "args": [
+              {},
+              "B",
+              2
+            ],
+            "expected": {
+              "B": 2
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "recevoir",
+            "args": [
+              {
+                "A": 2
+              },
+              "A",
+              0
+            ],
+            "expected": null,
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "recevoir",
+            "args": [
+              {},
+              "B",
+              -1
+            ],
+            "expected": null,
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Décide d’abord si la quantité est valable.",
+      "Copie puis ajoute à la quantité précédente.",
+      "Utilise get(article, 0) + quantite."
+    ],
+    "explanation_fr": "La réception ajoute au lieu de remplacer et peut créer une référence. Un refus retourne None sans introduire de clé ni changer une quantité existante.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ recevoir\\(stock,\\ article,\\ quantite\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Copie puis ajoute à la quantité précédente."
+      }
+    ],
+    "id": "py-m10-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Prévoir le total reçu",
+    "instruction_fr": "Pour quantite positive ou nulle, retourne le total des unités du stock augmenté de quantite, sans créer de stock. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def total_prevu(stock, quantite):\n    return None",
+    "solution": "def total_prevu(stock, quantite):\n    total = quantite\n    for code in stock:\n        total = total + stock[code]\n    return total",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "total_prevu",
+            "args": [
+              {
+                "A": 2,
+                "B": 3
+              },
+              4
+            ],
+            "expected": 9,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "total_prevu",
+            "args": [
+              {},
+              0
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "total_prevu",
+            "args": [
+              {
+                "A": 0
+              },
+              2
+            ],
+            "expected": 2,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Il s’agit seulement d’un calcul de bilan.",
+      "Ajoute toutes les quantités puis l’arrivage.",
+      "Initialise total avec quantite avant le parcours."
+    ],
+    "explanation_fr": "Prévoir un total est une lecture sans mutation. La fonction ne crée pas une référence parce qu’aucun code d’article n’est fourni dans son contrat.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ total_prevu\\(stock,\\ quantite\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Ajoute toutes les quantités puis l’arrivage."
+      }
+    ],
+    "id": "py-m10-02-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Lot de réceptions valides",
+    "instruction_fr": "Livraisons est une liste de paires (article, quantite) où chaque quantité est strictement positive. Retourne le nouveau stock après toutes les additions. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def recevoir_lot(stock, livraisons):\n    return None",
+    "solution": "def recevoir_lot(stock, livraisons):\n    copie = stock.copy()\n    for article, quantite in livraisons:\n        copie[article] = copie.get(article, 0) + quantite\n    return copie",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "recevoir_lot",
+            "args": [
+              {
+                "A": 1
+              },
+              [
+                [
+                  "A",
+                  2
+                ],
+                [
+                  "B",
+                  3
+                ]
+              ]
+            ],
+            "expected": {
+              "A": 3,
+              "B": 3
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "recevoir_lot",
+            "args": [
+              {},
+              []
+            ],
+            "expected": {},
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "recevoir_lot",
+            "args": [
+              {},
+              [
+                [
+                  "A",
+                  2
+                ],
+                [
+                  "A",
+                  4
+                ]
+              ]
+            ],
+            "expected": {
+              "A": 6
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Plusieurs lignes peuvent viser le même code.",
+      "Chaque ajout utilise l’état construit par les lignes précédentes.",
+      "Mets à jour la copie avec get à chaque passage."
+    ],
+    "explanation_fr": "Un lot traite les lignes dans l’ordre sur un état de travail. Deux arrivages du même article se cumulent, et une liste de livraisons vide produit une copie équivalente.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ recevoir_lot\\(stock,\\ livraisons\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Chaque ajout utilise l’état construit par les lignes précédentes."
+      }
+    ],
+    "id": "py-m10-02-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer le remplacement",
+    "instruction_fr": "Quantite est strictement positive. Retourne le stock avec cette quantité ajoutée à article ; corrige la version qui remplace l’ancien nombre. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def ajouter_arrivage(stock, article, quantite):\n    copie = stock.copy()\n    copie[article] = quantite\n    return copie",
+    "solution": "def ajouter_arrivage(stock, article, quantite):\n    copie = stock.copy()\n    copie[article] = copie.get(article, 0) + quantite\n    return copie",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ajouter_arrivage",
+            "args": [
+              {
+                "A": 5
+              },
+              "A",
+              2
+            ],
+            "expected": {
+              "A": 7
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ajouter_arrivage",
+            "args": [
+              {},
+              "A",
+              2
+            ],
+            "expected": {
+              "A": 2
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ajouter_arrivage",
+            "args": [
+              {
+                "B": 4
+              },
+              "A",
+              1
+            ],
+            "expected": {
+              "B": 4,
+              "A": 1
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La quantité ancienne ne doit pas disparaître.",
+      "Lis-la avec zéro seulement si la clé manque.",
+      "Additionne copie.get(article, 0) et quantite."
+    ],
+    "explanation_fr": "Une réception sur une référence existante révèle le remplacement fautif. Une réception nouvelle vérifie que la même formule crée correctement sa première quantité.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ ajouter_arrivage\\(stock,\\ article,\\ quantite\\):\\\n\\ \\ \\ \\ copie\\ =\\ stock\\.copy\\(\\)\\\n\\ \\ \\ \\ copie\\[article\\]\\ =\\ quantite\\\n\\ \\ \\ \\ return\\ copie$",
+        "feedback_fr": "La ligne « copie[article] = quantite » conserve le défaut de départ. Lis-la avec zéro seulement si la clé manque."
+      }
+    ],
+    "id": "py-m10-02-e4"
+  }
+]

@@ -1,0 +1,155 @@
+[
+  {
+    "title_fr": "Associer le prénom",
+    "instruction_fr": "Ajoute for=\"prenom\" au label et id=\"prenom\" à input. Conserve le type text et name=\"prenom\".",
+    "starter_code": "<form><label>Prénom</label><input type=\"text\" name=\"prenom\"></form>",
+    "solution": "<form><label for=\"prenom\">Prénom</label><input id=\"prenom\" type=\"text\" name=\"prenom\"></form>",
+    "visible_tests": [
+      {
+        "description_fr": "Relation explicite label/contrôle.",
+        "checks": [
+          {
+            "selector": "label[for=\"prenom\"]",
+            "textIncludes": "Prénom"
+          },
+          {
+            "selector": "input#prenom",
+            "attributes": {
+              "type": "text",
+              "name": "prenom"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quels attributs doivent partager la même valeur ?",
+      "for est sur label et id sur input.",
+      "Écris prenom sans accent dans les deux attributs."
+    ],
+    "explanation_fr": "Le texte visible peut avoir un accent ; la relation repose ici sur la valeur identique des attributs.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "id": "html-m3-01-e1"
+  },
+  {
+    "title_fr": "Choisir le type du contact",
+    "instruction_fr": "Crée un champ d’adresse de contact : label pour id=\"courriel\", input type=\"email\" et name=\"courriel\".",
+    "starter_code": "<form></form>",
+    "solution": "<form><label for=\"courriel\">Adresse de contact</label><input id=\"courriel\" name=\"courriel\" type=\"email\"></form>",
+    "visible_tests": [
+      {
+        "description_fr": "Contact nommé et typé.",
+        "checks": [
+          {
+            "selector": "label[for=\"courriel\"]",
+            "textIncludes": "Adresse de contact"
+          },
+          {
+            "selector": "input#courriel",
+            "attributes": {
+              "name": "courriel",
+              "type": "email"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quelle donnée est demandée ?",
+      "Utilise le type email.",
+      "Ajoute un label dont for correspond à courriel."
+    ],
+    "explanation_fr": "Le type apporte un comportement natif, sans prouver que l’adresse existe.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m3-01-e2"
+  },
+  {
+    "title_fr": "Réparer un faux libellé",
+    "instruction_fr": "Conserve le placeholder mais ajoute un label visible Téléphone associé à id=\"telephone\". Utilise type=\"tel\", pas number.",
+    "starter_code": "<form><input id=\"telephone\" name=\"telephone\" type=\"number\" placeholder=\"Numéro de téléphone\"></form>",
+    "solution": "<form><label for=\"telephone\">Téléphone</label><input id=\"telephone\" name=\"telephone\" type=\"tel\" placeholder=\"Numéro de téléphone\"></form>",
+    "visible_tests": [
+      {
+        "description_fr": "Libellé persistant et type adapté.",
+        "checks": [
+          {
+            "selector": "label[for=\"telephone\"]",
+            "textIncludes": "Téléphone"
+          },
+          {
+            "selector": "input#telephone",
+            "attributes": {
+              "type": "tel",
+              "name": "telephone"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Le nom du champ restera-t-il visible pendant la saisie ?",
+      "Ajoute label et choisis tel pour un téléphone.",
+      "Relie for=\"telephone\" à l’id déjà présent."
+    ],
+    "explanation_fr": "Un numéro de téléphone n’est pas une quantité. Le type tel ne valide pas à lui seul tous les formats internationaux.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "id": "html-m3-01-e3"
+  },
+  {
+    "title_fr": "Créer deux contrôles distincts",
+    "instruction_fr": "Dans form, écris les champs Prénom et Contact avec ids prenom et contact, names correspondants, types text et email, et deux labels explicites.",
+    "starter_code": "<form><!-- Ajoute les deux contrôles. --></form>",
+    "solution": "<form><p><label for=\"prenom\">Prénom</label><input id=\"prenom\" name=\"prenom\" type=\"text\"></p><p><label for=\"contact\">Contact</label><input id=\"contact\" name=\"contact\" type=\"email\"></p></form>",
+    "visible_tests": [
+      {
+        "description_fr": "Deux contrôles sans identifiant partagé.",
+        "checks": [
+          {
+            "selector": "form input",
+            "count": 2
+          },
+          {
+            "selector": "#prenom",
+            "count": 1,
+            "attributes": {
+              "type": "text",
+              "name": "prenom"
+            }
+          },
+          {
+            "selector": "#contact",
+            "count": 1,
+            "attributes": {
+              "type": "email",
+              "name": "contact"
+            }
+          },
+          {
+            "selector": "label[for=\"prenom\"]",
+            "textIncludes": "Prénom"
+          },
+          {
+            "selector": "label[for=\"contact\"]",
+            "textIncludes": "Contact"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Chaque contrôle doit avoir sa propre identité.",
+      "Prépare deux p, chacun avec label et input.",
+      "Vérifie séparément les paires for/id."
+    ],
+    "explanation_fr": "Les tests vérifient la structure demandée ; clique ensuite sur les deux libellés pour contrôler le focus.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m3-01-e4"
+  }
+]

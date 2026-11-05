@@ -1,0 +1,173 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Un salut personnalisé",
+    "instruction_fr": "Écris saluer(nom), qui affiche Bonjour suivi d’un espace puis du nom. Lis un nom et appelle cette fonction.",
+    "starter_code": "def saluer(nom):\n    print(\"Bonjour\")\nsaluer(input())",
+    "solution": "def saluer(nom):\n    print(\"Bonjour \" + nom)\nsaluer(input())",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Awa"
+        ],
+        "expected_output": "Bonjour Awa\n"
+      },
+      {
+        "inputs": [
+          "Jo"
+        ],
+        "expected_output": "Bonjour Jo\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "Lina"
+        ],
+        "expected_output": "Bonjour Lina\n"
+      }
+    ],
+    "hints": [
+      "Le nom reçu doit apparaître.",
+      "Le paramètre est utilisable dans la chaîne assemblée.",
+      "Ajoute \" \" puis nom au message."
+    ],
+    "explanation_fr": "Le paramètre varie à chaque appel, alors que la structure du salut reste la même. L’espace doit être écrit explicitement pour séparer les deux textes.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ saluer\\(nom\\):\\\n\\ \\ \\ \\ print\\(\"Bonjour\"\\)\\\nsaluer\\(input\\(\\)\\)$",
+        "feedback_fr": "La ligne « print(\"Bonjour\") » conserve le défaut de départ. Le paramètre est utilisable dans la chaîne assemblée."
+      }
+    ],
+    "id": "py-m7-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Deux informations ordonnées",
+    "instruction_fr": "Écris afficher_etiquette(nom, activite), qui affiche nom, deux-points entourés d’espaces, puis activité. Lis ces deux textes dans cet ordre et appelle la fonction.",
+    "starter_code": "def afficher_etiquette(nom, activite):\n    print(activite + \" : \" + nom)\nafficher_etiquette(input(), input())",
+    "solution": "def afficher_etiquette(nom, activite):\n    print(nom + \" : \" + activite)\nafficher_etiquette(input(), input())",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Awa",
+          "Lecture"
+        ],
+        "expected_output": "Awa : Lecture\n"
+      },
+      {
+        "inputs": [
+          "Jo",
+          "Jeu"
+        ],
+        "expected_output": "Jo : Jeu\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "Lina",
+          "Arts"
+        ],
+        "expected_output": "Lina : Arts\n"
+      }
+    ],
+    "hints": [
+      "Les deux paramètres ont des rôles différents.",
+      "Le nom précède l’activité dans le contrat.",
+      "Assemble nom + \" : \" + activite."
+    ],
+    "explanation_fr": "Le contrat fixe l’ordre des informations reçues et affichées. Deux textes peuvent avoir le même type tout en représentant des rôles qu’il ne faut pas intervertir.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ afficher_etiquette\\(nom,\\ activite\\):\\\n\\ \\ \\ \\ print\\(activite\\ \\+\\ \"\\ :\\ \"\\ \\+\\ nom\\)\\\nafficher_etiquette\\(input\\(\\),\\ input\\(\\)\\)$",
+        "feedback_fr": "La ligne « print(activite + \" : \" + nom) » conserve le défaut de départ. Le nom précède l’activité dans le contrat."
+      }
+    ],
+    "id": "py-m7-02-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Afficher une conversion",
+    "instruction_fr": "Écris afficher_minutes(heures), qui affiche heures multiplié par 60. Lis un entier positif ou nul et appelle la fonction.",
+    "starter_code": "def afficher_minutes(heures):\n    print(heures)\nafficher_minutes(int(input()))",
+    "solution": "def afficher_minutes(heures):\n    print(heures * 60)\nafficher_minutes(int(input()))",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2"
+        ],
+        "expected_output": "120\n"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "0\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "5"
+        ],
+        "expected_output": "300\n"
+      }
+    ],
+    "hints": [
+      "Une heure comporte soixante minutes.",
+      "Le paramètre fournit le nombre d’heures.",
+      "Affiche heures * 60 dans le bloc."
+    ],
+    "explanation_fr": "La conversion utilise une donnée fournie à l’appel. Le cas zéro vérifie l’absence de décalage et plusieurs valeurs montrent que le résultat n’est pas fixé à un exemple.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ afficher_minutes\\(heures\\):\\\n\\ \\ \\ \\ print\\(heures\\)\\\nafficher_minutes\\(int\\(input\\(\\)\\)\\)$",
+        "feedback_fr": "La ligne « print(heures) » conserve le défaut de départ. Le paramètre fournit le nombre d’heures."
+      }
+    ],
+    "id": "py-m7-02-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer l’argument oublié",
+    "instruction_fr": "La fonction afficher_double(nombre) est correcte. Lis un entier puis corrige l’appel pour afficher son double.",
+    "starter_code": "def afficher_double(nombre):\n    print(nombre * 2)\nvaleur = int(input())\nafficher_double()",
+    "solution": "def afficher_double(nombre):\n    print(nombre * 2)\nvaleur = int(input())\nafficher_double(valeur)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "8\n"
+      },
+      {
+        "inputs": [
+          "-3"
+        ],
+        "expected_output": "-6\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "0\n"
+      }
+    ],
+    "hints": [
+      "Le paramètre attend une valeur à l’appel.",
+      "Le nom valeur désigne la saisie convertie.",
+      "Passe valeur entre les parenthèses de l’appel."
+    ],
+    "explanation_fr": "Un paramètre obligatoire ne reçoit pas une valeur par magie. Le programme appelant doit fournir son argument, même lorsqu’une variable contient déjà la donnée disponible.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ afficher_double\\(nombre\\):\\\n\\ \\ \\ \\ print\\(nombre\\ \\*\\ 2\\)\\\nvaleur\\ =\\ int\\(input\\(\\)\\)\\\nafficher_double\\(\\)$",
+        "feedback_fr": "La ligne « afficher_double() » conserve le défaut de départ. Le nom valeur désigne la saisie convertie."
+      }
+    ],
+    "id": "py-m7-02-e4"
+  }
+]

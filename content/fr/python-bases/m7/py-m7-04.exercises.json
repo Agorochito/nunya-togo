@@ -1,0 +1,333 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Ajouter sans modifier",
+    "instruction_fr": "Retourne une nouvelle liste contenant les noms reçus puis nouveau. Les textes sont simples. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def avec_nom(noms, nouveau):\n    return None",
+    "solution": "def avec_nom(noms, nouveau):\n    copie = noms[:]\n    copie.append(nouveau)\n    return copie",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "avec_nom",
+            "args": [
+              [
+                "A"
+              ],
+              "B"
+            ],
+            "expected": [
+              "A",
+              "B"
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "avec_nom",
+            "args": [
+              [],
+              "Jo"
+            ],
+            "expected": [
+              "Jo"
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "avec_nom",
+            "args": [
+              [
+                "x",
+                "x"
+              ],
+              "y"
+            ],
+            "expected": [
+              "x",
+              "x",
+              "y"
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une affectation seule ne copie pas la liste.",
+      "Utilise une tranche complète avant append.",
+      "Retourne la copie après son ajout."
+    ],
+    "explanation_fr": "Le résultat est une liste distincte. Conserver les arguments évite que la préparation d’un affichage change silencieusement la liste partagée par le reste du programme.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ avec_nom\\(noms,\\ nouveau\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Utilise une tranche complète avant append."
+      }
+    ],
+    "id": "py-m7-04-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Total local",
+    "instruction_fr": "Retourne la somme des nombres de la liste, ou zéro si elle est vide. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def somme_valeurs(nombres):\n    return None",
+    "solution": "def somme_valeurs(nombres):\n    total = 0\n    for nombre in nombres:\n        total = total + nombre\n    return total",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "somme_valeurs",
+            "args": [
+              [
+                2,
+                5
+              ]
+            ],
+            "expected": 7,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "somme_valeurs",
+            "args": [
+              []
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "somme_valeurs",
+            "args": [
+              [
+                -2,
+                4,
+                1
+              ]
+            ],
+            "expected": 3,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le total commence avant le parcours.",
+      "Chaque valeur doit augmenter le résultat local.",
+      "Retourne total après la boucle."
+    ],
+    "explanation_fr": "Une variable locale suffit pour construire le bilan. La fonction n’a pas besoin de supprimer les éléments ou de conserver une variable globale entre ses appels.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ somme_valeurs\\(nombres\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Chaque valeur doit augmenter le résultat local."
+      }
+    ],
+    "id": "py-m7-04-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Copier une association",
+    "instruction_fr": "Retourne un nouveau dictionnaire contenant le stock reçu, avec article associé à quantite. Les quantités sont positives ou nulles. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def avec_quantite(stock, article, quantite):\n    return None",
+    "solution": "def avec_quantite(stock, article, quantite):\n    copie = stock.copy()\n    copie[article] = quantite\n    return copie",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "avec_quantite",
+            "args": [
+              {
+                "cahier": 4
+              },
+              "cahier",
+              8
+            ],
+            "expected": {
+              "cahier": 8
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "avec_quantite",
+            "args": [
+              {},
+              "stylo",
+              2
+            ],
+            "expected": {
+              "stylo": 2
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "avec_quantite",
+            "args": [
+              {
+                "a": 1
+              },
+              "b",
+              0
+            ],
+            "expected": {
+              "a": 1,
+              "b": 0
+            },
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le stock reçu doit rester intact.",
+      "copy crée un nouveau dictionnaire plat.",
+      "Modifie et retourne copie."
+    ],
+    "explanation_fr": "La nouvelle association peut remplacer une clé ou en créer une. La copie protège l’inventaire d’origine pour que le programme puisse accepter ou abandonner la proposition.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ avec_quantite\\(stock,\\ article,\\ quantite\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. copy crée un nouveau dictionnaire plat."
+      }
+    ],
+    "id": "py-m7-04-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une fuite de mutation",
+    "instruction_fr": "Retourne nombres avec valeur ajoutée à la fin, sans modifier nombres. Valeur est un entier reçu. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def ajouter_valeur(nombres, valeur):\n    nombres.append(valeur)\n    return nombres",
+    "solution": "def ajouter_valeur(nombres, valeur):\n    copie = nombres[:]\n    copie.append(valeur)\n    return copie",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ajouter_valeur",
+            "args": [
+              [
+                1
+              ],
+              0
+            ],
+            "expected": [
+              1,
+              0
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ajouter_valeur",
+            "args": [
+              [],
+              4
+            ],
+            "expected": [
+              4
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ajouter_valeur",
+            "args": [
+              [
+                2,
+                3
+              ],
+              -1
+            ],
+            "expected": [
+              2,
+              3,
+              -1
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le résultat correct ne suffit pas si l’original change.",
+      "Copie avant d’ajouter.",
+      "Utilise nombres[:] puis retourne la copie."
+    ],
+    "explanation_fr": "Le test de conservation révèle une modification que le seul affichage du résultat cacherait. La règle de pureté fait partie du contrat explicite de cette activité.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ ajouter_valeur\\(nombres,\\ valeur\\):\\\n\\ \\ \\ \\ nombres\\.append\\(valeur\\)\\\n\\ \\ \\ \\ return\\ nombres$",
+        "feedback_fr": "Le résultat correct ne suffit pas si append modifie la liste reçue. Crée une copie avant l’ajout."
+      }
+    ],
+    "id": "py-m7-04-e4"
+  }
+]

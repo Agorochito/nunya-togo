@@ -1,0 +1,138 @@
+[
+  {
+    "title_fr": "Installer un bouton lisible",
+    "instruction_fr": "Donne à .action color:white, background-color:navy et padding:8px 16px.",
+    "starter_code": ".action { }",
+    "solution": ".action { color:white; background-color:navy; padding:8px 16px; }",
+    "visible_tests": [
+      {
+        "description_fr": "Apparence au repos.",
+        "checks": [
+          {
+            "selector": ".action",
+            "style": {
+              "color": "rgb(255, 255, 255)",
+              "background-color": "rgb(0, 0, 128)",
+              "padding-top": "8px",
+              "padding-left": "16px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Le texte et le fond forment une paire.",
+      "Les deux valeurs de padding règlent haut/bas puis gauche/droite.",
+      "Utilise une règle .action pour les trois propriétés."
+    ],
+    "explanation_fr": "Le test est un premier contrôle ; vérifie aussi les fonds et les textes réels.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "fixture_html": "<form><label for=\"contact\">Contact fictif</label><input id=\"contact\" type=\"email\" aria-describedby=\"erreur\"><p id=\"erreur\" class=\"erreur\">Exemple d’erreur : vérifie le format.</p><button class=\"action\" type=\"button\">Vérifier</button><button class=\"indisponible\" type=\"button\" disabled>Envoyer indisponible</button><a href=\"#aide\">Aide</a></form><p id=\"aide\">Aucune donnée réelle.</p>",
+    "id": "css-m2-03-e1"
+  },
+  {
+    "title_fr": "Réparer un focus supprimé",
+    "instruction_fr": "Remplace le focus invisible par outline:3px solid navy et outline-offset:2px sur .action:focus.",
+    "starter_code": ".action:focus { outline:none; }",
+    "solution": ".action:focus { outline:3px solid navy; outline-offset:2px; }",
+    "visible_tests": [
+      {
+        "description_fr": "Indicateur calculé après focus.",
+        "checks": [
+          {
+            "selector": ".action",
+            "style": {
+              "outline-width": "3px",
+              "outline-style": "solid",
+              "outline-color": "rgb(0, 0, 128)",
+              "outline-offset": "2px"
+            }
+          }
+        ],
+        "focus_selector": ".action"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Comment savoir quel bouton est actif au clavier ?",
+      "outline peut signaler le focus sans changer la place de la boîte.",
+      "Remplace none par 3px solid navy et ajoute le décalage."
+    ],
+    "explanation_fr": "Le test focalise le contrôle. Complète-le obligatoirement par Tab et Maj+Tab dans l’aperçu.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "fixture_html": "<form><label for=\"contact\">Contact fictif</label><input id=\"contact\" type=\"email\" aria-describedby=\"erreur\"><p id=\"erreur\" class=\"erreur\">Exemple d’erreur : vérifie le format.</p><button class=\"action\" type=\"button\">Vérifier</button><button class=\"indisponible\" type=\"button\" disabled>Envoyer indisponible</button><a href=\"#aide\">Aide</a></form><p id=\"aide\">Aucune donnée réelle.</p>",
+    "id": "css-m2-03-e2"
+  },
+  {
+    "title_fr": "Conserver un repère de lien",
+    "instruction_fr": "Donne à a color:navy et text-decoration:underline. Le texte d’aide reste inchangé.",
+    "starter_code": "a { text-decoration:none; }",
+    "solution": "a { color:navy; text-decoration:underline; }",
+    "visible_tests": [
+      {
+        "description_fr": "Lien repérable autrement que par couleur.",
+        "checks": [
+          {
+            "selector": "a",
+            "style": {
+              "color": "rgb(0, 0, 128)",
+              "text-decoration-line": "underline"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Une personne peut-elle reconnaître le lien sans percevoir sa couleur ?",
+      "Un soulignement est un repère supplémentaire.",
+      "Utilise text-decoration:underline."
+    ],
+    "explanation_fr": "Le texte du lien annonce aussi sa destination ; la présentation complète la structure.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<form><label for=\"contact\">Contact fictif</label><input id=\"contact\" type=\"email\" aria-describedby=\"erreur\"><p id=\"erreur\" class=\"erreur\">Exemple d’erreur : vérifie le format.</p><button class=\"action\" type=\"button\">Vérifier</button><button class=\"indisponible\" type=\"button\" disabled>Envoyer indisponible</button><a href=\"#aide\">Aide</a></form><p id=\"aide\">Aucune donnée réelle.</p>",
+    "id": "css-m2-03-e3"
+  },
+  {
+    "title_fr": "Renforcer des états existants",
+    "instruction_fr": "Donne à .erreur color:maroon et font-weight:700 ; donne aux button:disabled opacity:0.6. Ne masque aucun de ces éléments.",
+    "starter_code": ".erreur { display:none; }",
+    "solution": " .erreur { color:maroon; font-weight:700; }\nbutton:disabled { opacity:0.6; }",
+    "visible_tests": [
+      {
+        "description_fr": "Message et indisponibilité restent visibles.",
+        "checks": [
+          {
+            "selector": ".erreur",
+            "style": {
+              "color": "rgb(128, 0, 0)",
+              "font-weight": "700",
+              "display": "block"
+            }
+          },
+          {
+            "selector": "button:disabled",
+            "style": {
+              "opacity": "0.6"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Le message porte une information qui doit rester lisible.",
+      "Retire display:none.",
+      "La pseudo-classe :disabled sélectionne le bouton déjà désactivé."
+    ],
+    "explanation_fr": "Aucune validation dynamique n’est créée ici ; le texte d’erreur fourni sert d’exemple statique.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<form><label for=\"contact\">Contact fictif</label><input id=\"contact\" type=\"email\" aria-describedby=\"erreur\"><p id=\"erreur\" class=\"erreur\">Exemple d’erreur : vérifie le format.</p><button class=\"action\" type=\"button\">Vérifier</button><button class=\"indisponible\" type=\"button\" disabled>Envoyer indisponible</button><a href=\"#aide\">Aide</a></form><p id=\"aide\">Aucune donnée réelle.</p>",
+    "id": "css-m2-03-e4"
+  }
+]

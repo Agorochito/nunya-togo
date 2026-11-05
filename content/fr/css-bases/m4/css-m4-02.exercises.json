@@ -1,0 +1,150 @@
+[
+  {
+    "title_fr": "Limiter une transition",
+    "instruction_fr": "Donne à .carte une transition portant seulement sur background-color, avec une durée de 200ms et ease.",
+    "starter_code": ".carte { transition:all 1s; }",
+    "solution": ".carte { transition:background-color 200ms ease; }",
+    "visible_tests": [
+      {
+        "description_fr": "Effet explicite dans le contexte normal.",
+        "checks": [
+          {
+            "selector": ".carte",
+            "style": {
+              "transition-property": "background-color",
+              "transition-duration": "0.2s",
+              "transition-timing-function": "ease"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quelles propriétés ont réellement besoin d’un effet ?",
+      "Remplace all par background-color.",
+      "200ms est calculé comme 0.2s."
+    ],
+    "explanation_fr": "Le test vérifie la déclaration de base ; sans changement de fond, aucune transition n’est déclenchée.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "fixture_html": "<article class=\"carte\"><h2>Semis</h2><p class=\"description\">Atelier fictif de découverte des graines.</p><a class=\"action\" href=\"#details\">Voir les détails</a></article><p id=\"details\">Informations textuelles toujours disponibles.</p>",
+    "id": "css-m4-02-e1"
+  },
+  {
+    "title_fr": "Respecter une préférence de réduction",
+    "instruction_fr": "Donne à .carte un fond white et une transition de fond de 200ms dans le contexte normal. Ajoute une condition prefers-reduced-motion:reduce qui donne transition:none à .carte. Vérifie ensuite manuellement cette préférence.",
+    "starter_code": ".carte { /* Base et préférence */ }",
+    "solution": ".carte { background-color:white; transition:background-color 200ms ease; }\n@media (prefers-reduced-motion:reduce) { .carte { transition:none; } }",
+    "visible_tests": [
+      {
+        "description_fr": "État normal toujours disponible.",
+        "checks": [
+          {
+            "selector": ".carte",
+            "style": {
+              "background-color": "rgb(255, 255, 255)",
+              "transition-property": "background-color",
+              "transition-duration": "0.2s"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "L’effet est-il indispensable pour lire la carte ?",
+      "Une requête de média peut détecter la préférence.",
+      "Dans la condition reduce, utilise transition:none."
+    ],
+    "explanation_fr": "Le test normal ne certifie pas la condition système. Les données de revue ajoutent une émulation technique, complétée par un contrôle manuel.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<article class=\"carte\"><h2>Semis</h2><p class=\"description\">Atelier fictif de découverte des graines.</p><a class=\"action\" href=\"#details\">Voir les détails</a></article><p id=\"details\">Informations textuelles toujours disponibles.</p>",
+    "review_tests": [
+      {
+        "description_fr": "Préférence de réduction émulée en revue technique.",
+        "checks": [
+          {
+            "selector": ".carte",
+            "style": {
+              "transition-property": "none",
+              "transition-duration": "0s"
+            }
+          }
+        ],
+        "reduced_motion": "reduce"
+      }
+    ],
+    "manual_checks_fr": [
+      "Activer la préférence système de réduction des mouvements, recharger l’aperçu puis vérifier l’absence de transition non nécessaire.",
+      "Parcourir les contrôles au clavier et vérifier leur indicateur de focus."
+    ],
+    "id": "css-m4-02-e2"
+  },
+  {
+    "title_fr": "Conserver un contenu long",
+    "instruction_fr": "La description doit rester visible et autoriser la coupure de longues séquences. Donne overflow-wrap:anywhere et retire display:none.",
+    "starter_code": ".description { display:none; }",
+    "solution": ".description { overflow-wrap:anywhere; }",
+    "visible_tests": [
+      {
+        "description_fr": "Information visible et coupure possible.",
+        "checks": [
+          {
+            "selector": ".description",
+            "style": {
+              "display": "block",
+              "overflow-wrap": "anywhere"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Cacher le texte résout-il la lecture ?",
+      "Laisse le paragraphe dans le flux.",
+      "Utilise overflow-wrap:anywhere au lieu de display:none."
+    ],
+    "explanation_fr": "La coupure est un outil d’adaptation ; la revue doit encore vérifier la compréhension du texte.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "fixture_html": "<article class=\"carte\"><h2>Semis</h2><p class=\"description\">Atelier fictif de découverte des graines.</p><a class=\"action\" href=\"#details\">Voir les détails</a></article><p id=\"details\">Informations textuelles toujours disponibles.</p>",
+    "id": "css-m4-02-e3"
+  },
+  {
+    "title_fr": "Préparer une revue clavier",
+    "instruction_fr": "Donne à .action:focus un contour 3px solid navy avec outline-offset:2px et garde le lien souligné au repos.",
+    "starter_code": ".action { text-decoration:none; }",
+    "solution": ".action { text-decoration:underline; }\n.action:focus { outline:3px solid navy; outline-offset:2px; }",
+    "visible_tests": [
+      {
+        "description_fr": "Repères avant et après focus.",
+        "checks": [
+          {
+            "selector": ".action",
+            "style": {
+              "text-decoration-line": "underline",
+              "outline-style": "solid",
+              "outline-width": "3px",
+              "outline-offset": "2px"
+            }
+          }
+        ],
+        "focus_selector": ".action"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quel repère reste utile sans survol ?",
+      "Conserve un soulignement et un contour de focus.",
+      "La pseudo-classe :focus reçoit les propriétés outline."
+    ],
+    "explanation_fr": "Le test focalise le lien ; Tab, Maj+Tab et Entrée restent à vérifier manuellement.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<article class=\"carte\"><h2>Semis</h2><p class=\"description\">Atelier fictif de découverte des graines.</p><a class=\"action\" href=\"#details\">Voir les détails</a></article><p id=\"details\">Informations textuelles toujours disponibles.</p>",
+    "id": "css-m4-02-e4"
+  }
+]

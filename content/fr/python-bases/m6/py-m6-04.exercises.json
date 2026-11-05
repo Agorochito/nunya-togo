@@ -1,0 +1,195 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Bilan par code",
+    "instruction_fr": "Lis n puis n codes majuscules simples. Affiche chaque code distinct suivi de son nombre, un espace entre les deux, dans l’ordre trié des codes.",
+    "starter_code": "n = int(input())\ncomptes = {}\nfor tour in range(n):\n    code = input()\n    comptes[code] = 1\nfor code in sorted(comptes):\n    print(code, comptes[code])",
+    "solution": "n = int(input())\ncomptes = {}\nfor tour in range(n):\n    code = input()\n    comptes[code] = comptes.get(code, 0) + 1\nfor code in sorted(comptes):\n    print(code, comptes[code])",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3",
+          "B",
+          "A",
+          "B"
+        ],
+        "expected_output": "A 1\nB 2\n"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": ""
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "2",
+          "A",
+          "A"
+        ],
+        "expected_output": "A 2\n"
+      }
+    ],
+    "hints": [
+      "Une clé doit conserver une fréquence.",
+      "Ajoute un au compte précédent.",
+      "Utilise get(code, 0) + 1."
+    ],
+    "explanation_fr": "Le dictionnaire conserve les fréquences tandis que le tri ne sert qu’à la présentation. Un code répété augmente une valeur existante au lieu d’ajouter une nouvelle clé.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^n\\ =\\ int\\(input\\(\\)\\)\\\ncomptes\\ =\\ \\{\\}\\\nfor\\ tour\\ in\\ range\\(n\\):\\\n\\ \\ \\ \\ code\\ =\\ input\\(\\)\\\n\\ \\ \\ \\ comptes\\[code\\]\\ =\\ 1\\\nfor\\ code\\ in\\ sorted\\(comptes\\):\\\n\\ \\ \\ \\ print\\(code,\\ comptes\\[code\\]\\)$",
+        "feedback_fr": "La ligne « comptes[code] = 1 » conserve le défaut de départ. Ajoute un au compte précédent."
+      }
+    ],
+    "id": "py-m6-04-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Plusieurs vues cohérentes",
+    "instruction_fr": "Lis n puis n noms. Affiche le nombre total de réponses puis le nombre de noms distincts.",
+    "starter_code": "n = int(input())\nreponses = []\nfor tour in range(n):\n    reponses.append(input())\nprint(len(reponses))\nprint(len(reponses))",
+    "solution": "n = int(input())\nreponses = []\nfor tour in range(n):\n    reponses.append(input())\nnoms = set(reponses)\nprint(len(reponses))\nprint(len(noms))",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3",
+          "A",
+          "B",
+          "A"
+        ],
+        "expected_output": "3\n2\n"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "0\n0\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "2",
+          "X",
+          "X"
+        ],
+        "expected_output": "2\n1\n"
+      }
+    ],
+    "hints": [
+      "La deuxième question ignore les répétitions.",
+      "set peut recevoir la liste initiale.",
+      "Calcule len(set(reponses)) pour la diversité."
+    ],
+    "explanation_fr": "La liste initiale et l’ensemble répondent à des questions différentes. Garder les deux vues évite de perdre les apparitions tout en calculant le nombre de noms distincts.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^n\\ =\\ int\\(input\\(\\)\\)\\\nreponses\\ =\\ \\[\\]\\\nfor\\ tour\\ in\\ range\\(n\\):\\\n\\ \\ \\ \\ reponses\\.append\\(input\\(\\)\\)\\\nprint\\(len\\(reponses\\)\\)\\\nprint\\(len\\(reponses\\)\\)$",
+        "feedback_fr": "La ligne « print(len(reponses)) » conserve le défaut de départ. set peut recevoir la liste initiale."
+      }
+    ],
+    "id": "py-m6-04-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Filtrer des fiches",
+    "instruction_fr": "Lis n puis n paires nom et capacité entière. Affiche les noms des ateliers de capacité au moins 5 dans leur ordre de lecture, un nom par ligne.",
+    "starter_code": "n = int(input())\nateliers = []\nfor tour in range(n):\n    ateliers.append((input(), int(input())))\nfor nom, capacite in ateliers:\n    if capacite > 5:\n        print(nom)",
+    "solution": "n = int(input())\nateliers = []\nfor tour in range(n):\n    ateliers.append((input(), int(input())))\nfor nom, capacite in ateliers:\n    if capacite >= 5:\n        print(nom)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2",
+          "A",
+          "5",
+          "B",
+          "3"
+        ],
+        "expected_output": "A\n"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": ""
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "2",
+          "B",
+          "8",
+          "A",
+          "7"
+        ],
+        "expected_output": "B\nA\n"
+      }
+    ],
+    "hints": [
+      "La capacité cinq est incluse.",
+      "Le filtre doit inclure l’égalité.",
+      "Utilise capacite >= 5."
+    ],
+    "explanation_fr": "La liste de tuples garde l’ordre des fiches et le rôle de leurs positions. Le déballage permet ensuite d’écrire une condition lisible sur la capacité.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^n\\ =\\ int\\(input\\(\\)\\)\\\nateliers\\ =\\ \\[\\]\\\nfor\\ tour\\ in\\ range\\(n\\):\\\n\\ \\ \\ \\ ateliers\\.append\\(\\(input\\(\\),\\ int\\(input\\(\\)\\)\\)\\)\\\nfor\\ nom,\\ capacite\\ in\\ ateliers:\\\n\\ \\ \\ \\ if\\ capacite\\ >\\ 5:\\\n\\ \\ \\ \\ \\ \\ \\ \\ print\\(nom\\)$",
+        "feedback_fr": "La ligne « if capacite > 5: » conserve le défaut de départ. Le filtre doit inclure l’égalité."
+      }
+    ],
+    "id": "py-m6-04-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Reconstruire le total",
+    "instruction_fr": "Lis n puis n noms. Construis leurs fréquences et affiche la somme des fréquences en parcourant items.",
+    "starter_code": "n = int(input())\ncomptes = {}\nfor tour in range(n):\n    nom = input()\n    comptes[nom] = comptes.get(nom, 0) + 1\ntotal = 0\nfor nom, nombre in comptes.items():\n    total = total + 1\nprint(total)",
+    "solution": "n = int(input())\ncomptes = {}\nfor tour in range(n):\n    nom = input()\n    comptes[nom] = comptes.get(nom, 0) + 1\ntotal = 0\nfor nom, nombre in comptes.items():\n    total = total + nombre\nprint(total)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3",
+          "A",
+          "A",
+          "B"
+        ],
+        "expected_output": "3\n"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "0\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "4",
+          "x",
+          "x",
+          "x",
+          "x"
+        ],
+        "expected_output": "4\n"
+      }
+    ],
+    "hints": [
+      "Chaque paire porte un nombre d’apparitions.",
+      "Il faut additionner nombre, pas seulement compter les clés.",
+      "Utilise total = total + nombre."
+    ],
+    "explanation_fr": "La somme des fréquences reconstitue le nombre de réponses. Compter seulement les paires mesurerait les catégories distinctes et donnerait un autre indicateur.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^n\\ =\\ int\\(input\\(\\)\\)\\\ncomptes\\ =\\ \\{\\}\\\nfor\\ tour\\ in\\ range\\(n\\):\\\n\\ \\ \\ \\ nom\\ =\\ input\\(\\)\\\n\\ \\ \\ \\ comptes\\[nom\\]\\ =\\ comptes\\.get\\(nom,\\ 0\\)\\ \\+\\ 1\\\ntotal\\ =\\ 0\\\nfor\\ nom,\\ nombre\\ in\\ comptes\\.items\\(\\):\\\n\\ \\ \\ \\ total\\ =\\ total\\ \\+\\ 1\\\nprint\\(total\\)$",
+        "feedback_fr": "La ligne « total = total + 1 » conserve le défaut de départ. Il faut additionner nombre, pas seulement compter les clés."
+      }
+    ],
+    "id": "py-m6-04-e4"
+  }
+]

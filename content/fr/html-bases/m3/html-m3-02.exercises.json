@@ -1,0 +1,160 @@
+[
+  {
+    "title_fr": "Ajouter une liste d’ateliers",
+    "instruction_fr": "Crée un select id=\"atelier\", name=\"atelier\" associé au label Atelier. Ajoute les options Semis/value semis et Compost/value compost.",
+    "starter_code": "<form><label for=\"atelier\">Atelier</label></form>",
+    "solution": "<form><label for=\"atelier\">Atelier</label><select id=\"atelier\" name=\"atelier\"><option value=\"semis\">Semis</option><option value=\"compost\">Compost</option></select></form>",
+    "visible_tests": [
+      {
+        "description_fr": "Liste nommée et deux valeurs.",
+        "checks": [
+          {
+            "selector": "select#atelier",
+            "attributes": {
+              "name": "atelier"
+            }
+          },
+          {
+            "selector": "select option",
+            "count": 2
+          },
+          {
+            "selector": "option[value=\"semis\"]",
+            "textIncludes": "Semis"
+          },
+          {
+            "selector": "option[value=\"compost\"]",
+            "textIncludes": "Compost"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quel élément contient les choix ?",
+      "select contient des option.",
+      "Donne une value différente à chaque option."
+    ],
+    "explanation_fr": "Les textes visibles et les valeurs techniques ont des fonctions différentes.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "id": "html-m3-02-e1"
+  },
+  {
+    "title_fr": "Réparer un choix unique",
+    "instruction_fr": "Les deux radios doivent appartenir au même groupe creneau. Garde leurs ids et leurs values distincts.",
+    "starter_code": "<fieldset><legend>Créneau</legend><label for=\"matin\">Matin</label><input id=\"matin\" type=\"radio\" name=\"matin\" value=\"matin\"><label for=\"soir\">Soir</label><input id=\"soir\" type=\"radio\" name=\"soir\" value=\"soir\"></fieldset>",
+    "solution": "<fieldset><legend>Créneau</legend><label for=\"matin\">Matin</label><input id=\"matin\" type=\"radio\" name=\"creneau\" value=\"matin\"><label for=\"soir\">Soir</label><input id=\"soir\" type=\"radio\" name=\"creneau\" value=\"soir\"></fieldset>",
+    "visible_tests": [
+      {
+        "description_fr": "Un groupe et deux valeurs.",
+        "checks": [
+          {
+            "selector": "fieldset legend",
+            "textIncludes": "Créneau"
+          },
+          {
+            "selector": "input[type=\"radio\"][name=\"creneau\"]",
+            "count": 2
+          },
+          {
+            "selector": "#matin",
+            "attributes": {
+              "value": "matin"
+            }
+          },
+          {
+            "selector": "#soir",
+            "attributes": {
+              "value": "soir"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quel attribut réunit les radios ?",
+      "Les deux contrôles doivent partager name.",
+      "Remplace leurs names par creneau."
+    ],
+    "explanation_fr": "Le nom commun impose le choix unique ; les ids distincts servent les libellés.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "id": "html-m3-02-e2"
+  },
+  {
+    "title_fr": "Créer une préférence facultative",
+    "instruction_fr": "Écris une checkbox id=\"rappel\", name=\"rappel\", value=\"oui\", associée à un label Recevoir un rappel. Ne la pré-coche pas.",
+    "starter_code": "<form></form>",
+    "solution": "<form><input type=\"checkbox\" id=\"rappel\" name=\"rappel\" value=\"oui\"><label for=\"rappel\">Recevoir un rappel</label></form>",
+    "visible_tests": [
+      {
+        "description_fr": "Préférence explicite et libre.",
+        "checks": [
+          {
+            "selector": "input#rappel",
+            "attributes": {
+              "type": "checkbox",
+              "name": "rappel",
+              "value": "oui"
+            }
+          },
+          {
+            "selector": "input#rappel[checked]",
+            "exists": false
+          },
+          {
+            "selector": "label[for=\"rappel\"]",
+            "textIncludes": "Recevoir un rappel"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Cette préférence est-elle indépendante ?",
+      "Utilise checkbox sans attribut checked.",
+      "Relie son id au for du label."
+    ],
+    "explanation_fr": "La préférence n’est active qu’après un choix volontaire dans cet exercice.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m3-02-e3"
+  },
+  {
+    "title_fr": "Nommer les actions",
+    "instruction_fr": "Dans form, ajoute un bouton type=\"submit\" intitulé Vérifier l’inscription et un bouton type=\"button\" intitulé Aide locale. Aucun envoi réel n’est configuré.",
+    "starter_code": "<form><!-- Ajoute deux actions distinctes. --></form>",
+    "solution": "<form><button type=\"submit\">Vérifier l’inscription</button><button type=\"button\">Aide locale</button></form>",
+    "visible_tests": [
+      {
+        "description_fr": "Deux actions avec types explicites.",
+        "checks": [
+          {
+            "selector": "button[type=\"submit\"]",
+            "textIncludes": "Vérifier l’inscription"
+          },
+          {
+            "selector": "button[type=\"button\"]",
+            "textIncludes": "Aide locale"
+          },
+          {
+            "selector": "button[type=\"reset\"]",
+            "exists": false
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quelle action doit tenter la soumission ?",
+      "submit et button ont des comportements différents.",
+      "Précise type sur les deux boutons."
+    ],
+    "explanation_fr": "Nommer les actions évite un bouton ambigu. Aide locale n’a pas encore de comportement programmé.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m3-02-e4"
+  }
+]

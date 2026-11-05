@@ -1,0 +1,154 @@
+[
+  {
+    "title_fr": "Nommer les colonnes",
+    "instruction_fr": "Complète un tableau avec caption Horaires fictifs, puis deux th scope=\"col\" : Atelier et Heure.",
+    "starter_code": "<table><tr></tr></table>",
+    "solution": "<table><caption>Horaires fictifs</caption><tr><th scope=\"col\">Atelier</th><th scope=\"col\">Heure</th></tr></table>",
+    "visible_tests": [
+      {
+        "description_fr": "Titre et en-têtes de colonnes.",
+        "checks": [
+          {
+            "selector": "table caption",
+            "textIncludes": "Horaires fictifs"
+          },
+          {
+            "selector": "th[scope=\"col\"]",
+            "count": 2
+          },
+          {
+            "selector": "th:nth-child(1)",
+            "textIncludes": "Atelier"
+          },
+          {
+            "selector": "th:nth-child(2)",
+            "textIncludes": "Heure"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Comment nommer le tableau entier ?",
+      "caption nomme le sujet et th les colonnes.",
+      "Ajoute scope=\"col\" à chaque th."
+    ],
+    "explanation_fr": "Les en-têtes sont des cellules ayant un rôle, pas seulement des mots visuellement mis en gras.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "id": "html-m2-03-e1"
+  },
+  {
+    "title_fr": "Ajouter une ligne cohérente",
+    "instruction_fr": "Sous les en-têtes, ajoute une ligne de deux td : Compost puis 10 h.",
+    "starter_code": "<table><caption>Horaires</caption><tr><th scope=\"col\">Atelier</th><th scope=\"col\">Heure</th></tr></table>",
+    "solution": "<table><caption>Horaires</caption><tr><th scope=\"col\">Atelier</th><th scope=\"col\">Heure</th></tr><tr><td>Compost</td><td>10 h</td></tr></table>",
+    "visible_tests": [
+      {
+        "description_fr": "Une paire de valeurs dans la même ligne.",
+        "checks": [
+          {
+            "selector": "tr",
+            "count": 2
+          },
+          {
+            "selector": "tr:nth-child(2) td",
+            "count": 2
+          },
+          {
+            "selector": "tr:nth-child(2) td:nth-child(1)",
+            "textIncludes": "Compost"
+          },
+          {
+            "selector": "tr:nth-child(2) td:nth-child(2)",
+            "textIncludes": "10 h"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quelles valeurs vont ensemble ?",
+      "Crée un deuxième tr après la ligne d’en-tête.",
+      "Place les deux td dans ce même tr."
+    ],
+    "explanation_fr": "Une ligne garde ensemble les informations d’un atelier.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m2-03-e2"
+  },
+  {
+    "title_fr": "Réparer un en-tête de ligne",
+    "instruction_fr": "Dans la ligne de données, transforme Compost en th scope=\"row\". Conserve 12 dans td.",
+    "starter_code": "<table><tr><th scope=\"col\">Atelier</th><th scope=\"col\">Places</th></tr><tr><td>Compost</td><td>12</td></tr></table>",
+    "solution": "<table><tr><th scope=\"col\">Atelier</th><th scope=\"col\">Places</th></tr><tr><th scope=\"row\">Compost</th><td>12</td></tr></table>",
+    "visible_tests": [
+      {
+        "description_fr": "Nom de ligne distinct des données.",
+        "checks": [
+          {
+            "selector": "th[scope=\"row\"]",
+            "textIncludes": "Compost"
+          },
+          {
+            "selector": "td",
+            "textIncludes": "12"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quelle cellule nomme cette ligne ?",
+      "Elle doit devenir un th.",
+      "Ajoute scope=\"row\" à ce th."
+    ],
+    "explanation_fr": "La valeur 12 possède une catégorie de colonne et un contexte de ligne explicites.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "id": "html-m2-03-e3"
+  },
+  {
+    "title_fr": "Composer un programme",
+    "instruction_fr": "Écris un tableau avec caption Ateliers fictifs, thead contenant les colonnes Atelier et Jour, puis tbody avec deux lignes : Semis/Samedi et Compost/Dimanche.",
+    "starter_code": "<!-- Construis un tableau de données. -->",
+    "solution": "<table><caption>Ateliers fictifs</caption><thead><tr><th scope=\"col\">Atelier</th><th scope=\"col\">Jour</th></tr></thead><tbody><tr><td>Semis</td><td>Samedi</td></tr><tr><td>Compost</td><td>Dimanche</td></tr></tbody></table>",
+    "visible_tests": [
+      {
+        "description_fr": "Programme complet.",
+        "checks": [
+          {
+            "selector": "caption",
+            "textIncludes": "Ateliers fictifs"
+          },
+          {
+            "selector": "thead th[scope=\"col\"]",
+            "count": 2
+          },
+          {
+            "selector": "tbody tr",
+            "count": 2
+          },
+          {
+            "selector": "tbody tr:nth-child(1)",
+            "textIncludes": "Semis"
+          },
+          {
+            "selector": "tbody tr:nth-child(2)",
+            "textIncludes": "Dimanche"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Sépare la ligne d’en-tête des deux lignes de données.",
+      "Place thead avant tbody.",
+      "Chaque ligne possède deux cellules dans l’ordre Atelier/Jour."
+    ],
+    "explanation_fr": "La structure facilite la comparaison de deux ateliers. Relis aussi les en-têtes et les jours.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m2-03-e4"
+  }
+]

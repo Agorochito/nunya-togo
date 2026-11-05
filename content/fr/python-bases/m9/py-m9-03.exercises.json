@@ -1,0 +1,332 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Lecture sûre",
+    "instruction_fr": "Retourne valeurs[i] si i est un entier entre 0 inclus et len(valeurs) exclu. Sinon retourne None, y compris pour un indice négatif. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def lire_position(valeurs, i):\n    return None",
+    "solution": "def lire_position(valeurs, i):\n    if i >= 0 and i < len(valeurs):\n        return valeurs[i]\n    return None",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_position",
+            "args": [
+              [
+                4,
+                8
+              ],
+              1
+            ],
+            "expected": 8,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_position",
+            "args": [
+              [
+                4,
+                8
+              ],
+              2
+            ],
+            "expected": null,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_position",
+            "args": [
+              [],
+              0
+            ],
+            "expected": null,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_position",
+            "args": [
+              [
+                4,
+                8
+              ],
+              -1
+            ],
+            "expected": null,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Deux bornes protègent l’accès.",
+      "La borne haute est strictement inférieure à la longueur.",
+      "Lis la case seulement dans le if valide."
+    ],
+    "explanation_fr": "La protection respecte un contrat d’indices positifs explicite. La borne égale à la longueur est invalide, même lorsque la liste contient déjà plusieurs éléments.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ lire_position\\(valeurs,\\ i\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. La borne haute est strictement inférieure à la longueur."
+      }
+    ],
+    "id": "py-m9-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Dernière valeur ou absence",
+    "instruction_fr": "Retourne le dernier élément de valeurs, ou None lorsque la liste est vide. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def dernier_ou_none(valeurs):\n    return None",
+    "solution": "def dernier_ou_none(valeurs):\n    if len(valeurs) == 0:\n        return None\n    return valeurs[-1]",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dernier_ou_none",
+            "args": [
+              [
+                2,
+                5
+              ]
+            ],
+            "expected": 5,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dernier_ou_none",
+            "args": [
+              []
+            ],
+            "expected": null,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dernier_ou_none",
+            "args": [
+              [
+                0
+              ]
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le cas vide doit précéder la lecture.",
+      "Une fois la présence vérifiée, -1 retrouve la fin.",
+      "Retourne None seulement si la longueur vaut zéro."
+    ],
+    "explanation_fr": "L’absence de résultat ne doit pas être confondue avec un dernier élément nul. Les tests distinguent donc une collection vide d’une collection contenant zéro.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ dernier_ou_none\\(valeurs\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Une fois la présence vérifiée, -1 retrouve la fin."
+      }
+    ],
+    "id": "py-m9-03-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Moyenne protégée",
+    "instruction_fr": "Retourne la moyenne numérique des valeurs, ou None si la liste est vide. Tolérance 0,000000001. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def moyenne_ou_none(valeurs):\n    return None",
+    "solution": "def moyenne_ou_none(valeurs):\n    if len(valeurs) == 0:\n        return None\n    total = 0\n    for valeur in valeurs:\n        total = total + valeur\n    return total / len(valeurs)",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moyenne_ou_none",
+            "args": [
+              [
+                2,
+                4
+              ]
+            ],
+            "expected": 3.0,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moyenne_ou_none",
+            "args": [
+              []
+            ],
+            "expected": null,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moyenne_ou_none",
+            "args": [
+              [
+                -1,
+                2
+              ]
+            ],
+            "expected": 0.5,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une division exige un nombre de données non nul.",
+      "Traite le vide avant le calcul.",
+      "Divise ensuite le total par len(valeurs)."
+    ],
+    "explanation_fr": "La réponse None marque une moyenne non définie pour ce contrat. Une liste non vide, même de valeurs négatives ou nulles, conserve la formule normale du bilan.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ moyenne_ou_none\\(valeurs\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Traite le vide avant le calcul."
+      }
+    ],
+    "id": "py-m9-03-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer la frontière",
+    "instruction_fr": "Retourne True si i est un indice positif ou nul valide dans valeurs, sans lire l’élément. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def indice_valide(valeurs, i):\n    return i >= 0 and i <= len(valeurs)",
+    "solution": "def indice_valide(valeurs, i):\n    return i >= 0 and i < len(valeurs)",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "indice_valide",
+            "args": [
+              [
+                1,
+                2
+              ],
+              1
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "indice_valide",
+            "args": [
+              [
+                1,
+                2
+              ],
+              2
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "indice_valide",
+            "args": [
+              [],
+              0
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "indice_valide",
+            "args": [
+              [
+                1
+              ],
+              -1
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La longueur n’est pas un indice disponible.",
+      "La borne supérieure doit être exclue.",
+      "Remplace <= len(valeurs) par < len(valeurs)."
+    ],
+    "explanation_fr": "Un défaut d’une seule unité peut autoriser une lecture impossible. Tester l’indice exactement égal à la longueur met cette frontière en évidence avant tout accès.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ indice_valide\\(valeurs,\\ i\\):\\\n\\ \\ \\ \\ return\\ i\\ >=\\ 0\\ and\\ i\\ <=\\ len\\(valeurs\\)$",
+        "feedback_fr": "La ligne « return i >= 0 and i <= len(valeurs) » conserve le défaut de départ. La borne supérieure doit être exclue."
+      }
+    ],
+    "id": "py-m9-03-e4"
+  }
+]

@@ -1,0 +1,188 @@
+[
+  {
+    "title_fr": "Poser une base souple",
+    "instruction_fr": "Donne body margin:0 et .grille display:grid, width:100%, max-width:600px, une colonne et gap:16px.",
+    "starter_code": "body { margin:0; }\n.grille { }",
+    "solution": "body { margin:0; }\n.grille { display:grid; width:100%; max-width:600px; grid-template-columns:1fr; gap:16px; }",
+    "visible_tests": [
+      {
+        "description_fr": "Base à 375px.",
+        "checks": [
+          {
+            "selector": ".grille",
+            "style": {
+              "display": "grid",
+              "width": "375px",
+              "grid-template-columns": "375px",
+              "gap": "16px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 375,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quelle base doit rester utilisable avec peu de place ?",
+      "Une seule colonne prend la largeur disponible.",
+      "Fixe la limite avec max-width plutôt qu’une largeur unique."
+    ],
+    "explanation_fr": "Le cadre de test annonce sa largeur ; le contenu reste visible dans une seule piste.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "fixture_html": "<div class=\"grille\"><article>Semis</article><article>Compost</article><article>Arrosage</article><article>Récolte</article></div>",
+    "id": "css-m3-03-e1"
+  },
+  {
+    "title_fr": "Ajouter une condition de largeur",
+    "instruction_fr": "Conserve la base fournie. À min-width:600px, donne deux colonnes égales à .grille.",
+    "starter_code": "body { margin:0; }\n.grille { display:grid; width:100%; max-width:600px; grid-template-columns:1fr; gap:16px; }",
+    "solution": "body { margin:0; }\n.grille { display:grid; width:100%; max-width:600px; grid-template-columns:1fr; gap:16px; }\n@media (min-width:600px) { .grille { grid-template-columns:repeat(2,minmax(0,1fr)); } }",
+    "visible_tests": [
+      {
+        "description_fr": "Une colonne à petite largeur.",
+        "checks": [
+          {
+            "selector": ".grille",
+            "style": {
+              "grid-template-columns": "375px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 375,
+          "height": 800
+        }
+      },
+      {
+        "description_fr": "Deux colonnes à grande largeur.",
+        "checks": [
+          {
+            "selector": ".grille",
+            "style": {
+              "grid-template-columns": "292px 292px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 800,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quelle propriété doit changer quand la condition est vraie ?",
+      "Place seulement la nouvelle définition des colonnes dans @media.",
+      "Utilise min-width:600px et deux pistes égales."
+    ],
+    "explanation_fr": "Les tests comparent deux contextes, ce qui évite de valider une disposition correcte seulement à une largeur.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<div class=\"grille\"><article>Semis</article><article>Compost</article><article>Arrosage</article><article>Récolte</article></div>",
+    "id": "css-m3-03-e2"
+  },
+  {
+    "title_fr": "Réparer le sens de la condition",
+    "instruction_fr": "La grille doit avoir une colonne sous 600px et deux à partir de 600px. Corrige max-width en min-width dans la condition.",
+    "starter_code": "body { margin:0; }\n.grille { display:grid; width:100%; max-width:600px; grid-template-columns:1fr; gap:16px; }\n@media (max-width:600px) { .grille { grid-template-columns:repeat(2,minmax(0,1fr)); } }",
+    "solution": "body { margin:0; }\n.grille { display:grid; width:100%; max-width:600px; grid-template-columns:1fr; gap:16px; }\n@media (min-width:600px) { .grille { grid-template-columns:repeat(2,minmax(0,1fr)); } }",
+    "visible_tests": [
+      {
+        "description_fr": "Sous le seuil.",
+        "checks": [
+          {
+            "selector": ".grille",
+            "style": {
+              "grid-template-columns": "375px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 375,
+          "height": 800
+        }
+      },
+      {
+        "description_fr": "Exactement au seuil.",
+        "checks": [
+          {
+            "selector": ".grille",
+            "style": {
+              "grid-template-columns": "292px 292px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 600,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "min et max décrivent des côtés différents du seuil.",
+      "Le changement est demandé à partir de 600px.",
+      "La condition doit utiliser min-width."
+    ],
+    "explanation_fr": "Le cas exactement au seuil vérifie que la borne est comprise.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "fixture_html": "<div class=\"grille\"><article>Semis</article><article>Compost</article><article>Arrosage</article><article>Récolte</article></div>",
+    "id": "css-m3-03-e3"
+  },
+  {
+    "title_fr": "Changer uniquement l’écart",
+    "instruction_fr": "Garde une seule colonne à toutes les largeurs. Donne gap:16px sous 600px et gap:24px à partir de 600px. Utilise body margin:0.",
+    "starter_code": "body { margin:0; }\n.grille { display:grid; grid-template-columns:1fr; gap:16px; }",
+    "solution": "body { margin:0; }\n.grille { display:grid; grid-template-columns:1fr; gap:16px; }\n@media (min-width:600px) { .grille { gap:24px; } }",
+    "visible_tests": [
+      {
+        "description_fr": "Écart compact.",
+        "checks": [
+          {
+            "selector": ".grille",
+            "style": {
+              "gap": "16px",
+              "grid-template-columns": "375px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 375,
+          "height": 800
+        }
+      },
+      {
+        "description_fr": "Écart étendu sans changer les colonnes.",
+        "checks": [
+          {
+            "selector": ".grille",
+            "style": {
+              "gap": "24px",
+              "grid-template-columns": "800px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 800,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Une condition remplace-t-elle toutes les règles ?",
+      "Redéfinis seulement gap.",
+      "Laisse grid-template-columns dans la base."
+    ],
+    "explanation_fr": "Le test confirme que les propriétés non redéfinies restent en vigueur.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<div class=\"grille\"><article>Semis</article><article>Compost</article><article>Arrosage</article><article>Récolte</article></div>",
+    "id": "css-m3-03-e4"
+  }
+]

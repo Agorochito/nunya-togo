@@ -1,0 +1,390 @@
+[
+  {
+    "title_fr": "Jalon 1 : régler la lecture",
+    "instruction_fr": "Donne html font-size:16px ; body margin:0, color:navy, background-color:white et line-height:1.5 ; .page width:100%, max-width:960px, padding:16px et box-sizing:border-box.",
+    "starter_code": "/* Base de lecture */",
+    "solution": "html { font-size:16px; }\nbody { margin:0; font-family:system-ui,sans-serif; line-height:1.5; color:navy; background-color:white; }\n.page { box-sizing:border-box; width:100%; max-width:960px; margin:0 auto; padding:16px; }",
+    "visible_tests": [
+      {
+        "description_fr": "Base à petite largeur.",
+        "checks": [
+          {
+            "selector": "body",
+            "style": {
+              "margin-top": "0px",
+              "color": "rgb(0, 0, 128)",
+              "background-color": "rgb(255, 255, 255)",
+              "line-height": "24px"
+            }
+          },
+          {
+            "selector": ".page",
+            "style": {
+              "width": "375px",
+              "max-width": "960px",
+              "padding-left": "16px",
+              "box-sizing": "border-box"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 375,
+          "height": 800
+        }
+      },
+      {
+        "description_fr": "Limite de largeur.",
+        "checks": [
+          {
+            "selector": ".page",
+            "style": {
+              "width": "960px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 1100,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quelles valeurs appartiennent au texte et à la boîte ?",
+      "Fixe d’abord la base de body, puis .page.",
+      "border-box garde le padding dans la largeur annoncée."
+    ],
+    "explanation_fr": "La base de lecture est vérifiée dans deux contextes ; lis aussi les paragraphes agrandis.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "fixture_html": "<a class=\"evitement\" href=\"#contenu\">Aller au contenu</a><div class=\"page\"><header><h1>Graines ensemble</h1><p>Association fictive de jardinage.</p></header><nav class=\"navigation\" aria-label=\"Principale\"><a href=\"#ateliers\">Ateliers</a><a href=\"#inscription\">Inscription</a></nav><main id=\"contenu\"><section id=\"ateliers\"><h2>Ateliers</h2><div class=\"grille\"><article class=\"carte\"><h3>Semis</h3><p>Découvrir les graines.</p></article><article class=\"carte\"><h3>Compost</h3><p>Comprendre les matières organiques.</p></article></div></section><section id=\"inscription\"><h2>Inscription fictive</h2><form><p class=\"aide\" id=\"aide\">Données fictives uniquement ; aucun envoi réel.</p><div class=\"champ\"><label for=\"prenom\">Prénom</label><input id=\"prenom\" name=\"prenom\" type=\"text\"></div><div class=\"champ\"><label for=\"contact\">Contact, obligatoire</label><input id=\"contact\" name=\"contact\" type=\"email\" required aria-describedby=\"aide\"></div><div class=\"champ\"><label for=\"atelier\">Atelier, obligatoire</label><select id=\"atelier\" name=\"atelier\" required><option value=\"\">Choisir</option><option value=\"semis\">Semis</option><option value=\"compost\">Compost</option></select></div><button class=\"action\" type=\"button\">Vérifier la démonstration</button></form></section></main><footer><p>Projet d’apprentissage fictif.</p></footer></div>",
+    "id": "css-m4-03-e1"
+  },
+  {
+    "title_fr": "Jalon 2 : organiser les régions",
+    "instruction_fr": "Conserve la base. Ajoute .navigation flex, wrap et gap:16px ; .grille grid avec gap:16px, une colonne puis deux à min-width:700px ; .carte padding:16px et border:1px solid navy. Ajoute overflow-wrap:anywhere sur les cartes.",
+    "starter_code": "html { font-size:16px; }\nbody { margin:0; font-family:system-ui,sans-serif; line-height:1.5; color:navy; background-color:white; }\n.page { box-sizing:border-box; width:100%; max-width:960px; margin:0 auto; padding:16px; }\n/* Disposition */",
+    "solution": "html { font-size:16px; }\nbody { margin:0; font-family:system-ui,sans-serif; line-height:1.5; color:navy; background-color:white; }\n.page { box-sizing:border-box; width:100%; max-width:960px; margin:0 auto; padding:16px; }\n.navigation { display:flex; flex-wrap:wrap; gap:16px; }\n.grille { display:grid; gap:16px; grid-template-columns:minmax(0,1fr); }\n@media (min-width:700px) { .grille { grid-template-columns:repeat(2,minmax(0,1fr)); } }\n.carte { padding:16px; border:1px solid navy; overflow-wrap:anywhere; }",
+    "visible_tests": [
+      {
+        "description_fr": "Disposition compacte.",
+        "checks": [
+          {
+            "selector": ".navigation",
+            "style": {
+              "display": "flex",
+              "flex-wrap": "wrap",
+              "gap": "16px"
+            }
+          },
+          {
+            "selector": ".grille",
+            "style": {
+              "display": "grid",
+              "grid-template-columns": "343px",
+              "gap": "16px"
+            }
+          },
+          {
+            "selector": ".carte",
+            "style": {
+              "padding-left": "16px",
+              "border-top-width": "1px",
+              "border-top-style": "solid",
+              "overflow-wrap": "anywhere"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 375,
+          "height": 800
+        }
+      },
+      {
+        "description_fr": "Disposition à 800px.",
+        "checks": [
+          {
+            "selector": ".grille",
+            "style": {
+              "grid-template-columns": "376px 376px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 800,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Commence avec une seule colonne et laisse la navigation revenir.",
+      "Le contenu utile à 800px mesure 768px après le padding de page.",
+      "Après le gap de 16px, deux pistes valent chacune 376px."
+    ],
+    "explanation_fr": "Les dimensions calculées viennent du contrat de page, pas d’une copie du code source.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<a class=\"evitement\" href=\"#contenu\">Aller au contenu</a><div class=\"page\"><header><h1>Graines ensemble</h1><p>Association fictive de jardinage.</p></header><nav class=\"navigation\" aria-label=\"Principale\"><a href=\"#ateliers\">Ateliers</a><a href=\"#inscription\">Inscription</a></nav><main id=\"contenu\"><section id=\"ateliers\"><h2>Ateliers</h2><div class=\"grille\"><article class=\"carte\"><h3>Semis</h3><p>Découvrir les graines.</p></article><article class=\"carte\"><h3>Compost</h3><p>Comprendre les matières organiques.</p></article></div></section><section id=\"inscription\"><h2>Inscription fictive</h2><form><p class=\"aide\" id=\"aide\">Données fictives uniquement ; aucun envoi réel.</p><div class=\"champ\"><label for=\"prenom\">Prénom</label><input id=\"prenom\" name=\"prenom\" type=\"text\"></div><div class=\"champ\"><label for=\"contact\">Contact, obligatoire</label><input id=\"contact\" name=\"contact\" type=\"email\" required aria-describedby=\"aide\"></div><div class=\"champ\"><label for=\"atelier\">Atelier, obligatoire</label><select id=\"atelier\" name=\"atelier\" required><option value=\"\">Choisir</option><option value=\"semis\">Semis</option><option value=\"compost\">Compost</option></select></div><button class=\"action\" type=\"button\">Vérifier la démonstration</button></form></section></main><footer><p>Projet d’apprentissage fictif.</p></footer></div>",
+    "id": "css-m4-03-e2"
+  },
+  {
+    "title_fr": "Jalon 3 : conserver un formulaire utilisable",
+    "instruction_fr": "Conserve la base. Mets label en block ; .champ margin-bottom:16px ; input et select width:100%, padding:8px, box-sizing:border-box et font:inherit. Donne au bouton .action fond navy, texte white et padding:8px 16px. Garde les liens soulignés et un outline de focus 3px solid navy décalé de 2px sur liens, inputs, selects et boutons.",
+    "starter_code": "html { font-size:16px; }\nbody { margin:0; font-family:system-ui,sans-serif; line-height:1.5; color:navy; background-color:white; }\n.page { box-sizing:border-box; width:100%; max-width:960px; margin:0 auto; padding:16px; }\n/* Formulaire et états */",
+    "solution": "html { font-size:16px; }\nbody { margin:0; font-family:system-ui,sans-serif; line-height:1.5; color:navy; background-color:white; }\n.page { box-sizing:border-box; width:100%; max-width:960px; margin:0 auto; padding:16px; }\nlabel { display:block; }\n.champ { margin-bottom:16px; }\ninput, select { box-sizing:border-box; width:100%; padding:8px; font:inherit; }\n.action { color:white; background-color:navy; padding:8px 16px; font:inherit; }\na { color:navy; text-decoration:underline; }\na:focus, input:focus, select:focus, button:focus { outline:3px solid navy; outline-offset:2px; }",
+    "visible_tests": [
+      {
+        "description_fr": "Champs, bouton et lien.",
+        "checks": [
+          {
+            "selector": "label",
+            "style": {
+              "display": "block"
+            }
+          },
+          {
+            "selector": ".champ",
+            "style": {
+              "margin-bottom": "16px"
+            }
+          },
+          {
+            "selector": "input,select",
+            "style": {
+              "width": "343px",
+              "padding-left": "8px",
+              "box-sizing": "border-box",
+              "font-size": "16px"
+            }
+          },
+          {
+            "selector": ".action",
+            "style": {
+              "color": "rgb(255, 255, 255)",
+              "background-color": "rgb(0, 0, 128)",
+              "padding-top": "8px",
+              "padding-left": "16px"
+            }
+          },
+          {
+            "selector": "nav a",
+            "style": {
+              "text-decoration-line": "underline"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 375,
+          "height": 800
+        }
+      },
+      {
+        "description_fr": "Focus de bouton.",
+        "checks": [
+          {
+            "selector": ".action",
+            "style": {
+              "outline-style": "solid",
+              "outline-width": "3px",
+              "outline-offset": "2px"
+            }
+          }
+        ],
+        "focus_selector": ".action"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "La structure possède déjà ses labels et ses noms.",
+      "Présente les contrôles sans masquer les aides.",
+      "Le contour doit s’appliquer aux quatre types de contrôles demandés."
+    ],
+    "explanation_fr": "La structure est conservée. Vérifie ensuite chaque type de contrôle au clavier, pas seulement le bouton mesuré.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<a class=\"evitement\" href=\"#contenu\">Aller au contenu</a><div class=\"page\"><header><h1>Graines ensemble</h1><p>Association fictive de jardinage.</p></header><nav class=\"navigation\" aria-label=\"Principale\"><a href=\"#ateliers\">Ateliers</a><a href=\"#inscription\">Inscription</a></nav><main id=\"contenu\"><section id=\"ateliers\"><h2>Ateliers</h2><div class=\"grille\"><article class=\"carte\"><h3>Semis</h3><p>Découvrir les graines.</p></article><article class=\"carte\"><h3>Compost</h3><p>Comprendre les matières organiques.</p></article></div></section><section id=\"inscription\"><h2>Inscription fictive</h2><form><p class=\"aide\" id=\"aide\">Données fictives uniquement ; aucun envoi réel.</p><div class=\"champ\"><label for=\"prenom\">Prénom</label><input id=\"prenom\" name=\"prenom\" type=\"text\"></div><div class=\"champ\"><label for=\"contact\">Contact, obligatoire</label><input id=\"contact\" name=\"contact\" type=\"email\" required aria-describedby=\"aide\"></div><div class=\"champ\"><label for=\"atelier\">Atelier, obligatoire</label><select id=\"atelier\" name=\"atelier\" required><option value=\"\">Choisir</option><option value=\"semis\">Semis</option><option value=\"compost\">Compost</option></select></div><button class=\"action\" type=\"button\">Vérifier la démonstration</button></form></section></main><footer><p>Projet d’apprentissage fictif.</p></footer></div>",
+    "id": "css-m4-03-e3"
+  },
+  {
+    "title_fr": "Projet complet : feuille de style de Graines ensemble",
+    "instruction_fr": "Assemble les trois jalons : base 16px/1.5, body sans marge bleu marine sur blanc ; .page fluide avec max-width:960px, padding:16px et border-box ; navigation flex/wrap/gap16 ; grille une colonne puis deux dès 700px/gap16 ; cartes padding16/bordure1 navy/coupure possible ; labels block, groupes espacés16, champs largeur100%/padding8/border-box/font hérité ; bouton blanc sur navy/padding8 16 ; liens soulignés et contour focus 3px navy décalé2 sur liens/champs/selects/boutons. Ne masque aucun contenu. Explique et vérifie au clavier les choix après les tests.",
+    "starter_code": "/* Écris uniquement la feuille CSS du projet. */",
+    "solution": "html { font-size:16px; }\nbody { margin:0; font-family:system-ui,sans-serif; line-height:1.5; color:navy; background-color:white; }\n.page { box-sizing:border-box; width:100%; max-width:960px; margin:0 auto; padding:16px; }\n.navigation { display:flex; flex-wrap:wrap; gap:16px; }\n.grille { display:grid; gap:16px; grid-template-columns:minmax(0,1fr); }\n@media (min-width:700px) { .grille { grid-template-columns:repeat(2,minmax(0,1fr)); } }\n.carte { padding:16px; border:1px solid navy; overflow-wrap:anywhere; }\nlabel { display:block; }\n.champ { margin-bottom:16px; }\ninput, select { box-sizing:border-box; width:100%; padding:8px; font:inherit; }\n.action { color:white; background-color:navy; padding:8px 16px; font:inherit; }\na { color:navy; text-decoration:underline; }\na:focus, input:focus, select:focus, button:focus { outline:3px solid navy; outline-offset:2px; }",
+    "visible_tests": [
+      {
+        "description_fr": "Projet à 375px.",
+        "checks": [
+          {
+            "selector": "body",
+            "style": {
+              "color": "rgb(0, 0, 128)",
+              "background-color": "rgb(255, 255, 255)",
+              "line-height": "24px"
+            }
+          },
+          {
+            "selector": ".page",
+            "style": {
+              "width": "375px",
+              "padding-left": "16px",
+              "box-sizing": "border-box"
+            }
+          },
+          {
+            "selector": ".navigation",
+            "style": {
+              "display": "flex",
+              "flex-wrap": "wrap",
+              "gap": "16px"
+            }
+          },
+          {
+            "selector": ".grille",
+            "style": {
+              "display": "grid",
+              "grid-template-columns": "343px",
+              "gap": "16px"
+            }
+          },
+          {
+            "selector": ".carte",
+            "style": {
+              "padding-left": "16px",
+              "border-top-width": "1px",
+              "border-top-color": "rgb(0, 0, 128)",
+              "overflow-wrap": "anywhere"
+            }
+          },
+          {
+            "selector": "label",
+            "style": {
+              "display": "block"
+            }
+          },
+          {
+            "selector": ".champ",
+            "style": {
+              "margin-bottom": "16px"
+            }
+          },
+          {
+            "selector": "input,select",
+            "style": {
+              "width": "343px",
+              "padding-left": "8px",
+              "box-sizing": "border-box",
+              "font-size": "16px"
+            }
+          },
+          {
+            "selector": ".action",
+            "style": {
+              "color": "rgb(255, 255, 255)",
+              "background-color": "rgb(0, 0, 128)"
+            }
+          },
+          {
+            "selector": ".aide",
+            "style": {
+              "display": "block"
+            }
+          },
+          {
+            "selector": "a",
+            "style": {
+              "text-decoration-line": "underline"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 375,
+          "height": 900
+        }
+      },
+      {
+        "description_fr": "Projet à 800px.",
+        "checks": [
+          {
+            "selector": ".page",
+            "style": {
+              "width": "800px"
+            }
+          },
+          {
+            "selector": ".grille",
+            "style": {
+              "grid-template-columns": "376px 376px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 800,
+          "height": 900
+        }
+      },
+      {
+        "description_fr": "Limite à 1100px.",
+        "checks": [
+          {
+            "selector": ".page",
+            "style": {
+              "width": "960px",
+              "max-width": "960px"
+            }
+          },
+          {
+            "selector": ".grille",
+            "style": {
+              "grid-template-columns": "456px 456px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 1100,
+          "height": 900
+        }
+      },
+      {
+        "description_fr": "Focus du bouton.",
+        "checks": [
+          {
+            "selector": ".action",
+            "style": {
+              "outline-style": "solid",
+              "outline-width": "3px",
+              "outline-color": "rgb(0, 0, 128)",
+              "outline-offset": "2px"
+            }
+          }
+        ],
+        "focus_selector": ".action"
+      },
+      {
+        "description_fr": "Focus du contact.",
+        "checks": [
+          {
+            "selector": "#contact",
+            "style": {
+              "outline-style": "solid",
+              "outline-width": "3px",
+              "outline-offset": "2px"
+            }
+          }
+        ],
+        "focus_selector": "#contact"
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Vérifie la base avant de régler la disposition.",
+      "Réutilise les jalons en conservant leurs sélecteurs simples.",
+      "Calcule la largeur utile de page puis retire le gap avant de partager les colonnes."
+    ],
+    "explanation_fr": "La correction fournit une feuille possible. Les tests évaluent le rendu calculé ; une revue humaine reste nécessaire pour les textes agrandis, les largeurs intermédiaires et tous les parcours clavier.",
+    "kind": "project",
+    "common_wrong_answers": [],
+    "fixture_html": "<a class=\"evitement\" href=\"#contenu\">Aller au contenu</a><div class=\"page\"><header><h1>Graines ensemble</h1><p>Association fictive de jardinage.</p></header><nav class=\"navigation\" aria-label=\"Principale\"><a href=\"#ateliers\">Ateliers</a><a href=\"#inscription\">Inscription</a></nav><main id=\"contenu\"><section id=\"ateliers\"><h2>Ateliers</h2><div class=\"grille\"><article class=\"carte\"><h3>Semis</h3><p>Découvrir les graines.</p></article><article class=\"carte\"><h3>Compost</h3><p>Comprendre les matières organiques.</p></article></div></section><section id=\"inscription\"><h2>Inscription fictive</h2><form><p class=\"aide\" id=\"aide\">Données fictives uniquement ; aucun envoi réel.</p><div class=\"champ\"><label for=\"prenom\">Prénom</label><input id=\"prenom\" name=\"prenom\" type=\"text\"></div><div class=\"champ\"><label for=\"contact\">Contact, obligatoire</label><input id=\"contact\" name=\"contact\" type=\"email\" required aria-describedby=\"aide\"></div><div class=\"champ\"><label for=\"atelier\">Atelier, obligatoire</label><select id=\"atelier\" name=\"atelier\" required><option value=\"\">Choisir</option><option value=\"semis\">Semis</option><option value=\"compost\">Compost</option></select></div><button class=\"action\" type=\"button\">Vérifier la démonstration</button></form></section></main><footer><p>Projet d’apprentissage fictif.</p></footer></div>",
+    "id": "css-m4-03-e4"
+  }
+]

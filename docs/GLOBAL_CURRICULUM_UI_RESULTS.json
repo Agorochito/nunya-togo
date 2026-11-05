@@ -1,0 +1,25 @@
+{
+  "results": [
+    {
+      "width": 360,
+      "exerciseNavigation": "4 within same lesson",
+      "quizNavigation": "3 within same lesson, wrong/previous/reload",
+      "review": "adjacent lesson",
+      "offline": "pack and cursors restored",
+      "axeViolations": 0
+    },
+    {
+      "width": 1440,
+      "exerciseNavigation": "4 within same lesson",
+      "quizNavigation": "3 within same lesson, wrong/previous/reload",
+      "review": "adjacent lesson",
+      "offline": "pack and cursors restored",
+      "axeViolations": 0
+    },
+    {
+      "authoredCourses": 4,
+      "authoredLessonsRendered": 83
+    }
+  ],
+  "errors": []
+}

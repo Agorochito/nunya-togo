@@ -1,0 +1,150 @@
+[
+  {
+    "title_fr": "Transformer du matériel en liste",
+    "instruction_fr": "Crée une ul contenant exactement deux li : Gants et Gourde.",
+    "starter_code": "<p>Gants, Gourde</p>",
+    "solution": "<ul><li>Gants</li><li>Gourde</li></ul>",
+    "visible_tests": [
+      {
+        "description_fr": "Liste de deux objets.",
+        "checks": [
+          {
+            "selector": "ul > li",
+            "count": 2
+          },
+          {
+            "selector": "ul > li:nth-child(1)",
+            "textIncludes": "Gants"
+          },
+          {
+            "selector": "ul > li:nth-child(2)",
+            "textIncludes": "Gourde"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "L’ordre des objets est-il indispensable ?",
+      "Choisis ul et place un li par objet.",
+      "Ferme le premier li avant d’ouvrir le second."
+    ],
+    "explanation_fr": "Une liste explicite permet de connaître la relation et le nombre d’entrées.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "id": "html-m2-01-e1"
+  },
+  {
+    "title_fr": "Écrire des étapes",
+    "instruction_fr": "Écris une ol contenant Choisir, S’inscrire et Venir, dans cet ordre.",
+    "starter_code": "<ul><li>Choisir</li></ul>",
+    "solution": "<ol><li>Choisir</li><li>S’inscrire</li><li>Venir</li></ol>",
+    "visible_tests": [
+      {
+        "description_fr": "Trois étapes ordonnées.",
+        "checks": [
+          {
+            "selector": "ol > li",
+            "count": 3
+          },
+          {
+            "selector": "ol > li:nth-child(1)",
+            "textIncludes": "Choisir"
+          },
+          {
+            "selector": "ol > li:nth-child(2)",
+            "textIncludes": "S’inscrire"
+          },
+          {
+            "selector": "ol > li:nth-child(3)",
+            "textIncludes": "Venir"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "La succession change-t-elle le sens ?",
+      "ol indique l’ordre.",
+      "Utilise trois li dans l’ordre de la consigne."
+    ],
+    "explanation_fr": "Le navigateur génère les numéros ; il est inutile de les inclure dans le texte.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m2-01-e2"
+  },
+  {
+    "title_fr": "Réparer le contenu principal",
+    "instruction_fr": "Remplace le div qui contient le h1 et le p par un main. Conserve header et footer.",
+    "starter_code": "<header>Association</header><div><h1>Ateliers</h1><p>Bienvenue.</p></div><footer>Contact</footer>",
+    "solution": "<header>Association</header><main><h1>Ateliers</h1><p>Bienvenue.</p></main><footer>Contact</footer>",
+    "visible_tests": [
+      {
+        "description_fr": "Une région principale explicite.",
+        "checks": [
+          {
+            "selector": "body > main",
+            "count": 1
+          },
+          {
+            "selector": "main h1",
+            "textIncludes": "Ateliers"
+          },
+          {
+            "selector": "header",
+            "exists": true
+          },
+          {
+            "selector": "footer",
+            "exists": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quelle partie contient le sujet principal ?",
+      "main exprime ce rôle.",
+      "Remplace la paire div sans déplacer ses enfants."
+    ],
+    "explanation_fr": "La région conserve son contenu tout en annonçant sa fonction.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "id": "html-m2-01-e3"
+  },
+  {
+    "title_fr": "Construire une fiche dans une région",
+    "instruction_fr": "Dans main, crée une section ayant le h2 Activités. Ajoute un article avec le h3 Semis et un p Atelier gratuit.",
+    "starter_code": "<main></main>",
+    "solution": "<main><section><h2>Activités</h2><article><h3>Semis</h3><p>Atelier gratuit.</p></article></section></main>",
+    "visible_tests": [
+      {
+        "description_fr": "Région thématique et fiche autonome.",
+        "checks": [
+          {
+            "selector": "main section > h2",
+            "textIncludes": "Activités"
+          },
+          {
+            "selector": "main section article h3",
+            "textIncludes": "Semis"
+          },
+          {
+            "selector": "main section article p",
+            "textIncludes": "Atelier gratuit."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quelle partie réunit toutes les activités ?",
+      "section porte la rubrique ; article porte la fiche.",
+      "Garde h3 sous le niveau h2."
+    ],
+    "explanation_fr": "La structure rend visible la relation entre une collection et une fiche.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "id": "html-m2-01-e4"
+  }
+]

@@ -1,5 +1,15 @@
 # Historique
 
+## 5.3.0 — 4 novembre 2026
+
+- Réparation commune de la navigation, positions d’exercice et de quiz persistantes, retour à la leçon adjacente lors des révisions.
+- Modules nommés pour 42 unités et 348 questions originales supplémentaires ; couverture mobile et ordinateur de toutes leurs questions.
+- Python étendu aux collections, fonctions, résolution de problèmes, débogage, inventaire et réservation : 31 nouvelles leçons, 124 exercices.
+- Nouveaux premiers cours HTML/CSS et première série JavaScript, avec aperçus et moteurs réels ; périmètres incomplets explicités.
+- Registre et compilation multi-cours ; assertions Python sur retours, types et copies ; ancien contrôle de conversion par commentaire rejeté.
+- Unités de collections partageables, cache de packs par révision, bilan de parcours métier à la fin.
+- Tests de navigateur portables ajoutés à la CI ; relecture pédagogique et autres niveaux toujours à poursuivre.
+
 ## 5.2.1 — 4 novembre 2026
 
 - Une question à la fois, compteur, vérification, précédent et suivant dans la même leçon.

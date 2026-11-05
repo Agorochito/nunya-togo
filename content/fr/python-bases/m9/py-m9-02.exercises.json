@@ -1,0 +1,269 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Addition après conversion",
+    "instruction_fr": "Texte représente un entier valide. Retourne cet entier augmenté de trois. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def ajouter_trois(texte):\n    return texte + 3",
+    "solution": "def ajouter_trois(texte):\n    return int(texte) + 3",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ajouter_trois",
+            "args": [
+              "12"
+            ],
+            "expected": 15,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ajouter_trois",
+            "args": [
+              "0"
+            ],
+            "expected": 3,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ajouter_trois",
+            "args": [
+              "-3"
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le paramètre est textuel.",
+      "Convertis-le avant la somme.",
+      "Retourne int(texte) + 3."
+    ],
+    "explanation_fr": "Le contrat exclut les textes non numériques, mais inclut les signes valides. La conversion produit la quantité sur laquelle la somme peut réellement être calculée.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ ajouter_trois\\(texte\\):\\\n\\ \\ \\ \\ return\\ texte\\ \\+\\ 3$",
+        "feedback_fr": "La ligne « return texte + 3 » conserve le défaut de départ. Convertis-le avant la somme."
+      }
+    ],
+    "id": "py-m9-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Multiplier un nombre reçu en texte",
+    "instruction_fr": "Texte représente un entier valide. Retourne trois fois ce nombre sous forme numérique. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def tripler_texte(texte):\n    return texte * 3",
+    "solution": "def tripler_texte(texte):\n    return int(texte) * 3",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tripler_texte",
+            "args": [
+              "4"
+            ],
+            "expected": 12,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tripler_texte",
+            "args": [
+              "0"
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tripler_texte",
+            "args": [
+              "-2"
+            ],
+            "expected": -6,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La répétition d’un texte n’est pas un produit numérique.",
+      "La conversion doit précéder la multiplication.",
+      "Utilise int(texte) * 3."
+    ],
+    "explanation_fr": "Une expression peut s’exécuter sans être correcte : multiplier une chaîne répète ses caractères. Le test du type et du résultat distingue cette répétition du calcul demandé.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ tripler_texte\\(texte\\):\\\n\\ \\ \\ \\ return\\ texte\\ \\*\\ 3$",
+        "feedback_fr": "La ligne « return texte * 3 » conserve le défaut de départ. La conversion doit précéder la multiplication."
+      }
+    ],
+    "id": "py-m9-02-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Lire un décimal valide",
+    "instruction_fr": "Texte représente un nombre décimal avec un point. Retourne ce nombre divisé par deux, avec tolérance 0,000000001. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def moitie_texte(texte):\n    return None",
+    "solution": "def moitie_texte(texte):\n    return float(texte) / 2",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moitie_texte",
+            "args": [
+              "2.5"
+            ],
+            "expected": 1.25,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moitie_texte",
+            "args": [
+              "0"
+            ],
+            "expected": 0.0,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moitie_texte",
+            "args": [
+              "7.2"
+            ],
+            "expected": 3.6,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le texte peut comporter une partie décimale.",
+      "float convient à cette représentation.",
+      "Divise float(texte) par deux."
+    ],
+    "explanation_fr": "Choisir float conserve la partie décimale demandée par le contrat. Les exercices n’inventent pas une règle d’arrondi et comparent les résultats avec une petite tolérance numérique.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ moitie_texte\\(texte\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. float convient à cette représentation."
+      }
+    ],
+    "id": "py-m9-02-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Présenter sans erreur de type",
+    "instruction_fr": "Retourne le texte Places : N où N est la représentation de nombre, entier positif ou nul. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def message_places(nombre):\n    return \"Places : \" + nombre",
+    "solution": "def message_places(nombre):\n    return \"Places : \" + str(nombre)",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "message_places",
+            "args": [
+              4
+            ],
+            "expected": "Places : 4",
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "message_places",
+            "args": [
+              0
+            ],
+            "expected": "Places : 0",
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "message_places",
+            "args": [
+              12
+            ],
+            "expected": "Places : 12",
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le résultat doit être une chaîne.",
+      "Convertis le nombre pour l’assemblage.",
+      "Ajoute str(nombre) après le préfixe."
+    ],
+    "explanation_fr": "La conversion en texte est adaptée à la présentation et non au calcul. Le préfixe et son espace font partie du format annoncé au programme appelant.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ message_places\\(nombre\\):\\\n\\ \\ \\ \\ return\\ \"Places\\ :\\ \"\\ \\+\\ nombre$",
+        "feedback_fr": "La ligne « return \"Places : \" + nombre » conserve le défaut de départ. Convertis le nombre pour l’assemblage."
+      }
+    ],
+    "id": "py-m9-02-e4"
+  }
+]

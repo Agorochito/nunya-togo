@@ -1,6 +1,7 @@
+import {launchTestBrowser} from '../lib/test/browser.mjs';
 import {chromium,expect} from '@playwright/test';import fs from 'node:fs/promises';import axe from 'axe-core';
 const base=process.env.NUNYA_TEST_URL||'http://127.0.0.1:4176/',route='#/mes-cours/seconde/maths/maths-seconde/1';
-const browser=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true}),errors=[];const results=[];
+const browser=await launchTestBrowser(chromium),errors=[];const results=[];
 try{for(const width of [360,1440]){const context=await browser.newContext({viewport:{width,height:width===360?640:900}});await context.addInitScript(()=>{if(!localStorage.getItem('nunya-state'))localStorage.setItem('nunya-state',JSON.stringify({academy:{onboarded:true},done:['maths-seconde:0']}))});const p=await context.newPage();p.on('pageerror',e=>errors.push(e.message));await p.goto(base+route);await p.locator('[data-a="practice-start"]').click();await expect(p.locator('.a-practice-position')).toContainText('Question 1 sur 5');await expect(p.locator('.a-question')).toHaveCount(1);
 await p.locator('[data-a="answer"][data-value="1"]').click();await p.locator('[data-a="practice-check"]').click();await expect(p.locator('.a-answer-feedback')).toContainText('Une piste');await expect(p.locator('[data-a="practice-next"]')).toHaveCount(0);await expect(p).toHaveURL(new RegExp('/1$'));
 await p.locator('[data-a="answer"][data-value="0"]').click();await p.locator('[data-a="practice-check"]').click();await p.locator('[data-a="practice-next"]').click();await expect(p.locator('.a-practice-position')).toContainText('Question 2 sur 5');await expect(p).toHaveURL(new RegExp('/1$'));

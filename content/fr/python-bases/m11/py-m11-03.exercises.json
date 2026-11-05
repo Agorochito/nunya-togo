@@ -1,0 +1,364 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Copier les fiches",
+    "instruction_fr": "Retourne une nouvelle liste contenant une copie de chaque dictionnaire de reservations, dans le même ordre. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés. Le résultat ne doit partager aucun dictionnaire modifiable avec les arguments ; ce point est vérifié.",
+    "starter_code": "def copier_fiches(reservations):\n    return None",
+    "solution": "def copier_fiches(reservations):\n    copie = []\n    for r in reservations:\n        copie.append(r.copy())\n    return copie",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "copier_fiches",
+            "args": [
+              []
+            ],
+            "expected": [],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "copier_fiches",
+            "args": [
+              [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 1,
+                  "fin": 2,
+                  "active": true
+                }
+              ]
+            ],
+            "expected": [
+              {
+                "id": "r1",
+                "equipement": "A",
+                "debut": 1,
+                "fin": 2,
+                "active": true
+              }
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "copier_fiches",
+            "args": [
+              [
+                {
+                  "id": "r2",
+                  "equipement": "B",
+                  "debut": 3,
+                  "fin": 4,
+                  "active": false
+                }
+              ]
+            ],
+            "expected": [
+              {
+                "id": "r2",
+                "equipement": "B",
+                "debut": 3,
+                "fin": 4,
+                "active": false
+              }
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une nouvelle liste doit contenir de nouveaux dictionnaires.",
+      "Utilise r.copy() dans la boucle.",
+      "Ajoute chaque copie de fiche à copie."
+    ],
+    "explanation_fr": "Le contenu équivalent ne suffit pas à garantir l’indépendance des fiches. Cette activité demande explicitement de copier chaque dictionnaire plat avant de le placer dans la nouvelle liste.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ copier_fiches\\(reservations\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Utilise r.copy() dans la boucle."
+      }
+    ],
+    "id": "py-m11-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Annulation pure",
+    "instruction_fr": "Les id existants sont uniques. Retourne une copie des fiches avec identifiant passé à active=False s’il était actif ; sinon None. Conserve toutes les fiches et leur ordre. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def annuler(reservations, identifiant):\n    return None",
+    "solution": "def annuler(reservations, identifiant):\n    trouve = False\n    for r in reservations:\n        if r[\"id\"] == identifiant and r[\"active\"]:\n            trouve = True\n    if not trouve:\n        return None\n    copie = []\n    for r in reservations:\n        fiche = r.copy()\n        if fiche[\"id\"] == identifiant:\n            fiche[\"active\"] = False\n        copie.append(fiche)\n    return copie",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "annuler",
+            "args": [
+              [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 1,
+                  "fin": 3,
+                  "active": true
+                }
+              ],
+              "r1"
+            ],
+            "expected": [
+              {
+                "id": "r1",
+                "equipement": "A",
+                "debut": 1,
+                "fin": 3,
+                "active": false
+              }
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "annuler",
+            "args": [
+              [],
+              "r1"
+            ],
+            "expected": null,
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "annuler",
+            "args": [
+              [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 1,
+                  "fin": 3,
+                  "active": false
+                }
+              ],
+              "r1"
+            ],
+            "expected": null,
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’absence et l’inactivité sont des refus.",
+      "Après validation, copie chaque fiche avant de changer active.",
+      "Ne supprime pas la fiche annulée de l’historique."
+    ],
+    "explanation_fr": "L’annulation libère l’occupation sans effacer la trace. Un second appel visant la même fiche est refusé et ne transforme pas l’historique en une liste différente ou partiellement modifiée.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ annuler\\(reservations,\\ identifiant\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Après validation, copie chaque fiche avant de changer active."
+      }
+    ],
+    "id": "py-m11-03-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Identifiant encore disponible",
+    "instruction_fr": "Retourne True si identifiant n’apparaît dans aucune fiche, active ou inactive. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def id_disponible(reservations, identifiant):\n    return None",
+    "solution": "def id_disponible(reservations, identifiant):\n    for r in reservations:\n        if r[\"id\"] == identifiant:\n            return False\n    return True",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "id_disponible",
+            "args": [
+              [],
+              "r1"
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "id_disponible",
+            "args": [
+              [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 1,
+                  "fin": 2,
+                  "active": false
+                }
+              ],
+              "r1"
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "id_disponible",
+            "args": [
+              [
+                {
+                  "id": "r1",
+                  "equipement": "A",
+                  "debut": 1,
+                  "fin": 2,
+                  "active": true
+                }
+              ],
+              "r2"
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’identifiant appartient à l’historique entier.",
+      "Ne filtre pas sur active.",
+      "Refuse dès qu’une fiche possède cet id."
+    ],
+    "explanation_fr": "Une annulation libère un créneau mais pas l’identité de sa fiche. Cette règle évite de confondre deux événements différents lors d’une lecture de l’historique.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ id_disponible\\(reservations,\\ identifiant\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Ne filtre pas sur active."
+      }
+    ],
+    "id": "py-m11-03-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Vérifier l’unicité",
+    "instruction_fr": "Retourne True si tous les id des fiches sont distincts, sinon False. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def ids_uniques(reservations):\n    return None",
+    "solution": "def ids_uniques(reservations):\n    vus = set()\n    for r in reservations:\n        if r[\"id\"] in vus:\n            return False\n        vus.add(r[\"id\"])\n    return True",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ids_uniques",
+            "args": [
+              []
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ids_uniques",
+            "args": [
+              [
+                {
+                  "id": "r1"
+                },
+                {
+                  "id": "r2"
+                }
+              ]
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ids_uniques",
+            "args": [
+              [
+                {
+                  "id": "r1"
+                },
+                {
+                  "id": "r1"
+                }
+              ]
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’ensemble retient les id déjà rencontrés.",
+      "Une présence avant ajout révèle une répétition.",
+      "Teste puis ajoute à vus."
+    ],
+    "explanation_fr": "L’invariant concerne toutes les fiches et non seulement celles qui occupent un créneau. Une liste vide respecte l’unicité, car aucune paire d’identifiants ne se répète.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ ids_uniques\\(reservations\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Une présence avant ajout révèle une répétition."
+      }
+    ],
+    "id": "py-m11-03-e4"
+  }
+]

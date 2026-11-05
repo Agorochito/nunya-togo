@@ -1,0 +1,300 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Réparer un total",
+    "instruction_fr": "Retourne la somme des valeurs. Corrige la version qui ne garde que le dernier élément. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def total(valeurs):\n    resultat = 0\n    for valeur in valeurs:\n        resultat = valeur\n    return resultat",
+    "solution": "def total(valeurs):\n    resultat = 0\n    for valeur in valeurs:\n        resultat = resultat + valeur\n    return resultat",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "total",
+            "args": [
+              [
+                2,
+                5,
+                3
+              ]
+            ],
+            "expected": 10,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "total",
+            "args": [
+              []
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "total",
+            "args": [
+              [
+                -2,
+                4
+              ]
+            ],
+            "expected": 2,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le résultat précédent doit participer au suivant.",
+      "Une accumulation ajoute au lieu de remplacer.",
+      "Écris resultat = resultat + valeur."
+    ],
+    "explanation_fr": "La trace des sommes successives explique la réparation. Plusieurs valeurs différentes détectent l’oubli du passé, tandis que le vide confirme la bonne initialisation.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ total\\(valeurs\\):\\\n\\ \\ \\ \\ resultat\\ =\\ 0\\\n\\ \\ \\ \\ for\\ valeur\\ in\\ valeurs:\\\n\\ \\ \\ \\ \\ \\ \\ \\ resultat\\ =\\ valeur\\\n\\ \\ \\ \\ return\\ resultat$",
+        "feedback_fr": "La ligne « resultat = valeur » conserve le défaut de départ. Une accumulation ajoute au lieu de remplacer."
+      }
+    ],
+    "id": "py-m9-04-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Réparer une recherche",
+    "instruction_fr": "Retourne True si cible figure dans valeurs, sinon False. Corrige le retour prématuré. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def chercher(valeurs, cible):\n    for valeur in valeurs:\n        if valeur == cible:\n            return True\n        return False\n    return False",
+    "solution": "def chercher(valeurs, cible):\n    for valeur in valeurs:\n        if valeur == cible:\n            return True\n    return False",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chercher",
+            "args": [
+              [
+                1,
+                4
+              ],
+              4
+            ],
+            "expected": true,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chercher",
+            "args": [
+              [],
+              4
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chercher",
+            "args": [
+              [
+                2,
+                3
+              ],
+              9
+            ],
+            "expected": false,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un élément différent ne suffit pas à conclure.",
+      "Le retour False doit suivre la boucle entière.",
+      "Désindente return False après le for."
+    ],
+    "explanation_fr": "Le cas trouvé en fin de liste sert de régression contre un arrêt trop tôt. La recherche ne conclut à l’absence qu’après avoir examiné toute la collection.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ chercher\\(valeurs,\\ cible\\):\\\n\\ \\ \\ \\ for\\ valeur\\ in\\ valeurs:\\\n\\ \\ \\ \\ \\ \\ \\ \\ if\\ valeur\\ ==\\ cible:\\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ return\\ True\\\n\\ \\ \\ \\ \\ \\ \\ \\ return\\ False\\\n\\ \\ \\ \\ return\\ False$",
+        "feedback_fr": "La ligne « return False » conserve le défaut de départ. Le retour False doit suivre la boucle entière."
+      }
+    ],
+    "id": "py-m9-04-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Réparer un compteur",
+    "instruction_fr": "Retourne le nombre de valeurs supérieures ou égales à dix. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def compter_dix(valeurs):\n    nombre = 0\n    for valeur in valeurs:\n        if valeur >= 10:\n            nombre = 1\n    return nombre",
+    "solution": "def compter_dix(valeurs):\n    nombre = 0\n    for valeur in valeurs:\n        if valeur >= 10:\n            nombre = nombre + 1\n    return nombre",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compter_dix",
+            "args": [
+              [
+                10,
+                12
+              ]
+            ],
+            "expected": 2,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compter_dix",
+            "args": [
+              []
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compter_dix",
+            "args": [
+              [
+                9,
+                10
+              ]
+            ],
+            "expected": 1,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le compteur mesure plusieurs événements.",
+      "Ne le réaffecte pas constamment à un.",
+      "Ajoute un à nombre dans le bloc retenu."
+    ],
+    "explanation_fr": "Une liste avec deux réussites vérifie que le compteur dépasse un. Le cas mixte contrôle en plus la frontière inclusive et l’exclusion des valeurs trop petites.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ compter_dix\\(valeurs\\):\\\n\\ \\ \\ \\ nombre\\ =\\ 0\\\n\\ \\ \\ \\ for\\ valeur\\ in\\ valeurs:\\\n\\ \\ \\ \\ \\ \\ \\ \\ if\\ valeur\\ >=\\ 10:\\\n\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ nombre\\ =\\ 1\\\n\\ \\ \\ \\ return\\ nombre$",
+        "feedback_fr": "La ligne « nombre = 1 » conserve le défaut de départ. Ne le réaffecte pas constamment à un."
+      }
+    ],
+    "id": "py-m9-04-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une moyenne",
+    "instruction_fr": "Valeurs est une liste non vide de nombres. Retourne sa moyenne ; le vide est exclu de cette activité. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def moyenne(valeurs):\n    total = 0\n    for valeur in valeurs:\n        total = total + valeur\n    return total / (len(valeurs) + 1)",
+    "solution": "def moyenne(valeurs):\n    total = 0\n    for valeur in valeurs:\n        total = total + valeur\n    return total / len(valeurs)",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moyenne",
+            "args": [
+              [
+                8,
+                12
+              ]
+            ],
+            "expected": 10.0,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moyenne",
+            "args": [
+              [
+                7
+              ]
+            ],
+            "expected": 7.0,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moyenne",
+            "args": [
+              [
+                2,
+                4,
+                6
+              ]
+            ],
+            "expected": 4.0,
+            "tolerance": 1e-09,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le dénominateur compte les valeurs réellement présentes.",
+      "Aucune valeur supplémentaire ne doit être inventée.",
+      "Divise par len(valeurs), sans ajouter un."
+    ],
+    "explanation_fr": "Le contrat non vide autorise directement la division. Un seul élément doit retrouver sa propre valeur, ce qui révèle rapidement un dénominateur augmenté par erreur.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ moyenne\\(valeurs\\):\\\n\\ \\ \\ \\ total\\ =\\ 0\\\n\\ \\ \\ \\ for\\ valeur\\ in\\ valeurs:\\\n\\ \\ \\ \\ \\ \\ \\ \\ total\\ =\\ total\\ \\+\\ valeur\\\n\\ \\ \\ \\ return\\ total\\ /\\ \\(len\\(valeurs\\)\\ \\+\\ 1\\)$",
+        "feedback_fr": "La ligne « return total / (len(valeurs) + 1) » conserve le défaut de départ. Aucune valeur supplémentaire ne doit être inventée."
+      }
+    ],
+    "id": "py-m9-04-e4"
+  }
+]

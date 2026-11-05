@@ -1,0 +1,343 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Mesures retenues",
+    "instruction_fr": "Retourne une liste des mesures >= seuil dans leur ordre, répétitions conservées. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def mesures_retenues(mesures, seuil):\n    return None",
+    "solution": "def mesures_retenues(mesures, seuil):\n    resultat = []\n    for mesure in mesures:\n        if mesure >= seuil:\n            resultat.append(mesure)\n    return resultat",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "mesures_retenues",
+            "args": [
+              [
+                2,
+                5,
+                8
+              ],
+              5
+            ],
+            "expected": [
+              5,
+              8
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "mesures_retenues",
+            "args": [
+              [],
+              3
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "mesures_retenues",
+            "args": [
+              [
+                5,
+                5
+              ],
+              5
+            ],
+            "expected": [
+              5,
+              5
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le contexte change, le filtrage reste le même.",
+      "Une liste conserve l’ordre et les répétitions.",
+      "Ajoute chaque mesure >= seuil à une nouvelle liste."
+    ],
+    "explanation_fr": "Le transfert exige de retrouver le critère et le type de résultat. Une déduplication serait incorrecte, car deux mesures égales représentent encore deux observations différentes.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ mesures_retenues\\(mesures,\\ seuil\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Une liste conserve l’ordre et les répétitions."
+      }
+    ],
+    "id": "py-m12-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Noms normalisés distincts",
+    "instruction_fr": "Nettoie strip puis lower chaque nom, ignore les textes devenus vides, puis retourne la liste triée des noms distincts. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def noms_distincts(noms):\n    return None",
+    "solution": "def noms_distincts(noms):\n    uniques = set()\n    for nom in noms:\n        propre = nom.strip().lower()\n        if propre != \"\":\n            uniques.add(propre)\n    return sorted(uniques)",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "noms_distincts",
+            "args": [
+              [
+                " A ",
+                "a",
+                "B"
+              ]
+            ],
+            "expected": [
+              "a",
+              "b"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "noms_distincts",
+            "args": [
+              []
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "noms_distincts",
+            "args": [
+              [
+                " ",
+                "X",
+                "x"
+              ]
+            ],
+            "expected": [
+              "x"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La normalisation précède la déduplication.",
+      "Les textes vides ne représentent pas un nom utile.",
+      "Ajoute propre à un ensemble seulement s’il est non vide."
+    ],
+    "explanation_fr": "Les opérations doivent suivre le bon ordre. Dédupliquer avant nettoyage conserverait artificiellement des variantes que le contrat considère comme la même réponse.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ noms_distincts\\(noms\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Les textes vides ne représentent pas un nom utile."
+      }
+    ],
+    "id": "py-m12-01-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Bilan des températures fictives",
+    "instruction_fr": "Retourne {\"total\": somme, \"nombre\": compte} pour les valeurs >= seuil. Aucune interprétation scientifique n’est demandée. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def bilan_mesures(valeurs, seuil):\n    return None",
+    "solution": "def bilan_mesures(valeurs, seuil):\n    total = 0\n    nombre = 0\n    for valeur in valeurs:\n        if valeur >= seuil:\n            total = total + valeur\n            nombre = nombre + 1\n    return {\"total\":total, \"nombre\":nombre}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_mesures",
+            "args": [
+              [
+                2,
+                5,
+                8
+              ],
+              5
+            ],
+            "expected": {
+              "total": 13,
+              "nombre": 2
+            },
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_mesures",
+            "args": [
+              [],
+              5
+            ],
+            "expected": {
+              "total": 0,
+              "nombre": 0
+            },
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_mesures",
+            "args": [
+              [
+                -2,
+                -1
+              ],
+              -1
+            ],
+            "expected": {
+              "total": -1,
+              "nombre": 1
+            },
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les deux bilans portent sur la même sélection.",
+      "La somme ajoute la valeur et le compte ajoute un.",
+      "Retourne un dictionnaire avec les clés total et nombre."
+    ],
+    "explanation_fr": "La représentation change de la paire au dictionnaire nommé, mais les mesures restent distinctes. Les résultats ne donnent aucune conclusion réelle au-delà du calcul annoncé.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ bilan_mesures\\(valeurs,\\ seuil\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. La somme ajoute la valeur et le compte ajoute un."
+      }
+    ],
+    "id": "py-m12-01-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Première valeur satisfaisante",
+    "instruction_fr": "Retourne la première valeur >= seuil, ou None si aucune ne convient. Une valeur zéro retenue n’est pas une absence. Écris seulement la fonction ; aucun affichage n’est attendu. Les arguments doivent rester inchangés.",
+    "starter_code": "def premiere_mesure(valeurs, seuil):\n    return None",
+    "solution": "def premiere_mesure(valeurs, seuil):\n    for valeur in valeurs:\n        if valeur >= seuil:\n            return valeur\n    return None",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "premiere_mesure",
+            "args": [
+              [
+                -1,
+                0,
+                4
+              ],
+              0
+            ],
+            "expected": 0,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "premiere_mesure",
+            "args": [
+              [],
+              0
+            ],
+            "expected": null,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "premiere_mesure",
+            "args": [
+              [
+                2,
+                8,
+                5
+              ],
+              5
+            ],
+            "expected": 8,
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "premiere_mesure",
+            "args": [
+              [
+                1,
+                2
+              ],
+              9
+            ],
+            "expected": null,
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’ordre définit le mot première.",
+      "Retourne dès qu’une valeur convient.",
+      "Place le retour None après la boucle."
+    ],
+    "explanation_fr": "La recherche conserve la première réussite plutôt que la plus grande valeur. Le cas zéro vérifie encore la distinction entre un résultat présent et None.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^def\\ premiere_mesure\\(valeurs,\\ seuil\\):\\\n\\ \\ \\ \\ return\\ None$",
+        "feedback_fr": "La ligne « return None » conserve le défaut de départ. Retourne dès qu’une valeur convient."
+      }
+    ],
+    "id": "py-m12-01-e4"
+  }
+]

@@ -1,0 +1,152 @@
+{
+  "course_id": "python-bases",
+  "extension_id": "python-beginner-m5-m12",
+  "content_revision": "2026-11-04-draft-1",
+  "status": "brouillon",
+  "reviewer": null,
+  "last_reviewed": null,
+  "language": "fr",
+  "author": "Nunya",
+  "source_notes": "Contenus originaux ; connaissance technique commune. Référence de contrôle : https://docs.python.org/fr/3/tutorial/. Aucune reprise de texte externe.",
+  "modules": [
+    {
+      "id": "m5",
+      "title_fr": "Chaînes et listes",
+      "outcomes": [
+        "Lire, nettoyer et découper un texte.",
+        "Construire, filtrer et copier une liste."
+      ],
+      "lesson_ids": [
+        "py-m5-01",
+        "py-m5-02",
+        "py-m5-03",
+        "py-m5-04"
+      ],
+      "estimated_minutes": 80
+    },
+    {
+      "id": "m6",
+      "title_fr": "Choisir une collection",
+      "outcomes": [
+        "Utiliser tuple, dictionnaire et ensemble selon un besoin.",
+        "Conserver ordre, associations ou unicité de façon explicite."
+      ],
+      "lesson_ids": [
+        "py-m6-01",
+        "py-m6-02",
+        "py-m6-03",
+        "py-m6-04"
+      ],
+      "estimated_minutes": 80
+    },
+    {
+      "id": "m7",
+      "title_fr": "Définir des fonctions",
+      "outcomes": [
+        "Distinguer définition, appel, paramètre et argument.",
+        "Retourner un résultat et préserver les arguments selon le contrat."
+      ],
+      "lesson_ids": [
+        "py-m7-01",
+        "py-m7-02",
+        "py-m7-03",
+        "py-m7-04"
+      ],
+      "estimated_minutes": 80
+    },
+    {
+      "id": "m8",
+      "title_fr": "Résoudre un problème",
+      "outcomes": [
+        "Reformuler le besoin en contrat et en exemples.",
+        "Décomposer, tracer et vérifier les cas limites."
+      ],
+      "lesson_ids": [
+        "py-m8-01",
+        "py-m8-02",
+        "py-m8-03",
+        "py-m8-04"
+      ],
+      "estimated_minutes": 80
+    },
+    {
+      "id": "m9",
+      "title_fr": "Comprendre et réparer les erreurs",
+      "outcomes": [
+        "Diagnostiquer syntaxe, noms, types et indices.",
+        "Réparer les erreurs logiques avec des cas de régression."
+      ],
+      "lesson_ids": [
+        "py-m9-01",
+        "py-m9-02",
+        "py-m9-03",
+        "py-m9-04"
+      ],
+      "estimated_minutes": 80
+    },
+    {
+      "id": "m10",
+      "title_fr": "Atelier guidé : inventaire en mémoire",
+      "outcomes": [
+        "Modéliser un stock et ses bilans.",
+        "Appliquer des ajouts et retraits valides dans l’ordre."
+      ],
+      "lesson_ids": [
+        "py-m10-01",
+        "py-m10-02",
+        "py-m10-03",
+        "py-m10-04"
+      ],
+      "estimated_minutes": 80
+    },
+    {
+      "id": "m11",
+      "title_fr": "Projet : réservations d’équipements",
+      "outcomes": [
+        "Contrôler des intervalles semi-ouverts et les conflits de ressource.",
+        "Gérer création, refus et annulation avec un historique conservé."
+      ],
+      "lesson_ids": [
+        "py-m11-01",
+        "py-m11-02",
+        "py-m11-03",
+        "py-m11-04"
+      ],
+      "estimated_minutes": 80
+    },
+    {
+      "id": "m12",
+      "title_fr": "Bilan, transfert et orientation",
+      "outcomes": [
+        "Résoudre une variante avec les acquis communs.",
+        "Expliquer ses choix et identifier une prochaine activité utile."
+      ],
+      "lesson_ids": [
+        "py-m12-01",
+        "py-m12-02",
+        "py-m12-03"
+      ],
+      "estimated_minutes": 60
+    }
+  ],
+  "estimated_minutes": 620,
+  "verification": {
+    "lessons": 31,
+    "examples": 62,
+    "exercises": 124,
+    "reference_cases": 465,
+    "starter_rejections": 124,
+    "words": 13900,
+    "method": "Independent local CPython subprocess per example and exercise, all cases, reference output/value/immutability checks and starters rejected on at least one case.",
+    "browser_runtime": "not executed by content author",
+    "human_review": "pending"
+  },
+  "worker_contract": {
+    "existing": "tests.inputs:string[] and expected_output:string; inputs are scripted per case; stdout is compared with trailing whitespace trimmed.",
+    "calls": "Optional calls:[{name,args,expected,tolerance?,unchanged_args?,result_disjoint_args?}]. Execute definitions then each call with fresh deep-copied JSON arguments. Accumulate output and compare to expected_output (empty for callable-only exercises). Compare values recursively; lists and tuples are equivalent sequences. Numeric comparison excludes booleans and uses tolerance when present; None maps to null.",
+    "unchanged_args": "True requires deep equality of args before/after the call.",
+    "result_disjoint_args": "True requires no shared mutable container identity recursively between returned value and args (lists/dicts/sets), ignoring immutable scalar identity.",
+    "other_fields": "No raises, post_args, variables, imports, network or filesystem fixtures required by this extension."
+  },
+  "publication_note": "31 complete authored draft lessons, not a claim of human review or browser integration. Existing M1–M4 remain unchanged. Course completion/recommendations must be integrated by the registry owner."
+}

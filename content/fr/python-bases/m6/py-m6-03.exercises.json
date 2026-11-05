@@ -1,0 +1,193 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Nombre de lieux distincts",
+    "instruction_fr": "Lis n puis n noms de lieux. Affiche le nombre de noms distincts, sans nettoyer ni changer la casse.",
+    "starter_code": "n = int(input())\nlieux = set()\nfor tour in range(n):\n    nom = input()\nprint(len(lieux))",
+    "solution": "n = int(input())\nlieux = set()\nfor tour in range(n):\n    lieux.add(input())\nprint(len(lieux))",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3",
+          "A",
+          "B",
+          "A"
+        ],
+        "expected_output": "2\n"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "0\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "3",
+          "x",
+          "x",
+          "x"
+        ],
+        "expected_output": "1\n"
+      }
+    ],
+    "hints": [
+      "Il faut retenir les noms lus.",
+      "add ne conserve chaque valeur qu’une fois.",
+      "Ajoute input() à lieux dans la boucle."
+    ],
+    "explanation_fr": "La taille d’un ensemble répond à une question de diversité et non de participation totale. Trois réponses identiques représentent ici un seul nom distinct.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^n\\ =\\ int\\(input\\(\\)\\)\\\nlieux\\ =\\ set\\(\\)\\\nfor\\ tour\\ in\\ range\\(n\\):\\\n\\ \\ \\ \\ nom\\ =\\ input\\(\\)\\\nprint\\(len\\(lieux\\)\\)$",
+        "feedback_fr": "La ligne « nom = input() » conserve le défaut de départ. add ne conserve chaque valeur qu’une fois."
+      }
+    ],
+    "id": "py-m6-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Présence d’un nom",
+    "instruction_fr": "Lis n noms dans un ensemble puis un nom recherché. Affiche True ou False selon sa présence.",
+    "starter_code": "n = int(input())\nnoms = set()\nfor tour in range(n):\n    noms.add(input())\nrecherche = input()\nprint(False)",
+    "solution": "n = int(input())\nnoms = set()\nfor tour in range(n):\n    noms.add(input())\nrecherche = input()\nprint(recherche in noms)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2",
+          "A",
+          "B",
+          "A"
+        ],
+        "expected_output": "True\n"
+      },
+      {
+        "inputs": [
+          "0",
+          "A"
+        ],
+        "expected_output": "False\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1",
+          "A",
+          "a"
+        ],
+        "expected_output": "False\n"
+      }
+    ],
+    "hints": [
+      "La présence est une question booléenne.",
+      "Utilise in avec la valeur recherchée.",
+      "Affiche recherche in noms."
+    ],
+    "explanation_fr": "L’appartenance compare les valeurs exactes. Une majuscule et sa minuscule restent différentes tant qu’aucune règle de nettoyage n’a été demandée dans le contrat.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^n\\ =\\ int\\(input\\(\\)\\)\\\nnoms\\ =\\ set\\(\\)\\\nfor\\ tour\\ in\\ range\\(n\\):\\\n\\ \\ \\ \\ noms\\.add\\(input\\(\\)\\)\\\nrecherche\\ =\\ input\\(\\)\\\nprint\\(False\\)$",
+        "feedback_fr": "La ligne « print(False) » conserve le défaut de départ. Utilise in avec la valeur recherchée."
+      }
+    ],
+    "id": "py-m6-03-e2"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Présenter des codes distincts",
+    "instruction_fr": "Lis n puis n codes faits de lettres majuscules simples. Affiche la liste triée des codes distincts.",
+    "starter_code": "n = int(input())\ncodes = []\nfor tour in range(n):\n    codes.append(input())\nprint(sorted(codes))",
+    "solution": "n = int(input())\ncodes = set()\nfor tour in range(n):\n    codes.add(input())\nprint(sorted(codes))",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3",
+          "B",
+          "A",
+          "B"
+        ],
+        "expected_output": "['A', 'B']\n"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "[]\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "2",
+          "C",
+          "A"
+        ],
+        "expected_output": "['A', 'C']\n"
+      }
+    ],
+    "hints": [
+      "Le tri seul ne retire pas les répétitions.",
+      "Recueille d’abord les codes dans un ensemble.",
+      "Utilise set et add avant sorted."
+    ],
+    "explanation_fr": "La déduplication et le classement sont deux étapes différentes. Le résultat final est une liste, dont l’ordre et la représentation sont faciles à comparer.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^n\\ =\\ int\\(input\\(\\)\\)\\\ncodes\\ =\\ \\[\\]\\\nfor\\ tour\\ in\\ range\\(n\\):\\\n\\ \\ \\ \\ codes\\.append\\(input\\(\\)\\)\\\nprint\\(sorted\\(codes\\)\\)$",
+        "feedback_fr": "La ligne « codes = [] » conserve le défaut de départ. Recueille d’abord les codes dans un ensemble."
+      }
+    ],
+    "id": "py-m6-03-e3"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Compter les répétitions",
+    "instruction_fr": "Lis n puis n noms. Compte les apparitions après la première de chaque nom et affiche ce total.",
+    "starter_code": "n = int(input())\nvus = set()\nrepetitions = 0\nfor tour in range(n):\n    nom = input()\n    vus.add(nom)\n    if nom in vus:\n        repetitions = repetitions + 1\nprint(repetitions)",
+    "solution": "n = int(input())\nvus = set()\nrepetitions = 0\nfor tour in range(n):\n    nom = input()\n    if nom in vus:\n        repetitions = repetitions + 1\n    else:\n        vus.add(nom)\nprint(repetitions)",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3",
+          "A",
+          "A",
+          "A"
+        ],
+        "expected_output": "2\n"
+      },
+      {
+        "inputs": [
+          "3",
+          "A",
+          "B",
+          "C"
+        ],
+        "expected_output": "0\n"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "0\n"
+      }
+    ],
+    "hints": [
+      "Après l’ajout, le nom est toujours présent.",
+      "Teste sa présence avant de décider de l’ajouter.",
+      "Place add seulement dans le else."
+    ],
+    "explanation_fr": "L’ordre du test et de la mutation compte : il faut examiner l’état antérieur pour savoir si cette apparition est nouvelle ou répétée.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^n\\ =\\ int\\(input\\(\\)\\)\\\nvus\\ =\\ set\\(\\)\\\nrepetitions\\ =\\ 0\\\nfor\\ tour\\ in\\ range\\(n\\):\\\n\\ \\ \\ \\ nom\\ =\\ input\\(\\)\\\n\\ \\ \\ \\ vus\\.add\\(nom\\)\\\n\\ \\ \\ \\ if\\ nom\\ in\\ vus:\\\n\\ \\ \\ \\ \\ \\ \\ \\ repetitions\\ =\\ repetitions\\ \\+\\ 1\\\nprint\\(repetitions\\)$",
+        "feedback_fr": "La ligne « vus.add(nom) » conserve le défaut de départ. Teste sa présence avant de décider de l’ajouter."
+      }
+    ],
+    "id": "py-m6-03-e4"
+  }
+]

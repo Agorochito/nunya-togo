@@ -21,3 +21,30 @@ jobs:
       - run: npm run check:curriculum-links
       - run: npm run test:code
       - run: npm run build
+
+  browser-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - name: Test real student flows
+        run: |
+          python3 -m http.server 4176 --bind 127.0.0.1 --directory dist > /tmp/nunya-browser-server.log 2>&1 &
+          nunya_server_pid=$!
+          trap 'kill "$nunya_server_pid"' EXIT
+          node --input-type=module -e "for(let i=0;i<40;i++){try{if((await fetch('http://127.0.0.1:4176/')).ok)process.exit(0)}catch{}await new Promise(r=>setTimeout(r,100))}process.exit(1)"
+          npm run test:browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: student-flow-evidence
+          path: |
+            docs/*RESULTS.json
+            docs/screenshots/

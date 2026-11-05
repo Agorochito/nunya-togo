@@ -1,0 +1,141 @@
+[
+  {
+    "title_fr": "Aérer l’intérieur",
+    "instruction_fr": "Donne à .carte padding:16px et border:2px solid navy. Ne mets pas de marge à la carte.",
+    "starter_code": ".carte { }",
+    "solution": ".carte { padding:16px; border:2px solid navy; margin:0; }",
+    "visible_tests": [
+      {
+        "description_fr": "Espace intérieur et bordure.",
+        "checks": [
+          {
+            "selector": ".carte",
+            "style": {
+              "padding-top": "16px",
+              "padding-right": "16px",
+              "padding-bottom": "16px",
+              "padding-left": "16px",
+              "border-top-width": "2px",
+              "border-top-style": "solid",
+              "margin-top": "0px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Quelle zone sépare le texte de la paroi ?",
+      "padding est intérieur ; border trace la paroi.",
+      "Ajoute les propriétés dans la règle .carte."
+    ],
+    "explanation_fr": "Le contrôle vérifie les côtés calculés sans imposer une écriture abrégée.",
+    "kind": "guided",
+    "common_wrong_answers": [],
+    "fixture_html": "<div class=\"cadre\"><article class=\"carte\"><h2>Semis</h2><p>Découvrir les graines.</p></article></div>",
+    "id": "css-m2-01-e1"
+  },
+  {
+    "title_fr": "Séparer intérieur et extérieur",
+    "instruction_fr": "La carte doit avoir 8px d’espace intérieur sur chaque côté et 24px de marge extérieure sur chaque côté.",
+    "starter_code": ".carte { padding:24px; margin:8px; }",
+    "solution": ".carte { padding:8px; margin:24px; }",
+    "visible_tests": [
+      {
+        "description_fr": "Rôles des deux espaces.",
+        "checks": [
+          {
+            "selector": ".carte",
+            "style": {
+              "padding-top": "8px",
+              "padding-left": "8px",
+              "margin-top": "24px",
+              "margin-left": "24px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Les deux espaces actuels sont inversés.",
+      "margin est extérieur.",
+      "Utilise padding:8px et margin:24px."
+    ],
+    "explanation_fr": "Intervertir les propriétés change l’espace utilisable dans la carte.",
+    "kind": "debug",
+    "common_wrong_answers": [],
+    "fixture_html": "<div class=\"cadre\"><article class=\"carte\"><h2>Semis</h2><p>Découvrir les graines.</p></article></div>",
+    "id": "css-m2-01-e2"
+  },
+  {
+    "title_fr": "Inclure les bordures dans la largeur",
+    "instruction_fr": "La carte doit avoir width:200px, padding:16px, border:2px solid navy et box-sizing:border-box.",
+    "starter_code": ".carte { width:200px; padding:16px; border:2px solid navy; }",
+    "solution": ".carte { width:200px; padding:16px; border:2px solid navy; box-sizing:border-box; }",
+    "visible_tests": [
+      {
+        "description_fr": "Convention de mesure de la largeur.",
+        "checks": [
+          {
+            "selector": ".carte",
+            "style": {
+              "width": "200px",
+              "padding-left": "16px",
+              "border-left-width": "2px",
+              "box-sizing": "border-box"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Que doit inclure la largeur annoncée ?",
+      "border-box inclut les espaces intérieurs et bordures.",
+      "Ajoute box-sizing:border-box à la carte."
+    ],
+    "explanation_fr": "La largeur totale de la boîte reste 200px hors marges ; la zone de contenu rétrécit.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<div class=\"cadre\"><article class=\"carte\"><h2>Semis</h2><p>Découvrir les graines.</p></article></div>",
+    "id": "css-m2-01-e3"
+  },
+  {
+    "title_fr": "Régler les côtés indépendamment",
+    "instruction_fr": "Donne à .carte padding haut/bas 8px et gauche/droite 16px, puis une bordure basse de 3px solid green, sans bordure sur les autres côtés.",
+    "starter_code": ".carte { padding:8px; border:3px solid green; }",
+    "solution": ".carte { padding:8px 16px; border:0; border-bottom:3px solid green; }",
+    "visible_tests": [
+      {
+        "description_fr": "Côtés choisis.",
+        "checks": [
+          {
+            "selector": ".carte",
+            "style": {
+              "padding-top": "8px",
+              "padding-bottom": "8px",
+              "padding-left": "16px",
+              "padding-right": "16px",
+              "border-bottom-width": "3px",
+              "border-bottom-style": "solid",
+              "border-top-style": "none",
+              "border-left-style": "none"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [],
+    "hints": [
+      "Une écriture à deux valeurs suit quel ordre ?",
+      "La première règle haut/bas, la seconde gauche/droite.",
+      "Retire la bordure générale et ajoute border-bottom."
+    ],
+    "explanation_fr": "Les propriétés longues et les raccourcis sont acceptés si le résultat respecte tous les côtés.",
+    "kind": "practice",
+    "common_wrong_answers": [],
+    "fixture_html": "<div class=\"cadre\"><article class=\"carte\"><h2>Semis</h2><p>Découvrir les graines.</p></article></div>",
+    "id": "css-m2-01-e4"
+  }
+]
