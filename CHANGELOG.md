@@ -1,5 +1,10 @@
 # Historique
 
+## 5.4.2 — 5 novembre 2026 · menu sur téléphone
+
+- Le menu ouvert sur téléphone (bouton « Plus » ou ☰) se ferme en touchant à côté, sans activer ce qui se trouve dessous. Échap le fermait déjà ; la barre du bas reste utilisable.
+- Cache `nunya-v5.4.2`.
+
 ## 5.4.1 — 5 novembre 2026 · accueil et menu allégés
 
 - Questions de départ facultatives : « Passer pour l’instant » (avec confirmation « J’ai 13 ans ou plus »), retour à la page demandée, personnalisation possible plus tard depuis l’accueil. Le test est chargé au début du test (`runtime/assessment.js`).
