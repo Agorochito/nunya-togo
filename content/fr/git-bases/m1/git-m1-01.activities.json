@@ -1,0 +1,80 @@
+[
+  {
+    "type": "lab",
+    "title_fr": "Initialiser main",
+    "instruction_fr": "Dans le dossier virtuel vide, initialise un dépôt sur la branche main. Ne crée aucun fichier.",
+    "fixture": "empty",
+    "goal": {
+      "initialized": true,
+      "branch": "main",
+      "clean": true
+    },
+    "hints": [
+      "Le scénario ne contient pas encore de dépôt.",
+      "Utilise l’action d’initialisation ; le nom de branche demandé est main.",
+      "Le dépôt doit rester sans fichier de travail."
+    ],
+    "explanation_fr": "La vérification porte sur l’existence du dépôt et son état réel, pas sur une déclaration.",
+    "id": "git-m1-01-a1"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Créer une première note virtuelle",
+    "instruction_fr": "Initialise main puis écris notes.txt avec exactement une ligne Idées du club, suivie d’un retour à la ligne final. N’indexe pas encore le fichier.",
+    "fixture": "empty",
+    "goal": {
+      "initialized": true,
+      "files": {
+        "notes.txt": "Idées du club\n"
+      },
+      "statuses": {
+        "notes.txt": "*added"
+      }
+    },
+    "hints": [
+      "Prépare d’abord le dépôt.",
+      "Le texte de notes.txt doit se terminer par un retour à la ligne.",
+      "Le fichier doit rester non suivi ; ne l’ajoute pas à l’index."
+    ],
+    "explanation_fr": "Un fichier peut exister dans le dossier de travail sans être préparé pour un commit.",
+    "id": "git-m1-01-a2"
+  },
+  {
+    "type": "qcm",
+    "title_fr": "Situer le partage distant",
+    "instruction_fr": "Choisis la réponse qui correspond au fonctionnement décrit.",
+    "question": "Une personne vient d’initialiser un dépôt local. Qu’a-t-elle publié sur GitHub ?",
+    "options": [
+      "Tous ses fichiers, automatiquement.",
+      "Rien : aucune publication distante n’a été faite.",
+      "Un dépôt public sans historique."
+    ],
+    "answer": 1,
+    "hints": [
+      "Distingue le dossier local et un service extérieur.",
+      "Initialiser ne demande pas de compte GitHub.",
+      "Une publication demanderait une action distante distincte."
+    ],
+    "explanation_fr": "L’opération locale ne crée ni compte ni publication en ligne.",
+    "id": "git-m1-01-a3"
+  },
+  {
+    "type": "qcm",
+    "title_fr": "Lire un état vide",
+    "instruction_fr": "Choisis la réponse qui correspond au fonctionnement décrit.",
+    "question": "Un dépôt vide est initialisé et son statut est propre. Que sait-on de son historique ?",
+    "options": [
+      "Il contient forcément un commit par fichier futur.",
+      "Il est forcément publié sur Internet.",
+      "Il peut encore ne contenir aucun commit."
+    ],
+    "answer": 2,
+    "hints": [
+      "Propre décrit l’absence de changements détectés.",
+      "Ce mot ne compte pas les commits.",
+      "L’initialisation seule peut laisser l’historique vide."
+    ],
+    "explanation_fr": "Le statut et le nombre d’enregistrements répondent à des questions différentes.",
+    "id": "git-m1-01-a4"
+  }
+]

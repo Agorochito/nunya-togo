@@ -1,10 +1,10 @@
 # Prochains moteurs : décision technique avant les cours
 
-Recherche du 4 novembre 2026. Ce fichier décrit des options vérifiées, pas des fonctionnalités déjà construites. Aucun service payant, compte, secret, déploiement ni dépendance n’a été ajouté pendant cette recherche.
+Recherche du 4 novembre 2026. La recherche décrit les contraintes des prochains moteurs. Mise à jour du 5 novembre : Git est maintenant implémenté localement, sans publication, avec les dépendances épinglées décrites ci-dessous. Aucun service payant, compte ni secret ajouté.
 
 ## Git et GitHub
 
-L’option retenue pour un prochain prototype est `isomorphic-git`, avec un système de fichiers local en IndexedDB comme LightningFS. Ce sont de vraies opérations sur les objets, l’index, les commits et les branches Git, sans inventer un terminal ou déclarer qu’une commande native a tourné. Les bibliothèques sont sous licence MIT. Le lot devra épingler et auto-héberger les fichiers, mesurer leur poids, sérialiser les opérations et tester sauvegarde, rechargement, branches et conflits avant d’ouvrir un cours.
+Le moteur implémenté et vérifié utilise `isomorphic-git`, avec un système de fichiers local en IndexedDB comme LightningFS. Ce sont de vraies opérations sur les objets, l’index, les commits et les branches Git, sans inventer un terminal ou déclarer qu’une commande native a tourné. Les bibliothèques sont sous licence MIT. Les fichiers sont épinglés et auto-hébergés, les opérations sérialisées et les écritures vidées avant accusé de réception. Le moteur pèse environ 79 Ko gzip à la demande. Les rapports `GIT_ENGINE_RESULTS.json` et `GIT_UI_RESULTS.json` vérifient les 32 ateliers, la sauvegarde, le rechargement, les branches, les conflits et le hors-ligne.
 
 Sources primaires : [isomorphic-git](https://github.com/isomorphic-git/isomorphic-git), [LightningFS](https://github.com/isomorphic-git/lightning-fs), [merge API](https://isomorphic-git.org/docs/en/merge). L’implémentation a des limites de stratégies de fusion ; le cours doit rester dans les capacités réellement vérifiées.
 

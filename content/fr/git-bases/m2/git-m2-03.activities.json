@@ -1,0 +1,90 @@
+[
+  {
+    "type": "lab",
+    "title_fr": "Conserver une exclusion de cache",
+    "instruction_fr": "Dans first, crée .gitignore avec exactement cache/ et un retour final. Crée cache/temp.txt contenant temporaire avec un retour final. Indexe seulement .gitignore puis crée le commit Ignorer le cache.",
+    "fixture": "first",
+    "goal": {
+      "ignored": [
+        "cache/temp.txt"
+      ],
+      "headFiles": {
+        ".gitignore": "cache/\n"
+      },
+      "headMessage": "Ignorer le cache",
+      "clean": true
+    },
+    "hints": [
+      "Le cache doit rester non suivi.",
+      "La règle est un fichier distinct à préparer pour le commit.",
+      "Vérifie l’exclusion après l’enregistrement de .gitignore."
+    ],
+    "explanation_fr": "Le dépôt conserve la règle, tandis que le contenu temporaire reste hors du suivi ordinaire.",
+    "id": "git-m2-03-a1"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Exclure une donnée fictive",
+    "instruction_fr": "Dans first, crée secrets-demo.txt contenant exactement JETON_FICTIF_INUTILISABLE avec un retour final. Crée .gitignore contenant secrets-demo.txt avec un retour final. Indexe seulement .gitignore et crée le commit Exclure les secrets fictifs. Ne fournis aucun vrai secret.",
+    "fixture": "first",
+    "goal": {
+      "ignored": [
+        "secrets-demo.txt"
+      ],
+      "files": {
+        "secrets-demo.txt": "JETON_FICTIF_INUTILISABLE\n"
+      },
+      "headFiles": {
+        ".gitignore": "secrets-demo.txt\n"
+      },
+      "headMessage": "Exclure les secrets fictifs"
+    },
+    "hints": [
+      "Le fichier d’illustration doit être nouveau et non suivi.",
+      "Seule la règle rejoint la préparation du commit.",
+      "Le texte fictif doit rester présent localement et ignoré."
+    ],
+    "explanation_fr": "Une exclusion peut préserver la présence locale d’un fichier sans l’ajouter au projet enregistré.",
+    "id": "git-m2-03-a2"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Vérifier le suivi malgré un motif",
+    "instruction_fr": "Dans ignored, conserve la ligne cache/ de .gitignore puis ajoute notes.txt sur une deuxième ligne, avec retour final. Écris Contenu suivi dans notes.txt, suivi d’un retour final. Indexe .gitignore et notes.txt puis crée le commit Ignorer sans masquer le suivi.",
+    "fixture": "ignored",
+    "goal": {
+      "headFiles": {
+        ".gitignore": "cache/\nnotes.txt\n",
+        "notes.txt": "Contenu suivi\n"
+      },
+      "headMessage": "Ignorer sans masquer le suivi",
+      "clean": true
+    },
+    "hints": [
+      "notes.txt existe déjà dans le commit de départ.",
+      "Le motif nouveau ne retire pas son suivi.",
+      "Les deux contenus demandés doivent être préparés puis enregistrés."
+    ],
+    "explanation_fr": "L’instantané final prouve qu’un fichier déjà suivi n’est pas retiré par le seul motif.",
+    "id": "git-m2-03-a3"
+  },
+  {
+    "type": "qcm",
+    "title_fr": "Lire une promesse d’exclusion",
+    "instruction_fr": "Choisis la réponse correspondant aux états Git décrits.",
+    "question": "Un fichier a déjà été enregistré. Son nom vient d’être ajouté à .gitignore. Que peut-on affirmer ?",
+    "options": [
+      "Tous les anciens commits sont automatiquement nettoyés.",
+      "Cette ligne ne retire pas son contenu des commits existants.",
+      "Le fichier est effacé du disque."
+    ],
+    "answer": 1,
+    "hints": [
+      "Un motif porte sur l’exclusion de nouveaux chemins non suivis.",
+      "Un enregistrement antérieur ne change pas par simple édition d’un autre fichier.",
+      "Vérifie l’histoire réelle au lieu de déduire une suppression."
+    ],
+    "explanation_fr": "Une règle d’exclusion n’est ni un effacement local ni une réécriture d’historique.",
+    "id": "git-m2-03-a4"
+  }
+]

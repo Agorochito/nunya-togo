@@ -63,5 +63,8 @@ for course in legacy:
 disc=json.loads((r/'dist/data/decouverte/index.json').read_text())
 search.insert(0,dict(kind='Cours',title=disc['title_fr'],route='#/apprendre/decouverte',breadcrumb='Apprendre › Niveau 0',terms='niveau 0 debutant zero numerique ordinateur telephone internet securite logique algorithme '+disc['summary_fr']))
 search[1:1]=[dict(kind='Leçons',title=x['title_fr'],route=f"#/apprendre/decouverte/{x['module']}/{x['id']}",breadcrumb='Apprendre › Découverte du numérique',terms=' '.join(x['tags'])+' '+x['title_fr']) for x in disc['lessons']]
+git=json.loads((r/'dist/data/git/index.json').read_text())
+search.append(dict(kind='Cours',title=git['title_fr'],route='#/apprendre/git-bases',breadcrumb='Apprendre › Outil Git',terms='git github version commits branches index conflit collaboration'))
+search.extend(dict(kind='Leçons',title=x['title_fr'],route=f"#/apprendre/git-bases/{x['module']}/{x['id']}",breadcrumb='Apprendre › Git et GitHub',terms='git github '+x['title_fr'])for x in git['lessons'])
 write(out/'search.json',search)
 print(json.dumps(dict(preparedCourses=len(courses),preparedLessons=sum(len(c['lessons']) for c in courses))))

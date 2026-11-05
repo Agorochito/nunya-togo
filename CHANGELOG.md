@@ -1,7 +1,9 @@
 # Historique
 
-## 5.5.0 — 4 novembre 2026
+## 5.5.0 — travaux locaux des 4–5 novembre 2026
 
+- Git/GitHub : 12 leçons originales, 32 ateliers sur de vrais dépôts locaux et 16 QCM ; 36 questions de compréhension. Archives transférables, opérations sérialisées, persistance après fermeture et fonctionnement hors ligne vérifiés.
+- Catalogue de bibliothèque : programmes approfondis et introductions regroupés sans présenter des notices comme des cours complets.
 - Réparation commune de la navigation, positions d’exercice et de quiz persistantes, retour à la leçon adjacente lors des révisions.
 - Modules nommés pour 42 unités et 348 questions originales supplémentaires ; couverture mobile et ordinateur de toutes leurs questions.
 - Python étendu aux collections, fonctions, résolution de problèmes, débogage, inventaire et réservation : 31 nouvelles leçons, 124 exercices.

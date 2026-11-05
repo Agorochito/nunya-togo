@@ -8,9 +8,11 @@ Les 42 unités de découverte possèdent 91 modules et 562 questions. Le bouton 
 
 Le catalogue de code propose Python (12 modules, 53 leçons, 212 exercices), HTML et CSS (12 leçons et 48 exercices chacun), et le socle JavaScript synchrone (8 modules, 24 leçons, 96 exercices, projet de questionnaire). Les ateliers HTML/CSS ont un vrai aperçu avec contrôles du DOM et des styles. Python vérifie aussi les variables, les types, les valeurs retournées, les copies et les cas limites ; JavaScript s’exécute dans son propre Worker.
 
+Git et GitHub disposent aussi d’un socle de 4 modules, 12 leçons, 48 activités (32 ateliers Git réels et 16 QCM), puis 36 questions de compréhension. Les dépôts sont privés sur cet appareil en IndexedDB : vrais index, commits, branches et conflits, avec export et restauration de leurs objets Git. Publier sur GitHub reste une démarche distincte en ligne. Tous les programmes sont visibles dans **Tous les cours Nunya**.
+
 Les collections de la bibliothèque se filtrent par unité avec un lien partageable. Les téléchargements suivent la révision du cours afin de ne pas mélanger un programme récent et un ancien fichier hors ligne. Le cache est `nunya-v5.5.0`.
 
-**Le catalogue complet sur trois niveaux n’est pas terminé.** Git/GitHub et SQL restent des introductions courtes ; Node.js, HTTP et les autres cours approfondis sont à construire. [Couverture exacte et suite des lots](docs/COURSE_COVERAGE_AUDIT.md). Les contenus sont en relecture ; aucun diplôme accrédité n’est promis.
+**Le catalogue complet sur trois niveaux n’est pas terminé.** SQL reste une introduction courte ; Node.js, HTTP et les autres cours approfondis sont à construire. [Couverture exacte et suite des lots](docs/COURSE_COVERAGE_AUDIT.md). Les contenus sont en relecture ; aucun diplôme accrédité n’est promis.
 
 Le niveau 0 Découverte (20 leçons, 80 activités) et les ajouts du collaborateur sont conservés. La personnalisation et son diagnostic sont facultatifs ; les liens partagés ouvrent directement les cours. Les sauvegardes v1/v2 et de code restaurent les progrès Python et Découverte. Les validations restent distinctes de la consultation libre.
 

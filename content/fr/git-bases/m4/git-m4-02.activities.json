@@ -1,0 +1,83 @@
+[
+  {
+    "type": "lab",
+    "title_fr": "Documenter une proposition locale",
+    "instruction_fr": "Crée proposition et sélectionne-la. Remplace README.md par le texte exact ci-dessous, indexe et committe avec Documenter une proposition. Reste propre sur proposition. Contenu, avec un retour après chaque ligne :\n# Proposition d’atelier\n\nObjectif : préciser le programme fictif.\nVérification : relire les fichiers et le statut.\nLimite : préparation locale, sans publication GitHub.\n",
+    "fixture": "first",
+    "goal": {
+      "branch": "proposition",
+      "headFiles": {
+        "README.md": "# Proposition d’atelier\n\nObjectif : préciser le programme fictif.\nVérification : relire les fichiers et le statut.\nLimite : préparation locale, sans publication GitHub.\n"
+      },
+      "headMessage": "Documenter une proposition",
+      "clean": true
+    },
+    "hints": [
+      "Prépare une vraie branche locale, sans chercher un bouton de publication.",
+      "Écris le texte demandé puis indexe README.md.",
+      "Le commit enregistre la préparation et sa limite explicite."
+    ],
+    "explanation_fr": "Le dépôt contient une proposition documentée. Ce résultat est local : il n’atteste ni envoi ni revue GitHub.",
+    "id": "git-m4-02-a1"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Délimiter une proposition existante",
+    "instruction_fr": "Le scénario commence sur idee avec projet.txt déjà committé. Remplace README.md par # Revue locale, une ligne vide, puis Périmètre : projet.txt uniquement., puis Aucun envoi réseau réalisé., avec un retour final. Indexe et committe avec Décrire le périmètre. Termine propre sur idee, en conservant projet.txt.",
+    "fixture": "feature",
+    "goal": {
+      "branch": "idee",
+      "headFiles": {
+        "README.md": "# Revue locale\n\nPérimètre : projet.txt uniquement.\nAucun envoi réseau réalisé.\n",
+        "projet.txt": "Projet\n"
+      },
+      "headMessage": "Décrire le périmètre",
+      "clean": true
+    },
+    "hints": [
+      "La proposition existe déjà dans la branche idee.",
+      "Décris son périmètre sans annoncer une publication.",
+      "Conserve le fichier projet.txt et committe seulement le README modifié."
+    ],
+    "explanation_fr": "Le contenu réellement committé rend le périmètre examinable, sans créer une pull request.",
+    "id": "git-m4-02-a2"
+  },
+  {
+    "type": "qcm",
+    "title_fr": "Identifier la frontière en ligne",
+    "instruction_fr": "Les deux pratiques précédentes ont eu lieu dans des dépôts privés du navigateur.",
+    "question": "Qu’est-ce qui manque encore pour créer réellement une pull request sur GitHub ?",
+    "options": [
+      "Seulement écrire le mot GitHub dans le message du commit.",
+      "Rien : un état propre ouvre automatiquement une pull request.",
+      "Un accès GitHub authentifié et adapté, des commits disponibles sur le dépôt hébergé, puis une vraie proposition vers une branche cible."
+    ],
+    "answer": 2,
+    "hints": [
+      "Un commit local n’est pas un envoi réseau.",
+      "La proposition doit exister dans le service partagé.",
+      "Authentification, droits et sélection de cible restent à réaliser hors du laboratoire."
+    ],
+    "explanation_fr": "Aucune opération de l’activité ne remplace la publication autorisée des commits et la création réelle de la demande sur GitHub.",
+    "id": "git-m4-02-a3"
+  },
+  {
+    "type": "qcm",
+    "title_fr": "Interpréter une revue",
+    "instruction_fr": "Une personne examine une proposition en ligne et demande une précision sur sa vérification.",
+    "question": "Quelle suite décrit un workflow honnête ?",
+    "options": [
+      "Répondre au fond, corriger ou compléter les preuves et laisser la revue et les règles du projet guider l’intégration.",
+      "Déclarer que le statut propre garantit toute la qualité.",
+      "Fusionner systématiquement sans lire les retours."
+    ],
+    "answer": 0,
+    "hints": [
+      "La revue porte sur le fond et les preuves.",
+      "Un statut technique ne répond pas à une demande de justification.",
+      "La proposition peut évoluer avant son intégration."
+    ],
+    "explanation_fr": "Une pull request sert à examiner et discuter ; elle ne transforme pas toute proposition en modification approuvée.",
+    "id": "git-m4-02-a4"
+  }
+]

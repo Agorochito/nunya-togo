@@ -1,0 +1,93 @@
+[
+  {
+    "type": "lab",
+    "title_fr": "Préparer le premier ajout",
+    "instruction_fr": "À partir de notes.txt non suivi, ajoute ce chemin à l’index sans modifier son texte et sans commit.",
+    "fixture": "untracked",
+    "goal": {
+      "statuses": {
+        "notes.txt": "added"
+      },
+      "indexFiles": {
+        "notes.txt": "Bonjour\n"
+      },
+      "files": {
+        "notes.txt": "Bonjour\n"
+      }
+    },
+    "hints": [
+      "Le scénario contient déjà le fichier.",
+      "Utilise l’ajout à l’index pour le seul chemin notes.txt.",
+      "Le statut attendu est un ajout indexé, pas un commit."
+    ],
+    "explanation_fr": "Le même contenu existe alors dans le dossier de travail et dans l’index.",
+    "id": "git-m1-02-a1"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Continuer après une sélection",
+    "instruction_fr": "Dans le scénario staged, réécris seulement le fichier de travail notes.txt avec Essai local et un retour à la ligne final. Ne réindexe pas.",
+    "fixture": "staged",
+    "goal": {
+      "files": {
+        "notes.txt": "Essai local\n"
+      },
+      "indexFiles": {
+        "notes.txt": "Version indexée\n"
+      },
+      "headFiles": {
+        "notes.txt": "Bonjour\n"
+      }
+    },
+    "hints": [
+      "Commence par distinguer les trois versions du scénario.",
+      "L’écriture du fichier ne doit pas être suivie d’un ajout à l’index.",
+      "L’index doit rester Version indexée et HEAD doit rester Bonjour."
+    ],
+    "explanation_fr": "Une nouvelle édition n’actualise ni la sélection précédente ni l’historique.",
+    "id": "git-m1-02-a2"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Retirer une préparation suivie",
+    "instruction_fr": "Dans le scénario staged, retire notes.txt de la sélection du prochain commit avec l’action de retrait de l’index. Conserve le fichier de travail et ne crée pas de commit.",
+    "fixture": "staged",
+    "goal": {
+      "indexFiles": {
+        "notes.txt": "Bonjour\n"
+      },
+      "files": {
+        "notes.txt": "Version de travail\n"
+      },
+      "headFiles": {
+        "notes.txt": "Bonjour\n"
+      }
+    },
+    "hints": [
+      "Le chemin existe déjà dans HEAD.",
+      "Le retrait rétablit donc son entrée d’index d’après HEAD.",
+      "La version de travail doit rester intacte."
+    ],
+    "explanation_fr": "La préparation revient à la version enregistrée, tandis que l’édition locale est conservée.",
+    "id": "git-m1-02-a3"
+  },
+  {
+    "type": "qcm",
+    "title_fr": "Choisir la bonne version",
+    "instruction_fr": "Choisis la réponse qui correspond au fonctionnement décrit.",
+    "question": "Tu indexes A, puis écris B dans le fichier sans réindexer. Quelle version sera préparée pour le commit ?",
+    "options": [
+      "A.",
+      "B automatiquement.",
+      "A et B concaténés automatiquement."
+    ],
+    "answer": 0,
+    "hints": [
+      "L’indexation intervient avant la dernière édition.",
+      "Le fichier et l’index peuvent diverger.",
+      "Seule une nouvelle indexation préparerait B."
+    ],
+    "explanation_fr": "La préparation capture la version au moment où le chemin est ajouté à l’index.",
+    "id": "git-m1-02-a4"
+  }
+]

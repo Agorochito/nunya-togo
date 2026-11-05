@@ -1,0 +1,87 @@
+[
+  {
+    "type": "lab",
+    "title_fr": "Préparation : partir d’un dossier vide",
+    "instruction_fr": "Initialise ce dossier vide sur main. Écris README.md avec exactement # Atelier collectif et un retour à la ligne. Indexe et crée le commit Présenter l’atelier. Termine avec un dépôt propre.",
+    "fixture": "empty",
+    "goal": {
+      "branch": "main",
+      "headFiles": {
+        "README.md": "# Atelier collectif\n"
+      },
+      "headMessage": "Présenter l’atelier",
+      "clean": true
+    },
+    "hints": [
+      "Un dossier sans dépôt doit être initialisé avant le commit.",
+      "Écris le titre puis indexe README.md.",
+      "Le commit doit contenir le document et le message demandé."
+    ],
+    "explanation_fr": "Cette préparation vérifie un premier livrable local complet, sans prétendre intégrer les activités suivantes au même dépôt.",
+    "id": "git-m4-03-a1"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Préparation : intégrer puis documenter",
+    "instruction_fr": "Le scénario commence sur main, avec idee en avance. Fusionne idee. Remplace README.md par # Atelier collectif, une ligne vide, puis Parcours : lire puis pratiquer., avec un retour final. Indexe et committe avec Documenter le parcours intégré. Conserve projet.txt et termine propre sur main.",
+    "fixture": "fast-forward",
+    "goal": {
+      "branch": "main",
+      "headFiles": {
+        "README.md": "# Atelier collectif\n\nParcours : lire puis pratiquer.\n",
+        "projet.txt": "Projet\n"
+      },
+      "headMessage": "Documenter le parcours intégré",
+      "clean": true
+    },
+    "hints": [
+      "L’intégration de idee précède ici le nouveau commit documentaire.",
+      "Relis README.md puis indexe sa nouvelle version.",
+      "Vérifie que projet.txt intégré est encore dans le commit courant."
+    ],
+    "explanation_fr": "Le message documentaire décrit un vrai ajout après l’intégration locale ; aucune publication n’est réalisée.",
+    "id": "git-m4-03-a2"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Projet complet : consolider les décisions",
+    "instruction_fr": "Depuis main, fusionne idee et résous le conflit. Écris notes.txt : Décision commune : préparer un atelier découverte. avec un retour final. Écris projet.txt : Prochaine étape : relire le programme. avec un retour final. Remplace README.md par le contenu ci-dessous. Relis et indexe les trois fichiers, puis termine la fusion avec le commit Consolider l’atelier partagé. Le dépôt doit être propre et ce commit avoir deux parents. Contenu exact du README, retours de ligne inclus :\n# Atelier collectif\n\nCe dépôt décrit un atelier fictif.\n\n## Fichiers\n- notes.txt : décisions communes.\n- projet.txt : prochaine étape locale.\n\n## Vérification\nDépôt propre et fusion à deux parents contrôlés.\n\n## Limite\nAucune publication GitHub n’a été réalisée.\n",
+    "fixture": "conflict",
+    "goal": {
+      "headFiles": {
+        "notes.txt": "Décision commune : préparer un atelier découverte.\n",
+        "projet.txt": "Prochaine étape : relire le programme.\n",
+        "README.md": "# Atelier collectif\n\nCe dépôt décrit un atelier fictif.\n\n## Fichiers\n- notes.txt : décisions communes.\n- projet.txt : prochaine étape locale.\n\n## Vérification\nDépôt propre et fusion à deux parents contrôlés.\n\n## Limite\nAucune publication GitHub n’a été réalisée.\n"
+      },
+      "headMessage": "Consolider l’atelier partagé",
+      "mergeParents": 2,
+      "clean": true
+    },
+    "hints": [
+      "Déclenche la fusion avant de préparer sa résolution.",
+      "La décision doit remplacer tout le bloc de conflit, puis les trois fichiers doivent être indexés.",
+      "Crée le commit final seulement après la relecture ; inspecte ses deux parents et l’état propre."
+    ],
+    "explanation_fr": "Le contrôle exige une fusion enregistrée et les trois contenus dans HEAD. Complète-le en expliquant la divergence, la décision et la limite locale.",
+    "id": "git-m4-03-a3"
+  },
+  {
+    "type": "qcm",
+    "title_fr": "Présenter les preuves et les limites",
+    "instruction_fr": "Rédige ensuite ta propre explication de trois ou quatre phrases à partir du dépôt observé.",
+    "question": "Quelle présentation correspond aux preuves de ce projet ?",
+    "options": [
+      "Le statut propre garantit qu’une équipe a approuvé et publié le dépôt.",
+      "Les fichiers sont enregistrés dans un dépôt local propre ; le commit relie deux lignes et son choix de résolution est expliqué, sans affirmer une publication GitHub.",
+      "Le message de commit seul prouve que tous les fichiers sont corrects."
+    ],
+    "answer": 1,
+    "hints": [
+      "Relie chaque affirmation à un élément observable.",
+      "Deux parents décrivent l’historique, pas une approbation extérieure.",
+      "La limite locale doit rester explicite."
+    ],
+    "explanation_fr": "L’explication complète les propriétés contrôlées et annonce honnêtement ce qui n’a pas été réalisé en ligne.",
+    "id": "git-m4-03-a4"
+  }
+]

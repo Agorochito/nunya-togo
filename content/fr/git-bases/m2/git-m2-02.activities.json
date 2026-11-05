@@ -1,0 +1,91 @@
+[
+  {
+    "type": "lab",
+    "title_fr": "Reprendre le texte enregistré",
+    "instruction_fr": "Dans modified, restaure seulement notes.txt depuis HEAD. Ne crée pas de commit.",
+    "fixture": "modified",
+    "goal": {
+      "files": {
+        "notes.txt": "Bonjour\n"
+      },
+      "headFiles": {
+        "notes.txt": "Bonjour\n"
+      },
+      "clean": true
+    },
+    "hints": [
+      "Le texte de travail est À compléter.",
+      "Choisis la restauration depuis HEAD pour notes.txt.",
+      "Le contenu attendu est Bonjour avec son retour final."
+    ],
+    "explanation_fr": "Le fichier de travail rejoint l’état déjà présent dans l’index et HEAD.",
+    "id": "git-m2-02-a1"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Restaurer en conservant l’index",
+    "instruction_fr": "Dans staged, restaure notes.txt depuis HEAD sans retirer ni réindexer le chemin.",
+    "fixture": "staged",
+    "goal": {
+      "files": {
+        "notes.txt": "Bonjour\n"
+      },
+      "indexFiles": {
+        "notes.txt": "Version indexée\n"
+      },
+      "headFiles": {
+        "notes.txt": "Bonjour\n"
+      }
+    },
+    "hints": [
+      "Compare les trois versions avant l’action.",
+      "Seul le fichier de travail doit être remplacé.",
+      "La sélection Version indexée doit rester prête pour un éventuel commit."
+    ],
+    "explanation_fr": "Le contrôle distingue la restauration du travail et une réinitialisation de l’index.",
+    "id": "git-m2-02-a2"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Limiter la restauration à un chemin",
+    "instruction_fr": "Dans first, remplace notes.txt par Brouillon local avec un retour final, puis supprime seulement le fichier de travail README.md. Restaure ensuite notes.txt depuis HEAD, sans restaurer README.md et sans commit.",
+    "fixture": "first",
+    "goal": {
+      "files": {
+        "notes.txt": "Bonjour\n"
+      },
+      "absentFiles": [
+        "README.md"
+      ],
+      "headFiles": {
+        "README.md": "# Atelier\n"
+      }
+    },
+    "hints": [
+      "Prépare les deux modifications virtuelles demandées.",
+      "Choisis ensuite seulement notes.txt comme chemin à restaurer.",
+      "README.md doit rester absent du travail mais présent dans HEAD."
+    ],
+    "explanation_fr": "L’opération ciblée ne répare pas un autre fichier et ne modifie pas l’instantané enregistré.",
+    "id": "git-m2-02-a3"
+  },
+  {
+    "type": "qcm",
+    "title_fr": "Distinguer trois intentions",
+    "instruction_fr": "Choisis la réponse correspondant aux états Git décrits.",
+    "question": "Quelle action correspond à reprendre Bonjour de HEAD dans le seul fichier ouvert, tout en conservant une autre version indexée ?",
+    "options": [
+      "Restaurer ce chemin depuis HEAD dans le dossier de travail.",
+      "Retirer seulement le chemin de l’index.",
+      "Réinitialiser toute la branche avec un mode destructif."
+    ],
+    "answer": 0,
+    "hints": [
+      "La cible demandée est le fichier de travail.",
+      "La préparation doit être préservée.",
+      "La source annoncée est le dernier état enregistré."
+    ],
+    "explanation_fr": "Le choix découle de la cible, de la source et de la portée, pas du mot annuler seul.",
+    "id": "git-m2-02-a4"
+  }
+]

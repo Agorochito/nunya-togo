@@ -738,5 +738,23 @@
     "Objets connectés et robotique",
     "Blockchain"
   ],
-  "updated_for_release": "5.5.0"
+  "updated_for_release": "5.5.0",
+  "updated_at": "2026-11-05",
+  "additional_implemented": [
+    {
+      "id": "git-bases",
+      "modules": 4,
+      "lessons": 12,
+      "activities": 48,
+      "real_git_labs": 32,
+      "mcq_activities": 16,
+      "quizzes": 36,
+      "status": "brouillon",
+      "scope": "Git local réel dans IndexedDB ; préparation GitHub expliquée, aucune publication distante simulée.",
+      "evidence": [
+        "docs/GIT_ENGINE_RESULTS.json",
+        "docs/GIT_UI_RESULTS.json"
+      ]
+    }
+  ]
 }

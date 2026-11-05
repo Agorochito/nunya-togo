@@ -1,0 +1,89 @@
+[
+  {
+    "type": "lab",
+    "title_fr": "Créer un nom sans basculer",
+    "instruction_fr": "Le dépôt commence sur main. Crée la branche contact sans changer de branche. Conserve les fichiers et l’état propre.",
+    "fixture": "first",
+    "goal": {
+      "branch": "main",
+      "branches": [
+        "main",
+        "contact"
+      ],
+      "files": {
+        "notes.txt": "Bonjour\n"
+      },
+      "clean": true
+    },
+    "hints": [
+      "Quelle action ajoute un nom sans sélectionner la branche ?",
+      "Utilise Créer une branche avec contact.",
+      "Ne demande pas encore de bascule ; vérifie que main reste courant."
+    ],
+    "explanation_fr": "La branche contact existe désormais, mais aucun nouveau commit n’a été créé et main reste sélectionnée.",
+    "id": "git-m3-01-a1"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Sélectionner la branche créée",
+    "instruction_fr": "À partir du dépôt de départ, crée contact puis bascule dessus. Aucun fichier ne doit changer ; le dépôt reste propre.",
+    "fixture": "first",
+    "goal": {
+      "branch": "contact",
+      "branches": [
+        "main",
+        "contact"
+      ],
+      "clean": true
+    },
+    "hints": [
+      "Le nom doit exister avant de pouvoir le sélectionner.",
+      "Effectue création puis changement de branche.",
+      "Vérifie contact comme branche courante et un état propre."
+    ],
+    "explanation_fr": "Les deux actions ont des rôles distincts. Elles n’ajoutent pas de contenu à l’historique.",
+    "id": "git-m3-01-a2"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Revenir à la version principale",
+    "instruction_fr": "Le scénario commence sur idee avec projet.txt enregistré. Bascule sur main et inspecte les fichiers. notes.txt doit contenir Bonjour suivi d’un retour à la ligne ; projet.txt doit être absent. Garde le dépôt propre.",
+    "fixture": "feature",
+    "goal": {
+      "branch": "main",
+      "files": {
+        "notes.txt": "Bonjour\n"
+      },
+      "absentFiles": [
+        "projet.txt"
+      ],
+      "clean": true
+    },
+    "hints": [
+      "Quelle branche ne contient pas le commit Idée ?",
+      "Choisis main avec l’action de changement de branche.",
+      "Le fichier suivi projet.txt disparaît de cette vue, sans effacer le commit sur idee."
+    ],
+    "explanation_fr": "Le laboratoire vérifie la branche et la vue réelle des fichiers, plutôt qu’une déclaration selon laquelle tu aurais basculé.",
+    "id": "git-m3-01-a3"
+  },
+  {
+    "type": "qcm",
+    "title_fr": "Expliquer le premier résultat",
+    "instruction_fr": "Relis le nom courant et l’historique après une création seule.",
+    "question": "Tu crées contact sur main sans basculer. Où irait un nouveau commit maintenant ?",
+    "options": [
+      "Sur contact automatiquement.",
+      "Sur les deux branches à la fois.",
+      "Sur main, qui est toujours sélectionnée."
+    ],
+    "answer": 2,
+    "hints": [
+      "La création change-t-elle le nom courant ?",
+      "Le commit appartient à la ligne active.",
+      "Le laboratoire indique encore main."
+    ],
+    "explanation_fr": "Créer une branche ne sélectionne pas cette branche. Le futur commit ferait avancer main dans cette situation.",
+    "id": "git-m3-01-a4"
+  }
+]

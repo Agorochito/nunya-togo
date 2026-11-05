@@ -1,0 +1,81 @@
+[
+  {
+    "type": "lab",
+    "title_fr": "Ajouter une étape au README",
+    "instruction_fr": "Dans le scénario first, consulte l’historique puis écris README.md avec la ligne # Atelier, une ligne vide et la ligne Lecture du samedi, terminée par un retour à la ligne. Indexe README.md et crée le commit Préciser l’atelier.",
+    "fixture": "first",
+    "goal": {
+      "minCommits": 2,
+      "headMessage": "Préciser l’atelier",
+      "headFiles": {
+        "README.md": "# Atelier\n\nLecture du samedi\n"
+      },
+      "branch": "main"
+    },
+    "hints": [
+      "Le scénario possède déjà le commit Départ.",
+      "Le README doit conserver son titre puis ajouter le contexte après une ligne vide.",
+      "Le nouveau message doit apparaître comme un commit supplémentaire."
+    ],
+    "explanation_fr": "Le nouvel état s’ajoute à l’histoire existante et conserve le README annoncé.",
+    "id": "git-m2-01-a1"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Poursuivre une histoire de deux commits",
+    "instruction_fr": "Dans le scénario two, lis les messages existants. Remplace notes.txt par Bonjour le club suivi d’un retour final, indexe-le et crée le commit Adapter la salutation.",
+    "fixture": "two",
+    "goal": {
+      "minCommits": 3,
+      "headMessage": "Adapter la salutation",
+      "headFiles": {
+        "notes.txt": "Bonjour le club\n"
+      }
+    },
+    "hints": [
+      "Le départ possède déjà deux commits.",
+      "L’écriture seule ne crée pas une troisième étape.",
+      "Indexe le chemin puis enregistre la nouvelle salutation avec le message exact."
+    ],
+    "explanation_fr": "Le contrôle vérifie un troisième état courant sans remplacer les commits antérieurs.",
+    "id": "git-m2-01-a2"
+  },
+  {
+    "type": "qcm",
+    "title_fr": "Identifier la comparaison de préparation",
+    "instruction_fr": "Choisis la réponse correspondant aux états Git décrits.",
+    "question": "HEAD contient A, l’index contient B et le fichier de travail contient C. Quelle différence correspond à la préparation du prochain commit ?",
+    "options": [
+      "C par rapport à B uniquement.",
+      "B par rapport à A.",
+      "Le nom du fichier par rapport au message."
+    ],
+    "answer": 1,
+    "hints": [
+      "Le prochain commit utilise l’index.",
+      "L’état déjà enregistré se trouve dans HEAD.",
+      "Compare donc la préparation B au dernier état A."
+    ],
+    "explanation_fr": "La différence index–HEAD décrit les changements déjà préparés.",
+    "id": "git-m2-01-a3"
+  },
+  {
+    "type": "qcm",
+    "title_fr": "Évaluer une affirmation d’historique",
+    "instruction_fr": "Choisis la réponse correspondant aux états Git décrits.",
+    "question": "Un commit porte le message Tout testé. Que peut-on conclure à partir de ce seul message ?",
+    "options": [
+      "Tous les tests possibles sont forcément réussis.",
+      "Git a exécuté automatiquement une revue complète.",
+      "L’auteur a écrit cette description ; les tests demandent une autre preuve."
+    ],
+    "answer": 2,
+    "hints": [
+      "Le message est une description humaine.",
+      "Git conserve des états sans déduire toute leur qualité.",
+      "Cherche des résultats de vérification distincts."
+    ],
+    "explanation_fr": "Le texte du message ne constitue pas un résultat de test.",
+    "id": "git-m2-01-a4"
+  }
+]

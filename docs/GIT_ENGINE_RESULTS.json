@@ -1,0 +1,10 @@
+{
+  "labs": 32,
+  "initialRejected": 32,
+  "referenceGoalsPassed": 32,
+  "operations": 101,
+  "failures": [],
+  "persistence": true,
+  "archiveRoundTrip": true,
+  "invalidArchiveAtomic": true
+}

@@ -1,0 +1,1113 @@
+[
+  {
+    "id": "git-m1-01-a1",
+    "fixture": "empty",
+    "steps": [
+      {
+        "action": "init",
+        "args": {}
+      }
+    ],
+    "goal": {
+      "initialized": true,
+      "branch": "main",
+      "clean": true
+    }
+  },
+  {
+    "id": "git-m1-01-a2",
+    "fixture": "empty",
+    "steps": [
+      {
+        "action": "init",
+        "args": {}
+      },
+      {
+        "action": "write",
+        "args": {
+          "path": "notes.txt",
+          "text": "Idées du club\n"
+        }
+      }
+    ],
+    "goal": {
+      "initialized": true,
+      "files": {
+        "notes.txt": "Idées du club\n"
+      },
+      "statuses": {
+        "notes.txt": "*added"
+      }
+    }
+  },
+  {
+    "id": "git-m1-02-a1",
+    "fixture": "untracked",
+    "steps": [
+      {
+        "action": "stage",
+        "args": {
+          "path": "notes.txt"
+        }
+      }
+    ],
+    "goal": {
+      "statuses": {
+        "notes.txt": "added"
+      },
+      "indexFiles": {
+        "notes.txt": "Bonjour\n"
+      },
+      "files": {
+        "notes.txt": "Bonjour\n"
+      }
+    }
+  },
+  {
+    "id": "git-m1-02-a2",
+    "fixture": "staged",
+    "steps": [
+      {
+        "action": "write",
+        "args": {
+          "path": "notes.txt",
+          "text": "Essai local\n"
+        }
+      }
+    ],
+    "goal": {
+      "files": {
+        "notes.txt": "Essai local\n"
+      },
+      "indexFiles": {
+        "notes.txt": "Version indexée\n"
+      },
+      "headFiles": {
+        "notes.txt": "Bonjour\n"
+      }
+    }
+  },
+  {
+    "id": "git-m1-02-a3",
+    "fixture": "staged",
+    "steps": [
+      {
+        "action": "unstage",
+        "args": {
+          "path": "notes.txt"
+        }
+      }
+    ],
+    "goal": {
+      "indexFiles": {
+        "notes.txt": "Bonjour\n"
+      },
+      "files": {
+        "notes.txt": "Version de travail\n"
+      },
+      "headFiles": {
+        "notes.txt": "Bonjour\n"
+      }
+    }
+  },
+  {
+    "id": "git-m1-03-a1",
+    "fixture": "untracked",
+    "steps": [
+      {
+        "action": "stage",
+        "args": {
+          "path": "notes.txt"
+        }
+      },
+      {
+        "action": "commit",
+        "args": {
+          "message": "Enregistrer les notes"
+        }
+      }
+    ],
+    "goal": {
+      "minCommits": 1,
+      "headMessage": "Enregistrer les notes",
+      "headFiles": {
+        "notes.txt": "Bonjour\n"
+      },
+      "clean": true
+    }
+  },
+  {
+    "id": "git-m1-03-a2",
+    "fixture": "staged",
+    "steps": [
+      {
+        "action": "commit",
+        "args": {
+          "message": "Conserver la version indexée"
+        }
+      }
+    ],
+    "goal": {
+      "minCommits": 2,
+      "headFiles": {
+        "notes.txt": "Version indexée\n"
+      },
+      "files": {
+        "notes.txt": "Version de travail\n"
+      },
+      "headMessage": "Conserver la version indexée"
+    }
+  },
+  {
+    "id": "git-m1-03-a3",
+    "fixture": "first",
+    "steps": [
+      {
+        "action": "write",
+        "args": {
+          "path": "notes.txt",
+          "text": "Bonjour le club\n"
+        }
+      },
+      {
+        "action": "write",
+        "args": {
+          "path": "plan.txt",
+          "text": "Préparer la lecture\n"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": "notes.txt"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": "plan.txt"
+        }
+      },
+      {
+        "action": "commit",
+        "args": {
+          "message": "Préparer la lecture du club"
+        }
+      }
+    ],
+    "goal": {
+      "minCommits": 2,
+      "headMessage": "Préparer la lecture du club",
+      "headFiles": {
+        "notes.txt": "Bonjour le club\n",
+        "plan.txt": "Préparer la lecture\n"
+      },
+      "clean": true
+    }
+  },
+  {
+    "id": "git-m2-01-a1",
+    "fixture": "first",
+    "steps": [
+      {
+        "action": "inspect",
+        "args": {}
+      },
+      {
+        "action": "write",
+        "args": {
+          "path": "README.md",
+          "text": "# Atelier\n\nLecture du samedi\n"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": "README.md"
+        }
+      },
+      {
+        "action": "commit",
+        "args": {
+          "message": "Préciser l’atelier"
+        }
+      }
+    ],
+    "goal": {
+      "minCommits": 2,
+      "headMessage": "Préciser l’atelier",
+      "headFiles": {
+        "README.md": "# Atelier\n\nLecture du samedi\n"
+      },
+      "branch": "main"
+    }
+  },
+  {
+    "id": "git-m2-01-a2",
+    "fixture": "two",
+    "steps": [
+      {
+        "action": "inspect",
+        "args": {}
+      },
+      {
+        "action": "write",
+        "args": {
+          "path": "notes.txt",
+          "text": "Bonjour le club\n"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": "notes.txt"
+        }
+      },
+      {
+        "action": "commit",
+        "args": {
+          "message": "Adapter la salutation"
+        }
+      }
+    ],
+    "goal": {
+      "minCommits": 3,
+      "headMessage": "Adapter la salutation",
+      "headFiles": {
+        "notes.txt": "Bonjour le club\n"
+      }
+    }
+  },
+  {
+    "id": "git-m2-02-a1",
+    "fixture": "modified",
+    "steps": [
+      {
+        "action": "restore",
+        "args": {
+          "path": "notes.txt"
+        }
+      }
+    ],
+    "goal": {
+      "files": {
+        "notes.txt": "Bonjour\n"
+      },
+      "headFiles": {
+        "notes.txt": "Bonjour\n"
+      },
+      "clean": true
+    }
+  },
+  {
+    "id": "git-m2-02-a2",
+    "fixture": "staged",
+    "steps": [
+      {
+        "action": "restore",
+        "args": {
+          "path": "notes.txt"
+        }
+      }
+    ],
+    "goal": {
+      "files": {
+        "notes.txt": "Bonjour\n"
+      },
+      "indexFiles": {
+        "notes.txt": "Version indexée\n"
+      },
+      "headFiles": {
+        "notes.txt": "Bonjour\n"
+      }
+    }
+  },
+  {
+    "id": "git-m2-02-a3",
+    "fixture": "first",
+    "steps": [
+      {
+        "action": "write",
+        "args": {
+          "path": "notes.txt",
+          "text": "Brouillon local\n"
+        }
+      },
+      {
+        "action": "delete",
+        "args": {
+          "path": "README.md"
+        }
+      },
+      {
+        "action": "restore",
+        "args": {
+          "path": "notes.txt"
+        }
+      }
+    ],
+    "goal": {
+      "files": {
+        "notes.txt": "Bonjour\n"
+      },
+      "absentFiles": [
+        "README.md"
+      ],
+      "headFiles": {
+        "README.md": "# Atelier\n"
+      }
+    }
+  },
+  {
+    "id": "git-m2-03-a1",
+    "fixture": "first",
+    "steps": [
+      {
+        "action": "write",
+        "args": {
+          "path": ".gitignore",
+          "text": "cache/\n"
+        }
+      },
+      {
+        "action": "write",
+        "args": {
+          "path": "cache/temp.txt",
+          "text": "temporaire\n"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": ".gitignore"
+        }
+      },
+      {
+        "action": "commit",
+        "args": {
+          "message": "Ignorer le cache"
+        }
+      }
+    ],
+    "goal": {
+      "ignored": [
+        "cache/temp.txt"
+      ],
+      "headFiles": {
+        ".gitignore": "cache/\n"
+      },
+      "headMessage": "Ignorer le cache",
+      "clean": true
+    }
+  },
+  {
+    "id": "git-m2-03-a2",
+    "fixture": "first",
+    "steps": [
+      {
+        "action": "write",
+        "args": {
+          "path": "secrets-demo.txt",
+          "text": "JETON_FICTIF_INUTILISABLE\n"
+        }
+      },
+      {
+        "action": "write",
+        "args": {
+          "path": ".gitignore",
+          "text": "secrets-demo.txt\n"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": ".gitignore"
+        }
+      },
+      {
+        "action": "commit",
+        "args": {
+          "message": "Exclure les secrets fictifs"
+        }
+      }
+    ],
+    "goal": {
+      "ignored": [
+        "secrets-demo.txt"
+      ],
+      "files": {
+        "secrets-demo.txt": "JETON_FICTIF_INUTILISABLE\n"
+      },
+      "headFiles": {
+        ".gitignore": "secrets-demo.txt\n"
+      },
+      "headMessage": "Exclure les secrets fictifs"
+    }
+  },
+  {
+    "id": "git-m2-03-a3",
+    "fixture": "ignored",
+    "steps": [
+      {
+        "action": "write",
+        "args": {
+          "path": ".gitignore",
+          "text": "cache/\nnotes.txt\n"
+        }
+      },
+      {
+        "action": "write",
+        "args": {
+          "path": "notes.txt",
+          "text": "Contenu suivi\n"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": ".gitignore"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": "notes.txt"
+        }
+      },
+      {
+        "action": "commit",
+        "args": {
+          "message": "Ignorer sans masquer le suivi"
+        }
+      }
+    ],
+    "goal": {
+      "headFiles": {
+        ".gitignore": "cache/\nnotes.txt\n",
+        "notes.txt": "Contenu suivi\n"
+      },
+      "headMessage": "Ignorer sans masquer le suivi",
+      "clean": true
+    }
+  },
+  {
+    "id": "git-m3-01-a1",
+    "fixture": "first",
+    "steps": [
+      {
+        "action": "branch",
+        "args": {
+          "branch": "contact"
+        }
+      }
+    ],
+    "goal": {
+      "branch": "main",
+      "branches": [
+        "main",
+        "contact"
+      ],
+      "files": {
+        "notes.txt": "Bonjour\n"
+      },
+      "clean": true
+    }
+  },
+  {
+    "id": "git-m3-01-a2",
+    "fixture": "first",
+    "steps": [
+      {
+        "action": "branch",
+        "args": {
+          "branch": "contact"
+        }
+      },
+      {
+        "action": "checkout",
+        "args": {
+          "branch": "contact"
+        }
+      }
+    ],
+    "goal": {
+      "branch": "contact",
+      "branches": [
+        "main",
+        "contact"
+      ],
+      "clean": true
+    }
+  },
+  {
+    "id": "git-m3-01-a3",
+    "fixture": "feature",
+    "steps": [
+      {
+        "action": "checkout",
+        "args": {
+          "branch": "main"
+        }
+      }
+    ],
+    "goal": {
+      "branch": "main",
+      "files": {
+        "notes.txt": "Bonjour\n"
+      },
+      "absentFiles": [
+        "projet.txt"
+      ],
+      "clean": true
+    }
+  },
+  {
+    "id": "git-m3-02-a1",
+    "fixture": "first",
+    "steps": [
+      {
+        "action": "branch",
+        "args": {
+          "branch": "contenu"
+        }
+      },
+      {
+        "action": "checkout",
+        "args": {
+          "branch": "contenu"
+        }
+      },
+      {
+        "action": "write",
+        "args": {
+          "path": "guide.txt",
+          "text": "Atelier local\n"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": "guide.txt"
+        }
+      },
+      {
+        "action": "commit",
+        "args": {
+          "message": "Décrire l’atelier"
+        }
+      }
+    ],
+    "goal": {
+      "branch": "contenu",
+      "headFiles": {
+        "guide.txt": "Atelier local\n"
+      },
+      "headMessage": "Décrire l’atelier",
+      "clean": true
+    }
+  },
+  {
+    "id": "git-m3-02-a2",
+    "fixture": "feature",
+    "steps": [
+      {
+        "action": "write",
+        "args": {
+          "path": "projet.txt",
+          "text": "Projet\nAtelier découverte\n"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": "projet.txt"
+        }
+      },
+      {
+        "action": "commit",
+        "args": {
+          "message": "Préciser le projet"
+        }
+      }
+    ],
+    "goal": {
+      "branch": "idee",
+      "headFiles": {
+        "projet.txt": "Projet\nAtelier découverte\n"
+      },
+      "headMessage": "Préciser le projet",
+      "clean": true
+    }
+  },
+  {
+    "id": "git-m3-02-a3",
+    "fixture": "first",
+    "steps": [
+      {
+        "action": "branch",
+        "args": {
+          "branch": "contenu"
+        }
+      },
+      {
+        "action": "checkout",
+        "args": {
+          "branch": "contenu"
+        }
+      },
+      {
+        "action": "write",
+        "args": {
+          "path": "guide.txt",
+          "text": "Atelier local\n"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": "guide.txt"
+        }
+      },
+      {
+        "action": "commit",
+        "args": {
+          "message": "Décrire l’atelier"
+        }
+      },
+      {
+        "action": "checkout",
+        "args": {
+          "branch": "main"
+        }
+      }
+    ],
+    "goal": {
+      "branch": "main",
+      "branches": [
+        "main",
+        "contenu"
+      ],
+      "absentFiles": [
+        "guide.txt"
+      ],
+      "headFiles": {
+        "notes.txt": "Bonjour\n"
+      }
+    }
+  },
+  {
+    "id": "git-m3-03-a1",
+    "fixture": "fast-forward",
+    "steps": [
+      {
+        "action": "merge",
+        "args": {
+          "branch": "idee"
+        }
+      }
+    ],
+    "goal": {
+      "branch": "main",
+      "headFiles": {
+        "projet.txt": "Projet\n"
+      },
+      "headMessage": "Idée",
+      "clean": true
+    }
+  },
+  {
+    "id": "git-m3-03-a2",
+    "fixture": "first",
+    "steps": [
+      {
+        "action": "branch",
+        "args": {
+          "branch": "documentation"
+        }
+      },
+      {
+        "action": "checkout",
+        "args": {
+          "branch": "documentation"
+        }
+      },
+      {
+        "action": "write",
+        "args": {
+          "path": "parcours.txt",
+          "text": "Lire\nPratiquer\n"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": "parcours.txt"
+        }
+      },
+      {
+        "action": "commit",
+        "args": {
+          "message": "Documenter le parcours"
+        }
+      },
+      {
+        "action": "checkout",
+        "args": {
+          "branch": "main"
+        }
+      },
+      {
+        "action": "merge",
+        "args": {
+          "branch": "documentation"
+        }
+      }
+    ],
+    "goal": {
+      "branch": "main",
+      "headFiles": {
+        "parcours.txt": "Lire\nPratiquer\n"
+      },
+      "headMessage": "Documenter le parcours",
+      "clean": true
+    }
+  },
+  {
+    "id": "git-m4-01-a1",
+    "fixture": "conflict",
+    "steps": [
+      {
+        "action": "merge",
+        "args": {
+          "branch": "idee"
+        }
+      },
+      {
+        "action": "write",
+        "args": {
+          "path": "notes.txt",
+          "text": "Version commune\n"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": "notes.txt"
+        }
+      }
+    ],
+    "goal": {
+      "branch": "main",
+      "files": {
+        "notes.txt": "Version commune\n"
+      },
+      "indexFiles": {
+        "notes.txt": "Version commune\n"
+      },
+      "headFiles": {
+        "notes.txt": "Version main\n"
+      }
+    }
+  },
+  {
+    "id": "git-m4-01-a2",
+    "fixture": "conflict",
+    "steps": [
+      {
+        "action": "merge",
+        "args": {
+          "branch": "idee"
+        }
+      },
+      {
+        "action": "write",
+        "args": {
+          "path": "notes.txt",
+          "text": "Version commune\n"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": "notes.txt"
+        }
+      },
+      {
+        "action": "commit",
+        "args": {
+          "message": "Résoudre le texte partagé"
+        }
+      }
+    ],
+    "goal": {
+      "headFiles": {
+        "notes.txt": "Version commune\n"
+      },
+      "headMessage": "Résoudre le texte partagé",
+      "mergeParents": 2,
+      "clean": true
+    }
+  },
+  {
+    "id": "git-m4-01-a3",
+    "fixture": "conflict",
+    "steps": [
+      {
+        "action": "merge",
+        "args": {
+          "branch": "idee"
+        }
+      },
+      {
+        "action": "write",
+        "args": {
+          "path": "notes.txt",
+          "text": "Version main\nVersion idée\n"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": "notes.txt"
+        }
+      },
+      {
+        "action": "commit",
+        "args": {
+          "message": "Réunir les formulations"
+        }
+      }
+    ],
+    "goal": {
+      "headFiles": {
+        "notes.txt": "Version main\nVersion idée\n"
+      },
+      "headMessage": "Réunir les formulations",
+      "mergeParents": 2,
+      "clean": true
+    }
+  },
+  {
+    "id": "git-m4-02-a1",
+    "fixture": "first",
+    "steps": [
+      {
+        "action": "branch",
+        "args": {
+          "branch": "proposition"
+        }
+      },
+      {
+        "action": "checkout",
+        "args": {
+          "branch": "proposition"
+        }
+      },
+      {
+        "action": "write",
+        "args": {
+          "path": "README.md",
+          "text": "# Proposition d’atelier\n\nObjectif : préciser le programme fictif.\nVérification : relire les fichiers et le statut.\nLimite : préparation locale, sans publication GitHub.\n"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": "README.md"
+        }
+      },
+      {
+        "action": "commit",
+        "args": {
+          "message": "Documenter une proposition"
+        }
+      }
+    ],
+    "goal": {
+      "branch": "proposition",
+      "headFiles": {
+        "README.md": "# Proposition d’atelier\n\nObjectif : préciser le programme fictif.\nVérification : relire les fichiers et le statut.\nLimite : préparation locale, sans publication GitHub.\n"
+      },
+      "headMessage": "Documenter une proposition",
+      "clean": true
+    }
+  },
+  {
+    "id": "git-m4-02-a2",
+    "fixture": "feature",
+    "steps": [
+      {
+        "action": "write",
+        "args": {
+          "path": "README.md",
+          "text": "# Revue locale\n\nPérimètre : projet.txt uniquement.\nAucun envoi réseau réalisé.\n"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": "README.md"
+        }
+      },
+      {
+        "action": "commit",
+        "args": {
+          "message": "Décrire le périmètre"
+        }
+      }
+    ],
+    "goal": {
+      "branch": "idee",
+      "headFiles": {
+        "README.md": "# Revue locale\n\nPérimètre : projet.txt uniquement.\nAucun envoi réseau réalisé.\n",
+        "projet.txt": "Projet\n"
+      },
+      "headMessage": "Décrire le périmètre",
+      "clean": true
+    }
+  },
+  {
+    "id": "git-m4-03-a1",
+    "fixture": "empty",
+    "steps": [
+      {
+        "action": "init",
+        "args": {}
+      },
+      {
+        "action": "write",
+        "args": {
+          "path": "README.md",
+          "text": "# Atelier collectif\n"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": "README.md"
+        }
+      },
+      {
+        "action": "commit",
+        "args": {
+          "message": "Présenter l’atelier"
+        }
+      }
+    ],
+    "goal": {
+      "branch": "main",
+      "headFiles": {
+        "README.md": "# Atelier collectif\n"
+      },
+      "headMessage": "Présenter l’atelier",
+      "clean": true
+    }
+  },
+  {
+    "id": "git-m4-03-a2",
+    "fixture": "fast-forward",
+    "steps": [
+      {
+        "action": "merge",
+        "args": {
+          "branch": "idee"
+        }
+      },
+      {
+        "action": "write",
+        "args": {
+          "path": "README.md",
+          "text": "# Atelier collectif\n\nParcours : lire puis pratiquer.\n"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": "README.md"
+        }
+      },
+      {
+        "action": "commit",
+        "args": {
+          "message": "Documenter le parcours intégré"
+        }
+      }
+    ],
+    "goal": {
+      "branch": "main",
+      "headFiles": {
+        "README.md": "# Atelier collectif\n\nParcours : lire puis pratiquer.\n",
+        "projet.txt": "Projet\n"
+      },
+      "headMessage": "Documenter le parcours intégré",
+      "clean": true
+    }
+  },
+  {
+    "id": "git-m4-03-a3",
+    "fixture": "conflict",
+    "steps": [
+      {
+        "action": "merge",
+        "args": {
+          "branch": "idee"
+        }
+      },
+      {
+        "action": "write",
+        "args": {
+          "path": "notes.txt",
+          "text": "Décision commune : préparer un atelier découverte.\n"
+        }
+      },
+      {
+        "action": "write",
+        "args": {
+          "path": "projet.txt",
+          "text": "Prochaine étape : relire le programme.\n"
+        }
+      },
+      {
+        "action": "write",
+        "args": {
+          "path": "README.md",
+          "text": "# Atelier collectif\n\nCe dépôt décrit un atelier fictif.\n\n## Fichiers\n- notes.txt : décisions communes.\n- projet.txt : prochaine étape locale.\n\n## Vérification\nDépôt propre et fusion à deux parents contrôlés.\n\n## Limite\nAucune publication GitHub n’a été réalisée.\n"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": "notes.txt"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": "projet.txt"
+        }
+      },
+      {
+        "action": "stage",
+        "args": {
+          "path": "README.md"
+        }
+      },
+      {
+        "action": "commit",
+        "args": {
+          "message": "Consolider l’atelier partagé"
+        }
+      }
+    ],
+    "goal": {
+      "headFiles": {
+        "notes.txt": "Décision commune : préparer un atelier découverte.\n",
+        "projet.txt": "Prochaine étape : relire le programme.\n",
+        "README.md": "# Atelier collectif\n\nCe dépôt décrit un atelier fictif.\n\n## Fichiers\n- notes.txt : décisions communes.\n- projet.txt : prochaine étape locale.\n\n## Vérification\nDépôt propre et fusion à deux parents contrôlés.\n\n## Limite\nAucune publication GitHub n’a été réalisée.\n"
+      },
+      "headMessage": "Consolider l’atelier partagé",
+      "mergeParents": 2,
+      "clean": true
+    }
+  }
+]

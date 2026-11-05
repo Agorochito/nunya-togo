@@ -1,0 +1,82 @@
+[
+  {
+    "type": "lab",
+    "title_fr": "Avancer main vers idee",
+    "instruction_fr": "Le scénario commence sur main avec une proposition prête sur idee. Fusionne idee dans la branche courante. Vérifie projet.txt contenant Projet avec un retour à la ligne et garde le dépôt propre.",
+    "fixture": "fast-forward",
+    "goal": {
+      "branch": "main",
+      "headFiles": {
+        "projet.txt": "Projet\n"
+      },
+      "headMessage": "Idée",
+      "clean": true
+    },
+    "hints": [
+      "Quelle branche est la destination de la fusion ?",
+      "main est déjà sélectionnée dans ce scénario.",
+      "Demande Fusionner la branche idee, puis inspecte le commit courant."
+    ],
+    "explanation_fr": "main rejoint le commit Idée existant. Le nom de ce commit n’est pas remplacé par un message de fusion inventé.",
+    "id": "git-m3-03-a1"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Préparer puis intégrer un parcours",
+    "instruction_fr": "Crée documentation et sélectionne-la. Écris parcours.txt : Lire puis Pratiquer, une ligne par mot et un retour final. Indexe, committe avec Documenter le parcours, reviens sur main et fusionne documentation. Termine propre sur main.",
+    "fixture": "first",
+    "goal": {
+      "branch": "main",
+      "headFiles": {
+        "parcours.txt": "Lire\nPratiquer\n"
+      },
+      "headMessage": "Documenter le parcours",
+      "clean": true
+    },
+    "hints": [
+      "La nouvelle ligne reçoit d’abord le vrai commit.",
+      "Reviens sur main avant d’intégrer la proposition.",
+      "Aucune divergence n’est introduite sur main dans cette activité."
+    ],
+    "explanation_fr": "Le contenu et le message observés sont ceux du commit préparé sur documentation puis atteint par main.",
+    "id": "git-m3-03-a2"
+  },
+  {
+    "type": "qcm",
+    "title_fr": "Lire la relation d’ancêtre",
+    "instruction_fr": "Dans le scénario d’avance rapide, compare les positions avant l’intégration.",
+    "question": "Pourquoi main peut-elle rejoindre directement idee ?",
+    "options": [
+      "Son commit est déjà un ancêtre du commit de idee.",
+      "Le nom idee vient après main dans l’alphabet.",
+      "Git considère toujours main comme prioritaire."
+    ],
+    "answer": 0,
+    "hints": [
+      "Les noms ne décident pas de la parenté.",
+      "Remonte les liens de parents depuis Idée.",
+      "Tu retrouves Départ, où main se trouve encore."
+    ],
+    "explanation_fr": "La possibilité d’avance rapide vient du graphe des commits, pas de l’orthographe des branches.",
+    "id": "git-m3-03-a3"
+  },
+  {
+    "type": "qcm",
+    "title_fr": "Expliquer le résultat de l’intégration",
+    "instruction_fr": "Observe le commit courant après l’avance rapide.",
+    "question": "Pourquoi l’historique ne contient-il pas un nouveau commit de fusion ici ?",
+    "options": [
+      "Le contenu n’a pas été intégré.",
+      "Le déplacement vers le descendant existant suffit à cette intégration.",
+      "Les commits de idee ont été supprimés."
+    ],
+    "answer": 1,
+    "hints": [
+      "main était seulement en retard dans la même lignée.",
+      "Le commit Idée contenait déjà le résultat demandé.",
+      "L’opération peut déplacer la référence sans créer de commit."
+    ],
+    "explanation_fr": "Une avance rapide réussie est une intégration réelle même sans nouveau commit à plusieurs parents.",
+    "id": "git-m3-03-a4"
+  }
+]

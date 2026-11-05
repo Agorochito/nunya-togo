@@ -1,0 +1,89 @@
+[
+  {
+    "type": "lab",
+    "title_fr": "Décrire sur une nouvelle branche",
+    "instruction_fr": "Crée contenu puis bascule dessus. Écris guide.txt avec exactement Atelier local suivi d’un retour à la ligne. Indexe ce fichier et crée le commit Décrire l’atelier. Reste sur contenu avec un dépôt propre.",
+    "fixture": "first",
+    "goal": {
+      "branch": "contenu",
+      "headFiles": {
+        "guide.txt": "Atelier local\n"
+      },
+      "headMessage": "Décrire l’atelier",
+      "clean": true
+    },
+    "hints": [
+      "La branche doit être sélectionnée avant le travail.",
+      "Après l’écriture, indexe guide.txt.",
+      "Crée le commit avec le message exact puis vérifie l’état."
+    ],
+    "explanation_fr": "Le fichier est réellement dans le commit courant de contenu ; une écriture non indexée ne suffirait pas.",
+    "id": "git-m3-02-a1"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Préciser une proposition existante",
+    "instruction_fr": "Le scénario commence sur idee. Remplace projet.txt par deux lignes : Projet puis Atelier découverte, avec un retour à la ligne après chacune. Indexe et committe avec Préciser le projet. Reste sur idee, propre.",
+    "fixture": "feature",
+    "goal": {
+      "branch": "idee",
+      "headFiles": {
+        "projet.txt": "Projet\nAtelier découverte\n"
+      },
+      "headMessage": "Préciser le projet",
+      "clean": true
+    },
+    "hints": [
+      "Le fichier est déjà suivi sur cette branche.",
+      "Écris les deux lignes, puis prépare leur nouvelle version.",
+      "Le message doit annoncer la précision du projet."
+    ],
+    "explanation_fr": "Le nouveau commit prolonge la proposition ; il ne déplace pas automatiquement main.",
+    "id": "git-m3-02-a2"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Prouver l’isolation en revenant sur main",
+    "instruction_fr": "Dans ce dépôt indépendant, crée contenu et bascule dessus. Écris guide.txt : Atelier local avec un retour à la ligne. Indexe et committe avec Décrire l’atelier, puis reviens sur main. guide.txt doit être absent de main et notes.txt inchangé.",
+    "fixture": "first",
+    "goal": {
+      "branch": "main",
+      "branches": [
+        "main",
+        "contenu"
+      ],
+      "absentFiles": [
+        "guide.txt"
+      ],
+      "headFiles": {
+        "notes.txt": "Bonjour\n"
+      }
+    },
+    "hints": [
+      "La preuve demande d’abord un vrai commit sur contenu.",
+      "Un changement non enregistré n’illustre pas cette isolation.",
+      "Après le commit, bascule vers main et inspecte sa vue."
+    ],
+    "explanation_fr": "La branche de proposition existe encore, tandis que main n’a pas été intégrée à cette nouvelle ligne.",
+    "id": "git-m3-02-a3"
+  },
+  {
+    "type": "qcm",
+    "title_fr": "Relier état propre et qualité",
+    "instruction_fr": "L’état technique du dépôt et la qualité du contenu sont deux observations différentes.",
+    "question": "Après ton commit, l’état est propre. Que peux-tu en déduire ?",
+    "options": [
+      "Aucun changement local attendu par le contrôle ne reste à préparer, mais une relecture demeure nécessaire.",
+      "Le texte est forcément correct et approuvé.",
+      "La proposition est déjà publiée en ligne."
+    ],
+    "answer": 0,
+    "hints": [
+      "Que compare l’état du dépôt ?",
+      "Un texte peut être committé tout en contenant une faute.",
+      "La propreté ne remplace ni test ni revue."
+    ],
+    "explanation_fr": "Un dépôt propre décrit une relation entre fichiers, index et commit ; il ne certifie pas le fond de la modification.",
+    "id": "git-m3-02-a4"
+  }
+]

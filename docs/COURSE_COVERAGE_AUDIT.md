@@ -1,4 +1,4 @@
-# Couverture des cours — livraison 5.5.0, 4 novembre 2026
+# Couverture des cours — livraison 5.5.0, 5 novembre 2026
 
 Le prompt maître impose une réalisation par lots, avec une cible finale de 72 cours par niveau et des séries complémentaires. Cette livraison ne termine pas cette cible. L’audit initial est conservé dans [BASELINE_COURSE_AUDIT_5.2.1.md](BASELINE_COURSE_AUDIT_5.2.1.md).
 
@@ -17,16 +17,19 @@ Les 42 unités historiques de découverte possèdent maintenant 91 modules nomm�
 
 Le niveau 0 « Découverte du numérique » ajouté par le collaborateur est conservé : 4 modules, 20 leçons et 80 activités. La bibliothèque en lecture libre, les pages Études à l’étranger et Opportunités et le panneau Nunya Aide existants sont préservés ; aucune activation de service IA ni modification de secret n’a été effectuée. Le questionnaire devient facultatif et les liens partagés restent ouverts. Les sauvegardes complètes restaurent aussi Python et Découverte, sans prétendre avoir téléchargé des fichiers sur un nouvel appareil.
 
+Le socle Git/GitHub compte séparément 4 modules, 12 leçons, 48 activités (32 ateliers Git exécutés et 16 QCM), 36 questions de compréhension et 24 exemples. Le moteur local `isomorphic-git` et LightningFS conserve de vrais dépôts dans IndexedDB. Les opérations de branche, index, commit, fusion et résolution de conflit sont vérifiées sur leurs états réels. L’archive Git transfère aussi les objets et fichiers ; la sauvegarde générale conserve les validations et les positions. La publication sur GitHub n’est ni simulée ni validée hors ligne. Tout reste en relecture.
+
 ## Ce qui reste à construire
 
-Git/GitHub et SQL ont toujours des introductions courtes, avec modules et exercices de compréhension ; leurs cours approfondis restent à écrire. Node.js, HTTP et les autres familles ne possèdent pas encore leurs cours complets. Aucun cours intermédiaire ou avancé complet n’est annoncé comme disponible. Le socle JavaScript synchrone est rédigé ; DOM, événements et asynchronisme appartiennent à une suite distincte.
+SQL possède toujours une introduction courte ; son socle approfondi reste à écrire. Git/GitHub dispose désormais du socle débutant décrit ci-dessus, sans niveau intermédiaire ou avancé annoncé. Node.js, HTTP et les autres familles ne possèdent pas encore leurs cours complets. Aucun cours intermédiaire ou avancé complet n’est annoncé comme disponible. Le socle JavaScript synchrone est rédigé ; DOM, événements et asynchronisme appartiennent à une suite distincte.
 
-La suite doit produire et éprouver les socles SQL et Git/GitHub, puis les séries DOM, événements, asynchronisme, HTTP/API et Node.js après leurs prérequis et avec un moteur réel adapté. Les niveaux intermédiaire et avancé doivent avoir leurs propres leçons, projets et évaluations ; une sélection de niveau ne doit pas réutiliser artificiellement le même contenu. Les autres familles restent suivies dans la matrice JSON de 72 entrées, avec les 20 séries complémentaires. Aucun cours vide n’est ajouté pour augmenter le compteur.
+La suite doit produire et éprouver le socle SQL, puis les séries DOM, événements, asynchronisme, HTTP/API et Node.js après leurs prérequis et avec un moteur réel adapté. Les niveaux intermédiaire et avancé doivent avoir leurs propres leçons, projets et évaluations ; une sélection de niveau ne doit pas réutiliser artificiellement le même contenu. Les autres familles restent suivies dans la matrice JSON de 72 entrées, avec les 20 séries complémentaires. Aucun cours vide n’est ajouté pour augmenter le compteur.
 
 ## Vérifications et limites
 
+- Git : 32 situations initiales rejetées, 32 objectifs atteints par 101 opérations réelles ; reprise, archives et restauration invalide sans écraser le dépôt vérifiées. Les 48 activités et 36 questions parcourues sur 360 et 1440 px, y compris à froid hors ligne ; axe : zéro violation sur les vues testées.
 - Audit initial de 78 écrans de production avant les changements.
-- 152 tests unitaires ; schémas, ordre des prérequis, propriété des modules et liens internes contrôlés.
+- 156 tests unitaires ; schémas, ordre des prérequis, propriété des modules et liens internes contrôlés.
 - 743 cas Python en CPython, exemples et solutions ; 274 cas JavaScript dans le même protocole que le Worker.
 - 96 solutions HTML/CSS acceptées et 96 codes de départ rejetés par le vrai vérificateur de navigateur.
 - 42 unités / 182 leçons / 562 questions parcourues sur 360 et 1440 px ; aucun saut vers une leçon suivante avant la fin des questions.

@@ -1,0 +1,88 @@
+[
+  {
+    "type": "lab",
+    "title_fr": "Préparer la résolution dans l’index",
+    "instruction_fr": "Depuis main, fusionne idee. Lis le conflit puis remplace notes.txt par exactement Version commune suivi d’un retour à la ligne. Indexe notes.txt mais ne crée pas encore de commit. HEAD doit encore contenir Version main, tandis que fichier et index contiennent la résolution.",
+    "fixture": "conflict",
+    "goal": {
+      "branch": "main",
+      "files": {
+        "notes.txt": "Version commune\n"
+      },
+      "indexFiles": {
+        "notes.txt": "Version commune\n"
+      },
+      "headFiles": {
+        "notes.txt": "Version main\n"
+      }
+    },
+    "hints": [
+      "La première action doit déclencher la fusion de idee.",
+      "Après lecture, réécris le fichier sans marqueurs puis indexe-le.",
+      "Arrête-toi avant le commit : HEAD et l’index doivent encore différer."
+    ],
+    "explanation_fr": "L’activité sépare la résolution préparée de la résolution enregistrée. Les versions du fichier, de l’index et de HEAD sont contrôlées.",
+    "id": "git-m4-01-a1"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Enregistrer la décision commune",
+    "instruction_fr": "Dans ce dépôt indépendant, fusionne idee depuis main. Remplace notes.txt par Version commune avec un retour à la ligne, indexe et crée le commit Résoudre le texte partagé. Le résultat doit être une fusion à deux parents et le dépôt propre.",
+    "fixture": "conflict",
+    "goal": {
+      "headFiles": {
+        "notes.txt": "Version commune\n"
+      },
+      "headMessage": "Résoudre le texte partagé",
+      "mergeParents": 2,
+      "clean": true
+    },
+    "hints": [
+      "Ne commence pas par un commit ordinaire : lance la fusion.",
+      "L’édition et l’indexation doivent précéder le commit final.",
+      "Le contrôle des deux parents prouve la réunion des deux lignes."
+    ],
+    "explanation_fr": "Une résolution complète lie les deux historiques et enregistre le contenu choisi, sans laisser de travail local en attente.",
+    "id": "git-m4-01-a2"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Appliquer une autre décision explicite",
+    "instruction_fr": "Fusionne idee depuis main. La consigne choisit ici de conserver deux lignes, dans cet ordre : Version main puis Version idée, avec un retour après chacune et sans marqueurs. Indexe et committe avec Réunir les formulations. Termine propre avec un commit à deux parents.",
+    "fixture": "conflict",
+    "goal": {
+      "headFiles": {
+        "notes.txt": "Version main\nVersion idée\n"
+      },
+      "headMessage": "Réunir les formulations",
+      "mergeParents": 2,
+      "clean": true
+    },
+    "hints": [
+      "Une résolution peut combiner si la règle le demande.",
+      "Le fichier final doit contenir seulement les deux lignes annoncées.",
+      "Indexe le résultat relu puis termine la fusion."
+    ],
+    "explanation_fr": "Le choix de conserver les deux formulations vient de la consigne, pas d’une règle automatique de Git.",
+    "id": "git-m4-01-a3"
+  },
+  {
+    "type": "qcm",
+    "title_fr": "Expliquer le rôle des marqueurs",
+    "instruction_fr": "La résolution est une décision sur le contenu, suivie d’un enregistrement.",
+    "question": "Que faut-il faire avec les marqueurs après avoir choisi la version finale ?",
+    "options": [
+      "Les laisser pour que le document reste toujours en conflit.",
+      "Les supprimer sans lire les deux versions puis déclarer la fusion terminée.",
+      "Les retirer, relire le résultat, indexer puis terminer la fusion par un commit."
+    ],
+    "answer": 2,
+    "hints": [
+      "Les marqueurs signalent les passages à examiner.",
+      "Le texte final doit exprimer une décision.",
+      "Édition, indexation et commit restent des étapes distinctes."
+    ],
+    "explanation_fr": "Supprimer des signes ne suffit pas : il faut une résolution pertinente et son enregistrement dans l’historique.",
+    "id": "git-m4-01-a4"
+  }
+]

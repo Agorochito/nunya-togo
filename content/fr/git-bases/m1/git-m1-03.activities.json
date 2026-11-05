@@ -1,0 +1,87 @@
+[
+  {
+    "type": "lab",
+    "title_fr": "Créer le premier commit",
+    "instruction_fr": "Ajoute notes.txt à l’index puis crée le commit Enregistrer les notes. Garde le texte Bonjour avec son retour à la ligne final.",
+    "fixture": "untracked",
+    "goal": {
+      "minCommits": 1,
+      "headMessage": "Enregistrer les notes",
+      "headFiles": {
+        "notes.txt": "Bonjour\n"
+      },
+      "clean": true
+    },
+    "hints": [
+      "Le fichier commence non suivi.",
+      "Prépare-le dans l’index avant de créer le commit.",
+      "Après enregistrement, vérifie le message et l’état propre."
+    ],
+    "explanation_fr": "L’activité contrôle le vrai commit, son contenu et l’absence de modification restante.",
+    "id": "git-m1-03-a1"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Enregistrer la sélection antérieure",
+    "instruction_fr": "Sans réindexer le fichier du scénario staged, crée le commit Conserver la version indexée. Ne modifie pas le fichier de travail.",
+    "fixture": "staged",
+    "goal": {
+      "minCommits": 2,
+      "headFiles": {
+        "notes.txt": "Version indexée\n"
+      },
+      "files": {
+        "notes.txt": "Version de travail\n"
+      },
+      "headMessage": "Conserver la version indexée"
+    },
+    "hints": [
+      "Le dossier de travail et l’index ont déjà des textes différents.",
+      "L’action de commit utilise la préparation existante.",
+      "Le fichier ouvert doit conserver Version de travail après le commit."
+    ],
+    "explanation_fr": "Le résultat démontre que le commit ne prend pas automatiquement la dernière édition locale.",
+    "id": "git-m1-03-a2"
+  },
+  {
+    "type": "lab",
+    "title_fr": "Conserver deux fichiers cohérents",
+    "instruction_fr": "À partir du scénario first, écris notes.txt avec Bonjour le club et plan.txt avec Préparer la lecture, chaque texte sur sa ligne avec un retour final. Indexe les deux puis crée le commit Préparer la lecture du club.",
+    "fixture": "first",
+    "goal": {
+      "minCommits": 2,
+      "headMessage": "Préparer la lecture du club",
+      "headFiles": {
+        "notes.txt": "Bonjour le club\n",
+        "plan.txt": "Préparer la lecture\n"
+      },
+      "clean": true
+    },
+    "hints": [
+      "Les deux textes appartiennent à la même intention.",
+      "Prépare les deux chemins avant l’enregistrement.",
+      "Vérifie aussi que le fichier nouveau a rejoint le commit."
+    ],
+    "explanation_fr": "Un seul enregistrement peut conserver plusieurs fichiers au service d’un changement cohérent.",
+    "id": "git-m1-03-a3"
+  },
+  {
+    "type": "qcm",
+    "title_fr": "Interpréter un statut propre",
+    "instruction_fr": "Choisis la réponse qui correspond au fonctionnement décrit.",
+    "question": "Après un commit, le statut est propre. Quelle conclusion est justifiée ?",
+    "options": [
+      "Le texte a forcément été relu par un spécialiste.",
+      "Il ne reste pas de différence Git signalée dans ce scénario.",
+      "Le programme a été publié sur GitHub."
+    ],
+    "answer": 1,
+    "hints": [
+      "Le statut décrit des états de fichiers.",
+      "Il ne réalise pas une relecture humaine ou une publication.",
+      "La vérification du fond demande d’autres preuves."
+    ],
+    "explanation_fr": "La propreté du dépôt ne certifie pas la qualité du contenu.",
+    "id": "git-m1-03-a4"
+  }
+]

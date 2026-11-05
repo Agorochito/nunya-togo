@@ -1,10 +1,10 @@
 /* Topic-first, manually selected course references and existing licensed collections. */
 let aSkills=null,aCollection=null,aCollectionPage=0,aExtraLoaded=false,aCollectionUnit='all';
 async function aExtraCourses(){if(aExtraLoaded)return;const rows=await aFetch('./data/skill_courses.json');for(const c of rows)if(!courses.some(x=>x.id===c.id))courses.push(c);aExtraLoaded=true}
-async function aLoadSkills(){await aExtraCourses();if(!aSkills)aSkills=await aFetch('./data/skill_catalog.json');return aSkills}
+async function aLoadSkills(){await aExtraCourses();if(!aSkills)aSkills=await aFetch('./data/skill_catalog.json');if(!currCatalogue)currCatalogue=await aFetch('./data/curriculum/index.json');return aSkills}
 // Pages de la bibliothèque (compétences, thèmes, collections, tous les cours) : runtime/library-views.js, chargé à la demande et précaché par le service worker.
 let aLib=null,aLibPromise=null;
-function aLibLoad(){return aLibPromise||(aLibPromise=import(new URL('./runtime/library-views.js',document.baseURI).href).then(m=>{aLib=m.init({skills:()=>aSkills,collection:()=>aCollection,collectionPage:()=>aCollectionPage,collectionUnit:()=>aCollectionUnit,courses:()=>courses,resourceCard:r=>resourceCard(r),esc,at,aLink,aPageHead,icon,getCourse,aPythonCourseCard,aLabel})}).catch(e=>{aLibPromise=null;throw e}))}
+function aLibLoad(){return aLibPromise||(aLibPromise=import(new URL('./runtime/library-views.js',document.baseURI).href).then(m=>{aLib=m.init({skills:()=>aSkills,programmes:()=>currCatalogue,collection:()=>aCollection,collectionPage:()=>aCollectionPage,collectionUnit:()=>aCollectionUnit,courses:()=>courses,resourceCard:r=>resourceCard(r),esc,at,aLink,aPageHead,icon,getCourse,aPythonCourseCard,aLabel})}).catch(e=>{aLibPromise=null;throw e}))}
 const aLibWait=()=>`<p role="status">${esc(at('load'))}</p>`;
 function aSkillHub(){return aLib?aLib.hub():aLibWait()}
 function aSkillTopic(id){return aLib?aLib.topic(id):aLibWait()}

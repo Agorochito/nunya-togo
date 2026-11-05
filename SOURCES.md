@@ -50,3 +50,9 @@ Les nouveaux textes, exemples, exercices et projets sont originaux Nunya, en fra
 - Iframes et restrictions : https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/iframe ; Workers : https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers . Le vérificateur HTML/CSS utilise un script fixe externe sous CSP et une iframe sans accès à l’origine parent. Le code HTML/CSS de l’élève n’exécute pas de JavaScript.
 
 Les données de projets (prix, stocks, réservations et formulaires d’association) sont fictives. Les tests natifs et de navigateur apportent une vérification technique ; ils ne remplacent pas une relecture pédagogique indépendante.
+
+## Atelier Git — 5 novembre 2026
+
+12 leçons et activités originales Nunya, en français et en relecture. Références primaires conservées dans les leçons : [livre Git en français](https://git-scm.com/book/fr/v2), [documentation Git](https://git-scm.com/docs) et [documentation GitHub](https://docs.github.com/fr). Aucun manuel tiers n’est copié.
+
+Le moteur utilise `isomorphic-git@1.44.10`, `@isomorphic-git/lightning-fs@4.10.5` et `buffer@6.0.3`, épinglés et regroupés localement avec leurs dépendances. Les notices complètes sont générées dans `dist/runtime/git-THIRD-PARTY.txt`. Le moteur ne contacte ni GitHub ni un serveur Git ; les dépôts sont isolés dans le stockage du navigateur. Sources : https://github.com/isomorphic-git/isomorphic-git et https://github.com/isomorphic-git/lightning-fs .
