@@ -1,0 +1,154 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une fiche par membre confirmé",
+    "instruction_fr": "Retourne id,nom des membres possédant au moins une inscription confirmee, chaque membre une seule fois, ORDER BY id. Utilise IN et une sous-requête d’une colonne. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "SELECT m.id,m.nom FROM membres AS m JOIN inscriptions AS i ON i.membre_id=m.id WHERE i.statut='confirmee' ORDER BY m.id;",
+    "solution": "SELECT id,nom FROM membres WHERE id IN (SELECT membre_id FROM inscriptions WHERE statut='confirmee') ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT id,nom FROM membres WHERE id IN (SELECT membre_id FROM inscriptions WHERE statut='confirmee') ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT id,nom FROM membres WHERE id IN (SELECT membre_id FROM inscriptions WHERE statut='confirmee') ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Une jointure peut produire plusieurs lignes pour le même membre.",
+      "La requête extérieure doit tester l’appartenance à un ensemble d’identifiants.",
+      "Utilise id IN (SELECT membre_id FROM inscriptions WHERE statut='confirmee')."
+    ],
+    "explanation_fr": "L’appartenance ne multiplie pas les membres quand plusieurs inscriptions correspondent. Le cas où une personne possède deux confirmations distingue cette lecture d’une jointure sans déduplication.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^SELECT\\ m\\.id,m\\.nom\\ FROM\\ membres\\ AS\\ m\\ JOIN\\ inscriptions\\ AS\\ i\\ ON\\ i\\.membre_id=m\\.id\\ WHERE\\ i\\.statut='confirmee'\\ ORDER\\ BY\\ m\\.id;$",
+        "feedback_fr": "La requête extérieure doit tester l’appartenance à un ensemble d’identifiants."
+      }
+    ],
+    "id": "sql-m6-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Trouver les membres sans inscription",
+    "instruction_fr": "Retourne m.id,m.nom des membres n’ayant aucune inscription, statut quelconque. Utilise NOT EXISTS avec i.membre_id=m.id et ORDER BY m.id. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "SELECT m.id,m.nom FROM membres AS m WHERE EXISTS (SELECT 1 FROM inscriptions AS i WHERE i.membre_id=m.id) ORDER BY m.id;",
+    "solution": "SELECT m.id,m.nom FROM membres AS m WHERE NOT EXISTS (SELECT 1 FROM inscriptions AS i WHERE i.membre_id=m.id) ORDER BY m.id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT m.id,m.nom FROM membres AS m WHERE NOT EXISTS (SELECT 1 FROM inscriptions AS i WHERE i.membre_id=m.id) ORDER BY m.id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT m.id,m.nom FROM membres AS m WHERE NOT EXISTS (SELECT 1 FROM inscriptions AS i WHERE i.membre_id=m.id) ORDER BY m.id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "La question demande l’absence d’une ligne liée.",
+      "EXISTS seul garderait les membres déjà inscrits.",
+      "Place NOT devant EXISTS."
+    ],
+    "explanation_fr": "La corrélation relie chaque candidat à ses propres inscriptions. Aucune ligne correspondante est une condition différente d’aucune inscription confirmée : une attente suffit à exclure le membre.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^SELECT\\ m\\.id,m\\.nom\\ FROM\\ membres\\ AS\\ m\\ WHERE\\ EXISTS\\ \\(SELECT\\ 1\\ FROM\\ inscriptions\\ AS\\ i\\ WHERE\\ i\\.membre_id=m\\.id\\)\\ ORDER\\ BY\\ m\\.id;$",
+        "feedback_fr": "EXISTS seul garderait les membres déjà inscrits."
+      }
+    ],
+    "id": "sql-m6-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une exclusion avec des villes inconnues",
+    "instruction_fr": "Retourne id,nom des membres dont la ville est connue et ne correspond à la ville d’aucun membre âgé de 18 ans ou plus. ORDER BY id. Les villes des membres majeurs peuvent contenir NULL. Utilise NOT EXISTS ou filtre soigneusement les NULL. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "SELECT id,nom FROM membres WHERE ville IS NOT NULL AND ville NOT IN (SELECT ville FROM membres WHERE age>=18) ORDER BY id;",
+    "solution": "SELECT m.id,m.nom FROM membres AS m WHERE m.ville IS NOT NULL AND NOT EXISTS (SELECT 1 FROM membres AS a WHERE a.age>=18 AND a.ville=m.ville) ORDER BY m.id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT m.id,m.nom FROM membres AS m WHERE m.ville IS NOT NULL AND NOT EXISTS (SELECT 1 FROM membres AS a WHERE a.age>=18 AND a.ville=m.ville) ORDER BY m.id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT m.id,m.nom FROM membres AS m WHERE m.ville IS NOT NULL AND NOT EXISTS (SELECT 1 FROM membres AS a WHERE a.age>=18 AND a.ville=m.ville) ORDER BY m.id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Une ville NULL dans la sous-requête peut rendre NOT IN inconnu.",
+      "L’absence de correspondance doit être testée sans mélanger les valeurs inconnues.",
+      "Utilise NOT EXISTS avec a.age>=18 AND a.ville=m.ville, et conserve m.ville IS NOT NULL."
+    ],
+    "explanation_fr": "La fixture variation contient réellement une ville inconnue chez un membre majeur. Le correctif doit résoudre ce cas tout en conservant la sélection normale de la première fixture.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^SELECT\\ id,nom\\ FROM\\ membres\\ WHERE\\ ville\\ IS\\ NOT\\ NULL\\ AND\\ ville\\ NOT\\ IN\\ \\(SELECT\\ ville\\ FROM\\ membres\\ WHERE\\ age>=18\\)\\ ORDER\\ BY\\ id;$",
+        "feedback_fr": "L’absence de correspondance doit être testée sans mélanger les valeurs inconnues."
+      }
+    ],
+    "id": "sql-m6-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Comparer au prix moyen calculé",
+    "instruction_fr": "Retourne id,titre,prix des ateliers dont le prix est strictement supérieur à la moyenne de tous les prix. Utilise une sous-requête AVG(prix). Trie par prix DESC puis id ASC. Ne modifie aucune table. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "SELECT id,titre,prix FROM ateliers WHERE prix>1000 ORDER BY prix DESC,id ASC;",
+    "solution": "SELECT id,titre,prix FROM ateliers WHERE prix > (SELECT AVG(prix) FROM ateliers) ORDER BY prix DESC,id ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT id,titre,prix FROM ateliers WHERE prix > (SELECT AVG(prix) FROM ateliers) ORDER BY prix DESC,id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT id,titre,prix FROM ateliers WHERE prix > (SELECT AVG(prix) FROM ateliers) ORDER BY prix DESC,id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Le seuil dépend des données présentes.",
+      "Une constante ne représente pas toujours leur moyenne.",
+      "Compare prix à (SELECT AVG(prix) FROM ateliers)."
+    ],
+    "explanation_fr": "Le seuil est recalculé à partir de chaque fixture. Le deuxième critère rend déterministe l’ordre d’ateliers dont les prix sont identiques, sans changer la comparaison stricte.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^SELECT\\ id,titre,prix\\ FROM\\ ateliers\\ WHERE\\ prix>1000\\ ORDER\\ BY\\ prix\\ DESC,id\\ ASC;$",
+        "feedback_fr": "Une constante ne représente pas toujours leur moyenne."
+      }
+    ],
+    "id": "sql-m6-02-e4"
+  }
+]

@@ -60,3 +60,9 @@ Le moteur utilise `isomorphic-git@1.44.10`, `@isomorphic-git/lightning-fs@4.10.5
 ## HTTP/API — 5 novembre 2026
 
 12 leçons, 24 exemples et 48 exercices originaux Nunya, en français et en relecture. Les métadonnées de chaque leçon indiquent ses références : [MDN Fetch](https://developer.mozilla.org/fr/docs/Web/API/Fetch_API/Using_Fetch), [async/await](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/await), [WHATWG Fetch](https://fetch.spec.whatwg.org/) et [URL](https://url.spec.whatwg.org/). Aucun article tiers n’est recopié. Le contrat et l’API de démonstration stateless sont originaux, avec des ateliers et des noms fictifs. Aucun service externe ou compte nouveau n’est utilisé.
+
+## SQL — SQLite local, version 5.6
+
+18 leçons, 36 exemples et 72 exercices originaux en français, en relecture. Références primaires dans les leçons : [SELECT](https://sqlite.org/lang_select.html), [expressions et NULL](https://sqlite.org/lang_expr.html), [agrégats](https://sqlite.org/lang_aggfunc.html), [contraintes](https://sqlite.org/lang_createtable.html), [transactions](https://sqlite.org/lang_transaction.html) et [limites SQLite](https://sqlite.org/pragma.html#pragma_hard_heap_limit). Aucun texte de cours tiers recopié. Les données de club sont fictives.
+
+`sql.js@1.15.2` (MIT) fournit SQLite compilé en WebAssembly, auto-hébergé. Licence conservée dans `dist/runtime/sql/LICENSE.txt` ; [projet sql.js](https://github.com/sql-js/sql.js). Worker et WASM représentent environ 355 Ko gzip, téléchargés à la demande avec le cours. Chaque essai repart d’une base temporaire ; le script et les progrès sont conservés. La limite native de 16 Mio concerne l’allocateur SQLite, pas toute la mémoire du navigateur.

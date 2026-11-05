@@ -1,0 +1,141 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Rechercher plusieurs villes",
+    "instruction_fr": "Affiche id, nom, ville des membres de Lomé ou de Kara avec IN, triés par id croissant.",
+    "starter_code": "SELECT id, nom, ville FROM membres WHERE ville = 'Lomé' ORDER BY id;",
+    "solution": "SELECT id, nom, ville FROM membres WHERE ville IN ('Lomé', 'Kara') ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT id, nom, ville FROM membres WHERE ville IN ('Lomé', 'Kara') ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT id, nom, ville FROM membres WHERE ville IN ('Lomé', 'Kara') ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres valeurs et cas limites : conserver la même règle de recherche."
+      }
+    ],
+    "hints": [
+      "Les deux villes doivent être acceptées.",
+      "IN contient les textes séparés par une virgule.",
+      "SELECT id, nom, ville FROM membres WHERE ville IN ('Lomé', 'Kara') ORDER BY id;"
+    ],
+    "explanation_fr": "Le tri reste une demande distincte.",
+    "common_wrong_answers": [],
+    "id": "sql-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Inclure les deux bornes",
+    "instruction_fr": "Affiche id, nom, age pour les âges de 16 à 19 inclus, avec BETWEEN, triés par id croissant.",
+    "starter_code": "SELECT id, nom, age FROM membres WHERE age > 16 AND age < 19 ORDER BY id;",
+    "solution": "SELECT id, nom, age FROM membres WHERE age BETWEEN 16 AND 19 ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT id, nom, age FROM membres WHERE age BETWEEN 16 AND 19 ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT id, nom, age FROM membres WHERE age BETWEEN 16 AND 19 ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres valeurs et cas limites : conserver la même règle de recherche."
+      }
+    ],
+    "hints": [
+      "Seize et dix-neuf doivent rester autorisés.",
+      "BETWEEN relie les deux bornes avec AND.",
+      "SELECT id, nom, age FROM membres WHERE age BETWEEN 16 AND 19 ORDER BY id;"
+    ],
+    "explanation_fr": "Les frontières comptent autant que les valeurs du milieu.",
+    "common_wrong_answers": [],
+    "id": "sql-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un motif trop large",
+    "instruction_fr": "Affiche id puis nom pour les noms commençant par A selon le LIKE SQLite par défaut, triés par id croissant. Ne cherche pas la lettre à n’importe quelle position.",
+    "starter_code": "SELECT id, nom FROM membres WHERE nom LIKE '%A%' ORDER BY id;",
+    "solution": "SELECT id, nom FROM membres WHERE nom LIKE 'A%' ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT id, nom FROM membres WHERE nom LIKE 'A%' ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT id, nom FROM membres WHERE nom LIKE 'A%' ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres valeurs et cas limites : conserver la même règle de recherche."
+      }
+    ],
+    "hints": [
+      "Un % au début autorise des caractères précédant la lettre.",
+      "Le motif doit commencer par A.",
+      "SELECT id, nom FROM membres WHERE nom LIKE 'A%' ORDER BY id;"
+    ],
+    "explanation_fr": "Le % final autorise seulement la suite après cette lettre.",
+    "common_wrong_answers": [],
+    "id": "sql-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Composer un extrait de catalogue",
+    "instruction_fr": "Affiche id, titre, prix pour les titres Python, Jardin ou Lecture dont le prix fictif est entre 300 et 1200 inclus. Trie prix croissant puis id croissant.",
+    "starter_code": "SELECT id, titre, prix FROM ateliers WHERE titre IN ('Python', 'Jardin', 'Lecture') AND prix BETWEEN 700 AND 1200 ORDER BY prix ASC, id ASC;",
+    "solution": "SELECT id, titre, prix FROM ateliers WHERE titre IN ('Python', 'Jardin', 'Lecture') AND prix BETWEEN 300 AND 1200 ORDER BY prix ASC, id ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT id, titre, prix FROM ateliers WHERE titre IN ('Python', 'Jardin', 'Lecture') AND prix BETWEEN 300 AND 1200 ORDER BY prix ASC, id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT id, titre, prix FROM ateliers WHERE titre IN ('Python', 'Jardin', 'Lecture') AND prix BETWEEN 300 AND 1200 ORDER BY prix ASC, id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres valeurs et cas limites : conserver la même règle de recherche."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT id, titre, prix FROM ateliers WHERE titre IN ('Python', 'Jardin', 'Lecture') AND prix BETWEEN 300 AND 1200 ORDER BY prix ASC, id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Table sans ligne : conserver les colonnes demandées."
+      }
+    ],
+    "hints": [
+      "Le titre et le montant doivent convenir.",
+      "La borne basse demandée est trois cents.",
+      "SELECT id, titre, prix FROM ateliers WHERE titre IN ('Python', 'Jardin', 'Lecture') AND prix BETWEEN 300 AND 1200 ORDER BY prix ASC, id ASC;"
+    ],
+    "explanation_fr": "Variation place Lecture sur cette borne et Python sur la borne haute.",
+    "common_wrong_answers": [],
+    "id": "sql-m2-02-e4"
+  }
+]

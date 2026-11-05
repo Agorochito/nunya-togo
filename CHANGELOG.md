@@ -1,5 +1,12 @@
 # Historique
 
+## 5.6.0 — 5 novembre 2026
+
+- SQL : 6 modules, 18 leçons, 72 exercices, 54 questions et 36 exemples originaux. Vrai moteur SQLite auto-hébergé, résultats tabulaires et base initiale consultable.
+- Comparaison des requêtes et mutations, contraintes réellement testées, transactions exécutées ; arrêt, sauvegarde du code et téléchargement hors ligne.
+- Intégration des protections Nunya Aide et de la documentation du collaborateur jusqu’à `2df60ddf`.
+- React, TypeScript et DOM explicitement dans les prochaines séries ; niveaux supérieurs et autres technologies à poursuivre.
+
 ## 5.5.0 — travaux locaux des 4–5 novembre 2026
 
 - HTTP/API : 12 leçons, 48 exercices et 24 exemples en JavaScript asynchrone sur une API locale réelle du service worker ; erreurs, statuts, JSON et annulation. Confirmation locale par message avant tout échange, journal des requêtes et CSP propre aux Workers JavaScript.

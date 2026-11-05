@@ -1,0 +1,162 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Conserver les groupes assez nombreux",
+    "instruction_fr": "Retourne ville et nombre_membres pour les villes comptant au moins deux lignes de membres, y compris une éventuelle clé NULL. Trie nombre_membres décroissant puis ville croissante.",
+    "starter_code": "SELECT ville, COUNT(*) AS nombre_membres\nFROM membres GROUP BY ville HAVING COUNT(*) > 2\nORDER BY nombre_membres DESC, ville ASC;",
+    "solution": "SELECT ville, COUNT(*) AS nombre_membres\nFROM membres\nGROUP BY ville\nHAVING COUNT(*) >= 2\nORDER BY nombre_membres DESC, ville ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT ville, COUNT(*) AS nombre_membres\nFROM membres\nGROUP BY ville\nHAVING COUNT(*) >= 2\nORDER BY nombre_membres DESC, ville ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT ville, COUNT(*) AS nombre_membres\nFROM membres\nGROUP BY ville\nHAVING COUNT(*) >= 2\nORDER BY nombre_membres DESC, ville ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT ville, COUNT(*) AS nombre_membres\nFROM membres\nGROUP BY ville\nHAVING COUNT(*) >= 2\nORDER BY nombre_membres DESC, ville ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "La borne deux doit-elle être retenue ?",
+      "Le compte est une propriété du groupe, à tester dans HAVING.",
+      "SELECT ville, COUNT(*) AS nombre_membres\nFROM membres\nGROUP BY ville\nHAVING COUNT(*) >= 2\nORDER BY nombre_membres DESC, ville ASC;"
+    ],
+    "explanation_fr": "La base variation contient plusieurs groupes à égalité ; le tri secondaire reste nécessaire.",
+    "common_wrong_answers": [],
+    "id": "sql-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Filtrer les personnes avant les groupes",
+    "instruction_fr": "Garde d’abord les membres age>=16. Par ville, retourne participants=COUNT(*) et age_min=MIN(age). Conserve seulement les groupes participants>=2. Colonnes : ville, participants, age_min ; tri participants décroissant puis ville croissante.",
+    "starter_code": "SELECT ville, COUNT(*) AS participants, MIN(age) AS age_min\nFROM membres GROUP BY ville HAVING COUNT(*) >= 2\nORDER BY participants DESC, ville ASC;",
+    "solution": "SELECT ville, COUNT(*) AS participants, MIN(age) AS age_min\nFROM membres\nWHERE age >= 16\nGROUP BY ville\nHAVING COUNT(*) >= 2\nORDER BY participants DESC, ville ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT ville, COUNT(*) AS participants, MIN(age) AS age_min\nFROM membres\nWHERE age >= 16\nGROUP BY ville\nHAVING COUNT(*) >= 2\nORDER BY participants DESC, ville ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT ville, COUNT(*) AS participants, MIN(age) AS age_min\nFROM membres\nWHERE age >= 16\nGROUP BY ville\nHAVING COUNT(*) >= 2\nORDER BY participants DESC, ville ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT ville, COUNT(*) AS participants, MIN(age) AS age_min\nFROM membres\nWHERE age >= 16\nGROUP BY ville\nHAVING COUNT(*) >= 2\nORDER BY participants DESC, ville ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "Le seuil d’âge s’applique-t-il à une fiche ou à un groupe ?",
+      "Utilise WHERE pour l’âge, puis HAVING pour l’effectif calculé.",
+      "SELECT ville, COUNT(*) AS participants, MIN(age) AS age_min\nFROM membres\nWHERE age >= 16\nGROUP BY ville\nHAVING COUNT(*) >= 2\nORDER BY participants DESC, ville ASC;"
+    ],
+    "explanation_fr": "Le minimum doit être calculé sur les mêmes fiches filtrées que le compte.",
+    "common_wrong_answers": [],
+    "id": "sql-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Comparer la bonne mesure au seuil",
+    "instruction_fr": "Par prix d’atelier, retourne prix, places_totales=SUM(places), nombre_ateliers=COUNT(*). Garde les groupes dont places_totales>=5. Trie places_totales décroissant puis prix croissant.",
+    "starter_code": "SELECT prix, SUM(places) AS places_totales, COUNT(*) AS nombre_ateliers\nFROM ateliers GROUP BY prix HAVING COUNT(*) >= 5\nORDER BY places_totales DESC, prix ASC;",
+    "solution": "SELECT prix, SUM(places) AS places_totales, COUNT(*) AS nombre_ateliers\nFROM ateliers\nGROUP BY prix\nHAVING SUM(places) >= 5\nORDER BY places_totales DESC, prix ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT prix, SUM(places) AS places_totales, COUNT(*) AS nombre_ateliers\nFROM ateliers\nGROUP BY prix\nHAVING SUM(places) >= 5\nORDER BY places_totales DESC, prix ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT prix, SUM(places) AS places_totales, COUNT(*) AS nombre_ateliers\nFROM ateliers\nGROUP BY prix\nHAVING SUM(places) >= 5\nORDER BY places_totales DESC, prix ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT prix, SUM(places) AS places_totales, COUNT(*) AS nombre_ateliers\nFROM ateliers\nGROUP BY prix\nHAVING SUM(places) >= 5\nORDER BY places_totales DESC, prix ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "Le seuil est-il exprimé en ateliers ou en places ?",
+      "Le HAVING doit examiner SUM(places).",
+      "SELECT prix, SUM(places) AS places_totales, COUNT(*) AS nombre_ateliers\nFROM ateliers\nGROUP BY prix\nHAVING SUM(places) >= 5\nORDER BY places_totales DESC, prix ASC;"
+    ],
+    "explanation_fr": "L’agrégat du filtre doit correspondre à l’unité annoncée dans la consigne.",
+    "common_wrong_answers": [],
+    "id": "sql-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Composer un bilan ciblé des statuts",
+    "instruction_fr": "Pour les inscriptions aux ateliers d’identifiants 1 ou 3, compte les lignes par statut. Retourne statut puis nombre, garde nombre>=2 et trie nombre décroissant puis statut croissant. N’ajoute aucune colonne individuelle non groupée.",
+    "starter_code": "SELECT statut, COUNT(*) AS nombre\nFROM inscriptions GROUP BY statut HAVING COUNT(*) >= 2\nORDER BY nombre DESC, statut ASC;",
+    "solution": "SELECT statut, COUNT(*) AS nombre\nFROM inscriptions\nWHERE atelier_id IN (1,3)\nGROUP BY statut\nHAVING COUNT(*) >= 2\nORDER BY nombre DESC, statut ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT statut, COUNT(*) AS nombre\nFROM inscriptions\nWHERE atelier_id IN (1,3)\nGROUP BY statut\nHAVING COUNT(*) >= 2\nORDER BY nombre DESC, statut ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT statut, COUNT(*) AS nombre\nFROM inscriptions\nWHERE atelier_id IN (1,3)\nGROUP BY statut\nHAVING COUNT(*) >= 2\nORDER BY nombre DESC, statut ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT statut, COUNT(*) AS nombre\nFROM inscriptions\nWHERE atelier_id IN (1,3)\nGROUP BY statut\nHAVING COUNT(*) >= 2\nORDER BY nombre DESC, statut ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "Quelles inscriptions peuvent contribuer au bilan ?",
+      "Place le choix des ateliers dans WHERE avant GROUP BY.",
+      "SELECT statut, COUNT(*) AS nombre\nFROM inscriptions\nWHERE atelier_id IN (1,3)\nGROUP BY statut\nHAVING COUNT(*) >= 2\nORDER BY nombre DESC, statut ASC;"
+    ],
+    "explanation_fr": "Le projet combine sélection de lignes, bilan, sélection de groupes et tri.",
+    "common_wrong_answers": [],
+    "id": "sql-m3-03-e4"
+  }
+]

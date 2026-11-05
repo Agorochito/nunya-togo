@@ -1,0 +1,162 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Compter les membres, même sans ville",
+    "instruction_fr": "Retourne une seule colonne nombre_membres : le nombre de lignes de membres. Une ville NULL ne doit pas enlever une personne du compte. Le résultat global reste une ligne sur une table vide.",
+    "starter_code": "SELECT COUNT(ville) AS nombre_membres FROM membres;",
+    "solution": "SELECT COUNT(*) AS nombre_membres FROM membres;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT COUNT(*) AS nombre_membres FROM membres;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT COUNT(*) AS nombre_membres FROM membres;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT COUNT(*) AS nombre_membres FROM membres;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "Comptes-tu des personnes ou des villes renseignées ?",
+      "COUNT(*) compte les lignes sans examiner une colonne particulière.",
+      "SELECT COUNT(*) AS nombre_membres FROM membres;"
+    ],
+    "explanation_fr": "Le zéro sur vide est un résultat du comptage, pas une ligne de données ajoutée.",
+    "common_wrong_answers": [],
+    "id": "sql-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Calculer places et prix moyen",
+    "instruction_fr": "Sur tous les ateliers, retourne une ligne avec places_totales=SUM(places) et prix_moyen=AVG(prix) arrondi à deux décimales avec ROUND. Garde les résultats NULL lorsque la table est vide.",
+    "starter_code": "SELECT AVG(places) AS places_totales, SUM(prix) AS prix_moyen FROM ateliers;",
+    "solution": "SELECT SUM(places) AS places_totales, ROUND(AVG(prix),2) AS prix_moyen FROM ateliers;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT SUM(places) AS places_totales, ROUND(AVG(prix),2) AS prix_moyen FROM ateliers;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT SUM(places) AS places_totales, ROUND(AVG(prix),2) AS prix_moyen FROM ateliers;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT SUM(places) AS places_totales, ROUND(AVG(prix),2) AS prix_moyen FROM ateliers;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "Les deux colonnes décrivent-elles une somme ou une moyenne ?",
+      "Utilise une fonction différente pour chaque question.",
+      "SELECT SUM(places) AS places_totales, ROUND(AVG(prix),2) AS prix_moyen FROM ateliers;"
+    ],
+    "explanation_fr": "Le prix zéro est inclus dans la moyenne ; NULL sur vide conserve l’absence d’observation.",
+    "common_wrong_answers": [],
+    "id": "sql-m3-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Trouver les âges extrêmes des adultes",
+    "instruction_fr": "Retourne age_min et age_max parmi les membres age>=18, avec MIN et MAX. Sans adulte, les deux valeurs doivent être NULL.",
+    "starter_code": "SELECT MIN(age) AS age_min, MAX(age) AS age_max FROM membres;",
+    "solution": "SELECT MIN(age) AS age_min, MAX(age) AS age_max FROM membres WHERE age >= 18;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT MIN(age) AS age_min, MAX(age) AS age_max FROM membres WHERE age >= 18;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT MIN(age) AS age_min, MAX(age) AS age_max FROM membres WHERE age >= 18;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT MIN(age) AS age_min, MAX(age) AS age_max FROM membres WHERE age >= 18;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "Quelles lignes doivent participer aux extrêmes ?",
+      "Place le filtre des adultes dans WHERE avant le bilan.",
+      "SELECT MIN(age) AS age_min, MAX(age) AS age_max FROM membres WHERE age >= 18;"
+    ],
+    "explanation_fr": "Le résultat ne doit pas inclure les âges plus jeunes, même s’ils existent dans la table.",
+    "common_wrong_answers": [],
+    "id": "sql-m3-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Composer un bilan de disponibilité",
+    "instruction_fr": "Pour les ateliers places>0, retourne une ligne avec nombre=COUNT(*), total_places=COALESCE(SUM(places),0) et prix_moyen=ROUND(AVG(prix),2). Sur vide, nombre et total_places valent zéro, prix_moyen reste NULL. Respecte ces alias et cet ordre de colonnes.",
+    "starter_code": "SELECT places AS nombre, places AS total_places, prix AS prix_moyen\nFROM ateliers WHERE places > 0 ORDER BY id;",
+    "solution": "SELECT COUNT(*) AS nombre, COALESCE(SUM(places),0) AS total_places,\n       ROUND(AVG(prix),2) AS prix_moyen\nFROM ateliers\nWHERE places > 0;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT COUNT(*) AS nombre, COALESCE(SUM(places),0) AS total_places,\n       ROUND(AVG(prix),2) AS prix_moyen\nFROM ateliers\nWHERE places > 0;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT COUNT(*) AS nombre, COALESCE(SUM(places),0) AS total_places,\n       ROUND(AVG(prix),2) AS prix_moyen\nFROM ateliers\nWHERE places > 0;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT COUNT(*) AS nombre, COALESCE(SUM(places),0) AS total_places,\n       ROUND(AVG(prix),2) AS prix_moyen\nFROM ateliers\nWHERE places > 0;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "Le bilan doit-il présenter une ligne par atelier ?",
+      "Combine un filtre puis trois agrégats sur la sélection entière.",
+      "SELECT COUNT(*) AS nombre, COALESCE(SUM(places),0) AS total_places,\n       ROUND(AVG(prix),2) AS prix_moyen\nFROM ateliers\nWHERE places > 0;"
+    ],
+    "explanation_fr": "Le contrat distingue un total nul et une moyenne absente au lieu de remplacer tous les NULL.",
+    "common_wrong_answers": [],
+    "id": "sql-m3-01-e4"
+  }
+]

@@ -1,3 +1,9 @@
+# Vérifications 5.6.0 — 5 novembre 2026
+
+Le catalogue modernisé est testé en 360/1440 px : filtres par technologie, recherche JS, état vide, feuille de route React et liens vers le programme SQL ; aucune erreur JavaScript, aucun débordement et zéro violation axe sur ces vues. Voir `COURSE_CATALOGUE_RESULTS.json`.
+
+177 tests unitaires passent après intégration des correctifs du collaborateur et du moteur SQL. Les 36 exemples, 176 cas de référence et 72 solutions SQL sont exécutés dans SQLite WebAssembly ; les 72 codes initiaux échouent sur leur série de cas, de même que les scripts vides. Le moteur redémarre à froid hors ligne après téléchargement. Les 18 leçons, 72 exercices et 54 questions sont parcourus en 360 et 1440 px ; zéro erreur JavaScript, aucun débordement horizontal et zéro violation axe sur les vues finales testées. Résultats, contraintes, transactions, limites et arrêt sont contrôlés ; voir `SQL_ENGINE_RESULTS.json`. `GLOBAL_CURRICULUM_UI_RESULTS.json` couvre les 6 cours et 131 leçons, navigation et reprise mobile/ordinateur sans erreur.
+
 # Vérifications 5.5.0 — 5 novembre 2026
 
 163 tests unitaires réussis ; build, lint, TypeScript, contenus, prérequis et liens internes validés. Les rapports de navigateur suivent dans `GLOBAL_CURRICULUM_UI_RESULTS.json`, `ALL_DISCOVERY_COURSES_RESULTS.json`, `BACKUP_ONBOARDING_RESULTS.json`, `CODE_RUNTIME_RESULTS.json` et `WEB_EXERCISE_RESULTS.json` et `LIBRARY_OFFLINE_RESULTS.json`, avec les rapports Git et HTTP décrits ci-dessous. Les vérifications automatisées ne remplacent pas la relecture pédagogique.

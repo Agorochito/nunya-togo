@@ -1,0 +1,86 @@
+{
+  "id": "sql-bases",
+  "title_fr": "SQL : des premières requêtes au projet de données",
+  "language": "sql",
+  "runtime": "sql",
+  "level": "debutant",
+  "summary_fr": "Explore les tables d’un club fictif, écris tes requêtes et vois leurs résultats. Avance vers les statistiques, jointures, contraintes et transactions, puis construis un bilan.",
+  "prerequisites": [
+    "Savoir lire un tableau ; aucune expérience de programmation requise.",
+    "Les premières leçons expliquent les tables, lignes, colonnes et mots-clés SQL."
+  ],
+  "outcomes": [
+    "Choisir, filtrer, trier et regrouper des données avec une requête SQL.",
+    "Relier des tables par leurs clés et interpréter une absence de correspondance.",
+    "Créer des contraintes et modifier seulement les lignes demandées.",
+    "Valider ou annuler un ensemble de changements avec une transaction.",
+    "Construire un bilan de club avec requêtes, statistiques et mises à jour contrôlées."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Lire des tables et choisir des colonnes",
+      "outcome_fr": "Lire une table, calculer une colonne et trier un résultat.",
+      "lesson_ids": [
+        "sql-m1-01",
+        "sql-m1-02",
+        "sql-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Filtrer et traiter les informations absentes",
+      "outcome_fr": "Composer des conditions et interpréter NULL.",
+      "lesson_ids": [
+        "sql-m2-01",
+        "sql-m2-02",
+        "sql-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Compter, regrouper et préparer un bilan",
+      "outcome_fr": "Agréger les données et distinguer WHERE de HAVING.",
+      "lesson_ids": [
+        "sql-m3-01",
+        "sql-m3-02",
+        "sql-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Relier les tables",
+      "outcome_fr": "Joindre deux ou trois tables et conserver les absences.",
+      "lesson_ids": [
+        "sql-m4-01",
+        "sql-m4-02",
+        "sql-m4-03"
+      ]
+    },
+    {
+      "id": "m5",
+      "title_fr": "Créer et modifier des données cohérentes",
+      "outcome_fr": "Définir des contraintes, ajouter et cibler des changements.",
+      "lesson_ids": [
+        "sql-m5-01",
+        "sql-m5-02",
+        "sql-m5-03"
+      ]
+    },
+    {
+      "id": "m6",
+      "title_fr": "Transactions, sous-requêtes et projet",
+      "outcome_fr": "Annuler, valider et préparer le bilan d’un club fictif.",
+      "lesson_ids": [
+        "sql-m6-01",
+        "sql-m6-02",
+        "sql-m6-03"
+      ]
+    }
+  ],
+  "later_modules": [],
+  "availability": "programme-redige",
+  "status": "brouillon",
+  "reviewer": null,
+  "depth_fr": "Socle progressif SQLite avec initiation aux jointures et transactions. Les optimisations, migrations et niveaux supérieurs restent à construire ; relecture pédagogique en cours."
+}

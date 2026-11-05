@@ -1,0 +1,148 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Chercher une ville absente",
+    "instruction_fr": "Affiche id puis nom des membres dont ville est NULL, triés par id croissant.",
+    "starter_code": "SELECT id, nom FROM membres WHERE ville = NULL ORDER BY id;",
+    "solution": "SELECT id, nom FROM membres WHERE ville IS NULL ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT id, nom FROM membres WHERE ville IS NULL ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT id, nom FROM membres WHERE ville IS NULL ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres valeurs et cas limites : conserver la même règle de recherche."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT id, nom FROM membres WHERE ville IS NULL ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Table sans ligne : conserver les colonnes demandées."
+      }
+    ],
+    "hints": [
+      "Une égalité ordinaire ne cherche pas cette absence.",
+      "Utilise IS NULL.",
+      "SELECT id, nom FROM membres WHERE ville IS NULL ORDER BY id;"
+    ],
+    "explanation_fr": "La fiche existe, mais sa rubrique est inconnue.",
+    "common_wrong_answers": [],
+    "id": "sql-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Chercher une ville connue",
+    "instruction_fr": "Affiche id, nom, ville des membres dont ville n’est pas NULL, triés par id croissant.",
+    "starter_code": "SELECT id, nom, ville FROM membres WHERE ville <> NULL ORDER BY id;",
+    "solution": "SELECT id, nom, ville FROM membres WHERE ville IS NOT NULL ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT id, nom, ville FROM membres WHERE ville IS NOT NULL ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT id, nom, ville FROM membres WHERE ville IS NOT NULL ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres valeurs et cas limites : conserver la même règle de recherche."
+      }
+    ],
+    "hints": [
+      "La différence ordinaire ne teste pas la présence.",
+      "Utilise IS NOT NULL.",
+      "SELECT id, nom, ville FROM membres WHERE ville IS NOT NULL ORDER BY id;"
+    ],
+    "explanation_fr": "La condition ne doit pas comparer une valeur à une inconnue.",
+    "common_wrong_answers": [],
+    "id": "sql-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une étiquette systématique",
+    "instruction_fr": "Affiche id, nom puis la ville avec Non renseignée comme remplacement de NULL, sous l’alias ville_affichee. Garde les villes connues et trie par id croissant.",
+    "starter_code": "SELECT id, nom, COALESCE('Non renseignée', ville) AS ville_affichee FROM membres ORDER BY id;",
+    "solution": "SELECT id, nom, COALESCE(ville, 'Non renseignée') AS ville_affichee FROM membres ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT id, nom, COALESCE(ville, 'Non renseignée') AS ville_affichee FROM membres ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT id, nom, COALESCE(ville, 'Non renseignée') AS ville_affichee FROM membres ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres valeurs et cas limites : conserver la même règle de recherche."
+      }
+    ],
+    "hints": [
+      "COALESCE choisit le premier argument non NULL.",
+      "La donnée doit précéder l’étiquette.",
+      "SELECT id, nom, COALESCE(ville, 'Non renseignée') AS ville_affichee FROM membres ORDER BY id;"
+    ],
+    "explanation_fr": "Le remplacement concerne seulement les absences et ne modifie pas la source.",
+    "common_wrong_answers": [],
+    "id": "sql-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Préparer une liste de suivi",
+    "instruction_fr": "Affiche id, nom et COALESCE(ville, 'À préciser') sous l’alias repere. Retiens ville NULL ou Lomé, avec age>=16 dans les deux cas. Trie age décroissant puis id croissant.",
+    "starter_code": "SELECT id, nom, COALESCE(ville, 'À préciser') AS repere FROM membres WHERE ville IS NULL OR ville = 'Lomé' AND age >= 16 ORDER BY age DESC, id ASC;",
+    "solution": "SELECT id, nom, COALESCE(ville, 'À préciser') AS repere FROM membres WHERE (ville IS NULL OR ville = 'Lomé') AND age >= 16 ORDER BY age DESC, id ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT id, nom, COALESCE(ville, 'À préciser') AS repere FROM membres WHERE (ville IS NULL OR ville = 'Lomé') AND age >= 16 ORDER BY age DESC, id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT id, nom, COALESCE(ville, 'À préciser') AS repere FROM membres WHERE (ville IS NULL OR ville = 'Lomé') AND age >= 16 ORDER BY age DESC, id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres valeurs et cas limites : conserver la même règle de recherche."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT id, nom, COALESCE(ville, 'À préciser') AS repere FROM membres WHERE (ville IS NULL OR ville = 'Lomé') AND age >= 16 ORDER BY age DESC, id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Table sans ligne : conserver les colonnes demandées."
+      }
+    ],
+    "hints": [
+      "Réunis les deux possibilités de ville.",
+      "La borne doit concerner aussi les villes absentes.",
+      "SELECT id, nom, COALESCE(ville, 'À préciser') AS repere FROM membres WHERE (ville IS NULL OR ville = 'Lomé') AND age >= 16 ORDER BY age DESC, id ASC;"
+    ],
+    "explanation_fr": "Ama dans variation est sans ville mais sous le seuil : elle doit être exclue.",
+    "common_wrong_answers": [],
+    "id": "sql-m2-03-e4"
+  }
+]

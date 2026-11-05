@@ -1,5 +1,7 @@
 # Point de reprise — 5 novembre 2026
 
+**Mise à jour :** ce document décrit le point de contrôle `cff26bac`, avant la reprise. Depuis, SQL a été intégré avec 18 leçons et un moteur réel, et les changements du collaborateur jusqu’à `2df60ddf` ont été fusionnés. Le propriétaire a ensuite demandé la publication Vercel. Consulter `COURSE_COVERAGE_AUDIT.md`, `TEST_RESULTS.md` et les rapports SQL pour l’état courant. Les paragraphes suivants sont conservés comme historique.
+
 Branche de revue : `review/offline-courses-2026-11-05`.
 Cette sauvegarde répond à la demande de partager le travail avant une interruption liée au quota. Elle ne doit pas être fusionnée automatiquement : elle contient des améliorations testées et un prototype SQL non intégré. Aucune mise à jour de la production Vercel n'est demandée par ce point de contrôle.
 

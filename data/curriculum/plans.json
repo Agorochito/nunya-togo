@@ -59,5 +59,23 @@
     "summary_fr": "Requêtes, réponses, statuts et échanges JSON ; après les bases du Web et de JavaScript.",
     "status": "bientôt",
     "level": "intermediaire"
+  },
+  {
+    "id": "javascript-dom",
+    "title_fr": "JavaScript : interfaces et événements",
+    "summary_fr": "Manipuler le DOM et gérer les interactions ; après HTML, CSS et JavaScript.",
+    "status": "bientôt"
+  },
+  {
+    "id": "typescript",
+    "title_fr": "TypeScript : démarrer avec les types",
+    "summary_fr": "Types, fonctions et unions ; après JavaScript.",
+    "status": "bientôt"
+  },
+  {
+    "id": "react",
+    "title_fr": "React : construire une interface avec des composants",
+    "summary_fr": "Composants, propriétés, état et formulaires ; après HTML, CSS, JavaScript et les interactions du navigateur.",
+    "status": "bientôt"
   }
 ]

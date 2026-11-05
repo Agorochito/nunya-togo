@@ -1,0 +1,16 @@
+{
+  "results": {
+    "lessons": 18,
+    "examples": 36,
+    "referenceCases": 176,
+    "solutions": 72,
+    "startersRejected": 72,
+    "workerCsp": true,
+    "emptyResultColumns": true,
+    "realSyntaxError": true,
+    "sqliteAllocatorLimit": true,
+    "workerCanBeStopped": true,
+    "freshAfterStop": true,
+    "coldOffline": true
+  }
+}

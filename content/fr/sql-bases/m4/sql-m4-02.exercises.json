@@ -1,0 +1,162 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Rendre lisibles toutes les inscriptions",
+    "instruction_fr": "Relie inscriptions i à membres m puis ateliers a par leurs clés. Retourne inscription_id=i.id, membre=m.nom, atelier=a.titre, statut=i.statut. Trie i.id croissant et conserve une ligne par inscription.",
+    "starter_code": "SELECT i.id AS inscription_id, m.nom AS membre, a.titre AS atelier, i.statut AS statut\nFROM inscriptions AS i\nINNER JOIN membres AS m ON m.id = i.membre_id\nINNER JOIN ateliers AS a ON a.id = i.id\nORDER BY i.id ASC;",
+    "solution": "SELECT i.id AS inscription_id, m.nom AS membre, a.titre AS atelier, i.statut AS statut\nFROM inscriptions AS i\nINNER JOIN membres AS m ON m.id = i.membre_id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nORDER BY i.id ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT i.id AS inscription_id, m.nom AS membre, a.titre AS atelier, i.statut AS statut\nFROM inscriptions AS i\nINNER JOIN membres AS m ON m.id = i.membre_id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nORDER BY i.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT i.id AS inscription_id, m.nom AS membre, a.titre AS atelier, i.statut AS statut\nFROM inscriptions AS i\nINNER JOIN membres AS m ON m.id = i.membre_id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nORDER BY i.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT i.id AS inscription_id, m.nom AS membre, a.titre AS atelier, i.statut AS statut\nFROM inscriptions AS i\nINNER JOIN membres AS m ON m.id = i.membre_id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nORDER BY i.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "Quelle colonne de i désigne vraiment l’atelier ?",
+      "Vérifie les deux relations indépendamment.",
+      "SELECT i.id AS inscription_id, m.nom AS membre, a.titre AS atelier, i.statut AS statut\nFROM inscriptions AS i\nINNER JOIN membres AS m ON m.id = i.membre_id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nORDER BY i.id ASC;"
+    ],
+    "explanation_fr": "Le pont inscriptions fournit les références de personne et d’activité.",
+    "common_wrong_answers": [],
+    "id": "sql-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Cibler les confirmations de Lomé",
+    "instruction_fr": "Relie les trois tables. Garde les membres ville=Lomé et les inscriptions statut=confirmee. Retourne membre=m.nom puis atelier=a.titre, une ligne par inscription. Trie par i.id croissant, même si cette clé n’est pas affichée.",
+    "starter_code": "SELECT m.nom AS membre, a.titre AS atelier\nFROM membres AS m\nINNER JOIN inscriptions AS i ON i.membre_id = m.id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nWHERE m.ville = 'Lomé' ORDER BY i.id ASC;",
+    "solution": "SELECT m.nom AS membre, a.titre AS atelier\nFROM membres AS m\nINNER JOIN inscriptions AS i ON i.membre_id = m.id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nWHERE m.ville = 'Lomé' AND i.statut = 'confirmee'\nORDER BY i.id ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT m.nom AS membre, a.titre AS atelier\nFROM membres AS m\nINNER JOIN inscriptions AS i ON i.membre_id = m.id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nWHERE m.ville = 'Lomé' AND i.statut = 'confirmee'\nORDER BY i.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT m.nom AS membre, a.titre AS atelier\nFROM membres AS m\nINNER JOIN inscriptions AS i ON i.membre_id = m.id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nWHERE m.ville = 'Lomé' AND i.statut = 'confirmee'\nORDER BY i.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT m.nom AS membre, a.titre AS atelier\nFROM membres AS m\nINNER JOIN inscriptions AS i ON i.membre_id = m.id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nWHERE m.ville = 'Lomé' AND i.statut = 'confirmee'\nORDER BY i.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "Les deux filtres portent-ils sur la même table ?",
+      "Qualifie ville avec m et statut avec i.",
+      "SELECT m.nom AS membre, a.titre AS atelier\nFROM membres AS m\nINNER JOIN inscriptions AS i ON i.membre_id = m.id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nWHERE m.ville = 'Lomé' AND i.statut = 'confirmee'\nORDER BY i.id ASC;"
+    ],
+    "explanation_fr": "Les valeurs de la variante empêchent de supposer que toutes les inscriptions d’une ville sont confirmées.",
+    "common_wrong_answers": [],
+    "id": "sql-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une liste de personnes uniques",
+    "instruction_fr": "Relie les trois tables et garde les ateliers prix>0, quel que soit le statut. Retourne une seule fois chaque membre concerné : membre_id=m.id et membre=m.nom. Trie m.id croissant. N’affiche pas l’id d’inscription dans cette liste unique.",
+    "starter_code": "SELECT m.id AS membre_id, m.nom AS membre\nFROM membres AS m\nINNER JOIN inscriptions AS i ON i.membre_id = m.id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nWHERE a.prix > 0\nORDER BY m.id ASC, i.id ASC;",
+    "solution": "SELECT DISTINCT m.id AS membre_id, m.nom AS membre\nFROM membres AS m\nINNER JOIN inscriptions AS i ON i.membre_id = m.id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nWHERE a.prix > 0\nORDER BY m.id ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT DISTINCT m.id AS membre_id, m.nom AS membre\nFROM membres AS m\nINNER JOIN inscriptions AS i ON i.membre_id = m.id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nWHERE a.prix > 0\nORDER BY m.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT DISTINCT m.id AS membre_id, m.nom AS membre\nFROM membres AS m\nINNER JOIN inscriptions AS i ON i.membre_id = m.id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nWHERE a.prix > 0\nORDER BY m.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT DISTINCT m.id AS membre_id, m.nom AS membre\nFROM membres AS m\nINNER JOIN inscriptions AS i ON i.membre_id = m.id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nWHERE a.prix > 0\nORDER BY m.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "La ligne demandée représente-t-elle une personne ou une inscription ?",
+      "DISTINCT porte sur les deux colonnes projetées.",
+      "SELECT DISTINCT m.id AS membre_id, m.nom AS membre\nFROM membres AS m\nINNER JOIN inscriptions AS i ON i.membre_id = m.id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nWHERE a.prix > 0\nORDER BY m.id ASC;"
+    ],
+    "explanation_fr": "Garder i.id dans SELECT rendrait chaque inscription différente et empêcherait cette liste unique.",
+    "common_wrong_answers": [],
+    "id": "sql-m4-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Bilan de montants fictifs par personne",
+    "instruction_fr": "Sur les inscriptions confirmee, relie les trois tables et somme a.prix par membre. Retourne membre_id=m.id, membre=m.nom, montant_fictif=SUM(a.prix). Groupe par m.id,m.nom ; trie montant_fictif décroissant puis m.id croissant. Ne présente pas ce bilan comme un paiement.",
+    "starter_code": "SELECT m.id AS membre_id, m.nom AS membre, COUNT(*) AS montant_fictif\nFROM membres AS m\nINNER JOIN inscriptions AS i ON i.membre_id = m.id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nWHERE i.statut = 'confirmee'\nGROUP BY m.id,m.nom ORDER BY montant_fictif DESC,m.id ASC;",
+    "solution": "SELECT m.id AS membre_id, m.nom AS membre, SUM(a.prix) AS montant_fictif\nFROM membres AS m\nINNER JOIN inscriptions AS i ON i.membre_id = m.id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nWHERE i.statut = 'confirmee'\nGROUP BY m.id, m.nom\nORDER BY montant_fictif DESC, m.id ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT m.id AS membre_id, m.nom AS membre, SUM(a.prix) AS montant_fictif\nFROM membres AS m\nINNER JOIN inscriptions AS i ON i.membre_id = m.id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nWHERE i.statut = 'confirmee'\nGROUP BY m.id, m.nom\nORDER BY montant_fictif DESC, m.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT m.id AS membre_id, m.nom AS membre, SUM(a.prix) AS montant_fictif\nFROM membres AS m\nINNER JOIN inscriptions AS i ON i.membre_id = m.id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nWHERE i.statut = 'confirmee'\nGROUP BY m.id, m.nom\nORDER BY montant_fictif DESC, m.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT m.id AS membre_id, m.nom AS membre, SUM(a.prix) AS montant_fictif\nFROM membres AS m\nINNER JOIN inscriptions AS i ON i.membre_id = m.id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nWHERE i.statut = 'confirmee'\nGROUP BY m.id, m.nom\nORDER BY montant_fictif DESC, m.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "Le bilan porte-t-il sur un compte de lignes ou une somme de prix ?",
+      "SUM doit lire le prix de l’atelier de chaque inscription retenue.",
+      "SELECT m.id AS membre_id, m.nom AS membre, SUM(a.prix) AS montant_fictif\nFROM membres AS m\nINNER JOIN inscriptions AS i ON i.membre_id = m.id\nINNER JOIN ateliers AS a ON a.id = i.atelier_id\nWHERE i.statut = 'confirmee'\nGROUP BY m.id, m.nom\nORDER BY montant_fictif DESC, m.id ASC;"
+    ],
+    "explanation_fr": "Les entiers en FCFA sont fictifs ; la requête n’atteste aucune transaction.",
+    "common_wrong_answers": [],
+    "id": "sql-m4-02-e4"
+  }
+]

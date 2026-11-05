@@ -17,9 +17,9 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
   course['modules']=course['modules'][:4]+extension['modules'];course['later_modules']=[]
   course['summary_fr']='De ton premier programme aux collections, fonctions et projets : apprends, teste et construis en français.'
  language=course.get('language',course.get('runtime','python'))
- if language not in ['python','javascript','html','css']:raise ValueError('Unsupported offline runtime: '+language)
+ if language not in ['python','javascript','html','css','sql']:raise ValueError('Unsupported offline runtime: '+language)
  runtime=course.get('runtime',language)
- if runtime not in ['python','javascript','html','css','http'] or (runtime=='http' and language!='javascript'):raise ValueError('Unsupported runtime/language pair')
+ if runtime not in ['python','javascript','html','css','http','sql'] or (runtime=='http' and language!='javascript'):raise ValueError('Unsupported runtime/language pair')
  course['language']=language;course['runtime']=runtime;course.setdefault('level','debutant');course.setdefault('later_modules',[])
  lessons,index=[],[]
  for module in course['modules']:
@@ -39,6 +39,7 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
    if row['id'] in chapter_end:row['chapter_end']=chapter_end[row['id']]
    row['exercises']=json.loads(path.with_suffix('.exercises.json').read_text())
    if runtime=='http':row.setdefault('environment_fr','API pédagogique locale : données fictives, pas de serveur distant ni d’écriture conservée. Les requêtes restent sur cet appareil. await est autorisé dans l’atelier.')
+   if runtime=='sql':row.setdefault('environment_fr','SQLite local · Données fictives. Chaque exécution repart de la base initiale. Tes scripts et ta progression sont sauvegardés, pas les modifications de cette base temporaire.')
    rows.append(row)
   rows.sort(key=lambda row:row['order']);actual=[row['id'] for row in rows]
   if declared and declared!=actual:raise ValueError(f"{course['id']}/{module['id']}: manifest and authored lessons differ")

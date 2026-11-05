@@ -1,0 +1,162 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Compter les membres par ville",
+    "instruction_fr": "Retourne ville puis nombre=COUNT(*) pour chaque groupe de ville. Garde le groupe NULL. Trie par ville croissante, NULL en premier selon le tri SQLite de cet exercice.",
+    "starter_code": "SELECT ville, COUNT(*) AS nombre FROM membres ORDER BY ville;",
+    "solution": "SELECT ville, COUNT(*) AS nombre\nFROM membres\nGROUP BY ville\nORDER BY ville ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT ville, COUNT(*) AS nombre\nFROM membres\nGROUP BY ville\nORDER BY ville ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT ville, COUNT(*) AS nombre\nFROM membres\nGROUP BY ville\nORDER BY ville ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT ville, COUNT(*) AS nombre\nFROM membres\nGROUP BY ville\nORDER BY ville ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "Combien de piles différentes faut-il former ?",
+      "Le GROUP BY doit porter sur ville.",
+      "SELECT ville, COUNT(*) AS nombre\nFROM membres\nGROUP BY ville\nORDER BY ville ASC;"
+    ],
+    "explanation_fr": "COUNT(*) garde aussi les membres dont la ville est inconnue.",
+    "common_wrong_answers": [],
+    "id": "sql-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Répartir les inscriptions par statut",
+    "instruction_fr": "Retourne statut puis nombre pour chaque statut présent. Groupe par statut et trie par statut croissant. N’invente pas une ligne pour un statut absent d’une table vide.",
+    "starter_code": "SELECT statut, COUNT(*) AS nombre\nFROM inscriptions GROUP BY id ORDER BY statut ASC, id ASC;",
+    "solution": "SELECT statut, COUNT(*) AS nombre\nFROM inscriptions\nGROUP BY statut\nORDER BY statut ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT statut, COUNT(*) AS nombre\nFROM inscriptions\nGROUP BY statut\nORDER BY statut ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT statut, COUNT(*) AS nombre\nFROM inscriptions\nGROUP BY statut\nORDER BY statut ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT statut, COUNT(*) AS nombre\nFROM inscriptions\nGROUP BY statut\nORDER BY statut ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "La clé du bilan est-elle une inscription ou un statut ?",
+      "Regroupe toutes les lignes partageant le même statut.",
+      "SELECT statut, COUNT(*) AS nombre\nFROM inscriptions\nGROUP BY statut\nORDER BY statut ASC;"
+    ],
+    "explanation_fr": "Une clé absente ne produit pas de groupe artificiel.",
+    "common_wrong_answers": [],
+    "id": "sql-m3-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un regroupement trop précis",
+    "instruction_fr": "Pour chaque prix présent dans ateliers, retourne prix, nombre_ateliers=COUNT(*) et places_totales=SUM(places). Trie par prix croissant. Plusieurs ateliers peuvent partager un même prix.",
+    "starter_code": "SELECT prix, COUNT(*) AS nombre_ateliers, SUM(places) AS places_totales\nFROM ateliers GROUP BY id ORDER BY prix ASC, id ASC;",
+    "solution": "SELECT prix, COUNT(*) AS nombre_ateliers, SUM(places) AS places_totales\nFROM ateliers\nGROUP BY prix\nORDER BY prix ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT prix, COUNT(*) AS nombre_ateliers, SUM(places) AS places_totales\nFROM ateliers\nGROUP BY prix\nORDER BY prix ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT prix, COUNT(*) AS nombre_ateliers, SUM(places) AS places_totales\nFROM ateliers\nGROUP BY prix\nORDER BY prix ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT prix, COUNT(*) AS nombre_ateliers, SUM(places) AS places_totales\nFROM ateliers\nGROUP BY prix\nORDER BY prix ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "Un identifiant unique rassemble-t-il les ateliers au même prix ?",
+      "La clé demandée est prix, pas id.",
+      "SELECT prix, COUNT(*) AS nombre_ateliers, SUM(places) AS places_totales\nFROM ateliers\nGROUP BY prix\nORDER BY prix ASC;"
+    ],
+    "explanation_fr": "La base variation contient un prix partagé : elle révèle le regroupement incorrect.",
+    "common_wrong_answers": [],
+    "id": "sql-m3-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Comparer les groupes d’adultes",
+    "instruction_fr": "Garde les membres age>=18. Retourne ville, adultes=COUNT(*) et age_moyen=ROUND(AVG(age),1), une ligne par ville. Trie adultes décroissant puis ville croissante pour départager les groupes.",
+    "starter_code": "SELECT ville, COUNT(*) AS adultes, ROUND(AVG(age),1) AS age_moyen\nFROM membres GROUP BY ville ORDER BY adultes DESC, ville ASC;",
+    "solution": "SELECT ville, COUNT(*) AS adultes, ROUND(AVG(age),1) AS age_moyen\nFROM membres\nWHERE age >= 18\nGROUP BY ville\nORDER BY adultes DESC, ville ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT ville, COUNT(*) AS adultes, ROUND(AVG(age),1) AS age_moyen\nFROM membres\nWHERE age >= 18\nGROUP BY ville\nORDER BY adultes DESC, ville ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT ville, COUNT(*) AS adultes, ROUND(AVG(age),1) AS age_moyen\nFROM membres\nWHERE age >= 18\nGROUP BY ville\nORDER BY adultes DESC, ville ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT ville, COUNT(*) AS adultes, ROUND(AVG(age),1) AS age_moyen\nFROM membres\nWHERE age >= 18\nGROUP BY ville\nORDER BY adultes DESC, ville ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "Quelles fiches doivent entrer dans les piles ?",
+      "Filtre d’abord l’âge puis groupe les lignes restantes.",
+      "SELECT ville, COUNT(*) AS adultes, ROUND(AVG(age),1) AS age_moyen\nFROM membres\nWHERE age >= 18\nGROUP BY ville\nORDER BY adultes DESC, ville ASC;"
+    ],
+    "explanation_fr": "Le tri secondaire sur la clé rend les égalités d’effectif reproductibles.",
+    "common_wrong_answers": [],
+    "id": "sql-m3-02-e4"
+  }
+]

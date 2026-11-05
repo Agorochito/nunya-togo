@@ -1,4 +1,4 @@
-# Couverture des cours — livraison 5.5.0, 5 novembre 2026
+# Couverture des cours — livraison 5.6.0, 5 novembre 2026
 
 Le prompt maître impose une réalisation par lots, avec une cible finale de 72 cours répartis sur trois niveaux et des séries complémentaires. Cette livraison ne termine pas cette cible. L’audit initial est conservé dans [BASELINE_COURSE_AUDIT_5.2.1.md](BASELINE_COURSE_AUDIT_5.2.1.md).
 
@@ -10,6 +10,7 @@ Le prompt maître impose une réalisation par lots, avec une cible finale de 72 
 | CSS : premières interfaces | 4 | 12 | 48 | Contenu original rédigé ; relecture pédagogique en cours. |
 | HTML : premières pages accessibles | 4 | 12 | 48 | Contenu original rédigé ; relecture pédagogique en cours. |
 | JavaScript : les fondamentaux en pratique | 8 | 24 | 96 | Socle synchrone de console rédigé, jusqu’au projet final ; relecture pédagogique en cours. |
+| SQL : des premières requêtes au projet de données | 6 | 18 | 72 | SQLite réel, données fictives, tableaux de résultats, contraintes et transactions ; relecture en cours. |
 | HTTP et API : construire un client JavaScript | 4 | 12 | 48 | Requêtes et réponses natives sur une API pédagogique locale ; cours original à relire. |
 
 Les leçons possèdent chacune 300–700 mots d’explication, deux exemples commentés, quatre exercices, trois questions de compréhension, des erreurs fréquentes, un glossaire et un récapitulatif. Elles sont des brouillons originaux : aucun enseignant réviseur, partenariat ou certificat externe n’est inventé. Les 22 chapitres Python antérieurs, leurs identifiants et leurs questions de fin de chapitre restent conservés.
@@ -24,20 +25,21 @@ Le socle HTTP/API utilise le vrai fetch et les vrais objets Request/Response d�
 
 ## Ce qui reste à construire
 
-SQL possède toujours une introduction courte ; son socle approfondi reste à écrire. Git/GitHub dispose désormais du socle débutant décrit ci-dessus, sans niveau intermédiaire ou avancé annoncé. Node.js et les autres familles ne possèdent pas encore leurs cours complets. Aucun cours intermédiaire ou avancé complet n’est annoncé comme disponible. Le socle JavaScript synchrone est rédigé ; DOM, événements et asynchronisme appartiennent à une suite distincte.
+SQL possède maintenant le socle progressif de 18 leçons décrit ci-dessus, incluant une première approche des jointures et transactions. Ce contenu ne remplace pas des niveaux intermédiaire et avancé distincts. Git/GitHub dispose désormais du socle débutant décrit ci-dessus, sans niveau intermédiaire ou avancé annoncé. Node.js et les autres familles ne possèdent pas encore leurs cours complets. Aucun cours intermédiaire ou avancé complet n’est annoncé comme disponible. Le socle JavaScript synchrone est rédigé ; DOM, événements et asynchronisme appartiennent à une suite distincte.
 
-La suite doit produire et éprouver le socle SQL, puis les séries DOM, événements, asynchronisme approfondi et Node.js après leurs prérequis et avec un moteur réel adapté. Les niveaux intermédiaire et avancé doivent avoir leurs propres leçons, projets et évaluations ; une sélection de niveau ne doit pas réutiliser artificiellement le même contenu. Les autres familles restent suivies dans la matrice JSON de 72 entrées, avec les 20 séries complémentaires. Aucun cours vide n’est ajouté pour augmenter le compteur.
+La suite doit produire les séries DOM, événements, TypeScript, React, asynchronisme approfondi et Node.js après leurs prérequis et avec un moteur réel adapté. Les niveaux intermédiaire et avancé doivent avoir leurs propres leçons, projets et évaluations ; une sélection de niveau ne doit pas réutiliser artificiellement le même contenu. Les autres familles restent suivies dans la matrice JSON de 72 entrées, avec les 20 séries complémentaires. Aucun cours vide n’est ajouté pour augmenter le compteur.
 
 ## Vérifications et limites
 
 - Git : 32 situations initiales rejetées, 32 objectifs atteints par 101 opérations réelles ; reprise, archives et restauration invalide sans écraser le dépôt vérifiées. Les 48 activités et 36 questions parcourues sur 360 et 1440 px, y compris à froid hors ligne ; axe : zéro violation sur les vues testées.
 - HTTP : 162 cas de référence, 48 solutions acceptées et 48 codes de départ rejetés, 24 exemples. API froide hors ligne, AbortController, erreur réseau, refus d’une URL Request masquée et import externe bloqué par CSP vérifiés. Les 12 leçons, 48 exercices et 36 questions sont parcourus sur 360 et 1440 px puis repris à froid hors ligne ; axe : zéro violation sur les vues testées. Voir `HTTP_ENGINE_RESULTS.json` et `HTTP_UI_RESULTS.json`.
 - Audit initial de 78 écrans de production avant les changements.
-- 163 tests unitaires ; schémas, ordre des prérequis, propriété des modules et liens internes contrôlés.
+- SQL : 36 exemples et 176 cas de référence exécutés avec SQLite/sql.js réel ; 72 solutions acceptées, 72 codes de départ et scripts vides rejetés. Arrêt du Worker, résultat vide avec colonnes, erreurs, limite de l’allocateur SQLite et redémarrage à froid hors ligne vérifiés. Voir `SQL_ENGINE_RESULTS.json` et `SQL_UI_RESULTS.json`.
+- 177 tests unitaires ; schémas, ordre des prérequis, propriété des modules et liens internes contrôlés.
 - 743 cas Python en CPython, exemples et solutions ; 274 cas JavaScript dans le même protocole que le Worker.
 - 96 solutions HTML/CSS acceptées et 96 codes de départ rejetés par le vrai vérificateur de navigateur.
 - 42 unités / 182 leçons / 562 questions parcourues sur 360 et 1440 px ; aucun saut vers une leçon suivante avant la fin des questions.
-- Cinq séries / 113 leçons affichées ; navigation des exercices et mini-quiz, mauvaise réponse, retour, rechargement, ancien chapitre revu et reprise hors ligne testés. Axe : zéro violation sur les vues de leçon testées, sans prétention de certification complète.
+- Six séries / 131 leçons affichées ; navigation des exercices et mini-quiz, mauvaise réponse, retour, rechargement, ancien chapitre revu et reprise hors ligne testés. Axe : zéro violation sur les vues de leçon testées, sans prétention de certification complète.
 - Fonctions Python, absence de mutation/copie, réservation et JavaScript vérifiés dans les vrais Workers. Délai et arrêt JavaScript testés. Les tests sont formatifs, livrés au navigateur ; ils ne sont pas une frontière d’intégrité d’examen.
 
 Les correspondances aux programmes scolaires, la relecture des nouveaux contenus et les essais avec de vrais élèves restent nécessaires. Les contrôles de liens externes sous réseau restreint retournent des liens non confirmés ; cela ne prouve pas que tous les fournisseurs sont joignables. Comptes et synchronisation distante restent hors de ce lot, conformément au choix de conservation locale.

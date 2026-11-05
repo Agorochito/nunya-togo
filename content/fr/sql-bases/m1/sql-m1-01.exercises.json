@@ -1,0 +1,148 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Lire toutes les fiches membres",
+    "instruction_fr": "Affiche toutes les colonnes de membres, toutes les lignes dans l’ordre croissant de id, sans modifier de table.",
+    "starter_code": "SELECT * FROM ateliers ORDER BY id;",
+    "solution": "SELECT * FROM membres ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT * FROM membres ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT * FROM membres ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres données : appliquer la même requête sans mémoriser les résultats."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT * FROM membres ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans ligne : conserver les colonnes demandées."
+      }
+    ],
+    "hints": [
+      "FROM choisit la table.",
+      "Garde l’étoile et ORDER BY id.",
+      "SELECT * FROM membres ORDER BY id;"
+    ],
+    "explanation_fr": "Le résultat doit venir des membres présents dans chaque fixture.",
+    "common_wrong_answers": [],
+    "id": "sql-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Observer les ateliers",
+    "instruction_fr": "Affiche toutes les colonnes de ateliers dans l’ordre croissant de id, y compris les ateliers à zéro place.",
+    "starter_code": "SELECT * FROM membres ORDER BY id;",
+    "solution": "SELECT * FROM ateliers ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT * FROM ateliers ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT * FROM ateliers ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres données : appliquer la même requête sans mémoriser les résultats."
+      }
+    ],
+    "hints": [
+      "La source demandée est ateliers.",
+      "Aucun filtre n’est demandé.",
+      "SELECT * FROM ateliers ORDER BY id;"
+    ],
+    "explanation_fr": "Zéro est une valeur à lire, pas une ligne à supprimer.",
+    "common_wrong_answers": [],
+    "id": "sql-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un nom de table",
+    "instruction_fr": "Corrige la lecture de toutes les colonnes de inscriptions, triées par id croissant. La table du schéma porte un nom au pluriel.",
+    "starter_code": "SELECT * FROM inscription ORDER BY id;",
+    "solution": "SELECT * FROM inscriptions ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT * FROM inscriptions ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT * FROM inscriptions ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres données : appliquer la même requête sans mémoriser les résultats."
+      }
+    ],
+    "hints": [
+      "Compare le nom au schéma.",
+      "Le nom inscriptions se termine par s.",
+      "SELECT * FROM inscriptions ORDER BY id;"
+    ],
+    "explanation_fr": "Une faute de nom ne désigne pas une autre source valide.",
+    "common_wrong_answers": [],
+    "id": "sql-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Préparer deux vues",
+    "instruction_fr": "Produis deux tableaux successifs : toutes les colonnes de membres puis toutes celles de ateliers. Trie chaque tableau par id croissant. Les deux résultats seront contrôlés ; aucune donnée ne doit changer.",
+    "starter_code": "SELECT * FROM membres ORDER BY id;",
+    "solution": "SELECT * FROM membres ORDER BY id;\nSELECT * FROM ateliers ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT * FROM membres ORDER BY id;\nSELECT * FROM ateliers ORDER BY id;",
+        "mode": "query",
+        "compare_results": "all",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT * FROM membres ORDER BY id;\nSELECT * FROM ateliers ORDER BY id;",
+        "mode": "query",
+        "compare_results": "all",
+        "description_fr": "Autres données : appliquer la même requête sans mémoriser les résultats."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT * FROM membres ORDER BY id;\nSELECT * FROM ateliers ORDER BY id;",
+        "mode": "query",
+        "compare_results": "all",
+        "description_fr": "Même schéma sans ligne : conserver les colonnes demandées."
+      }
+    ],
+    "hints": [
+      "Il faut deux lectures distinctes.",
+      "Termine chaque instruction par un point-virgule.",
+      "SELECT * FROM membres ORDER BY id;\nSELECT * FROM ateliers ORDER BY id;"
+    ],
+    "explanation_fr": "Les deux tableaux sont comparés, et pas seulement le dernier.",
+    "common_wrong_answers": [],
+    "id": "sql-m1-01-e4"
+  }
+]

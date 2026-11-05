@@ -1,0 +1,162 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Garder tous les membres dans la lecture",
+    "instruction_fr": "Retourne membre_id=m.id, membre=m.nom, inscription_id=i.id en reliant membres m à inscriptions i par LEFT JOIN. Conserve tous les membres, avec NULL pour inscription_id sans correspondance. Trie m.id puis i.id croissants.",
+    "starter_code": "SELECT m.id AS membre_id, m.nom AS membre, i.id AS inscription_id\nFROM membres AS m INNER JOIN inscriptions AS i ON i.membre_id = m.id\nORDER BY m.id ASC, i.id ASC;",
+    "solution": "SELECT m.id AS membre_id, m.nom AS membre, i.id AS inscription_id\nFROM membres AS m\nLEFT JOIN inscriptions AS i ON i.membre_id = m.id\nORDER BY m.id ASC, i.id ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT m.id AS membre_id, m.nom AS membre, i.id AS inscription_id\nFROM membres AS m\nLEFT JOIN inscriptions AS i ON i.membre_id = m.id\nORDER BY m.id ASC, i.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT m.id AS membre_id, m.nom AS membre, i.id AS inscription_id\nFROM membres AS m\nLEFT JOIN inscriptions AS i ON i.membre_id = m.id\nORDER BY m.id ASC, i.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT m.id AS membre_id, m.nom AS membre, i.id AS inscription_id\nFROM membres AS m\nLEFT JOIN inscriptions AS i ON i.membre_id = m.id\nORDER BY m.id ASC, i.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "Quelle table doit rester complète ?",
+      "Place membres à gauche d’un LEFT JOIN.",
+      "SELECT m.id AS membre_id, m.nom AS membre, i.id AS inscription_id\nFROM membres AS m\nLEFT JOIN inscriptions AS i ON i.membre_id = m.id\nORDER BY m.id ASC, i.id ASC;"
+    ],
+    "explanation_fr": "La valeur NULL à droite signale ici une absence de correspondance, sans créer de donnée.",
+    "common_wrong_answers": [],
+    "id": "sql-m4-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Compter toutes les inscriptions par atelier",
+    "instruction_fr": "Retourne atelier_id=a.id, atelier=a.titre, total_inscriptions=COUNT(i.id) pour tous les ateliers, même sans inscription. LEFT JOIN par i.atelier_id=a.id, GROUP BY a.id,a.titre, tri a.id croissant. Tous les statuts sont comptés.",
+    "starter_code": "SELECT a.id AS atelier_id, a.titre AS atelier, COUNT(*) AS total_inscriptions\nFROM ateliers AS a LEFT JOIN inscriptions AS i ON i.atelier_id = a.id\nGROUP BY a.id,a.titre ORDER BY a.id ASC;",
+    "solution": "SELECT a.id AS atelier_id, a.titre AS atelier, COUNT(i.id) AS total_inscriptions\nFROM ateliers AS a\nLEFT JOIN inscriptions AS i ON i.atelier_id = a.id\nGROUP BY a.id, a.titre\nORDER BY a.id ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT a.id AS atelier_id, a.titre AS atelier, COUNT(i.id) AS total_inscriptions\nFROM ateliers AS a\nLEFT JOIN inscriptions AS i ON i.atelier_id = a.id\nGROUP BY a.id, a.titre\nORDER BY a.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT a.id AS atelier_id, a.titre AS atelier, COUNT(i.id) AS total_inscriptions\nFROM ateliers AS a\nLEFT JOIN inscriptions AS i ON i.atelier_id = a.id\nGROUP BY a.id, a.titre\nORDER BY a.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT a.id AS atelier_id, a.titre AS atelier, COUNT(i.id) AS total_inscriptions\nFROM ateliers AS a\nLEFT JOIN inscriptions AS i ON i.atelier_id = a.id\nGROUP BY a.id, a.titre\nORDER BY a.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "Une ligne conservée sans inscription possède-t-elle un id d’inscription ?",
+      "COUNT(*) compterait aussi la ligne complétée par NULL.",
+      "SELECT a.id AS atelier_id, a.titre AS atelier, COUNT(i.id) AS total_inscriptions\nFROM ateliers AS a\nLEFT JOIN inscriptions AS i ON i.atelier_id = a.id\nGROUP BY a.id, a.titre\nORDER BY a.id ASC;"
+    ],
+    "explanation_fr": "Compte la clé droite non NULL pour obtenir zéro sur les ateliers sans participation.",
+    "common_wrong_answers": [],
+    "id": "sql-m4-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Trouver les personnes sans inscription",
+    "instruction_fr": "Avec LEFT JOIN, retourne seulement les membres sans aucune inscription : membre_id=m.id, membre=m.nom. Teste la clé droite i.id avec IS NULL et trie m.id croissant. Ne confonds pas une ville NULL avec une absence de participation.",
+    "starter_code": "SELECT m.id AS membre_id, m.nom AS membre\nFROM membres AS m LEFT JOIN inscriptions AS i ON i.membre_id = m.id\nWHERE i.id = NULL ORDER BY m.id ASC;",
+    "solution": "SELECT m.id AS membre_id, m.nom AS membre\nFROM membres AS m\nLEFT JOIN inscriptions AS i ON i.membre_id = m.id\nWHERE i.id IS NULL\nORDER BY m.id ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT m.id AS membre_id, m.nom AS membre\nFROM membres AS m\nLEFT JOIN inscriptions AS i ON i.membre_id = m.id\nWHERE i.id IS NULL\nORDER BY m.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT m.id AS membre_id, m.nom AS membre\nFROM membres AS m\nLEFT JOIN inscriptions AS i ON i.membre_id = m.id\nWHERE i.id IS NULL\nORDER BY m.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT m.id AS membre_id, m.nom AS membre\nFROM membres AS m\nLEFT JOIN inscriptions AS i ON i.membre_id = m.id\nWHERE i.id IS NULL\nORDER BY m.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "Quel test reconnaît une absence de valeur SQL ?",
+      "La colonne testée doit être une clé de la partie droite.",
+      "SELECT m.id AS membre_id, m.nom AS membre\nFROM membres AS m\nLEFT JOIN inscriptions AS i ON i.membre_id = m.id\nWHERE i.id IS NULL\nORDER BY m.id ASC;"
+    ],
+    "explanation_fr": "IS NULL sur i.id repère l’absence de correspondance ; = NULL ne le fait pas.",
+    "common_wrong_answers": [],
+    "id": "sql-m4-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Bilan complet des confirmations",
+    "instruction_fr": "Retourne tous les membres avec membre_id=m.id, membre=m.nom et confirmations=COUNT(i.id). LEFT JOIN ne doit faire correspondre que les inscriptions confirmee : place le statut dans ON. Groupe par m.id,m.nom ; trie confirmations décroissant puis m.id croissant. Les personnes sans confirmation doivent avoir zéro.",
+    "starter_code": "SELECT m.id AS membre_id, m.nom AS membre, COUNT(i.id) AS confirmations\nFROM membres AS m LEFT JOIN inscriptions AS i ON i.membre_id = m.id\nWHERE i.statut = 'confirmee'\nGROUP BY m.id,m.nom ORDER BY confirmations DESC,m.id ASC;",
+    "solution": "SELECT m.id AS membre_id, m.nom AS membre, COUNT(i.id) AS confirmations\nFROM membres AS m\nLEFT JOIN inscriptions AS i\n  ON i.membre_id = m.id AND i.statut = 'confirmee'\nGROUP BY m.id, m.nom\nORDER BY confirmations DESC, m.id ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT m.id AS membre_id, m.nom AS membre, COUNT(i.id) AS confirmations\nFROM membres AS m\nLEFT JOIN inscriptions AS i\n  ON i.membre_id = m.id AND i.statut = 'confirmee'\nGROUP BY m.id, m.nom\nORDER BY confirmations DESC, m.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Résultat calculé sur le club fictif, avec colonnes et ordre annoncés."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT m.id AS membre_id, m.nom AS membre, COUNT(i.id) AS confirmations\nFROM membres AS m\nLEFT JOIN inscriptions AS i\n  ON i.membre_id = m.id AND i.statut = 'confirmee'\nGROUP BY m.id, m.nom\nORDER BY confirmations DESC, m.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Les mêmes règles sur d’autres membres, prix, places et inscriptions."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT m.id AS membre_id, m.nom AS membre, COUNT(i.id) AS confirmations\nFROM membres AS m\nLEFT JOIN inscriptions AS i\n  ON i.membre_id = m.id AND i.statut = 'confirmee'\nGROUP BY m.id, m.nom\nORDER BY confirmations DESC, m.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans données : distinguer absence de groupe et agrégat scalaire."
+      }
+    ],
+    "hints": [
+      "La question veut-elle garder les personnes avec zéro confirmation ?",
+      "Le statut participe à la recherche de correspondance dans ON.",
+      "SELECT m.id AS membre_id, m.nom AS membre, COUNT(i.id) AS confirmations\nFROM membres AS m\nLEFT JOIN inscriptions AS i\n  ON i.membre_id = m.id AND i.statut = 'confirmee'\nGROUP BY m.id, m.nom\nORDER BY confirmations DESC, m.id ASC;"
+    ],
+    "explanation_fr": "Un filtre WHERE sur le statut droit supprimerait les lignes qu’il fallait conserver.",
+    "common_wrong_answers": [],
+    "id": "sql-m4-03-e4"
+  }
+]

@@ -1,0 +1,245 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une structure minimale",
+    "instruction_fr": "Base vierge : crée uniquement livres avec id déclaré INTEGER PRIMARY KEY et titre déclaré TEXT NOT NULL. N’ajoute aucune ligne. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "CREATE TABLE livres(id INTEGER PRIMARY KEY, titre TEXT);",
+    "solution": "CREATE TABLE livres(id INTEGER PRIMARY KEY, titre TEXT NOT NULL);",
+    "visible_tests": [
+      {
+        "fixture": "vierge",
+        "reference_sql": "CREATE TABLE livres(id INTEGER PRIMARY KEY, titre TEXT NOT NULL);",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "INSERT INTO livres(id,titre) VALUES(1,'Lecture');",
+            "error_includes": null,
+            "description_fr": "Un titre présent doit être accepté."
+          },
+          {
+            "sql": "INSERT INTO livres(id,titre) VALUES(1,NULL);",
+            "error_includes": "NOT NULL constraint failed",
+            "description_fr": "Un titre absent doit être refusé."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "vierge",
+        "reference_sql": "CREATE TABLE livres(id INTEGER PRIMARY KEY, titre TEXT NOT NULL);",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "INSERT INTO livres(id,titre) VALUES(2,'A'); INSERT INTO livres(id,titre) VALUES(2,'B');",
+            "error_includes": "UNIQUE constraint failed",
+            "description_fr": "Un identifiant déjà utilisé doit être refusé."
+          },
+          {
+            "sql": "INSERT INTO livres(id,titre) VALUES(3,'Autre titre');",
+            "error_includes": null,
+            "description_fr": "Un identifiant distinct doit être accepté."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’identité et la présence du titre sont deux règles différentes.",
+      "La colonne titre doit refuser NULL.",
+      "Ajoute NOT NULL après TEXT pour titre."
+    ],
+    "explanation_fr": "La création définit un contrat pour les écritures futures. Le contrôle compare la structure et essaie une vraie valeur absente au lieu de chercher les mots dans ton texte.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^CREATE\\ TABLE\\ livres\\(id\\ INTEGER\\ PRIMARY\\ KEY,\\ titre\\ TEXT\\);$",
+        "feedback_fr": "La colonne titre doit refuser NULL."
+      }
+    ],
+    "id": "sql-m5-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un stock obligatoire et un défaut réel",
+    "instruction_fr": "Base vierge : crée uniquement livres(id INTEGER PRIMARY KEY, titre TEXT NOT NULL, stock INTEGER NOT NULL DEFAULT 0 CHECK(stock >= 0)). Aucune ligne initiale. Les vérifications utilisent des quantités entières. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "CREATE TABLE livres(id INTEGER PRIMARY KEY, titre TEXT NOT NULL, stock INTEGER NOT NULL DEFAULT 1 CHECK(stock >= 0));",
+    "solution": "CREATE TABLE livres(id INTEGER PRIMARY KEY, titre TEXT NOT NULL, stock INTEGER NOT NULL DEFAULT 0 CHECK(stock >= 0));",
+    "visible_tests": [
+      {
+        "fixture": "vierge",
+        "reference_sql": "CREATE TABLE livres(id INTEGER PRIMARY KEY, titre TEXT NOT NULL, stock INTEGER NOT NULL DEFAULT 0 CHECK(stock >= 0));",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "INSERT INTO livres(id,titre) VALUES(90,'Essai'); CREATE TEMP TABLE controle_defaut(ok INTEGER NOT NULL CHECK(ok=1)); INSERT INTO controle_defaut(ok) VALUES((SELECT CASE WHEN stock=0 THEN 1 ELSE 0 END FROM livres WHERE id=90));",
+            "error_includes": null,
+            "description_fr": "Omettre stock doit produire réellement zéro."
+          },
+          {
+            "sql": "INSERT INTO livres(id,titre,stock) VALUES(1,'Test',-1);",
+            "error_includes": "CHECK constraint failed",
+            "description_fr": "Un stock négatif est refusé."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "vierge",
+        "reference_sql": "CREATE TABLE livres(id INTEGER PRIMARY KEY, titre TEXT NOT NULL, stock INTEGER NOT NULL DEFAULT 0 CHECK(stock >= 0));",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "INSERT INTO livres(id,titre,stock) VALUES(2,'Test',NULL);",
+            "error_includes": "NOT NULL constraint failed",
+            "description_fr": "Le NULL explicite est refusé malgré le défaut."
+          },
+          {
+            "sql": "INSERT INTO livres(id,titre,stock) VALUES(3,'Test',0);",
+            "error_includes": null,
+            "description_fr": "La frontière zéro est acceptée."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le défaut doit être observé lors d’un ajout qui omet stock.",
+      "La valeur attendue est zéro, pas une quantité arbitraire.",
+      "Déclare DEFAULT 0 et conserve NOT NULL ainsi que CHECK(stock >= 0)."
+    ],
+    "explanation_fr": "Une sonde omet réellement la colonne puis contrôle sa valeur. Une autre tente une quantité négative : le défaut et la condition sont deux propriétés vérifiées séparément.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^CREATE\\ TABLE\\ livres\\(id\\ INTEGER\\ PRIMARY\\ KEY,\\ titre\\ TEXT\\ NOT\\ NULL,\\ stock\\ INTEGER\\ NOT\\ NULL\\ DEFAULT\\ 1\\ CHECK\\(stock\\ >=\\ 0\\)\\);$",
+        "feedback_fr": "La valeur attendue est zéro, pas une quantité arbitraire."
+      }
+    ],
+    "id": "sql-m5-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une unicité manquante",
+    "instruction_fr": "Base vierge : crée uniquement livres avec id INTEGER PRIMARY KEY, code TEXT NOT NULL UNIQUE et titre TEXT NOT NULL. Deux livres ne doivent pas partager le même code. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "CREATE TABLE livres(id INTEGER PRIMARY KEY, code TEXT NOT NULL, titre TEXT NOT NULL);",
+    "solution": "CREATE TABLE livres(id INTEGER PRIMARY KEY, code TEXT NOT NULL UNIQUE, titre TEXT NOT NULL);",
+    "visible_tests": [
+      {
+        "fixture": "vierge",
+        "reference_sql": "CREATE TABLE livres(id INTEGER PRIMARY KEY, code TEXT NOT NULL UNIQUE, titre TEXT NOT NULL);",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "INSERT INTO livres VALUES(1,'L-A','A'); INSERT INTO livres VALUES(2,'L-A','B');",
+            "error_includes": "UNIQUE constraint failed",
+            "description_fr": "Le code répété doit être refusé."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "vierge",
+        "reference_sql": "CREATE TABLE livres(id INTEGER PRIMARY KEY, code TEXT NOT NULL UNIQUE, titre TEXT NOT NULL);",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "INSERT INTO livres VALUES(1,'L-A','A'); INSERT INTO livres VALUES(2,'L-B','B');",
+            "error_includes": null,
+            "description_fr": "Deux codes distincts doivent être acceptés."
+          },
+          {
+            "sql": "INSERT INTO livres VALUES(3,NULL,'C');",
+            "error_includes": "NOT NULL constraint failed",
+            "description_fr": "Le code est aussi obligatoire."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un code présent peut encore être répété.",
+      "NOT NULL ne signifie pas UNIQUE.",
+      "Ajoute UNIQUE à la définition de code."
+    ],
+    "explanation_fr": "La répétition est testée avec deux identifiants différents. Cela vérifie bien l’unicité du code et non seulement la protection déjà apportée par la clé primaire.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^CREATE\\ TABLE\\ livres\\(id\\ INTEGER\\ PRIMARY\\ KEY,\\ code\\ TEXT\\ NOT\\ NULL,\\ titre\\ TEXT\\ NOT\\ NULL\\);$",
+        "feedback_fr": "NOT NULL ne signifie pas UNIQUE."
+      }
+    ],
+    "id": "sql-m5-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Relier livres et genres",
+    "instruction_fr": "Base vierge : crée genres(id INTEGER PRIMARY KEY, nom TEXT NOT NULL UNIQUE), puis livres(id INTEGER PRIMARY KEY, titre TEXT NOT NULL, genre_id INTEGER NOT NULL REFERENCES genres(id)). N’ajoute pas de ligne. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "CREATE TABLE genres(id INTEGER PRIMARY KEY, nom TEXT NOT NULL UNIQUE);\nCREATE TABLE livres(id INTEGER PRIMARY KEY, titre TEXT NOT NULL, genre_id INTEGER NOT NULL);",
+    "solution": "CREATE TABLE genres(id INTEGER PRIMARY KEY, nom TEXT NOT NULL UNIQUE);\nCREATE TABLE livres(id INTEGER PRIMARY KEY, titre TEXT NOT NULL, genre_id INTEGER NOT NULL REFERENCES genres(id));",
+    "visible_tests": [
+      {
+        "fixture": "vierge",
+        "reference_sql": "CREATE TABLE genres(id INTEGER PRIMARY KEY, nom TEXT NOT NULL UNIQUE);\nCREATE TABLE livres(id INTEGER PRIMARY KEY, titre TEXT NOT NULL, genre_id INTEGER NOT NULL REFERENCES genres(id));",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "INSERT INTO genres VALUES(1,'Récit'); INSERT INTO livres VALUES(1,'A',1);",
+            "error_includes": null,
+            "description_fr": "Un genre existant est accepté."
+          },
+          {
+            "sql": "INSERT INTO livres VALUES(2,'B',999);",
+            "error_includes": "FOREIGN KEY constraint failed",
+            "description_fr": "Un genre inexistant est refusé."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "vierge",
+        "reference_sql": "CREATE TABLE genres(id INTEGER PRIMARY KEY, nom TEXT NOT NULL UNIQUE);\nCREATE TABLE livres(id INTEGER PRIMARY KEY, titre TEXT NOT NULL, genre_id INTEGER NOT NULL REFERENCES genres(id));",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "INSERT INTO genres VALUES(1,'Arts'); INSERT INTO genres VALUES(2,'Arts');",
+            "error_includes": "UNIQUE constraint failed",
+            "description_fr": "Le nom de genre reste unique."
+          },
+          {
+            "sql": "INSERT INTO livres VALUES(3,'C',NULL);",
+            "error_includes": "NOT NULL constraint failed",
+            "description_fr": "La référence obligatoire ne peut pas être NULL."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La présence de genre_id ne garantit pas que ce genre existe.",
+      "Il faut une référence vers genres(id).",
+      "Ajoute REFERENCES genres(id) à genre_id."
+    ],
+    "explanation_fr": "La clé étrangère est mise à l’épreuve par une référence inexistante. La sonde valable crée d’abord le genre pour distinguer une vraie relation d’une interdiction générale des ajouts.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^CREATE\\ TABLE\\ genres\\(id\\ INTEGER\\ PRIMARY\\ KEY,\\ nom\\ TEXT\\ NOT\\ NULL\\ UNIQUE\\);\\\nCREATE\\ TABLE\\ livres\\(id\\ INTEGER\\ PRIMARY\\ KEY,\\ titre\\ TEXT\\ NOT\\ NULL,\\ genre_id\\ INTEGER\\ NOT\\ NULL\\);$",
+        "feedback_fr": "Il faut une référence vers genres(id)."
+      }
+    ],
+    "id": "sql-m5-01-e4"
+  }
+]

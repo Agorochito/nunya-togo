@@ -1,0 +1,162 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Valider deux changements liés",
+    "instruction_fr": "Dans une transaction BEGIN … COMMIT fermée, donne la ville Atakpamé au membre id 5 puis ajoute l’inscription (10,5,4,attente), colonnes id,membre_id,atelier_id,statut. Ne modifie pas d’autres lignes. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "BEGIN;\nUPDATE membres SET ville='Atakpamé' WHERE id=5;\nCOMMIT;",
+    "solution": "BEGIN;\nUPDATE membres SET ville = 'Atakpamé' WHERE id = 5;\nINSERT INTO inscriptions(id,membre_id,atelier_id,statut) VALUES(10,5,4,'attente');\nCOMMIT;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "BEGIN;\nUPDATE membres SET ville = 'Atakpamé' WHERE id = 5;\nINSERT INTO inscriptions(id,membre_id,atelier_id,statut) VALUES(10,5,4,'attente');\nCOMMIT;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "transaction": "commit"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "BEGIN;\nUPDATE membres SET ville = 'Atakpamé' WHERE id = 5;\nINSERT INTO inscriptions(id,membre_id,atelier_id,statut) VALUES(10,5,4,'attente');\nCOMMIT;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "transaction": "commit"
+      }
+    ],
+    "hints": [
+      "La ville et la nouvelle demande constituent deux changements attendus.",
+      "L’inscription doit être ajoutée avant la validation.",
+      "Place INSERT INTO inscriptions(id,membre_id,atelier_id,statut) VALUES(10,5,4,'attente') avant COMMIT."
+    ],
+    "explanation_fr": "La validation conserve les deux changements dans la base du cas. L’état final vérifie la fiche et l’inscription, tandis que le texte et le quiz rendent explicite la frontière transactionnelle.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^BEGIN;\\\nUPDATE\\ membres\\ SET\\ ville='Atakpamé'\\ WHERE\\ id=5;\\\nCOMMIT;$",
+        "feedback_fr": "L’inscription doit être ajoutée avant la validation."
+      }
+    ],
+    "id": "sql-m6-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Voir une augmentation puis l’annuler",
+    "instruction_fr": "Ouvre BEGIN ; affiche id,places de l’atelier 1 avec ORDER BY id ; augmente ses places de 3 ; affiche le même tableau ; exécute ROLLBACK ; affiche encore ce tableau. Trois résultats, mêmes colonnes, sont exigés. État final inchangé. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "SELECT id,places FROM ateliers WHERE id=1 ORDER BY id;",
+    "solution": "BEGIN;\nSELECT id,places FROM ateliers WHERE id=1 ORDER BY id;\nUPDATE ateliers SET places = places + 3 WHERE id=1;\nSELECT id,places FROM ateliers WHERE id=1 ORDER BY id;\nROLLBACK;\nSELECT id,places FROM ateliers WHERE id=1 ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "BEGIN;\nSELECT id,places FROM ateliers WHERE id=1 ORDER BY id;\nUPDATE ateliers SET places = places + 3 WHERE id=1;\nSELECT id,places FROM ateliers WHERE id=1 ORDER BY id;\nROLLBACK;\nSELECT id,places FROM ateliers WHERE id=1 ORDER BY id;",
+        "mode": "mutation",
+        "compare_results": "all",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "transaction": "rollback"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "BEGIN;\nSELECT id,places FROM ateliers WHERE id=1 ORDER BY id;\nUPDATE ateliers SET places = places + 3 WHERE id=1;\nSELECT id,places FROM ateliers WHERE id=1 ORDER BY id;\nROLLBACK;\nSELECT id,places FROM ateliers WHERE id=1 ORDER BY id;",
+        "mode": "mutation",
+        "compare_results": "all",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "transaction": "rollback"
+      }
+    ],
+    "hints": [
+      "La base intacte à la fin ne suffit pas à prouver l’essai provisoire.",
+      "Il faut observer avant, pendant puis après ROLLBACK.",
+      "Conserve les trois SELECT autour de UPDATE et de l’annulation."
+    ],
+    "explanation_fr": "Les trois tableaux sont comparés dans l’ordre sur chaque fixture. Une constante affichée ou un script vide ne montre pas l’augmentation réelle puis le retour à l’état initial.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^SELECT\\ id,places\\ FROM\\ ateliers\\ WHERE\\ id=1\\ ORDER\\ BY\\ id;$",
+        "feedback_fr": "Il faut observer avant, pendant puis après ROLLBACK."
+      }
+    ],
+    "id": "sql-m6-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Créer avant de référencer",
+    "instruction_fr": "Dans une transaction fermée par COMMIT, ajoute l’atelier (10,Lecture,3,300), puis l’inscription (10,5,10,attente). Utilise les colonnes explicites des fixtures. Conserve le reste. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "BEGIN;\nINSERT INTO inscriptions(id,membre_id,atelier_id,statut) VALUES(10,5,10,'attente');\nINSERT INTO ateliers(id,titre,places,prix) VALUES(10,'Lecture',3,300);\nCOMMIT;",
+    "solution": "BEGIN;\nINSERT INTO ateliers(id,titre,places,prix) VALUES(10,'Lecture',3,300);\nINSERT INTO inscriptions(id,membre_id,atelier_id,statut) VALUES(10,5,10,'attente');\nCOMMIT;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "BEGIN;\nINSERT INTO ateliers(id,titre,places,prix) VALUES(10,'Lecture',3,300);\nINSERT INTO inscriptions(id,membre_id,atelier_id,statut) VALUES(10,5,10,'attente');\nCOMMIT;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "transaction": "commit"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "BEGIN;\nINSERT INTO ateliers(id,titre,places,prix) VALUES(10,'Lecture',3,300);\nINSERT INTO inscriptions(id,membre_id,atelier_id,statut) VALUES(10,5,10,'attente');\nCOMMIT;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "transaction": "commit"
+      }
+    ],
+    "hints": [
+      "BEGIN ne désactive pas les clés étrangères immédiates.",
+      "L’atelier doit exister au moment de l’ajout de l’inscription.",
+      "Place INSERT ateliers avant INSERT inscriptions, puis COMMIT."
+    ],
+    "explanation_fr": "La transaction regroupe les écritures mais conserve les contraintes. L’ordre parent puis enfant respecte une référence immédiate et permet ensuite de valider un ensemble cohérent.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^BEGIN;\\\nINSERT\\ INTO\\ inscriptions\\(id,membre_id,atelier_id,statut\\)\\ VALUES\\(10,5,10,'attente'\\);\\\nINSERT\\ INTO\\ ateliers\\(id,titre,places,prix\\)\\ VALUES\\(10,'Lecture',3,300\\);\\\nCOMMIT;$",
+        "feedback_fr": "L’atelier doit exister au moment de l’ajout de l’inscription."
+      }
+    ],
+    "id": "sql-m6-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Annuler une suppression observée",
+    "instruction_fr": "Ouvre BEGIN ; affiche COUNT(*) AS nombre des inscriptions ; supprime celles en attente ; affiche le même compte ; exécute ROLLBACK ; affiche encore le compte. Trois résultats scalaires sont requis et toutes les lignes initiales doivent rester. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "BEGIN;\nSELECT COUNT(*) AS nombre FROM inscriptions;\nDELETE FROM inscriptions WHERE statut='attente';\nSELECT COUNT(*) AS nombre FROM inscriptions;\nCOMMIT;\nSELECT COUNT(*) AS nombre FROM inscriptions;",
+    "solution": "BEGIN;\nSELECT COUNT(*) AS nombre FROM inscriptions;\nDELETE FROM inscriptions WHERE statut='attente';\nSELECT COUNT(*) AS nombre FROM inscriptions;\nROLLBACK;\nSELECT COUNT(*) AS nombre FROM inscriptions;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "BEGIN;\nSELECT COUNT(*) AS nombre FROM inscriptions;\nDELETE FROM inscriptions WHERE statut='attente';\nSELECT COUNT(*) AS nombre FROM inscriptions;\nROLLBACK;\nSELECT COUNT(*) AS nombre FROM inscriptions;",
+        "mode": "mutation",
+        "compare_results": "all",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "transaction": "rollback"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "BEGIN;\nSELECT COUNT(*) AS nombre FROM inscriptions;\nDELETE FROM inscriptions WHERE statut='attente';\nSELECT COUNT(*) AS nombre FROM inscriptions;\nROLLBACK;\nSELECT COUNT(*) AS nombre FROM inscriptions;",
+        "mode": "mutation",
+        "compare_results": "all",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "transaction": "rollback"
+      }
+    ],
+    "hints": [
+      "La dernière lecture doit retrouver le compte de départ.",
+      "COMMIT conserverait les suppressions au lieu de les annuler.",
+      "Remplace cette validation par ROLLBACK sans supprimer les lectures."
+    ],
+    "explanation_fr": "Le compte intermédiaire révèle les lignes effectivement retirées, puis le dernier compte et l’état complet vérifient leur restauration. Les données supplémentaires changent le nombre de départ.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^BEGIN;\\\nSELECT\\ COUNT\\(\\*\\)\\ AS\\ nombre\\ FROM\\ inscriptions;\\\nDELETE\\ FROM\\ inscriptions\\ WHERE\\ statut='attente';\\\nSELECT\\ COUNT\\(\\*\\)\\ AS\\ nombre\\ FROM\\ inscriptions;\\\nCOMMIT;\\\nSELECT\\ COUNT\\(\\*\\)\\ AS\\ nombre\\ FROM\\ inscriptions;$",
+        "feedback_fr": "COMMIT conserverait les suppressions au lieu de les annuler."
+      }
+    ],
+    "id": "sql-m6-01-e4"
+  }
+]

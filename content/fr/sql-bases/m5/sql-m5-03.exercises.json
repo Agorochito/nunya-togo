@@ -1,0 +1,154 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Augmentation ciblée",
+    "instruction_fr": "Augmente places de 1 uniquement pour l’atelier id 1. Calcule à partir de sa quantité initiale ; ne fixe pas un résultat constant. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "UPDATE ateliers SET places = places + 1;",
+    "solution": "UPDATE ateliers SET places = places + 1 WHERE id = 1;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "UPDATE ateliers SET places = places + 1 WHERE id = 1;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "UPDATE ateliers SET places = places + 1 WHERE id = 1;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Observe quelles lignes satisfont la condition voulue.",
+      "Sans WHERE, tous les ateliers seraient modifiés.",
+      "Ajoute WHERE id = 1 après le SET."
+    ],
+    "explanation_fr": "La cible est la même dans les deux fixtures, mais sa quantité initiale change. Une expression fondée sur la valeur actuelle respecte cette variation et protège les autres lignes.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^UPDATE\\ ateliers\\ SET\\ places\\ =\\ places\\ \\+\\ 1;$",
+        "feedback_fr": "Sans WHERE, tous les ateliers seraient modifiés."
+      }
+    ],
+    "id": "sql-m5-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Réduction fictive avec un seuil",
+    "instruction_fr": "Retire exactement 100 au prix des ateliers dont le prix initial est >= 1000. Ne touche ni aux autres colonnes ni aux prix inférieurs. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "UPDATE ateliers SET prix = prix - 100 WHERE prix > 1000;",
+    "solution": "UPDATE ateliers SET prix = prix - 100 WHERE prix >= 1000;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "UPDATE ateliers SET prix = prix - 100 WHERE prix >= 1000;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "UPDATE ateliers SET prix = prix - 100 WHERE prix >= 1000;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Le seuil appartient au groupe retenu.",
+      "Le prix exactement mille doit aussi être réduit.",
+      "Utilise WHERE prix >= 1000."
+    ],
+    "explanation_fr": "Le cas à la frontière distingue deux conditions proches. L’opération ne prétend pas calculer une promotion générale : elle applique une soustraction précise sur un ensemble annoncé.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^UPDATE\\ ateliers\\ SET\\ prix\\ =\\ prix\\ \\-\\ 100\\ WHERE\\ prix\\ >\\ 1000;$",
+        "feedback_fr": "Le prix exactement mille doit aussi être réduit."
+      }
+    ],
+    "id": "sql-m5-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Préserver les inscriptions confirmées",
+    "instruction_fr": "Supprime uniquement les inscriptions dont statut vaut attente. Conserve les membres, les ateliers et toutes les inscriptions confirmées. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "DELETE FROM inscriptions;",
+    "solution": "DELETE FROM inscriptions WHERE statut = 'attente';",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "DELETE FROM inscriptions WHERE statut = 'attente';",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "DELETE FROM inscriptions WHERE statut = 'attente';",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "La suppression doit filtrer le statut.",
+      "L’absence de WHERE efface toutes les lignes de la table.",
+      "Ajoute WHERE statut = 'attente'."
+    ],
+    "explanation_fr": "La table conserve sa structure et les lignes qui ne répondent pas au critère. Le contrôle de toutes les tables détecte également une suppression accidentelle de membres ou d’ateliers.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^DELETE\\ FROM\\ inscriptions;$",
+        "feedback_fr": "L’absence de WHERE efface toutes les lignes de la table."
+      }
+    ],
+    "id": "sql-m5-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Retirer une ressource et ses références",
+    "instruction_fr": "Supprime les inscriptions de l’atelier id 2, puis cet atelier. Conserve toutes les autres inscriptions, les autres ateliers et les membres. Aucune cascade n’est configurée. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "DELETE FROM ateliers WHERE id = 2;\nDELETE FROM inscriptions WHERE atelier_id = 2;",
+    "solution": "DELETE FROM inscriptions WHERE atelier_id = 2;\nDELETE FROM ateliers WHERE id = 2;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "DELETE FROM inscriptions WHERE atelier_id = 2;\nDELETE FROM ateliers WHERE id = 2;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "DELETE FROM inscriptions WHERE atelier_id = 2;\nDELETE FROM ateliers WHERE id = 2;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Une inscription ne peut pas référencer un atelier supprimé.",
+      "Supprime d’abord les lignes enfants qui pointent vers la cible.",
+      "Exécute DELETE inscriptions WHERE atelier_id=2 avant DELETE ateliers WHERE id=2."
+    ],
+    "explanation_fr": "Le lien référentiel est réellement actif. L’ordre des deux instructions respecte le schéma au lieu de désactiver les contraintes ou de supprimer des données qui ne concernent pas la cible.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^DELETE\\ FROM\\ ateliers\\ WHERE\\ id\\ =\\ 2;\\\nDELETE\\ FROM\\ inscriptions\\ WHERE\\ atelier_id\\ =\\ 2;$",
+        "feedback_fr": "Supprime d’abord les lignes enfants qui pointent vers la cible."
+      }
+    ],
+    "id": "sql-m5-03-e4"
+  }
+]

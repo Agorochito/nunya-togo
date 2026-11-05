@@ -1,0 +1,19 @@
+{
+  "results": [
+    {
+      "width": 360,
+      "courses": 6,
+      "filters": true,
+      "roadmapHonest": true,
+      "axeViolations": 0
+    },
+    {
+      "width": 1440,
+      "courses": 6,
+      "filters": true,
+      "roadmapHonest": true,
+      "axeViolations": 0
+    }
+  ],
+  "errors": []
+}

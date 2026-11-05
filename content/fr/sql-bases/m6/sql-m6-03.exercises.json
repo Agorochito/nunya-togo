@@ -1,0 +1,158 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Bilan des confirmations sans atelier perdu",
+    "instruction_fr": "Retourne a.id,a.titre et COUNT(i.id) AS confirmees pour chaque atelier, y compris zéro confirmation. Filtre confirmee dans ON de LEFT JOIN ; GROUP BY a.id,a.titre ; ORDER BY confirmees DESC,a.id ASC. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "SELECT a.id,a.titre,COUNT(*) AS confirmees FROM ateliers AS a LEFT JOIN inscriptions AS i ON i.atelier_id=a.id AND i.statut='confirmee' GROUP BY a.id,a.titre ORDER BY confirmees DESC,a.id ASC;",
+    "solution": "SELECT a.id,a.titre,COUNT(i.id) AS confirmees FROM ateliers AS a LEFT JOIN inscriptions AS i ON i.atelier_id=a.id AND i.statut='confirmee' GROUP BY a.id,a.titre ORDER BY confirmees DESC,a.id ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT a.id,a.titre,COUNT(i.id) AS confirmees FROM ateliers AS a LEFT JOIN inscriptions AS i ON i.atelier_id=a.id AND i.statut='confirmee' GROUP BY a.id,a.titre ORDER BY confirmees DESC,a.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT a.id,a.titre,COUNT(i.id) AS confirmees FROM ateliers AS a LEFT JOIN inscriptions AS i ON i.atelier_id=a.id AND i.statut='confirmee' GROUP BY a.id,a.titre ORDER BY confirmees DESC,a.id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Un atelier sans correspondance produit encore une ligne extérieure.",
+      "COUNT(*) compte cette ligne ; COUNT(i.id) ignore son identifiant absent.",
+      "Utilise COUNT(i.id) AS confirmees."
+    ],
+    "explanation_fr": "Le bilan distingue un atelier existant sans confirmation d’un atelier absent du résultat. Le compte de la colonne liée évite d’inventer une inscription pour une correspondance vide.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^SELECT\\ a\\.id,a\\.titre,COUNT\\(\\*\\)\\ AS\\ confirmees\\ FROM\\ ateliers\\ AS\\ a\\ LEFT\\ JOIN\\ inscriptions\\ AS\\ i\\ ON\\ i\\.atelier_id=a\\.id\\ AND\\ i\\.statut='confirmee'\\ GROUP\\ BY\\ a\\.id,a\\.titre\\ ORDER\\ BY\\ confirmees\\ DESC,a\\.id\\ ASC;$",
+        "feedback_fr": "COUNT(*) compte cette ligne ; COUNT(i.id) ignore son identifiant absent."
+      }
+    ],
+    "id": "sql-m6-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Relier les demandes en attente",
+    "instruction_fr": "Retourne deux colonnes, nom du membre AS membre et titre de l’atelier AS atelier, pour chaque inscription en attente. Utilise les liens membre_id et atelier_id. Trie par m.id,a.id,i.id pour conserver un ordre déterministe. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "SELECT m.nom AS membre,a.titre AS atelier FROM inscriptions AS i INNER JOIN membres AS m ON m.id=i.atelier_id INNER JOIN ateliers AS a ON a.id=i.atelier_id WHERE i.statut='attente' ORDER BY m.id,a.id,i.id;",
+    "solution": "SELECT m.nom AS membre,a.titre AS atelier FROM inscriptions AS i INNER JOIN membres AS m ON m.id=i.membre_id INNER JOIN ateliers AS a ON a.id=i.atelier_id WHERE i.statut='attente' ORDER BY m.id,a.id,i.id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT m.nom AS membre,a.titre AS atelier FROM inscriptions AS i INNER JOIN membres AS m ON m.id=i.membre_id INNER JOIN ateliers AS a ON a.id=i.atelier_id WHERE i.statut='attente' ORDER BY m.id,a.id,i.id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT m.nom AS membre,a.titre AS atelier FROM inscriptions AS i INNER JOIN membres AS m ON m.id=i.membre_id INNER JOIN ateliers AS a ON a.id=i.atelier_id WHERE i.statut='attente' ORDER BY m.id,a.id,i.id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Les deux relations ne portent pas la même identité.",
+      "Relie membres à membre_id et ateliers à atelier_id.",
+      "La jointure membre doit écrire m.id=i.membre_id."
+    ],
+    "explanation_fr": "Les valeurs numériques des identifiants ne suffisent pas à donner le sens d’un lien. La jointure correcte suit les références du schéma et conserve chaque demande sélectionnée.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^SELECT\\ m\\.nom\\ AS\\ membre,a\\.titre\\ AS\\ atelier\\ FROM\\ inscriptions\\ AS\\ i\\ INNER\\ JOIN\\ membres\\ AS\\ m\\ ON\\ m\\.id=i\\.atelier_id\\ INNER\\ JOIN\\ ateliers\\ AS\\ a\\ ON\\ a\\.id=i\\.atelier_id\\ WHERE\\ i\\.statut='attente'\\ ORDER\\ BY\\ m\\.id,a\\.id,i\\.id;$",
+        "feedback_fr": "Relie membres à membre_id et ateliers à atelier_id."
+      }
+    ],
+    "id": "sql-m6-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Confirmer selon une disponibilité annoncée",
+    "instruction_fr": "Dans BEGIN … COMMIT, passe à confirmee les seules inscriptions en attente dont l’atelier a places>0, en utilisant une sous-requête. Ne modifie pas places et ne change pas les confirmations existantes. Termine par SELECT id,statut FROM inscriptions ORDER BY id. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "BEGIN;\nUPDATE inscriptions SET statut='confirmee' WHERE statut='attente';\nCOMMIT;\nSELECT id,statut FROM inscriptions ORDER BY id;",
+    "solution": "BEGIN;\nUPDATE inscriptions SET statut='confirmee' WHERE statut='attente' AND atelier_id IN (SELECT id FROM ateliers WHERE places>0);\nCOMMIT;\nSELECT id,statut FROM inscriptions ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "BEGIN;\nUPDATE inscriptions SET statut='confirmee' WHERE statut='attente' AND atelier_id IN (SELECT id FROM ateliers WHERE places>0);\nCOMMIT;\nSELECT id,statut FROM inscriptions ORDER BY id;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "transaction": "commit"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "BEGIN;\nUPDATE inscriptions SET statut='confirmee' WHERE statut='attente' AND atelier_id IN (SELECT id FROM ateliers WHERE places>0);\nCOMMIT;\nSELECT id,statut FROM inscriptions ORDER BY id;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "transaction": "commit"
+      }
+    ],
+    "hints": [
+      "Toutes les attentes ne visent pas un atelier avec des places.",
+      "Le filtre doit tester l’atelier associé sans modifier sa quantité.",
+      "Ajoute atelier_id IN (SELECT id FROM ateliers WHERE places>0)."
+    ],
+    "explanation_fr": "La règle est un traitement fictif limité et non une réservation réelle. La fixture supplémentaire conserve une attente sur un atelier à zéro place, ce qui révèle une confirmation trop large.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^BEGIN;\\\nUPDATE\\ inscriptions\\ SET\\ statut='confirmee'\\ WHERE\\ statut='attente';\\\nCOMMIT;\\\nSELECT\\ id,statut\\ FROM\\ inscriptions\\ ORDER\\ BY\\ id;$",
+        "feedback_fr": "Le filtre doit tester l’atelier associé sans modifier sa quantité."
+      }
+    ],
+    "id": "sql-m6-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Projet de préparation et bilan final",
+    "instruction_fr": "Dans une transaction fermée par COMMIT : ajoute atelier (10,Lecture,3,300) ; retire 100 aux prix >=1000 ; supprime uniquement les inscriptions en attente. Puis retourne a.id,a.titre,a.prix,COUNT(i.id) AS inscriptions pour tous les ateliers par LEFT JOIN, GROUP BY a.id,a.titre,a.prix et ORDER BY a.id. Conserve membres et toutes les autres données selon ces règles. Chaque essai repart de sa base initiale fictive ; conserve toutes les autres tables et données.",
+    "starter_code": "BEGIN;\nINSERT INTO ateliers(id,titre,places,prix) VALUES(10,'Lecture',3,300);\nUPDATE ateliers SET prix=prix-100 WHERE prix>=1000;\nCOMMIT;\nSELECT a.id,a.titre,a.prix,COUNT(i.id) AS inscriptions FROM ateliers AS a LEFT JOIN inscriptions AS i ON i.atelier_id=a.id GROUP BY a.id,a.titre,a.prix ORDER BY a.id;",
+    "solution": "BEGIN;\nINSERT INTO ateliers(id,titre,places,prix) VALUES(10,'Lecture',3,300);\nUPDATE ateliers SET prix=prix-100 WHERE prix>=1000;\nDELETE FROM inscriptions WHERE statut='attente';\nCOMMIT;\nSELECT a.id,a.titre,a.prix,COUNT(i.id) AS inscriptions FROM ateliers AS a LEFT JOIN inscriptions AS i ON i.atelier_id=a.id GROUP BY a.id,a.titre,a.prix ORDER BY a.id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "BEGIN;\nINSERT INTO ateliers(id,titre,places,prix) VALUES(10,'Lecture',3,300);\nUPDATE ateliers SET prix=prix-100 WHERE prix>=1000;\nDELETE FROM inscriptions WHERE statut='attente';\nCOMMIT;\nSELECT a.id,a.titre,a.prix,COUNT(i.id) AS inscriptions FROM ateliers AS a LEFT JOIN inscriptions AS i ON i.atelier_id=a.id GROUP BY a.id,a.titre,a.prix ORDER BY a.id;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "transaction": "commit"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "BEGIN;\nINSERT INTO ateliers(id,titre,places,prix) VALUES(10,'Lecture',3,300);\nUPDATE ateliers SET prix=prix-100 WHERE prix>=1000;\nDELETE FROM inscriptions WHERE statut='attente';\nCOMMIT;\nSELECT a.id,a.titre,a.prix,COUNT(i.id) AS inscriptions FROM ateliers AS a LEFT JOIN inscriptions AS i ON i.atelier_id=a.id GROUP BY a.id,a.titre,a.prix ORDER BY a.id;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "transaction": "commit"
+      }
+    ],
+    "hints": [
+      "Le projet contient trois écritures puis un bilan.",
+      "Les attentes doivent être retirées sans supprimer les confirmations.",
+      "Place DELETE FROM inscriptions WHERE statut='attente' avant COMMIT, puis garde le bilan de tous les ateliers."
+    ],
+    "explanation_fr": "Le résultat final est contrôlé avec toutes les tables et le tableau ordonné. Réussir seulement le rapport sans appliquer les changements, ou appliquer les changements sans conserver les données non visées, ne répond pas au projet.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^BEGIN;\\\nINSERT\\ INTO\\ ateliers\\(id,titre,places,prix\\)\\ VALUES\\(10,'Lecture',3,300\\);\\\nUPDATE\\ ateliers\\ SET\\ prix=prix\\-100\\ WHERE\\ prix>=1000;\\\nCOMMIT;\\\nSELECT\\ a\\.id,a\\.titre,a\\.prix,COUNT\\(i\\.id\\)\\ AS\\ inscriptions\\ FROM\\ ateliers\\ AS\\ a\\ LEFT\\ JOIN\\ inscriptions\\ AS\\ i\\ ON\\ i\\.atelier_id=a\\.id\\ GROUP\\ BY\\ a\\.id,a\\.titre,a\\.prix\\ ORDER\\ BY\\ a\\.id;$",
+        "feedback_fr": "Les attentes doivent être retirées sans supprimer les confirmations."
+      }
+    ],
+    "id": "sql-m6-03-e4"
+  }
+]

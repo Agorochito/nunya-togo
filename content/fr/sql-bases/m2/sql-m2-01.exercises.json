@@ -1,0 +1,141 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Inclure la frontière",
+    "instruction_fr": "Affiche id, nom, age des membres dont age est au moins 18, triés par id croissant.",
+    "starter_code": "SELECT id, nom, age FROM membres WHERE age > 18 ORDER BY id;",
+    "solution": "SELECT id, nom, age FROM membres WHERE age >= 18 ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT id, nom, age FROM membres WHERE age >= 18 ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT id, nom, age FROM membres WHERE age >= 18 ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres valeurs et cas limites : conserver la même règle de recherche."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT id, nom, age FROM membres WHERE age >= 18 ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Table sans ligne : conserver les colonnes demandées."
+      }
+    ],
+    "hints": [
+      "Au moins inclut la valeur égale.",
+      "Variation contient un âge exactement égal à dix-huit.",
+      "SELECT id, nom, age FROM membres WHERE age >= 18 ORDER BY id;"
+    ],
+    "explanation_fr": "Une borne absente de club ne doit pas être oubliée.",
+    "common_wrong_answers": [],
+    "id": "sql-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Exiger deux critères",
+    "instruction_fr": "Affiche id, titre, prix des ateliers avec places strictement positives ET prix au plus 1000 FCFA fictifs, triés par id croissant.",
+    "starter_code": "SELECT id, titre, prix FROM ateliers WHERE places > 0 OR prix <= 1000 ORDER BY id;",
+    "solution": "SELECT id, titre, prix FROM ateliers WHERE places > 0 AND prix <= 1000 ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT id, titre, prix FROM ateliers WHERE places > 0 AND prix <= 1000 ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT id, titre, prix FROM ateliers WHERE places > 0 AND prix <= 1000 ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres valeurs et cas limites : conserver la même règle de recherche."
+      }
+    ],
+    "hints": [
+      "Les deux règles doivent être respectées.",
+      "OR laisserait une seule règle suffire.",
+      "SELECT id, titre, prix FROM ateliers WHERE places > 0 AND prix <= 1000 ORDER BY id;"
+    ],
+    "explanation_fr": "La requête reste une lecture de valeurs fictives.",
+    "common_wrong_answers": [],
+    "id": "sql-m2-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer le groupement",
+    "instruction_fr": "Affiche id, nom, ville pour les membres de Lomé ou de Kara dont age est au moins 18 dans les deux villes. Trie par id croissant.",
+    "starter_code": "SELECT id, nom, ville FROM membres WHERE ville = 'Lomé' OR ville = 'Kara' AND age >= 18 ORDER BY id;",
+    "solution": "SELECT id, nom, ville FROM membres WHERE (ville = 'Lomé' OR ville = 'Kara') AND age >= 18 ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT id, nom, ville FROM membres WHERE (ville = 'Lomé' OR ville = 'Kara') AND age >= 18 ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT id, nom, ville FROM membres WHERE (ville = 'Lomé' OR ville = 'Kara') AND age >= 18 ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres valeurs et cas limites : conserver la même règle de recherche."
+      }
+    ],
+    "hints": [
+      "AND est prioritaire sans parenthèses.",
+      "Regroupe les deux possibilités de ville.",
+      "SELECT id, nom, ville FROM membres WHERE (ville = 'Lomé' OR ville = 'Kara') AND age >= 18 ORDER BY id;"
+    ],
+    "explanation_fr": "La borne doit ensuite s’appliquer au groupe entier.",
+    "common_wrong_answers": [],
+    "id": "sql-m2-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Composer deux branches",
+    "instruction_fr": "Affiche id, nom, ville, age pour cette recherche fictive : Lomé avec age>=18 OU Kara avec age>=16. Trie par id croissant. Chaque borne appartient à sa ville.",
+    "starter_code": "SELECT id, nom, ville, age FROM membres WHERE (ville = 'Lomé' OR ville = 'Kara') AND age >= 16 ORDER BY id;",
+    "solution": "SELECT id, nom, ville, age FROM membres WHERE (ville = 'Lomé' AND age >= 18) OR (ville = 'Kara' AND age >= 16) ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT id, nom, ville, age FROM membres WHERE (ville = 'Lomé' AND age >= 18) OR (ville = 'Kara' AND age >= 16) ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT id, nom, ville, age FROM membres WHERE (ville = 'Lomé' AND age >= 18) OR (ville = 'Kara' AND age >= 16) ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres valeurs et cas limites : conserver la même règle de recherche."
+      }
+    ],
+    "hints": [
+      "Les bornes ne sont pas identiques.",
+      "Chaque branche doit réunir son lieu et son âge.",
+      "SELECT id, nom, ville, age FROM membres WHERE (ville = 'Lomé' AND age >= 18) OR (ville = 'Kara' AND age >= 16) ORDER BY id;"
+    ],
+    "explanation_fr": "Le seuil seize ne doit pas laisser passer une fiche de Lomé sous dix-huit.",
+    "common_wrong_answers": [],
+    "id": "sql-m2-01-e4"
+  }
+]

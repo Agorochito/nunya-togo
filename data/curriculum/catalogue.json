@@ -2086,6 +2086,353 @@
       "content_revision": "d2944ac7525a",
       "exercise_count": 96,
       "quiz_count": 72
+    },
+    {
+      "id": "sql-bases",
+      "title_fr": "SQL : des premières requêtes au projet de données",
+      "language": "sql",
+      "runtime": "sql",
+      "level": "debutant",
+      "summary_fr": "Explore les tables d’un club fictif, écris tes requêtes et vois leurs résultats. Avance vers les statistiques, jointures, contraintes et transactions, puis construis un bilan.",
+      "prerequisites": [
+        "Savoir lire un tableau ; aucune expérience de programmation requise.",
+        "Les premières leçons expliquent les tables, lignes, colonnes et mots-clés SQL."
+      ],
+      "outcomes": [
+        "Choisir, filtrer, trier et regrouper des données avec une requête SQL.",
+        "Relier des tables par leurs clés et interpréter une absence de correspondance.",
+        "Créer des contraintes et modifier seulement les lignes demandées.",
+        "Valider ou annuler un ensemble de changements avec une transaction.",
+        "Construire un bilan de club avec requêtes, statistiques et mises à jour contrôlées."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Lire des tables et choisir des colonnes",
+          "outcome_fr": "Lire une table, calculer une colonne et trier un résultat.",
+          "lesson_ids": [
+            "sql-m1-01",
+            "sql-m1-02",
+            "sql-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Filtrer et traiter les informations absentes",
+          "outcome_fr": "Composer des conditions et interpréter NULL.",
+          "lesson_ids": [
+            "sql-m2-01",
+            "sql-m2-02",
+            "sql-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Compter, regrouper et préparer un bilan",
+          "outcome_fr": "Agréger les données et distinguer WHERE de HAVING.",
+          "lesson_ids": [
+            "sql-m3-01",
+            "sql-m3-02",
+            "sql-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Relier les tables",
+          "outcome_fr": "Joindre deux ou trois tables et conserver les absences.",
+          "lesson_ids": [
+            "sql-m4-01",
+            "sql-m4-02",
+            "sql-m4-03"
+          ]
+        },
+        {
+          "id": "m5",
+          "title_fr": "Créer et modifier des données cohérentes",
+          "outcome_fr": "Définir des contraintes, ajouter et cibler des changements.",
+          "lesson_ids": [
+            "sql-m5-01",
+            "sql-m5-02",
+            "sql-m5-03"
+          ]
+        },
+        {
+          "id": "m6",
+          "title_fr": "Transactions, sous-requêtes et projet",
+          "outcome_fr": "Annuler, valider et préparer le bilan d’un club fictif.",
+          "lesson_ids": [
+            "sql-m6-01",
+            "sql-m6-02",
+            "sql-m6-03"
+          ]
+        }
+      ],
+      "later_modules": [],
+      "availability": "programme-redige",
+      "status": "brouillon",
+      "reviewer": null,
+      "depth_fr": "Socle progressif SQLite avec initiation aux jointures et transactions. Les optimisations, migrations et niveaux supérieurs restent à construire ; relecture pédagogique en cours.",
+      "lessons": [
+        {
+          "id": "sql-m1-01",
+          "title_fr": "Lire des tables, des lignes et des colonnes",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [],
+          "tags": [
+            "table",
+            "ligne",
+            "colonne",
+            "fixture"
+          ]
+        },
+        {
+          "id": "sql-m1-02",
+          "title_fr": "Choisir des colonnes, des alias et des expressions",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "sql-m1-01"
+          ],
+          "tags": [
+            "projection",
+            "alias",
+            "expression"
+          ]
+        },
+        {
+          "id": "sql-m1-03",
+          "title_fr": "Trier, limiter et départager les ex æquo",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "sql-m1-02"
+          ],
+          "tags": [
+            "tri",
+            "ex æquo",
+            "départage",
+            "limite"
+          ]
+        },
+        {
+          "id": "sql-m2-01",
+          "title_fr": "Filtrer les lignes et combiner les critères",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "sql-m1-03"
+          ],
+          "tags": [
+            "filtre",
+            "comparaison",
+            "littéral",
+            "priorité logique"
+          ]
+        },
+        {
+          "id": "sql-m2-02",
+          "title_fr": "Chercher une liste, un intervalle ou un motif",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "sql-m2-01"
+          ],
+          "tags": [
+            "appartenance",
+            "intervalle inclusif",
+            "motif",
+            "ASCII"
+          ]
+        },
+        {
+          "id": "sql-m2-03",
+          "title_fr": "Rechercher NULL et présenter un remplacement",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "sql-m2-02"
+          ],
+          "tags": [
+            "NULL",
+            "IS NULL",
+            "COALESCE",
+            "présentation calculée"
+          ]
+        },
+        {
+          "id": "sql-m3-01",
+          "title_fr": "Résumer une sélection avec des agrégats",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "sql-m2-03"
+          ],
+          "tags": [
+            "agrégat",
+            "moyenne",
+            "ensemble vide"
+          ]
+        },
+        {
+          "id": "sql-m3-02",
+          "title_fr": "Créer un bilan distinct pour chaque groupe",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "sql-m3-01"
+          ],
+          "tags": [
+            "clé de groupe",
+            "effectif",
+            "tri secondaire"
+          ]
+        },
+        {
+          "id": "sql-m3-03",
+          "title_fr": "Filtrer les groupes avec HAVING",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "sql-m3-02"
+          ],
+          "tags": [
+            "HAVING",
+            "colonne nue",
+            "seuil"
+          ]
+        },
+        {
+          "id": "sql-m4-01",
+          "title_fr": "Relier deux tables avec des clés et INNER JOIN",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "sql-m3-03"
+          ],
+          "tags": [
+            "clé primaire",
+            "clé étrangère",
+            "jointure interne"
+          ]
+        },
+        {
+          "id": "sql-m4-02",
+          "title_fr": "Combiner trois tables et comprendre les répétitions",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "sql-m4-01"
+          ],
+          "tags": [
+            "table de liaison",
+            "granularité",
+            "DISTINCT"
+          ]
+        },
+        {
+          "id": "sql-m4-03",
+          "title_fr": "Conserver les lignes sans correspondance avec LEFT JOIN",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "sql-m4-02"
+          ],
+          "tags": [
+            "jointure externe gauche",
+            "absence de correspondance",
+            "clé droite"
+          ]
+        },
+        {
+          "id": "sql-m5-01",
+          "title_fr": "Créer une table et éprouver ses contraintes",
+          "module": "m5",
+          "minutes": 20,
+          "prerequisites": [
+            "sql-m4-03"
+          ],
+          "tags": [
+            "contrainte",
+            "valeur par défaut",
+            "clé étrangère"
+          ]
+        },
+        {
+          "id": "sql-m5-02",
+          "title_fr": "Insérer des lignes en respectant les règles",
+          "module": "m5",
+          "minutes": 20,
+          "prerequisites": [
+            "sql-m5-01"
+          ],
+          "tags": [
+            "INSERT",
+            "littéral",
+            "INSERT … SELECT"
+          ]
+        },
+        {
+          "id": "sql-m5-03",
+          "title_fr": "Modifier et supprimer uniquement les lignes visées",
+          "module": "m5",
+          "minutes": 20,
+          "prerequisites": [
+            "sql-m5-02"
+          ],
+          "tags": [
+            "UPDATE",
+            "DELETE",
+            "portée"
+          ]
+        },
+        {
+          "id": "sql-m6-01",
+          "title_fr": "Valider ou annuler un groupe d’écritures",
+          "module": "m6",
+          "minutes": 20,
+          "prerequisites": [
+            "sql-m5-03"
+          ],
+          "tags": [
+            "transaction",
+            "COMMIT",
+            "ROLLBACK"
+          ]
+        },
+        {
+          "id": "sql-m6-02",
+          "title_fr": "Utiliser une sous-requête sans tomber dans le piège NULL",
+          "module": "m6",
+          "minutes": 20,
+          "prerequisites": [
+            "sql-m6-01"
+          ],
+          "tags": [
+            "sous-requête",
+            "corrélation",
+            "EXISTS"
+          ]
+        },
+        {
+          "id": "sql-m6-03",
+          "title_fr": "Projet : préparer et expliquer le bilan d’un club",
+          "module": "m6",
+          "minutes": 20,
+          "prerequisites": [
+            "sql-m6-02"
+          ],
+          "tags": [
+            "bilan de données",
+            "règle métier",
+            "état final"
+          ]
+        }
+      ],
+      "estimated_minutes": 360,
+      "content_revision": "6e781edacfd3",
+      "exercise_count": 72,
+      "quiz_count": 54
     }
   ],
   "plans": [
@@ -2102,12 +2449,6 @@
       "status": "bientôt"
     },
     {
-      "id": "sql",
-      "title_fr": "Données avec SQL",
-      "summary_fr": "Lire et interroger une petite base.",
-      "status": "bientôt"
-    },
-    {
       "id": "nodejs",
       "title_fr": "Node.js : les bases du serveur",
       "summary_fr": "JavaScript côté serveur ; après JavaScript.",
@@ -2117,6 +2458,24 @@
       "id": "ia-cyber",
       "title_fr": "Introduction à l’IA et à la cybersécurité",
       "summary_fr": "Comprendre, vérifier et protéger.",
+      "status": "bientôt"
+    },
+    {
+      "id": "javascript-dom",
+      "title_fr": "JavaScript : interfaces et événements",
+      "summary_fr": "Manipuler le DOM et gérer les interactions ; après HTML, CSS et JavaScript.",
+      "status": "bientôt"
+    },
+    {
+      "id": "typescript",
+      "title_fr": "TypeScript : démarrer avec les types",
+      "summary_fr": "Types, fonctions et unions ; après JavaScript.",
+      "status": "bientôt"
+    },
+    {
+      "id": "react",
+      "title_fr": "React : construire une interface avec des composants",
+      "summary_fr": "Composants, propriétés, état et formulaires ; après HTML, CSS, JavaScript et les interactions du navigateur.",
       "status": "bientôt"
     }
   ],

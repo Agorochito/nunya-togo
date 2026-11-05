@@ -1,0 +1,141 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Choisir deux rubriques",
+    "instruction_fr": "Affiche seulement id puis nom pour tous les membres, triés par id croissant.",
+    "starter_code": "SELECT * FROM membres ORDER BY id;",
+    "solution": "SELECT id, nom FROM membres ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT id, nom FROM membres ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT id, nom FROM membres ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres données : appliquer la même requête sans mémoriser les résultats."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT id, nom FROM membres ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans ligne : conserver les colonnes demandées."
+      }
+    ],
+    "hints": [
+      "Remplace l’étoile par une liste.",
+      "L’ordre des colonnes suit la consigne.",
+      "SELECT id, nom FROM membres ORDER BY id;"
+    ],
+    "explanation_fr": "Les lignes restent toutes présentes.",
+    "common_wrong_answers": [],
+    "id": "sql-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Nommer une présentation",
+    "instruction_fr": "Affiche titre sous l’alias atelier puis prix sous l’alias prix_fcfa, pour tous les ateliers triés par id croissant.",
+    "starter_code": "SELECT titre, prix FROM ateliers ORDER BY id;",
+    "solution": "SELECT titre AS atelier, prix AS prix_fcfa FROM ateliers ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT titre AS atelier, prix AS prix_fcfa FROM ateliers ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT titre AS atelier, prix AS prix_fcfa FROM ateliers ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres données : appliquer la même requête sans mémoriser les résultats."
+      }
+    ],
+    "hints": [
+      "Les valeurs existent déjà.",
+      "Ajoute AS pour chacun des noms de sortie.",
+      "SELECT titre AS atelier, prix AS prix_fcfa FROM ateliers ORDER BY id;"
+    ],
+    "explanation_fr": "Les alias ne modifient pas le schéma.",
+    "common_wrong_answers": [],
+    "id": "sql-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une marge calculée",
+    "instruction_fr": "Affiche titre puis places + 1 sous l’alias places_avec_marge, triés par id croissant. Ce calcul fictif ne doit modifier aucune capacité.",
+    "starter_code": "SELECT titre, places * 1 AS places_avec_marge FROM ateliers ORDER BY id;",
+    "solution": "SELECT titre, places + 1 AS places_avec_marge FROM ateliers ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT titre, places + 1 AS places_avec_marge FROM ateliers ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT titre, places + 1 AS places_avec_marge FROM ateliers ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres données : appliquer la même requête sans mémoriser les résultats."
+      }
+    ],
+    "hints": [
+      "Multiplier par un laisse la valeur intacte.",
+      "La consigne demande un ajout d’une unité.",
+      "SELECT titre, places + 1 AS places_avec_marge FROM ateliers ORDER BY id;"
+    ],
+    "explanation_fr": "Le résultat affiché n’est pas une mise à jour.",
+    "common_wrong_answers": [],
+    "id": "sql-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Préparer une grille de prix",
+    "instruction_fr": "Affiche id, titre puis le prix fictif de deux unités sous l’alias prix_deux, triés par id croissant.",
+    "starter_code": "SELECT id, titre, prix + 2 AS prix_deux FROM ateliers ORDER BY id;",
+    "solution": "SELECT id, titre, prix * 2 AS prix_deux FROM ateliers ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT id, titre, prix * 2 AS prix_deux FROM ateliers ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT id, titre, prix * 2 AS prix_deux FROM ateliers ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres données : appliquer la même requête sans mémoriser les résultats."
+      }
+    ],
+    "hints": [
+      "Deux unités utilisent une multiplication.",
+      "Garde l’alias prix_deux.",
+      "SELECT id, titre, prix * 2 AS prix_deux FROM ateliers ORDER BY id;"
+    ],
+    "explanation_fr": "La formule doit fonctionner aussi avec un prix nul et avec variation.",
+    "common_wrong_answers": [],
+    "id": "sql-m1-02-e4"
+  }
+]

@@ -1,0 +1,141 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Trier les prix",
+    "instruction_fr": "Affiche titre puis prix pour tous les ateliers. Trie prix croissant, puis id croissant en cas d’égalité.",
+    "starter_code": "SELECT titre, prix FROM ateliers ORDER BY prix DESC, id ASC;",
+    "solution": "SELECT titre, prix FROM ateliers ORDER BY prix ASC, id ASC;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT titre, prix FROM ateliers ORDER BY prix ASC, id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT titre, prix FROM ateliers ORDER BY prix ASC, id ASC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres données : appliquer la même requête sans mémoriser les résultats."
+      }
+    ],
+    "hints": [
+      "Le plus petit montant doit venir d’abord.",
+      "Le second critère fixe l’ordre des égalités.",
+      "SELECT titre, prix FROM ateliers ORDER BY prix ASC, id ASC;"
+    ],
+    "explanation_fr": "Le classement dépend des données présentes.",
+    "common_wrong_answers": [],
+    "id": "sql-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Limiter une liste d’âges",
+    "instruction_fr": "Affiche id, nom, age pour les trois âges les plus élevés : age décroissant puis id croissant, au maximum trois lignes.",
+    "starter_code": "SELECT id, nom, age FROM membres ORDER BY age ASC, id ASC LIMIT 3;",
+    "solution": "SELECT id, nom, age FROM membres ORDER BY age DESC, id ASC LIMIT 3;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT id, nom, age FROM membres ORDER BY age DESC, id ASC LIMIT 3;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT id, nom, age FROM membres ORDER BY age DESC, id ASC LIMIT 3;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres données : appliquer la même requête sans mémoriser les résultats."
+      },
+      {
+        "fixture": "vide",
+        "reference_sql": "SELECT id, nom, age FROM membres ORDER BY age DESC, id ASC LIMIT 3;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même schéma sans ligne : conserver les colonnes demandées."
+      }
+    ],
+    "hints": [
+      "La limite est déjà présente.",
+      "Inverse le sens du critère age.",
+      "SELECT id, nom, age FROM membres ORDER BY age DESC, id ASC LIMIT 3;"
+    ],
+    "explanation_fr": "La liste doit suivre le classement, pas des identifiants mémorisés.",
+    "common_wrong_answers": [],
+    "id": "sql-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer le départage",
+    "instruction_fr": "Affiche id, titre, prix des deux prix les plus élevés. À prix égal, le plus petit id doit précéder.",
+    "starter_code": "SELECT id, titre, prix FROM ateliers ORDER BY prix DESC, id DESC LIMIT 2;",
+    "solution": "SELECT id, titre, prix FROM ateliers ORDER BY prix DESC, id ASC LIMIT 2;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT id, titre, prix FROM ateliers ORDER BY prix DESC, id ASC LIMIT 2;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT id, titre, prix FROM ateliers ORDER BY prix DESC, id ASC LIMIT 2;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres données : appliquer la même requête sans mémoriser les résultats."
+      }
+    ],
+    "hints": [
+      "Le premier critère est correct.",
+      "Variation possède des prix égaux.",
+      "SELECT id, titre, prix FROM ateliers ORDER BY prix DESC, id ASC LIMIT 2;"
+    ],
+    "explanation_fr": "Le départage peut être invisible dans club et nécessaire malgré tout.",
+    "common_wrong_answers": [],
+    "id": "sql-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Préparer une liste courte",
+    "instruction_fr": "Affiche id, titre, places des deux plus grandes capacités : places décroissant puis id croissant, au maximum deux lignes. Ne modifie aucune capacité.",
+    "starter_code": "SELECT id, titre, places FROM ateliers ORDER BY places DESC, id ASC LIMIT 3;",
+    "solution": "SELECT id, titre, places FROM ateliers ORDER BY places DESC, id ASC LIMIT 2;",
+    "visible_tests": [
+      {
+        "fixture": "club",
+        "reference_sql": "SELECT id, titre, places FROM ateliers ORDER BY places DESC, id ASC LIMIT 2;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Données fictives de départ du club."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "variation",
+        "reference_sql": "SELECT id, titre, places FROM ateliers ORDER BY places DESC, id ASC LIMIT 2;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Autres données : appliquer la même requête sans mémoriser les résultats."
+      }
+    ],
+    "hints": [
+      "La limite doit correspondre à deux résultats.",
+      "Elle s’applique après le classement.",
+      "SELECT id, titre, places FROM ateliers ORDER BY places DESC, id ASC LIMIT 2;"
+    ],
+    "explanation_fr": "Les valeurs fictives sont présentées sans mise à jour.",
+    "common_wrong_answers": [],
+    "id": "sql-m1-03-e4"
+  }
+]
