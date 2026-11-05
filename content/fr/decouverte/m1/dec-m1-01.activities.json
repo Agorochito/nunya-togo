@@ -1,0 +1,41 @@
+[
+  {
+    "id": "dec-m1-01-a1",
+    "type": "qcm",
+    "question_fr": "Quand tu touches l’écran pour écrire un message, de quelle étape s’agit-il ?",
+    "options_fr": ["L’entrée", "Le traitement", "La sortie", "Le stockage"],
+    "answer": 0,
+    "explanation_fr": "Toucher l’écran, c’est donner une information à l’appareil : c’est une entrée."
+  },
+  {
+    "id": "dec-m1-01-a2",
+    "type": "associer",
+    "question_fr": "Associe chaque partie du téléphone à son étape.",
+    "pairs_fr": [
+      ["Le micro", "Entrée"],
+      ["Le processeur", "Traitement"],
+      ["Le haut-parleur", "Sortie"],
+      ["La galerie de photos", "Stockage"]
+    ],
+    "explanation_fr": "Le micro reçoit ta voix, le processeur calcule, le haut-parleur fait entendre le résultat et la galerie garde tes photos."
+  },
+  {
+    "id": "dec-m1-01-a3",
+    "type": "ordre",
+    "question_fr": "Remets dans l’ordre ce qui se passe quand tu calcules 12 × 3 sur la calculatrice du téléphone.",
+    "items_fr": [
+      "Tu tapes 12 × 3.",
+      "Le processeur fait le calcul.",
+      "L’écran affiche 36.",
+      "Le calcul reste dans l’historique."
+    ],
+    "explanation_fr": "Entrée, traitement, sortie, puis stockage : l’ordre est toujours le même."
+  },
+  {
+    "id": "dec-m1-01-a4",
+    "type": "vraifaux",
+    "statement_fr": "Un téléphone comprend tout seul ce que tu veux faire, même sans programme.",
+    "answer": false,
+    "explanation_fr": "Faux : sans programme, un appareil ne sait rien faire. Il suit seulement des instructions écrites par des personnes."
+  }
+]

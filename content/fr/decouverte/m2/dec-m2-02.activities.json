@@ -1,0 +1,59 @@
+[
+  {
+    "id": "dec-m2-02-a1",
+    "type": "qcm",
+    "question_fr": "Dans https://www.lycee-exemple.tg/resultats, quel est le nom de domaine ?",
+    "options_fr": [
+      "https",
+      "lycee-exemple.tg",
+      "/resultats",
+      "www"
+    ],
+    "answer": 1,
+    "explanation_fr": "Le nom de domaine désigne le site : ici lycee-exemple.tg."
+  },
+  {
+    "id": "dec-m2-02-a2",
+    "type": "vraifaux",
+    "statement_fr": "Internet et le web, c’est exactement la même chose.",
+    "answer": false,
+    "explanation_fr": "Faux : Internet est le réseau ; le web est un des services qui passent par ce réseau, comme la messagerie."
+  },
+  {
+    "id": "dec-m2-02-a3",
+    "type": "associer",
+    "question_fr": "Associe chaque partie de l’adresse à son rôle.",
+    "pairs_fr": [
+      [
+        "https",
+        "Connexion protégée"
+      ],
+      [
+        "lycee-exemple.tg",
+        "Nom du site"
+      ],
+      [
+        ".tg",
+        "Pays : le Togo"
+      ],
+      [
+        "/resultats",
+        "Chemin vers une page"
+      ]
+    ],
+    "explanation_fr": "Une adresse se lit de gauche à droite : protocole, site, puis page."
+  },
+  {
+    "id": "dec-m2-02-a4",
+    "type": "qcm",
+    "question_fr": "À quoi sert un lien sur une page web ?",
+    "options_fr": [
+      "À ouvrir une autre page ou un autre endroit.",
+      "À recharger la batterie.",
+      "À fermer le navigateur.",
+      "À effacer la page."
+    ],
+    "answer": 0,
+    "explanation_fr": "Un lien relie les pages entre elles : c’est ce qui fait du web une « toile »."
+  }
+]

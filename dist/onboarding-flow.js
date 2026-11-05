@@ -2,6 +2,7 @@
 'use strict';
 
 (function () {
+  const returnRoute=location.hash.startsWith('#/')&&location.hash!=='#/accueil'?location.hash:'#/apprendre';
   const domains = [
     { id: 'algo', icon: '⌘', fr: 'Programmation & données', en: 'Programming & data' },
     { id: 'web', icon: '⌁', fr: 'Création web', en: 'Web development' },
@@ -28,8 +29,8 @@
       <span class="a-onboarding-mark" aria-hidden="true">✳</span>
       <p class="eyebrow">NUNYA · ${aLabel('APPRENDRE À TON RYTHME', 'LEARN AT YOUR PACE')}</p>
       <h1 id="a-onboarding-title">${aLabel('Un parcours qui commence par toi.', 'A learning path that starts with you.')}</h1>
-      <p>${aLabel('Choisis ce qui t’intéresse, dis-nous où tu en es, puis réponds à quelques questions. Nunya te proposera un point de départ adapté.', 'Choose what interests you, tell us where you are, then answer a few questions. Nunya will suggest a starting point that fits.')}</p>
-      <button class="primary" type="button" data-onboarding="begin">${aLabel('Personnaliser mon parcours', 'Personalize my path')} →</button>
+      <p>${aLabel('Quelques préférences suffisent pour te conseiller un point de départ. Tu peux aussi choisir librement, sans questionnaire.', 'Choose what interests you, tell us where you are, then answer a few questions. Nunya will suggest a starting point that fits.')}</p>
+      <button class="primary" type="button" data-onboarding="begin">${aLabel('Personnaliser mon parcours', 'Personalize my path')} →</button><button class="secondary" type="button" data-onboarding="skip">Passer et choisir moi-même</button><button class="text-button" type="button" data-onboarding="restore">J’ai déjà une sauvegarde</button>
       <small>${aLabel('Ton pseudo et tes réponses restent sur cet appareil.', 'Your nickname and answers stay on this device.')}</small>
     </div>`);
   }
@@ -58,15 +59,15 @@
           <label>${aLabel('Ta tranche d’âge', 'Your age range')}
             <select name="age" required>
               <option value="">${aLabel('Choisir', 'Choose')}</option>
-              <option value="13-14">13–14 ${aLabel('ans', 'years')}</option>
-              <option value="15-16">15–16 ${aLabel('ans', 'years')}</option>
-              <option value="17-18">17–18 ${aLabel('ans', 'years')}</option>
-              <option value="19+">${aLabel('19 ans ou plus', '19 or older')}</option>
-              <option value="under-13">${aLabel('Moins de 13 ans', 'Under 13')}</option>
+              <option value="13-14" ${profile.age==='13-14'?'selected':''}>13–14 ${aLabel('ans', 'years')}</option>
+              <option value="15-16" ${profile.age==='15-16'?'selected':''}>15–16 ${aLabel('ans', 'years')}</option>
+              <option value="17-18" ${profile.age==='17-18'?'selected':''}>17–18 ${aLabel('ans', 'years')}</option>
+              <option value="19+" ${profile.age==='19+'?'selected':''}>${aLabel('19 ans ou plus', '19 or older')}</option>
+              <option value="under-13" ${profile.age==='under-13'?'selected':''}>${aLabel('Moins de 13 ans', 'Under 13')}</option>
             </select>
           </label>
           <label>${aLabel('Tu es…', 'You are…')}
-            <select name="status" id="a-onboarding-status" required>
+            <select name="status" id="a-onboarding-status">
               <option value="">${aLabel('Choisir', 'Choose')}</option>
               <option value="highschool">${aLabel('Élève au lycée', 'High-school student')}</option>
               <option value="university">${aLabel('Étudiant·e', 'University student')}</option>
@@ -84,12 +85,13 @@
         </label>
         <label>${aLabel('Ton niveau actuel dans ce domaine', 'Your current experience in this field')}
           <select name="level" required>
-            <option value="beginner">${aLabel('Je découvre', 'I’m new to this')}</option>
-            <option value="intermediate">${aLabel('J’ai déjà essayé', 'I’ve tried it before')}</option>
-            <option value="advanced">${aLabel('Je connais déjà les bases', 'I already know the basics')}</option>
+            <option value="beginner" ${profile.level==='beginner'?'selected':''}>${aLabel('Je découvre', 'I’m new to this')}</option>
+            <option value="intermediate" ${profile.level==='intermediate'?'selected':''}>${aLabel('J’ai déjà essayé', 'I’ve tried it before')}</option>
+            <option value="advanced" ${profile.level==='advanced'?'selected':''}>${aLabel('Je connais déjà les bases', 'I already know the basics')}</option>
           </select>
         </label>
-        <p class="a-onboarding-privacy">${aLabel('Ces réponses servent à adapter les questions et ton parcours. Elles restent dans ce navigateur.', 'Your answers help tailor the questions and learning path. They stay in this browser.')}</p>
+        <label>Temps disponible par jour<select name="goal">${[10,15,30].map(n=>`<option value="${n}" ${profile.goal===n?'selected':''}>${n} minutes</option>`).join('')}</select></label>
+        <p class="a-onboarding-privacy">${aLabel('Ces préférences conseillent un ordre de cours. Elles restent dans ce navigateur.', 'Your answers help tailor the questions and learning path. They stay in this browser.')}</p>
         <button class="primary" type="submit">${aLabel('Trouver mon point de départ', 'Find my starting point')} →</button>
       </form>
       <button class="a-onboarding-back" type="button" data-onboarding="domain">← ${aLabel('Retour', 'Back')}</button>`, 'profile');
@@ -122,6 +124,10 @@
         <a class="primary" href="#/apprendre/python-bases/m1/py-m1-01">${aLabel('Commencer le cours', 'Start the course')} →</a>
         ${guidedLevel >= 1 ? `<a class="secondary" href="#/apprendre/python-bases/m1/validation">${aLabel('Je connais déjà le module 1', 'I already know module 1')} →</a>` : ''}`;
   }
+
+
+  function preferenceResults(){const suggestion=state.onboarding.suggestion||{course:'python-bases'},titles={'python-bases':'Python : les bases','html-bases':'HTML : premières pages accessibles',decouverte:'Découverte du numérique'};return shell(`<span class="eyebrow">PROGRAMME CONSEILLÉ · FACULTATIF</span><h1 id="a-onboarding-title">Un point de départ selon tes choix</h1><p>Ton objectif et ton expérience nous orientent vers ${esc(titles[suggestion.course])}. Prévois des séances de ${state.profile.goal||15} minutes, puis adapte ton rythme.</p><a class="primary" href="#/apprendre/${suggestion.course}">Voir ce programme →</a><a class="secondary" href="#/apprendre">Choisir un autre programme</a><p>Tous les chapitres restent consultables. Tes choix ne valident aucune leçon.</p><button class="text-button" data-onboarding="resume">Faire aussi le diagnostic facultatif de 10 questions</button>`)}
+  function skipPersonalization(){if($('#a-personalization-form [name=age]')?.value==='under-13'){toast(underThirteenMessage());return}window.NunyaAssessmentUI?.close();state.academy.onboarded=true;state.onboarding={...state.onboarding,step:'complete',skipped:true};aPersist();aGo(returnRoute)}
 
   function results() {
     const result = state.onboarding?.result;
@@ -248,32 +254,28 @@
 
   const renderBeforeOnboarding = render;
   render = function () {
-    const required = FEATURES.onboarding && !state.academy.onboarded;
-    const showingResults = FEATURES.onboarding && state.onboarding?.step === 'results';
-    document.body.classList.toggle('a-onboarding-active', required);
+    const required = FEATURES.onboarding && !state.academy.onboarded && aRoute.kind==='accueil';
+    // Les résultats remplacent seulement l’accueil : sur les autres pages, les cartes « curr-entry » restent visibles.
+    const showingResults = FEATURES.onboarding && state.onboarding?.step === 'results' && aRoute.kind === 'accueil';
+    document.body.classList.remove('a-onboarding-active');
     document.body.classList.toggle('a-onboarding-results-active', showingResults);
     if (required && aLoading && aRoute.kind === 'accueil') {
       $('#main').innerHTML = splash();
       return;
     }
     renderBeforeOnboarding();
+    if(required&&!$('#main [data-onboarding=skip]'))$('#main').insertAdjacentHTML('beforeend','<button type="button" class="secondary" data-onboarding="skip">Passer et choisir moi-même</button>');
   };
 
   const homeBeforeOnboarding = aHome;
   aHome = function () {
+    if(FEATURES.onboarding&&state.onboarding?.step==='suggestion')return preferenceResults();
     if (FEATURES.onboarding && state.onboarding?.step === 'results') return results();
     if (FEATURES.onboarding && !state.academy.onboarded) return entryView();
     return homeBeforeOnboarding();
   };
 
-  const resolveBeforeOnboarding = aResolve;
-  aResolve = async function () {
-    const route = academyRoute(location.hash);
-    if (FEATURES.onboarding && !state.academy.onboarded && route.kind !== 'accueil') {
-      history.replaceState({}, '', '#/accueil');
-    }
-    return resolveBeforeOnboarding();
-  };
+  // Shared links remain intact. Personalization is available from the home page.
 
   document.addEventListener('change', event => {
     if (event.target.name === 'age') {
@@ -320,7 +322,9 @@
     state.profile.domain = domain;
     state.profileSet = true;
     state.preferredTrack = 'future';
-    void beginAssessment();
+    state.profile.goal=[10,15,30].includes(Number(values.get('goal')))?Number(values.get('goal')):15;
+    state.onboarding.suggestion={course:domain==='digital'?'decouverte':domain==='web'?'html-bases':'python-bases'};
+    state.onboarding.step='suggestion';state.onboarding.skipped=false;state.academy.onboarded=true;aPersist();render();
   }, true);
 
   document.addEventListener('click', event => {
@@ -330,6 +334,9 @@
     event.stopImmediatePropagation();
 
     const action = button.dataset.onboarding;
+    if(action==='skip'){skipPersonalization();return}
+    if(action==='restore'){const input=document.createElement('input');input.type='file';input.accept='.json,application/json';input.id='onboarding-backup';input.onchange=()=>{if(!input.files[0])return;restoreProgressFile(input.files[0]).then(ok=>{if(ok){state.academy.onboarded=true;state.onboarding={...state.onboarding,step:'complete'};aPersist();aGo(returnRoute)}}).catch(error=>toast(error.message))};input.click();return}
+    if(action==='preferences'){state.onboarding={...state.onboarding,step:'domain'};state.academy.onboarded=false;aPersist();aGo('#/accueil');return}
     if (action === 'begin') {
       state.onboarding = { ...state.onboarding, step: 'domain' };
     } else if (action === 'welcome') {

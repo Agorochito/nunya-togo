@@ -1,0 +1,47 @@
+[
+  {
+    "id": "dec-m4-05-a1",
+    "type": "qcm",
+    "question_fr": "Algorithme : « additionner les 3 notes, puis diviser par 2 ». Où est l’erreur ?",
+    "options_fr": [
+      "Il ne faut pas additionner les notes.",
+      "Il faut diviser par 3, le nombre de notes.",
+      "Il faut multiplier par 2.",
+      "Il n’y a pas d’erreur."
+    ],
+    "answer": 1,
+    "explanation_fr": "Pour une moyenne, on divise par le nombre de valeurs : ici 3."
+  },
+  {
+    "id": "dec-m4-05-a2",
+    "type": "ordre",
+    "question_fr": "Remets dans l’ordre la méthode pour trouver une erreur de logique.",
+    "items_fr": [
+      "Tester avec un exemple dont tu connais la réponse.",
+      "Comparer le résultat obtenu au résultat attendu.",
+      "Suivre les étapes une par une pour trouver celle qui se trompe.",
+      "Corriger cette étape, puis refaire le test."
+    ],
+    "explanation_fr": "On ne corrige pas au hasard : on observe d’abord où le résultat devient faux."
+  },
+  {
+    "id": "dec-m4-05-a3",
+    "type": "vraifaux",
+    "statement_fr": "Si un programme n’affiche aucun message d’erreur, son résultat est forcément juste.",
+    "answer": false,
+    "explanation_fr": "Faux : une erreur de logique laisse le programme fonctionner tout en donnant un mauvais résultat."
+  },
+  {
+    "id": "dec-m4-05-a4",
+    "type": "qcm",
+    "question_fr": "Pour tester la règle « si la note est supérieure ou égale à 10, alors Admis », quelle note est la plus utile à essayer ?",
+    "options_fr": [
+      "15",
+      "10",
+      "18",
+      "4"
+    ],
+    "answer": 1,
+    "explanation_fr": "10 est le cas limite : c’est là qu’une confusion entre « supérieure » et « supérieure ou égale » se voit."
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "dec-m3-04-a1",
+    "type": "associer",
+    "question_fr": "Associe chaque phrase au signe d’arnaque qu’elle montre.",
+    "pairs_fr": [
+      [
+        "« Réponds dans 10 minutes ou ton compte sera fermé »",
+        "Urgence ou menace"
+      ],
+      [
+        "« Félicitations, tu as gagné un téléphone neuf »",
+        "Offre trop belle"
+      ],
+      [
+        "« Envoie-moi le code que tu viens de recevoir »",
+        "Demande d’information secrète"
+      ],
+      [
+        "« Ouvre vite ce lien : bit.ly/cadeau-promo »",
+        "Lien inattendu"
+      ]
+    ],
+    "explanation_fr": "Un seul de ces signes suffit pour s’arrêter et vérifier."
+  },
+  {
+    "id": "dec-m3-04-a2",
+    "type": "vraifaux",
+    "statement_fr": "Le service client d’une banque ou d’un réseau social peut te demander ton mot de passe par téléphone.",
+    "answer": false,
+    "explanation_fr": "Faux : aucun service sérieux n’en a besoin. Celui qui le demande essaie de prendre ton compte."
+  },
+  {
+    "id": "dec-m3-04-a3",
+    "type": "ordre",
+    "question_fr": "Tu reçois un message suspect. Remets les bonnes réactions dans l’ordre.",
+    "items_fr": [
+      "T’arrêter sans cliquer sur le lien.",
+      "Repérer les signes : urgence, offre, demande de code.",
+      "Vérifier par toi-même dans l’application ou sur le site officiel.",
+      "Supprimer et signaler le message."
+    ],
+    "explanation_fr": "On ne réagit pas dans la précipitation : on s’arrête, on observe, on vérifie, puis on signale."
+  },
+  {
+    "id": "dec-m3-04-a4",
+    "type": "qcm",
+    "question_fr": "Un numéro inconnu écrit : « C’est moi, ton cousin, j’ai changé de numéro, envoie-moi de l’argent vite. » Que fais-tu ?",
+    "options_fr": [
+      "J’envoie l’argent, c’est la famille.",
+      "J’appelle mon cousin sur le numéro que je connais pour vérifier.",
+      "Je donne mon code pour qu’il se serve.",
+      "Je transfère le message à tous mes contacts."
+    ],
+    "answer": 1,
+    "explanation_fr": "Vérifier par un autre moyen déjoue la plupart des arnaques."
+  }
+]

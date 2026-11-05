@@ -2,17 +2,27 @@
 
 [Site public](https://nunya-togo.vercel.app/) · [Programme Python](https://nunya-togo.vercel.app/#/apprendre/python-bases) · [Première leçon](https://nunya-togo.vercel.app/#/apprendre/python-bases/m1/py-m1-01)
 
-## Version 5.3.0 — modules et pratique dans chaque cours
+## Version 5.5.0 — modules et pratique dans chaque cours
 
 Les 42 unités de découverte possèdent 91 modules et 562 questions. Le bouton suivant distingue une question, un exercice et une leçon ; il conserve la position, les réponses et le travail existant.
 
 Le catalogue de code propose Python (12 modules, 53 leçons, 212 exercices), HTML et CSS (12 leçons et 48 exercices chacun), et une première série JavaScript (6 leçons, 24 exercices ; suite en préparation). Les ateliers HTML/CSS ont un vrai aperçu avec contrôles du DOM et des styles. Python vérifie aussi les valeurs retournées, les copies et les cas limites ; JavaScript s’exécute dans son propre Worker.
 
-Les collections de la bibliothèque se filtrent par unité avec un lien partageable. Les téléchargements suivent la révision du cours afin de ne pas mélanger un programme récent et un ancien fichier hors ligne. Le cache est `nunya-v5.3.0`.
+Les collections de la bibliothèque se filtrent par unité avec un lien partageable. Les téléchargements suivent la révision du cours afin de ne pas mélanger un programme récent et un ancien fichier hors ligne. Le cache est `nunya-v5.5.0`.
 
 **Le catalogue complet sur trois niveaux n’est pas terminé.** Git/GitHub et SQL restent des introductions courtes ; Node.js, HTTP et les autres cours approfondis sont à construire. [Couverture exacte et suite des lots](docs/COURSE_COVERAGE_AUDIT.md). Les contenus sont en relecture ; aucun diplôme accrédité n’est promis.
 
+Le niveau 0 Découverte (20 leçons, 80 activités) et les ajouts du collaborateur sont conservés. La personnalisation et son diagnostic sont facultatifs ; les liens partagés ouvrent directement les cours. Les sauvegardes v1/v2 et de code restaurent les progrès Python et Découverte. Les validations restent distinctes de la consultation libre.
+
 Les sections de version suivantes décrivent l’historique, pas les compteurs actuels.
+
+## Version 5.4.0 — Nunya Aide
+
+Assistant d’apprentissage par IA open source (Groq, modèles à poids ouverts gpt-oss), sans compte : il explique autrement, donne des exemples et des indices sans solution complète. Accessible depuis chaque page et dans les leçons. Fonction serveur `supabase/functions/nunya-aide/`, réglages et activation dans [docs/AI_STRATEGY.md](docs/AI_STRATEGY.md).
+
+## Version 5.3.0 — niveau 0 « Découverte du numérique » (brouillon)
+
+Nouveau cours d’entrée, sans prérequis ni code à écrire : [programme](https://nunya-togo.vercel.app/#/apprendre/decouverte). 4 modules, 20 leçons de 8 à 10 minutes : appareils, Internet et le web, fichiers et sécurité, logique de programmation. Chaque leçon a 4 activités corrigées et « Explique avec tes mots », gardé sur l’appareil. Contenu en `content/fr/decouverte/`, vérifié et généré par `scripts/prepare-discovery.py` pendant `npm run build`. Tout est en relecture : voir [le plan du niveau 0](docs/NIVEAU0_PLAN.md). Cache `nunya-v5.3.0`.
 
 ## Version 5.2.0 — interface revue sur téléphone
 

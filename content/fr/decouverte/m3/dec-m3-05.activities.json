@@ -1,0 +1,58 @@
+[
+  {
+    "id": "dec-m3-05-a1",
+    "type": "qcm",
+    "question_fr": "Dans quelle situation la photo est-elle vraiment sauvegardée ?",
+    "options_fr": [
+      "Elle est seulement dans la galerie.",
+      "Elle est dans la galerie et sur la carte SD du même téléphone.",
+      "Elle est dans la galerie et sur un espace en ligne.",
+      "Elle est dans la corbeille."
+    ],
+    "answer": 2,
+    "explanation_fr": "La copie en ligne existe hors du téléphone : elle survit à une perte ou à un vol."
+  },
+  {
+    "id": "dec-m3-05-a2",
+    "type": "vraifaux",
+    "statement_fr": "Des fichiers copiés sur un espace en ligne restent disponibles si ton téléphone est volé.",
+    "answer": true,
+    "explanation_fr": "Vrai : la copie est sur des serveurs, pas dans le téléphone. Tu la retrouves en te connectant à ton compte depuis un autre appareil."
+  },
+  {
+    "id": "dec-m3-05-a3",
+    "type": "associer",
+    "question_fr": "Associe chaque solution à sa principale limite.",
+    "pairs_fr": [
+      [
+        "Stockage en ligne",
+        "Il faut une connexion et l’espace gratuit est limité"
+      ],
+      [
+        "Clé USB",
+        "Petite, elle peut se perdre"
+      ],
+      [
+        "Ordinateur familial",
+        "La copie reste à la maison"
+      ],
+      [
+        "Carte SD dans le téléphone",
+        "Elle disparaît avec le téléphone"
+      ]
+    ],
+    "explanation_fr": "Aucune solution n’est parfaite ; c’est pourquoi on garde au moins deux copies."
+  },
+  {
+    "id": "dec-m3-05-a4",
+    "type": "ordre",
+    "question_fr": "Remets dans l’ordre une bonne routine de sauvegarde.",
+    "items_fr": [
+      "Choisir les fichiers importants.",
+      "Les copier sur un autre support.",
+      "Vérifier que la copie s’ouvre.",
+      "Recommencer la semaine suivante."
+    ],
+    "explanation_fr": "Choisir, copier, vérifier, recommencer : une routine simple et efficace."
+  }
+]

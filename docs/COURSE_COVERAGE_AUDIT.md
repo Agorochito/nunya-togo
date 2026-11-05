@@ -1,4 +1,4 @@
-# Couverture des cours — livraison 5.3.0, 4 novembre 2026
+# Couverture des cours — livraison 5.5.0, 4 novembre 2026
 
 Le prompt maître impose une réalisation par lots, avec une cible finale de 72 cours par niveau et des séries complémentaires. Cette livraison ne termine pas cette cible. L’audit initial est conservé dans [BASELINE_COURSE_AUDIT_5.2.1.md](BASELINE_COURSE_AUDIT_5.2.1.md).
 
@@ -15,6 +15,8 @@ Les leçons possèdent chacune 300–700 mots d’explication, deux exemples com
 
 Les 42 unités historiques de découverte possèdent maintenant 91 modules nommés qui répartissent leurs 182 leçons dans l’ordre. Une banque de 348 questions supplémentaires porte ces unités à 562 questions, en incluant les cinq questions de chaque leçon du pilote de maths. Ces introductions restent signalées comme découvertes ; elles ne deviennent pas des formations professionnelles complètes. Les 15 parcours métier et la bibliothèque gardent leur fonction propre. Les collections de ressources possèdent désormais un choix d’unité avec lien partageable.
 
+Le niveau 0 « Découverte du numérique » ajouté par le collaborateur est conservé : 4 modules, 20 leçons et 80 activités. La bibliothèque en lecture libre, les pages Études à l’étranger et Opportunités et le panneau Nunya Aide existants sont préservés ; aucune activation de service IA ni modification de secret n’a été effectuée. Le questionnaire devient facultatif et les liens partagés restent ouverts. Les sauvegardes complètes restaurent aussi Python et Découverte, sans prétendre avoir téléchargé des fichiers sur un nouvel appareil.
+
 ## Ce qui reste à construire
 
 Git/GitHub et SQL ont toujours des introductions courtes, avec modules et exercices de compréhension ; leurs cours approfondis restent à écrire. Node.js, HTTP et les autres familles ne possèdent pas encore leurs cours complets. Aucun cours intermédiaire ou avancé complet n’est annoncé comme disponible. La première série JavaScript reste explicitement partielle.
@@ -24,7 +26,7 @@ La suite doit terminer JavaScript, puis produire et éprouver les socles SQL et 
 ## Vérifications et limites
 
 - Audit initial de 78 écrans de production avant les changements.
-- 130 tests unitaires ; schémas, ordre des prérequis, propriété des modules et liens internes contrôlés.
+- 151 tests unitaires ; schémas, ordre des prérequis, propriété des modules et liens internes contrôlés.
 - 743 cas Python en CPython, exemples et solutions ; 64 cas JavaScript dans le même protocole que le Worker.
 - 96 solutions HTML/CSS acceptées et 96 codes de départ rejetés par le vrai vérificateur de navigateur.
 - 42 unités / 182 leçons / 562 questions parcourues sur 360 et 1440 px ; aucun saut vers une leçon suivante avant la fin des questions.

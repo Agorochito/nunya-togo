@@ -1,17 +1,5 @@
 [
   {
-    "id": "ordinateur",
-    "title_fr": "Bien démarrer avec l’ordinateur et Internet",
-    "summary_fr": "Fichiers, navigateur, recherche et sécurité.",
-    "status": "bientôt"
-  },
-  {
-    "id": "logique",
-    "title_fr": "Penser comme un programmeur",
-    "summary_fr": "Algorithmes, décisions et répétitions sans code.",
-    "status": "bientôt"
-  },
-  {
     "id": "python-projets",
     "title_fr": "Python : pratique et projets",
     "summary_fr": "Stock, carnet de notes et jeu ; après les bases.",

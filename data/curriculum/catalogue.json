@@ -8,7 +8,7 @@
       "depth_fr": "Parcours débutant : notions, exercices et projets progressifs.",
       "status": "brouillon",
       "reviewer": null,
-      "level": "Aucun code préalable",
+      "level": "debutant",
       "prerequisites": [
         "Savoir saisir un texte et ouvrir une page web."
       ],
@@ -927,7 +927,7 @@
       "license": "Contenu original Nunya · brouillon",
       "runtime": "python",
       "language": "python",
-      "content_revision": "c25bd7e043f2",
+      "content_revision": "67a0e3681f73",
       "exercise_count": 212,
       "quiz_count": 159
     },
@@ -1159,7 +1159,7 @@
         }
       ],
       "estimated_minutes": 240,
-      "content_revision": "572b026f225b",
+      "content_revision": "24a13c6a792b",
       "exercise_count": 48,
       "quiz_count": 36
     },
@@ -1389,7 +1389,7 @@
         }
       ],
       "estimated_minutes": 240,
-      "content_revision": "db5f6244b057",
+      "content_revision": "e6b17d4c0f64",
       "exercise_count": 48,
       "quiz_count": 36
     },
@@ -1528,24 +1528,12 @@
         }
       ],
       "estimated_minutes": 120,
-      "content_revision": "34a1a2f5729c",
+      "content_revision": "8e1f6dbccea1",
       "exercise_count": 24,
       "quiz_count": 18
     }
   ],
   "plans": [
-    {
-      "id": "ordinateur",
-      "title_fr": "Bien démarrer avec l’ordinateur et Internet",
-      "summary_fr": "Fichiers, navigateur, recherche et sécurité.",
-      "status": "bientôt"
-    },
-    {
-      "id": "logique",
-      "title_fr": "Penser comme un programmeur",
-      "summary_fr": "Algorithmes, décisions et répétitions sans code.",
-      "status": "bientôt"
-    },
     {
       "id": "python-projets",
       "title_fr": "Python : pratique et projets",

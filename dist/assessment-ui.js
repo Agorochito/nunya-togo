@@ -54,7 +54,7 @@
     return el;
   }
 
-  function setScreen(html) {
+  function setScreen(html) {html+='<button class="text-button" type="button" data-onboarding="skip">Passer et choisir moi-même</button>';
     const overlay = createOverlay();
     overlay.innerHTML = html;
     const screen = overlay.querySelector('.as-screen');
@@ -135,7 +135,7 @@
       <p class="as-indicator">${indicator}</p>
       <h2 class="as-question">${esc(q.question)}</h2>
       <div class="as-choices">
-        ${q.choices.map(c =>
+        ${academyChoiceOrder(q.choices,q.id,state.profile?.id).map(({value:c}) =>
           `<button class="as-choice" data-as="answer" data-value="${c.id}">${esc(c.text)}</button>`
         ).join('')}
       </div>

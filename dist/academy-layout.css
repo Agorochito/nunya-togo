@@ -34,6 +34,93 @@
 #curr-search{display:block;width:100%;min-height:50px;margin:8px 0 22px;padding:12px 14px;border:1px solid var(--theme-line);border-radius:10px;background:var(--theme-surface);color:var(--theme-ink);font:16px/1.5 inherit}#curr-search:focus-visible{outline:3px solid var(--accent);outline-offset:2px}label[for=curr-search]{font-weight:600;font-size:14px}.curr-search-suggestions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0;padding:0;list-style:none}.curr-search-suggestions a{display:inline-flex;align-items:center;min-height:40px;padding:8px 14px;border:1px solid var(--theme-line);border-radius:999px;color:var(--accent-text);text-decoration:none;background:var(--theme-surface)}
 /* Page « Chapitre verrouillé » : titre à la taille des autres pages */
 .a-empty h1{font-size:clamp(26px,3.2vw,36px);line-height:1.2;margin:0 0 12px}
+/* Niveau 0 · Découverte du numérique */
+.disc-lesson,.disc-lesson~.curr-footer{max-width:860px}
+.disc-hint{margin:2px 0 8px;font-size:13px;color:var(--muted)}
+.disc-statement{margin:6px 0 10px;font-weight:600;line-height:1.6}
+.curr-reading .disc-order{list-style:none;padding:0;margin:8px 0 12px;counter-reset:disc}
+.curr-reading .disc-order li{counter-increment:disc;display:flex;align-items:center;gap:12px;margin:10px 0;padding:8px 8px 8px 14px;border:1px solid var(--border);border-radius:12px;background:var(--surface);line-height:1.5}
+.disc-order li::before{content:counter(disc);display:grid;place-items:center;flex:0 0 28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--accent-text);font-weight:700;font-size:13px}
+.disc-order li>span:first-of-type{flex:1;min-width:0}
+.disc-move{display:flex;gap:6px;flex-shrink:0}
+.disc-move button{width:44px;height:44px;border:1px solid var(--border);border-radius:9px;background:var(--surface-2);color:var(--ink);font-size:18px;cursor:pointer}
+.disc-move button:hover:not(:disabled){border-color:var(--accent-text);color:var(--accent-text)}
+.disc-move button:disabled{opacity:.35;cursor:default}
+.personalized .disc-activity .disc-match label,.disc-activity .disc-match label{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);align-items:center;gap:12px;cursor:default;font-weight:600}
+.personalized .disc-activity .disc-match select{margin-top:0}
+.disc-retry{background:var(--surface-2)}
+.disc-reflect{border-top:1px solid var(--border);margin-top:28px}
+.personalized .disc-reflect textarea{font-family:inherit;font-size:15px;line-height:1.7;resize:vertical}
+.disc-model{margin-top:16px}
+.disc-model small{display:block;color:var(--muted);margin-top:6px}
+.disc-planned{padding-left:22px;color:var(--muted);line-height:1.7}
+.disc-planned li{margin:6px 0}
+.disc-soon .a-stage-number{opacity:.55}
+.disc-muted{color:var(--muted)}
+@media(max-width:700px){.personalized .disc-activity .disc-match label,.disc-activity .disc-match label{grid-template-columns:1fr;gap:6px}.curr-reading .disc-order li{padding-left:10px;gap:8px}}
+/* Nunya Aide */
+.aide-top{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:8px 14px;border:1px solid var(--accent-text);border-radius:999px;background:var(--accent-soft);color:var(--accent-text);font:600 13px/1 inherit;cursor:pointer;white-space:nowrap}
+.aide-top svg{width:16px;height:16px;flex-shrink:0}
+.aide-top:hover{background:var(--theme-surface)}
+.a-onboarding-active .aide-top{display:none}
+.aide-sheet{position:fixed;inset:0 0 0 auto;margin:0;width:min(440px,100vw);height:100dvh;max-height:100dvh;max-width:100vw;padding:0;border:0;border-left:1px solid var(--theme-line);background:var(--theme-surface);color:var(--theme-ink);box-shadow:-12px 0 40px rgba(0,0,0,.18)}
+.aide-sheet[open]{display:flex;flex-direction:column}
+.aide-sheet::backdrop{background:rgba(20,16,12,.45)}
+.aide-head{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--theme-line)}
+.aide-head h2{margin:0;font-size:18px;line-height:1.3}
+.aide-head p{margin:2px 0 0;font-size:12px;color:var(--theme-muted)}
+.aide-head>div{flex:1;min-width:0}
+.aide-logo{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--accent-soft);color:var(--accent-text)}
+.aide-logo svg{width:18px;height:18px}
+.aide-close{width:44px;height:44px;border:0;border-radius:10px;background:transparent;color:var(--theme-ink);font-size:18px;cursor:pointer}
+.aide-close:hover{background:var(--theme-soft)}
+.aide-body{flex:1;display:flex;flex-direction:column;min-height:0}
+.aide-consent{padding:20px 20px 28px;overflow-y:auto;line-height:1.7;font-size:15px}
+.aide-consent h3{font-size:18px;margin:0 0 10px}
+.aide-consent ul{padding-left:20px;margin:0 0 20px}
+.aide-consent li{margin:8px 0}
+.aide-consent .primary{width:100%}
+.aide-context{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 18px;font-size:12px;line-height:1.5;color:var(--theme-muted);background:var(--theme-soft);border-bottom:1px solid var(--theme-line)}
+.aide-context strong{color:var(--theme-ink)}
+.personalized .aide-context .text-button{min-height:36px;font-size:12px;padding:4px 0;flex-shrink:0}
+.aide-log{flex:1;overflow-y:auto;padding:16px 18px;display:flex;flex-direction:column;gap:12px;overscroll-behavior:contain}
+.aide-empty{color:var(--theme-muted);font-size:14px;line-height:1.7;margin:auto 0 0}
+.aide-msg{max-width:92%;padding:10px 14px;border-radius:14px;font-size:15px;line-height:1.65;overflow-wrap:anywhere}
+.aide-msg p{margin:0 0 8px}.aide-msg p:last-child{margin:0}
+.aide-msg ul,.aide-msg ol{margin:4px 0 8px;padding-left:20px}
+.aide-msg li{margin:4px 0}
+.aide-msg code{font:13px/1.5 ui-monospace,monospace;background:var(--theme-raised);padding:1px 5px;border-radius:5px}
+.aide-msg pre{margin:8px 0;padding:10px 12px;border-radius:10px;background:var(--theme-raised);white-space:pre-wrap;overflow-wrap:anywhere}
+.aide-msg pre code{padding:0;background:none}
+.aide-user{align-self:flex-end;background:var(--accent);border-bottom-right-radius:4px}
+.personalized .aide-sheet .aide-user,.personalized .aide-sheet .aide-user p,.aide-sheet .aide-user p{color:#fff!important}
+.personalized .aide-msg.aide-assistant p,.personalized .aide-msg.aide-assistant li,.personalized .aide-consent li,.personalized .aide-empty{color:var(--theme-ink)!important}
+.aide-assistant{align-self:flex-start;background:var(--theme-soft);border:1px solid var(--theme-line);border-bottom-left-radius:4px}
+.aide-typing p{color:var(--theme-muted);font-style:italic}
+.aide-suggestions{display:flex;flex-wrap:wrap;gap:8px;padding:0 18px 10px}
+.aide-suggestions button{min-height:40px;padding:8px 12px;border:1px solid var(--theme-line);border-radius:999px;background:var(--theme-surface);color:var(--accent-text);font:13px/1.3 inherit;text-align:left;cursor:pointer}
+.aide-suggestions button:hover{border-color:var(--accent-text)}
+.aide-form{display:flex;gap:10px;align-items:flex-end;padding:12px 18px;border-top:1px solid var(--theme-line)}
+.personalized .aide-form textarea,.aide-form textarea{flex:1;min-height:48px;max-height:140px;resize:vertical;margin:0;padding:10px 12px;border:1px solid var(--theme-line);border-radius:12px;background:var(--theme-surface);color:var(--theme-ink);font:15px/1.5 inherit;font-family:inherit}
+.aide-form textarea:focus{outline:2px solid var(--accent-text);outline-offset:1px}
+.aide-form .primary{min-height:48px;flex-shrink:0}
+.aide-foot{margin:0;padding:0 18px 14px;font-size:11px;line-height:1.5;color:var(--theme-muted)}
+.aide-inline{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 16px;margin:22px 0;padding:12px 16px;border:1px dashed var(--accent-text);border-radius:12px;font-size:14px}
+.aide-inline>span{display:inline-flex;align-items:center;gap:8px;color:var(--theme-ink);font-weight:600}
+.aide-inline svg{width:16px;height:16px;color:var(--accent-text)}
+.aide-inline-code{margin:10px 0;padding:6px 12px}
+.curr-feedback .aide-retry{display:inline-flex;margin-top:4px;min-height:40px}
+.aide-entry .primary{white-space:nowrap}
+@media(max-width:700px){
+ .aide-top{padding:6px 8px;min-height:36px}
+ .personalized .topbar:not(:has(.a-path-chip:not([hidden]))){flex-wrap:nowrap}
+ .personalized .topbar-right{gap:6px}
+ .personalized .topbar .breadcrumb{min-width:0;overflow:hidden}
+ .personalized .topbar .breadcrumb strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ .aide-top span{display:none}
+ .aide-sheet{inset:auto 0 0 0;width:100vw;height:92dvh;max-height:92dvh;border-left:0;border-top:1px solid var(--theme-line);border-radius:18px 18px 0 0;box-shadow:0 -12px 40px rgba(0,0,0,.2)}
+ .aide-msg{max-width:96%}
+}
 
 /* Question navigation stays within a lesson until its series is checked. */
 .a-practice-position{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 0 20px;margin-bottom:18px;border-bottom:1px solid var(--theme-line);font-size:14px}.a-practice-position span,.a-practice-note{color:var(--theme-muted)}.a-question h2{scroll-margin-top:110px}.a-question h2:focus{outline:2px solid var(--accent-text);outline-offset:5px}.a-lesson-footer .primary{max-width:100%;white-space:normal}@media(max-width:700px){.a-question h2{scroll-margin-top:150px}.a-lesson-footer{flex-wrap:wrap}.a-lesson-footer .primary{width:100%}}

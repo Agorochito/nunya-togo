@@ -16,3 +16,6 @@ function academyCurriculumSearchScore(row,terms){const title=academyNormalize(ro
 
 // Navigation is within the current lesson until every question was checked correctly.
 function academyPracticeProgress(step,namespace,answers,savedIndex){const questions=step.practice||[],passed=questions.map(q=>{const a=answers[namespace+'-'+q.id];return a?.checked===true&&a.correct===true}),firstPending=passed.indexOf(false),saved=Number.isInteger(savedIndex)&&savedIndex>=0&&savedIndex<questions.length,index=saved?savedIndex:Math.max(0,firstPending);return {index,total:questions.length,completed:passed.filter(Boolean).length,complete:firstPending<0,currentPassed:passed[index]===true,nextIndex:passed.findIndex((ok,i)=>!ok&&i>index)>=0?passed.findIndex((ok,i)=>!ok&&i>index):firstPending}}
+
+/* Stable display order preserves answer identities and saved responses. */
+function academyChoiceOrder(values,key,seed="nunya"){let n=2166136261;for(const c of String(seed)+":"+key)n=Math.imul(n^c.charCodeAt(0),16777619);const out=values.map((value,index)=>({value,index}));for(let i=out.length-1;i>0;i--){n^=n<<13;n^=n>>>17;n^=n<<5;const j=(n>>>0)%(i+1);[out[i],out[j]]=[out[j],out[i]]}return out}

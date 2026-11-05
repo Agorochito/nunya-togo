@@ -1,0 +1,47 @@
+[
+  {
+    "id": "dec-m1-02-a1",
+    "type": "associer",
+    "question_fr": "Classe chaque élément : matériel ou logiciel ?",
+    "pairs_fr": [
+      ["La batterie", "Matériel"],
+      ["Android", "Logiciel"],
+      ["L’écran", "Matériel"],
+      ["L’application de messagerie", "Logiciel"]
+    ],
+    "explanation_fr": "La batterie et l’écran se touchent : ce sont des pièces. Android et la messagerie sont des programmes."
+  },
+  {
+    "id": "dec-m1-02-a2",
+    "type": "qcm",
+    "question_fr": "Quel est le rôle du système d’exploitation ?",
+    "options_fr": [
+      "Protéger l’écran contre les chocs.",
+      "Démarrer l’appareil et organiser les applications.",
+      "Augmenter la taille de la batterie.",
+      "Remplacer le processeur quand il est lent."
+    ],
+    "answer": 1,
+    "explanation_fr": "Le système d’exploitation est le premier logiciel à démarrer ; il partage la mémoire et lance les applications."
+  },
+  {
+    "id": "dec-m1-02-a3",
+    "type": "qcm",
+    "question_fr": "Ton application de musique se ferme dès que tu l’ouvres, mais le reste du téléphone marche bien. Quelle première piste est la plus raisonnable ?",
+    "options_fr": [
+      "Faire changer l’écran.",
+      "Mettre à jour ou réinstaller l’application.",
+      "Acheter un nouveau téléphone.",
+      "Retirer la carte SIM."
+    ],
+    "answer": 1,
+    "explanation_fr": "Le problème touche un seul logiciel : on commence par lui, avec une mise à jour ou une réinstallation."
+  },
+  {
+    "id": "dec-m1-02-a4",
+    "type": "vraifaux",
+    "statement_fr": "Android et iOS sont des systèmes d’exploitation.",
+    "answer": true,
+    "explanation_fr": "Vrai : Android équipe la plupart des téléphones, iOS équipe les iPhone."
+  }
+]

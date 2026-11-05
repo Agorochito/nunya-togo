@@ -1,0 +1,23 @@
+{
+  "results": [
+    {
+      "deepLink": "#/apprendre/python-bases/m12/py-m12-03",
+      "firstVisit": "opens without questionnaire"
+    },
+    {
+      "deepLink": "#/apprendre/decouverte/m4/dec-m4-05",
+      "firstVisit": "opens without questionnaire"
+    },
+    {
+      "deepLink": "#/bibliotheque/cours",
+      "firstVisit": "opens without questionnaire"
+    },
+    {
+      "personalization": "skip persists; short optional preferences; diagnostic can be closed without score"
+    },
+    {
+      "backup": "native picker restores Python M12 and discovery; persists after reload; malformed file leaves state unchanged"
+    }
+  ],
+  "errors": []
+}

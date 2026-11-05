@@ -5,7 +5,7 @@
   "depth_fr": "Parcours débutant : notions, exercices et projets progressifs.",
   "status": "brouillon",
   "reviewer": null,
-  "level": "Aucun code préalable",
+  "level": "debutant",
   "prerequisites": [
     "Savoir saisir un texte et ouvrir une page web."
   ],
@@ -924,7 +924,7 @@
   "license": "Contenu original Nunya · brouillon",
   "runtime": "python",
   "language": "python",
-  "content_revision": "c25bd7e043f2",
+  "content_revision": "67a0e3681f73",
   "exercise_count": 212,
   "quiz_count": 159
 }
