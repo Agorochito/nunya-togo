@@ -1,3 +1,7 @@
+# Vérifications 5.6.1 — 6 novembre 2026
+
+Le bug utilisateur a été reproduit avec le vrai site 5.4.3 (`2df60ddf`) et son service worker : après passage à la version 5.6, un navigateur gardait un catalogue à un seul cours. La version corrigée lie les métadonnées et vues à la version de la page, puis actualise au changement de contrôleur. Les tests `test-release-upgrade.mjs` partent des versions `2df60ddf` et `842013e5`, vérifient les six cours, leurs raccourcis, l’ouverture de SQL et la conservation du brouillon Python et de sa position. Rapports `RELEASE_UPGRADE_*_RESULTS.json`. Les métadonnées de catalogue hors ligne sont aussi éprouvées après suppression de leur entrée avec paramètre de version, pour tester le vrai repli sur la copie canonique enregistrée.
+
 # Vérifications 5.6.0 — 5 novembre 2026
 
 Le catalogue modernisé est testé en 360/1440 px : filtres par technologie, recherche JS, état vide, feuille de route React et liens vers le programme SQL ; aucune erreur JavaScript, aucun débordement et zéro violation axe sur ces vues. Voir `COURSE_CATALOGUE_RESULTS.json`.

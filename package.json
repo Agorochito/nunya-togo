@@ -17,7 +17,7 @@
     "check:prereqs": "node scripts/check-prereqs.mjs",
     "check:curriculum-links": "node scripts/check-curriculum-links.mjs",
     "check-links": "npm run check:curriculum-links && npm run check:links",
-    "test:browser": "node scripts/test-web-exercises.mjs && node scripts/test-curriculum-global.mjs && node scripts/test-code-runtimes.mjs && node scripts/test-all-discovery-courses.mjs && node scripts/test-backup-onboarding.mjs && node scripts/test-library-offline.mjs && node scripts/test-git-engine.mjs && node scripts/test-git-ui.mjs && node scripts/test-http-engine.mjs && node scripts/test-http-ui.mjs && node scripts/test-sql-engine.mjs && node scripts/test-sql-ui.mjs && node scripts/test-course-catalogue.mjs"
+    "test:browser": "node scripts/test-web-exercises.mjs && node scripts/test-curriculum-global.mjs && node scripts/test-code-runtimes.mjs && node scripts/test-all-discovery-courses.mjs && node scripts/test-backup-onboarding.mjs && node scripts/test-library-offline.mjs && node scripts/test-git-engine.mjs && node scripts/test-git-ui.mjs && node scripts/test-http-engine.mjs && node scripts/test-http-ui.mjs && node scripts/test-sql-engine.mjs && node scripts/test-sql-ui.mjs && node scripts/test-course-catalogue.mjs && node scripts/test-release-upgrade.mjs && node scripts/test-release-upgrade.mjs --from=842013e5"
   },
   "devDependencies": {
     "@codemirror/lang-python": "^6.2.1",

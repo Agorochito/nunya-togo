@@ -4,6 +4,10 @@
       "width": 360,
       "courses": 6,
       "filters": true,
+      "quickLinks": 7,
+      "discoveryPreserved": true,
+      "refreshKeepsTypedQuery": true,
+      "offlineCanonicalCatalogue": true,
       "roadmapHonest": true,
       "axeViolations": 0
     },
@@ -11,6 +15,10 @@
       "width": 1440,
       "courses": 6,
       "filters": true,
+      "quickLinks": 7,
+      "discoveryPreserved": true,
+      "refreshKeepsTypedQuery": true,
+      "offlineCanonicalCatalogue": true,
       "roadmapHonest": true,
       "axeViolations": 0
     }

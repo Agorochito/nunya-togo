@@ -59,5 +59,4 @@ const discResolvePrevious=aResolve;aResolve=async function(){
  return pending;
 };
 const discViewPrevious=currView;currView=function(){return aRoute.kind==='apprendre'&&aRoute.id==='decouverte'?discView():discViewPrevious()};
-const discHubPrevious=currHub;currHub=function(){return discHubPrevious().replace('</header>','</header>'+discHubCard())};
 const discProgressPrevious=progressView;progressView=function(){if(!discIndex&&state.discovery.last&&!window.discProgressLoading){window.discProgressLoading=true;discEnsure().then(()=>{if(aRoute.kind==='progression')render()}).catch(()=>{})}const rows=discOpenLessons(),done=rows.filter(l=>state.discovery.completed[l.id]).length;return (done||state.discovery.last?`<section class="panel"><h2>Découverte du numérique</h2>${discProgress()}<a class="primary" href="${discLessonRoute(discNext())}">Reprendre ma leçon →</a></section>`:'')+discProgressPrevious()};

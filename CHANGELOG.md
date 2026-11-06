@@ -1,5 +1,12 @@
 # Historique
 
+## 5.6.1 — 6 novembre 2026
+
+- Correction du catalogue restant sur Python après la mise à jour : métadonnées et vues liées à la version, actualisation au changement de service worker et retour réseau, sans effacer la progression.
+- Raccourcis directs vers Python, HTML, CSS, JavaScript, HTTP/API, SQL et Git/GitHub en haut du catalogue ; bouton d’actualisation.
+- Découverte du numérique reste visible après filtrage. La recherche conserve sa saisie lors d’une mise à jour.
+- Migrations réelles depuis les caches 5.4.3 et 5.6.0 testées ; accès SQL, brouillons et position conservés, repli hors ligne sur le catalogue enregistré.
+
 ## 5.6.0 — 5 novembre 2026
 
 - SQL : 6 modules, 18 leçons, 72 exercices, 54 questions et 36 exemples originaux. Vrai moteur SQLite auto-hébergé, résultats tabulaires et base initiale consultable.
