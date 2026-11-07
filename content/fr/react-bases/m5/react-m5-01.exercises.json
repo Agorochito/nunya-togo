@@ -1,0 +1,633 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Atteindre sans effacer",
+    "instruction_fr": "Dans App, garde #note contrôlé par texte et #apercu égal à cette valeur. Avec useRef, associe la référence au champ. Au clic #atteindre, donner le focus à #note sans changer sa valeur. Conserver le label htmlFor et les boutons natifs. root.render doit monter App. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function App() {\n  const [texte, setTexte] = useState('');\n  const saisie = useRef(null);\n  return <main><h1>Note fictive</h1><label htmlFor=\"note\">Note</label><input id=\"note\" ref={saisie} value={texte} onChange={e => setTexte(e.target.value)} /><button id=\"atteindre\" type=\"button\" onClick={() => {}}>Atteindre la note</button><p id=\"apercu\">{texte}</p></main>;\n}\nroot.render(<App />);",
+    "solution": "function App() {\n  const [texte, setTexte] = useState('');\n  const saisie = useRef(null);\n  return <main><h1>Note fictive</h1><label htmlFor=\"note\">Note</label><input id=\"note\" ref={saisie} value={texte} onChange={e => setTexte(e.target.value)} /><button id=\"atteindre\" type=\"button\" onClick={() => saisie.current.focus()}>Atteindre la note</button><p id=\"apercu\">{texte}</p></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Saisir puis atteindre",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#note",
+            "checks": [
+              {
+                "selector": "#apercu",
+                "text": "Lecture"
+              }
+            ],
+            "value": "Lecture"
+          },
+          {
+            "action": "focus",
+            "selector": "#atteindre",
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#atteindre",
+            "checks": [
+              {
+                "selector": "#note",
+                "value": "Lecture",
+                "focused": true
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Deux valeurs et deux retours au champ",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#note",
+            "checks": [
+              {
+                "selector": "#apercu",
+                "text": "Afi"
+              }
+            ],
+            "value": "Afi"
+          },
+          {
+            "action": "focus",
+            "selector": "#atteindre",
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#atteindre",
+            "checks": [
+              {
+                "selector": "#note",
+                "focused": true,
+                "value": "Afi"
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#note",
+            "checks": [
+              {
+                "selector": "#apercu",
+                "text": "Autre note"
+              }
+            ],
+            "value": "Autre note"
+          },
+          {
+            "action": "focus",
+            "selector": "#atteindre",
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#atteindre",
+            "checks": [
+              {
+                "selector": "#note",
+                "focused": true,
+                "value": "Autre note"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La référence doit être transmise au bon input avec ref.",
+      "L’accès au nœud se fait dans current, à l’intérieur du gestionnaire.",
+      "Appelle saisie.current.focus() au clic, sans modifier texte."
+    ],
+    "explanation_fr": "L’exercice vérifie une action de focus réelle après une saisie. Une simple présence de l’attribut ref ou un texte statique ne suffit pas à obtenir ce comportement.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^function\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ \\[texte,\\ setTexte\\]\\ =\\ useState\\(''\\);\\\n\\ \\ const\\ saisie\\ =\\ useRef\\(null\\);\\\n\\ \\ return\\ <main><h1>Note\\ fictive</h1><label\\ htmlFor=\"note\">Note</label><input\\ id=\"note\"\\ ref=\\{saisie\\}\\ value=\\{texte\\}\\ onChange=\\{e\\ =>\\ setTexte\\(e\\.target\\.value\\)\\}\\ /><button\\ id=\"atteindre\"\\ type=\"button\"\\ onClick=\\{\\(\\)\\ =>\\ \\{\\}\\}>Atteindre\\ la\\ note</button><p\\ id=\"apercu\">\\{texte\\}</p></main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "L’accès au nœud se fait dans current, à l’intérieur du gestionnaire."
+      }
+    ],
+    "id": "react-m5-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Préparer la prochaine note après succès",
+    "instruction_fr": "Sur submit de #formulaire, prévenir la navigation. #nom trim doit avoir au moins 2 caractères : sinon #erreur « Écris au moins 2 caractères. », #retour vide, aria-invalid=true, describedby=« aide erreur », focus nom. Succès : #retour « Note ajoutée : NOM », erreur vide, aria-invalid absent, describedby=« aide », état nom vide et focus nom. Utilise useRef pour le focus. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function App() {\n  const [nom, setNom] = useState('');\n  const [erreur, setErreur] = useState('');\n  const [retour, setRetour] = useState('');\n  const champ = useRef(null);\n  function soumettre(event) {\n    event.preventDefault();\n    const texte = nom.trim();\n    if (texte.length < 2) {\n      setErreur('Écris au moins 2 caractères.');\n      setRetour('');\n      champ.current.focus();\n      return;\n    }\n    setErreur('');\n    setRetour('Note ajoutée : ' + texte);\n    setNom('');\n  }\n  return <main><h1>Ajout fictif</h1><form id=\"formulaire\" noValidate onSubmit={soumettre}><label htmlFor=\"nom\">Note</label><input id=\"nom\" ref={champ} value={nom} onChange={e => setNom(e.target.value)} aria-invalid={erreur ? 'true' : undefined} aria-describedby={erreur ? 'aide erreur' : 'aide'} /><p id=\"aide\">Au moins 2 caractères après retrait des espaces extérieurs.</p><p id=\"erreur\" aria-live=\"polite\">{erreur}</p><button type=\"submit\">Ajouter à l’essai</button></form><p id=\"retour\" role=\"status\">{retour}</p></main>;\n}\nroot.render(<App />);",
+    "solution": "function App() {\n  const [nom, setNom] = useState('');\n  const [erreur, setErreur] = useState('');\n  const [retour, setRetour] = useState('');\n  const champ = useRef(null);\n  function soumettre(event) {\n    event.preventDefault();\n    const texte = nom.trim();\n    if (texte.length < 2) {\n      setErreur('Écris au moins 2 caractères.');\n      setRetour('');\n      champ.current.focus();\n      return;\n    }\n    setErreur('');\n    setRetour('Note ajoutée : ' + texte);\n    setNom('');\n    champ.current.focus();\n  }\n  return <main><h1>Ajout fictif</h1><form id=\"formulaire\" noValidate onSubmit={soumettre}><label htmlFor=\"nom\">Note</label><input id=\"nom\" ref={champ} value={nom} onChange={e => setNom(e.target.value)} aria-invalid={erreur ? 'true' : undefined} aria-describedby={erreur ? 'aide erreur' : 'aide'} /><p id=\"aide\">Au moins 2 caractères après retrait des espaces extérieurs.</p><p id=\"erreur\" aria-live=\"polite\">{erreur}</p><button type=\"submit\">Ajouter à l’essai</button></form><p id=\"retour\" role=\"status\">{retour}</p></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Succès après une erreur",
+        "steps": [
+          {
+            "action": "focus",
+            "selector": "#formulaire button[type=\"submit\"]",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#formulaire",
+            "checks": [
+              {
+                "selector": "#nom",
+                "focused": true,
+                "attributes": {
+                  "aria-invalid": "true",
+                  "aria-describedby": "aide erreur"
+                }
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#nom",
+            "checks": [],
+            "value": " Afi "
+          },
+          {
+            "action": "focus",
+            "selector": "#formulaire button[type=\"submit\"]",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#formulaire",
+            "checks": [
+              {
+                "selector": "#nom",
+                "value": "",
+                "focused": true,
+                "attributes": {
+                  "aria-invalid": null,
+                  "aria-describedby": "aide"
+                }
+              },
+              {
+                "selector": "#retour",
+                "text": "Note ajoutée : Afi"
+              },
+              {
+                "selector": "#erreur",
+                "text": ""
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Deux ajouts avec des textes littéraux",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#nom",
+            "checks": [],
+            "value": "Lecture"
+          },
+          {
+            "action": "focus",
+            "selector": "#formulaire button[type=\"submit\"]",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#formulaire",
+            "checks": [
+              {
+                "selector": "#nom",
+                "value": "",
+                "focused": true
+              },
+              {
+                "selector": "#retour",
+                "text": "Note ajoutée : Lecture"
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#nom",
+            "checks": [],
+            "value": "<b>Ko</b>"
+          },
+          {
+            "action": "focus",
+            "selector": "#formulaire button[type=\"submit\"]",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#formulaire",
+            "checks": [
+              {
+                "selector": "#nom",
+                "value": "",
+                "focused": true
+              },
+              {
+                "selector": "#retour",
+                "text": "Note ajoutée : <b>Ko</b>"
+              },
+              {
+                "selector": "#retour b",
+                "exists": false
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le bouton de soumission garde normalement le focus après son activation.",
+      "Le succès doit aussi atteindre explicitement le champ prêt à recevoir la prochaine note.",
+      "Après les mises à jour d’état du succès, appelle champ.current.focus()."
+    ],
+    "explanation_fr": "La référence sert à une action déclenchée par la personne. Le texte saisi reste une donnée JSX et ne doit pas devenir une structure HTML.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^function\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ \\[nom,\\ setNom\\]\\ =\\ useState\\(''\\);\\\n\\ \\ const\\ \\[erreur,\\ setErreur\\]\\ =\\ useState\\(''\\);\\\n\\ \\ const\\ \\[retour,\\ setRetour\\]\\ =\\ useState\\(''\\);\\\n\\ \\ const\\ champ\\ =\\ useRef\\(null\\);\\\n\\ \\ function\\ soumettre\\(event\\)\\ \\{\\\n\\ \\ \\ \\ event\\.preventDefault\\(\\);\\\n\\ \\ \\ \\ const\\ texte\\ =\\ nom\\.trim\\(\\);\\\n\\ \\ \\ \\ if\\ \\(texte\\.length\\ <\\ 2\\)\\ \\{\\\n\\ \\ \\ \\ \\ \\ setErreur\\('Écris\\ au\\ moins\\ 2\\ caractères\\.'\\);\\\n\\ \\ \\ \\ \\ \\ setRetour\\(''\\);\\\n\\ \\ \\ \\ \\ \\ champ\\.current\\.focus\\(\\);\\\n\\ \\ \\ \\ \\ \\ return;\\\n\\ \\ \\ \\ \\}\\\n\\ \\ \\ \\ setErreur\\(''\\);\\\n\\ \\ \\ \\ setRetour\\('Note\\ ajoutée\\ :\\ '\\ \\+\\ texte\\);\\\n\\ \\ \\ \\ setNom\\(''\\);\\\n\\ \\ \\}\\\n\\ \\ return\\ <main><h1>Ajout\\ fictif</h1><form\\ id=\"formulaire\"\\ noValidate\\ onSubmit=\\{soumettre\\}><label\\ htmlFor=\"nom\">Note</label><input\\ id=\"nom\"\\ ref=\\{champ\\}\\ value=\\{nom\\}\\ onChange=\\{e\\ =>\\ setNom\\(e\\.target\\.value\\)\\}\\ aria\\-invalid=\\{erreur\\ \\?\\ 'true'\\ :\\ undefined\\}\\ aria\\-describedby=\\{erreur\\ \\?\\ 'aide\\ erreur'\\ :\\ 'aide'\\}\\ /><p\\ id=\"aide\">Au\\ moins\\ 2\\ caractères\\ après\\ retrait\\ des\\ espaces\\ extérieurs\\.</p><p\\ id=\"erreur\"\\ aria\\-live=\"polite\">\\{erreur\\}</p><button\\ type=\"submit\">Ajouter\\ à\\ l’essai</button></form><p\\ id=\"retour\"\\ role=\"status\">\\{retour\\}</p></main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "Le succès doit aussi atteindre explicitement le champ prêt à recevoir la prochaine note."
+      }
+    ],
+    "id": "react-m5-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Un compteur visible reste un état",
+    "instruction_fr": "La fixture fournit data-depart, sinon 0, sur #app. Chaque clic #plus augmente #total de 1 et l’affichage doit suivre immédiatement. Répare le compteur placé dans une référence : utilise useState et une mise à jour fonctionnelle. Conserve useRef seulement pour #note et son bouton #atteindre qui y place le focus. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\" data-depart=\"2\"></div>",
+    "starter_code": "const initial = Number(document.getElementById('app').dataset.depart || 0);\nfunction App() {\n  const total = useRef(initial);\n  const champ = useRef(null);\n  return <main><h1>Compteur fictif</h1><label htmlFor=\"note\">Note</label><input id=\"note\" ref={champ} /><p id=\"total\" role=\"status\">{total.current}</p><button id=\"plus\" type=\"button\" onClick={() => { total.current += 1; }}>Ajouter un</button><button id=\"atteindre\" type=\"button\" onClick={() => champ.current.focus()}>Atteindre la note</button></main>;\n}\nroot.render(<App />);",
+    "solution": "const initial = Number(document.getElementById('app').dataset.depart || 0);\nfunction App() {\n  const [total, setTotal] = useState(initial);\n  const champ = useRef(null);\n  return <main><h1>Compteur fictif</h1><label htmlFor=\"note\">Note</label><input id=\"note\" ref={champ} /><p id=\"total\" role=\"status\">{total}</p><button id=\"plus\" type=\"button\" onClick={() => setTotal(n => n + 1)}>Ajouter un</button><button id=\"atteindre\" type=\"button\" onClick={() => champ.current.focus()}>Atteindre la note</button></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Plusieurs augmentations visibles",
+        "checks": [
+          {
+            "selector": "#total",
+            "text": "2"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "3"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "4"
+              }
+            ]
+          },
+          {
+            "action": "focus",
+            "selector": "#atteindre",
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#atteindre",
+            "checks": [
+              {
+                "selector": "#note",
+                "focused": true
+              },
+              {
+                "selector": "#total",
+                "text": "4"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autre valeur initiale et reprise",
+        "checks": [
+          {
+            "selector": "#total",
+            "text": "7"
+          }
+        ],
+        "steps": [
+          {
+            "action": "focus",
+            "selector": "#atteindre",
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#atteindre",
+            "checks": [
+              {
+                "selector": "#note",
+                "focused": true
+              },
+              {
+                "selector": "#total",
+                "text": "7"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "8"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "9"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "10"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-depart=\"7\"></div>"
+      }
+    ],
+    "hints": [
+      "Changer current ne programme pas de nouveau rendu.",
+      "Le nombre est une donnée affichée : il doit être un état.",
+      "Utilise [total,setTotal] = useState(initial), puis setTotal(n => n + 1)."
+    ],
+    "explanation_fr": "Le débogage distingue les usages : l’état met à jour le texte visible, la référence permet une action sur un nœud. Le test conserve une valeur initiale différente pour éviter un compteur figé sur l’exemple.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^const\\ initial\\ =\\ Number\\(document\\.getElementById\\('app'\\)\\.dataset\\.depart\\ \\|\\|\\ 0\\);\\\nfunction\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ total\\ =\\ useRef\\(initial\\);\\\n\\ \\ const\\ champ\\ =\\ useRef\\(null\\);\\\n\\ \\ return\\ <main><h1>Compteur\\ fictif</h1><label\\ htmlFor=\"note\">Note</label><input\\ id=\"note\"\\ ref=\\{champ\\}\\ /><p\\ id=\"total\"\\ role=\"status\">\\{total\\.current\\}</p><button\\ id=\"plus\"\\ type=\"button\"\\ onClick=\\{\\(\\)\\ =>\\ \\{\\ total\\.current\\ \\+=\\ 1;\\ \\}\\}>Ajouter\\ un</button><button\\ id=\"atteindre\"\\ type=\"button\"\\ onClick=\\{\\(\\)\\ =>\\ champ\\.current\\.focus\\(\\)\\}>Atteindre\\ la\\ note</button></main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "Le nombre est une donnée affichée : il doit être un état."
+      }
+    ],
+    "id": "react-m5-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Choisir le premier champ à corriger",
+    "instruction_fr": "Formulaire #formulaire contrôlé : #titre trim au moins 2 caractères ; #places texte non vide et entier 0..5. Erreur titre prioritaire : « Écris au moins 2 caractères. » ; sinon erreur places « Choisis un entier de 0 à 5. ». #erreur aria-live=polite, aria-invalid=true seulement sur le fautif, describedby=« aide-ID erreur », focus sur ce champ, aucun ajout. Succès : li « TITRE : N » dans #liste, #compte « N ajout(s) », erreur/aria-invalid retirés, les deux champs vidés et focus titre. Références distinctes ; état pour les lignes. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function App() {\n  const [titre, setTitre] = useState('');\n  const [places, setPlaces] = useState('');\n  const [champErreur, setChampErreur] = useState('');\n  const [erreur, setErreur] = useState('');\n  const [lignes, setLignes] = useState([]);\n  const titreRef = useRef(null);\n  const placesRef = useRef(null);\n  function soumettre(event) {\n    event.preventDefault();\n    const nom = titre.trim();\n    const nombre = Number(places);\n    if (nom.length < 2) {\n      setChampErreur('titre'); setErreur('Écris au moins 2 caractères.'); titreRef.current.focus(); return;\n    }\n    if (places.trim() === '' || !Number.isInteger(nombre) || nombre < 0 || nombre > 5) {\n      setChampErreur('places'); setErreur('Choisis un entier de 0 à 5.'); titreRef.current.focus(); return;\n    }\n    setChampErreur(''); setErreur('');\n    setLignes(avant => [...avant, {id:avant.length+1, texte:nom + ' : ' + nombre}]);\n    setTitre(''); setPlaces(''); titreRef.current.focus();\n  }\n  return <main><h1>Liste fictive</h1><form id=\"formulaire\" noValidate onSubmit={soumettre}><label htmlFor=\"titre\">Titre</label><input id=\"titre\" ref={titreRef} value={titre} onChange={e => setTitre(e.target.value)} aria-invalid={champErreur === 'titre' ? 'true' : undefined} aria-describedby=\"aide-titre erreur\" /><p id=\"aide-titre\">Au moins 2 caractères.</p><label htmlFor=\"places\">Places</label><input id=\"places\" type=\"number\" ref={placesRef} value={places} onChange={e => setPlaces(e.target.value)} aria-invalid={champErreur === 'places' ? 'true' : undefined} aria-describedby=\"aide-places erreur\" /><p id=\"aide-places\">Entier de 0 à 5.</p><p id=\"erreur\" aria-live=\"polite\">{erreur}</p><button type=\"submit\">Ajouter</button></form><ul id=\"liste\">{lignes.map(ligne => <li key={ligne.id}>{ligne.texte}</li>)}</ul><p id=\"compte\" role=\"status\">{lignes.length} ajout(s)</p></main>;\n}\nroot.render(<App />);",
+    "solution": "function App() {\n  const [titre, setTitre] = useState('');\n  const [places, setPlaces] = useState('');\n  const [champErreur, setChampErreur] = useState('');\n  const [erreur, setErreur] = useState('');\n  const [lignes, setLignes] = useState([]);\n  const titreRef = useRef(null);\n  const placesRef = useRef(null);\n  function soumettre(event) {\n    event.preventDefault();\n    const nom = titre.trim();\n    const nombre = Number(places);\n    if (nom.length < 2) {\n      setChampErreur('titre'); setErreur('Écris au moins 2 caractères.'); titreRef.current.focus(); return;\n    }\n    if (places.trim() === '' || !Number.isInteger(nombre) || nombre < 0 || nombre > 5) {\n      setChampErreur('places'); setErreur('Choisis un entier de 0 à 5.'); placesRef.current.focus(); return;\n    }\n    setChampErreur(''); setErreur('');\n    setLignes(avant => [...avant, {id:avant.length+1, texte:nom + ' : ' + nombre}]);\n    setTitre(''); setPlaces(''); titreRef.current.focus();\n  }\n  return <main><h1>Liste fictive</h1><form id=\"formulaire\" noValidate onSubmit={soumettre}><label htmlFor=\"titre\">Titre</label><input id=\"titre\" ref={titreRef} value={titre} onChange={e => setTitre(e.target.value)} aria-invalid={champErreur === 'titre' ? 'true' : undefined} aria-describedby=\"aide-titre erreur\" /><p id=\"aide-titre\">Au moins 2 caractères.</p><label htmlFor=\"places\">Places</label><input id=\"places\" type=\"number\" ref={placesRef} value={places} onChange={e => setPlaces(e.target.value)} aria-invalid={champErreur === 'places' ? 'true' : undefined} aria-describedby=\"aide-places erreur\" /><p id=\"aide-places\">Entier de 0 à 5.</p><p id=\"erreur\" aria-live=\"polite\">{erreur}</p><button type=\"submit\">Ajouter</button></form><ul id=\"liste\">{lignes.map(ligne => <li key={ligne.id}>{ligne.texte}</li>)}</ul><p id=\"compte\" role=\"status\">{lignes.length} ajout(s)</p></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Corriger deux champs puis ajouter",
+        "steps": [
+          {
+            "action": "focus",
+            "selector": "#formulaire button[type=\"submit\"]",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#formulaire",
+            "checks": [
+              {
+                "selector": "#titre",
+                "focused": true,
+                "attributes": {
+                  "aria-invalid": "true"
+                }
+              },
+              {
+                "selector": "#liste li",
+                "count": 0
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#titre",
+            "checks": [],
+            "value": "Afi"
+          },
+          {
+            "action": "focus",
+            "selector": "#formulaire button[type=\"submit\"]",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#formulaire",
+            "checks": [
+              {
+                "selector": "#places",
+                "focused": true,
+                "attributes": {
+                  "aria-invalid": "true"
+                }
+              },
+              {
+                "selector": "#titre",
+                "attributes": {
+                  "aria-invalid": null
+                }
+              },
+              {
+                "selector": "#erreur",
+                "text": "Choisis un entier de 0 à 5."
+              },
+              {
+                "selector": "#liste li",
+                "count": 0
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#places",
+            "checks": [],
+            "value": "2"
+          },
+          {
+            "action": "focus",
+            "selector": "#formulaire button[type=\"submit\"]",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#formulaire",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Afi : 2"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 ajout(s)"
+              },
+              {
+                "selector": "#titre",
+                "value": "",
+                "focused": true
+              },
+              {
+                "selector": "#places",
+                "value": "",
+                "attributes": {
+                  "aria-invalid": null
+                }
+              },
+              {
+                "selector": "#erreur",
+                "text": ""
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Décimal refusé, zéro accepté puis deuxième ligne",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#titre",
+            "checks": [],
+            "value": "  Ko  "
+          },
+          {
+            "action": "input",
+            "selector": "#places",
+            "checks": [],
+            "value": "1.5"
+          },
+          {
+            "action": "focus",
+            "selector": "#formulaire button[type=\"submit\"]",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#formulaire",
+            "checks": [
+              {
+                "selector": "#places",
+                "focused": true
+              },
+              {
+                "selector": "#liste li",
+                "count": 0
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#places",
+            "checks": [],
+            "value": "0"
+          },
+          {
+            "action": "focus",
+            "selector": "#formulaire button[type=\"submit\"]",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#formulaire",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Ko : 0"
+                ]
+              },
+              {
+                "selector": "#titre",
+                "focused": true
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#titre",
+            "checks": [],
+            "value": "Web"
+          },
+          {
+            "action": "input",
+            "selector": "#places",
+            "checks": [],
+            "value": "5"
+          },
+          {
+            "action": "focus",
+            "selector": "#formulaire button[type=\"submit\"]",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#formulaire",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Ko : 0",
+                  "Web : 5"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "2 ajout(s)"
+              },
+              {
+                "selector": "#titre",
+                "focused": true,
+                "value": ""
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Chaque input possède sa propre référence.",
+      "Une erreur numérique ne doit pas focaliser le titre déjà correct.",
+      "Dans la branche places invalide, appelle placesRef.current.focus()."
+    ],
+    "explanation_fr": "Le mini-projet relie règles, état visible et action de focus. Les essais vérifient plusieurs corrections puis plusieurs ajouts, ce qui empêche une simple interface statique de paraître complète.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^function\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ \\[titre,\\ setTitre\\]\\ =\\ useState\\(''\\);\\\n\\ \\ const\\ \\[places,\\ setPlaces\\]\\ =\\ useState\\(''\\);\\\n\\ \\ const\\ \\[champErreur,\\ setChampErreur\\]\\ =\\ useState\\(''\\);\\\n\\ \\ const\\ \\[erreur,\\ setErreur\\]\\ =\\ useState\\(''\\);\\\n\\ \\ const\\ \\[lignes,\\ setLignes\\]\\ =\\ useState\\(\\[\\]\\);\\\n\\ \\ const\\ titreRef\\ =\\ useRef\\(null\\);\\\n\\ \\ const\\ placesRef\\ =\\ useRef\\(null\\);\\\n\\ \\ function\\ soumettre\\(event\\)\\ \\{\\\n\\ \\ \\ \\ event\\.preventDefault\\(\\);\\\n\\ \\ \\ \\ const\\ nom\\ =\\ titre\\.trim\\(\\);\\\n\\ \\ \\ \\ const\\ nombre\\ =\\ Number\\(places\\);\\\n\\ \\ \\ \\ if\\ \\(nom\\.length\\ <\\ 2\\)\\ \\{\\\n\\ \\ \\ \\ \\ \\ setChampErreur\\('titre'\\);\\ setErreur\\('Écris\\ au\\ moins\\ 2\\ caractères\\.'\\);\\ titreRef\\.current\\.focus\\(\\);\\ return;\\\n\\ \\ \\ \\ \\}\\\n\\ \\ \\ \\ if\\ \\(places\\.trim\\(\\)\\ ===\\ ''\\ \\|\\|\\ !Number\\.isInteger\\(nombre\\)\\ \\|\\|\\ nombre\\ <\\ 0\\ \\|\\|\\ nombre\\ >\\ 5\\)\\ \\{\\\n\\ \\ \\ \\ \\ \\ setChampErreur\\('places'\\);\\ setErreur\\('Choisis\\ un\\ entier\\ de\\ 0\\ à\\ 5\\.'\\);\\ titreRef\\.current\\.focus\\(\\);\\ return;\\\n\\ \\ \\ \\ \\}\\\n\\ \\ \\ \\ setChampErreur\\(''\\);\\ setErreur\\(''\\);\\\n\\ \\ \\ \\ setLignes\\(avant\\ =>\\ \\[\\.\\.\\.avant,\\ \\{id:avant\\.length\\+1,\\ texte:nom\\ \\+\\ '\\ :\\ '\\ \\+\\ nombre\\}\\]\\);\\\n\\ \\ \\ \\ setTitre\\(''\\);\\ setPlaces\\(''\\);\\ titreRef\\.current\\.focus\\(\\);\\\n\\ \\ \\}\\\n\\ \\ return\\ <main><h1>Liste\\ fictive</h1><form\\ id=\"formulaire\"\\ noValidate\\ onSubmit=\\{soumettre\\}><label\\ htmlFor=\"titre\">Titre</label><input\\ id=\"titre\"\\ ref=\\{titreRef\\}\\ value=\\{titre\\}\\ onChange=\\{e\\ =>\\ setTitre\\(e\\.target\\.value\\)\\}\\ aria\\-invalid=\\{champErreur\\ ===\\ 'titre'\\ \\?\\ 'true'\\ :\\ undefined\\}\\ aria\\-describedby=\"aide\\-titre\\ erreur\"\\ /><p\\ id=\"aide\\-titre\">Au\\ moins\\ 2\\ caractères\\.</p><label\\ htmlFor=\"places\">Places</label><input\\ id=\"places\"\\ type=\"number\"\\ ref=\\{placesRef\\}\\ value=\\{places\\}\\ onChange=\\{e\\ =>\\ setPlaces\\(e\\.target\\.value\\)\\}\\ aria\\-invalid=\\{champErreur\\ ===\\ 'places'\\ \\?\\ 'true'\\ :\\ undefined\\}\\ aria\\-describedby=\"aide\\-places\\ erreur\"\\ /><p\\ id=\"aide\\-places\">Entier\\ de\\ 0\\ à\\ 5\\.</p><p\\ id=\"erreur\"\\ aria\\-live=\"polite\">\\{erreur\\}</p><button\\ type=\"submit\">Ajouter</button></form><ul\\ id=\"liste\">\\{lignes\\.map\\(ligne\\ =>\\ <li\\ key=\\{ligne\\.id\\}>\\{ligne\\.texte\\}</li>\\)\\}</ul><p\\ id=\"compte\"\\ role=\"status\">\\{lignes\\.length\\}\\ ajout\\(s\\)</p></main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "Une erreur numérique ne doit pas focaliser le titre déjà correct."
+      }
+    ],
+    "id": "react-m5-01-e4"
+  }
+]

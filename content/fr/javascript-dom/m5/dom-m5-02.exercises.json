@@ -1,0 +1,490 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Préserver l’ordre initial",
+    "instruction_fr": "Lis les fiches source. #tri=duree affiche la durée croissante, puis id croissant en cas d’égalité ; source retrouve exactement l’ordre initial. Affiche les titres, le compte et le message vide. Ne change aucune propriété des fiches. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"tri\">Ordre</label><select id=\"tri\"><option value=\"source\">Ordre initial</option><option value=\"duree\">Durée croissante</option><option value=\"prix\">Prix décroissant</option></select><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"1\" data-categorie=\"code\" data-places=\"4\" data-duree=\"30\" data-prix=\"1000\">Python</li><li data-id=\"2\" data-categorie=\"nature\" data-places=\"0\" data-duree=\"20\" data-prix=\"500\">Jardin</li><li data-id=\"3\" data-categorie=\"code\" data-places=\"2\" data-duree=\"20\" data-prix=\"1500\">Web</li></ul></main>",
+    "starter_code": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' résultat(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nconst tri = document.querySelector('#tri');\nfunction rendre() {\n  let selection = ateliers;\n  if (tri.value === 'duree') selection = ateliers.sort((a,b) => a.duree - b.duree || a.id - b.id);\n  afficher(selection);\n}\ntri.addEventListener('change', rendre);\nrendre();",
+    "solution": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' résultat(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nconst tri = document.querySelector('#tri');\nfunction rendre() {\n  let selection = ateliers;\n  if (tri.value === 'duree') selection = ateliers.slice().sort((a,b) => a.duree - b.duree || a.id - b.id);\n  afficher(selection);\n}\ntri.addEventListener('change', rendre);\nrendre();",
+    "visible_tests": [
+      {
+        "description_fr": "Aller-retour sans mutation de source",
+        "checks": [
+          {
+            "selector": "#liste li",
+            "texts": [
+              "Python",
+              "Jardin",
+              "Web"
+            ]
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#tri",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Jardin",
+                  "Web",
+                  "Python"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "3 résultat(s)"
+              }
+            ],
+            "value": "duree"
+          },
+          {
+            "action": "input",
+            "selector": "#tri",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Jardin",
+                  "Web"
+                ]
+              }
+            ],
+            "value": "source"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autre ordre et durées à plusieurs chiffres",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#tri",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Piano",
+                  "Papier",
+                  "Photo"
+                ]
+              }
+            ],
+            "value": "duree"
+          },
+          {
+            "action": "input",
+            "selector": "#tri",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo",
+                  "Papier",
+                  "Piano"
+                ]
+              }
+            ],
+            "value": "source"
+          }
+        ],
+        "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"tri\">Ordre</label><select id=\"tri\"><option value=\"source\">Ordre initial</option><option value=\"duree\">Durée croissante</option><option value=\"prix\">Prix décroissant</option></select><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"9\" data-categorie=\"creation\" data-places=\"0\" data-duree=\"10\" data-prix=\"300\">Photo</li><li data-id=\"4\" data-categorie=\"creation\" data-places=\"3\" data-duree=\"2\" data-prix=\"500\">Papier</li><li data-id=\"7\" data-categorie=\"creation\" data-places=\"1\" data-duree=\"1\" data-prix=\"300\">Piano</li></ul></main>"
+      }
+    ],
+    "hints": [
+      "Le retour doit retrouver les mêmes positions de départ.",
+      "sort modifie son tableau ; une copie doit précéder cet appel.",
+      "Utilise ateliers.slice().sort(...) pour la vue triée."
+    ],
+    "explanation_fr": "Le résultat trié seul ne révèle pas une source détruite. Le retour à l’ordre initial vérifie que le tri a changé la vue et non le tableau de référence.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^const\\ ateliers\\ =\\ Array\\.from\\(document\\.querySelectorAll\\('\\#source\\ li'\\),\\ el\\ =>\\ \\(\\{id:Number\\(el\\.dataset\\.id\\),\\ titre:el\\.textContent\\.trim\\(\\),\\ categorie:el\\.dataset\\.categorie,\\ places:Number\\(el\\.dataset\\.places\\),\\ duree:Number\\(el\\.dataset\\.duree\\),\\ prix:Number\\(el\\.dataset\\.prix\\)\\}\\)\\);\\\nfunction\\ afficher\\(lignes\\)\\ \\{\\\n\\ \\ const\\ liste\\ =\\ document\\.querySelector\\('\\#liste'\\);\\\n\\ \\ liste\\.replaceChildren\\(\\);\\\n\\ \\ for\\ \\(const\\ atelier\\ of\\ lignes\\)\\ \\{\\\n\\ \\ \\ \\ const\\ li\\ =\\ document\\.createElement\\('li'\\);\\\n\\ \\ \\ \\ li\\.dataset\\.id\\ =\\ String\\(atelier\\.id\\);\\\n\\ \\ \\ \\ li\\.textContent\\ =\\ atelier\\.titre;\\\n\\ \\ \\ \\ liste\\.append\\(li\\);\\\n\\ \\ \\}\\\n\\ \\ document\\.querySelector\\('\\#compte'\\)\\.textContent\\ =\\ lignes\\.length\\ \\+\\ '\\ résultat\\(s\\)';\\\n\\ \\ document\\.querySelector\\('\\#vide'\\)\\.hidden\\ =\\ lignes\\.length\\ !==\\ 0;\\\n\\}\\\nconst\\ tri\\ =\\ document\\.querySelector\\('\\#tri'\\);\\\nfunction\\ rendre\\(\\)\\ \\{\\\n\\ \\ let\\ selection\\ =\\ ateliers;\\\n\\ \\ if\\ \\(tri\\.value\\ ===\\ 'duree'\\)\\ selection\\ =\\ ateliers\\.sort\\(\\(a,b\\)\\ =>\\ a\\.duree\\ \\-\\ b\\.duree\\ \\|\\|\\ a\\.id\\ \\-\\ b\\.id\\);\\\n\\ \\ afficher\\(selection\\);\\\n\\}\\\ntri\\.addEventListener\\('change',\\ rendre\\);\\\nrendre\\(\\);$",
+        "feedback_fr": "sort modifie son tableau ; une copie doit précéder cet appel."
+      }
+    ],
+    "id": "dom-m5-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Prix décroissant avec égalités explicites",
+    "instruction_fr": "Pour #tri=prix, affiche les titres par prix décroissant et id croissant à prix égal. source conserve l’ordre initial. Rends aussi #compte et #vide. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"tri\">Ordre</label><select id=\"tri\"><option value=\"source\">Ordre initial</option><option value=\"duree\">Durée croissante</option><option value=\"prix\">Prix décroissant</option></select><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"1\" data-categorie=\"code\" data-places=\"4\" data-duree=\"30\" data-prix=\"1000\">Python</li><li data-id=\"2\" data-categorie=\"nature\" data-places=\"0\" data-duree=\"20\" data-prix=\"500\">Jardin</li><li data-id=\"3\" data-categorie=\"code\" data-places=\"2\" data-duree=\"20\" data-prix=\"1500\">Web</li></ul></main>",
+    "starter_code": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' résultat(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nconst tri = document.querySelector('#tri');\nfunction rendre() {\n  let selection = ateliers;\n  if (tri.value === 'prix') selection = ateliers.slice().sort((a,b) => a.prix - b.prix || a.id - b.id);\n  afficher(selection);\n}\ntri.addEventListener('change', rendre);\nrendre();",
+    "solution": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' résultat(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nconst tri = document.querySelector('#tri');\nfunction rendre() {\n  let selection = ateliers;\n  if (tri.value === 'prix') selection = ateliers.slice().sort((a,b) => b.prix - a.prix || a.id - b.id);\n  afficher(selection);\n}\ntri.addEventListener('change', rendre);\nrendre();",
+    "visible_tests": [
+      {
+        "description_fr": "Les plus grands prix d’abord",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#tri",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Web",
+                  "Python",
+                  "Jardin"
+                ]
+              }
+            ],
+            "value": "prix"
+          },
+          {
+            "action": "input",
+            "selector": "#tri",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Jardin",
+                  "Web"
+                ]
+              }
+            ],
+            "value": "source"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Égalités départagées par identité",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#tri",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Papier",
+                  "Piano",
+                  "Photo"
+                ]
+              }
+            ],
+            "value": "prix"
+          },
+          {
+            "action": "input",
+            "selector": "#tri",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo",
+                  "Papier",
+                  "Piano"
+                ]
+              }
+            ],
+            "value": "source"
+          }
+        ],
+        "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"tri\">Ordre</label><select id=\"tri\"><option value=\"source\">Ordre initial</option><option value=\"duree\">Durée croissante</option><option value=\"prix\">Prix décroissant</option></select><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"9\" data-categorie=\"creation\" data-places=\"0\" data-duree=\"10\" data-prix=\"300\">Photo</li><li data-id=\"4\" data-categorie=\"creation\" data-places=\"3\" data-duree=\"2\" data-prix=\"500\">Papier</li><li data-id=\"7\" data-categorie=\"creation\" data-places=\"1\" data-duree=\"1\" data-prix=\"300\">Piano</li></ul></main>"
+      }
+    ],
+    "hints": [
+      "Le prix décroissant exige une différence inversée.",
+      "Inverse les prix mais conserve l’identifiant croissant.",
+      "Compare b.prix-a.prix, puis a.id-b.id."
+    ],
+    "explanation_fr": "Le second critère reste indépendant du sens du premier. Les prix égaux de la variante empêchent une inversion globale qui donnerait le mauvais ordre des identités.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^const\\ ateliers\\ =\\ Array\\.from\\(document\\.querySelectorAll\\('\\#source\\ li'\\),\\ el\\ =>\\ \\(\\{id:Number\\(el\\.dataset\\.id\\),\\ titre:el\\.textContent\\.trim\\(\\),\\ categorie:el\\.dataset\\.categorie,\\ places:Number\\(el\\.dataset\\.places\\),\\ duree:Number\\(el\\.dataset\\.duree\\),\\ prix:Number\\(el\\.dataset\\.prix\\)\\}\\)\\);\\\nfunction\\ afficher\\(lignes\\)\\ \\{\\\n\\ \\ const\\ liste\\ =\\ document\\.querySelector\\('\\#liste'\\);\\\n\\ \\ liste\\.replaceChildren\\(\\);\\\n\\ \\ for\\ \\(const\\ atelier\\ of\\ lignes\\)\\ \\{\\\n\\ \\ \\ \\ const\\ li\\ =\\ document\\.createElement\\('li'\\);\\\n\\ \\ \\ \\ li\\.dataset\\.id\\ =\\ String\\(atelier\\.id\\);\\\n\\ \\ \\ \\ li\\.textContent\\ =\\ atelier\\.titre;\\\n\\ \\ \\ \\ liste\\.append\\(li\\);\\\n\\ \\ \\}\\\n\\ \\ document\\.querySelector\\('\\#compte'\\)\\.textContent\\ =\\ lignes\\.length\\ \\+\\ '\\ résultat\\(s\\)';\\\n\\ \\ document\\.querySelector\\('\\#vide'\\)\\.hidden\\ =\\ lignes\\.length\\ !==\\ 0;\\\n\\}\\\nconst\\ tri\\ =\\ document\\.querySelector\\('\\#tri'\\);\\\nfunction\\ rendre\\(\\)\\ \\{\\\n\\ \\ let\\ selection\\ =\\ ateliers;\\\n\\ \\ if\\ \\(tri\\.value\\ ===\\ 'prix'\\)\\ selection\\ =\\ ateliers\\.slice\\(\\)\\.sort\\(\\(a,b\\)\\ =>\\ a\\.prix\\ \\-\\ b\\.prix\\ \\|\\|\\ a\\.id\\ \\-\\ b\\.id\\);\\\n\\ \\ afficher\\(selection\\);\\\n\\}\\\ntri\\.addEventListener\\('change',\\ rendre\\);\\\nrendre\\(\\);$",
+        "feedback_fr": "Inverse les prix mais conserve l’identifiant croissant."
+      }
+    ],
+    "id": "dom-m5-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un tri numérique",
+    "instruction_fr": "Lis les durées de #source li comme des nombres. #trier affiche une copie triée numériquement ; #origine rétablit leur ordre de lecture. Les éléments de #liste affichent uniquement ces nombres. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<main><h1>Durées fictives</h1><button id=\"trier\" type=\"button\">Trier</button><button id=\"origine\" type=\"button\">Ordre initial</button><ul id=\"liste\"></ul><ul id=\"source\" hidden><li>10</li><li>2</li><li>1</li></ul></main>",
+    "starter_code": "const durees = Array.from(document.querySelectorAll('#source li'), el => Number(el.textContent));\nfunction afficher(valeurs) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const valeur of valeurs) {\n    const li = document.createElement('li');\n    li.textContent = String(valeur);\n    liste.append(li);\n  }\n}\ndocument.querySelector('#trier').addEventListener('click', () => afficher(durees.slice().sort()));\ndocument.querySelector('#origine').addEventListener('click', () => afficher(durees));\nafficher(durees);",
+    "solution": "const durees = Array.from(document.querySelectorAll('#source li'), el => Number(el.textContent));\nfunction afficher(valeurs) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const valeur of valeurs) {\n    const li = document.createElement('li');\n    li.textContent = String(valeur);\n    liste.append(li);\n  }\n}\ndocument.querySelector('#trier').addEventListener('click', () => afficher(durees.slice().sort((a,b) => a-b)));\ndocument.querySelector('#origine').addEventListener('click', () => afficher(durees));\nafficher(durees);",
+    "visible_tests": [
+      {
+        "description_fr": "Dix ne doit pas précéder deux",
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#trier",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "1",
+                  "2",
+                  "10"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#origine",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "10",
+                  "2",
+                  "1"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autres nombres et doublons",
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#trier",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "0",
+                  "3",
+                  "3",
+                  "20"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#trier",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "0",
+                  "3",
+                  "3",
+                  "20"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#origine",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "20",
+                  "3",
+                  "0",
+                  "3"
+                ]
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><h1>Durées fictives</h1><button id=\"trier\" type=\"button\">Trier</button><button id=\"origine\" type=\"button\">Ordre initial</button><ul id=\"liste\"></ul><ul id=\"source\" hidden><li>20</li><li>3</li><li>0</li><li>3</li></ul></main>"
+      }
+    ],
+    "hints": [
+      "Le tri par défaut ne connaît pas ton intention numérique.",
+      "Ajoute un comparateur aux nombres déjà convertis.",
+      "Utilise sort((a,b) => a-b) sur une copie."
+    ],
+    "explanation_fr": "Les valeurs à plusieurs chiffres distinguent l’ordre textuel de l’ordre numérique. Les doublons sont conservés et plusieurs clics ne doivent pas perdre une durée.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^const\\ durees\\ =\\ Array\\.from\\(document\\.querySelectorAll\\('\\#source\\ li'\\),\\ el\\ =>\\ Number\\(el\\.textContent\\)\\);\\\nfunction\\ afficher\\(valeurs\\)\\ \\{\\\n\\ \\ const\\ liste\\ =\\ document\\.querySelector\\('\\#liste'\\);\\\n\\ \\ liste\\.replaceChildren\\(\\);\\\n\\ \\ for\\ \\(const\\ valeur\\ of\\ valeurs\\)\\ \\{\\\n\\ \\ \\ \\ const\\ li\\ =\\ document\\.createElement\\('li'\\);\\\n\\ \\ \\ \\ li\\.textContent\\ =\\ String\\(valeur\\);\\\n\\ \\ \\ \\ liste\\.append\\(li\\);\\\n\\ \\ \\}\\\n\\}\\\ndocument\\.querySelector\\('\\#trier'\\)\\.addEventListener\\('click',\\ \\(\\)\\ =>\\ afficher\\(durees\\.slice\\(\\)\\.sort\\(\\)\\)\\);\\\ndocument\\.querySelector\\('\\#origine'\\)\\.addEventListener\\('click',\\ \\(\\)\\ =>\\ afficher\\(durees\\)\\);\\\nafficher\\(durees\\);$",
+        "feedback_fr": "Ajoute un comparateur aux nombres déjà convertis."
+      }
+    ],
+    "id": "dom-m5-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Garder recherche et tri actifs",
+    "instruction_fr": "Combine #recherche trim/minuscule avec #tri : prix donne un prix décroissant puis id croissant, source garde l’ordre de la source filtrée. Tout changement relit les deux critères. Mets à jour lignes, compte et vide. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"recherche\">Rechercher un atelier fictif</label><input id=\"recherche\" type=\"search\"><label for=\"tri\">Ordre</label><select id=\"tri\"><option value=\"source\">Ordre initial</option><option value=\"duree\">Durée croissante</option><option value=\"prix\">Prix décroissant</option></select><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"1\" data-categorie=\"code\" data-places=\"4\" data-duree=\"30\" data-prix=\"1000\">Python</li><li data-id=\"2\" data-categorie=\"nature\" data-places=\"0\" data-duree=\"20\" data-prix=\"500\">Jardin</li><li data-id=\"3\" data-categorie=\"code\" data-places=\"2\" data-duree=\"20\" data-prix=\"1500\">Web</li></ul></main>",
+    "starter_code": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' résultat(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nconst recherche = document.querySelector('#recherche');\nconst tri = document.querySelector('#tri');\nfunction rendre() {\n  const terme = recherche.value.trim().toLowerCase();\n  let selection = ateliers.filter(a => a.titre.toLowerCase().includes(terme));\n  if (tri.value === 'prix') selection = selection.slice().sort((a,b) => b.prix - a.prix || a.id - b.id);\n  afficher(selection);\n}\nrecherche.addEventListener('input', rendre);\n\nrendre();",
+    "solution": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' résultat(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nconst recherche = document.querySelector('#recherche');\nconst tri = document.querySelector('#tri');\nfunction rendre() {\n  const terme = recherche.value.trim().toLowerCase();\n  let selection = ateliers.filter(a => a.titre.toLowerCase().includes(terme));\n  if (tri.value === 'prix') selection = selection.slice().sort((a,b) => b.prix - a.prix || a.id - b.id);\n  afficher(selection);\n}\nrecherche.addEventListener('input', rendre);\ntri.addEventListener('change', rendre);\nrendre();",
+    "visible_tests": [
+      {
+        "description_fr": "Changer le tri après une recherche",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python"
+                ]
+              }
+            ],
+            "value": "py"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Jardin",
+                  "Web"
+                ]
+              }
+            ],
+            "value": ""
+          },
+          {
+            "action": "input",
+            "selector": "#tri",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Web",
+                  "Python",
+                  "Jardin"
+                ]
+              }
+            ],
+            "value": "prix"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Jardin"
+                ]
+              }
+            ],
+            "value": "jar"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Web",
+                  "Python",
+                  "Jardin"
+                ]
+              }
+            ],
+            "value": ""
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Une sélection triée et le retour initial",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#tri",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Papier",
+                  "Piano",
+                  "Photo"
+                ]
+              }
+            ],
+            "value": "prix"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Papier",
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "2 résultat(s)"
+              }
+            ],
+            "value": "pi"
+          },
+          {
+            "action": "input",
+            "selector": "#tri",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Papier",
+                  "Piano"
+                ]
+              }
+            ],
+            "value": "source"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo",
+                  "Papier",
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "3 résultat(s)"
+              }
+            ],
+            "value": ""
+          }
+        ],
+        "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"recherche\">Rechercher un atelier fictif</label><input id=\"recherche\" type=\"search\"><label for=\"tri\">Ordre</label><select id=\"tri\"><option value=\"source\">Ordre initial</option><option value=\"duree\">Durée croissante</option><option value=\"prix\">Prix décroissant</option></select><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"9\" data-categorie=\"creation\" data-places=\"0\" data-duree=\"10\" data-prix=\"300\">Photo</li><li data-id=\"4\" data-categorie=\"creation\" data-places=\"3\" data-duree=\"2\" data-prix=\"500\">Papier</li><li data-id=\"7\" data-categorie=\"creation\" data-places=\"1\" data-duree=\"1\" data-prix=\"300\">Piano</li></ul></main>"
+      }
+    ],
+    "hints": [
+      "Une vue dépend maintenant de deux contrôles.",
+      "Le rendu doit être relancé par la saisie et par le choix d’ordre.",
+      "Écoute change sur tri et relis sa valeur dans rendre."
+    ],
+    "explanation_fr": "Le mini-projet traite filtre et ordre comme deux états indépendants. Modifier l’un ne doit pas effacer ou ignorer l’autre, et la source reste réutilisable pour toute nouvelle vue.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^const\\ ateliers\\ =\\ Array\\.from\\(document\\.querySelectorAll\\('\\#source\\ li'\\),\\ el\\ =>\\ \\(\\{id:Number\\(el\\.dataset\\.id\\),\\ titre:el\\.textContent\\.trim\\(\\),\\ categorie:el\\.dataset\\.categorie,\\ places:Number\\(el\\.dataset\\.places\\),\\ duree:Number\\(el\\.dataset\\.duree\\),\\ prix:Number\\(el\\.dataset\\.prix\\)\\}\\)\\);\\\nfunction\\ afficher\\(lignes\\)\\ \\{\\\n\\ \\ const\\ liste\\ =\\ document\\.querySelector\\('\\#liste'\\);\\\n\\ \\ liste\\.replaceChildren\\(\\);\\\n\\ \\ for\\ \\(const\\ atelier\\ of\\ lignes\\)\\ \\{\\\n\\ \\ \\ \\ const\\ li\\ =\\ document\\.createElement\\('li'\\);\\\n\\ \\ \\ \\ li\\.dataset\\.id\\ =\\ String\\(atelier\\.id\\);\\\n\\ \\ \\ \\ li\\.textContent\\ =\\ atelier\\.titre;\\\n\\ \\ \\ \\ liste\\.append\\(li\\);\\\n\\ \\ \\}\\\n\\ \\ document\\.querySelector\\('\\#compte'\\)\\.textContent\\ =\\ lignes\\.length\\ \\+\\ '\\ résultat\\(s\\)';\\\n\\ \\ document\\.querySelector\\('\\#vide'\\)\\.hidden\\ =\\ lignes\\.length\\ !==\\ 0;\\\n\\}\\\nconst\\ recherche\\ =\\ document\\.querySelector\\('\\#recherche'\\);\\\nconst\\ tri\\ =\\ document\\.querySelector\\('\\#tri'\\);\\\nfunction\\ rendre\\(\\)\\ \\{\\\n\\ \\ const\\ terme\\ =\\ recherche\\.value\\.trim\\(\\)\\.toLowerCase\\(\\);\\\n\\ \\ let\\ selection\\ =\\ ateliers\\.filter\\(a\\ =>\\ a\\.titre\\.toLowerCase\\(\\)\\.includes\\(terme\\)\\);\\\n\\ \\ if\\ \\(tri\\.value\\ ===\\ 'prix'\\)\\ selection\\ =\\ selection\\.slice\\(\\)\\.sort\\(\\(a,b\\)\\ =>\\ b\\.prix\\ \\-\\ a\\.prix\\ \\|\\|\\ a\\.id\\ \\-\\ b\\.id\\);\\\n\\ \\ afficher\\(selection\\);\\\n\\}\\\nrecherche\\.addEventListener\\('input',\\ rendre\\);\\\n\\\nrendre\\(\\);$",
+        "feedback_fr": "Le rendu doit être relancé par la saisie et par le choix d’ordre."
+      }
+    ],
+    "id": "dom-m5-02-e4"
+  }
+]

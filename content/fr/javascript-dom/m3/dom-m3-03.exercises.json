@@ -1,0 +1,384 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Guider un accès direct à un champ",
+    "instruction_fr": "À l’activation du bouton natif #aller, donne le focus à #recherche. Ne change pas sa valeur. Le bouton doit continuer de fonctionner après un autre déplacement du focus.",
+    "fixture_html": "<main><button id=\"aller\" type=\"button\">Aller à la recherche</button><label for=\"recherche\">Recherche fictive</label><input id=\"recherche\" value=\"Semis\"><label for=\"autre\">Autre champ</label><input id=\"autre\"></main>",
+    "starter_code": "document.querySelector(\"#aller\").addEventListener(\"click\", function() { document.querySelector(\"#recherche\").value=\"\"; });",
+    "solution": "const aller = document.querySelector(\"#aller\");\nconst recherche = document.querySelector(\"#recherche\");\naller.addEventListener(\"click\", function() { recherche.focus(); });",
+    "visible_tests": [
+      {
+        "description_fr": "Aller puis recommencer",
+        "checks": [],
+        "steps": [
+          {
+            "action": "focus",
+            "selector": "#autre",
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#aller",
+            "checks": [
+              {
+                "selector": "#recherche",
+                "focused": true,
+                "value": "Semis"
+              }
+            ]
+          },
+          {
+            "action": "focus",
+            "selector": "#autre",
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#aller",
+            "checks": [
+              {
+                "selector": "#recherche",
+                "focused": true
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Conserver une autre recherche",
+        "checks": [],
+        "steps": [
+          {
+            "action": "focus",
+            "selector": "#autre",
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#aller",
+            "checks": [
+              {
+                "selector": "#recherche",
+                "focused": true,
+                "value": "Lecture"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><button id=\"aller\" type=\"button\">Aller à la recherche</button><label for=\"recherche\">Recherche fictive</label><input id=\"recherche\" value=\"Lecture\"><label for=\"autre\">Autre champ</label><input id=\"autre\"></main>"
+      }
+    ],
+    "hints": [
+      "Le déplacement doit-il modifier le contenu ?",
+      "Le traitement du bouton appelle seulement recherche.focus().",
+      "const aller = document.querySelector(\"#aller\");\nconst recherche = document.querySelector(\"#recherche\");\naller.addEventListener(\"click\", function() { recherche.focus(); });"
+    ],
+    "explanation_fr": "Un objectif de focus est distinct d’un effacement ou d’une soumission.",
+    "common_wrong_answers": [],
+    "id": "dom-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Ajouter la commande Escape sans bloquer les autres",
+    "instruction_fr": "Écoute keydown de #recherche. Uniquement pour key===Escape : preventDefault, valeur vide, #retour=Recherche effacée., focus maintenu dans #recherche. Les autres touches ne doivent pas exécuter cette commande.",
+    "fixture_html": "<main><label for=\"recherche\">Recherche fictive</label><input id=\"recherche\" value=\"Semis\"><p id=\"retour\" role=\"status\" aria-live=\"polite\">Recherche prête.</p></main>",
+    "starter_code": "document.querySelector(\"#recherche\").addEventListener(\"keydown\", function(e) { e.preventDefault(); e.currentTarget.value=\"\"; });",
+    "solution": "const recherche = document.querySelector(\"#recherche\");\nconst retour = document.querySelector(\"#retour\");\nrecherche.addEventListener(\"keydown\", function(evenement) {\n  if (evenement.key === \"Escape\") {\n    evenement.preventDefault();\n    recherche.value = \"\";\n    retour.textContent = \"Recherche effacée.\";\n    recherche.focus();\n  }\n});",
+    "visible_tests": [
+      {
+        "description_fr": "Une touche ignorée et une commande",
+        "checks": [],
+        "steps": [
+          {
+            "action": "focus",
+            "selector": "#recherche",
+            "checks": []
+          },
+          {
+            "action": "keydown",
+            "selector": "#recherche",
+            "key": "ArrowDown",
+            "checks": [
+              {
+                "selector": "#recherche",
+                "value": "Semis"
+              },
+              {
+                "selector": "#retour",
+                "text": "Recherche prête."
+              }
+            ]
+          },
+          {
+            "action": "keydown",
+            "selector": "#recherche",
+            "key": "Escape",
+            "checks": [
+              {
+                "selector": "#recherche",
+                "value": "",
+                "focused": true
+              },
+              {
+                "selector": "#retour",
+                "text": "Recherche effacée."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Recommencer sans effacer sur Entrée",
+        "checks": [],
+        "steps": [
+          {
+            "action": "focus",
+            "selector": "#recherche",
+            "checks": []
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "value": "Jardin",
+            "checks": []
+          },
+          {
+            "action": "keydown",
+            "selector": "#recherche",
+            "key": "Enter",
+            "checks": [
+              {
+                "selector": "#recherche",
+                "value": "Jardin"
+              }
+            ]
+          },
+          {
+            "action": "keydown",
+            "selector": "#recherche",
+            "key": "Escape",
+            "checks": [
+              {
+                "selector": "#recherche",
+                "value": "",
+                "focused": true
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "value": "Web",
+            "checks": [
+              {
+                "selector": "#recherche",
+                "value": "Web"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Quelle touche la consigne réserve-t-elle à cette action ?",
+      "Teste evenement.key avant tout effacement ou preventDefault.",
+      "const recherche = document.querySelector(\"#recherche\");\nconst retour = document.querySelector(\"#retour\");\nrecherche.addEventListener(\"keydown\", function(evenement) {\n  if (evenement.key === \"Escape\") {\n    evenement.preventDefault();\n    recherche.value = \"\";\n    retour.textContent = \"Recherche effacée.\";\n    recherche.focus();\n  }\n});"
+    ],
+    "explanation_fr": "Le traitement ne doit pas transformer chaque touche en une commande d’annulation.",
+    "common_wrong_answers": [],
+    "id": "dom-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une mauvaise cible de focus",
+    "instruction_fr": "À l’activation de #annuler, rétablis #nom à la valeur de data-initial, annonce Saisie rétablie. dans #retour et rends le focus à #nom. Le paragraphe de retour ne doit pas devenir la cible.",
+    "fixture_html": "<main><label for=\"nom\">Prénom fictif</label><input id=\"nom\" value=\"Afi\" data-initial=\"Afi\"><button id=\"annuler\" type=\"button\">Rétablir la saisie</button><p id=\"retour\" role=\"status\" aria-live=\"polite\">En attente.</p></main>",
+    "starter_code": "const nom = document.querySelector(\"#nom\");\nconst retour = document.querySelector(\"#retour\");\ndocument.querySelector(\"#annuler\").addEventListener(\"click\", function() {\n  nom.value = nom.dataset.initial;\n  retour.textContent = \"Saisie rétablie.\";\n  retour.focus();\n});",
+    "solution": "const nom = document.querySelector(\"#nom\");\nconst retour = document.querySelector(\"#retour\");\ndocument.querySelector(\"#annuler\").addEventListener(\"click\", function() {\n  nom.value = nom.dataset.initial;\n  retour.textContent = \"Saisie rétablie.\";\n  nom.focus();\n});",
+    "visible_tests": [
+      {
+        "description_fr": "Rétablir puis rester dans le champ",
+        "checks": [],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#nom",
+            "value": "Mina",
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#annuler",
+            "checks": [
+              {
+                "selector": "#nom",
+                "value": "Afi",
+                "focused": true
+              },
+              {
+                "selector": "#retour",
+                "text": "Saisie rétablie."
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#nom",
+            "value": "Lina",
+            "checks": [
+              {
+                "selector": "#nom",
+                "value": "Lina",
+                "focused": true
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Lire la valeur initiale fournie",
+        "checks": [],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#nom",
+            "value": "Autre",
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#annuler",
+            "checks": [
+              {
+                "selector": "#nom",
+                "value": "Kofi",
+                "focused": true
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><label for=\"nom\">Prénom fictif</label><input id=\"nom\" value=\"Kofi\" data-initial=\"Kofi\"><button id=\"annuler\" type=\"button\">Rétablir la saisie</button><p id=\"retour\" role=\"status\" aria-live=\"polite\">En attente.</p></main>"
+      }
+    ],
+    "hints": [
+      "Quel contrôle doit permettre de reprendre la saisie ?",
+      "Le message explique ; le champ reçoit le focus.",
+      "const nom = document.querySelector(\"#nom\");\nconst retour = document.querySelector(\"#retour\");\ndocument.querySelector(\"#annuler\").addEventListener(\"click\", function() {\n  nom.value = nom.dataset.initial;\n  retour.textContent = \"Saisie rétablie.\";\n  nom.focus();\n});"
+    ],
+    "explanation_fr": "La valeur de départ vient du dataset fourni, pas d’un prénom supposé universel.",
+    "common_wrong_answers": [],
+    "id": "dom-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Orienter vers l’erreur ou le résumé demandé",
+    "instruction_fr": "Traite submit de #demande localement. Après trim du #nom : si vide, #bilan=Prénom requis. et focus sur #nom ; sinon #bilan=Résumé fictif : nom et focus sur le h2 #resume, déjà muni de tabindex=-1. Ne déplace pas le focus pendant la simple saisie.",
+    "fixture_html": "<main><form id=\"demande\" novalidate><label for=\"nom\">Prénom fictif, obligatoire</label><input id=\"nom\"><button type=\"submit\">Lire le résumé</button></form><h2 id=\"resume\" tabindex=\"-1\">Résumé</h2><p id=\"bilan\" role=\"status\" aria-live=\"polite\">En attente.</p></main>",
+    "starter_code": "document.querySelector(\"#demande\").addEventListener(\"submit\", function(e) { e.preventDefault(); document.querySelector(\"#bilan\").textContent=\"Résumé fictif\"; });",
+    "solution": "const formulaire = document.querySelector(\"#demande\");\nconst nom = document.querySelector(\"#nom\");\nconst bilan = document.querySelector(\"#bilan\");\nconst resume = document.querySelector(\"#resume\");\nformulaire.addEventListener(\"submit\", function(evenement) {\n  evenement.preventDefault();\n  const valeur = nom.value.trim();\n  if (valeur === \"\") {\n    bilan.textContent = \"Prénom requis.\";\n    nom.focus();\n    return;\n  }\n  bilan.textContent = \"Résumé fictif : \" + valeur;\n  resume.focus();\n});",
+    "visible_tests": [
+      {
+        "description_fr": "Erreur puis étape suivante",
+        "checks": [],
+        "steps": [
+          {
+            "action": "submit",
+            "selector": "#demande",
+            "checks": [
+              {
+                "selector": "#nom",
+                "focused": true
+              },
+              {
+                "selector": "#bilan",
+                "text": "Prénom requis."
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#nom",
+            "value": " Afi ",
+            "checks": [
+              {
+                "selector": "#nom",
+                "focused": true
+              }
+            ]
+          },
+          {
+            "action": "submit",
+            "selector": "#demande",
+            "checks": [
+              {
+                "selector": "#bilan",
+                "text": "Résumé fictif : Afi"
+              },
+              {
+                "selector": "#resume",
+                "focused": true
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Une nouvelle erreur ramène au contrôle",
+        "checks": [],
+        "steps": [
+          {
+            "action": "submit",
+            "selector": "#demande",
+            "checks": [
+              {
+                "selector": "#resume",
+                "focused": true
+              },
+              {
+                "selector": "#bilan",
+                "text": "Résumé fictif : Lina"
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#nom",
+            "value": " ",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#demande",
+            "checks": [
+              {
+                "selector": "#nom",
+                "focused": true
+              },
+              {
+                "selector": "#bilan",
+                "text": "Prénom requis."
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><form id=\"demande\" novalidate><label for=\"nom\">Prénom fictif, obligatoire</label><input id=\"nom\" value=\"Lina\"><button type=\"submit\">Lire le résumé</button></form><h2 id=\"resume\" tabindex=\"-1\">Résumé</h2><p id=\"bilan\" role=\"status\" aria-live=\"polite\">En attente.</p></main>"
+      }
+    ],
+    "hints": [
+      "Quel résultat de la demande justifie le déplacement ?",
+      "Les deux branches de submit ont une cible utile et un message distinct.",
+      "const formulaire = document.querySelector(\"#demande\");\nconst nom = document.querySelector(\"#nom\");\nconst bilan = document.querySelector(\"#bilan\");\nconst resume = document.querySelector(\"#resume\");\nformulaire.addEventListener(\"submit\", function(evenement) {\n  evenement.preventDefault();\n  const valeur = nom.value.trim();\n  if (valeur === \"\") {\n    bilan.textContent = \"Prénom requis.\";\n    nom.focus();\n    return;\n  }\n  bilan.textContent = \"Résumé fictif : \" + valeur;\n  resume.focus();\n});"
+    ],
+    "explanation_fr": "tabindex=-1 rend le titre visable par programme sans l’ajouter comme contrôle de saisie.",
+    "common_wrong_answers": [],
+    "id": "dom-m3-03-e4"
+  }
+]

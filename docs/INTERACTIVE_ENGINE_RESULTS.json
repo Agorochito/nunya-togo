@@ -1,0 +1,14 @@
+{
+  "realDomClicks": true,
+  "emptyCollectionsValidated": true,
+  "realFormAndPreventDefault": true,
+  "realReactState": true,
+  "reactControlledInput": true,
+  "actualPromiseWithExplicitSimulatedData": true,
+  "loopAndRecursionStopped": true,
+  "externalFetchBlockedByCsp": true,
+  "opaqueOrigin": true,
+  "parentDocumentDenied": true,
+  "stopRemovesFrame": true,
+  "coldOfflineDomAndReact": true
+}

@@ -1,0 +1,220 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Lire la valeur actuelle",
+    "instruction_fr": "Écris dans #apercu « Club : <valeur de #nom> ». Préserve la valeur du champ ; aucun écouteur n’est nécessaire.",
+    "fixture_html": "<main><label for=\"nom\">Nom fictif du club</label><input id=\"nom\" value=\"Club Avenir\"><p id=\"apercu\">Inconnu</p></main>",
+    "starter_code": "const champ = document.querySelector(\"#nom\");\ndocument.querySelector(\"#apercu\").textContent = \"Club : \" + champ.textContent;",
+    "solution": "const champ = document.querySelector(\"#nom\");\ndocument.querySelector(\"#apercu\").textContent = \"Club : \" + champ.value;",
+    "visible_tests": [
+      {
+        "description_fr": "Premier club",
+        "checks": [
+          {
+            "selector": "#nom",
+            "value": "Club Avenir"
+          },
+          {
+            "selector": "#apercu",
+            "text": "Club : Club Avenir"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Nom composé",
+        "checks": [
+          {
+            "selector": "#nom",
+            "value": "Club des lecteurs"
+          },
+          {
+            "selector": "#apercu",
+            "text": "Club : Club des lecteurs"
+          }
+        ],
+        "fixture_html": "<main><label for=\"nom\">Nom fictif du club</label><input id=\"nom\" value=\"Club des lecteurs\"><p id=\"apercu\">Inconnu</p></main>"
+      }
+    ],
+    "hints": [
+      "Un input expose son contenu avec une propriété dédiée.",
+      "Remplace la lecture textContent du champ par value.",
+      "const champ = document.querySelector(\"#nom\");\ndocument.querySelector(\"#apercu\").textContent = \"Club : \" + champ.value;"
+    ],
+    "explanation_fr": "La destination est un paragraphe, la source est un contrôle.",
+    "common_wrong_answers": [],
+    "id": "dom-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Lire une fiche et annoter son état",
+    "instruction_fr": "Lis data-atelier et data-ville de #fiche. Écris « <atelier> — <ville> » dans #resume et ajoute data-etat=\"prepare\" sur #fiche.",
+    "fixture_html": "<main><article id=\"fiche\" data-ville=\"Lomé\" data-atelier=\"Dessin\"><p id=\"resume\">Vide</p></article></main>",
+    "starter_code": "const fiche = document.querySelector(\"#fiche\");",
+    "solution": "const fiche = document.querySelector(\"#fiche\");\ndocument.querySelector(\"#resume\").textContent = fiche.dataset.atelier + \" — \" + fiche.dataset.ville;\nfiche.dataset.etat = \"prepare\";",
+    "visible_tests": [
+      {
+        "description_fr": "Dessin à Lomé",
+        "checks": [
+          {
+            "selector": "#resume",
+            "text": "Dessin — Lomé"
+          },
+          {
+            "selector": "#fiche",
+            "attributes": {
+              "data-etat": "prepare",
+              "data-ville": "Lomé"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autres données",
+        "checks": [
+          {
+            "selector": "#resume",
+            "text": "Théâtre — Kpalimé"
+          },
+          {
+            "selector": "#fiche",
+            "attributes": {
+              "data-etat": "prepare",
+              "data-ville": "Kpalimé"
+            }
+          }
+        ],
+        "fixture_html": "<main><article id=\"fiche\" data-ville=\"Kpalimé\" data-atelier=\"Théâtre\"><p id=\"resume\">Vide</p></article></main>"
+      }
+    ],
+    "hints": [
+      "Les noms data-* correspondent aux propriétés de dataset.",
+      "Assemble les deux chaînes puis écris une propriété dataset.etat.",
+      "const fiche = document.querySelector(\"#fiche\");\ndocument.querySelector(\"#resume\").textContent = fiche.dataset.atelier + \" — \" + fiche.dataset.ville;\nfiche.dataset.etat = \"prepare\";"
+    ],
+    "explanation_fr": "Les données de la carte déterminent le résumé, sans réécrire le conteneur.",
+    "common_wrong_answers": [],
+    "id": "dom-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Remplir un champ sans confondre son texte",
+    "instruction_fr": "Corrige ce code : #titre doit contenir la proposition de son data-proposition, tandis que son attribut value initial reste intact. #etat doit afficher « Proposition chargée ».",
+    "fixture_html": "<main><label for=\"titre\">Titre</label><input id=\"titre\" value=\"Ancien\" data-proposition=\"Lecture\"><p id=\"etat\">À préparer</p></main>",
+    "starter_code": "const champ = document.querySelector(\"#titre\");\nchamp.textContent = champ.dataset.proposition;\ndocument.querySelector(\"#etat\").textContent = \"Proposition chargée\";",
+    "solution": "const champ = document.querySelector(\"#titre\");\nchamp.value = champ.dataset.proposition;\ndocument.querySelector(\"#etat\").textContent = \"Proposition chargée\";",
+    "visible_tests": [
+      {
+        "description_fr": "Proposition Lecture",
+        "checks": [
+          {
+            "selector": "#titre",
+            "value": "Lecture",
+            "attributes": {
+              "value": "Ancien"
+            }
+          },
+          {
+            "selector": "#etat",
+            "text": "Proposition chargée"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autre proposition et autre valeur initiale",
+        "checks": [
+          {
+            "selector": "#titre",
+            "value": "Robotique",
+            "attributes": {
+              "value": "Brouillon"
+            }
+          },
+          {
+            "selector": "#etat",
+            "text": "Proposition chargée"
+          }
+        ],
+        "fixture_html": "<main><label for=\"titre\">Titre</label><input id=\"titre\" value=\"Brouillon\" data-proposition=\"Robotique\"><p id=\"etat\">À préparer</p></main>"
+      }
+    ],
+    "hints": [
+      "Le texte enfant d’un input ne remplit pas le contrôle.",
+      "Affecte sa propriété value sans réécrire l’attribut initial.",
+      "const champ = document.querySelector(\"#titre\");\nchamp.value = champ.dataset.proposition;\ndocument.querySelector(\"#etat\").textContent = \"Proposition chargée\";"
+    ],
+    "explanation_fr": "La valeur courante et la valeur initiale peuvent être différentes.",
+    "common_wrong_answers": [],
+    "id": "dom-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Préparer une carte consultable",
+    "instruction_fr": "Depuis #carte, copie data-destination dans le href de #lien. Son texte devient « Voir <valeur du champ #nom> ». Réactive #confirmer avec sa propriété disabled ; conserve la section destination.",
+    "fixture_html": "<main id=\"carte\" data-destination=\"#lecture\"><label for=\"nom\">Atelier</label><input id=\"nom\" value=\"Lecture\"><a id=\"lien\" href=\"#ancien\">Ancien lien</a><button id=\"confirmer\" type=\"button\" disabled>Confirmer</button><section id=\"lecture\"><h2>Lecture</h2></section></main>",
+    "starter_code": "const carte = document.querySelector(\"#carte\");\nconst lien = document.querySelector(\"#lien\");\ndocument.querySelector(\"#confirmer\").setAttribute(\"disabled\", \"false\");",
+    "solution": "const carte = document.querySelector(\"#carte\");\nconst lien = document.querySelector(\"#lien\");\nlien.setAttribute(\"href\", carte.dataset.destination);\nlien.textContent = \"Voir \" + document.querySelector(\"#nom\").value;\ndocument.querySelector(\"#confirmer\").disabled = false;",
+    "visible_tests": [
+      {
+        "description_fr": "Carte Lecture",
+        "checks": [
+          {
+            "selector": "#lien",
+            "text": "Voir Lecture",
+            "attributes": {
+              "href": "#lecture"
+            }
+          },
+          {
+            "selector": "#confirmer",
+            "attributes": {
+              "disabled": null
+            }
+          },
+          {
+            "selector": "#lecture h2",
+            "text": "Lecture"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autre ancre et autre atelier",
+        "checks": [
+          {
+            "selector": "#lien",
+            "text": "Voir Jardin collectif",
+            "attributes": {
+              "href": "#jardin"
+            }
+          },
+          {
+            "selector": "#confirmer",
+            "attributes": {
+              "disabled": null
+            }
+          },
+          {
+            "selector": "#jardin h2",
+            "text": "Jardin collectif"
+          }
+        ],
+        "fixture_html": "<main id=\"carte\" data-destination=\"#jardin\"><label for=\"nom\">Atelier</label><input id=\"nom\" value=\"Jardin collectif\"><a id=\"lien\" href=\"#ancien\">Ancien lien</a><button id=\"confirmer\" type=\"button\" disabled>Confirmer</button><section id=\"jardin\"><h2>Jardin collectif</h2></section></main>"
+      }
+    ],
+    "hints": [
+      "Trois destinations : href, texte du lien et propriété booléenne du bouton.",
+      "La chaîne \"false\" ne retire pas un attribut booléen présent.",
+      "const carte = document.querySelector(\"#carte\");\nconst lien = document.querySelector(\"#lien\");\nlien.setAttribute(\"href\", carte.dataset.destination);\nlien.textContent = \"Voir \" + document.querySelector(\"#nom\").value;\ndocument.querySelector(\"#confirmer\").disabled = false;"
+    ],
+    "explanation_fr": "Les contrôles et attributs sont mis à jour séparément ; aucune navigation n’est requise.",
+    "common_wrong_answers": [],
+    "id": "dom-m1-02-e4"
+  }
+]

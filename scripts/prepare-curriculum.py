@@ -19,7 +19,10 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
  language=course.get('language',course.get('runtime','python'))
  if language not in ['python','javascript','html','css','sql']:raise ValueError('Unsupported offline runtime: '+language)
  runtime=course.get('runtime',language)
- if runtime not in ['python','javascript','html','css','http','sql'] or (runtime=='http' and language!='javascript'):raise ValueError('Unsupported runtime/language pair')
+ if runtime not in ['python','javascript','html','css','http','sql','dom','react'] or (runtime=='http' and language!='javascript'):raise ValueError('Unsupported runtime/language pair')
+ if runtime in ['dom','react']:
+  engine_files=['lib/dom/client.mjs','lib/dom/compile.mjs','lib/dom/frame.mjs','lib/dom/react-libs.mjs','package-lock.json']
+  course['engine_revision']=hashlib.sha256(b''.join((r/f).read_bytes() for f in engine_files)).hexdigest()[:12]
  course['language']=language;course['runtime']=runtime;course.setdefault('level','debutant');course.setdefault('later_modules',[])
  lessons,index=[],[]
  for module in course['modules']:
@@ -33,13 +36,14 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
    all_ids.add(row['id'])
    prose=markdown.split('## Explication pas à pas\n',1)[1].split('## Exemple guidé',1)[0]
    row['body_fr']=[part.strip() for part in prose.strip().split('\n\n') if part.strip()]
-   codes=re.findall(r'```(?:python|html|css|javascript|js|sql|bash)\n(.*?)\n```',markdown,re.S)
+   codes=re.findall(r'```(?:python|html|css|javascript|jsx|js|sql|bash)\n(.*?)\n```',markdown,re.S)
    if len(codes)!=len(row['examples']):raise ValueError(f'{path}: each example requires its code block')
    for example,code in zip(row['examples'],codes):example['code']=code
    if row['id'] in chapter_end:row['chapter_end']=chapter_end[row['id']]
    row['exercises']=json.loads(path.with_suffix('.exercises.json').read_text())
    if runtime=='http':row.setdefault('environment_fr','API pédagogique locale : données fictives, pas de serveur distant ni d’écriture conservée. Les requêtes restent sur cet appareil. await est autorisé dans l’atelier.')
    if runtime=='sql':row.setdefault('environment_fr','SQLite local · Données fictives. Chaque exécution repart de la base initiale. Tes scripts et ta progression sont sauvegardés, pas les modifications de cette base temporaire.')
+   if runtime in ['dom','react']:row.setdefault('environment_fr','Interface temporaire dans le navigateur : chaque exécution repart du HTML fourni. Ton code est sauvegardé, pas les clics ni les saisies de cet aperçu. '+('React est fourni dans cet atelier ; le service chargerAteliers est une simulation locale, sans requête internet.' if runtime=='react' else 'Les boutons, formulaires et listes fonctionnent dans l’aperçu.'))
    rows.append(row)
   rows.sort(key=lambda row:row['order']);actual=[row['id'] for row in rows]
   if declared and declared!=actual:raise ValueError(f"{course['id']}/{module['id']}: manifest and authored lessons differ")
@@ -49,7 +53,7 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
    write(out/(row['id']+'.json'),row)
    search.append(dict(kind='Leçons',title=row['title_fr'],route=f"#/apprendre/{course['id']}/{module['id']}/{row['id']}",breadcrumb=f"Apprendre › {course['title_fr']} › {module['title_fr']}",terms=' '.join(row['tags'])+' '+row['title_fr']))
  course['lessons']=index;course['estimated_minutes']=sum(row['minutes'] for row in lessons)
- revision={key:course.get(key) for key in ['id','language','runtime','title_fr','modules','status','reviewer','summary_fr','prerequisites','outcomes','availability','prerequisite_courses','next_courses']};revision['lessons']=lessons
+ revision={key:course.get(key) for key in ['id','language','runtime','title_fr','modules','status','reviewer','summary_fr','prerequisites','outcomes','availability','prerequisite_courses','next_courses','engine_revision']};revision['lessons']=lessons
  course['content_revision']=hashlib.sha256(json.dumps(revision,ensure_ascii=False,sort_keys=True).encode()).hexdigest()[:12]
  course['exercise_count']=sum(len(row['exercises']) for row in lessons);course['quiz_count']=sum(len(row['quiz']) for row in lessons)
  write(data/(course['id']+'.json'),course,True);write(out/(course['id']+'.json'),dict(course=course,lessons=lessons));courses.append(course)

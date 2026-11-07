@@ -1,5 +1,13 @@
 # Historique
 
+## 5.7.0 — 6 novembre 2026
+
+- Deux programmes originaux disponibles dans le catalogue : JavaScript DOM et React,18leçons/72exercices/54QCM/36exemples chacun. Les textes restent en relecture pédagogique.
+- DOM et React réels dans le navigateur : boutons, formulaires, listes, clés stables, focus, effets et nettoyage, tests d’états intermédiaires et projets. Service asynchrone React explicitement simulé, avec erreurs/reprise/réponses obsolètes.
+- Ateliers isolés par CSP HTTP, réseau refusé, budgets de boucles/fonctions et bouton Arrêter ; téléchargement des moteurs et redémarrage à froid hors ligne corrigés. Empreinte de moteur liée à la révision du cours.
+- Coloration adaptée à Python, HTML, CSS, JavaScript/JSX et SQL. Raccourcis directs et filtres distincts pour DOM et React ; export de code React en JSX.
+- La cible globale72cours et les technologies/niveaux restants restent suivis dans la matrice de couverture ; aucun cours vide déclaré terminé.
+
 ## 5.6.1 — 6 novembre 2026
 
 - Correction du catalogue restant sur Python après la mise à jour : métadonnées et vues liées à la version, actualisation au changement de service worker et retour réseau, sans effacer la progression.

@@ -1,0 +1,482 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Incrémenter un état au clic",
+    "instruction_fr": "Lis le départ numérique de data-depart sur #app. Dans App, initialise total avec useState(depart). p#total affiche ce nombre ; button#plus type=button « Ajouter » augmente l’état de 1 par clic. Monte App.",
+    "fixture_html": "<div id=\"app\" data-depart=\"0\"></div>",
+    "starter_code": "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() { const [total, setTotal] = useState(depart); return <main><p id=\"total\">{total}</p><button id=\"plus\" type=\"button\">Ajouter</button></main>; }\nroot.render(<App />);",
+    "solution": "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() {\n  const [total, setTotal] = useState(depart);\n  return <main><p id=\"total\">{total}</p><button id=\"plus\" type=\"button\" onClick={() => setTotal(total + 1)}>Ajouter</button></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Deux ajouts",
+        "checks": [
+          {
+            "selector": "#total",
+            "text": "0"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "1"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "2"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Départ différent",
+        "checks": [
+          {
+            "selector": "#total",
+            "text": "4"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "5"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "6"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "7"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-depart=\"4\"></div>"
+      }
+    ],
+    "hints": [
+      "La valeur affichée vient de useState, pas d’un texte changé manuellement.",
+      "onClick reçoit une fonction qui appelle setTotal.",
+      "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() {\n  const [total, setTotal] = useState(depart);\n  return <main><p id=\"total\">{total}</p><button id=\"plus\" type=\"button\" onClick={() => setTotal(total + 1)}>Ajouter</button></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Le nouveau rendu utilise la mémoire mise à jour.",
+    "common_wrong_answers": [],
+    "id": "react-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Conserver deux compteurs indépendants",
+    "instruction_fr": "Définis Compteur({id,titre,depart}) avec son propre useState. Il affiche un h2, p dont id vaut id+\"-total\", et button type=button id+\"-plus\" « Ajouter » augmentant seulement son total. App compose Lecture id=\"lecture\" avec data-lecture et Jardin id=\"jardin\" avec data-jardin, convertis depuis #app.",
+    "fixture_html": "<div id=\"app\" data-lecture=\"1\" data-jardin=\"3\"></div>",
+    "starter_code": "const config = document.querySelector(\"#app\").dataset;\nfunction Compteur({ id, titre, depart }) { const [total, setTotal] = useState(depart); return <section><h2>{titre}</h2><p id={id + \"-total\"}>{total}</p><button id={id + \"-plus\"} type=\"button\">Ajouter</button></section>; }\nfunction App() { return <main><Compteur id=\"lecture\" titre=\"Lecture\" depart={Number(config.lecture)} /><Compteur id=\"jardin\" titre=\"Jardin\" depart={Number(config.jardin)} /></main>; }\nroot.render(<App />);",
+    "solution": "const config = document.querySelector(\"#app\").dataset;\nfunction Compteur({ id, titre, depart }) {\n  const [total, setTotal] = useState(depart);\n  return <section><h2>{titre}</h2><p id={id + \"-total\"}>{total}</p><button id={id + \"-plus\"} type=\"button\" onClick={() => setTotal(total + 1)}>Ajouter</button></section>;\n}\nfunction App() { return <main><Compteur id=\"lecture\" titre=\"Lecture\" depart={Number(config.lecture)} /><Compteur id=\"jardin\" titre=\"Jardin\" depart={Number(config.jardin)} /></main>; }\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "L’action reste locale",
+        "checks": [
+          {
+            "selector": "#lecture-total",
+            "text": "1"
+          },
+          {
+            "selector": "#jardin-total",
+            "text": "3"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#lecture-plus",
+            "checks": [
+              {
+                "selector": "#lecture-total",
+                "text": "2"
+              },
+              {
+                "selector": "#jardin-total",
+                "text": "3"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#jardin-plus",
+            "checks": [
+              {
+                "selector": "#lecture-total",
+                "text": "2"
+              },
+              {
+                "selector": "#jardin-total",
+                "text": "4"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#lecture-plus",
+            "checks": [
+              {
+                "selector": "#lecture-total",
+                "text": "3"
+              },
+              {
+                "selector": "#jardin-total",
+                "text": "4"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autres départs et ordre inverse",
+        "checks": [
+          {
+            "selector": "#lecture-total",
+            "text": "5"
+          },
+          {
+            "selector": "#jardin-total",
+            "text": "0"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#jardin-plus",
+            "checks": [
+              {
+                "selector": "#lecture-total",
+                "text": "5"
+              },
+              {
+                "selector": "#jardin-total",
+                "text": "1"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#jardin-plus",
+            "checks": [
+              {
+                "selector": "#jardin-total",
+                "text": "2"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#lecture-plus",
+            "checks": [
+              {
+                "selector": "#lecture-total",
+                "text": "6"
+              },
+              {
+                "selector": "#jardin-total",
+                "text": "2"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-lecture=\"5\" data-jardin=\"0\"></div>"
+      }
+    ],
+    "hints": [
+      "useState se trouve dans Compteur, donc dans chacune de ses instances.",
+      "Chaque bouton utilise la fonction de mise à jour de cette instance.",
+      "const config = document.querySelector(\"#app\").dataset;\nfunction Compteur({ id, titre, depart }) {\n  const [total, setTotal] = useState(depart);\n  return <section><h2>{titre}</h2><p id={id + \"-total\"}>{total}</p><button id={id + \"-plus\"} type=\"button\" onClick={() => setTotal(total + 1)}>Ajouter</button></section>;\n}\nfunction App() { return <main><Compteur id=\"lecture\" titre=\"Lecture\" depart={Number(config.lecture)} /><Compteur id=\"jardin\" titre=\"Jardin\" depart={Number(config.jardin)} /></main>; }\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Le partage de code ne signifie pas le partage de toutes les mémoires.",
+    "common_wrong_answers": [],
+    "id": "react-m2-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Remplacer une variable qui ne provoque aucun rendu",
+    "instruction_fr": "Le clic change une variable ordinaire sans actualiser le texte. Répare App avec useState, en conservant le départ numérique de la fixture. #plus ajoute 1 et #total présente l’état à chaque clic.",
+    "fixture_html": "<div id=\"app\" data-depart=\"2\"></div>",
+    "starter_code": "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() { let total = depart; function ajouter() { total = total + 1; } return <main><p id=\"total\">{total}</p><button id=\"plus\" type=\"button\" onClick={ajouter}>Ajouter</button></main>; }\nroot.render(<App />);",
+    "solution": "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() {\n  const [total, setTotal] = useState(depart);\n  function ajouter() { setTotal(total + 1); }\n  return <main><p id=\"total\">{total}</p><button id=\"plus\" type=\"button\" onClick={ajouter}>Ajouter</button></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Mémoire et rendu",
+        "checks": [
+          {
+            "selector": "#total",
+            "text": "2"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "3"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "4"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autre valeur initiale",
+        "checks": [
+          {
+            "selector": "#total",
+            "text": "8"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "9"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "10"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-depart=\"8\"></div>"
+      }
+    ],
+    "hints": [
+      "Changer une variable classique ne demande pas un rendu à React.",
+      "Récupère la paire total/setTotal au niveau supérieur du composant.",
+      "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() {\n  const [total, setTotal] = useState(depart);\n  function ajouter() { setTotal(total + 1); }\n  return <main><p id=\"total\">{total}</p><button id=\"plus\" type=\"button\" onClick={ajouter}>Ajouter</button></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "La mémoire React et sa fonction de mise à jour relient le clic à la nouvelle interface.",
+    "common_wrong_answers": [],
+    "id": "react-m2-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Choisir et annuler un atelier fictif",
+    "instruction_fr": "data-titre de #app fournit le titre à afficher dans h1#titre. App possède un booléen choisi initialement false. #basculer inverse ce choix et porte aria-pressed correspondant ; #annuler le remet false. p#statut affiche « Choisi » ou « Non choisi ». Les deux boutons sont de type button, avec les textes « Basculer le choix » et « Annuler ».",
+    "fixture_html": "<div id=\"app\" data-titre=\"Lecture\"></div>",
+    "starter_code": "const titre = document.querySelector(\"#app\").dataset.titre;\nfunction App() { const [choisi, setChoisi] = useState(false); return <main><h1 id=\"titre\">{titre}</h1><p id=\"statut\">Non choisi</p><button id=\"basculer\" type=\"button\" aria-pressed=\"false\">Basculer le choix</button><button id=\"annuler\" type=\"button\">Annuler</button></main>; }\nroot.render(<App />);",
+    "solution": "const titre = document.querySelector(\"#app\").dataset.titre;\nfunction App() {\n  const [choisi, setChoisi] = useState(false);\n  return <main><h1 id=\"titre\">{titre}</h1><p id=\"statut\">{choisi ? \"Choisi\" : \"Non choisi\"}</p><button id=\"basculer\" type=\"button\" aria-pressed={choisi} onClick={() => setChoisi(!choisi)}>Basculer le choix</button><button id=\"annuler\" type=\"button\" onClick={() => setChoisi(false)}>Annuler</button></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Phrase et bouton cohérents",
+        "checks": [
+          {
+            "selector": "#titre",
+            "text": "Lecture"
+          },
+          {
+            "selector": "#statut",
+            "text": "Non choisi"
+          },
+          {
+            "selector": "#basculer",
+            "attributes": {
+              "aria-pressed": "false"
+            }
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#statut",
+                "text": "Choisi"
+              },
+              {
+                "selector": "#basculer",
+                "attributes": {
+                  "aria-pressed": "true"
+                }
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#statut",
+                "text": "Non choisi"
+              },
+              {
+                "selector": "#basculer",
+                "attributes": {
+                  "aria-pressed": "false"
+                }
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#statut",
+                "text": "Choisi"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#annuler",
+            "checks": [
+              {
+                "selector": "#statut",
+                "text": "Non choisi"
+              },
+              {
+                "selector": "#basculer",
+                "attributes": {
+                  "aria-pressed": "false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Annuler puis reprendre ailleurs",
+        "checks": [
+          {
+            "selector": "#titre",
+            "text": "Jardin"
+          },
+          {
+            "selector": "#statut",
+            "text": "Non choisi"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#annuler",
+            "checks": [
+              {
+                "selector": "#statut",
+                "text": "Non choisi"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#statut",
+                "text": "Choisi"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#annuler",
+            "checks": [
+              {
+                "selector": "#statut",
+                "text": "Non choisi"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#annuler",
+            "checks": [
+              {
+                "selector": "#basculer",
+                "attributes": {
+                  "aria-pressed": "false"
+                }
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#statut",
+                "text": "Choisi"
+              },
+              {
+                "selector": "#basculer",
+                "attributes": {
+                  "aria-pressed": "true"
+                }
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-titre=\"Jardin\"></div>"
+      }
+    ],
+    "hints": [
+      "Le booléen unique alimente le texte et aria-pressed.",
+      "Annuler demande false ; basculer demande son inverse.",
+      "const titre = document.querySelector(\"#app\").dataset.titre;\nfunction App() {\n  const [choisi, setChoisi] = useState(false);\n  return <main><h1 id=\"titre\">{titre}</h1><p id=\"statut\">{choisi ? \"Choisi\" : \"Non choisi\"}</p><button id=\"basculer\" type=\"button\" aria-pressed={choisi} onClick={() => setChoisi(!choisi)}>Basculer le choix</button><button id=\"annuler\" type=\"button\" onClick={() => setChoisi(false)}>Annuler</button></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "L’interface présente un choix temporaire, sans inscription ni réservation réelle.",
+    "common_wrong_answers": [],
+    "id": "react-m2-01-e4"
+  }
+]

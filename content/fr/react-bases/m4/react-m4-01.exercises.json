@@ -1,0 +1,424 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Guider une saisie contrôlée",
+    "instruction_fr": "App garde nom comme chaîne vide. Lie #nom à cet état avec value et onChange ; le label utilise htmlFor=nom. #apercu vaut En attente. sur vide, sinon Bonjour suivi du nom. #effacer remet l’état et le champ à vide. La saisie reste du texte.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function App() {\n  const [nom, setNom] = useState(\"\");\n  return <main><label htmlFor=\"nom\">Prénom fictif</label><input id=\"nom\" value={nom} onChange={() => {}} aria-describedby=\"apercu\" /><p id=\"apercu\" aria-live=\"polite\">{nom === \"\" ? \"En attente.\" : \"Bonjour \" + nom}</p><button id=\"effacer\" type=\"button\" onClick={() => setNom(\"\")}>Effacer</button></main>;\n}\nroot.render(<App />);",
+    "solution": "function App() {\n  const [nom, setNom] = useState(\"\");\n  return <main><label htmlFor=\"nom\">Prénom fictif</label><input id=\"nom\" value={nom} onChange={e => setNom(e.target.value)} aria-describedby=\"apercu\" /><p id=\"apercu\" aria-live=\"polite\">{nom === \"\" ? \"En attente.\" : \"Bonjour \" + nom}</p><button id=\"effacer\" type=\"button\" onClick={() => setNom(\"\")}>Effacer</button></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Deux saisies puis effacement",
+        "checks": [
+          {
+            "selector": "#nom",
+            "value": ""
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#nom",
+            "wait_ms": 40,
+            "value": "Afi",
+            "checks": [
+              {
+                "selector": "#nom",
+                "value": "Afi"
+              },
+              {
+                "selector": "#apercu",
+                "text": "Bonjour Afi"
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#nom",
+            "wait_ms": 40,
+            "value": "Kofi",
+            "checks": [
+              {
+                "selector": "#apercu",
+                "text": "Bonjour Kofi"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#effacer",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#nom",
+                "value": ""
+              },
+              {
+                "selector": "#apercu",
+                "text": "En attente."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Une saisie ressemblant à une balise",
+        "checks": [],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#nom",
+            "wait_ms": 40,
+            "value": "<b>Lina</b>",
+            "checks": [
+              {
+                "selector": "#apercu",
+                "text": "Bonjour <b>Lina</b>"
+              },
+              {
+                "selector": "#apercu b",
+                "exists": false
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#nom",
+            "wait_ms": 40,
+            "value": "",
+            "checks": [
+              {
+                "selector": "#apercu",
+                "text": "En attente."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Quelle valeur le rendu fournit-il au champ après l’événement ?",
+      "Le gestionnaire doit mettre à jour nom depuis la propriété value.",
+      "function App() {\n  const [nom, setNom] = useState(\"\");\n  return <main><label htmlFor=\"nom\">Prénom fictif</label><input id=\"nom\" value={nom} onChange={e => setNom(e.target.value)} aria-describedby=\"apercu\" /><p id=\"apercu\" aria-live=\"polite\">{nom === \"\" ? \"En attente.\" : \"Bonjour \" + nom}</p><button id=\"effacer\" type=\"button\" onClick={() => setNom(\"\")}>Effacer</button></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "L’aperçu et le contrôle lisent un seul état, sans écriture manuelle du DOM.",
+    "common_wrong_answers": [],
+    "id": "react-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Contrôler une case avec checked",
+    "instruction_fr": "Le booléen rappel commence à false. Lie #rappel avec checked et onChange lisant e.target.checked. #retour annonce Rappel actif ou Rappel inactif. #annuler force false ; les labels natifs restent présents.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function App() {\n  const [rappel, setRappel] = useState(false);\n  return <main><label htmlFor=\"rappel\"><input id=\"rappel\" type=\"checkbox\" checked={rappel} onChange={e => setRappel(e.target.value)} /> Rappel fictif</label><p id=\"retour\" aria-live=\"polite\">{rappel ? \"Rappel actif\" : \"Rappel inactif\"}</p><button id=\"annuler\" type=\"button\" onClick={() => setRappel(false)}>Annuler le rappel</button></main>;\n}\nroot.render(<App />);",
+    "solution": "function App() {\n  const [rappel, setRappel] = useState(false);\n  return <main><label htmlFor=\"rappel\"><input id=\"rappel\" type=\"checkbox\" checked={rappel} onChange={e => setRappel(e.target.checked)} /> Rappel fictif</label><p id=\"retour\" aria-live=\"polite\">{rappel ? \"Rappel actif\" : \"Rappel inactif\"}</p><button id=\"annuler\" type=\"button\" onClick={() => setRappel(false)}>Annuler le rappel</button></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Activation puis remise à false",
+        "checks": [
+          {
+            "selector": "#rappel",
+            "checked": false
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#rappel",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#rappel",
+                "checked": true
+              },
+              {
+                "selector": "#retour",
+                "text": "Rappel actif"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#annuler",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#rappel",
+                "checked": false
+              },
+              {
+                "selector": "#retour",
+                "text": "Rappel inactif"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Deux clics ne gardent pas une chaîne truthy",
+        "checks": [],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#rappel",
+            "wait_ms": 40,
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#rappel",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#rappel",
+                "checked": false
+              },
+              {
+                "selector": "#retour",
+                "text": "Rappel inactif"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#rappel",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Rappel actif"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La valeur textuelle de la checkbox est-elle son état de sélection ?",
+      "Utilise le booléen checked dans les deux sens.",
+      "function App() {\n  const [rappel, setRappel] = useState(false);\n  return <main><label htmlFor=\"rappel\"><input id=\"rappel\" type=\"checkbox\" checked={rappel} onChange={e => setRappel(e.target.checked)} /> Rappel fictif</label><p id=\"retour\" aria-live=\"polite\">{rappel ? \"Rappel actif\" : \"Rappel inactif\"}</p><button id=\"annuler\" type=\"button\" onClick={() => setRappel(false)}>Annuler le rappel</button></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Une chaîne comme on serait vraie en contexte booléen et ne décrit pas le deuxième clic.",
+    "common_wrong_answers": [],
+    "id": "react-m4-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un champ figé sans modifier sa valeur initiale",
+    "instruction_fr": "nomInitial vient de data-nom de #app ou de la chaîne vide. Corrige le onChange de #nom pour piloter nom. #apercu montre nom ou Aucun prénom., et #longueur indique Longueur : nom.length. Ne lis pas une ancienne valeur pour les changements.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "const nomInitial = document.getElementById(\"app\").dataset.nom || \"\";\nfunction App() {\n  const [nom, setNom] = useState(nomInitial);\n  return <main><label htmlFor=\"nom\">Prénom fictif</label><input id=\"nom\" value={nom} onChange={() => {}} /><p id=\"apercu\">{nom === \"\" ? \"Aucun prénom.\" : nom}</p><p id=\"longueur\">Longueur : {nom.length}</p></main>;\n}\nroot.render(<App />);",
+    "solution": "const nomInitial = document.getElementById(\"app\").dataset.nom || \"\";\nfunction App() {\n  const [nom, setNom] = useState(nomInitial);\n  return <main><label htmlFor=\"nom\">Prénom fictif</label><input id=\"nom\" value={nom} onChange={e => setNom(e.target.value)} /><p id=\"apercu\">{nom === \"\" ? \"Aucun prénom.\" : nom}</p><p id=\"longueur\">Longueur : {nom.length}</p></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Modifier puis effacer le texte",
+        "checks": [],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#nom",
+            "wait_ms": 40,
+            "value": "Afi",
+            "checks": [
+              {
+                "selector": "#nom",
+                "value": "Afi"
+              },
+              {
+                "selector": "#apercu",
+                "text": "Afi"
+              },
+              {
+                "selector": "#longueur",
+                "text": "Longueur : 3"
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#nom",
+            "wait_ms": 40,
+            "value": "",
+            "checks": [
+              {
+                "selector": "#apercu",
+                "text": "Aucun prénom."
+              },
+              {
+                "selector": "#longueur",
+                "text": "Longueur : 0"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Valeur préremplie et autre taille",
+        "checks": [
+          {
+            "selector": "#nom",
+            "value": "Mina"
+          },
+          {
+            "selector": "#longueur",
+            "text": "Longueur : 4"
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#nom",
+            "wait_ms": 40,
+            "value": "Kofi",
+            "checks": [
+              {
+                "selector": "#apercu",
+                "text": "Kofi"
+              },
+              {
+                "selector": "#longueur",
+                "text": "Longueur : 4"
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#nom",
+            "wait_ms": 40,
+            "value": "A",
+            "checks": [
+              {
+                "selector": "#longueur",
+                "text": "Longueur : 1"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-nom=\"Mina\"></div>"
+      }
+    ],
+    "hints": [
+      "Le rendu peut-il évoluer si le gestionnaire ne demande aucun nouvel état ?",
+      "Lis la propriété actuelle du contrôle dans onChange.",
+      "const nomInitial = document.getElementById(\"app\").dataset.nom || \"\";\nfunction App() {\n  const [nom, setNom] = useState(nomInitial);\n  return <main><label htmlFor=\"nom\">Prénom fictif</label><input id=\"nom\" value={nom} onChange={e => setNom(e.target.value)} /><p id=\"apercu\">{nom === \"\" ? \"Aucun prénom.\" : nom}</p><p id=\"longueur\">Longueur : {nom.length}</p></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "La donnée initiale ne doit servir qu’à initialiser le brouillon.",
+    "common_wrong_answers": [],
+    "id": "react-m4-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Assembler deux champs et un aperçu dérivé",
+    "instruction_fr": "Initialise nom et ville depuis data-nom/data-ville de #app, ou des chaînes vides. Contrôle les deux inputs nom/ville et leurs labels. #profil affiche nom · ville, avec Prénom ? ou Ville ? pour une partie vide. #effacer vide les deux états. Le profil est calculé, pas stocké séparément.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "const depart = document.getElementById(\"app\").dataset;\nfunction App() {\n  const [nom, setNom] = useState(depart.nom || \"\");\n  const [ville, setVille] = useState(depart.ville || \"\");\n  return <main><label htmlFor=\"nom\">Prénom fictif</label><input id=\"nom\" value={nom} onChange={e => setNom(e.target.value)} /><label htmlFor=\"ville\">Ville fictive</label><input id=\"ville\" value={ville} onChange={() => {}} /><p id=\"profil\" aria-live=\"polite\">{nom || \"Prénom ?\"} · {ville || \"Ville ?\"}</p><button id=\"effacer\" type=\"button\" onClick={() => { setNom(\"\"); setVille(\"\"); }}>Effacer le brouillon</button></main>;\n}\nroot.render(<App />);",
+    "solution": "const depart = document.getElementById(\"app\").dataset;\nfunction App() {\n  const [nom, setNom] = useState(depart.nom || \"\");\n  const [ville, setVille] = useState(depart.ville || \"\");\n  return <main><label htmlFor=\"nom\">Prénom fictif</label><input id=\"nom\" value={nom} onChange={e => setNom(e.target.value)} /><label htmlFor=\"ville\">Ville fictive</label><input id=\"ville\" value={ville} onChange={e => setVille(e.target.value)} /><p id=\"profil\" aria-live=\"polite\">{nom || \"Prénom ?\"} · {ville || \"Ville ?\"}</p><button id=\"effacer\" type=\"button\" onClick={() => { setNom(\"\"); setVille(\"\"); }}>Effacer le brouillon</button></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Remplir deux champs puis effacer",
+        "checks": [
+          {
+            "selector": "#profil",
+            "text": "Prénom ? · Ville ?"
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#nom",
+            "wait_ms": 40,
+            "value": "Afi",
+            "checks": []
+          },
+          {
+            "action": "input",
+            "selector": "#ville",
+            "wait_ms": 40,
+            "value": "Lomé",
+            "checks": [
+              {
+                "selector": "#profil",
+                "text": "Afi · Lomé"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#effacer",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#nom",
+                "value": ""
+              },
+              {
+                "selector": "#ville",
+                "value": ""
+              },
+              {
+                "selector": "#profil",
+                "text": "Prénom ? · Ville ?"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autre départ et texte littéral",
+        "checks": [
+          {
+            "selector": "#profil",
+            "text": "Kofi · Kara"
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#ville",
+            "wait_ms": 40,
+            "value": "<b>Lomé</b>",
+            "checks": [
+              {
+                "selector": "#profil",
+                "text": "Kofi · <b>Lomé</b>"
+              },
+              {
+                "selector": "#profil b",
+                "exists": false
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#nom",
+            "wait_ms": 40,
+            "value": "",
+            "checks": [
+              {
+                "selector": "#profil",
+                "text": "Prénom ? · <b>Lomé</b>"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-nom=\"Kofi\" data-ville=\"Kara\"></div>"
+      }
+    ],
+    "hints": [
+      "Combien de copies du profil faut-il synchroniser ?",
+      "Conserve les deux textes dans l’état et compose le résultat dans le rendu.",
+      "const depart = document.getElementById(\"app\").dataset;\nfunction App() {\n  const [nom, setNom] = useState(depart.nom || \"\");\n  const [ville, setVille] = useState(depart.ville || \"\");\n  return <main><label htmlFor=\"nom\">Prénom fictif</label><input id=\"nom\" value={nom} onChange={e => setNom(e.target.value)} /><label htmlFor=\"ville\">Ville fictive</label><input id=\"ville\" value={ville} onChange={e => setVille(e.target.value)} /><p id=\"profil\" aria-live=\"polite\">{nom || \"Prénom ?\"} · {ville || \"Ville ?\"}</p><button id=\"effacer\" type=\"button\" onClick={() => { setNom(\"\"); setVille(\"\"); }}>Effacer le brouillon</button></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Une expression dérivée évite une troisième valeur qui pourrait devenir ancienne.",
+    "common_wrong_answers": [],
+    "id": "react-m4-01-e4"
+  }
+]

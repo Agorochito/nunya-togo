@@ -1,0 +1,477 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Lire la vraie valeur résolue",
+    "instruction_fr": "Au montage App, appeler chargerAteliers() dans useEffect. #etat (status, aria-live=polite) vaut Chargement... pendant l’attente, Catalogue prêt. sur liste non vide. Afficher les titres reçus en li de #liste avec leurs keys stables ; #compte « N atelier(s) ». Une réponse vide donne Aucun atelier. et #vide « Aucun atelier reçu. » ; un rejet donne Catalogue indisponible. et #erreur « Le catalogue est indisponible. ». Aucun message vide/erreur sur succès. #titre est un h1 focalisable tabIndex=-1. Service local simulé, délai150ms. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function App() {\n  const [resultat, setResultat] = useState({statut:'chargement', ateliers:[], message:''});\n  useEffect(() => {\n    chargerAteliers().then(lignes => {\n      setResultat({statut:'vide', ateliers:[], message:''});\n    }).catch(erreur => {\n      setResultat({statut:'erreur', ateliers:[], message:erreur.message});\n    });\n  }, []);\n  const textes = {chargement:'Chargement...', succes:'Catalogue prêt.', vide:'Aucun atelier.', erreur:'Catalogue indisponible.'};\n  return <main><h1 id=\"titre\" tabIndex={-1}>Catalogue fictif</h1><p id=\"etat\" role=\"status\" aria-live=\"polite\">{textes[resultat.statut]}</p><ul id=\"liste\">{resultat.ateliers.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"compte\">{resultat.ateliers.length} atelier(s)</p>{resultat.statut === 'vide' && <p id=\"vide\">Aucun atelier reçu.</p>}{resultat.statut === 'erreur' && <p id=\"erreur\" role=\"alert\">{resultat.message}</p>}</main>;\n}\nroot.render(<App />);",
+    "solution": "function App() {\n  const [resultat, setResultat] = useState({statut:'chargement', ateliers:[], message:''});\n  useEffect(() => {\n    chargerAteliers().then(lignes => {\n      setResultat({statut:lignes.length ? 'succes' : 'vide', ateliers:lignes, message:''});\n    }).catch(erreur => {\n      setResultat({statut:'erreur', ateliers:[], message:erreur.message});\n    });\n  }, []);\n  const textes = {chargement:'Chargement...', succes:'Catalogue prêt.', vide:'Aucun atelier.', erreur:'Catalogue indisponible.'};\n  return <main><h1 id=\"titre\" tabIndex={-1}>Catalogue fictif</h1><p id=\"etat\" role=\"status\" aria-live=\"polite\">{textes[resultat.statut]}</p><ul id=\"liste\">{resultat.ateliers.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"compte\">{resultat.ateliers.length} atelier(s)</p>{resultat.statut === 'vide' && <p id=\"vide\">Aucun atelier reçu.</p>}{resultat.statut === 'erreur' && <p id=\"erreur\" role=\"alert\">{resultat.message}</p>}</main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "La liste vient de la Promise",
+        "checks": [
+          {
+            "selector": "#etat",
+            "text": "Chargement..."
+          }
+        ],
+        "steps": [
+          {
+            "action": "focus",
+            "selector": "#titre",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Catalogue prêt."
+              },
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "2 atelier(s)"
+              },
+              {
+                "selector": "#vide",
+                "exists": false
+              },
+              {
+                "selector": "#erreur",
+                "exists": false
+              }
+            ],
+            "wait_ms": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Une autre collection fournie",
+        "checks": [
+          {
+            "selector": "#etat",
+            "text": "Chargement..."
+          }
+        ],
+        "steps": [
+          {
+            "action": "focus",
+            "selector": "#titre",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Catalogue prêt."
+              },
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo",
+                  "Papier",
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "3 atelier(s)"
+              },
+              {
+                "selector": "#vide",
+                "exists": false
+              },
+              {
+                "selector": "#erreur",
+                "exists": false
+              }
+            ],
+            "wait_ms": 200
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-ateliers=\"[{&quot;id&quot;: &quot;ph&quot;, &quot;titre&quot;: &quot;Photo&quot;}, {&quot;id&quot;: &quot;pa&quot;, &quot;titre&quot;: &quot;Papier&quot;}, {&quot;id&quot;: &quot;pi&quot;, &quot;titre&quot;: &quot;Piano&quot;}]\"></div>"
+      }
+    ],
+    "hints": [
+      "then reçoit le tableau qui vient d’être résolu.",
+      "Ne remplace pas ce tableau par une liste vide ou des titres fixes.",
+      "Stocke lignes dans ateliers et choisis le statut depuis lignes.length."
+    ],
+    "explanation_fr": "Les données cachées varient réellement. Le test rejette un catalogue codé avec les seuls noms par défaut et vérifie le passage de l’attente à la liste.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^function\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ \\[resultat,\\ setResultat\\]\\ =\\ useState\\(\\{statut:'chargement',\\ ateliers:\\[\\],\\ message:''\\}\\);\\\n\\ \\ useEffect\\(\\(\\)\\ =>\\ \\{\\\n\\ \\ \\ \\ chargerAteliers\\(\\)\\.then\\(lignes\\ =>\\ \\{\\\n\\ \\ \\ \\ \\ \\ setResultat\\(\\{statut:'vide',\\ ateliers:\\[\\],\\ message:''\\}\\);\\\n\\ \\ \\ \\ \\}\\)\\.catch\\(erreur\\ =>\\ \\{\\\n\\ \\ \\ \\ \\ \\ setResultat\\(\\{statut:'erreur',\\ ateliers:\\[\\],\\ message:erreur\\.message\\}\\);\\\n\\ \\ \\ \\ \\}\\);\\\n\\ \\ \\},\\ \\[\\]\\);\\\n\\ \\ const\\ textes\\ =\\ \\{chargement:'Chargement\\.\\.\\.',\\ succes:'Catalogue\\ prêt\\.',\\ vide:'Aucun\\ atelier\\.',\\ erreur:'Catalogue\\ indisponible\\.'\\};\\\n\\ \\ return\\ <main><h1\\ id=\"titre\"\\ tabIndex=\\{\\-1\\}>Catalogue\\ fictif</h1><p\\ id=\"etat\"\\ role=\"status\"\\ aria\\-live=\"polite\">\\{textes\\[resultat\\.statut\\]\\}</p><ul\\ id=\"liste\">\\{resultat\\.ateliers\\.map\\(a\\ =>\\ <li\\ key=\\{a\\.id\\}>\\{a\\.titre\\}</li>\\)\\}</ul><p\\ id=\"compte\">\\{resultat\\.ateliers\\.length\\}\\ atelier\\(s\\)</p>\\{resultat\\.statut\\ ===\\ 'vide'\\ \\&\\&\\ <p\\ id=\"vide\">Aucun\\ atelier\\ reçu\\.</p>\\}\\{resultat\\.statut\\ ===\\ 'erreur'\\ \\&\\&\\ <p\\ id=\"erreur\"\\ role=\"alert\">\\{resultat\\.message\\}</p>\\}</main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "Ne remplace pas ce tableau par une liste vide ou des titres fixes."
+      }
+    ],
+    "id": "react-m6-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Une réponse vide est une issue précise",
+    "instruction_fr": "Garder le protocole et les éléments de l’activité 1. Le mode vide de chargerAteliers résout avec [] : #etat « Aucun atelier. », #vide « Aucun atelier reçu. », #compte « 0 atelier(s) », aucun li ni #erreur. Le mode succes reste un succès avec ses données ; ne marquer pas toute résolution comme une liste prête non vide. Le mode vient de data-mode sur #app. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\" data-mode=\"vide\"></div>",
+    "starter_code": "function App() {\n  const [resultat, setResultat] = useState({statut:'chargement', ateliers:[], message:''});\n  useEffect(() => {\n    chargerAteliers().then(lignes => {\n      setResultat({statut:'succes', ateliers:lignes, message:''});\n    }).catch(erreur => {\n      setResultat({statut:'erreur', ateliers:[], message:erreur.message});\n    });\n  }, []);\n  const textes = {chargement:'Chargement...', succes:'Catalogue prêt.', vide:'Aucun atelier.', erreur:'Catalogue indisponible.'};\n  return <main><h1 id=\"titre\" tabIndex={-1}>Catalogue fictif</h1><p id=\"etat\" role=\"status\" aria-live=\"polite\">{textes[resultat.statut]}</p><ul id=\"liste\">{resultat.ateliers.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"compte\">{resultat.ateliers.length} atelier(s)</p>{resultat.statut === 'vide' && <p id=\"vide\">Aucun atelier reçu.</p>}{resultat.statut === 'erreur' && <p id=\"erreur\" role=\"alert\">{resultat.message}</p>}</main>;\n}\nroot.render(<App />);",
+    "solution": "function App() {\n  const [resultat, setResultat] = useState({statut:'chargement', ateliers:[], message:''});\n  useEffect(() => {\n    chargerAteliers().then(lignes => {\n      setResultat({statut:lignes.length ? 'succes' : 'vide', ateliers:lignes, message:''});\n    }).catch(erreur => {\n      setResultat({statut:'erreur', ateliers:[], message:erreur.message});\n    });\n  }, []);\n  const textes = {chargement:'Chargement...', succes:'Catalogue prêt.', vide:'Aucun atelier.', erreur:'Catalogue indisponible.'};\n  return <main><h1 id=\"titre\" tabIndex={-1}>Catalogue fictif</h1><p id=\"etat\" role=\"status\" aria-live=\"polite\">{textes[resultat.statut]}</p><ul id=\"liste\">{resultat.ateliers.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"compte\">{resultat.ateliers.length} atelier(s)</p>{resultat.statut === 'vide' && <p id=\"vide\">Aucun atelier reçu.</p>}{resultat.statut === 'erreur' && <p id=\"erreur\" role=\"alert\">{resultat.message}</p>}</main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Le tableau vide est reconnu",
+        "checks": [
+          {
+            "selector": "#etat",
+            "text": "Chargement..."
+          }
+        ],
+        "steps": [
+          {
+            "action": "focus",
+            "selector": "#titre",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Aucun atelier."
+              },
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#compte",
+                "text": "0 atelier(s)"
+              },
+              {
+                "selector": "#vide",
+                "text": "Aucun atelier reçu."
+              },
+              {
+                "selector": "#erreur",
+                "exists": false
+              }
+            ],
+            "wait_ms": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Ne pas inventer un vide pour un succès",
+        "checks": [
+          {
+            "selector": "#etat",
+            "text": "Chargement..."
+          }
+        ],
+        "steps": [
+          {
+            "action": "focus",
+            "selector": "#titre",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Catalogue prêt."
+              },
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Tissage"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 atelier(s)"
+              },
+              {
+                "selector": "#vide",
+                "exists": false
+              },
+              {
+                "selector": "#erreur",
+                "exists": false
+              }
+            ],
+            "wait_ms": 200
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-mode=\"succes\" data-ateliers=\"[{&quot;id&quot;: &quot;ti&quot;, &quot;titre&quot;: &quot;Tissage&quot;}]\"></div>"
+      }
+    ],
+    "hints": [
+      "Une Promise résolue peut porter zéro ligne.",
+      "La distinction vient de la longueur réelle du tableau reçu.",
+      "Choisis lignes.length ? succes : vide dans la branche then."
+    ],
+    "explanation_fr": "Le test oppose une réponse vide à une petite réponse réelle. Il évite de traiter le manque de données comme un rejet ou de montrer une liste prête alors qu’aucune fiche n’a été reçue.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^function\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ \\[resultat,\\ setResultat\\]\\ =\\ useState\\(\\{statut:'chargement',\\ ateliers:\\[\\],\\ message:''\\}\\);\\\n\\ \\ useEffect\\(\\(\\)\\ =>\\ \\{\\\n\\ \\ \\ \\ chargerAteliers\\(\\)\\.then\\(lignes\\ =>\\ \\{\\\n\\ \\ \\ \\ \\ \\ setResultat\\(\\{statut:'succes',\\ ateliers:lignes,\\ message:''\\}\\);\\\n\\ \\ \\ \\ \\}\\)\\.catch\\(erreur\\ =>\\ \\{\\\n\\ \\ \\ \\ \\ \\ setResultat\\(\\{statut:'erreur',\\ ateliers:\\[\\],\\ message:erreur\\.message\\}\\);\\\n\\ \\ \\ \\ \\}\\);\\\n\\ \\ \\},\\ \\[\\]\\);\\\n\\ \\ const\\ textes\\ =\\ \\{chargement:'Chargement\\.\\.\\.',\\ succes:'Catalogue\\ prêt\\.',\\ vide:'Aucun\\ atelier\\.',\\ erreur:'Catalogue\\ indisponible\\.'\\};\\\n\\ \\ return\\ <main><h1\\ id=\"titre\"\\ tabIndex=\\{\\-1\\}>Catalogue\\ fictif</h1><p\\ id=\"etat\"\\ role=\"status\"\\ aria\\-live=\"polite\">\\{textes\\[resultat\\.statut\\]\\}</p><ul\\ id=\"liste\">\\{resultat\\.ateliers\\.map\\(a\\ =>\\ <li\\ key=\\{a\\.id\\}>\\{a\\.titre\\}</li>\\)\\}</ul><p\\ id=\"compte\">\\{resultat\\.ateliers\\.length\\}\\ atelier\\(s\\)</p>\\{resultat\\.statut\\ ===\\ 'vide'\\ \\&\\&\\ <p\\ id=\"vide\">Aucun\\ atelier\\ reçu\\.</p>\\}\\{resultat\\.statut\\ ===\\ 'erreur'\\ \\&\\&\\ <p\\ id=\"erreur\"\\ role=\"alert\">\\{resultat\\.message\\}</p>\\}</main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "La distinction vient de la longueur réelle du tableau reçu."
+      }
+    ],
+    "id": "react-m6-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Présenter le rejet sans cacher l’erreur",
+    "instruction_fr": "Conserver chargement, succès et vide de l’activité 1. Réparer catch : sur rejet, #etat « Catalogue indisponible. », #erreur role=alert contenant le message réel « Le catalogue est indisponible. », liste vide et compte0 ; #vide absent. Un mode succes doit encore afficher ses vrais ateliers et faire disparaître les éléments d’échec. N’ajouter aucun faux résultat de secours. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\" data-mode=\"erreur\"></div>",
+    "starter_code": "function App() {\n  const [resultat, setResultat] = useState({statut:'chargement', ateliers:[], message:''});\n  useEffect(() => {\n    chargerAteliers().then(lignes => {\n      setResultat({statut:lignes.length ? 'succes' : 'vide', ateliers:lignes, message:''});\n    }).catch(erreur => {\n      setResultat({statut:'succes', ateliers:[], message:''});\n    });\n  }, []);\n  const textes = {chargement:'Chargement...', succes:'Catalogue prêt.', vide:'Aucun atelier.', erreur:'Catalogue indisponible.'};\n  return <main><h1 id=\"titre\" tabIndex={-1}>Catalogue fictif</h1><p id=\"etat\" role=\"status\" aria-live=\"polite\">{textes[resultat.statut]}</p><ul id=\"liste\">{resultat.ateliers.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"compte\">{resultat.ateliers.length} atelier(s)</p>{resultat.statut === 'vide' && <p id=\"vide\">Aucun atelier reçu.</p>}{resultat.statut === 'erreur' && <p id=\"erreur\" role=\"alert\">{resultat.message}</p>}</main>;\n}\nroot.render(<App />);",
+    "solution": "function App() {\n  const [resultat, setResultat] = useState({statut:'chargement', ateliers:[], message:''});\n  useEffect(() => {\n    chargerAteliers().then(lignes => {\n      setResultat({statut:lignes.length ? 'succes' : 'vide', ateliers:lignes, message:''});\n    }).catch(erreur => {\n      setResultat({statut:'erreur', ateliers:[], message:erreur.message});\n    });\n  }, []);\n  const textes = {chargement:'Chargement...', succes:'Catalogue prêt.', vide:'Aucun atelier.', erreur:'Catalogue indisponible.'};\n  return <main><h1 id=\"titre\" tabIndex={-1}>Catalogue fictif</h1><p id=\"etat\" role=\"status\" aria-live=\"polite\">{textes[resultat.statut]}</p><ul id=\"liste\">{resultat.ateliers.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"compte\">{resultat.ateliers.length} atelier(s)</p>{resultat.statut === 'vide' && <p id=\"vide\">Aucun atelier reçu.</p>}{resultat.statut === 'erreur' && <p id=\"erreur\" role=\"alert\">{resultat.message}</p>}</main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Le rejet est un état rendu",
+        "checks": [
+          {
+            "selector": "#etat",
+            "text": "Chargement..."
+          }
+        ],
+        "steps": [
+          {
+            "action": "focus",
+            "selector": "#titre",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Catalogue indisponible."
+              },
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#compte",
+                "text": "0 atelier(s)"
+              },
+              {
+                "selector": "#erreur",
+                "text": "Le catalogue est indisponible."
+              },
+              {
+                "selector": "#vide",
+                "exists": false
+              },
+              {
+                "selector": "#erreur",
+                "attributes": {
+                  "role": "alert"
+                }
+              }
+            ],
+            "wait_ms": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Un succès ne doit pas être remplacé par une erreur",
+        "steps": [
+          {
+            "action": "focus",
+            "selector": "#titre",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Catalogue prêt."
+              },
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Lecture",
+                  "Dessin"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "2 atelier(s)"
+              },
+              {
+                "selector": "#vide",
+                "exists": false
+              },
+              {
+                "selector": "#erreur",
+                "exists": false
+              }
+            ],
+            "wait_ms": 200
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-mode=\"succes\" data-ateliers=\"[{&quot;id&quot;: &quot;le&quot;, &quot;titre&quot;: &quot;Lecture&quot;}, {&quot;id&quot;: &quot;de&quot;, &quot;titre&quot;: &quot;Dessin&quot;}]\"></div>"
+      }
+    ],
+    "hints": [
+      "La branche catch reçoit une erreur, pas un catalogue utilisable.",
+      "Son état doit porter statut erreur et conserver erreur.message.",
+      "Mets ateliers:[], statut:erreur et message:erreur.message dans catch."
+    ],
+    "explanation_fr": "Le débogage rend l’échec explicite sans transformer l’absence de données en faux succès. Le cas caché garde aussi le trajet de succès fonctionnel.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^function\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ \\[resultat,\\ setResultat\\]\\ =\\ useState\\(\\{statut:'chargement',\\ ateliers:\\[\\],\\ message:''\\}\\);\\\n\\ \\ useEffect\\(\\(\\)\\ =>\\ \\{\\\n\\ \\ \\ \\ chargerAteliers\\(\\)\\.then\\(lignes\\ =>\\ \\{\\\n\\ \\ \\ \\ \\ \\ setResultat\\(\\{statut:lignes\\.length\\ \\?\\ 'succes'\\ :\\ 'vide',\\ ateliers:lignes,\\ message:''\\}\\);\\\n\\ \\ \\ \\ \\}\\)\\.catch\\(erreur\\ =>\\ \\{\\\n\\ \\ \\ \\ \\ \\ setResultat\\(\\{statut:'succes',\\ ateliers:\\[\\],\\ message:''\\}\\);\\\n\\ \\ \\ \\ \\}\\);\\\n\\ \\ \\},\\ \\[\\]\\);\\\n\\ \\ const\\ textes\\ =\\ \\{chargement:'Chargement\\.\\.\\.',\\ succes:'Catalogue\\ prêt\\.',\\ vide:'Aucun\\ atelier\\.',\\ erreur:'Catalogue\\ indisponible\\.'\\};\\\n\\ \\ return\\ <main><h1\\ id=\"titre\"\\ tabIndex=\\{\\-1\\}>Catalogue\\ fictif</h1><p\\ id=\"etat\"\\ role=\"status\"\\ aria\\-live=\"polite\">\\{textes\\[resultat\\.statut\\]\\}</p><ul\\ id=\"liste\">\\{resultat\\.ateliers\\.map\\(a\\ =>\\ <li\\ key=\\{a\\.id\\}>\\{a\\.titre\\}</li>\\)\\}</ul><p\\ id=\"compte\">\\{resultat\\.ateliers\\.length\\}\\ atelier\\(s\\)</p>\\{resultat\\.statut\\ ===\\ 'vide'\\ \\&\\&\\ <p\\ id=\"vide\">Aucun\\ atelier\\ reçu\\.</p>\\}\\{resultat\\.statut\\ ===\\ 'erreur'\\ \\&\\&\\ <p\\ id=\"erreur\"\\ role=\"alert\">\\{resultat\\.message\\}</p>\\}</main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "Son état doit porter statut erreur et conserver erreur.message."
+      }
+    ],
+    "id": "react-m6-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Rechercher pendant puis après le chargement",
+    "instruction_fr": "Conserver les états du service simulé et #titre focalisable. Ajouter #recherche contrôlé : terme trim/minuscule, sélection dérivée des titres reçus. #compte « N affiché(s) / T reçu(s) ». Service vide : #vide « Aucun atelier reçu. ». Service succès mais sélection vide : #sans-resultat « Aucun titre ne correspond. », #vide absent. Un terme saisi pendant l’attente doit s’appliquer à la réponse ; pas d’effet pour le filtrage. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function App() {\n  const [resultat, setResultat] = useState({statut:'chargement', ateliers:[], message:''});\n  const [recherche, setRecherche] = useState('');\n  useEffect(() => {\n    chargerAteliers().then(lignes => {\n      setResultat({statut:lignes.length ? 'succes' : 'vide', ateliers:lignes, message:''});\n    }).catch(erreur => {\n      setResultat({statut:'erreur', ateliers:[], message:erreur.message});\n    });\n  }, []);\n  const terme = recherche.trim().toLowerCase();\n  const selection = resultat.ateliers;\n  const textes = {chargement:'Chargement...', succes:'Catalogue prêt.', vide:'Aucun atelier.', erreur:'Catalogue indisponible.'};\n  return <main><h1 id=\"titre\" tabIndex={-1}>Catalogue fictif</h1><p id=\"etat\" role=\"status\" aria-live=\"polite\">{textes[resultat.statut]}</p><label htmlFor=\"recherche\">Rechercher un titre</label><input id=\"recherche\" value={recherche} onChange={e => setRecherche(e.target.value)} /><ul id=\"liste\">{selection.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"compte\">{selection.length} affiché(s) / {resultat.ateliers.length} reçu(s)</p>{resultat.statut === 'succes' && selection.length === 0 && <p id=\"sans-resultat\">Aucun titre ne correspond.</p>}{resultat.statut === 'vide' && <p id=\"vide\">Aucun atelier reçu.</p>}{resultat.statut === 'erreur' && <p id=\"erreur\" role=\"alert\">{resultat.message}</p>}</main>;\n}\nroot.render(<App />);",
+    "solution": "function App() {\n  const [resultat, setResultat] = useState({statut:'chargement', ateliers:[], message:''});\n  const [recherche, setRecherche] = useState('');\n  useEffect(() => {\n    chargerAteliers().then(lignes => {\n      setResultat({statut:lignes.length ? 'succes' : 'vide', ateliers:lignes, message:''});\n    }).catch(erreur => {\n      setResultat({statut:'erreur', ateliers:[], message:erreur.message});\n    });\n  }, []);\n  const terme = recherche.trim().toLowerCase();\n  const selection = resultat.ateliers.filter(a => a.titre.toLowerCase().includes(terme));\n  const textes = {chargement:'Chargement...', succes:'Catalogue prêt.', vide:'Aucun atelier.', erreur:'Catalogue indisponible.'};\n  return <main><h1 id=\"titre\" tabIndex={-1}>Catalogue fictif</h1><p id=\"etat\" role=\"status\" aria-live=\"polite\">{textes[resultat.statut]}</p><label htmlFor=\"recherche\">Rechercher un titre</label><input id=\"recherche\" value={recherche} onChange={e => setRecherche(e.target.value)} /><ul id=\"liste\">{selection.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"compte\">{selection.length} affiché(s) / {resultat.ateliers.length} reçu(s)</p>{resultat.statut === 'succes' && selection.length === 0 && <p id=\"sans-resultat\">Aucun titre ne correspond.</p>}{resultat.statut === 'vide' && <p id=\"vide\">Aucun atelier reçu.</p>}{resultat.statut === 'erreur' && <p id=\"erreur\" role=\"alert\">{resultat.message}</p>}</main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "La saisie précède les données",
+        "checks": [
+          {
+            "selector": "#etat",
+            "text": "Chargement..."
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [],
+            "value": "web"
+          },
+          {
+            "action": "focus",
+            "selector": "#titre",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Catalogue prêt."
+              },
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 affiché(s) / 2 reçu(s)"
+              }
+            ],
+            "wait_ms": 200
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#compte",
+                "text": "0 affiché(s) / 2 reçu(s)"
+              },
+              {
+                "selector": "#sans-resultat",
+                "text": "Aucun titre ne correspond."
+              },
+              {
+                "selector": "#vide",
+                "exists": false
+              }
+            ],
+            "value": "aucun"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#sans-resultat",
+                "exists": false
+              }
+            ],
+            "value": ""
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autres données et deux titres retenus",
+        "checks": [
+          {
+            "selector": "#etat",
+            "text": "Chargement..."
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [],
+            "value": " pi "
+          },
+          {
+            "action": "focus",
+            "selector": "#titre",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Papier",
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "2 affiché(s) / 3 reçu(s)"
+              }
+            ],
+            "wait_ms": 200
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 affiché(s) / 3 reçu(s)"
+              }
+            ],
+            "value": "photo"
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-ateliers=\"[{&quot;id&quot;: &quot;ph&quot;, &quot;titre&quot;: &quot;Photo&quot;}, {&quot;id&quot;: &quot;pa&quot;, &quot;titre&quot;: &quot;Papier&quot;}, {&quot;id&quot;: &quot;pi&quot;, &quot;titre&quot;: &quot;Piano&quot;}]\"></div>"
+      }
+    ],
+    "hints": [
+      "La recherche et la réponse sont deux états indépendants.",
+      "Calcule la sélection depuis les données reçues et le terme actuel pendant le rendu.",
+      "Utilise resultat.ateliers.filter avec le titre minuscule qui inclut terme."
+    ],
+    "explanation_fr": "Le mini-projet distingue l’attente, une collection reçue et une sélection sans résultat. Le test prouve qu’une saisie déjà présente reste utilisée lorsque la Promise se résout.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^function\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ \\[resultat,\\ setResultat\\]\\ =\\ useState\\(\\{statut:'chargement',\\ ateliers:\\[\\],\\ message:''\\}\\);\\\n\\ \\ const\\ \\[recherche,\\ setRecherche\\]\\ =\\ useState\\(''\\);\\\n\\ \\ useEffect\\(\\(\\)\\ =>\\ \\{\\\n\\ \\ \\ \\ chargerAteliers\\(\\)\\.then\\(lignes\\ =>\\ \\{\\\n\\ \\ \\ \\ \\ \\ setResultat\\(\\{statut:lignes\\.length\\ \\?\\ 'succes'\\ :\\ 'vide',\\ ateliers:lignes,\\ message:''\\}\\);\\\n\\ \\ \\ \\ \\}\\)\\.catch\\(erreur\\ =>\\ \\{\\\n\\ \\ \\ \\ \\ \\ setResultat\\(\\{statut:'erreur',\\ ateliers:\\[\\],\\ message:erreur\\.message\\}\\);\\\n\\ \\ \\ \\ \\}\\);\\\n\\ \\ \\},\\ \\[\\]\\);\\\n\\ \\ const\\ terme\\ =\\ recherche\\.trim\\(\\)\\.toLowerCase\\(\\);\\\n\\ \\ const\\ selection\\ =\\ resultat\\.ateliers;\\\n\\ \\ const\\ textes\\ =\\ \\{chargement:'Chargement\\.\\.\\.',\\ succes:'Catalogue\\ prêt\\.',\\ vide:'Aucun\\ atelier\\.',\\ erreur:'Catalogue\\ indisponible\\.'\\};\\\n\\ \\ return\\ <main><h1\\ id=\"titre\"\\ tabIndex=\\{\\-1\\}>Catalogue\\ fictif</h1><p\\ id=\"etat\"\\ role=\"status\"\\ aria\\-live=\"polite\">\\{textes\\[resultat\\.statut\\]\\}</p><label\\ htmlFor=\"recherche\">Rechercher\\ un\\ titre</label><input\\ id=\"recherche\"\\ value=\\{recherche\\}\\ onChange=\\{e\\ =>\\ setRecherche\\(e\\.target\\.value\\)\\}\\ /><ul\\ id=\"liste\">\\{selection\\.map\\(a\\ =>\\ <li\\ key=\\{a\\.id\\}>\\{a\\.titre\\}</li>\\)\\}</ul><p\\ id=\"compte\">\\{selection\\.length\\}\\ affiché\\(s\\)\\ /\\ \\{resultat\\.ateliers\\.length\\}\\ reçu\\(s\\)</p>\\{resultat\\.statut\\ ===\\ 'succes'\\ \\&\\&\\ selection\\.length\\ ===\\ 0\\ \\&\\&\\ <p\\ id=\"sans\\-resultat\">Aucun\\ titre\\ ne\\ correspond\\.</p>\\}\\{resultat\\.statut\\ ===\\ 'vide'\\ \\&\\&\\ <p\\ id=\"vide\">Aucun\\ atelier\\ reçu\\.</p>\\}\\{resultat\\.statut\\ ===\\ 'erreur'\\ \\&\\&\\ <p\\ id=\"erreur\"\\ role=\"alert\">\\{resultat\\.message\\}</p>\\}</main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "Calcule la sélection depuis les données reçues et le terme actuel pendant le rendu."
+      }
+    ],
+    "id": "react-m6-01-e4"
+  }
+]

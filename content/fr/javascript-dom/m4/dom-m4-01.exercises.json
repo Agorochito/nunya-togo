@@ -1,0 +1,497 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Guider un panneau cohérent",
+    "instruction_fr": "Au clic de #basculer, inverse l’état ouvert de #details. Rends hidden, aria-expanded du bouton, sa classe actif et son texte Afficher les détails ou Masquer les détails. Conserve la classe commande et rends aussi le départ.",
+    "fixture_html": "<main><button id=\"basculer\" class=\"commande\" type=\"button\" aria-controls=\"details\" aria-expanded=\"false\">Afficher les détails</button><section id=\"details\" hidden><h2>Détails de démonstration</h2><p>Activité fictive.</p></section></main>",
+    "starter_code": "document.querySelector(\"#basculer\").addEventListener(\"click\", function() { document.querySelector(\"#details\").hidden=false; });",
+    "solution": "const bouton = document.querySelector(\"#basculer\");\nconst details = document.querySelector(\"#details\");\nlet ouvert = !details.hidden;\nfunction rendre() {\n  details.hidden = !ouvert;\n  bouton.setAttribute(\"aria-expanded\", String(ouvert));\n  bouton.classList.toggle(\"actif\", ouvert);\n  if (ouvert) { bouton.textContent = \"Masquer les détails\"; }\n  else { bouton.textContent = \"Afficher les détails\"; }\n}\nbouton.addEventListener(\"click\", function() { ouvert = !ouvert; rendre(); });\nrendre();",
+    "visible_tests": [
+      {
+        "description_fr": "Ouvrir, fermer, rouvrir",
+        "checks": [
+          {
+            "selector": "#details",
+            "attributes": {
+              "hidden": ""
+            }
+          },
+          {
+            "selector": "#basculer",
+            "attributes": {
+              "aria-expanded": "false"
+            },
+            "classes": [
+              "commande"
+            ]
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#details",
+                "attributes": {
+                  "hidden": null
+                }
+              },
+              {
+                "selector": "#basculer",
+                "text": "Masquer les détails",
+                "classes": [
+                  "commande",
+                  "actif"
+                ],
+                "attributes": {
+                  "aria-expanded": "true"
+                }
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#details",
+                "attributes": {
+                  "hidden": ""
+                }
+              },
+              {
+                "selector": "#basculer.actif",
+                "exists": false
+              },
+              {
+                "selector": "#basculer",
+                "text": "Afficher les détails"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#details",
+                "attributes": {
+                  "hidden": null
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Départ déjà visible",
+        "checks": [
+          {
+            "selector": "#details",
+            "attributes": {
+              "hidden": null
+            }
+          },
+          {
+            "selector": "#basculer",
+            "attributes": {
+              "aria-expanded": "true"
+            },
+            "text": "Masquer les détails",
+            "classes": [
+              "commande",
+              "actif"
+            ]
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#details",
+                "attributes": {
+                  "hidden": ""
+                }
+              },
+              {
+                "selector": "#basculer",
+                "attributes": {
+                  "aria-expanded": "false"
+                }
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><button id=\"basculer\" class=\"commande\" type=\"button\" aria-controls=\"details\" aria-expanded=\"false\">Afficher les détails</button><section id=\"details\"><h2>Détails de démonstration</h2><p>Activité fictive.</p></section></main>"
+      }
+    ],
+    "hints": [
+      "Les trois représentations peuvent-elles être calculées depuis le même booléen ?",
+      "Centralise les écritures dans rendre et utilise toggle avec une valeur forcée.",
+      "const bouton = document.querySelector(\"#basculer\");\nconst details = document.querySelector(\"#details\");\nlet ouvert = !details.hidden;\nfunction rendre() {\n  details.hidden = !ouvert;\n  bouton.setAttribute(\"aria-expanded\", String(ouvert));\n  bouton.classList.toggle(\"actif\", ouvert);\n  if (ouvert) { bouton.textContent = \"Masquer les détails\"; }\n  else { bouton.textContent = \"Afficher les détails\"; }\n}\nbouton.addEventListener(\"click\", function() { ouvert = !ouvert; rendre(); });\nrendre();"
+    ],
+    "explanation_fr": "La classe de base reste conservée et l’attribut ne prétend pas changer la visibilité à lui seul.",
+    "common_wrong_answers": [],
+    "id": "dom-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Transférer vers une activité retenue",
+    "instruction_fr": "Lis l’état initial de #carte depuis data-retenu=true ou false. #choisir inverse cet état. Rends la classe retenu sans effacer carte, data-retenu, aria-pressed du bouton et #retour=Retenu. ou Non retenu. Aucun enregistrement réel.",
+    "fixture_html": "<main><article id=\"carte\" class=\"carte\" data-retenu=\"false\"><h2>Semis</h2></article><button id=\"choisir\" type=\"button\" aria-pressed=\"false\">Retenir cette activité</button><p id=\"retour\" role=\"status\" aria-live=\"polite\"></p></main>",
+    "starter_code": "document.querySelector(\"#choisir\").addEventListener(\"click\", function() { document.querySelector(\"#carte\").className=\"retenu\"; });",
+    "solution": "const carte = document.querySelector(\"#carte\");\nconst bouton = document.querySelector(\"#choisir\");\nconst retour = document.querySelector(\"#retour\");\nlet retenu = carte.dataset.retenu === \"true\";\nfunction rendre() {\n  carte.classList.toggle(\"retenu\", retenu);\n  carte.dataset.retenu = String(retenu);\n  bouton.setAttribute(\"aria-pressed\", String(retenu));\n  if (retenu) { retour.textContent = \"Retenu.\"; }\n  else { retour.textContent = \"Non retenu.\"; }\n}\nbouton.addEventListener(\"click\", function() { retenu = !retenu; rendre(); });\nrendre();",
+    "visible_tests": [
+      {
+        "description_fr": "Retenir puis retirer",
+        "checks": [
+          {
+            "selector": "#retour",
+            "text": "Non retenu."
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#choisir",
+            "checks": [
+              {
+                "selector": "#carte",
+                "classes": [
+                  "carte",
+                  "retenu"
+                ],
+                "attributes": {
+                  "data-retenu": "true"
+                }
+              },
+              {
+                "selector": "#choisir",
+                "attributes": {
+                  "aria-pressed": "true"
+                }
+              },
+              {
+                "selector": "#retour",
+                "text": "Retenu."
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#choisir",
+            "checks": [
+              {
+                "selector": "#carte.retenu",
+                "exists": false
+              },
+              {
+                "selector": "#carte",
+                "classes": [
+                  "carte"
+                ],
+                "attributes": {
+                  "data-retenu": "false"
+                }
+              },
+              {
+                "selector": "#retour",
+                "text": "Non retenu."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Départ retenu",
+        "checks": [
+          {
+            "selector": "#carte",
+            "classes": [
+              "carte",
+              "retenu"
+            ]
+          },
+          {
+            "selector": "#choisir",
+            "attributes": {
+              "aria-pressed": "true"
+            }
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#choisir",
+            "checks": [
+              {
+                "selector": "#carte.retenu",
+                "exists": false
+              },
+              {
+                "selector": "#choisir",
+                "attributes": {
+                  "aria-pressed": "false"
+                }
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><article id=\"carte\" class=\"carte\" data-retenu=\"true\"><h2>Semis</h2></article><button id=\"choisir\" type=\"button\" aria-pressed=\"false\">Retenir cette activité</button><p id=\"retour\" role=\"status\" aria-live=\"polite\"></p></main>"
+      }
+    ],
+    "hints": [
+      "Retenir une activité et ouvrir une région ont-ils le même sens ARIA ?",
+      "Utilise ici aria-pressed, avec une variable qui pilote aussi la classe.",
+      "const carte = document.querySelector(\"#carte\");\nconst bouton = document.querySelector(\"#choisir\");\nconst retour = document.querySelector(\"#retour\");\nlet retenu = carte.dataset.retenu === \"true\";\nfunction rendre() {\n  carte.classList.toggle(\"retenu\", retenu);\n  carte.dataset.retenu = String(retenu);\n  bouton.setAttribute(\"aria-pressed\", String(retenu));\n  if (retenu) { retour.textContent = \"Retenu.\"; }\n  else { retour.textContent = \"Non retenu.\"; }\n}\nbouton.addEventListener(\"click\", function() { retenu = !retenu; rendre(); });\nrendre();"
+    ],
+    "explanation_fr": "classList préserve les autres classes tandis que l’état annoncé reste explicite.",
+    "common_wrong_answers": [],
+    "id": "dom-m4-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer hidden=false écrit comme texte",
+    "instruction_fr": "#afficher doit rendre #zone visible et #masquer doit la cacher, sans changer son texte. Corrige l’usage de hidden dans le code de départ. Ces actions doivent être répétables.",
+    "fixture_html": "<main><button id=\"afficher\" type=\"button\">Afficher</button><button id=\"masquer\" type=\"button\">Masquer</button><p id=\"zone\" hidden>Conseil fictif.</p></main>",
+    "starter_code": "const zone = document.querySelector(\"#zone\");\ndocument.querySelector(\"#afficher\").addEventListener(\"click\", function() { zone.setAttribute(\"hidden\", \"false\"); });\ndocument.querySelector(\"#masquer\").addEventListener(\"click\", function() { zone.hidden = true; });",
+    "solution": "const zone = document.querySelector(\"#zone\");\ndocument.querySelector(\"#afficher\").addEventListener(\"click\", function() { zone.hidden = false; });\ndocument.querySelector(\"#masquer\").addEventListener(\"click\", function() { zone.hidden = true; });",
+    "visible_tests": [
+      {
+        "description_fr": "Afficher puis masquer",
+        "checks": [
+          {
+            "selector": "#zone",
+            "attributes": {
+              "hidden": ""
+            }
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#afficher",
+            "checks": [
+              {
+                "selector": "#zone",
+                "attributes": {
+                  "hidden": null
+                },
+                "text": "Conseil fictif."
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#masquer",
+            "checks": [
+              {
+                "selector": "#zone",
+                "attributes": {
+                  "hidden": ""
+                }
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#afficher",
+            "checks": [
+              {
+                "selector": "#zone",
+                "attributes": {
+                  "hidden": null
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Conserver un autre contenu",
+        "checks": [],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#afficher",
+            "checks": [
+              {
+                "selector": "#zone",
+                "attributes": {
+                  "hidden": null
+                },
+                "text": "Autre conseil local."
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#masquer",
+            "checks": [
+              {
+                "selector": "#zone",
+                "attributes": {
+                  "hidden": ""
+                },
+                "text": "Autre conseil local."
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><button id=\"afficher\" type=\"button\">Afficher</button><button id=\"masquer\" type=\"button\">Masquer</button><p id=\"zone\" hidden>Autre conseil local.</p></main>"
+      }
+    ],
+    "hints": [
+      "La présence de hidden cesse-t-elle lorsque sa chaîne vaut false ?",
+      "Utilise la propriété booléenne zone.hidden.",
+      "const zone = document.querySelector(\"#zone\");\ndocument.querySelector(\"#afficher\").addEventListener(\"click\", function() { zone.hidden = false; });\ndocument.querySelector(\"#masquer\").addEventListener(\"click\", function() { zone.hidden = true; });"
+    ],
+    "explanation_fr": "La valeur false retire ici le masquage, tandis qu’un attribut présent continue de le demander.",
+    "common_wrong_answers": [],
+    "id": "dom-m4-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Assembler une aide avec retour de focus",
+    "instruction_fr": "#ouvrir bascule #aide ; #fermer la ferme et rend le focus à #ouvrir. La variable de visibilité doit piloter hidden, aria-expanded et la classe ouvert de #bloc, sans effacer section. Lis le départ depuis hidden et ne construis pas une fausse modale.",
+    "fixture_html": "<main><div id=\"bloc\" class=\"section\"><button id=\"ouvrir\" type=\"button\" aria-controls=\"aide\" aria-expanded=\"false\">Aide</button><section id=\"aide\" hidden><h2>Aide locale</h2><p>Aucune donnée envoyée.</p><button id=\"fermer\" type=\"button\">Fermer l’aide</button></section></div></main>",
+    "starter_code": "document.querySelector(\"#ouvrir\").addEventListener(\"click\", function() { document.querySelector(\"#aide\").hidden=false; });",
+    "solution": "const ouvrir = document.querySelector(\"#ouvrir\");\nconst fermer = document.querySelector(\"#fermer\");\nconst aide = document.querySelector(\"#aide\");\nconst bloc = document.querySelector(\"#bloc\");\nlet ouvert = !aide.hidden;\nfunction rendre() {\n  aide.hidden = !ouvert;\n  bloc.classList.toggle(\"ouvert\", ouvert);\n  ouvrir.setAttribute(\"aria-expanded\", String(ouvert));\n}\nouvrir.addEventListener(\"click\", function() { ouvert = !ouvert; rendre(); });\nfermer.addEventListener(\"click\", function() { ouvert = false; rendre(); ouvrir.focus(); });\nrendre();",
+    "visible_tests": [
+      {
+        "description_fr": "Ouvrir et fermer depuis l’aide",
+        "checks": [
+          {
+            "selector": "#aide",
+            "attributes": {
+              "hidden": ""
+            }
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#ouvrir",
+            "checks": [
+              {
+                "selector": "#aide",
+                "attributes": {
+                  "hidden": null
+                }
+              },
+              {
+                "selector": "#bloc",
+                "classes": [
+                  "section",
+                  "ouvert"
+                ]
+              },
+              {
+                "selector": "#ouvrir",
+                "attributes": {
+                  "aria-expanded": "true"
+                }
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#fermer",
+            "checks": [
+              {
+                "selector": "#aide",
+                "attributes": {
+                  "hidden": ""
+                }
+              },
+              {
+                "selector": "#ouvrir",
+                "focused": true,
+                "attributes": {
+                  "aria-expanded": "false"
+                }
+              },
+              {
+                "selector": "#bloc.ouvert",
+                "exists": false
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#ouvrir",
+            "checks": [
+              {
+                "selector": "#aide",
+                "attributes": {
+                  "hidden": null
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Fermer une aide déjà ouverte",
+        "checks": [
+          {
+            "selector": "#aide",
+            "attributes": {
+              "hidden": null
+            }
+          },
+          {
+            "selector": "#ouvrir",
+            "attributes": {
+              "aria-expanded": "true"
+            }
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#fermer",
+            "checks": [
+              {
+                "selector": "#ouvrir",
+                "focused": true
+              },
+              {
+                "selector": "#aide",
+                "attributes": {
+                  "hidden": ""
+                }
+              },
+              {
+                "selector": "#bloc",
+                "classes": [
+                  "section"
+                ]
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><div id=\"bloc\" class=\"section\"><button id=\"ouvrir\" type=\"button\" aria-controls=\"aide\" aria-expanded=\"false\">Aide</button><section id=\"aide\"><h2>Aide locale</h2><p>Aucune donnée envoyée.</p><button id=\"fermer\" type=\"button\">Fermer l’aide</button></section></div></main>"
+      }
+    ],
+    "hints": [
+      "Où doit se retrouver une personne après la disparition du bouton intérieur ?",
+      "Ferme dans une branche explicite puis appelle ouvrir.focus().",
+      "const ouvrir = document.querySelector(\"#ouvrir\");\nconst fermer = document.querySelector(\"#fermer\");\nconst aide = document.querySelector(\"#aide\");\nconst bloc = document.querySelector(\"#bloc\");\nlet ouvert = !aide.hidden;\nfunction rendre() {\n  aide.hidden = !ouvert;\n  bloc.classList.toggle(\"ouvert\", ouvert);\n  ouvrir.setAttribute(\"aria-expanded\", String(ouvert));\n}\nouvrir.addEventListener(\"click\", function() { ouvert = !ouvert; rendre(); });\nfermer.addEventListener(\"click\", function() { ouvert = false; rendre(); ouvrir.focus(); });\nrendre();"
+    ],
+    "explanation_fr": "Les tests contrôlent le résultat du focus ; une visite clavier complète la vérification de l’usage.",
+    "common_wrong_answers": [],
+    "id": "dom-m4-01-e4"
+  }
+]

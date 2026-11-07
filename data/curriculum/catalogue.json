@@ -927,7 +927,7 @@
       "license": "Contenu original Nunya · brouillon",
       "runtime": "python",
       "language": "python",
-      "content_revision": "9ed22c10166e",
+      "content_revision": "5a4619dadae6",
       "exercise_count": 212,
       "quiz_count": 159
     },
@@ -1159,7 +1159,7 @@
         }
       ],
       "estimated_minutes": 240,
-      "content_revision": "078278a368f4",
+      "content_revision": "bb7f9d180457",
       "exercise_count": 48,
       "quiz_count": 36
     },
@@ -1389,7 +1389,7 @@
         }
       ],
       "estimated_minutes": 240,
-      "content_revision": "91ac4123f0c7",
+      "content_revision": "5d23b0ec7649",
       "exercise_count": 48,
       "quiz_count": 36
     },
@@ -1631,7 +1631,7 @@
         }
       ],
       "estimated_minutes": 240,
-      "content_revision": "478a0c929c19",
+      "content_revision": "4a3c010366c5",
       "exercise_count": 48,
       "quiz_count": 36
     },
@@ -1742,6 +1742,7 @@
       "depth_fr": "Socle débutant de programmation synchrone en console. Les interfaces DOM, les événements, les promesses et Node.js relèvent de cours distincts.",
       "availability": "programme-redige",
       "next_courses": [
+        "javascript-dom",
         "http-bases"
       ],
       "lessons": [
@@ -2083,9 +2084,724 @@
         }
       ],
       "estimated_minutes": 480,
-      "content_revision": "d2944ac7525a",
+      "content_revision": "a9310defa065",
       "exercise_count": 96,
       "quiz_count": 72
+    },
+    {
+      "id": "javascript-dom",
+      "title_fr": "JavaScript : construire des interfaces avec le DOM",
+      "language": "javascript",
+      "runtime": "dom",
+      "level": "intermediaire",
+      "summary_fr": "Relie HTML et JavaScript : boutons, formulaires, listes et recherche. Construis une interface accessible, teste ses interactions et corrige ses erreurs dans le navigateur.",
+      "prerequisite_courses": [
+        "html-bases",
+        "css-bases",
+        "javascript-bases"
+      ],
+      "prerequisites": [
+        "Connaître HTML, CSS et les fondamentaux JavaScript.",
+        "Aucune installation requise : l’atelier est intégré à Nunya."
+      ],
+      "outcomes": [
+        "Sélectionner et modifier précisément un document HTML.",
+        "Réagir aux événements et conserver un état cohérent.",
+        "Construire des formulaires avec messages et focus accessibles.",
+        "Créer, filtrer et trier des listes sans perdre leurs identifiants.",
+        "Assembler un catalogue interactif et vérifier ses comportements."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Sélectionner et modifier le document",
+          "outcome_fr": "Relier des éléments et leurs propriétés au code.",
+          "lesson_ids": [
+            "dom-m1-01",
+            "dom-m1-02",
+            "dom-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Événements et état",
+          "outcome_fr": "Gérer les clics et la délégation sans multiplier les écouteurs.",
+          "lesson_ids": [
+            "dom-m2-01",
+            "dom-m2-02",
+            "dom-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Saisies, formulaires et clavier",
+          "outcome_fr": "Lire les valeurs et guider la saisie par des messages accessibles.",
+          "lesson_ids": [
+            "dom-m3-01",
+            "dom-m3-02",
+            "dom-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Afficher et construire des éléments",
+          "outcome_fr": "Modifier les classes, créer des listes et conserver des identifiants stables.",
+          "lesson_ids": [
+            "dom-m4-01",
+            "dom-m4-02",
+            "dom-m4-03"
+          ]
+        },
+        {
+          "id": "m5",
+          "title_fr": "Recherche, tri et rendu",
+          "outcome_fr": "Dériver l’affichage des données sans perdre leur ordre source.",
+          "lesson_ids": [
+            "dom-m5-01",
+            "dom-m5-02",
+            "dom-m5-03"
+          ]
+        },
+        {
+          "id": "m6",
+          "title_fr": "Validation et projet de catalogue",
+          "outcome_fr": "Tester et assembler une interface accessible.",
+          "lesson_ids": [
+            "dom-m6-01",
+            "dom-m6-02",
+            "dom-m6-03"
+          ]
+        }
+      ],
+      "later_modules": [],
+      "availability": "programme-redige",
+      "status": "brouillon",
+      "reviewer": null,
+      "depth_fr": "Socle progressif avec projets et tests locaux ; relecture pédagogique en cours. Les niveaux supérieurs restent à construire.",
+      "next_courses": [
+        "react-bases",
+        "http-bases"
+      ],
+      "engine_revision": "e35d48ec41a4",
+      "lessons": [
+        {
+          "id": "dom-m1-01",
+          "title_fr": "Relier un arbre HTML à un élément JavaScript",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [],
+          "tags": [
+            "DOM",
+            "sélecteur",
+            "référence",
+            "textContent"
+          ]
+        },
+        {
+          "id": "dom-m1-02",
+          "title_fr": "Distinguer texte, valeurs et attributs",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "dom-m1-01"
+          ],
+          "tags": [
+            "value",
+            "attribut",
+            "dataset",
+            "propriété booléenne"
+          ]
+        },
+        {
+          "id": "dom-m1-03",
+          "title_fr": "Parcourir une collection et prévoir le cas vide",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "dom-m1-02"
+          ],
+          "tags": [
+            "NodeList",
+            "collection statique",
+            "état vide",
+            "accumulateur"
+          ]
+        },
+        {
+          "id": "dom-m2-01",
+          "title_fr": "Déclencher une action au clic et conserver son contexte",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "dom-m1-03"
+          ],
+          "tags": [
+            "écouteur",
+            "événement click",
+            "fermeture",
+            "état"
+          ]
+        },
+        {
+          "id": "dom-m2-02",
+          "title_fr": "Calculer un état numérique et rendre un affichage cohérent",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "dom-m2-01"
+          ],
+          "tags": [
+            "conversion",
+            "rendu",
+            "borne",
+            "valeur dérivée"
+          ]
+        },
+        {
+          "id": "dom-m2-03",
+          "title_fr": "Comprendre la cible et déléguer les clics",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "dom-m2-02"
+          ],
+          "tags": [
+            "target",
+            "currentTarget",
+            "délégation",
+            "closest",
+            "contains"
+          ]
+        },
+        {
+          "id": "dom-m3-01",
+          "title_fr": "Réagir à la saisie et rendre un aperçu cohérent",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "dom-m2-03"
+          ],
+          "tags": [
+            "input",
+            "aperçu",
+            "checked"
+          ]
+        },
+        {
+          "id": "dom-m3-02",
+          "title_fr": "Traiter un formulaire sans perdre la saisie",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "dom-m3-01"
+          ],
+          "tags": [
+            "soumission",
+            "action par défaut",
+            "validation locale"
+          ]
+        },
+        {
+          "id": "dom-m3-03",
+          "title_fr": "Préserver les commandes natives et orienter le focus",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "dom-m3-02"
+          ],
+          "tags": [
+            "focus",
+            "keydown",
+            "tabindex=-1"
+          ]
+        },
+        {
+          "id": "dom-m4-01",
+          "title_fr": "Synchroniser classes, visibilité et état annoncé",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "dom-m3-03"
+          ],
+          "tags": [
+            "classList",
+            "hidden",
+            "état annoncé"
+          ]
+        },
+        {
+          "id": "dom-m4-02",
+          "title_fr": "Créer et remplacer des éléments sans interpréter les saisies",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "dom-m4-01"
+          ],
+          "tags": [
+            "nœud détaché",
+            "append",
+            "reconstruction"
+          ]
+        },
+        {
+          "id": "dom-m4-03",
+          "title_fr": "Garder un état de liste et cibler des identifiants stables",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "dom-m4-02"
+          ],
+          "tags": [
+            "identifiant stable",
+            "état de liste",
+            "délégation"
+          ]
+        },
+        {
+          "id": "dom-m5-01",
+          "title_fr": "Filtrer un tableau et expliquer un résultat vide",
+          "module": "m5",
+          "minutes": 20,
+          "prerequisites": [
+            "dom-m4-03"
+          ],
+          "tags": [
+            "filtrage",
+            "état vide",
+            "filter"
+          ]
+        },
+        {
+          "id": "dom-m5-02",
+          "title_fr": "Trier une copie et retrouver l’ordre source",
+          "module": "m5",
+          "minutes": 20,
+          "prerequisites": [
+            "dom-m5-01"
+          ],
+          "tags": [
+            "comparateur",
+            "copie superficielle",
+            "critère secondaire"
+          ]
+        },
+        {
+          "id": "dom-m5-03",
+          "title_fr": "Composer le calcul et les fonctions de rendu",
+          "module": "m5",
+          "minutes": 20,
+          "prerequisites": [
+            "dom-m5-02"
+          ],
+          "tags": [
+            "composition",
+            "coordination",
+            "paramètre"
+          ]
+        },
+        {
+          "id": "dom-m6-01",
+          "title_fr": "Valider avec des retours accessibles et corrigeables",
+          "module": "m6",
+          "minutes": 20,
+          "prerequisites": [
+            "dom-m5-03"
+          ],
+          "tags": [
+            "aria-describedby",
+            "aria-invalid",
+            "validation"
+          ]
+        },
+        {
+          "id": "dom-m6-02",
+          "title_fr": "Déboguer les écouteurs répétés et l’état oublié",
+          "module": "m6",
+          "minutes": 20,
+          "prerequisites": [
+            "dom-m6-01"
+          ],
+          "tags": [
+            "écouteur",
+            "identité de fonction",
+            "état"
+          ]
+        },
+        {
+          "id": "dom-m6-03",
+          "title_fr": "Projet : un catalogue fictif cohérent et vérifiable",
+          "module": "m6",
+          "minutes": 20,
+          "prerequisites": [
+            "dom-m6-02"
+          ],
+          "tags": [
+            "vue dérivée",
+            "identifiant stable",
+            "grille de vérification"
+          ]
+        }
+      ],
+      "estimated_minutes": 360,
+      "content_revision": "1a61379086f4",
+      "exercise_count": 72,
+      "quiz_count": 54
+    },
+    {
+      "id": "react-bases",
+      "title_fr": "React : des composants à une application interactive",
+      "language": "javascript",
+      "runtime": "react",
+      "level": "debutant",
+      "summary_fr": "Apprends JSX, les propriétés, l’état, les formulaires et les effets avec React réel. Construis un tableau d’ateliers et vérifie les interactions directement dans Nunya.",
+      "prerequisite_courses": [
+        "html-bases",
+        "css-bases",
+        "javascript-bases",
+        "javascript-dom"
+      ],
+      "prerequisites": [
+        "Savoir créer une page HTML et CSS, écrire des fonctions JavaScript et gérer les événements DOM.",
+        "Aucune installation requise : l’atelier est intégré à Nunya."
+      ],
+      "outcomes": [
+        "Composer une interface en composants avec JSX et les propriétés.",
+        "Mettre à jour l’état sans mutation et calculer les données dérivées.",
+        "Afficher et filtrer des listes à identifiants stables.",
+        "Relier des formulaires contrôlés et partager leur état.",
+        "Synchroniser les effets, nettoyer les abonnements et gérer une réponse asynchrone.",
+        "Construire un tableau d’ateliers accessible avec états de chargement et de reprise."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Composants, JSX et propriétés",
+          "outcome_fr": "Décrire puis composer une interface React.",
+          "lesson_ids": [
+            "react-m1-01",
+            "react-m1-02",
+            "react-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Interactions et état",
+          "outcome_fr": "Relier événements et mises à jour cohérentes.",
+          "lesson_ids": [
+            "react-m2-01",
+            "react-m2-02",
+            "react-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Conditions, listes et recherche",
+          "outcome_fr": "Dériver l’affichage des données.",
+          "lesson_ids": [
+            "react-m3-01",
+            "react-m3-02",
+            "react-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Formulaires et communication",
+          "outcome_fr": "Contrôler la saisie et remonter l’état.",
+          "lesson_ids": [
+            "react-m4-01",
+            "react-m4-02",
+            "react-m4-03"
+          ]
+        },
+        {
+          "id": "m5",
+          "title_fr": "Références et effets",
+          "outcome_fr": "Synchroniser le focus et les abonnements avec nettoyage.",
+          "lesson_ids": [
+            "react-m5-01",
+            "react-m5-02",
+            "react-m5-03"
+          ]
+        },
+        {
+          "id": "m6",
+          "title_fr": "Asynchronisme et projet",
+          "outcome_fr": "Gérer les états d’un service simulé et assembler le tableau d’ateliers.",
+          "lesson_ids": [
+            "react-m6-01",
+            "react-m6-02",
+            "react-m6-03"
+          ]
+        }
+      ],
+      "later_modules": [],
+      "availability": "programme-redige",
+      "status": "brouillon",
+      "reviewer": null,
+      "depth_fr": "Socle progressif avec projets et tests locaux ; relecture pédagogique en cours. Les niveaux supérieurs restent à construire.",
+      "engine_revision": "e35d48ec41a4",
+      "lessons": [
+        {
+          "id": "react-m1-01",
+          "title_fr": "Décrire une interface avec un composant fonction",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [],
+          "tags": [
+            "composant",
+            "JSX",
+            "root",
+            "montage"
+          ]
+        },
+        {
+          "id": "react-m1-02",
+          "title_fr": "Insérer des expressions et écrire les attributs JSX",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "react-m1-01"
+          ],
+          "tags": [
+            "expression JSX",
+            "fragment",
+            "className",
+            "htmlFor"
+          ]
+        },
+        {
+          "id": "react-m1-03",
+          "title_fr": "Transmettre des propriétés et composer des composants",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "react-m1-02"
+          ],
+          "tags": [
+            "props",
+            "composition",
+            "déstructuration",
+            "immutabilité des props"
+          ]
+        },
+        {
+          "id": "react-m2-01",
+          "title_fr": "Relier un clic à la mémoire locale du composant",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "react-m1-03"
+          ],
+          "tags": [
+            "onClick",
+            "useState",
+            "instance",
+            "nouveau rendu"
+          ]
+        },
+        {
+          "id": "react-m2-02",
+          "title_fr": "Raisonner sur un instantané et cumuler des mises à jour",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "react-m2-01"
+          ],
+          "tags": [
+            "instantané",
+            "mise à jour fonctionnelle",
+            "file de mises à jour",
+            "pureté"
+          ]
+        },
+        {
+          "id": "react-m2-03",
+          "title_fr": "Garder les états utiles et calculer leurs conséquences",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "react-m2-02"
+          ],
+          "tags": [
+            "états indépendants",
+            "calcul dérivé",
+            "état redondant",
+            "cohérence"
+          ]
+        },
+        {
+          "id": "react-m3-01",
+          "title_fr": "Choisir un affichage et ne rien rendre avec null",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "react-m2-03"
+          ],
+          "tags": [
+            "rendu conditionnel",
+            "branche",
+            "null"
+          ]
+        },
+        {
+          "id": "react-m3-02",
+          "title_fr": "Rendre des listes avec des clés qui gardent le sens",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "react-m3-01"
+          ],
+          "tags": [
+            "map",
+            "key",
+            "identité de composant"
+          ]
+        },
+        {
+          "id": "react-m3-03",
+          "title_fr": "Dériver les résultats et copier avant de trier",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "react-m3-02"
+          ],
+          "tags": [
+            "calcul dérivé",
+            "filtrage",
+            "copie superficielle"
+          ]
+        },
+        {
+          "id": "react-m4-01",
+          "title_fr": "Contrôler les champs par un état React",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "react-m3-03"
+          ],
+          "tags": [
+            "champ contrôlé",
+            "onChange",
+            "brouillon"
+          ]
+        },
+        {
+          "id": "react-m4-02",
+          "title_fr": "Valider une demande et annoncer son résultat local",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "react-m4-01"
+          ],
+          "tags": [
+            "onSubmit",
+            "retour de validation",
+            "description associée"
+          ]
+        },
+        {
+          "id": "react-m4-03",
+          "title_fr": "Partager un état et transmettre des intentions par callbacks",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "react-m4-02"
+          ],
+          "tags": [
+            "remontée d’état",
+            "callback",
+            "source commune"
+          ]
+        },
+        {
+          "id": "react-m5-01",
+          "title_fr": "Utiliser une référence pour guider le focus",
+          "module": "m5",
+          "minutes": 20,
+          "prerequisites": [
+            "react-m4-03"
+          ],
+          "tags": [
+            "référence",
+            "focus",
+            "état visible"
+          ]
+        },
+        {
+          "id": "react-m5-02",
+          "title_fr": "Synchroniser un titre externe avec useEffect",
+          "module": "m5",
+          "minutes": 20,
+          "prerequisites": [
+            "react-m5-01"
+          ],
+          "tags": [
+            "effet",
+            "dépendance",
+            "calcul dérivé"
+          ]
+        },
+        {
+          "id": "react-m5-03",
+          "title_fr": "Nettoyer un abonnement et respecter le démontage",
+          "module": "m5",
+          "minutes": 20,
+          "prerequisites": [
+            "react-m5-02"
+          ],
+          "tags": [
+            "nettoyage",
+            "démontage",
+            "fermeture"
+          ]
+        },
+        {
+          "id": "react-m6-01",
+          "title_fr": "Attendre un service simulé sans confondre les états",
+          "module": "m6",
+          "minutes": 20,
+          "prerequisites": [
+            "react-m5-03"
+          ],
+          "tags": [
+            "Promise",
+            "chargement",
+            "service simulé"
+          ]
+        },
+        {
+          "id": "react-m6-02",
+          "title_fr": "Retenter et ignorer les résultats devenus obsolètes",
+          "module": "m6",
+          "minutes": 20,
+          "prerequisites": [
+            "react-m6-01"
+          ],
+          "tags": [
+            "obsolète",
+            "garde locale",
+            "nouvelle tentative"
+          ]
+        },
+        {
+          "id": "react-m6-03",
+          "title_fr": "Projet : un tableau d’ateliers favoris expliqué et testé",
+          "module": "m6",
+          "minutes": 20,
+          "prerequisites": [
+            "react-m6-02"
+          ],
+          "tags": [
+            "favori",
+            "callback",
+            "grille de projet"
+          ]
+        }
+      ],
+      "estimated_minutes": 360,
+      "content_revision": "52b40cdb01c8",
+      "exercise_count": 72,
+      "quiz_count": 54
     },
     {
       "id": "sql-bases",
@@ -2430,7 +3146,7 @@
         }
       ],
       "estimated_minutes": 360,
-      "content_revision": "6e781edacfd3",
+      "content_revision": "b9445768703b",
       "exercise_count": 72,
       "quiz_count": 54
     }
@@ -2461,21 +3177,9 @@
       "status": "bientôt"
     },
     {
-      "id": "javascript-dom",
-      "title_fr": "JavaScript : interfaces et événements",
-      "summary_fr": "Manipuler le DOM et gérer les interactions ; après HTML, CSS et JavaScript.",
-      "status": "bientôt"
-    },
-    {
       "id": "typescript",
       "title_fr": "TypeScript : démarrer avec les types",
       "summary_fr": "Types, fonctions et unions ; après JavaScript.",
-      "status": "bientôt"
-    },
-    {
-      "id": "react",
-      "title_fr": "React : construire une interface avec des composants",
-      "summary_fr": "Composants, propriétés, état et formulaires ; après HTML, CSS, JavaScript et les interactions du navigateur.",
       "status": "bientôt"
     }
   ],

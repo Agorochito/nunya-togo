@@ -1,3 +1,12 @@
+# Vérifications 5.7.0 — 6 novembre 2026
+
+- 182 tests unitaires, TypeScript et ESLint réussis ; compilation et schémas/prérequis cohérents.
+- DOM :18leçons,36exemples,72solutions acceptées et72codes initiaux rejetés ;920assertions réellement exécutées dans Chrome.
+- React :18leçons,36exemples,72solutions acceptées et72codes initiaux rejetés ;977assertions Chrome, dont états contrôlés, identité des clés, nettoyage d’écouteurs et réponse obsolète180ms→40ms.
+- Isolation CSP HTTP, refus réseau/accès parent, arrêt, boucles/récursion et redémarrage à froid hors ligne DOM/React vérifiés par `INTERACTIVE_ENGINE_RESULTS.json`.
+- Le bundle principal reste sous150000octets gzip ; les moteurs supplémentaires sont à la demande.
+- Les rapports `DOM_UI_RESULTS.json`, `REACT_UI_RESULTS.json` et les rapports de régression indiquent les derniers résultats de l’interface. Les vérifications automatiques ne remplacent pas la relecture pédagogique ou les essais sur appareils réels au Togo.
+
 # Vérifications 5.6.1 — 6 novembre 2026
 
 Le bug utilisateur a été reproduit avec le vrai site 5.4.3 (`2df60ddf`) et son service worker : après passage à la version 5.6, un navigateur gardait un catalogue à un seul cours. La version corrigée lie les métadonnées et vues à la version de la page, puis actualise au changement de contrôleur. Les tests `test-release-upgrade.mjs` partent des versions `2df60ddf` et `842013e5`, vérifient les six cours, leurs raccourcis, l’ouverture de SQL et la conservation du brouillon Python et de sa position. Rapports `RELEASE_UPGRADE_*_RESULTS.json`. Les métadonnées de catalogue hors ligne sont aussi éprouvées après suppression de leur entrée avec paramètre de version, pour tester le vrai repli sur la copie canonique enregistrée.

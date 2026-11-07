@@ -1,0 +1,252 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Monter un premier accueil",
+    "instruction_fr": "Définis App avec un main contenant h1#titre « Bienvenue au club » et p#message « Apprendre ensemble ». Termine par root.render(<App />). Le conteneur #app est déjà fourni.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function App() { return <main><h1 id=\"titre\">À compléter</h1></main>; }\nroot.render(<App />);",
+    "solution": "function App() {\n  return <main><h1 id=\"titre\">Bienvenue au club</h1><p id=\"message\">Apprendre ensemble</p></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Accueil complet",
+        "checks": [
+          {
+            "selector": "#app h1#titre",
+            "text": "Bienvenue au club"
+          },
+          {
+            "selector": "#app p#message",
+            "text": "Apprendre ensemble"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Remplacer le contenu précédent dans le bon conteneur",
+        "checks": [
+          {
+            "selector": "#titre",
+            "text": "Bienvenue au club"
+          },
+          {
+            "selector": "#message",
+            "text": "Apprendre ensemble"
+          },
+          {
+            "selector": "#ancien",
+            "exists": false
+          },
+          {
+            "selector": "#repere",
+            "text": "Hors application"
+          }
+        ],
+        "fixture_html": "<aside id=\"repere\">Hors application</aside><div id=\"app\"><p id=\"ancien\">Ancienne interface</p></div>"
+      }
+    ],
+    "hints": [
+      "La fonction doit retourner les deux textes dans un parent main.",
+      "L’appel final utilise le composant avec une majuscule.",
+      "function App() {\n  return <main><h1 id=\"titre\">Bienvenue au club</h1><p id=\"message\">Apprendre ensemble</p></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Le root fourni monte la description retournée par App.",
+    "common_wrong_answers": [],
+    "id": "react-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Décrire une fiche autonome",
+    "instruction_fr": "Crée FicheAtelier, retournant article#fiche avec h2#nom « Jardin collectif », p#lieu « Cour du club » et p#jour « Samedi ». Affiche ce composant avec root.render.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function FicheAtelier() { return <article id=\"fiche\"><h2 id=\"nom\">Jardin collectif</h2></article>; }",
+    "solution": "function FicheAtelier() {\n  return <article id=\"fiche\"><h2 id=\"nom\">Jardin collectif</h2><p id=\"lieu\">Cour du club</p><p id=\"jour\">Samedi</p></article>;\n}\nroot.render(<FicheAtelier />);",
+    "visible_tests": [
+      {
+        "description_fr": "Fiche avec trois informations",
+        "checks": [
+          {
+            "selector": "#app > article#fiche",
+            "count": 1
+          },
+          {
+            "selector": "#nom",
+            "text": "Jardin collectif"
+          },
+          {
+            "selector": "#lieu",
+            "text": "Cour du club"
+          },
+          {
+            "selector": "#jour",
+            "text": "Samedi"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Montage depuis une ancienne interface",
+        "checks": [
+          {
+            "selector": "#nom",
+            "text": "Jardin collectif"
+          },
+          {
+            "selector": "#lieu",
+            "text": "Cour du club"
+          },
+          {
+            "selector": "#jour",
+            "text": "Samedi"
+          },
+          {
+            "selector": "#ancien",
+            "exists": false
+          },
+          {
+            "selector": "#repere",
+            "text": "Hors application"
+          }
+        ],
+        "fixture_html": "<aside id=\"repere\">Hors application</aside><div id=\"app\"><p id=\"ancien\">Ancienne interface</p></div>"
+      }
+    ],
+    "hints": [
+      "Tous les éléments doivent appartenir au même article retourné.",
+      "Une déclaration sans root.render ne produit pas encore de fiche visible.",
+      "function FicheAtelier() {\n  return <article id=\"fiche\"><h2 id=\"nom\">Jardin collectif</h2><p id=\"lieu\">Cour du club</p><p id=\"jour\">Samedi</p></article>;\n}\nroot.render(<FicheAtelier />);"
+    ],
+    "explanation_fr": "La fonction et la demande de montage ont deux rôles distincts.",
+    "common_wrong_answers": [],
+    "id": "react-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Utiliser une majuscule pour le composant",
+    "instruction_fr": "Le titre n’apparaît pas : corrige le nom de la fonction et son utilisation pour que h1#titre affiche « Club Horizon ». Garde le root déjà fourni.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function accueil() { return <h1 id=\"titre\">Club Horizon</h1>; }\nroot.render(<accueil />);",
+    "solution": "function Accueil() { return <h1 id=\"titre\">Club Horizon</h1>; }\nroot.render(<Accueil />);",
+    "visible_tests": [
+      {
+        "description_fr": "Fonction réellement utilisée comme composant",
+        "checks": [
+          {
+            "selector": "#app > h1#titre",
+            "text": "Club Horizon"
+          },
+          {
+            "selector": "#app accueil",
+            "exists": false
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Ancien écran remplacé",
+        "checks": [
+          {
+            "selector": "#titre",
+            "text": "Club Horizon"
+          },
+          {
+            "selector": "#ancien",
+            "exists": false
+          },
+          {
+            "selector": "#repere",
+            "text": "Hors application"
+          }
+        ],
+        "fixture_html": "<aside id=\"repere\">Hors application</aside><div id=\"app\"><p id=\"ancien\">Ancienne interface</p></div>"
+      }
+    ],
+    "hints": [
+      "En JSX, une minuscule désigne un nom de balise du navigateur.",
+      "La déclaration et son usage doivent tous deux être Accueil.",
+      "function Accueil() { return <h1 id=\"titre\">Club Horizon</h1>; }\nroot.render(<Accueil />);"
+    ],
+    "explanation_fr": "Une fonction composant se distingue d’un nom de balise natif.",
+    "common_wrong_answers": [],
+    "id": "react-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Assembler un programme fixe",
+    "instruction_fr": "Définis Programme. Son main#programme contient h1#titre « Programme du club », puis section#matin avec h2 « Matin » et p « Lecture », puis section#apres-midi avec h2 « Après-midi » et p « Jardin ». Monte Programme dans root.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function Programme() { return <main id=\"programme\"><h1 id=\"titre\">Programme du club</h1></main>; }\nroot.render(<Programme />);",
+    "solution": "function Programme() {\n  return <main id=\"programme\"><h1 id=\"titre\">Programme du club</h1><section id=\"matin\"><h2>Matin</h2><p>Lecture</p></section><section id=\"apres-midi\"><h2>Après-midi</h2><p>Jardin</p></section></main>;\n}\nroot.render(<Programme />);",
+    "visible_tests": [
+      {
+        "description_fr": "Deux rubriques dans l’ordre",
+        "checks": [
+          {
+            "selector": "#programme > section",
+            "count": 2
+          },
+          {
+            "selector": "#titre",
+            "text": "Programme du club"
+          },
+          {
+            "selector": "#matin h2",
+            "text": "Matin"
+          },
+          {
+            "selector": "#matin p",
+            "text": "Lecture"
+          },
+          {
+            "selector": "#apres-midi h2",
+            "text": "Après-midi"
+          },
+          {
+            "selector": "#apres-midi p",
+            "text": "Jardin"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Le programme remplace un ancien écran",
+        "checks": [
+          {
+            "selector": "#programme > section h2",
+            "texts": [
+              "Matin",
+              "Après-midi"
+            ]
+          },
+          {
+            "selector": "#programme > section p",
+            "texts": [
+              "Lecture",
+              "Jardin"
+            ]
+          },
+          {
+            "selector": "#ancien",
+            "exists": false
+          },
+          {
+            "selector": "#repere",
+            "text": "Hors application"
+          }
+        ],
+        "fixture_html": "<aside id=\"repere\">Hors application</aside><div id=\"app\"><p id=\"ancien\">Ancienne interface</p></div>"
+      }
+    ],
+    "hints": [
+      "La structure demandée comporte un parent main et deux sections voisines.",
+      "Chaque section possède son titre et son paragraphe.",
+      "function Programme() {\n  return <main id=\"programme\"><h1 id=\"titre\">Programme du club</h1><section id=\"matin\"><h2>Matin</h2><p>Lecture</p></section><section id=\"apres-midi\"><h2>Après-midi</h2><p>Jardin</p></section></main>;\n}\nroot.render(<Programme />);"
+    ],
+    "explanation_fr": "Le composant décrit une hiérarchie complète et vérifiable, sans modifier le document extérieur.",
+    "common_wrong_answers": [],
+    "id": "react-m1-01-e4"
+  }
+]

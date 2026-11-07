@@ -1,0 +1,206 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Écrire sur le bon titre",
+    "instruction_fr": "Remplace uniquement le texte de #accueil par « Bienvenue au club ». Conserve #autre.",
+    "fixture_html": "<main><h1 id=\"accueil\">En attente</h1><h2 id=\"autre\">Archives</h2></main>",
+    "starter_code": "const titre = document.querySelector(\"#accueil\");",
+    "solution": "const titre = document.querySelector(\"#accueil\");\ntitre.textContent = \"Bienvenue au club\";",
+    "visible_tests": [
+      {
+        "description_fr": "Accueil ciblé",
+        "checks": [
+          {
+            "selector": "#accueil",
+            "text": "Bienvenue au club"
+          },
+          {
+            "selector": "#autre",
+            "text": "Archives"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "L’ordre ne choisit pas la cible",
+        "checks": [
+          {
+            "selector": "#accueil",
+            "text": "Bienvenue au club"
+          },
+          {
+            "selector": "#autre",
+            "text": "Ne pas modifier"
+          }
+        ],
+        "fixture_html": "<main><h2 id=\"autre\">Ne pas modifier</h2><h1 id=\"accueil\">Brouillon</h1></main>"
+      }
+    ],
+    "hints": [
+      "La constante contient un élément.",
+      "Affecte sa propriété textContent.",
+      "const titre = document.querySelector(\"#accueil\");\ntitre.textContent = \"Bienvenue au club\";"
+    ],
+    "explanation_fr": "Le sélecteur par identifiant reste précis quand l’ordre change.",
+    "common_wrong_answers": [],
+    "id": "dom-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Composer un résumé depuis le document",
+    "instruction_fr": "Lis le texte de #atelier puis écris « À découvrir : » suivi d’une espace et de ce texte dans #resume. Ne modifie pas #atelier.",
+    "fixture_html": "<main><h2 id=\"atelier\">Dessin</h2><p id=\"resume\">Vide</p></main>",
+    "starter_code": "const nom = document.querySelector(\"#atelier\").textContent;",
+    "solution": "const nom = document.querySelector(\"#atelier\").textContent;\ndocument.querySelector(\"#resume\").textContent = \"À découvrir : \" + nom;",
+    "visible_tests": [
+      {
+        "description_fr": "Dessin",
+        "checks": [
+          {
+            "selector": "#atelier",
+            "text": "Dessin"
+          },
+          {
+            "selector": "#resume",
+            "text": "À découvrir : Dessin"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autre nom composé",
+        "checks": [
+          {
+            "selector": "#atelier",
+            "text": "Lecture partagée"
+          },
+          {
+            "selector": "#resume",
+            "text": "À découvrir : Lecture partagée"
+          }
+        ],
+        "fixture_html": "<main><h2 id=\"atelier\">Lecture partagée</h2><p id=\"resume\">Autre</p></main>"
+      }
+    ],
+    "hints": [
+      "La source change selon la fixture.",
+      "Concatène le préfixe et la chaîne lue.",
+      "const nom = document.querySelector(\"#atelier\").textContent;\ndocument.querySelector(\"#resume\").textContent = \"À découvrir : \" + nom;"
+    ],
+    "explanation_fr": "La valeur lue commande le résultat ; recopier seulement le mot Dessin ne suffit pas.",
+    "common_wrong_answers": [],
+    "id": "dom-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Limiter la recherche à une fiche",
+    "instruction_fr": "Le code remplace le mauvais titre. Copie le texte de #source uniquement dans .titre à l’intérieur de #fiche. Préserve le titre extérieur.",
+    "fixture_html": "<main><h2 class=\"titre\">Archives</h2><section id=\"fiche\"><h2 class=\"titre\">Ancien</h2></section><p id=\"source\">Musique</p></main>",
+    "starter_code": "document.querySelector(\".titre\").textContent = document.querySelector(\"#source\").textContent;",
+    "solution": "document.querySelector(\"#fiche .titre\").textContent = document.querySelector(\"#source\").textContent;",
+    "visible_tests": [
+      {
+        "description_fr": "Fiche Musique",
+        "checks": [
+          {
+            "selector": "#fiche .titre",
+            "text": "Musique"
+          },
+          {
+            "selector": "main > .titre",
+            "text": "Archives"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Fiche Jardin",
+        "checks": [
+          {
+            "selector": "#fiche .titre",
+            "text": "Jardin"
+          },
+          {
+            "selector": "main > .titre",
+            "text": "Extérieur"
+          }
+        ],
+        "fixture_html": "<main><h2 class=\"titre\">Extérieur</h2><section id=\"fiche\"><h2 class=\"titre\">Ancien</h2></section><p id=\"source\">Jardin</p></main>"
+      }
+    ],
+    "hints": [
+      "querySelector ne retourne que le premier élément correspondant.",
+      "Le sélecteur doit mentionner le conteneur #fiche.",
+      "document.querySelector(\"#fiche .titre\").textContent = document.querySelector(\"#source\").textContent;"
+    ],
+    "explanation_fr": "La portée du sélecteur évite de modifier une autre rubrique.",
+    "common_wrong_answers": [],
+    "id": "dom-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Préparer une annonce de club",
+    "instruction_fr": "Lis #club et #jour. Écris « Rencontre : <nom du club> » dans #annonce puis « Rendez-vous : <jour> » dans #precision. Garde les deux sources intactes.",
+    "fixture_html": "<main><h1 id=\"club\">Club Horizon</h1><p id=\"jour\">mercredi</p><h2 id=\"annonce\">À rédiger</h2><p id=\"precision\">À rédiger</p></main>",
+    "starter_code": "const club = document.querySelector(\"#club\").textContent;\nconst jour = document.querySelector(\"#jour\").textContent;",
+    "solution": "const club = document.querySelector(\"#club\").textContent;\nconst jour = document.querySelector(\"#jour\").textContent;\ndocument.querySelector(\"#annonce\").textContent = \"Rencontre : \" + club;\ndocument.querySelector(\"#precision\").textContent = \"Rendez-vous : \" + jour;",
+    "visible_tests": [
+      {
+        "description_fr": "Annonce du mercredi",
+        "checks": [
+          {
+            "selector": "#club",
+            "text": "Club Horizon"
+          },
+          {
+            "selector": "#jour",
+            "text": "mercredi"
+          },
+          {
+            "selector": "#annonce",
+            "text": "Rencontre : Club Horizon"
+          },
+          {
+            "selector": "#precision",
+            "text": "Rendez-vous : mercredi"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autre club et autre jour",
+        "checks": [
+          {
+            "selector": "#club",
+            "text": "Club Baobab"
+          },
+          {
+            "selector": "#jour",
+            "text": "samedi"
+          },
+          {
+            "selector": "#annonce",
+            "text": "Rencontre : Club Baobab"
+          },
+          {
+            "selector": "#precision",
+            "text": "Rendez-vous : samedi"
+          }
+        ],
+        "fixture_html": "<main><h1 id=\"club\">Club Baobab</h1><p id=\"jour\">samedi</p><h2 id=\"annonce\">À rédiger</h2><p id=\"precision\">À rédiger</p></main>"
+      }
+    ],
+    "hints": [
+      "Lis les deux sources avant de remplir les destinations.",
+      "Chaque destination reçoit sa propre concaténation.",
+      "const club = document.querySelector(\"#club\").textContent;\nconst jour = document.querySelector(\"#jour\").textContent;\ndocument.querySelector(\"#annonce\").textContent = \"Rencontre : \" + club;\ndocument.querySelector(\"#precision\").textContent = \"Rendez-vous : \" + jour;"
+    ],
+    "explanation_fr": "Deux lectures indépendantes produisent deux messages sans écraser leur conteneur.",
+    "common_wrong_answers": [],
+    "id": "dom-m1-01-e4"
+  }
+]

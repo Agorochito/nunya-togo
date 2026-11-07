@@ -1,0 +1,397 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Attendre une demande avant d’afficher",
+    "instruction_fr": "Sur un clic de #ouvrir, copie son data-message dans #message. Au lancement, conserve « En attente ». Plusieurs clics restent possibles.",
+    "fixture_html": "<main><button id=\"ouvrir\" type=\"button\" data-message=\"Bienvenue à la lecture\">Afficher</button><p id=\"message\">En attente</p></main>",
+    "starter_code": "const bouton = document.querySelector(\"#ouvrir\");\nconst sortie = document.querySelector(\"#message\");",
+    "solution": "const bouton = document.querySelector(\"#ouvrir\");\nconst sortie = document.querySelector(\"#message\");\nbouton.addEventListener(\"click\", function () { sortie.textContent = bouton.dataset.message; });",
+    "visible_tests": [
+      {
+        "description_fr": "Affichage différé",
+        "checks": [
+          {
+            "selector": "#message",
+            "text": "En attente"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#ouvrir",
+            "checks": [
+              {
+                "selector": "#message",
+                "text": "Bienvenue à la lecture"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#ouvrir",
+            "checks": [
+              {
+                "selector": "#message",
+                "text": "Bienvenue à la lecture"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autre annonce",
+        "checks": [
+          {
+            "selector": "#message",
+            "text": "En attente"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#ouvrir",
+            "checks": [
+              {
+                "selector": "#message",
+                "text": "Bienvenue au dessin"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><button id=\"ouvrir\" type=\"button\" data-message=\"Bienvenue au dessin\">Afficher</button><p id=\"message\">En attente</p></main>"
+      }
+    ],
+    "hints": [
+      "La sélection ne déclenche pas le comportement.",
+      "Place l’affectation dans une fonction passée à addEventListener.",
+      "const bouton = document.querySelector(\"#ouvrir\");\nconst sortie = document.querySelector(\"#message\");\nbouton.addEventListener(\"click\", function () { sortie.textContent = bouton.dataset.message; });"
+    ],
+    "explanation_fr": "Le message initial prouve que le traitement attend l’événement.",
+    "common_wrong_answers": [],
+    "id": "dom-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Relier chaque bouton à son propre retour",
+    "instruction_fr": "Écris preparer(bouton, sortie), qui enregistre sur bouton un clic écrivant son data-message dans sortie. Appelle-la pour #lecture avec #retour-lecture, puis #jardin avec #retour-jardin. Préserve les retours initiaux avant tout clic.",
+    "fixture_html": "<main><button id=\"lecture\" type=\"button\" data-message=\"Livre choisi\">Lecture</button><p id=\"retour-lecture\">Aucun livre</p><button id=\"jardin\" type=\"button\" data-message=\"Graine choisie\">Jardin</button><p id=\"retour-jardin\">Aucune graine</p></main>",
+    "starter_code": "function preparer(bouton, sortie) { }\npreparer(document.querySelector(\"#lecture\"), document.querySelector(\"#retour-lecture\"));\npreparer(document.querySelector(\"#jardin\"), document.querySelector(\"#retour-jardin\"));",
+    "solution": "function preparer(bouton, sortie) {\n  bouton.addEventListener(\"click\", function () { sortie.textContent = bouton.dataset.message; });\n}\npreparer(document.querySelector(\"#lecture\"), document.querySelector(\"#retour-lecture\"));\npreparer(document.querySelector(\"#jardin\"), document.querySelector(\"#retour-jardin\"));",
+    "visible_tests": [
+      {
+        "description_fr": "Deux contextes indépendants",
+        "checks": [
+          {
+            "selector": "#retour-lecture",
+            "text": "Aucun livre"
+          },
+          {
+            "selector": "#retour-jardin",
+            "text": "Aucune graine"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#jardin",
+            "checks": [
+              {
+                "selector": "#retour-jardin",
+                "text": "Graine choisie"
+              },
+              {
+                "selector": "#retour-lecture",
+                "text": "Aucun livre"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#lecture",
+            "checks": [
+              {
+                "selector": "#retour-lecture",
+                "text": "Livre choisi"
+              },
+              {
+                "selector": "#retour-jardin",
+                "text": "Graine choisie"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autres messages et ordre inverse",
+        "checks": [
+          {
+            "selector": "#retour-lecture",
+            "text": "Aucun livre"
+          },
+          {
+            "selector": "#retour-jardin",
+            "text": "Aucune graine"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#lecture",
+            "checks": [
+              {
+                "selector": "#retour-lecture",
+                "text": "Conte choisi"
+              },
+              {
+                "selector": "#retour-jardin",
+                "text": "Aucune graine"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#jardin",
+            "checks": [
+              {
+                "selector": "#retour-jardin",
+                "text": "Plant choisi"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#lecture",
+            "checks": [
+              {
+                "selector": "#retour-jardin",
+                "text": "Plant choisi"
+              },
+              {
+                "selector": "#retour-lecture",
+                "text": "Conte choisi"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><button id=\"lecture\" type=\"button\" data-message=\"Conte choisi\">Lecture</button><p id=\"retour-lecture\">Aucun livre</p><button id=\"jardin\" type=\"button\" data-message=\"Plant choisi\">Jardin</button><p id=\"retour-jardin\">Aucune graine</p></main>"
+      }
+    ],
+    "hints": [
+      "Chaque appel reçoit ses propres paramètres.",
+      "La fonction de clic garde accès à bouton et sortie de cet appel.",
+      "function preparer(bouton, sortie) {\n  bouton.addEventListener(\"click\", function () { sortie.textContent = bouton.dataset.message; });\n}\npreparer(document.querySelector(\"#lecture\"), document.querySelector(\"#retour-lecture\"));\npreparer(document.querySelector(\"#jardin\"), document.querySelector(\"#retour-jardin\"));"
+    ],
+    "explanation_fr": "Les fermetures associent correctement les deux éléments de chaque activité.",
+    "common_wrong_answers": [],
+    "id": "dom-m2-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Transmettre la fonction sans l’appeler",
+    "instruction_fr": "Répare l’enregistrement du clic. #confirmation doit rester « Pas encore » avant le clic sur #confirmer, puis recevoir le data-confirmation du bouton à chaque clic.",
+    "fixture_html": "<main><button id=\"confirmer\" type=\"button\" data-confirmation=\"Présence notée\">Confirmer</button><p id=\"confirmation\">Pas encore</p></main>",
+    "starter_code": "const bouton = document.querySelector(\"#confirmer\");\nfunction afficher() { document.querySelector(\"#confirmation\").textContent = bouton.dataset.confirmation; }\nbouton.addEventListener(\"click\", afficher());",
+    "solution": "const bouton = document.querySelector(\"#confirmer\");\nfunction afficher() { document.querySelector(\"#confirmation\").textContent = bouton.dataset.confirmation; }\nbouton.addEventListener(\"click\", afficher);",
+    "visible_tests": [
+      {
+        "description_fr": "Pas d’appel prématuré",
+        "checks": [
+          {
+            "selector": "#confirmation",
+            "text": "Pas encore"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#confirmer",
+            "checks": [
+              {
+                "selector": "#confirmation",
+                "text": "Présence notée"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#confirmer",
+            "checks": [
+              {
+                "selector": "#confirmation",
+                "text": "Présence notée"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Confirmation alternative",
+        "checks": [
+          {
+            "selector": "#confirmation",
+            "text": "Pas encore"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#confirmer",
+            "checks": [
+              {
+                "selector": "#confirmation",
+                "text": "Participation notée"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><button id=\"confirmer\" type=\"button\" data-confirmation=\"Participation notée\">Confirmer</button><p id=\"confirmation\">Pas encore</p></main>"
+      }
+    ],
+    "hints": [
+      "Les parenthèses réalisent un appel immédiatement.",
+      "Le navigateur doit recevoir afficher comme valeur fonction.",
+      "const bouton = document.querySelector(\"#confirmer\");\nfunction afficher() { document.querySelector(\"#confirmation\").textContent = bouton.dataset.confirmation; }\nbouton.addEventListener(\"click\", afficher);"
+    ],
+    "explanation_fr": "La fonction est appelée par l’événement, pas par sa ligne d’enregistrement.",
+    "common_wrong_answers": [],
+    "id": "dom-m2-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Basculer une inscription fictive et l’annuler",
+    "instruction_fr": "Conserve un booléen inscrit initialisé à false hors des écouteurs. #basculer inverse ce booléen et affiche « Inscrit » ou « Non inscrit » dans #statut. #annuler remet toujours false et « Non inscrit ». Aucun enregistrement réel n’est effectué.",
+    "fixture_html": "<main><button id=\"basculer\" type=\"button\">Basculer</button><button id=\"annuler\" type=\"button\">Annuler</button><p id=\"statut\">Non inscrit</p></main>",
+    "starter_code": "let inscrit = false;\ndocument.querySelector(\"#basculer\").addEventListener(\"click\", function () { let inscrit = true; document.querySelector(\"#statut\").textContent = \"Inscrit\"; });",
+    "solution": "let inscrit = false;\nconst statut = document.querySelector(\"#statut\");\ndocument.querySelector(\"#basculer\").addEventListener(\"click\", function () {\n  inscrit = !inscrit;\n  statut.textContent = inscrit ? \"Inscrit\" : \"Non inscrit\";\n});\ndocument.querySelector(\"#annuler\").addEventListener(\"click\", function () {\n  inscrit = false;\n  statut.textContent = \"Non inscrit\";\n});",
+    "visible_tests": [
+      {
+        "description_fr": "Alternance puis annulation",
+        "checks": [
+          {
+            "selector": "#statut",
+            "text": "Non inscrit"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#statut",
+                "text": "Inscrit"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#statut",
+                "text": "Non inscrit"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#statut",
+                "text": "Inscrit"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#annuler",
+            "checks": [
+              {
+                "selector": "#statut",
+                "text": "Non inscrit"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Annulation répétée et reprise",
+        "checks": [
+          {
+            "selector": "#statut",
+            "text": "Non inscrit"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#annuler",
+            "checks": [
+              {
+                "selector": "#statut",
+                "text": "Non inscrit"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#statut",
+                "text": "Inscrit"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#annuler",
+            "checks": [
+              {
+                "selector": "#statut",
+                "text": "Non inscrit"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#annuler",
+            "checks": [
+              {
+                "selector": "#statut",
+                "text": "Non inscrit"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#statut",
+                "text": "Inscrit"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’état doit survivre à la fin de chaque fonction de clic.",
+      "Affecte la variable extérieure, sans déclarer un nouveau let à l’intérieur.",
+      "let inscrit = false;\nconst statut = document.querySelector(\"#statut\");\ndocument.querySelector(\"#basculer\").addEventListener(\"click\", function () {\n  inscrit = !inscrit;\n  statut.textContent = inscrit ? \"Inscrit\" : \"Non inscrit\";\n});\ndocument.querySelector(\"#annuler\").addEventListener(\"click\", function () {\n  inscrit = false;\n  statut.textContent = \"Non inscrit\";\n});"
+    ],
+    "explanation_fr": "Une annulation remet l’état à une valeur connue, tandis que basculer dépend de sa valeur précédente.",
+    "common_wrong_answers": [],
+    "id": "dom-m2-01-e4"
+  }
+]

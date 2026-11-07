@@ -1,0 +1,222 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Passer le nom d’un club",
+    "instruction_fr": "Lis data-nom de #app. Définis Bienvenue(props), qui rend h1#bienvenue « Bienvenue, <nom> ». App lui transmet la prop nom depuis la configuration. Monte App.",
+    "fixture_html": "<div id=\"app\" data-nom=\"Club Horizon\"></div>",
+    "starter_code": "const config = document.querySelector(\"#app\").dataset;\nfunction Bienvenue(props) { return <h1 id=\"bienvenue\">Bienvenue</h1>; }\nfunction App() { return <Bienvenue />; }\nroot.render(<App />);",
+    "solution": "const config = document.querySelector(\"#app\").dataset;\nfunction Bienvenue(props) { return <h1 id=\"bienvenue\">Bienvenue, {props.nom}</h1>; }\nfunction App() { return <Bienvenue nom={config.nom} />; }\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Premier nom",
+        "checks": [
+          {
+            "selector": "#bienvenue",
+            "text": "Bienvenue, Club Horizon"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autre nom transmis",
+        "checks": [
+          {
+            "selector": "#bienvenue",
+            "text": "Bienvenue, Club Baobab"
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-nom=\"Club Baobab\"></div>"
+      }
+    ],
+    "hints": [
+      "Le parent choisit la valeur, l’enfant choisit la présentation.",
+      "La prop fournie et la propriété lue doivent s’appeler nom.",
+      "const config = document.querySelector(\"#app\").dataset;\nfunction Bienvenue(props) { return <h1 id=\"bienvenue\">Bienvenue, {props.nom}</h1>; }\nfunction App() { return <Bienvenue nom={config.nom} />; }\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Le composant n’a pas besoin de rechercher lui-même le club dans le DOM.",
+    "common_wrong_answers": [],
+    "id": "react-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Réutiliser une fiche pour deux lieux",
+    "instruction_fr": "La fixture fournit data-a, data-b, data-ville-a et data-ville-b. Définis Fiche({id,titre,ville}), qui rend article avec cet id, un h2 et un p. App affiche #a avec a/villeA puis #b avec b/villeB. Toutes les données viennent des props.",
+    "fixture_html": "<div id=\"app\" data-a=\"Lecture\" data-b=\"Jardin\" data-ville-a=\"Lomé\" data-ville-b=\"Kara\"></div>",
+    "starter_code": "const config = document.querySelector(\"#app\").dataset;\nfunction Fiche({ id, titre, ville }) { return <article id={id}><h2>Lecture</h2><p>Lomé</p></article>; }\nfunction App() { return <main><Fiche id=\"a\" /><Fiche id=\"b\" /></main>; }\nroot.render(<App />);",
+    "solution": "const config = document.querySelector(\"#app\").dataset;\nfunction Fiche({ id, titre, ville }) { return <article id={id}><h2>{titre}</h2><p>{ville}</p></article>; }\nfunction App() { return <main><Fiche id=\"a\" titre={config.a} ville={config.villeA} /><Fiche id=\"b\" titre={config.b} ville={config.villeB} /></main>; }\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Deux utilisations distinctes",
+        "checks": [
+          {
+            "selector": "#a h2",
+            "text": "Lecture"
+          },
+          {
+            "selector": "#a p",
+            "text": "Lomé"
+          },
+          {
+            "selector": "#b h2",
+            "text": "Jardin"
+          },
+          {
+            "selector": "#b p",
+            "text": "Kara"
+          },
+          {
+            "selector": "#app article",
+            "count": 2
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Deux autres couples",
+        "checks": [
+          {
+            "selector": "#a h2",
+            "text": "Chant"
+          },
+          {
+            "selector": "#a p",
+            "text": "Sokodé"
+          },
+          {
+            "selector": "#b h2",
+            "text": "Dessin"
+          },
+          {
+            "selector": "#b p",
+            "text": "Atakpamé"
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-a=\"Chant\" data-b=\"Dessin\" data-ville-a=\"Sokodé\" data-ville-b=\"Atakpamé\"></div>"
+      }
+    ],
+    "hints": [
+      "Les noms avec tirets deviennent villeA et villeB dans dataset.",
+      "Le composant doit transmettre id à l’article et lire ses props pour les textes.",
+      "const config = document.querySelector(\"#app\").dataset;\nfunction Fiche({ id, titre, ville }) { return <article id={id}><h2>{titre}</h2><p>{ville}</p></article>; }\nfunction App() { return <main><Fiche id=\"a\" titre={config.a} ville={config.villeA} /><Fiche id=\"b\" titre={config.b} ville={config.villeB} /></main>; }\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Une même structure présente deux groupes de valeurs indépendants.",
+    "common_wrong_answers": [],
+    "id": "react-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Éviter une mutation cumulative des props",
+    "instruction_fr": "Etiquette reçoit deux fois le même objet fiche. Corrige-la sans affecter fiche.titre : calcule une chaîne locale pour que #a et #b affichent chacun « Atelier : <titre initial> », avec un seul préfixe.",
+    "fixture_html": "<div id=\"app\" data-titre=\"Couture\"></div>",
+    "starter_code": "const fiche = { titre: document.querySelector(\"#app\").dataset.titre };\nfunction Etiquette({ id, fiche }) { fiche.titre = \"Atelier : \" + fiche.titre; return <p id={id}>{fiche.titre}</p>; }\nfunction App() { return <main><Etiquette id=\"a\" fiche={fiche} /><Etiquette id=\"b\" fiche={fiche} /></main>; }\nroot.render(<App />);",
+    "solution": "const fiche = { titre: document.querySelector(\"#app\").dataset.titre };\nfunction Etiquette({ id, fiche }) {\n  const texte = \"Atelier : \" + fiche.titre;\n  return <p id={id}>{texte}</p>;\n}\nfunction App() { return <main><Etiquette id=\"a\" fiche={fiche} /><Etiquette id=\"b\" fiche={fiche} /></main>; }\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Pas de préfixe cumulatif",
+        "checks": [
+          {
+            "selector": "#a",
+            "text": "Atelier : Couture"
+          },
+          {
+            "selector": "#b",
+            "text": "Atelier : Couture"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autre objet partagé",
+        "checks": [
+          {
+            "selector": "#a",
+            "text": "Atelier : Lecture"
+          },
+          {
+            "selector": "#b",
+            "text": "Atelier : Lecture"
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-titre=\"Lecture\"></div>"
+      }
+    ],
+    "hints": [
+      "Les deux enfants reçoivent la même référence d’objet.",
+      "Crée const texte au lieu d’affecter une propriété de fiche.",
+      "const fiche = { titre: document.querySelector(\"#app\").dataset.titre };\nfunction Etiquette({ id, fiche }) {\n  const texte = \"Atelier : \" + fiche.titre;\n  return <p id={id}>{texte}</p>;\n}\nfunction App() { return <main><Etiquette id=\"a\" fiche={fiche} /><Etiquette id=\"b\" fiche={fiche} /></main>; }\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Lire un objet partagé n’empêche pas le calcul local ; le modifier ferait dépendre les autres enfants de son rendu.",
+    "common_wrong_answers": [],
+    "id": "react-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Composer l’entête et la carte d’un club",
+    "instruction_fr": "Lis les quatre attributs data-club, data-titre, data-ville et data-places de #app. App compose Entete({nom}) avec h1#club et Carte({atelier}) avec article#carte contenant h2#titre, p#ville et p#places « <nombre> places ». App construit l’objet atelier ; Carte le lit sans le modifier.",
+    "fixture_html": "<div id=\"app\" data-club=\"Club Avenir\" data-titre=\"Théâtre\" data-ville=\"Kpalimé\" data-places=\"6\"></div>",
+    "starter_code": "const config = document.querySelector(\"#app\").dataset;\nfunction Entete({ nom }) { return <h1 id=\"club\">{nom}</h1>; }\nfunction Carte({ atelier }) { return <article id=\"carte\"><h2 id=\"titre\">À compléter</h2></article>; }\nfunction App() { return <main><Entete nom=\"Club\" /><Carte atelier={{}} /></main>; }\nroot.render(<App />);",
+    "solution": "const config = document.querySelector(\"#app\").dataset;\nfunction Entete({ nom }) { return <h1 id=\"club\">{nom}</h1>; }\nfunction Carte({ atelier }) { return <article id=\"carte\"><h2 id=\"titre\">{atelier.titre}</h2><p id=\"ville\">{atelier.ville}</p><p id=\"places\">{atelier.places} places</p></article>; }\nfunction App() {\n  const atelier = { titre: config.titre, ville: config.ville, places: Number(config.places) };\n  return <main><Entete nom={config.club} /><Carte atelier={atelier} /></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Carte et entête coordonnées",
+        "checks": [
+          {
+            "selector": "#club",
+            "text": "Club Avenir"
+          },
+          {
+            "selector": "#titre",
+            "text": "Théâtre"
+          },
+          {
+            "selector": "#ville",
+            "text": "Kpalimé"
+          },
+          {
+            "selector": "#places",
+            "text": "6 places"
+          },
+          {
+            "selector": "#carte",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autre configuration complète",
+        "checks": [
+          {
+            "selector": "#club",
+            "text": "Club Baobab"
+          },
+          {
+            "selector": "#titre",
+            "text": "Jardin"
+          },
+          {
+            "selector": "#ville",
+            "text": "Kara"
+          },
+          {
+            "selector": "#places",
+            "text": "2 places"
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-club=\"Club Baobab\" data-titre=\"Jardin\" data-ville=\"Kara\" data-places=\"2\"></div>"
+      }
+    ],
+    "hints": [
+      "Le parent prépare les valeurs ; les deux enfants reçoivent des entrées explicites.",
+      "L’objet atelier utilise titre, ville et places, avec places converti en nombre.",
+      "const config = document.querySelector(\"#app\").dataset;\nfunction Entete({ nom }) { return <h1 id=\"club\">{nom}</h1>; }\nfunction Carte({ atelier }) { return <article id=\"carte\"><h2 id=\"titre\">{atelier.titre}</h2><p id=\"ville\">{atelier.ville}</p><p id=\"places\">{atelier.places} places</p></article>; }\nfunction App() {\n  const atelier = { titre: config.titre, ville: config.ville, places: Number(config.places) };\n  return <main><Entete nom={config.club} /><Carte atelier={atelier} /></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "La composition garde les responsabilités de chaque composant visibles.",
+    "common_wrong_answers": [],
+    "id": "react-m1-03-e4"
+  }
+]

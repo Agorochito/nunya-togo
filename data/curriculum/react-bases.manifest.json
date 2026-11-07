@@ -1,0 +1,93 @@
+{
+  "id": "react-bases",
+  "title_fr": "React : des composants à une application interactive",
+  "language": "javascript",
+  "runtime": "react",
+  "level": "debutant",
+  "summary_fr": "Apprends JSX, les propriétés, l’état, les formulaires et les effets avec React réel. Construis un tableau d’ateliers et vérifie les interactions directement dans Nunya.",
+  "prerequisite_courses": [
+    "html-bases",
+    "css-bases",
+    "javascript-bases",
+    "javascript-dom"
+  ],
+  "prerequisites": [
+    "Savoir créer une page HTML et CSS, écrire des fonctions JavaScript et gérer les événements DOM.",
+    "Aucune installation requise : l’atelier est intégré à Nunya."
+  ],
+  "outcomes": [
+    "Composer une interface en composants avec JSX et les propriétés.",
+    "Mettre à jour l’état sans mutation et calculer les données dérivées.",
+    "Afficher et filtrer des listes à identifiants stables.",
+    "Relier des formulaires contrôlés et partager leur état.",
+    "Synchroniser les effets, nettoyer les abonnements et gérer une réponse asynchrone.",
+    "Construire un tableau d’ateliers accessible avec états de chargement et de reprise."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Composants, JSX et propriétés",
+      "outcome_fr": "Décrire puis composer une interface React.",
+      "lesson_ids": [
+        "react-m1-01",
+        "react-m1-02",
+        "react-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Interactions et état",
+      "outcome_fr": "Relier événements et mises à jour cohérentes.",
+      "lesson_ids": [
+        "react-m2-01",
+        "react-m2-02",
+        "react-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Conditions, listes et recherche",
+      "outcome_fr": "Dériver l’affichage des données.",
+      "lesson_ids": [
+        "react-m3-01",
+        "react-m3-02",
+        "react-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Formulaires et communication",
+      "outcome_fr": "Contrôler la saisie et remonter l’état.",
+      "lesson_ids": [
+        "react-m4-01",
+        "react-m4-02",
+        "react-m4-03"
+      ]
+    },
+    {
+      "id": "m5",
+      "title_fr": "Références et effets",
+      "outcome_fr": "Synchroniser le focus et les abonnements avec nettoyage.",
+      "lesson_ids": [
+        "react-m5-01",
+        "react-m5-02",
+        "react-m5-03"
+      ]
+    },
+    {
+      "id": "m6",
+      "title_fr": "Asynchronisme et projet",
+      "outcome_fr": "Gérer les états d’un service simulé et assembler le tableau d’ateliers.",
+      "lesson_ids": [
+        "react-m6-01",
+        "react-m6-02",
+        "react-m6-03"
+      ]
+    }
+  ],
+  "later_modules": [],
+  "availability": "programme-redige",
+  "status": "brouillon",
+  "reviewer": null,
+  "depth_fr": "Socle progressif avec projets et tests locaux ; relecture pédagogique en cours. Les niveaux supérieurs restent à construire."
+}

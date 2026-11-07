@@ -1,0 +1,613 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Écouter la touche annoncée",
+    "instruction_fr": "Monter App avec une zone #zone et #total initial 0. Un effet inscrit keydown sur document : seulement event.key === ArrowRight augmente total d’exactement 1, avec mise à jour fonctionnelle. Les autres touches sont ignorées. L’effet retourne le retrait du même gestionnaire. Répare la clé erronée du starter. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function App() {\n  const [total, setTotal] = useState(0);\n  useEffect(() => {\n    function repondre(event) { if (event.key === 'Right') setTotal(n => n + 1); }\n    document.addEventListener('keydown', repondre);\n    return () => document.removeEventListener('keydown', repondre);\n  }, []);\n  return <main><h1>Clavier fictif</h1><label htmlFor=\"zone\">Zone clavier</label><input id=\"zone\" readOnly value=\"Flèche droite pour compter\" /><p id=\"total\" role=\"status\">{total}</p></main>;\n}\nroot.render(<App />);",
+    "solution": "function App() {\n  const [total, setTotal] = useState(0);\n  useEffect(() => {\n    function repondre(event) { if (event.key === 'ArrowRight') setTotal(n => n + 1); }\n    document.addEventListener('keydown', repondre);\n    return () => document.removeEventListener('keydown', repondre);\n  }, []);\n  return <main><h1>Clavier fictif</h1><label htmlFor=\"zone\">Zone clavier</label><input id=\"zone\" readOnly value=\"Flèche droite pour compter\" /><p id=\"total\" role=\"status\">{total}</p></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Deux touches comptées et une ignorée",
+        "checks": [
+          {
+            "selector": "#total",
+            "text": "0"
+          }
+        ],
+        "steps": [
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "1"
+              }
+            ],
+            "key": "ArrowRight"
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "1"
+              }
+            ],
+            "key": "Escape"
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "2"
+              }
+            ],
+            "key": "ArrowRight"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Les autres touches restent neutres",
+        "steps": [
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "0"
+              }
+            ],
+            "key": "ArrowLeft"
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "0"
+              }
+            ],
+            "key": "Enter"
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "1"
+              }
+            ],
+            "key": "ArrowRight"
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "2"
+              }
+            ],
+            "key": "ArrowRight"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "KeyboardEvent donne un nom précis pour chaque touche.",
+      "La flèche droite porte le nom ArrowRight.",
+      "Compare event.key à ArrowRight et garde le retour de nettoyage."
+    ],
+    "explanation_fr": "L’activité introduit l’abonnement externe avec une règle limitée. Elle vérifie les répétitions et les touches neutres sans installer de raccourci en dehors du document enfant.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^function\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ \\[total,\\ setTotal\\]\\ =\\ useState\\(0\\);\\\n\\ \\ useEffect\\(\\(\\)\\ =>\\ \\{\\\n\\ \\ \\ \\ function\\ repondre\\(event\\)\\ \\{\\ if\\ \\(event\\.key\\ ===\\ 'Right'\\)\\ setTotal\\(n\\ =>\\ n\\ \\+\\ 1\\);\\ \\}\\\n\\ \\ \\ \\ document\\.addEventListener\\('keydown',\\ repondre\\);\\\n\\ \\ \\ \\ return\\ \\(\\)\\ =>\\ document\\.removeEventListener\\('keydown',\\ repondre\\);\\\n\\ \\ \\},\\ \\[\\]\\);\\\n\\ \\ return\\ <main><h1>Clavier\\ fictif</h1><label\\ htmlFor=\"zone\">Zone\\ clavier</label><input\\ id=\"zone\"\\ readOnly\\ value=\"Flèche\\ droite\\ pour\\ compter\"\\ /><p\\ id=\"total\"\\ role=\"status\">\\{total\\}</p></main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "La flèche droite porte le nom ArrowRight."
+      }
+    ],
+    "id": "react-m5-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Démonter retire réellement l’écoute",
+    "instruction_fr": "App conserve #total initial 0 et la zone #zone. L’enfant Abonnement écoute ArrowRight sur document puis appelle onCompter ; #basculer monte/démonte cet enfant, marqué par #abonnement « Écoute active ». Une touche augmente le parent seulement pendant le montage. Retourner un cleanup qui retire exactement le gestionnaire ; dépendance onCompter. Le remontage doit réagir une seule fois. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function Abonnement({onCompter}) {\n  useEffect(() => {\n    function repondre(event) { if (event.key === 'ArrowRight') onCompter(); }\n    document.addEventListener('keydown', repondre);\n\n  }, [onCompter]);\n  return <p id=\"abonnement\">Écoute active</p>;\n}\nfunction App() {\n  const [visible, setVisible] = useState(true);\n  const [total, setTotal] = useState(0);\n  return <main><h1>Abonnement temporaire</h1><label htmlFor=\"zone\">Zone clavier</label><input id=\"zone\" readOnly value=\"Flèche droite\" /><button id=\"basculer\" type=\"button\" onClick={() => setVisible(v => !v)}>{visible ? 'Démonter' : 'Monter'}</button><p id=\"total\" role=\"status\">{total}</p>{visible && <Abonnement onCompter={() => setTotal(n => n + 1)} />}</main>;\n}\nroot.render(<App />);",
+    "solution": "function Abonnement({onCompter}) {\n  useEffect(() => {\n    function repondre(event) { if (event.key === 'ArrowRight') onCompter(); }\n    document.addEventListener('keydown', repondre);\n    return () => document.removeEventListener('keydown', repondre);\n  }, [onCompter]);\n  return <p id=\"abonnement\">Écoute active</p>;\n}\nfunction App() {\n  const [visible, setVisible] = useState(true);\n  const [total, setTotal] = useState(0);\n  return <main><h1>Abonnement temporaire</h1><label htmlFor=\"zone\">Zone clavier</label><input id=\"zone\" readOnly value=\"Flèche droite\" /><button id=\"basculer\" type=\"button\" onClick={() => setVisible(v => !v)}>{visible ? 'Démonter' : 'Monter'}</button><p id=\"total\" role=\"status\">{total}</p>{visible && <Abonnement onCompter={() => setTotal(n => n + 1)} />}</main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Une touche après démontage reste sans effet",
+        "steps": [
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "1"
+              }
+            ],
+            "key": "ArrowRight"
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#abonnement",
+                "exists": false
+              }
+            ]
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "1"
+              }
+            ],
+            "key": "ArrowRight"
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#abonnement",
+                "text": "Écoute active"
+              }
+            ]
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "2"
+              }
+            ],
+            "key": "ArrowRight"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Deux cycles sans multiplication",
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#abonnement",
+                "exists": false
+              }
+            ]
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "0"
+              }
+            ],
+            "key": "ArrowRight"
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": []
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "1"
+              }
+            ],
+            "key": "ArrowRight"
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": []
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "1"
+              }
+            ],
+            "key": "ArrowRight"
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": []
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "2"
+              }
+            ],
+            "key": "ArrowRight"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le nœud de l’enfant disparaît mais document existe encore.",
+      "Le branchement externe doit recevoir une opération inverse au démontage.",
+      "Retourne () => document.removeEventListener avec le même type et repondre."
+    ],
+    "explanation_fr": "Le compteur parent rend visible une fuite qui serait cachée si tout l’état disparaissait avec l’enfant. Plusieurs cycles vérifient que l’abonnement n’accumule pas d’anciens gestionnaires.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^function\\ Abonnement\\(\\{onCompter\\}\\)\\ \\{\\\n\\ \\ useEffect\\(\\(\\)\\ =>\\ \\{\\\n\\ \\ \\ \\ function\\ repondre\\(event\\)\\ \\{\\ if\\ \\(event\\.key\\ ===\\ 'ArrowRight'\\)\\ onCompter\\(\\);\\ \\}\\\n\\ \\ \\ \\ document\\.addEventListener\\('keydown',\\ repondre\\);\\\n\\\n\\ \\ \\},\\ \\[onCompter\\]\\);\\\n\\ \\ return\\ <p\\ id=\"abonnement\">Écoute\\ active</p>;\\\n\\}\\\nfunction\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ \\[visible,\\ setVisible\\]\\ =\\ useState\\(true\\);\\\n\\ \\ const\\ \\[total,\\ setTotal\\]\\ =\\ useState\\(0\\);\\\n\\ \\ return\\ <main><h1>Abonnement\\ temporaire</h1><label\\ htmlFor=\"zone\">Zone\\ clavier</label><input\\ id=\"zone\"\\ readOnly\\ value=\"Flèche\\ droite\"\\ /><button\\ id=\"basculer\"\\ type=\"button\"\\ onClick=\\{\\(\\)\\ =>\\ setVisible\\(v\\ =>\\ !v\\)\\}>\\{visible\\ \\?\\ 'Démonter'\\ :\\ 'Monter'\\}</button><p\\ id=\"total\"\\ role=\"status\">\\{total\\}</p>\\{visible\\ \\&\\&\\ <Abonnement\\ onCompter=\\{\\(\\)\\ =>\\ setTotal\\(n\\ =>\\ n\\ \\+\\ 1\\)\\}\\ />\\}</main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "Le branchement externe doit recevoir une opération inverse au démontage."
+      }
+    ],
+    "id": "react-m5-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un ancien total capturé",
+    "instruction_fr": "La zone #zone déclenche un keydown réel ; ArrowRight ajoute 1 à #total initial 0, les autres touches ne font rien. L’effet se branche une fois et nettoie correctement. Répare setTotal(total + 1), qui capture l’état initial : employer une mise à jour fonctionnelle sans ajouter un effet ni une lecture de référence pendant le rendu. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function App() {\n  const [total, setTotal] = useState(0);\n  useEffect(() => {\n    function repondre(event) { if (event.key === 'ArrowRight') setTotal(total + 1); }\n    document.addEventListener('keydown', repondre);\n    return () => document.removeEventListener('keydown', repondre);\n  }, []);\n  return <main><h1>Clavier fictif</h1><label htmlFor=\"zone\">Zone clavier</label><input id=\"zone\" readOnly value=\"Flèche droite pour compter\" /><p id=\"total\" role=\"status\">{total}</p></main>;\n}\nroot.render(<App />);",
+    "solution": "function App() {\n  const [total, setTotal] = useState(0);\n  useEffect(() => {\n    function repondre(event) { if (event.key === 'ArrowRight') setTotal(n => n + 1); }\n    document.addEventListener('keydown', repondre);\n    return () => document.removeEventListener('keydown', repondre);\n  }, []);\n  return <main><h1>Clavier fictif</h1><label htmlFor=\"zone\">Zone clavier</label><input id=\"zone\" readOnly value=\"Flèche droite pour compter\" /><p id=\"total\" role=\"status\">{total}</p></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Trois augmentations successives",
+        "steps": [
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "1"
+              }
+            ],
+            "key": "ArrowRight"
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "2"
+              }
+            ],
+            "key": "ArrowRight"
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "3"
+              }
+            ],
+            "key": "ArrowRight"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Touches alternées puis reprise",
+        "steps": [
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "1"
+              }
+            ],
+            "key": "ArrowRight"
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "1"
+              }
+            ],
+            "key": "ArrowLeft"
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "2"
+              }
+            ],
+            "key": "ArrowRight"
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "2"
+              }
+            ],
+            "key": "Escape"
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "3"
+              }
+            ],
+            "key": "ArrowRight"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le gestionnaire créé au montage conserve le total de ce rendu.",
+      "React peut fournir directement la valeur précédente à une fonction de mise à jour.",
+      "Utilise setTotal(n => n + 1)."
+    ],
+    "explanation_fr": "Le débogage concerne la fermeture, pas une duplication d’écouteurs. La correction maintient un abonnement stable et calcule chaque incrément depuis le dernier état valide.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^function\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ \\[total,\\ setTotal\\]\\ =\\ useState\\(0\\);\\\n\\ \\ useEffect\\(\\(\\)\\ =>\\ \\{\\\n\\ \\ \\ \\ function\\ repondre\\(event\\)\\ \\{\\ if\\ \\(event\\.key\\ ===\\ 'ArrowRight'\\)\\ setTotal\\(total\\ \\+\\ 1\\);\\ \\}\\\n\\ \\ \\ \\ document\\.addEventListener\\('keydown',\\ repondre\\);\\\n\\ \\ \\ \\ return\\ \\(\\)\\ =>\\ document\\.removeEventListener\\('keydown',\\ repondre\\);\\\n\\ \\ \\},\\ \\[\\]\\);\\\n\\ \\ return\\ <main><h1>Clavier\\ fictif</h1><label\\ htmlFor=\"zone\">Zone\\ clavier</label><input\\ id=\"zone\"\\ readOnly\\ value=\"Flèche\\ droite\\ pour\\ compter\"\\ /><p\\ id=\"total\"\\ role=\"status\">\\{total\\}</p></main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "React peut fournir directement la valeur précédente à une fonction de mise à jour."
+      }
+    ],
+    "id": "react-m5-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Un raccourci configurable et temporaire",
+    "instruction_fr": "Initial depuis data-depart de #app sinon 0. App contrôle #cle (ArrowRight/ArrowLeft), #pas (1/3), #total et #basculer. L’enfant #abonnement affiche « Écoute : CLÉ » et écoute uniquement la clé choisie : ajouter le pas numérique exactement une fois. Déclarer cle et onCompter comme dépendances et nettoyer l’ancien abonnement. Démonté, aucune touche ne modifie total ; remonté, la configuration courante s’applique. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\" data-depart=\"2\"></div>",
+    "starter_code": "const initial = Number(document.getElementById('app').dataset.depart || 0);\nfunction Abonnement({cle, onCompter}) {\n  useEffect(() => {\n    function repondre(event) { if (event.key === 'ArrowRight') onCompter(); }\n    document.addEventListener('keydown', repondre);\n    return () => document.removeEventListener('keydown', repondre);\n  }, [cle, onCompter]);\n  return <p id=\"abonnement\">Écoute : {cle}</p>;\n}\nfunction App() {\n  const [visible, setVisible] = useState(true);\n  const [cle, setCle] = useState('ArrowRight');\n  const [pas, setPas] = useState('1');\n  const [total, setTotal] = useState(initial);\n  return <main><h1>Raccourci configurable</h1><label htmlFor=\"zone\">Zone clavier</label><input id=\"zone\" readOnly value=\"Utilise le raccourci choisi\" /><label htmlFor=\"cle\">Touche</label><select id=\"cle\" value={cle} onChange={e => setCle(e.target.value)}><option value=\"ArrowRight\">Flèche droite</option><option value=\"ArrowLeft\">Flèche gauche</option></select><label htmlFor=\"pas\">Pas</label><select id=\"pas\" value={pas} onChange={e => setPas(e.target.value)}><option value=\"1\">1</option><option value=\"3\">3</option></select><button id=\"basculer\" type=\"button\" onClick={() => setVisible(v => !v)}>{visible ? 'Démonter' : 'Monter'}</button><p id=\"total\" role=\"status\">{total}</p>{visible && <Abonnement cle={cle} onCompter={() => setTotal(n => n + Number(pas))} />}</main>;\n}\nroot.render(<App />);",
+    "solution": "const initial = Number(document.getElementById('app').dataset.depart || 0);\nfunction Abonnement({cle, onCompter}) {\n  useEffect(() => {\n    function repondre(event) { if (event.key === cle) onCompter(); }\n    document.addEventListener('keydown', repondre);\n    return () => document.removeEventListener('keydown', repondre);\n  }, [cle, onCompter]);\n  return <p id=\"abonnement\">Écoute : {cle}</p>;\n}\nfunction App() {\n  const [visible, setVisible] = useState(true);\n  const [cle, setCle] = useState('ArrowRight');\n  const [pas, setPas] = useState('1');\n  const [total, setTotal] = useState(initial);\n  return <main><h1>Raccourci configurable</h1><label htmlFor=\"zone\">Zone clavier</label><input id=\"zone\" readOnly value=\"Utilise le raccourci choisi\" /><label htmlFor=\"cle\">Touche</label><select id=\"cle\" value={cle} onChange={e => setCle(e.target.value)}><option value=\"ArrowRight\">Flèche droite</option><option value=\"ArrowLeft\">Flèche gauche</option></select><label htmlFor=\"pas\">Pas</label><select id=\"pas\" value={pas} onChange={e => setPas(e.target.value)}><option value=\"1\">1</option><option value=\"3\">3</option></select><button id=\"basculer\" type=\"button\" onClick={() => setVisible(v => !v)}>{visible ? 'Démonter' : 'Monter'}</button><p id=\"total\" role=\"status\">{total}</p>{visible && <Abonnement cle={cle} onCompter={() => setTotal(n => n + Number(pas))} />}</main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Changer la configuration puis démonter",
+        "checks": [
+          {
+            "selector": "#total",
+            "text": "2"
+          }
+        ],
+        "steps": [
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "3"
+              }
+            ],
+            "key": "ArrowRight"
+          },
+          {
+            "action": "input",
+            "selector": "#cle",
+            "checks": [
+              {
+                "selector": "#abonnement",
+                "text": "Écoute : ArrowLeft"
+              }
+            ],
+            "value": "ArrowLeft"
+          },
+          {
+            "action": "input",
+            "selector": "#pas",
+            "checks": [],
+            "value": "3"
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "3"
+              }
+            ],
+            "key": "ArrowRight"
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "6"
+              }
+            ],
+            "key": "ArrowLeft"
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#abonnement",
+                "exists": false
+              }
+            ]
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "6"
+              }
+            ],
+            "key": "ArrowLeft"
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": []
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "9"
+              }
+            ],
+            "key": "ArrowLeft"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autre initial et deux changements de touche",
+        "checks": [
+          {
+            "selector": "#total",
+            "text": "7"
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#cle",
+            "checks": [],
+            "value": "ArrowLeft"
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "8"
+              }
+            ],
+            "key": "ArrowLeft"
+          },
+          {
+            "action": "input",
+            "selector": "#pas",
+            "checks": [],
+            "value": "3"
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "11"
+              }
+            ],
+            "key": "ArrowLeft"
+          },
+          {
+            "action": "input",
+            "selector": "#cle",
+            "checks": [],
+            "value": "ArrowRight"
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "11"
+              }
+            ],
+            "key": "ArrowLeft"
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "14"
+              }
+            ],
+            "key": "ArrowRight"
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": []
+          },
+          {
+            "action": "keydown",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "14"
+              }
+            ],
+            "key": "ArrowRight"
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-depart=\"7\"></div>"
+      }
+    ],
+    "hints": [
+      "La touche est une propriété de l’enfant, pas une constante.",
+      "Le gestionnaire doit lire cle et être renouvelé quand cette propriété change.",
+      "Compare event.key à cle et conserve [cle,onCompter] plus le retrait du même gestionnaire."
+    ],
+    "explanation_fr": "Le mini-projet associe dépendances, fermeture, callback parent et nettoyage. Les variantes testent la désactivation et la configuration courante avec une valeur initiale différente.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^const\\ initial\\ =\\ Number\\(document\\.getElementById\\('app'\\)\\.dataset\\.depart\\ \\|\\|\\ 0\\);\\\nfunction\\ Abonnement\\(\\{cle,\\ onCompter\\}\\)\\ \\{\\\n\\ \\ useEffect\\(\\(\\)\\ =>\\ \\{\\\n\\ \\ \\ \\ function\\ repondre\\(event\\)\\ \\{\\ if\\ \\(event\\.key\\ ===\\ 'ArrowRight'\\)\\ onCompter\\(\\);\\ \\}\\\n\\ \\ \\ \\ document\\.addEventListener\\('keydown',\\ repondre\\);\\\n\\ \\ \\ \\ return\\ \\(\\)\\ =>\\ document\\.removeEventListener\\('keydown',\\ repondre\\);\\\n\\ \\ \\},\\ \\[cle,\\ onCompter\\]\\);\\\n\\ \\ return\\ <p\\ id=\"abonnement\">Écoute\\ :\\ \\{cle\\}</p>;\\\n\\}\\\nfunction\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ \\[visible,\\ setVisible\\]\\ =\\ useState\\(true\\);\\\n\\ \\ const\\ \\[cle,\\ setCle\\]\\ =\\ useState\\('ArrowRight'\\);\\\n\\ \\ const\\ \\[pas,\\ setPas\\]\\ =\\ useState\\('1'\\);\\\n\\ \\ const\\ \\[total,\\ setTotal\\]\\ =\\ useState\\(initial\\);\\\n\\ \\ return\\ <main><h1>Raccourci\\ configurable</h1><label\\ htmlFor=\"zone\">Zone\\ clavier</label><input\\ id=\"zone\"\\ readOnly\\ value=\"Utilise\\ le\\ raccourci\\ choisi\"\\ /><label\\ htmlFor=\"cle\">Touche</label><select\\ id=\"cle\"\\ value=\\{cle\\}\\ onChange=\\{e\\ =>\\ setCle\\(e\\.target\\.value\\)\\}><option\\ value=\"ArrowRight\">Flèche\\ droite</option><option\\ value=\"ArrowLeft\">Flèche\\ gauche</option></select><label\\ htmlFor=\"pas\">Pas</label><select\\ id=\"pas\"\\ value=\\{pas\\}\\ onChange=\\{e\\ =>\\ setPas\\(e\\.target\\.value\\)\\}><option\\ value=\"1\">1</option><option\\ value=\"3\">3</option></select><button\\ id=\"basculer\"\\ type=\"button\"\\ onClick=\\{\\(\\)\\ =>\\ setVisible\\(v\\ =>\\ !v\\)\\}>\\{visible\\ \\?\\ 'Démonter'\\ :\\ 'Monter'\\}</button><p\\ id=\"total\"\\ role=\"status\">\\{total\\}</p>\\{visible\\ \\&\\&\\ <Abonnement\\ cle=\\{cle\\}\\ onCompter=\\{\\(\\)\\ =>\\ setTotal\\(n\\ =>\\ n\\ \\+\\ Number\\(pas\\)\\)\\}\\ />\\}</main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "Le gestionnaire doit lire cle et être renouvelé quand cette propriété change."
+      }
+    ],
+    "id": "react-m5-03-e4"
+  }
+]

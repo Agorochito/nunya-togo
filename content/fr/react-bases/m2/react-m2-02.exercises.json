@@ -1,0 +1,404 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Ajouter une paire avec deux transformations",
+    "instruction_fr": "Lis data-depart de #app comme nombre. App affiche p#total et button#paire type=button « Ajouter deux présences ». Dans son gestionnaire, fais deux demandes fonctionnelles successives ajoutant chacune 1. Chaque clic doit donc augmenter le total de 2.",
+    "fixture_html": "<div id=\"app\" data-depart=\"0\"></div>",
+    "starter_code": "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() { const [total, setTotal] = useState(depart); function ajouterPaire() { setTotal(total + 1); setTotal(total + 1); } return <main><p id=\"total\">{total}</p><button id=\"paire\" type=\"button\" onClick={ajouterPaire}>Ajouter deux présences</button></main>; }\nroot.render(<App />);",
+    "solution": "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() {\n  const [total, setTotal] = useState(depart);\n  function ajouterPaire() { setTotal(t => t + 1); setTotal(t => t + 1); }\n  return <main><p id=\"total\">{total}</p><button id=\"paire\" type=\"button\" onClick={ajouterPaire}>Ajouter deux présences</button></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Deux paires successives",
+        "checks": [
+          {
+            "selector": "#total",
+            "text": "0"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#paire",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "2"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#paire",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "4"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Départ cinq",
+        "checks": [
+          {
+            "selector": "#total",
+            "text": "5"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#paire",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "7"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#paire",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "9"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#paire",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "11"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-depart=\"5\"></div>"
+      }
+    ],
+    "hints": [
+      "Les deux lectures de total appartiennent au même instantané.",
+      "Passe deux fonctions t => t + 1 plutôt que deux valeurs identiques.",
+      "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() {\n  const [total, setTotal] = useState(depart);\n  function ajouterPaire() { setTotal(t => t + 1); setTotal(t => t + 1); }\n  return <main><p id=\"total\">{total}</p><button id=\"paire\" type=\"button\" onClick={ajouterPaire}>Ajouter deux présences</button></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Chaque transformation reçoit le résultat de la précédente.",
+    "common_wrong_answers": [],
+    "id": "react-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Appliquer des opérations dans leur ordre",
+    "instruction_fr": "Lis le départ numérique dans data-depart. App présente p#valeur et button#transformer type=button « Doubler puis ajouter trois ». Un clic demande d’abord v=>v*2, puis v=>v+3. Conserve cet ordre et ces deux mises à jour fonctionnelles.",
+    "fixture_html": "<div id=\"app\" data-depart=\"2\"></div>",
+    "starter_code": "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() { const [valeur, setValeur] = useState(depart); function transformer() { setValeur(valeur * 2); setValeur(valeur + 3); } return <main><p id=\"valeur\">{valeur}</p><button id=\"transformer\" type=\"button\" onClick={transformer}>Doubler puis ajouter trois</button></main>; }\nroot.render(<App />);",
+    "solution": "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() {\n  const [valeur, setValeur] = useState(depart);\n  function transformer() { setValeur(v => v * 2); setValeur(v => v + 3); }\n  return <main><p id=\"valeur\">{valeur}</p><button id=\"transformer\" type=\"button\" onClick={transformer}>Doubler puis ajouter trois</button></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Doubler avant d’ajouter",
+        "checks": [
+          {
+            "selector": "#valeur",
+            "text": "2"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#transformer",
+            "checks": [
+              {
+                "selector": "#valeur",
+                "text": "7"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#transformer",
+            "checks": [
+              {
+                "selector": "#valeur",
+                "text": "17"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autre départ",
+        "checks": [
+          {
+            "selector": "#valeur",
+            "text": "5"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#transformer",
+            "checks": [
+              {
+                "selector": "#valeur",
+                "text": "13"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#transformer",
+            "checks": [
+              {
+                "selector": "#valeur",
+                "text": "29"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-depart=\"5\"></div>"
+      }
+    ],
+    "hints": [
+      "Le second calcul doit utiliser le résultat doublé.",
+      "Les fonctions sont placées dans l’ordre de la consigne.",
+      "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() {\n  const [valeur, setValeur] = useState(depart);\n  function transformer() { setValeur(v => v * 2); setValeur(v => v + 3); }\n  return <main><p id=\"valeur\">{valeur}</p><button id=\"transformer\" type=\"button\" onClick={transformer}>Doubler puis ajouter trois</button></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "L’ordre est observable : ajouter trois avant de doubler donnerait d’autres résultats.",
+    "common_wrong_answers": [],
+    "id": "react-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Transformer une valeur de remplacement",
+    "instruction_fr": "Répare preparer : au clic sur #preparer, demande d’abord un remplacement par 10 puis une transformation qui ajoute 1 à cette valeur en attente. #valeur doit donc devenir 11, quel que soit le départ numérique de #app. Garde les deux demandes.",
+    "fixture_html": "<div id=\"app\" data-depart=\"2\"></div>",
+    "starter_code": "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() { const [valeur, setValeur] = useState(depart); function preparer() { setValeur(10); setValeur(valeur + 1); } return <main><p id=\"valeur\">{valeur}</p><button id=\"preparer\" type=\"button\" onClick={preparer}>Partir de dix et ajouter un</button></main>; }\nroot.render(<App />);",
+    "solution": "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() {\n  const [valeur, setValeur] = useState(depart);\n  function preparer() { setValeur(10); setValeur(v => v + 1); }\n  return <main><p id=\"valeur\">{valeur}</p><button id=\"preparer\" type=\"button\" onClick={preparer}>Partir de dix et ajouter un</button></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Remplacement puis transformation",
+        "checks": [
+          {
+            "selector": "#valeur",
+            "text": "2"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#preparer",
+            "checks": [
+              {
+                "selector": "#valeur",
+                "text": "11"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#preparer",
+            "checks": [
+              {
+                "selector": "#valeur",
+                "text": "11"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Départ zéro",
+        "checks": [
+          {
+            "selector": "#valeur",
+            "text": "0"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#preparer",
+            "checks": [
+              {
+                "selector": "#valeur",
+                "text": "11"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#preparer",
+            "checks": [
+              {
+                "selector": "#valeur",
+                "text": "11"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-depart=\"0\"></div>"
+      }
+    ],
+    "hints": [
+      "valeur + 1 relit l’instantané, pas le remplacement déjà demandé.",
+      "La seconde demande doit recevoir v et retourner v + 1.",
+      "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() {\n  const [valeur, setValeur] = useState(depart);\n  function preparer() { setValeur(10); setValeur(v => v + 1); }\n  return <main><p id=\"valeur\">{valeur}</p><button id=\"preparer\" type=\"button\" onClick={preparer}>Partir de dix et ajouter un</button></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "La base dix alimente la transformation suivante de la file.",
+    "common_wrong_answers": [],
+    "id": "react-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Composer un compteur à plusieurs commandes",
+    "instruction_fr": "data-depart fournit le départ numérique. App affiche p#total. #paire « Ajouter une paire » demande deux transformations +1 ; #transformer « Doubler puis ajouter un » demande ×2 puis +1 ; #reset « Repartir » remplace le total par le départ. Tous les boutons sont de type button. Monte App et conserve les opérations successives annoncées.",
+    "fixture_html": "<div id=\"app\" data-depart=\"0\"></div>",
+    "starter_code": "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() { const [total, setTotal] = useState(depart); return <main><p id=\"total\">{total}</p><button id=\"paire\" type=\"button\" onClick={() => setTotal(total + 1)}>Ajouter une paire</button><button id=\"transformer\" type=\"button\" onClick={() => setTotal(total + 1)}>Doubler puis ajouter un</button><button id=\"reset\" type=\"button\" onClick={() => setTotal(0)}>Repartir</button></main>; }\nroot.render(<App />);",
+    "solution": "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() {\n  const [total, setTotal] = useState(depart);\n  function paire() { setTotal(t => t + 1); setTotal(t => t + 1); }\n  function transformer() { setTotal(t => t * 2); setTotal(t => t + 1); }\n  return <main><p id=\"total\">{total}</p><button id=\"paire\" type=\"button\" onClick={paire}>Ajouter une paire</button><button id=\"transformer\" type=\"button\" onClick={transformer}>Doubler puis ajouter un</button><button id=\"reset\" type=\"button\" onClick={() => setTotal(depart)}>Repartir</button></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Mélanger les commandes puis repartir",
+        "checks": [
+          {
+            "selector": "#total",
+            "text": "0"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#paire",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "2"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#transformer",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "5"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#paire",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "7"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#reset",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "0"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#transformer",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "1"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Départ conservé au reset",
+        "checks": [
+          {
+            "selector": "#total",
+            "text": "3"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#transformer",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "7"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#paire",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "9"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#transformer",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "19"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#reset",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "3"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#paire",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "5"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-depart=\"3\"></div>"
+      }
+    ],
+    "hints": [
+      "Chaque commande décrit sa propre file de calculs.",
+      "Le reset lit le départ fixe ; il ne suppose pas que ce départ vaut zéro.",
+      "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() {\n  const [total, setTotal] = useState(depart);\n  function paire() { setTotal(t => t + 1); setTotal(t => t + 1); }\n  function transformer() { setTotal(t => t * 2); setTotal(t => t + 1); }\n  return <main><p id=\"total\">{total}</p><button id=\"paire\" type=\"button\" onClick={paire}>Ajouter une paire</button><button id=\"transformer\" type=\"button\" onClick={transformer}>Doubler puis ajouter un</button><button id=\"reset\" type=\"button\" onClick={() => setTotal(depart)}>Repartir</button></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Les séquences mêlées vérifient les calculs à partir de la mémoire actuelle.",
+    "common_wrong_answers": [],
+    "id": "react-m2-02-e4"
+  }
+]

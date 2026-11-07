@@ -9,6 +9,8 @@ const TECHNOLOGIES={
   html:{label:'HTML',mark:'</>',aliases:'html web balisage structure'},
   css:{label:'CSS',mark:'{ }',aliases:'css web styles presentation'},
   javascript:{label:'JavaScript',mark:'JS',aliases:'javascript js programmation console'},
+  dom:{label:'JavaScript · DOM',mark:'DOM',aliases:'javascript js dom interface evenements formulaires'},
+  react:{label:'React',mark:'R',aliases:'react jsx composants etat interface javascript js'},
   http:{label:'HTTP et API',mark:'API',aliases:'http api fetch requete reponse client'},
   sql:{label:'SQL',mark:'SQL',aliases:'sql sqlite donnees base requete'},
   git:{label:'Git',mark:'Git',aliases:'git versions branches historique'}

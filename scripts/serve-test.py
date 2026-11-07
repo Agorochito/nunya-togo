@@ -9,6 +9,8 @@ class Handler(SimpleHTTPRequestHandler):
    self.send_header('Content-Security-Policy',policy)
   if self.path.split('?')[0]=='/coding-sql-worker.js':
    self.send_header('Content-Security-Policy',"default-src 'none'; script-src 'wasm-unsafe-eval'; connect-src 'self'; worker-src 'none'; base-uri 'none'")
+  if self.path.split('?')[0] in ['/runtime/dom-frame.html','/runtime/react-frame.html']:
+   self.send_header('Content-Security-Policy',"default-src 'none'; sandbox allow-scripts; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; worker-src 'none'; form-action 'none'; base-uri 'none'")
   return super().end_headers()
 parser=argparse.ArgumentParser();parser.add_argument('--port',type=int,default=4176);args=parser.parse_args()
 import functools

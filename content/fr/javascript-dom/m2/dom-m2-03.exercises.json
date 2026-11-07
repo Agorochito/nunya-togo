@@ -1,0 +1,540 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Afficher l’origine et le lieu d’écoute",
+    "instruction_fr": "Installe un écouteur click sur #zone. À chaque clic reçu, écris « <id currentTarget> / <id target> » dans #trace. Conserve « Aucun clic » au lancement. Le bouton contient un enfant dont l’id peut varier.",
+    "fixture_html": "<main><div id=\"zone\"><button id=\"action\" type=\"button\"><span id=\"libelle\">Choisir</span></button></div><p id=\"trace\">Aucun clic</p></main>",
+    "starter_code": "const zone = document.querySelector(\"#zone\");\nzone.addEventListener(\"click\", function (evenement) { document.querySelector(\"#trace\").textContent = evenement.target.id; });",
+    "solution": "const zone = document.querySelector(\"#zone\");\nzone.addEventListener(\"click\", function (evenement) { document.querySelector(\"#trace\").textContent = evenement.currentTarget.id + \" / \" + evenement.target.id; });",
+    "visible_tests": [
+      {
+        "description_fr": "Cible enfant puis bouton",
+        "checks": [
+          {
+            "selector": "#trace",
+            "text": "Aucun clic"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#libelle",
+            "checks": [
+              {
+                "selector": "#trace",
+                "text": "zone / libelle"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#action",
+            "checks": [
+              {
+                "selector": "#trace",
+                "text": "zone / action"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autre id enfant et fond de zone",
+        "checks": [
+          {
+            "selector": "#trace",
+            "text": "Aucun clic"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#icone",
+            "checks": [
+              {
+                "selector": "#trace",
+                "text": "zone / icone"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#zone",
+            "checks": [
+              {
+                "selector": "#trace",
+                "text": "zone / zone"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><div id=\"zone\"><button id=\"action\" type=\"button\"><span id=\"icone\">Autre contenu</span></button></div><p id=\"trace\">Aucun clic</p></main>"
+      }
+    ],
+    "hints": [
+      "Les propriétés contiennent des éléments, puis id fournit leur identifiant.",
+      "currentTarget reste #zone pendant cet écouteur.",
+      "const zone = document.querySelector(\"#zone\");\nzone.addEventListener(\"click\", function (evenement) { document.querySelector(\"#trace\").textContent = evenement.currentTarget.id + \" / \" + evenement.target.id; });"
+    ],
+    "explanation_fr": "Le clic reçu par la zone ne signifie pas que la zone était sa cible initiale.",
+    "common_wrong_answers": [],
+    "id": "dom-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Choisir un atelier par délégation",
+    "instruction_fr": "Enregistre un seul écouteur sur #zone. Retrouve la commande avec closest(\"[data-atelier]\"), vérifie qu’elle existe et appartient à #zone avec contains, puis copie son data-atelier dans #choix. Les clics sur #fond ou #exterieur ne changent rien.",
+    "fixture_html": "<main><section data-atelier=\"Hors zone\"><div id=\"zone\"><p id=\"fond\">Fond</p><button id=\"a\" type=\"button\" data-atelier=\"Lecture\"><span id=\"a-texte\">Livre</span></button><button id=\"b\" type=\"button\" data-atelier=\"Jardin\"><span id=\"b-texte\">Graine</span></button></div></section><button id=\"exterieur\" type=\"button\" data-atelier=\"Extérieur\">Autre</button><p id=\"choix\">Aucun</p></main>",
+    "starter_code": "const zone = document.querySelector(\"#zone\");\nzone.addEventListener(\"click\", function (evenement) { document.querySelector(\"#choix\").textContent = evenement.target.dataset.atelier; });",
+    "solution": "const zone = document.querySelector(\"#zone\");\nzone.addEventListener(\"click\", function (evenement) {\n  const commande = evenement.target.closest(\"[data-atelier]\");\n  if (!commande || !zone.contains(commande)) { return; }\n  document.querySelector(\"#choix\").textContent = commande.dataset.atelier;\n});",
+    "visible_tests": [
+      {
+        "description_fr": "Enfants et commandes étrangères",
+        "checks": [
+          {
+            "selector": "#choix",
+            "text": "Aucun"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#a-texte",
+            "checks": [
+              {
+                "selector": "#choix",
+                "text": "Lecture"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#fond",
+            "checks": [
+              {
+                "selector": "#choix",
+                "text": "Lecture"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#exterieur",
+            "checks": [
+              {
+                "selector": "#choix",
+                "text": "Lecture"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#b",
+            "checks": [
+              {
+                "selector": "#choix",
+                "text": "Jardin"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autres titres et autre ordre",
+        "checks": [
+          {
+            "selector": "#choix",
+            "text": "Aucun"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#fond",
+            "checks": [
+              {
+                "selector": "#choix",
+                "text": "Aucun"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#b-texte",
+            "checks": [
+              {
+                "selector": "#choix",
+                "text": "Poterie"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#exterieur",
+            "checks": [
+              {
+                "selector": "#choix",
+                "text": "Poterie"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#a",
+            "checks": [
+              {
+                "selector": "#choix",
+                "text": "Chant"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#fond",
+            "checks": [
+              {
+                "selector": "#choix",
+                "text": "Chant"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><section data-atelier=\"Hors zone\"><div id=\"zone\"><p id=\"fond\">Fond</p><button id=\"a\" type=\"button\" data-atelier=\"Chant\"><span id=\"a-texte\">Livre</span></button><button id=\"b\" type=\"button\" data-atelier=\"Poterie\"><span id=\"b-texte\">Graine</span></button></div></section><button id=\"exterieur\" type=\"button\" data-atelier=\"Extérieur\">Autre</button><p id=\"choix\">Aucun</p></main>"
+      }
+    ],
+    "hints": [
+      "L’enfant cliqué ne porte pas forcément data-atelier.",
+      "closest peut remonter hors de la zone : contains est une garde nécessaire.",
+      "const zone = document.querySelector(\"#zone\");\nzone.addEventListener(\"click\", function (evenement) {\n  const commande = evenement.target.closest(\"[data-atelier]\");\n  if (!commande || !zone.contains(commande)) { return; }\n  document.querySelector(\"#choix\").textContent = commande.dataset.atelier;\n});"
+    ],
+    "explanation_fr": "Le texte de présentation n’est pas utilisé comme identité de commande.",
+    "common_wrong_answers": [],
+    "id": "dom-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une lecture sur le mauvais élément",
+    "instruction_fr": "Corrige cet écouteur de #zone. Au clic sur un bouton ou son enfant, #code doit recevoir le data-code du bouton. Un clic sur #fond doit conserver le code précédent, même si un ancêtre extérieur possède aussi data-code.",
+    "fixture_html": "<main><section data-code=\"INTERDIT\"><div id=\"zone\"><p id=\"fond\">Sans commande</p><button id=\"code-a\" type=\"button\" data-code=\"LEC\"><strong id=\"icone-a\">Lire</strong></button><button id=\"code-b\" type=\"button\" data-code=\"JAR\"><strong id=\"icone-b\">Planter</strong></button></div></section><p id=\"code\">Aucun code</p></main>",
+    "starter_code": "const zone = document.querySelector(\"#zone\");\nzone.addEventListener(\"click\", function (evenement) {\n  if (evenement.target.dataset.code) { document.querySelector(\"#code\").textContent = evenement.target.dataset.code; }\n});",
+    "solution": "const zone = document.querySelector(\"#zone\");\nzone.addEventListener(\"click\", function (evenement) {\n  const commande = evenement.target.closest(\"[data-code]\");\n  if (!commande || !zone.contains(commande)) { return; }\n  document.querySelector(\"#code\").textContent = commande.dataset.code;\n});",
+    "visible_tests": [
+      {
+        "description_fr": "Enfant fort et garde",
+        "checks": [
+          {
+            "selector": "#code",
+            "text": "Aucun code"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#icone-a",
+            "checks": [
+              {
+                "selector": "#code",
+                "text": "LEC"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#fond",
+            "checks": [
+              {
+                "selector": "#code",
+                "text": "LEC"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#icone-b",
+            "checks": [
+              {
+                "selector": "#code",
+                "text": "JAR"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autres codes et clic direct",
+        "checks": [
+          {
+            "selector": "#code",
+            "text": "Aucun code"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#code-b",
+            "checks": [
+              {
+                "selector": "#code",
+                "text": "DES"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#fond",
+            "checks": [
+              {
+                "selector": "#code",
+                "text": "DES"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#icone-a",
+            "checks": [
+              {
+                "selector": "#code",
+                "text": "MUS"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><section data-code=\"INTERDIT\"><div id=\"zone\"><p id=\"fond\">Sans commande</p><button id=\"code-a\" type=\"button\" data-code=\"MUS\"><strong id=\"icone-a\">Lire</strong></button><button id=\"code-b\" type=\"button\" data-code=\"DES\"><strong id=\"icone-b\">Planter</strong></button></div></section><p id=\"code\">Aucun code</p></main>"
+      }
+    ],
+    "hints": [
+      "Une vérification sur target seul ignore les enfants du bouton.",
+      "Retrouve d’abord le porteur de data-code, puis contrôle son appartenance.",
+      "const zone = document.querySelector(\"#zone\");\nzone.addEventListener(\"click\", function (evenement) {\n  const commande = evenement.target.closest(\"[data-code]\");\n  if (!commande || !zone.contains(commande)) { return; }\n  document.querySelector(\"#code\").textContent = commande.dataset.code;\n});"
+    ],
+    "explanation_fr": "La correction couvre à la fois les enfants et les ancêtres hors périmètre.",
+    "common_wrong_answers": [],
+    "id": "dom-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Compter des choix et permettre leur effacement",
+    "instruction_fr": "Un seul écouteur sur #commandes traite les éléments [data-action] de cette zone, trouvés par closest et validés par contains. Pour action=\"choisir\", augmente un compteur initialement 0 et conserve le data-titre comme dernier choix. Pour action=\"effacer\", remets 0 et « Aucun choix ». Rends #nombre et #dernier au départ et après chaque commande. Fond et bouton #autre restent sans effet.",
+    "fixture_html": "<main><section data-action=\"effacer\"><div id=\"commandes\"><p id=\"fond\">Choix du club</p><button id=\"a\" type=\"button\" data-action=\"choisir\" data-titre=\"Lecture\"><span id=\"a-texte\">Livre</span></button><button id=\"b\" type=\"button\" data-action=\"choisir\" data-titre=\"Jardin\"><strong id=\"b-texte\">Graine</strong></button><button id=\"effacer\" type=\"button\" data-action=\"effacer\"><span id=\"effacer-texte\">Effacer</span></button></div></section><button id=\"autre\" type=\"button\" data-action=\"effacer\">Hors zone</button><p id=\"dernier\">Aucun choix</p><p id=\"nombre\">0</p></main>",
+    "starter_code": "const zone = document.querySelector(\"#commandes\");\nlet nombre = 0;\nlet dernier = \"Aucun choix\";\nfunction rendre() { document.querySelector(\"#nombre\").textContent = nombre; document.querySelector(\"#dernier\").textContent = dernier; }\nrendre();",
+    "solution": "const zone = document.querySelector(\"#commandes\");\nlet nombre = 0;\nlet dernier = \"Aucun choix\";\nfunction rendre() {\n  document.querySelector(\"#nombre\").textContent = nombre;\n  document.querySelector(\"#dernier\").textContent = dernier;\n}\nzone.addEventListener(\"click\", function (evenement) {\n  const commande = evenement.target.closest(\"[data-action]\");\n  if (!commande || !zone.contains(commande)) { return; }\n  if (commande.dataset.action === \"choisir\") { nombre = nombre + 1; dernier = commande.dataset.titre; }\n  else if (commande.dataset.action === \"effacer\") { nombre = 0; dernier = \"Aucun choix\"; }\n  rendre();\n});\nrendre();",
+    "visible_tests": [
+      {
+        "description_fr": "Choix, effacement et reprise",
+        "checks": [
+          {
+            "selector": "#nombre",
+            "text": "0"
+          },
+          {
+            "selector": "#dernier",
+            "text": "Aucun choix"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#a-texte",
+            "checks": [
+              {
+                "selector": "#nombre",
+                "text": "1"
+              },
+              {
+                "selector": "#dernier",
+                "text": "Lecture"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#b-texte",
+            "checks": [
+              {
+                "selector": "#nombre",
+                "text": "2"
+              },
+              {
+                "selector": "#dernier",
+                "text": "Jardin"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#fond",
+            "checks": [
+              {
+                "selector": "#nombre",
+                "text": "2"
+              },
+              {
+                "selector": "#dernier",
+                "text": "Jardin"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#autre",
+            "checks": [
+              {
+                "selector": "#nombre",
+                "text": "2"
+              },
+              {
+                "selector": "#dernier",
+                "text": "Jardin"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#effacer-texte",
+            "checks": [
+              {
+                "selector": "#nombre",
+                "text": "0"
+              },
+              {
+                "selector": "#dernier",
+                "text": "Aucun choix"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#a",
+            "checks": [
+              {
+                "selector": "#nombre",
+                "text": "1"
+              },
+              {
+                "selector": "#dernier",
+                "text": "Lecture"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autres titres et commande répétée",
+        "checks": [
+          {
+            "selector": "#nombre",
+            "text": "0"
+          },
+          {
+            "selector": "#dernier",
+            "text": "Aucun choix"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#effacer",
+            "checks": [
+              {
+                "selector": "#nombre",
+                "text": "0"
+              },
+              {
+                "selector": "#dernier",
+                "text": "Aucun choix"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#b",
+            "checks": [
+              {
+                "selector": "#nombre",
+                "text": "1"
+              },
+              {
+                "selector": "#dernier",
+                "text": "Couture"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#b-texte",
+            "checks": [
+              {
+                "selector": "#nombre",
+                "text": "2"
+              },
+              {
+                "selector": "#dernier",
+                "text": "Couture"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#fond",
+            "checks": [
+              {
+                "selector": "#nombre",
+                "text": "2"
+              },
+              {
+                "selector": "#dernier",
+                "text": "Couture"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#a-texte",
+            "checks": [
+              {
+                "selector": "#nombre",
+                "text": "3"
+              },
+              {
+                "selector": "#dernier",
+                "text": "Théâtre"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#effacer",
+            "checks": [
+              {
+                "selector": "#nombre",
+                "text": "0"
+              },
+              {
+                "selector": "#dernier",
+                "text": "Aucun choix"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><section data-action=\"effacer\"><div id=\"commandes\"><p id=\"fond\">Choix du club</p><button id=\"a\" type=\"button\" data-action=\"choisir\" data-titre=\"Théâtre\"><span id=\"a-texte\">Livre</span></button><button id=\"b\" type=\"button\" data-action=\"choisir\" data-titre=\"Couture\"><strong id=\"b-texte\">Graine</strong></button><button id=\"effacer\" type=\"button\" data-action=\"effacer\"><span id=\"effacer-texte\">Effacer</span></button></div></section><button id=\"autre\" type=\"button\" data-action=\"effacer\">Hors zone</button><p id=\"dernier\">Aucun choix</p><p id=\"nombre\">0</p></main>"
+      }
+    ],
+    "hints": [
+      "La reconnaissance de commande précède toute modification d’état.",
+      "Les deux actions partagent le compteur, le dernier choix et le rendu.",
+      "const zone = document.querySelector(\"#commandes\");\nlet nombre = 0;\nlet dernier = \"Aucun choix\";\nfunction rendre() {\n  document.querySelector(\"#nombre\").textContent = nombre;\n  document.querySelector(\"#dernier\").textContent = dernier;\n}\nzone.addEventListener(\"click\", function (evenement) {\n  const commande = evenement.target.closest(\"[data-action]\");\n  if (!commande || !zone.contains(commande)) { return; }\n  if (commande.dataset.action === \"choisir\") { nombre = nombre + 1; dernier = commande.dataset.titre; }\n  else if (commande.dataset.action === \"effacer\") { nombre = 0; dernier = \"Aucun choix\"; }\n  rendre();\n});\nrendre();"
+    ],
+    "explanation_fr": "Le garde contains empêche notamment le fond de déclencher l’effacement porté par l’ancêtre extérieur.",
+    "common_wrong_answers": [],
+    "id": "dom-m2-03-e4"
+  }
+]

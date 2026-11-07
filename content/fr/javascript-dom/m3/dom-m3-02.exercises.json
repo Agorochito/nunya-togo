@@ -1,0 +1,438 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Guider une demande locale",
+    "instruction_fr": "Écoute submit sur #inscription et empêche sa navigation. Lis #nom à chaque demande et applique trim. Vide : #retour=Prénom requis. et aria-invalid=true ; sinon Demande fictive : suivi du nom et aria-invalid=false. Ne modifie pas la saisie.",
+    "fixture_html": "<main><form id=\"inscription\" novalidate><label for=\"nom\">Prénom fictif</label><input id=\"nom\" aria-describedby=\"retour\"><button type=\"submit\">Vérifier la démonstration</button></form><p id=\"retour\" role=\"status\" aria-live=\"polite\">En attente.</p></main>",
+    "starter_code": "document.querySelector(\"#inscription\").addEventListener(\"submit\", function(e) { e.preventDefault(); document.querySelector(\"#retour\").textContent=\"Demande fictive : Afi\"; });",
+    "solution": "const formulaire = document.querySelector(\"#inscription\");\nconst nom = document.querySelector(\"#nom\");\nconst retour = document.querySelector(\"#retour\");\nformulaire.addEventListener(\"submit\", function(evenement) {\n  evenement.preventDefault();\n  const valeur = nom.value.trim();\n  if (valeur === \"\") {\n    nom.setAttribute(\"aria-invalid\", \"true\");\n    retour.textContent = \"Prénom requis.\";\n    return;\n  }\n  nom.setAttribute(\"aria-invalid\", \"false\");\n  retour.textContent = \"Demande fictive : \" + valeur;\n});",
+    "visible_tests": [
+      {
+        "description_fr": "Vide puis nom nettoyé",
+        "checks": [],
+        "steps": [
+          {
+            "action": "submit",
+            "selector": "#inscription",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Prénom requis."
+              },
+              {
+                "selector": "#nom",
+                "attributes": {
+                  "aria-invalid": "true"
+                }
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#nom",
+            "value": " Afi ",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#inscription",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Demande fictive : Afi"
+              },
+              {
+                "selector": "#nom",
+                "value": " Afi ",
+                "attributes": {
+                  "aria-invalid": "false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Espaces puis autre prénom",
+        "checks": [],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#nom",
+            "value": "  ",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#inscription",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Prénom requis."
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#nom",
+            "value": "Kofi",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#inscription",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Demande fictive : Kofi"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La demande vise-t-elle toujours la valeur actuelle ?",
+      "Appelle preventDefault puis lis et nettoie le champ dans le listener.",
+      "const formulaire = document.querySelector(\"#inscription\");\nconst nom = document.querySelector(\"#nom\");\nconst retour = document.querySelector(\"#retour\");\nformulaire.addEventListener(\"submit\", function(evenement) {\n  evenement.preventDefault();\n  const valeur = nom.value.trim();\n  if (valeur === \"\") {\n    nom.setAttribute(\"aria-invalid\", \"true\");\n    retour.textContent = \"Prénom requis.\";\n    return;\n  }\n  nom.setAttribute(\"aria-invalid\", \"false\");\n  retour.textContent = \"Demande fictive : \" + valeur;\n});"
+    ],
+    "explanation_fr": "La règle et le retour changent à chaque soumission ; rien n’est envoyé.",
+    "common_wrong_answers": [],
+    "id": "dom-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Transférer vers une quantité bornée",
+    "instruction_fr": "Traite submit de #quantite localement. #places doit contenir un texte non vide qui devient un entier de 1 à 4 inclus. Sinon #retour=Choisis un entier de 1 à 4. et aria-invalid=true. Si valide : Places fictives : suivi du nombre, aria-invalid=false.",
+    "fixture_html": "<main><form id=\"quantite\" novalidate><label for=\"places\">Places de démonstration, entier de 1 à 4</label><input id=\"places\" inputmode=\"numeric\" aria-describedby=\"retour\"><button type=\"submit\">Vérifier</button></form><p id=\"retour\" role=\"status\" aria-live=\"polite\">En attente.</p></main>",
+    "starter_code": "document.querySelector(\"#quantite\").addEventListener(\"submit\", function(e) { e.preventDefault(); document.querySelector(\"#retour\").textContent=\"Places fictives : 2\"; });",
+    "solution": "const formulaire = document.querySelector(\"#quantite\");\nconst places = document.querySelector(\"#places\");\nconst retour = document.querySelector(\"#retour\");\nformulaire.addEventListener(\"submit\", function(evenement) {\n  evenement.preventDefault();\n  const texte = places.value.trim();\n  const nombre = Number(texte);\n  if (texte === \"\" || !Number.isInteger(nombre) || nombre < 1 || nombre > 4) {\n    places.setAttribute(\"aria-invalid\", \"true\");\n    retour.textContent = \"Choisis un entier de 1 à 4.\";\n    return;\n  }\n  places.setAttribute(\"aria-invalid\", \"false\");\n  retour.textContent = \"Places fictives : \" + String(nombre);\n});",
+    "visible_tests": [
+      {
+        "description_fr": "Présence puis quantité",
+        "checks": [],
+        "steps": [
+          {
+            "action": "submit",
+            "selector": "#quantite",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Choisis un entier de 1 à 4."
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#places",
+            "value": "2",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#quantite",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Places fictives : 2"
+              },
+              {
+                "selector": "#places",
+                "attributes": {
+                  "aria-invalid": "false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Bornes et type",
+        "checks": [],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#places",
+            "value": "4",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#quantite",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Places fictives : 4"
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#places",
+            "value": "2.5",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#quantite",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Choisis un entier de 1 à 4."
+              },
+              {
+                "selector": "#places",
+                "attributes": {
+                  "aria-invalid": "true"
+                }
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#places",
+            "value": "texte",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#quantite",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Choisis un entier de 1 à 4."
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#places",
+            "value": "1",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#quantite",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Places fictives : 1"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La conversion seule prouve-t-elle la présence et l’intégralité ?",
+      "Combine texte.trim non vide, Number.isInteger et les deux bornes.",
+      "const formulaire = document.querySelector(\"#quantite\");\nconst places = document.querySelector(\"#places\");\nconst retour = document.querySelector(\"#retour\");\nformulaire.addEventListener(\"submit\", function(evenement) {\n  evenement.preventDefault();\n  const texte = places.value.trim();\n  const nombre = Number(texte);\n  if (texte === \"\" || !Number.isInteger(nombre) || nombre < 1 || nombre > 4) {\n    places.setAttribute(\"aria-invalid\", \"true\");\n    retour.textContent = \"Choisis un entier de 1 à 4.\";\n    return;\n  }\n  places.setAttribute(\"aria-invalid\", \"false\");\n  retour.textContent = \"Places fictives : \" + String(nombre);\n});"
+    ],
+    "explanation_fr": "La validation est celle de ce petit contrat, sans garantie sur un service extérieur.",
+    "common_wrong_answers": [],
+    "id": "dom-m3-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une lecture trop ancienne",
+    "instruction_fr": "Le programme lit le nom une seule fois. Corrige-le pour que chaque submit de #inscription applique le contrat Prénom requis. ou Demande fictive : nom nettoyé, en mettant aria-invalid à true ou false. Une erreur doit remplacer un ancien succès.",
+    "fixture_html": "<main><form id=\"inscription\" novalidate><label for=\"nom\">Prénom fictif</label><input id=\"nom\" aria-describedby=\"retour\"><button type=\"submit\">Vérifier la démonstration</button></form><p id=\"retour\" role=\"status\" aria-live=\"polite\">En attente.</p></main>",
+    "starter_code": "const formulaire = document.querySelector(\"#inscription\");\nconst nom = document.querySelector(\"#nom\");\nconst retour = document.querySelector(\"#retour\");\nconst valeur = nom.value.trim();\nformulaire.addEventListener(\"submit\", function(evenement) {\n  evenement.preventDefault();\n\n  if (valeur === \"\") {\n    nom.setAttribute(\"aria-invalid\", \"true\");\n    retour.textContent = \"Prénom requis.\";\n    return;\n  }\n  nom.setAttribute(\"aria-invalid\", \"false\");\n  retour.textContent = \"Demande fictive : \" + valeur;\n});",
+    "solution": "const formulaire = document.querySelector(\"#inscription\");\nconst nom = document.querySelector(\"#nom\");\nconst retour = document.querySelector(\"#retour\");\nformulaire.addEventListener(\"submit\", function(evenement) {\n  evenement.preventDefault();\n  const valeur = nom.value.trim();\n  if (valeur === \"\") {\n    nom.setAttribute(\"aria-invalid\", \"true\");\n    retour.textContent = \"Prénom requis.\";\n    return;\n  }\n  nom.setAttribute(\"aria-invalid\", \"false\");\n  retour.textContent = \"Demande fictive : \" + valeur;\n});",
+    "visible_tests": [
+      {
+        "description_fr": "Succès puis retour à une erreur",
+        "checks": [],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#nom",
+            "value": "Afi",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#inscription",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Demande fictive : Afi"
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#nom",
+            "value": " ",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#inscription",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Prénom requis."
+              },
+              {
+                "selector": "#nom",
+                "attributes": {
+                  "aria-invalid": "true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Un départ prérempli ne fige pas le nom",
+        "checks": [],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#nom",
+            "value": "Kofi",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#inscription",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Demande fictive : Kofi"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><form id=\"inscription\" novalidate><label for=\"nom\">Prénom fictif</label><input value=\"Mina\" id=\"nom\" aria-describedby=\"retour\"><button type=\"submit\">Vérifier la démonstration</button></form><p id=\"retour\" role=\"status\" aria-live=\"polite\">En attente.</p></main>"
+      }
+    ],
+    "hints": [
+      "Quelle ligne doit être exécutée après la prochaine saisie ?",
+      "Déplace la lecture trim dans la fonction qui traite submit.",
+      "const formulaire = document.querySelector(\"#inscription\");\nconst nom = document.querySelector(\"#nom\");\nconst retour = document.querySelector(\"#retour\");\nformulaire.addEventListener(\"submit\", function(evenement) {\n  evenement.preventDefault();\n  const valeur = nom.value.trim();\n  if (valeur === \"\") {\n    nom.setAttribute(\"aria-invalid\", \"true\");\n    retour.textContent = \"Prénom requis.\";\n    return;\n  }\n  nom.setAttribute(\"aria-invalid\", \"false\");\n  retour.textContent = \"Demande fictive : \" + valeur;\n});"
+    ],
+    "explanation_fr": "Le contrôle change entre les demandes : son ancienne chaîne ne peut pas servir de source de vérité.",
+    "common_wrong_answers": [],
+    "id": "dom-m3-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Assembler prénom et atelier",
+    "instruction_fr": "Traite submit sur #demande avec preventDefault. Après trim du nom : vide→Prénom requis. ; sinon choix #atelier vide→Choisis un atelier. ; sinon #retour contient nom · valeurAtelier · démonstration. Les valeurs permises sont semis et compost. Aucun envoi réel.",
+    "fixture_html": "<main><form id=\"demande\" novalidate><label for=\"nom\">Prénom fictif</label><input id=\"nom\"><label for=\"atelier\">Atelier fictif</label><select id=\"atelier\"><option value=\"\">Choisir</option><option value=\"semis\">Semis</option><option value=\"compost\">Compost</option></select><button type=\"submit\">Vérifier la demande</button></form><p id=\"retour\" role=\"status\" aria-live=\"polite\">En attente.</p></main>",
+    "starter_code": "document.querySelector(\"#retour\").textContent=\"En attente.\";",
+    "solution": "const formulaire = document.querySelector(\"#demande\");\nconst nom = document.querySelector(\"#nom\");\nconst atelier = document.querySelector(\"#atelier\");\nconst retour = document.querySelector(\"#retour\");\nformulaire.addEventListener(\"submit\", function(evenement) {\n  evenement.preventDefault();\n  const valeur = nom.value.trim();\n  if (valeur === \"\") { retour.textContent = \"Prénom requis.\"; return; }\n  if (atelier.value === \"\") { retour.textContent = \"Choisis un atelier.\"; return; }\n  retour.textContent = valeur + \" · \" + atelier.value + \" · démonstration\";\n});",
+    "visible_tests": [
+      {
+        "description_fr": "Corriger une règle à la fois",
+        "checks": [],
+        "steps": [
+          {
+            "action": "submit",
+            "selector": "#demande",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Prénom requis."
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#nom",
+            "value": " Afi ",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#demande",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Choisis un atelier."
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#atelier",
+            "value": "semis",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#demande",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Afi · semis · démonstration"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autre choix puis invalide",
+        "checks": [],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#nom",
+            "value": "Lina",
+            "checks": []
+          },
+          {
+            "action": "input",
+            "selector": "#atelier",
+            "value": "compost",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#demande",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Lina · compost · démonstration"
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#atelier",
+            "value": "",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#demande",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Choisis un atelier."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Dans quel ordre les règles doivent-elles être expliquées ?",
+      "Traite la première erreur, puis retourne pour éviter un succès contradictoire.",
+      "const formulaire = document.querySelector(\"#demande\");\nconst nom = document.querySelector(\"#nom\");\nconst atelier = document.querySelector(\"#atelier\");\nconst retour = document.querySelector(\"#retour\");\nformulaire.addEventListener(\"submit\", function(evenement) {\n  evenement.preventDefault();\n  const valeur = nom.value.trim();\n  if (valeur === \"\") { retour.textContent = \"Prénom requis.\"; return; }\n  if (atelier.value === \"\") { retour.textContent = \"Choisis un atelier.\"; return; }\n  retour.textContent = valeur + \" · \" + atelier.value + \" · démonstration\";\n});"
+    ],
+    "explanation_fr": "Le résumé final est un retour de démonstration, pas une inscription persistante.",
+    "common_wrong_answers": [],
+    "id": "dom-m3-02-e4"
+  }
+]

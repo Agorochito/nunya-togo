@@ -1,8 +1,10 @@
 # Contenus et validations à poursuivre
 
-Mise à jour du 4 novembre : voir `COURSE_COVERAGE_AUDIT.md` et `data/review/course_coverage_2026-11-04.json` pour le rapprochement avec le nouveau prompt maître (24 familles, 72 cours cibles par niveau, tous explicitement distingués des contenus réellement disponibles). Conserver Python M1–M4 ; compléter ses prérequis et modules suivants, éprouver le module fonctions et HTML/CSS, puis terminer les six cours fondamentaux avant les niveaux suivants.
+Mise à jour du6novembre : Python débutant (53leçons), HTML/CSS (12chacun), JavaScript (24), HTTP/API (12), SQL (18) et Git/GitHub (12) sont rédigés, avec moteurs réels et tests ; les nouvelles séries DOM et React sont détaillées dans `COURSE_COVERAGE_AUDIT.md`. Ces contenus restent à relire pédagogiquement.
 
-Priorité v5 : faire relire et essayer les 22 leçons Python M1–M4 ; corriger à partir des essais, puis développer M5–M10, HTML, CSS et JavaScript. Les autres langages restent en préparation. Migrer ensuite le pilote de mathématiques vers la même profondeur et le même catalogue. Ne pas présenter les anciennes unités courtes comme déjà conformes à cette nouvelle barre.
+La cible du prompt maître reste72cours par niveau dans24familles, plus les séries complémentaires. Les programmes disponibles, les introductions historiques et les séries en préparation restent distingués. Ne pas transformer les collections d’articles en faux cours terminés.
+
+Prochaines étapes : terminer et tester les lots complémentaires, choisir un runtime Node réel compatible avec les contraintes mobiles et hors ligne, développer les niveaux Python/JavaScript/SQL supérieurs puis les autres familles. Étendre aussi les secteurs non techniques avec des projets spécifiques et des référents métier. Le pilote scolaire n’est pas encore une couverture intégrale des classes et examens nationaux.
 
 - Revue d’interface du 3 novembre : la leçon 1 de Python demande environ onze écrans de défilement sur un téléphone de 360 px, loin des 5 à 10 minutes visées par le cahier de route. Étudier un découpage en sections plus courtes (ou un sommaire repliable) avec les premiers élèves testeurs.
 - Faire relire les trois initiations originales et les douze découvertes par des enseignants / professionnels togolais ; tous restent `brouillon`, `reviewer:null`. Recueillir les erreurs des premiers élèves et prioriser les corrections.

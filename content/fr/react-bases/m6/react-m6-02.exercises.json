@@ -1,0 +1,652 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Relancer après un rejet simulé",
+    "instruction_fr": "Conserver le rendu de M6-01 (#titre h1 focalisable, #etat, #liste, #compte, #vide, #erreur et mêmes textes). Initialiser essai0. #retenter augmente essai et #tentatives « N nouvelle(s) tentative(s) ». L’effet dépend de essai : au début chargerAteliers(), puis chargerAteliers({mode:succes}) dès essai>0, délai150ms. À chaque départ, statut chargement, liste/message vides. Garde locale ignorer vérifiée dans then/catch et activée au nettoyage. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\" data-mode=\"erreur\"></div>",
+    "starter_code": "function App() {\n  const [resultat, setResultat] = useState({statut:'chargement', ateliers:[], message:''});\n  const [essai, setEssai] = useState(0);\n  useEffect(() => {\n    let ignorer = false;\n    setResultat({statut:'chargement', ateliers:[], message:''});\n    chargerAteliers(essai === 0 ? {} : {mode:'succes'}).then(lignes => {\n      if (ignorer) return;\n      setResultat({statut:lignes.length ? 'succes' : 'vide', ateliers:lignes, message:''});\n    }).catch(erreur => {\n      if (ignorer) return;\n      setResultat({statut:'erreur', ateliers:[], message:erreur.message});\n    });\n    return () => { ignorer = true; };\n  }, [essai]);\n  const textes = {chargement:'Chargement...', succes:'Catalogue prêt.', vide:'Aucun atelier.', erreur:'Catalogue indisponible.'};\n  return <main><h1 id=\"titre\" tabIndex={-1}>Catalogue fictif</h1><button id=\"retenter\" type=\"button\" onClick={() => {}}>Nouvelle tentative simulée</button><p id=\"tentatives\">{essai} nouvelle(s) tentative(s)</p><p id=\"etat\" role=\"status\" aria-live=\"polite\">{textes[resultat.statut]}</p><ul id=\"liste\">{resultat.ateliers.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"compte\">{resultat.ateliers.length} atelier(s)</p>{resultat.statut === 'vide' && <p id=\"vide\">Aucun atelier reçu.</p>}{resultat.statut === 'erreur' && <p id=\"erreur\" role=\"alert\">{resultat.message}</p>}</main>;\n}\nroot.render(<App />);",
+    "solution": "function App() {\n  const [resultat, setResultat] = useState({statut:'chargement', ateliers:[], message:''});\n  const [essai, setEssai] = useState(0);\n  useEffect(() => {\n    let ignorer = false;\n    setResultat({statut:'chargement', ateliers:[], message:''});\n    chargerAteliers(essai === 0 ? {} : {mode:'succes'}).then(lignes => {\n      if (ignorer) return;\n      setResultat({statut:lignes.length ? 'succes' : 'vide', ateliers:lignes, message:''});\n    }).catch(erreur => {\n      if (ignorer) return;\n      setResultat({statut:'erreur', ateliers:[], message:erreur.message});\n    });\n    return () => { ignorer = true; };\n  }, [essai]);\n  const textes = {chargement:'Chargement...', succes:'Catalogue prêt.', vide:'Aucun atelier.', erreur:'Catalogue indisponible.'};\n  return <main><h1 id=\"titre\" tabIndex={-1}>Catalogue fictif</h1><button id=\"retenter\" type=\"button\" onClick={() => setEssai(n => n + 1)}>Nouvelle tentative simulée</button><p id=\"tentatives\">{essai} nouvelle(s) tentative(s)</p><p id=\"etat\" role=\"status\" aria-live=\"polite\">{textes[resultat.statut]}</p><ul id=\"liste\">{resultat.ateliers.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"compte\">{resultat.ateliers.length} atelier(s)</p>{resultat.statut === 'vide' && <p id=\"vide\">Aucun atelier reçu.</p>}{resultat.statut === 'erreur' && <p id=\"erreur\" role=\"alert\">{resultat.message}</p>}</main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Échec puis succès",
+        "checks": [
+          {
+            "selector": "#etat",
+            "text": "Chargement..."
+          }
+        ],
+        "steps": [
+          {
+            "action": "focus",
+            "selector": "#titre",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Catalogue indisponible."
+              },
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#compte",
+                "text": "0 atelier(s)"
+              },
+              {
+                "selector": "#erreur",
+                "text": "Le catalogue est indisponible."
+              },
+              {
+                "selector": "#vide",
+                "exists": false
+              }
+            ],
+            "wait_ms": 200
+          },
+          {
+            "action": "click",
+            "selector": "#retenter",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Chargement..."
+              },
+              {
+                "selector": "#tentatives",
+                "text": "1 nouvelle(s) tentative(s)"
+              },
+              {
+                "selector": "#erreur",
+                "exists": false
+              }
+            ]
+          },
+          {
+            "action": "focus",
+            "selector": "#titre",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Catalogue prêt."
+              },
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "2 atelier(s)"
+              },
+              {
+                "selector": "#vide",
+                "exists": false
+              },
+              {
+                "selector": "#erreur",
+                "exists": false
+              }
+            ],
+            "wait_ms": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Vide initial puis deux tentatives réelles",
+        "steps": [
+          {
+            "action": "focus",
+            "selector": "#titre",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Aucun atelier."
+              },
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#compte",
+                "text": "0 atelier(s)"
+              },
+              {
+                "selector": "#vide",
+                "text": "Aucun atelier reçu."
+              },
+              {
+                "selector": "#erreur",
+                "exists": false
+              }
+            ],
+            "wait_ms": 200
+          },
+          {
+            "action": "click",
+            "selector": "#retenter",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Chargement..."
+              }
+            ]
+          },
+          {
+            "action": "focus",
+            "selector": "#titre",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Catalogue prêt."
+              },
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo",
+                  "Papier",
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "3 atelier(s)"
+              },
+              {
+                "selector": "#vide",
+                "exists": false
+              },
+              {
+                "selector": "#erreur",
+                "exists": false
+              }
+            ],
+            "wait_ms": 200
+          },
+          {
+            "action": "click",
+            "selector": "#retenter",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Chargement..."
+              },
+              {
+                "selector": "#tentatives",
+                "text": "2 nouvelle(s) tentative(s)"
+              }
+            ]
+          },
+          {
+            "action": "focus",
+            "selector": "#titre",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Catalogue prêt."
+              },
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo",
+                  "Papier",
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "3 atelier(s)"
+              },
+              {
+                "selector": "#vide",
+                "exists": false
+              },
+              {
+                "selector": "#erreur",
+                "exists": false
+              }
+            ],
+            "wait_ms": 200
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-mode=\"vide\" data-ateliers=\"[{&quot;id&quot;: &quot;ph&quot;, &quot;titre&quot;: &quot;Photo&quot;}, {&quot;id&quot;: &quot;pa&quot;, &quot;titre&quot;: &quot;Papier&quot;}, {&quot;id&quot;: &quot;pi&quot;, &quot;titre&quot;: &quot;Piano&quot;}]\"></div>"
+      }
+    ],
+    "hints": [
+      "Le clic doit modifier une valeur réactive qui figure dans les dépendances.",
+      "Une fonction vide ne démarre aucune nouvelle opération.",
+      "Au clic, appelle setEssai(n => n + 1) puis laisse l’effet dépendant de essai travailler."
+    ],
+    "explanation_fr": "Une vraie nouvelle tentative passe par un nouvel état d’attente et une nouvelle Promise. Le mode de récupération est explicitement simulé, sans prétendre réparer un réseau.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^function\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ \\[resultat,\\ setResultat\\]\\ =\\ useState\\(\\{statut:'chargement',\\ ateliers:\\[\\],\\ message:''\\}\\);\\\n\\ \\ const\\ \\[essai,\\ setEssai\\]\\ =\\ useState\\(0\\);\\\n\\ \\ useEffect\\(\\(\\)\\ =>\\ \\{\\\n\\ \\ \\ \\ let\\ ignorer\\ =\\ false;\\\n\\ \\ \\ \\ setResultat\\(\\{statut:'chargement',\\ ateliers:\\[\\],\\ message:''\\}\\);\\\n\\ \\ \\ \\ chargerAteliers\\(essai\\ ===\\ 0\\ \\?\\ \\{\\}\\ :\\ \\{mode:'succes'\\}\\)\\.then\\(lignes\\ =>\\ \\{\\\n\\ \\ \\ \\ \\ \\ if\\ \\(ignorer\\)\\ return;\\\n\\ \\ \\ \\ \\ \\ setResultat\\(\\{statut:lignes\\.length\\ \\?\\ 'succes'\\ :\\ 'vide',\\ ateliers:lignes,\\ message:''\\}\\);\\\n\\ \\ \\ \\ \\}\\)\\.catch\\(erreur\\ =>\\ \\{\\\n\\ \\ \\ \\ \\ \\ if\\ \\(ignorer\\)\\ return;\\\n\\ \\ \\ \\ \\ \\ setResultat\\(\\{statut:'erreur',\\ ateliers:\\[\\],\\ message:erreur\\.message\\}\\);\\\n\\ \\ \\ \\ \\}\\);\\\n\\ \\ \\ \\ return\\ \\(\\)\\ =>\\ \\{\\ ignorer\\ =\\ true;\\ \\};\\\n\\ \\ \\},\\ \\[essai\\]\\);\\\n\\ \\ const\\ textes\\ =\\ \\{chargement:'Chargement\\.\\.\\.',\\ succes:'Catalogue\\ prêt\\.',\\ vide:'Aucun\\ atelier\\.',\\ erreur:'Catalogue\\ indisponible\\.'\\};\\\n\\ \\ return\\ <main><h1\\ id=\"titre\"\\ tabIndex=\\{\\-1\\}>Catalogue\\ fictif</h1><button\\ id=\"retenter\"\\ type=\"button\"\\ onClick=\\{\\(\\)\\ =>\\ \\{\\}\\}>Nouvelle\\ tentative\\ simulée</button><p\\ id=\"tentatives\">\\{essai\\}\\ nouvelle\\(s\\)\\ tentative\\(s\\)</p><p\\ id=\"etat\"\\ role=\"status\"\\ aria\\-live=\"polite\">\\{textes\\[resultat\\.statut\\]\\}</p><ul\\ id=\"liste\">\\{resultat\\.ateliers\\.map\\(a\\ =>\\ <li\\ key=\\{a\\.id\\}>\\{a\\.titre\\}</li>\\)\\}</ul><p\\ id=\"compte\">\\{resultat\\.ateliers\\.length\\}\\ atelier\\(s\\)</p>\\{resultat\\.statut\\ ===\\ 'vide'\\ \\&\\&\\ <p\\ id=\"vide\">Aucun\\ atelier\\ reçu\\.</p>\\}\\{resultat\\.statut\\ ===\\ 'erreur'\\ \\&\\&\\ <p\\ id=\"erreur\"\\ role=\"alert\">\\{resultat\\.message\\}</p>\\}</main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "Une fonction vide ne démarre aucune nouvelle opération."
+      }
+    ],
+    "id": "react-m6-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Le résultat le plus récent reste maître",
+    "instruction_fr": "#mode contrôlé vient de data-mode de #app, sinon succes. Options succes/vide/erreur ; chargerAteliers({mode,delai:mode===succes?180:40}) dans un effet dépendant de mode. Conserver les éléments/messages de M6-01. Chaque départ efface l’ancien état. Nettoyage : ignorer=true dans le booléen LOCAL à cette exécution ; then et catch retournent sans mise à jour si ignorer. Un ancien succès lent ne doit pas remplacer un vide ou une erreur récents. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "const modeInitial = document.getElementById('app').dataset.mode || 'succes';\nfunction App() {\n  const [resultat, setResultat] = useState({statut:'chargement', ateliers:[], message:''});\n  const [mode, setMode] = useState(modeInitial);\n  useEffect(() => {\n    let ignorer = false;\n    setResultat({statut:'chargement', ateliers:[], message:''});\n    chargerAteliers({mode, delai:mode === 'succes' ? 180 : 40}).then(lignes => {\n      if (ignorer) return;\n      setResultat({statut:lignes.length ? 'succes' : 'vide', ateliers:lignes, message:''});\n    }).catch(erreur => {\n      if (ignorer) return;\n      setResultat({statut:'erreur', ateliers:[], message:erreur.message});\n    });\n\n  }, [mode]);\n  const textes = {chargement:'Chargement...', succes:'Catalogue prêt.', vide:'Aucun atelier.', erreur:'Catalogue indisponible.'};\n  return <main><h1 id=\"titre\" tabIndex={-1}>Catalogue fictif</h1><label htmlFor=\"mode\">Mode simulé</label><select id=\"mode\" value={mode} onChange={e => setMode(e.target.value)}><option value=\"succes\">Succès lent</option><option value=\"vide\">Vide rapide</option><option value=\"erreur\">Erreur rapide</option></select><p id=\"etat\" role=\"status\" aria-live=\"polite\">{textes[resultat.statut]}</p><ul id=\"liste\">{resultat.ateliers.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"compte\">{resultat.ateliers.length} atelier(s)</p>{resultat.statut === 'vide' && <p id=\"vide\">Aucun atelier reçu.</p>}{resultat.statut === 'erreur' && <p id=\"erreur\" role=\"alert\">{resultat.message}</p>}</main>;\n}\nroot.render(<App />);",
+    "solution": "const modeInitial = document.getElementById('app').dataset.mode || 'succes';\nfunction App() {\n  const [resultat, setResultat] = useState({statut:'chargement', ateliers:[], message:''});\n  const [mode, setMode] = useState(modeInitial);\n  useEffect(() => {\n    let ignorer = false;\n    setResultat({statut:'chargement', ateliers:[], message:''});\n    chargerAteliers({mode, delai:mode === 'succes' ? 180 : 40}).then(lignes => {\n      if (ignorer) return;\n      setResultat({statut:lignes.length ? 'succes' : 'vide', ateliers:lignes, message:''});\n    }).catch(erreur => {\n      if (ignorer) return;\n      setResultat({statut:'erreur', ateliers:[], message:erreur.message});\n    });\n    return () => { ignorer = true; };\n  }, [mode]);\n  const textes = {chargement:'Chargement...', succes:'Catalogue prêt.', vide:'Aucun atelier.', erreur:'Catalogue indisponible.'};\n  return <main><h1 id=\"titre\" tabIndex={-1}>Catalogue fictif</h1><label htmlFor=\"mode\">Mode simulé</label><select id=\"mode\" value={mode} onChange={e => setMode(e.target.value)}><option value=\"succes\">Succès lent</option><option value=\"vide\">Vide rapide</option><option value=\"erreur\">Erreur rapide</option></select><p id=\"etat\" role=\"status\" aria-live=\"polite\">{textes[resultat.statut]}</p><ul id=\"liste\">{resultat.ateliers.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"compte\">{resultat.ateliers.length} atelier(s)</p>{resultat.statut === 'vide' && <p id=\"vide\">Aucun atelier reçu.</p>}{resultat.statut === 'erreur' && <p id=\"erreur\" role=\"alert\">{resultat.message}</p>}</main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Succès lent puis vide rapide",
+        "checks": [
+          {
+            "selector": "#etat",
+            "text": "Chargement..."
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#mode",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Aucun atelier."
+              },
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#compte",
+                "text": "0 atelier(s)"
+              },
+              {
+                "selector": "#vide",
+                "text": "Aucun atelier reçu."
+              },
+              {
+                "selector": "#erreur",
+                "exists": false
+              },
+              {
+                "selector": "#mode",
+                "value": "vide"
+              }
+            ],
+            "value": "vide",
+            "wait_ms": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autre collection lente puis rejet rapide",
+        "checks": [
+          {
+            "selector": "#etat",
+            "text": "Chargement..."
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#mode",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Catalogue indisponible."
+              },
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#compte",
+                "text": "0 atelier(s)"
+              },
+              {
+                "selector": "#erreur",
+                "text": "Le catalogue est indisponible."
+              },
+              {
+                "selector": "#vide",
+                "exists": false
+              },
+              {
+                "selector": "#mode",
+                "value": "erreur"
+              }
+            ],
+            "value": "erreur",
+            "wait_ms": 200
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-ateliers=\"[{&quot;id&quot;: &quot;ph&quot;, &quot;titre&quot;: &quot;Photo&quot;}, {&quot;id&quot;: &quot;pa&quot;, &quot;titre&quot;: &quot;Papier&quot;}, {&quot;id&quot;: &quot;pi&quot;, &quot;titre&quot;: &quot;Piano&quot;}]\"></div>"
+      }
+    ],
+    "hints": [
+      "La première Promise peut arriver après la seconde.",
+      "La garde reste fausse si le nettoyage ne la change pas.",
+      "Retourne () => { ignorer = true; } et garde les vérifications dans then et catch."
+    ],
+    "explanation_fr": "Le délai rend le défaut démontrable : sans nettoyage, les vieux titres reviennent après la réponse rapide. L’attente finale dépasse les deux échéances et vérifie l’état qui doit rester.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^const\\ modeInitial\\ =\\ document\\.getElementById\\('app'\\)\\.dataset\\.mode\\ \\|\\|\\ 'succes';\\\nfunction\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ \\[resultat,\\ setResultat\\]\\ =\\ useState\\(\\{statut:'chargement',\\ ateliers:\\[\\],\\ message:''\\}\\);\\\n\\ \\ const\\ \\[mode,\\ setMode\\]\\ =\\ useState\\(modeInitial\\);\\\n\\ \\ useEffect\\(\\(\\)\\ =>\\ \\{\\\n\\ \\ \\ \\ let\\ ignorer\\ =\\ false;\\\n\\ \\ \\ \\ setResultat\\(\\{statut:'chargement',\\ ateliers:\\[\\],\\ message:''\\}\\);\\\n\\ \\ \\ \\ chargerAteliers\\(\\{mode,\\ delai:mode\\ ===\\ 'succes'\\ \\?\\ 180\\ :\\ 40\\}\\)\\.then\\(lignes\\ =>\\ \\{\\\n\\ \\ \\ \\ \\ \\ if\\ \\(ignorer\\)\\ return;\\\n\\ \\ \\ \\ \\ \\ setResultat\\(\\{statut:lignes\\.length\\ \\?\\ 'succes'\\ :\\ 'vide',\\ ateliers:lignes,\\ message:''\\}\\);\\\n\\ \\ \\ \\ \\}\\)\\.catch\\(erreur\\ =>\\ \\{\\\n\\ \\ \\ \\ \\ \\ if\\ \\(ignorer\\)\\ return;\\\n\\ \\ \\ \\ \\ \\ setResultat\\(\\{statut:'erreur',\\ ateliers:\\[\\],\\ message:erreur\\.message\\}\\);\\\n\\ \\ \\ \\ \\}\\);\\\n\\\n\\ \\ \\},\\ \\[mode\\]\\);\\\n\\ \\ const\\ textes\\ =\\ \\{chargement:'Chargement\\.\\.\\.',\\ succes:'Catalogue\\ prêt\\.',\\ vide:'Aucun\\ atelier\\.',\\ erreur:'Catalogue\\ indisponible\\.'\\};\\\n\\ \\ return\\ <main><h1\\ id=\"titre\"\\ tabIndex=\\{\\-1\\}>Catalogue\\ fictif</h1><label\\ htmlFor=\"mode\">Mode\\ simulé</label><select\\ id=\"mode\"\\ value=\\{mode\\}\\ onChange=\\{e\\ =>\\ setMode\\(e\\.target\\.value\\)\\}><option\\ value=\"succes\">Succès\\ lent</option><option\\ value=\"vide\">Vide\\ rapide</option><option\\ value=\"erreur\">Erreur\\ rapide</option></select><p\\ id=\"etat\"\\ role=\"status\"\\ aria\\-live=\"polite\">\\{textes\\[resultat\\.statut\\]\\}</p><ul\\ id=\"liste\">\\{resultat\\.ateliers\\.map\\(a\\ =>\\ <li\\ key=\\{a\\.id\\}>\\{a\\.titre\\}</li>\\)\\}</ul><p\\ id=\"compte\">\\{resultat\\.ateliers\\.length\\}\\ atelier\\(s\\)</p>\\{resultat\\.statut\\ ===\\ 'vide'\\ \\&\\&\\ <p\\ id=\"vide\">Aucun\\ atelier\\ reçu\\.</p>\\}\\{resultat\\.statut\\ ===\\ 'erreur'\\ \\&\\&\\ <p\\ id=\"erreur\"\\ role=\"alert\">\\{resultat\\.message\\}</p>\\}</main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "La garde reste fausse si le nettoyage ne la change pas."
+      }
+    ],
+    "id": "react-m6-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Ne plus traiter une réponse après démontage",
+    "instruction_fr": "App conserve #traitements « N réponse(s) traitée(s) », initial0, et #basculer monte/démonte Chargeur. L’enfant #chargeur affiche Chargement..., appelle chargerAteliers({mode:succes,delai:180}), puis seulement s’il est encore pertinent affiche Réponse traitée. et appelle onTermine(n=>n+1). Fournir setTraitements comme callback stable. Nettoyer un booléen local et vérifier les suites. Démonté avant la réponse, aucun traitement parent ; remonté, une nouvelle réponse peut compter. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function Chargeur({onTermine}) {\n  const [statut, setStatut] = useState('Chargement...');\n  useEffect(() => {\n    let ignorer = false;\n    chargerAteliers({mode:'succes', delai:180}).then(() => {\n      if (ignorer) return;\n      setStatut('Réponse traitée.');\n      onTermine(n => n + 1);\n    }).catch(() => {\n      if (ignorer) return;\n      setStatut('Erreur traitée.');\n    });\n\n  }, [onTermine]);\n  return <p id=\"chargeur\" role=\"status\">{statut}</p>;\n}\nfunction App() {\n  const [visible, setVisible] = useState(true);\n  const [traitements, setTraitements] = useState(0);\n  return <main><h1>Résultat temporaire</h1><button id=\"basculer\" type=\"button\" onClick={() => setVisible(v => !v)}>{visible ? 'Masquer' : 'Afficher'}</button><p id=\"traitements\">{traitements} réponse(s) traitée(s)</p>{visible && <Chargeur onTermine={setTraitements} />}</main>;\n}\nroot.render(<App />);",
+    "solution": "function Chargeur({onTermine}) {\n  const [statut, setStatut] = useState('Chargement...');\n  useEffect(() => {\n    let ignorer = false;\n    chargerAteliers({mode:'succes', delai:180}).then(() => {\n      if (ignorer) return;\n      setStatut('Réponse traitée.');\n      onTermine(n => n + 1);\n    }).catch(() => {\n      if (ignorer) return;\n      setStatut('Erreur traitée.');\n    });\n    return () => { ignorer = true; };\n  }, [onTermine]);\n  return <p id=\"chargeur\" role=\"status\">{statut}</p>;\n}\nfunction App() {\n  const [visible, setVisible] = useState(true);\n  const [traitements, setTraitements] = useState(0);\n  return <main><h1>Résultat temporaire</h1><button id=\"basculer\" type=\"button\" onClick={() => setVisible(v => !v)}>{visible ? 'Masquer' : 'Afficher'}</button><p id=\"traitements\">{traitements} réponse(s) traitée(s)</p>{visible && <Chargeur onTermine={setTraitements} />}</main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Masquer avant la résolution",
+        "checks": [
+          {
+            "selector": "#chargeur",
+            "text": "Chargement..."
+          },
+          {
+            "selector": "#traitements",
+            "text": "0 réponse(s) traitée(s)"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#chargeur",
+                "exists": false
+              },
+              {
+                "selector": "#traitements",
+                "text": "0 réponse(s) traitée(s)"
+              }
+            ],
+            "wait_ms": 200
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#chargeur",
+                "text": "Réponse traitée."
+              },
+              {
+                "selector": "#traitements",
+                "text": "1 réponse(s) traitée(s)"
+              }
+            ],
+            "wait_ms": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Remonter pendant que l’ancienne demande attend encore",
+        "checks": [
+          {
+            "selector": "#traitements",
+            "text": "0 réponse(s) traitée(s)"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#chargeur",
+                "exists": false
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#chargeur",
+                "text": "Réponse traitée."
+              },
+              {
+                "selector": "#traitements",
+                "text": "1 réponse(s) traitée(s)"
+              }
+            ],
+            "wait_ms": 200
+          },
+          {
+            "action": "click",
+            "selector": "#basculer",
+            "checks": [
+              {
+                "selector": "#chargeur",
+                "exists": false
+              },
+              {
+                "selector": "#traitements",
+                "text": "1 réponse(s) traitée(s)"
+              }
+            ],
+            "wait_ms": 200
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le callback modifie un parent qui reste monté.",
+      "L’ancienne demande ne doit pas appeler ce callback après le démontage.",
+      "Dans le cleanup, passe le booléen de cette exécution à true ; vérifie-le avant onTermine."
+    ],
+    "explanation_fr": "Le compteur parent prouve l’absence de traitement après démontage. Il distingue cette garantie d’une simple interface enfant disparue et vérifie qu’une demande ultérieure peut réussir.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^function\\ Chargeur\\(\\{onTermine\\}\\)\\ \\{\\\n\\ \\ const\\ \\[statut,\\ setStatut\\]\\ =\\ useState\\('Chargement\\.\\.\\.'\\);\\\n\\ \\ useEffect\\(\\(\\)\\ =>\\ \\{\\\n\\ \\ \\ \\ let\\ ignorer\\ =\\ false;\\\n\\ \\ \\ \\ chargerAteliers\\(\\{mode:'succes',\\ delai:180\\}\\)\\.then\\(\\(\\)\\ =>\\ \\{\\\n\\ \\ \\ \\ \\ \\ if\\ \\(ignorer\\)\\ return;\\\n\\ \\ \\ \\ \\ \\ setStatut\\('Réponse\\ traitée\\.'\\);\\\n\\ \\ \\ \\ \\ \\ onTermine\\(n\\ =>\\ n\\ \\+\\ 1\\);\\\n\\ \\ \\ \\ \\}\\)\\.catch\\(\\(\\)\\ =>\\ \\{\\\n\\ \\ \\ \\ \\ \\ if\\ \\(ignorer\\)\\ return;\\\n\\ \\ \\ \\ \\ \\ setStatut\\('Erreur\\ traitée\\.'\\);\\\n\\ \\ \\ \\ \\}\\);\\\n\\\n\\ \\ \\},\\ \\[onTermine\\]\\);\\\n\\ \\ return\\ <p\\ id=\"chargeur\"\\ role=\"status\">\\{statut\\}</p>;\\\n\\}\\\nfunction\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ \\[visible,\\ setVisible\\]\\ =\\ useState\\(true\\);\\\n\\ \\ const\\ \\[traitements,\\ setTraitements\\]\\ =\\ useState\\(0\\);\\\n\\ \\ return\\ <main><h1>Résultat\\ temporaire</h1><button\\ id=\"basculer\"\\ type=\"button\"\\ onClick=\\{\\(\\)\\ =>\\ setVisible\\(v\\ =>\\ !v\\)\\}>\\{visible\\ \\?\\ 'Masquer'\\ :\\ 'Afficher'\\}</button><p\\ id=\"traitements\">\\{traitements\\}\\ réponse\\(s\\)\\ traitée\\(s\\)</p>\\{visible\\ \\&\\&\\ <Chargeur\\ onTermine=\\{setTraitements\\}\\ />\\}</main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "L’ancienne demande ne doit pas appeler ce callback après le démontage."
+      }
+    ],
+    "id": "react-m6-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Combiner choix de mode, recherche et nouvelle tentative",
+    "instruction_fr": "Assembler #mode succes/vide/erreur (délais180/40/40), #retenter qui choisit succes et incrémente essai, effet dépendant de [mode,essai] avec garde locale et nettoyage. Réutiliser les messages de M6-01. Chaque départ remet #etat Chargement..., liste/message vides. #recherche contrôlé trim/minuscule filtre pendant le rendu, conservé lors des tentatives. #compte « N affiché(s) / T reçu(s) » ; #sans-resultat « Aucun titre ne correspond. » seulement si succès filtré vide ; #vide pour réponse vide. #titre focalisable. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "const modeInitial = document.getElementById('app').dataset.mode || 'succes';\nfunction App() {\n  const [resultat, setResultat] = useState({statut:'chargement', ateliers:[], message:''});\n  const [recherche, setRecherche] = useState('');\n  const [essai, setEssai] = useState(0);\n  const [mode, setMode] = useState(modeInitial);\n  useEffect(() => {\n    let ignorer = false;\n\n    chargerAteliers({mode, delai:mode === 'succes' ? 180 : 40}).then(lignes => {\n      if (ignorer) return;\n      setResultat({statut:lignes.length ? 'succes' : 'vide', ateliers:lignes, message:''});\n    }).catch(erreur => {\n      if (ignorer) return;\n      setResultat({statut:'erreur', ateliers:[], message:erreur.message});\n    });\n    return () => { ignorer = true; };\n  }, [mode, essai]);\n  const terme = recherche.trim().toLowerCase();\n  const selection = resultat.ateliers.filter(a => a.titre.toLowerCase().includes(terme));\n  const textes = {chargement:'Chargement...', succes:'Catalogue prêt.', vide:'Aucun atelier.', erreur:'Catalogue indisponible.'};\n  return <main><h1 id=\"titre\" tabIndex={-1}>Catalogue fictif</h1><label htmlFor=\"mode\">Mode simulé</label><select id=\"mode\" value={mode} onChange={e => setMode(e.target.value)}><option value=\"succes\">Succès lent</option><option value=\"vide\">Vide rapide</option><option value=\"erreur\">Erreur rapide</option></select><button id=\"retenter\" type=\"button\" onClick={() => { setMode('succes'); setEssai(n => n + 1); }}>Nouvelle tentative simulée</button><label htmlFor=\"recherche\">Rechercher</label><input id=\"recherche\" value={recherche} onChange={e => setRecherche(e.target.value)} /><p id=\"etat\" role=\"status\" aria-live=\"polite\">{textes[resultat.statut]}</p><ul id=\"liste\">{selection.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"compte\">{selection.length} affiché(s) / {resultat.ateliers.length} reçu(s)</p>{resultat.statut === 'succes' && selection.length === 0 && <p id=\"sans-resultat\">Aucun titre ne correspond.</p>}{resultat.statut === 'vide' && <p id=\"vide\">Aucun atelier reçu.</p>}{resultat.statut === 'erreur' && <p id=\"erreur\" role=\"alert\">{resultat.message}</p>}</main>;\n}\nroot.render(<App />);",
+    "solution": "const modeInitial = document.getElementById('app').dataset.mode || 'succes';\nfunction App() {\n  const [resultat, setResultat] = useState({statut:'chargement', ateliers:[], message:''});\n  const [recherche, setRecherche] = useState('');\n  const [essai, setEssai] = useState(0);\n  const [mode, setMode] = useState(modeInitial);\n  useEffect(() => {\n    let ignorer = false;\n    setResultat({statut:'chargement', ateliers:[], message:''});\n    chargerAteliers({mode, delai:mode === 'succes' ? 180 : 40}).then(lignes => {\n      if (ignorer) return;\n      setResultat({statut:lignes.length ? 'succes' : 'vide', ateliers:lignes, message:''});\n    }).catch(erreur => {\n      if (ignorer) return;\n      setResultat({statut:'erreur', ateliers:[], message:erreur.message});\n    });\n    return () => { ignorer = true; };\n  }, [mode, essai]);\n  const terme = recherche.trim().toLowerCase();\n  const selection = resultat.ateliers.filter(a => a.titre.toLowerCase().includes(terme));\n  const textes = {chargement:'Chargement...', succes:'Catalogue prêt.', vide:'Aucun atelier.', erreur:'Catalogue indisponible.'};\n  return <main><h1 id=\"titre\" tabIndex={-1}>Catalogue fictif</h1><label htmlFor=\"mode\">Mode simulé</label><select id=\"mode\" value={mode} onChange={e => setMode(e.target.value)}><option value=\"succes\">Succès lent</option><option value=\"vide\">Vide rapide</option><option value=\"erreur\">Erreur rapide</option></select><button id=\"retenter\" type=\"button\" onClick={() => { setMode('succes'); setEssai(n => n + 1); }}>Nouvelle tentative simulée</button><label htmlFor=\"recherche\">Rechercher</label><input id=\"recherche\" value={recherche} onChange={e => setRecherche(e.target.value)} /><p id=\"etat\" role=\"status\" aria-live=\"polite\">{textes[resultat.statut]}</p><ul id=\"liste\">{selection.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"compte\">{selection.length} affiché(s) / {resultat.ateliers.length} reçu(s)</p>{resultat.statut === 'succes' && selection.length === 0 && <p id=\"sans-resultat\">Aucun titre ne correspond.</p>}{resultat.statut === 'vide' && <p id=\"vide\">Aucun atelier reçu.</p>}{resultat.statut === 'erreur' && <p id=\"erreur\" role=\"alert\">{resultat.message}</p>}</main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Un vide récent puis une vraie nouvelle attente",
+        "checks": [
+          {
+            "selector": "#etat",
+            "text": "Chargement..."
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#mode",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Aucun atelier."
+              },
+              {
+                "selector": "#compte",
+                "text": "0 affiché(s) / 0 reçu(s)"
+              }
+            ],
+            "value": "vide",
+            "wait_ms": 200
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [],
+            "value": "web"
+          },
+          {
+            "action": "click",
+            "selector": "#retenter",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Chargement..."
+              },
+              {
+                "selector": "#vide",
+                "exists": false
+              },
+              {
+                "selector": "#recherche",
+                "value": "web"
+              }
+            ]
+          },
+          {
+            "action": "focus",
+            "selector": "#titre",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Catalogue prêt."
+              },
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 affiché(s) / 2 reçu(s)"
+              }
+            ],
+            "wait_ms": 200
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Rejet rapide puis filtrage des données variantes",
+        "checks": [
+          {
+            "selector": "#etat",
+            "text": "Chargement..."
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#mode",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Catalogue indisponible."
+              },
+              {
+                "selector": "#erreur",
+                "text": "Le catalogue est indisponible."
+              }
+            ],
+            "value": "erreur",
+            "wait_ms": 200
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [],
+            "value": "pi"
+          },
+          {
+            "action": "click",
+            "selector": "#retenter",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Chargement..."
+              },
+              {
+                "selector": "#erreur",
+                "exists": false
+              }
+            ]
+          },
+          {
+            "action": "focus",
+            "selector": "#titre",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Papier",
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "2 affiché(s) / 3 reçu(s)"
+              }
+            ],
+            "wait_ms": 200
+          },
+          {
+            "action": "input",
+            "selector": "#mode",
+            "checks": [
+              {
+                "selector": "#etat",
+                "text": "Aucun atelier."
+              },
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#compte",
+                "text": "0 affiché(s) / 0 reçu(s)"
+              },
+              {
+                "selector": "#sans-resultat",
+                "exists": false
+              }
+            ],
+            "value": "vide",
+            "wait_ms": 200
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-ateliers=\"[{&quot;id&quot;: &quot;ph&quot;, &quot;titre&quot;: &quot;Photo&quot;}, {&quot;id&quot;: &quot;pa&quot;, &quot;titre&quot;: &quot;Papier&quot;}, {&quot;id&quot;: &quot;pi&quot;, &quot;titre&quot;: &quot;Piano&quot;}]\"></div>"
+      }
+    ],
+    "hints": [
+      "Une nouvelle opération doit annoncer son attente même après un résultat déjà connu.",
+      "L’état de départ ne se remet pas tout seul à chargement lors des exécutions suivantes.",
+      "Au début de l’effet, appelle setResultat avec chargement, ateliers:[] et message vide."
+    ],
+    "explanation_fr": "Le mini-projet vérifie l’obsolescence, la recherche conservée et une attente renouvelée. Chaque responsabilité reste lisible : contrôles en état, demande protégée dans l’effet, sélection pendant le rendu.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^const\\ modeInitial\\ =\\ document\\.getElementById\\('app'\\)\\.dataset\\.mode\\ \\|\\|\\ 'succes';\\\nfunction\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ \\[resultat,\\ setResultat\\]\\ =\\ useState\\(\\{statut:'chargement',\\ ateliers:\\[\\],\\ message:''\\}\\);\\\n\\ \\ const\\ \\[recherche,\\ setRecherche\\]\\ =\\ useState\\(''\\);\\\n\\ \\ const\\ \\[essai,\\ setEssai\\]\\ =\\ useState\\(0\\);\\\n\\ \\ const\\ \\[mode,\\ setMode\\]\\ =\\ useState\\(modeInitial\\);\\\n\\ \\ useEffect\\(\\(\\)\\ =>\\ \\{\\\n\\ \\ \\ \\ let\\ ignorer\\ =\\ false;\\\n\\\n\\ \\ \\ \\ chargerAteliers\\(\\{mode,\\ delai:mode\\ ===\\ 'succes'\\ \\?\\ 180\\ :\\ 40\\}\\)\\.then\\(lignes\\ =>\\ \\{\\\n\\ \\ \\ \\ \\ \\ if\\ \\(ignorer\\)\\ return;\\\n\\ \\ \\ \\ \\ \\ setResultat\\(\\{statut:lignes\\.length\\ \\?\\ 'succes'\\ :\\ 'vide',\\ ateliers:lignes,\\ message:''\\}\\);\\\n\\ \\ \\ \\ \\}\\)\\.catch\\(erreur\\ =>\\ \\{\\\n\\ \\ \\ \\ \\ \\ if\\ \\(ignorer\\)\\ return;\\\n\\ \\ \\ \\ \\ \\ setResultat\\(\\{statut:'erreur',\\ ateliers:\\[\\],\\ message:erreur\\.message\\}\\);\\\n\\ \\ \\ \\ \\}\\);\\\n\\ \\ \\ \\ return\\ \\(\\)\\ =>\\ \\{\\ ignorer\\ =\\ true;\\ \\};\\\n\\ \\ \\},\\ \\[mode,\\ essai\\]\\);\\\n\\ \\ const\\ terme\\ =\\ recherche\\.trim\\(\\)\\.toLowerCase\\(\\);\\\n\\ \\ const\\ selection\\ =\\ resultat\\.ateliers\\.filter\\(a\\ =>\\ a\\.titre\\.toLowerCase\\(\\)\\.includes\\(terme\\)\\);\\\n\\ \\ const\\ textes\\ =\\ \\{chargement:'Chargement\\.\\.\\.',\\ succes:'Catalogue\\ prêt\\.',\\ vide:'Aucun\\ atelier\\.',\\ erreur:'Catalogue\\ indisponible\\.'\\};\\\n\\ \\ return\\ <main><h1\\ id=\"titre\"\\ tabIndex=\\{\\-1\\}>Catalogue\\ fictif</h1><label\\ htmlFor=\"mode\">Mode\\ simulé</label><select\\ id=\"mode\"\\ value=\\{mode\\}\\ onChange=\\{e\\ =>\\ setMode\\(e\\.target\\.value\\)\\}><option\\ value=\"succes\">Succès\\ lent</option><option\\ value=\"vide\">Vide\\ rapide</option><option\\ value=\"erreur\">Erreur\\ rapide</option></select><button\\ id=\"retenter\"\\ type=\"button\"\\ onClick=\\{\\(\\)\\ =>\\ \\{\\ setMode\\('succes'\\);\\ setEssai\\(n\\ =>\\ n\\ \\+\\ 1\\);\\ \\}\\}>Nouvelle\\ tentative\\ simulée</button><label\\ htmlFor=\"recherche\">Rechercher</label><input\\ id=\"recherche\"\\ value=\\{recherche\\}\\ onChange=\\{e\\ =>\\ setRecherche\\(e\\.target\\.value\\)\\}\\ /><p\\ id=\"etat\"\\ role=\"status\"\\ aria\\-live=\"polite\">\\{textes\\[resultat\\.statut\\]\\}</p><ul\\ id=\"liste\">\\{selection\\.map\\(a\\ =>\\ <li\\ key=\\{a\\.id\\}>\\{a\\.titre\\}</li>\\)\\}</ul><p\\ id=\"compte\">\\{selection\\.length\\}\\ affiché\\(s\\)\\ /\\ \\{resultat\\.ateliers\\.length\\}\\ reçu\\(s\\)</p>\\{resultat\\.statut\\ ===\\ 'succes'\\ \\&\\&\\ selection\\.length\\ ===\\ 0\\ \\&\\&\\ <p\\ id=\"sans\\-resultat\">Aucun\\ titre\\ ne\\ correspond\\.</p>\\}\\{resultat\\.statut\\ ===\\ 'vide'\\ \\&\\&\\ <p\\ id=\"vide\">Aucun\\ atelier\\ reçu\\.</p>\\}\\{resultat\\.statut\\ ===\\ 'erreur'\\ \\&\\&\\ <p\\ id=\"erreur\"\\ role=\"alert\">\\{resultat\\.message\\}</p>\\}</main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "L’état de départ ne se remet pas tout seul à chargement lors des exécutions suivantes."
+      }
+    ],
+    "id": "react-m6-02-e4"
+  }
+]

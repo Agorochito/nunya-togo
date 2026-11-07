@@ -1,0 +1,488 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Guider une création par activation",
+    "instruction_fr": "À chaque activation de #ajouter, construis un nouveau li dont textContent vaut Atelier fictif et ajoute-le à #liste. Conserve les lignes déjà présentes et ne crée rien avant la première activation.",
+    "fixture_html": "<main><button id=\"ajouter\" type=\"button\">Ajouter une ligne fictive</button><ul id=\"liste\"></ul></main>",
+    "starter_code": "document.querySelector(\"#ajouter\").addEventListener(\"click\", function() { document.createElement(\"li\").textContent=\"Atelier fictif\"; });",
+    "solution": "const liste = document.querySelector(\"#liste\");\ndocument.querySelector(\"#ajouter\").addEventListener(\"click\", function() {\n  const ligne = document.createElement(\"li\");\n  ligne.textContent = \"Atelier fictif\";\n  liste.append(ligne);\n});",
+    "visible_tests": [
+      {
+        "description_fr": "Créer puis créer encore",
+        "checks": [
+          {
+            "selector": "#liste li",
+            "count": 0
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#ajouter",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Atelier fictif"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#ajouter",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Atelier fictif",
+                  "Atelier fictif"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Ne pas effacer une ligne fournie",
+        "checks": [
+          {
+            "selector": "#liste li",
+            "texts": [
+              "Départ"
+            ]
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#ajouter",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Départ",
+                  "Atelier fictif"
+                ]
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><button id=\"ajouter\" type=\"button\">Ajouter une ligne fictive</button><ul id=\"liste\"><li>Départ</li></ul></main>"
+      }
+    ],
+    "hints": [
+      "Le nœud créé a-t-il déjà un parent dans la page ?",
+      "Insère le li dans la liste avec append.",
+      "const liste = document.querySelector(\"#liste\");\ndocument.querySelector(\"#ajouter\").addEventListener(\"click\", function() {\n  const ligne = document.createElement(\"li\");\n  ligne.textContent = \"Atelier fictif\";\n  liste.append(ligne);\n});"
+    ],
+    "explanation_fr": "Chaque action construit un élément nouveau, sans effacer les précédents.",
+    "common_wrong_answers": [],
+    "id": "dom-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Transférer une saisie vers une vraie ligne",
+    "instruction_fr": "Traite submit de #ajout localement. Après trim, ajoute une ligne à #liste uniquement si #titre est non vide. Utilise createElement et textContent, puis affiche dans #total le nombre de li. Rends aussi le compte initial et conserve la saisie.",
+    "fixture_html": "<main><form id=\"ajout\" novalidate><label for=\"titre\">Titre fictif</label><input id=\"titre\"><button type=\"submit\">Ajouter</button></form><ul id=\"liste\"></ul><p>Total : <span id=\"total\">0</span></p></main>",
+    "starter_code": "document.querySelector(\"#ajout\").addEventListener(\"submit\", function(e) { e.preventDefault(); document.querySelector(\"#liste\").textContent=document.querySelector(\"#titre\").value; });",
+    "solution": "const formulaire = document.querySelector(\"#ajout\");\nconst titre = document.querySelector(\"#titre\");\nconst liste = document.querySelector(\"#liste\");\nconst total = document.querySelector(\"#total\");\nfunction compter() { total.textContent = String(liste.querySelectorAll(\"li\").length); }\nformulaire.addEventListener(\"submit\", function(evenement) {\n  evenement.preventDefault();\n  const texte = titre.value.trim();\n  if (texte === \"\") { return; }\n  const ligne = document.createElement(\"li\");\n  ligne.textContent = texte;\n  liste.append(ligne);\n  compter();\n});\ncompter();",
+    "visible_tests": [
+      {
+        "description_fr": "Ajouter deux titres",
+        "checks": [
+          {
+            "selector": "#total",
+            "text": "0"
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#titre",
+            "value": " Semis ",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#ajout",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Semis"
+                ]
+              },
+              {
+                "selector": "#total",
+                "text": "1"
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#titre",
+            "value": "Compost",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#ajout",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Semis",
+                  "Compost"
+                ]
+              },
+              {
+                "selector": "#total",
+                "text": "2"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Texte littéral et case vide",
+        "checks": [],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#titre",
+            "value": "<b>Jeu</b>",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#ajout",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "<b>Jeu</b>"
+                ]
+              },
+              {
+                "selector": "#liste b",
+                "exists": false
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#titre",
+            "value": "  ",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#ajout",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "count": 1
+              },
+              {
+                "selector": "#total",
+                "text": "1"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le conteneur doit-il devenir une chaîne ou contenir des li ?",
+      "Crée un li pour chaque valeur retenue et compte les éléments après l’ajout.",
+      "const formulaire = document.querySelector(\"#ajout\");\nconst titre = document.querySelector(\"#titre\");\nconst liste = document.querySelector(\"#liste\");\nconst total = document.querySelector(\"#total\");\nfunction compter() { total.textContent = String(liste.querySelectorAll(\"li\").length); }\nformulaire.addEventListener(\"submit\", function(evenement) {\n  evenement.preventDefault();\n  const texte = titre.value.trim();\n  if (texte === \"\") { return; }\n  const ligne = document.createElement(\"li\");\n  ligne.textContent = texte;\n  liste.append(ligne);\n  compter();\n});\ncompter();"
+    ],
+    "explanation_fr": "La vérification de texte littéral distingue une ligne textuelle d’une interprétation de saisie.",
+    "common_wrong_answers": [],
+    "id": "dom-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une reconstruction qui accumule",
+    "instruction_fr": "#source contient les textes fournis. À chaque activation de #rendre, remplace le contenu de #liste par de nouveaux li portant ces textes, dans le même ordre. La source reste inchangée et répéter l’action ne doit pas dupliquer les lignes.",
+    "fixture_html": "<main><ul id=\"source\" hidden><li>Semis</li><li>Compost</li></ul><button id=\"rendre\" type=\"button\">Afficher la liste fournie</button><ul id=\"liste\"><li>Ancien contenu</li></ul></main>",
+    "starter_code": "const source = document.querySelector(\"#source\");\nconst liste = document.querySelector(\"#liste\");\ndocument.querySelector(\"#rendre\").addEventListener(\"click\", function() {\n  for (const entree of source.querySelectorAll(\"li\")) {\n    const ligne = document.createElement(\"li\");\n    ligne.textContent = entree.textContent;\n    liste.append(ligne);\n  }\n});",
+    "solution": "const source = document.querySelector(\"#source\");\nconst liste = document.querySelector(\"#liste\");\ndocument.querySelector(\"#rendre\").addEventListener(\"click\", function() {\n  liste.replaceChildren();\n  for (const entree of source.querySelectorAll(\"li\")) {\n    const ligne = document.createElement(\"li\");\n    ligne.textContent = entree.textContent;\n    liste.append(ligne);\n  }\n});",
+    "visible_tests": [
+      {
+        "description_fr": "Reconstruction répétée",
+        "checks": [],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#rendre",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Semis",
+                  "Compost"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#rendre",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Semis",
+                  "Compost"
+                ]
+              },
+              {
+                "selector": "#source li",
+                "texts": [
+                  "Semis",
+                  "Compost"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autres données puis nouvelle reconstruction",
+        "checks": [],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#rendre",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Lecture",
+                  "Jeu"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#rendre",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "count": 2
+              },
+              {
+                "selector": "#source li",
+                "texts": [
+                  "Lecture",
+                  "Jeu"
+                ]
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><ul id=\"source\" hidden><li>Lecture</li><li>Jeu</li></ul><button id=\"rendre\" type=\"button\">Afficher la liste fournie</button><ul id=\"liste\"><li>Ancien contenu</li></ul></main>"
+      }
+    ],
+    "hints": [
+      "Le nouveau rendu doit-il prolonger l’ancien ou le remplacer ?",
+      "Retire les enfants de destination avant de reconstruire.",
+      "const source = document.querySelector(\"#source\");\nconst liste = document.querySelector(\"#liste\");\ndocument.querySelector(\"#rendre\").addEventListener(\"click\", function() {\n  liste.replaceChildren();\n  for (const entree of source.querySelectorAll(\"li\")) {\n    const ligne = document.createElement(\"li\");\n    ligne.textContent = entree.textContent;\n    liste.append(ligne);\n  }\n});"
+    ],
+    "explanation_fr": "replaceChildren garde la liste stable et évite d’empiler les mêmes données.",
+    "common_wrong_answers": [],
+    "id": "dom-m4-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Assembler ajout, vide et compteur",
+    "instruction_fr": "Traite #ajout : empêche la navigation, trim de #titre. Vide→#retour Écris un titre. ; sinon nouveau li textuel, champ effacé, puis #total au nombre de li et #retour Activités : nombre. #vide est visible uniquement si la liste est vide. #vider retire tous les li et actualise ces trois indications. Rends le départ.",
+    "fixture_html": "<main><form id=\"ajout\" novalidate><label for=\"titre\">Titre fictif</label><input id=\"titre\"><button type=\"submit\">Ajouter</button><button id=\"vider\" type=\"button\">Vider la liste</button></form><ul id=\"liste\"></ul><p id=\"vide\">Aucune activité.</p><p>Total : <span id=\"total\">0</span></p><p id=\"retour\" role=\"status\" aria-live=\"polite\"></p></main>",
+    "starter_code": "document.querySelector(\"#retour\").textContent=\"Activités : 0\";",
+    "solution": "const formulaire = document.querySelector(\"#ajout\");\nconst titre = document.querySelector(\"#titre\");\nconst liste = document.querySelector(\"#liste\");\nconst vide = document.querySelector(\"#vide\");\nconst total = document.querySelector(\"#total\");\nconst retour = document.querySelector(\"#retour\");\nfunction compter() {\n  const nombre = liste.querySelectorAll(\"li\").length;\n  total.textContent = String(nombre);\n  vide.hidden = nombre !== 0;\n  retour.textContent = \"Activités : \" + String(nombre);\n}\nformulaire.addEventListener(\"submit\", function(evenement) {\n  evenement.preventDefault();\n  const texte = titre.value.trim();\n  if (texte === \"\") { retour.textContent = \"Écris un titre.\"; return; }\n  const ligne = document.createElement(\"li\");\n  ligne.textContent = texte;\n  liste.append(ligne);\n  titre.value = \"\";\n  compter();\n});\ndocument.querySelector(\"#vider\").addEventListener(\"click\", function() { liste.replaceChildren(); compter(); });\ncompter();",
+    "visible_tests": [
+      {
+        "description_fr": "Ajouter puis vider",
+        "checks": [
+          {
+            "selector": "#total",
+            "text": "0"
+          },
+          {
+            "selector": "#vide",
+            "attributes": {
+              "hidden": null
+            }
+          },
+          {
+            "selector": "#retour",
+            "text": "Activités : 0"
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#titre",
+            "value": "Semis",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#ajout",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Semis"
+                ]
+              },
+              {
+                "selector": "#titre",
+                "value": ""
+              },
+              {
+                "selector": "#vide",
+                "attributes": {
+                  "hidden": ""
+                }
+              },
+              {
+                "selector": "#retour",
+                "text": "Activités : 1"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#vider",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "count": 0
+              },
+              {
+                "selector": "#total",
+                "text": "0"
+              },
+              {
+                "selector": "#vide",
+                "attributes": {
+                  "hidden": null
+                }
+              },
+              {
+                "selector": "#retour",
+                "text": "Activités : 0"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Refuser le vide et recommencer",
+        "checks": [],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#titre",
+            "value": " ",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#ajout",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Écris un titre."
+              },
+              {
+                "selector": "#liste li",
+                "count": 0
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#titre",
+            "value": "<strong>Jeu</strong>",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#ajout",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "<strong>Jeu</strong>"
+                ]
+              },
+              {
+                "selector": "#liste strong",
+                "exists": false
+              },
+              {
+                "selector": "#total",
+                "text": "1"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#vider",
+            "checks": [
+              {
+                "selector": "#vide",
+                "attributes": {
+                  "hidden": null
+                }
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#titre",
+            "value": "Lecture",
+            "checks": []
+          },
+          {
+            "action": "submit",
+            "selector": "#ajout",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Lecture"
+                ]
+              },
+              {
+                "selector": "#total",
+                "text": "1"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Quelles indications doivent suivre un ajout comme un retrait global ?",
+      "Centralise le compte, le message vide et le retour dans une fonction appelée après chaque changement.",
+      "const formulaire = document.querySelector(\"#ajout\");\nconst titre = document.querySelector(\"#titre\");\nconst liste = document.querySelector(\"#liste\");\nconst vide = document.querySelector(\"#vide\");\nconst total = document.querySelector(\"#total\");\nconst retour = document.querySelector(\"#retour\");\nfunction compter() {\n  const nombre = liste.querySelectorAll(\"li\").length;\n  total.textContent = String(nombre);\n  vide.hidden = nombre !== 0;\n  retour.textContent = \"Activités : \" + String(nombre);\n}\nformulaire.addEventListener(\"submit\", function(evenement) {\n  evenement.preventDefault();\n  const texte = titre.value.trim();\n  if (texte === \"\") { retour.textContent = \"Écris un titre.\"; return; }\n  const ligne = document.createElement(\"li\");\n  ligne.textContent = texte;\n  liste.append(ligne);\n  titre.value = \"\";\n  compter();\n});\ndocument.querySelector(\"#vider\").addEventListener(\"click\", function() { liste.replaceChildren(); compter(); });\ncompter();"
+    ],
+    "explanation_fr": "Les événements sont enregistrés une fois ; les mises à jour décrivent uniquement cette liste temporaire.",
+    "common_wrong_answers": [],
+    "id": "dom-m4-02-e4"
+  }
+]

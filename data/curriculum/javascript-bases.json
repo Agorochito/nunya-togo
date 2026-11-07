@@ -105,6 +105,7 @@
   "depth_fr": "Socle débutant de programmation synchrone en console. Les interfaces DOM, les événements, les promesses et Node.js relèvent de cours distincts.",
   "availability": "programme-redige",
   "next_courses": [
+    "javascript-dom",
     "http-bases"
   ],
   "lessons": [
@@ -446,7 +447,7 @@
     }
   ],
   "estimated_minutes": 480,
-  "content_revision": "d2944ac7525a",
+  "content_revision": "a9310defa065",
   "exercise_count": 96,
   "quiz_count": 72
 }

@@ -1,0 +1,21 @@
+{
+  "results": [
+    {
+      "course": "javascript-dom",
+      "lessons": 18,
+      "examples": 36,
+      "solutions": 72,
+      "rejectedStarters": 72,
+      "checks": 920
+    },
+    {
+      "course": "react-bases",
+      "lessons": 18,
+      "examples": 36,
+      "solutions": 72,
+      "rejectedStarters": 72,
+      "checks": 977
+    }
+  ],
+  "failures": []
+}

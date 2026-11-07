@@ -1,4 +1,4 @@
-# Couverture des cours — livraison 5.6.0, 5 novembre 2026
+# Couverture des cours — livraison 5.7.0, 6 novembre 2026
 
 Le prompt maître impose une réalisation par lots, avec une cible finale de 72 cours répartis sur trois niveaux et des séries complémentaires. Cette livraison ne termine pas cette cible. L’audit initial est conservé dans [BASELINE_COURSE_AUDIT_5.2.1.md](BASELINE_COURSE_AUDIT_5.2.1.md).
 
@@ -12,6 +12,10 @@ Le prompt maître impose une réalisation par lots, avec une cible finale de 72 
 | JavaScript : les fondamentaux en pratique | 8 | 24 | 96 | Socle synchrone de console rédigé, jusqu’au projet final ; relecture pédagogique en cours. |
 | SQL : des premières requêtes au projet de données | 6 | 18 | 72 | SQLite réel, données fictives, tableaux de résultats, contraintes et transactions ; relecture en cours. |
 | HTTP et API : construire un client JavaScript | 4 | 12 | 48 | Requêtes et réponses natives sur une API pédagogique locale ; cours original à relire. |
+| JavaScript : interfaces DOM | 6 | 18 | 72 | DOM natif, événements, formulaires, recherche/tri et projet ; contenu à relire. |
+| React : composants et application interactive | 6 | 18 | 72 | React/ReactDOM réels, JSX, état, formulaires, effets et service de démonstration simulé ; contenu à relire. |
+
+Huit programmes principaux :50modules,167leçons,668exercices et501QCM. Git/GitHub et Découverte sont comptés séparément ci-dessous. DOM est une suite intermédiaire aux fondamentaux JavaScript ; ce cours ne prétend pas couvrir à lui seul tout le niveau intermédiaire.
 
 Les leçons possèdent chacune 300–700 mots d’explication, deux exemples commentés, quatre exercices, trois questions de compréhension, des erreurs fréquentes, un glossaire et un récapitulatif. Elles sont des brouillons originaux : aucun enseignant réviseur, partenariat ou certificat externe n’est inventé. Les 22 chapitres Python antérieurs, leurs identifiants et leurs questions de fin de chapitre restent conservés.
 
@@ -42,6 +46,6 @@ La suite doit produire les séries DOM, événements, TypeScript, React, asynchr
 - Six séries / 131 leçons affichées ; navigation des exercices et mini-quiz, mauvaise réponse, retour, rechargement, ancien chapitre revu et reprise hors ligne testés. Axe : zéro violation sur les vues de leçon testées, sans prétention de certification complète.
 - Fonctions Python, absence de mutation/copie, réservation et JavaScript vérifiés dans les vrais Workers. Délai et arrêt JavaScript testés. Les tests sont formatifs, livrés au navigateur ; ils ne sont pas une frontière d’intégrité d’examen.
 
-Les correspondances aux programmes scolaires, la relecture des nouveaux contenus et les essais avec de vrais élèves restent nécessaires. Les contrôles de liens externes sous réseau restreint retournent des liens non confirmés ; cela ne prouve pas que tous les fournisseurs sont joignables. Comptes et synchronisation distante restent hors de ce lot, conformément au choix de conservation locale.
+Les correspondances aux programmes scolaires, la relecture des nouveaux contenus et les essais avec de vrais élèves restent nécessaires. Les ateliers DOM/React sont décrits dans `INTERACTIVE_WORKSHOPS.md` ; leurs rapports distinguent vérification technique et relecture pédagogique. Les contrôles de liens externes sous réseau restreint retournent des liens non confirmés ; cela ne prouve pas que tous les fournisseurs sont joignables. Comptes et synchronisation distante restent hors de ce lot, conformément au choix de conservation locale.
 
 Les 16 exercices de variables, conversions, chaînes et booléens du module Python 2 vérifient aussi les valeurs et types réellement créés. Le module 1 enseigne précisément l’affichage de textes : produire ces textes y est un objectif valide, pas un contournement. Ces contrôles locaux sont formatifs et ne constituent pas un système d’examen sécurisé.

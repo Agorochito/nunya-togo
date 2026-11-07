@@ -1,0 +1,28 @@
+# React débutant — contrat de rédaction
+
+Cours original `react-bases`, runtime `react`, language `javascript`, bibliothèque réelle React19.3.1/ReactDOM19.3.1 auto-hébergée. 6modules×3leçons=18, 72exercices,54quiz,36examples. IDs `react-m1-01`…`react-m6-03`, order1…18,20minutes. Format Markdown/JSON identique à HTTP/DOM; lire aussi `lib/dom/CONTENT_CONTRACT.md` pour le protocole exact de tests de navigateur. 300–700mots d'explication,2exemples commentés,4activitésdistinctes,3QCM,erreurs,glossaire,récapitulatif. Tout brouillon reviewer:null. Premièreleçonprereq[],chaînecontinue ensuite. Auteurs ne modifient que leurs fichiers de contenu.
+
+Pré requis : HTML,CSS,JavaScript,DOMévénements. Le débutant est débutant dans React. React est une bibliothèque, JSX une syntaxe transformée, pas un nouveau langage ni du HTML copié. Sources primaires react.dev/learn (aussi fr.react.dev). Ne recopier aucun cours tiers. Pas npm/terminal, imports ni serveur dans l'atelier; bibliothèques déjà présentes.
+
+## Atelier
+
+Les exercices/exemples ont `fixture_html:'<div id="app"></div>'` (variantes possibles avec attributs data-... explicités dans la consigne). Le code de l'apprenant est du JSX. `React`, `useState`, `useEffect`, `useRef` et `root` sont fournis. `root` est le vrai root créé avec ReactDOM.createRoot(document.getElementById('app')). Le code définit ses composants puis appelle `root.render(<App />)`. Les notions sont introduites avant demande. Pas exportdefault ni import. `React.Fragment` et `<>...</>` sont disponibles. Pas de modules ni packages supplémentaires.
+
+Chaque essai/test recrée une nouvelle interface isolée. Le script et les progrès sont enregistrés, pas l'état temporaire des composants. L'éditeur reste dans Nunya; aucune redirection. Les tests se fondent sur le DOM réellement rendu et des événements réels comme décrit dans lib/dom/CONTENT_CONTRACT.md. `steps` clique/tape/soumet puis attend35ms minimum pour React, ou wait_ms≤200 demandé pour effet/Promise. Fournir au moins1casvisible+1casdifférent, via autre séquence/action/valeur ou autre fixture. Contrôle initial + états après plusieurs interactions pour rejeter du HTML statique sans React. Les tests sont formatifs locaux, pas un examen anti-triche.
+
+Les exemples ont fixture_html, trace_fr, expected_output descriptif et browser_test:{checks,steps} reproduisant ce comportement. N'annoncer aucun tableau de console comme preuve d'une interface. Le texte indique les actions à faire dans l'aperçu. Les conditions et marqueurs des checks sont demandés explicitement (IDs,attributs,textes). Les champs saisis restent du texte; prévoir trim, cas vides, messages associés par aria-describedby et aria-live quand utile. Les boutons natifs ont des libellés, les inputs des labels.
+
+## Service asynchrone fourni pour M6 uniquement
+
+`chargerAteliers()` est un service pédagogique SIMULÉ, clairement nommé dans le texte : pas fetch, pas de requête internet, pas de réservation réelle. Une vraie Promise répond après150ms. Son mode vient de `data-mode` du div#app: `succes` par défaut, `vide`, `erreur`. Le paramètre optionnel `chargerAteliers({mode:'succes'|'vide'|'erreur'})` remplace ce mode. L’option `delai` (millisecondes, bornée de0à200,150par défaut) permet de tester une réponse obsolète : succès180ms puis vide40ms. Le cours explique cette option avant de l’utiliser. L’attente initiale60ms permet de vérifier le chargement ; focus wait_ms200 vérifie l’état final. Succès renvoie une COPIE du tableau fictif `[{id:'py',titre:'Python'},{id:'web',titre:'Web'}]`, remplaçable par la fixture via `data-ateliers='[{"id":"...","titre":"..."}]'`. Vide renvoie[]; erreur rejette Error('Le catalogue est indisponible.'). Une nouvelle tentative peut passer mode:'succes'. Les textes distinguent ce service simulé des vraies requêtes HTTP enseignées dans http-bases. Aucun compte ni secret.
+
+## Programme
+
+M1 composants et JSX :01 composantfonction/JSX/root.render ;02 expressions,fragments,className/attributs,labelhtmlFor ;03 propriétés et composition,immuabilité des props.
+M2 interactions et état :01 onClick,useState ;02 snapshot d'état et mises à jour fonctionnelles successives ;03 plusieurs états et calcul dérivé,éviterétatredondant.
+M3 listes et affichages :01 conditions et retours vides ;02 map,keys stables,nepas utiliserd'indicequandla listechange ;03 filtrage/recherche dérivée etcopieavanttri.
+M4 formulaires et communication :01 inputscontrôlés,labels ;02 submitvalidation/trim/messagesaccessibles ;03 remonter l'état et passer des callbacks entrecomposants.
+M5 références et effets :01 useRef pour focus,nepas l'utiliseràlaplacedel'étatvisible ;02 useEffect synchroniseun systèmesexterne(document.title enfant),dépendances,pasdeffetpourcalculerunfiltre ;03 abonnementsetnettoyage: écouteurkeydown ou intervalle borné avec cleanup,nepas multiplierécouteurs,remonter/démonter conditionnellement.
+M6 asynchronisme et projet :01 chargerAteliers simulé,loading/success/error/empty ;02 nouvelle tentative et ignorerun résultat obsolèteaprèschangement/démontage,cleanup booléen local,modesfournis ;03 projet tableau d'ateliers favorissansréservationréelle avec composants,filtre/validation/états chargement erreurvide/retry;4activitésgraduées,grilleexplicite (fonctionnement,clarté,accessibilité,tests,explication). Pas de faussemaîtriseprofessionnelle oucertification.
+
+M1/M2, M3/M4 et M5/M6 rédigés séparément. Chaque activité possède tout son HTML fourni et tous les composants utiles; pas de fichiercaché d'uneleçonprécédente. Un contrôle avancé ne doit pas exiger une API avant qu'elle soit expliquée. Bibliothèque19.3.1, date de révision6novembre2026; intitulésenfrançais, mots-clésintacts.

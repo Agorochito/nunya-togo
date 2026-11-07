@@ -1,0 +1,479 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Guider une sélection de disponibilité",
+    "instruction_fr": "App garde uniquement=false. #disponibles inverse ce critère et son aria-pressed. Rends #liste par map depuis les activités visibles : toutes ou seulement places>0. #total affiche Résultats : nombre depuis la même liste. Ne modifie pas catalogue.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "const catalogue = [{id:\"py\",titre:\"Python\",places:4},{id:\"ja\",titre:\"Jardin\",places:0},{id:\"we\",titre:\"Web\",places:2}];\nfunction App() {\n  const [uniquement, setUniquement] = useState(false);\n  const visibles = catalogue;\n  return <main><button id=\"disponibles\" type=\"button\" aria-pressed={uniquement} onClick={() => setUniquement(v => !v)}>Disponibles seulement</button><ul id=\"liste\">{visibles.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"total\">Résultats : {visibles.length}</p></main>;\n}\nroot.render(<App />);",
+    "solution": "const catalogue = [{id:\"py\",titre:\"Python\",places:4},{id:\"ja\",titre:\"Jardin\",places:0},{id:\"we\",titre:\"Web\",places:2}];\nfunction App() {\n  const [uniquement, setUniquement] = useState(false);\n  const visibles = catalogue.filter(a => !uniquement || a.places > 0);\n  return <main><button id=\"disponibles\" type=\"button\" aria-pressed={uniquement} onClick={() => setUniquement(v => !v)}>Disponibles seulement</button><ul id=\"liste\">{visibles.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"total\">Résultats : {visibles.length}</p></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Passer de tout aux places positives",
+        "checks": [
+          {
+            "selector": "#total",
+            "text": "Résultats : 3"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#disponibles",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#total",
+                "text": "Résultats : 2"
+              },
+              {
+                "selector": "#disponibles",
+                "attributes": {
+                  "aria-pressed": "true"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Revenir à la source puis filtrer encore",
+        "checks": [],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#disponibles",
+            "wait_ms": 40,
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#disponibles",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Jardin",
+                  "Web"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#disponibles",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Web"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le compte doit-il lire la source ou les données vraiment rendues ?",
+      "Calcule visibles avec filter à partir du critère courant.",
+      "const catalogue = [{id:\"py\",titre:\"Python\",places:4},{id:\"ja\",titre:\"Jardin\",places:0},{id:\"we\",titre:\"Web\",places:2}];\nfunction App() {\n  const [uniquement, setUniquement] = useState(false);\n  const visibles = catalogue.filter(a => !uniquement || a.places > 0);\n  return <main><button id=\"disponibles\" type=\"button\" aria-pressed={uniquement} onClick={() => setUniquement(v => !v)}>Disponibles seulement</button><ul id=\"liste\">{visibles.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"total\">Résultats : {visibles.length}</p></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Une collection dérivée ne nécessite pas un deuxième état à maintenir.",
+    "common_wrong_answers": [],
+    "id": "react-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Rechercher sans distinguer la casse",
+    "instruction_fr": "Les boutons #python/#web/#sans-resultat/#tout fixent respectivement python, WEB, absent et une chaîne vide. Filtre catalogue selon titre.includes après trim et mise en minuscules des deux côtés. Rends #critere, #liste, #total et #vide=Aucun résultat. uniquement sur vide. Les critères sont des boutons dans cette activité.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "const catalogue = [{id:\"py\",titre:\"Python\"},{id:\"ja\",titre:\"Jardin\"},{id:\"we\",titre:\"Web\"}];\nfunction App() {\n  const [recherche, setRecherche] = useState(\"\");\n  const critere = recherche.trim().toLowerCase();\n  const visibles = catalogue.filter(a => a.titre.includes(recherche));\n  return <main><button id=\"python\" type=\"button\" onClick={() => setRecherche(\"python\")}>Chercher Python</button><button id=\"web\" type=\"button\" onClick={() => setRecherche(\"WEB\")}>Chercher WEB</button><button id=\"sans-resultat\" type=\"button\" onClick={() => setRecherche(\"absent\")}>Chercher absent</button><button id=\"tout\" type=\"button\" onClick={() => setRecherche(\"\")}>Tout revoir</button><p id=\"critere\">Critère : {recherche || \"tous\"}</p><ul id=\"liste\">{visibles.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"total\">Résultats : {visibles.length}</p>{visibles.length === 0 ? <p id=\"vide\">Aucun résultat.</p> : null}</main>;\n}\nroot.render(<App />);",
+    "solution": "const catalogue = [{id:\"py\",titre:\"Python\"},{id:\"ja\",titre:\"Jardin\"},{id:\"we\",titre:\"Web\"}];\nfunction App() {\n  const [recherche, setRecherche] = useState(\"\");\n  const critere = recherche.trim().toLowerCase();\n  const visibles = catalogue.filter(a => a.titre.toLowerCase().includes(critere));\n  return <main><button id=\"python\" type=\"button\" onClick={() => setRecherche(\"python\")}>Chercher Python</button><button id=\"web\" type=\"button\" onClick={() => setRecherche(\"WEB\")}>Chercher WEB</button><button id=\"sans-resultat\" type=\"button\" onClick={() => setRecherche(\"absent\")}>Chercher absent</button><button id=\"tout\" type=\"button\" onClick={() => setRecherche(\"\")}>Tout revoir</button><p id=\"critere\">Critère : {recherche || \"tous\"}</p><ul id=\"liste\">{visibles.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"total\">Résultats : {visibles.length}</p>{visibles.length === 0 ? <p id=\"vide\">Aucun résultat.</p> : null}</main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Une recherche en majuscules puis zéro",
+        "checks": [],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#web",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#total",
+                "text": "Résultats : 1"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#sans-resultat",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#liste li",
+                "count": 0
+              },
+              {
+                "selector": "#vide",
+                "text": "Aucun résultat."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Des résultats reviennent après le vide",
+        "checks": [],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#sans-resultat",
+            "wait_ms": 40,
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#python",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python"
+                ]
+              },
+              {
+                "selector": "#vide",
+                "exists": false
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#tout",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Jardin",
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#critere",
+                "text": "Critère : tous"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le critère WEB doit-il échouer seulement à cause de sa casse ?",
+      "Compare deux versions cohérentes en minuscules.",
+      "const catalogue = [{id:\"py\",titre:\"Python\"},{id:\"ja\",titre:\"Jardin\"},{id:\"we\",titre:\"Web\"}];\nfunction App() {\n  const [recherche, setRecherche] = useState(\"\");\n  const critere = recherche.trim().toLowerCase();\n  const visibles = catalogue.filter(a => a.titre.toLowerCase().includes(critere));\n  return <main><button id=\"python\" type=\"button\" onClick={() => setRecherche(\"python\")}>Chercher Python</button><button id=\"web\" type=\"button\" onClick={() => setRecherche(\"WEB\")}>Chercher WEB</button><button id=\"sans-resultat\" type=\"button\" onClick={() => setRecherche(\"absent\")}>Chercher absent</button><button id=\"tout\" type=\"button\" onClick={() => setRecherche(\"\")}>Tout revoir</button><p id=\"critere\">Critère : {recherche || \"tous\"}</p><ul id=\"liste\">{visibles.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"total\">Résultats : {visibles.length}</p>{visibles.length === 0 ? <p id=\"vide\">Aucun résultat.</p> : null}</main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Le cas vide dérive de la collection filtrée et n’est pas une erreur réseau.",
+    "common_wrong_answers": [],
+    "id": "react-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un tri qui détruit la source",
+    "instruction_fr": "#trier active ou désactive le tri des titres avec localeCompare en français. Rends #liste et garde #source=Source : Web, Python, Jardin à chaque état. Corrige la copie avant sort pour que désactiver le tri retrouve cet ordre.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "const catalogue = [{id:\"we\",titre:\"Web\"},{id:\"py\",titre:\"Python\"},{id:\"ja\",titre:\"Jardin\"}];\nfunction App() {\n  const [tri, setTri] = useState(false);\n  const visibles = catalogue;\n  if (tri) { visibles.sort((a,b) => a.titre.localeCompare(b.titre,\"fr\")); }\n  return <main><button id=\"trier\" type=\"button\" aria-pressed={tri} onClick={() => setTri(v => !v)}>Basculer le tri alphabétique</button><ul id=\"liste\">{visibles.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"source\">Source : {catalogue.map(a => a.titre).join(\", \")}</p></main>;\n}\nroot.render(<App />);",
+    "solution": "const catalogue = [{id:\"we\",titre:\"Web\"},{id:\"py\",titre:\"Python\"},{id:\"ja\",titre:\"Jardin\"}];\nfunction App() {\n  const [tri, setTri] = useState(false);\n  const visibles = [...catalogue];\n  if (tri) { visibles.sort((a,b) => a.titre.localeCompare(b.titre,\"fr\")); }\n  return <main><button id=\"trier\" type=\"button\" aria-pressed={tri} onClick={() => setTri(v => !v)}>Basculer le tri alphabétique</button><ul id=\"liste\">{visibles.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"source\">Source : {catalogue.map(a => a.titre).join(\", \")}</p></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Le premier tri ne modifie pas la référence",
+        "checks": [],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#trier",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Jardin",
+                  "Python",
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#source",
+                "text": "Source : Web, Python, Jardin"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#trier",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Web",
+                  "Python",
+                  "Jardin"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Plusieurs tris restent réversibles",
+        "checks": [],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#trier",
+            "wait_ms": 40,
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#trier",
+            "wait_ms": 40,
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#trier",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Jardin",
+                  "Python",
+                  "Web"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#trier",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#source",
+                "text": "Source : Web, Python, Jardin"
+              },
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Web",
+                  "Python",
+                  "Jardin"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "sort retourne-t-il seulement un résultat indépendant de son tableau ?",
+      "Crée une nouvelle collection avant l’appel qui réordonne.",
+      "const catalogue = [{id:\"we\",titre:\"Web\"},{id:\"py\",titre:\"Python\"},{id:\"ja\",titre:\"Jardin\"}];\nfunction App() {\n  const [tri, setTri] = useState(false);\n  const visibles = [...catalogue];\n  if (tri) { visibles.sort((a,b) => a.titre.localeCompare(b.titre,\"fr\")); }\n  return <main><button id=\"trier\" type=\"button\" aria-pressed={tri} onClick={() => setTri(v => !v)}>Basculer le tri alphabétique</button><ul id=\"liste\">{visibles.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"source\">Source : {catalogue.map(a => a.titre).join(\", \")}</p></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "La copie superficielle suffit pour déplacer des références sans modifier les fiches.",
+    "common_wrong_answers": [],
+    "id": "react-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Assembler ville, disponibilité et tri",
+    "instruction_fr": "À partir du catalogue fourni, #lome/#kara/#toutes choisissent la ville. #disponibles ajoute le critère places>0 et #trier choisit l’ordre alphabétique. Les deux boutons portent aria-pressed. Rends #liste, #total et le message #vide=Aucun résultat. si nécessaire, sans stocker ces résultats dans des états supplémentaires. Conserve #source dans l’ordre Web, Jardin, Python.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "const catalogue = [{id:\"we\",titre:\"Web\",ville:\"Lomé\",places:2},{id:\"ja\",titre:\"Jardin\",ville:\"Kara\",places:0},{id:\"py\",titre:\"Python\",ville:\"Lomé\",places:4}];\nfunction App() {\n  const [ville, setVille] = useState(\"toutes\");\n  const [disponibles, setDisponibles] = useState(false);\n  const [tri, setTri] = useState(false);\n  let visibles = catalogue.filter(a => ville === \"toutes\" || a.ville === ville);\n  \n  if (tri) { visibles = [...visibles].sort((a,b) => a.titre.localeCompare(b.titre,\"fr\")); }\n  return <main><button id=\"lome\" type=\"button\" onClick={() => setVille(\"Lomé\")}>Lomé</button><button id=\"kara\" type=\"button\" onClick={() => setVille(\"Kara\")}>Kara</button><button id=\"toutes\" type=\"button\" onClick={() => setVille(\"toutes\")}>Toutes les villes</button><button id=\"disponibles\" type=\"button\" aria-pressed={disponibles} onClick={() => setDisponibles(v => !v)}>Disponibles seulement</button><button id=\"trier\" type=\"button\" aria-pressed={tri} onClick={() => setTri(v => !v)}>Tri alphabétique</button><ul id=\"liste\">{visibles.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"total\">Résultats : {visibles.length}</p>{visibles.length === 0 ? <p id=\"vide\">Aucun résultat.</p> : null}<p id=\"source\">Source : {catalogue.map(a => a.titre).join(\", \")}</p></main>;\n}\nroot.render(<App />);",
+    "solution": "const catalogue = [{id:\"we\",titre:\"Web\",ville:\"Lomé\",places:2},{id:\"ja\",titre:\"Jardin\",ville:\"Kara\",places:0},{id:\"py\",titre:\"Python\",ville:\"Lomé\",places:4}];\nfunction App() {\n  const [ville, setVille] = useState(\"toutes\");\n  const [disponibles, setDisponibles] = useState(false);\n  const [tri, setTri] = useState(false);\n  let visibles = catalogue.filter(a => ville === \"toutes\" || a.ville === ville);\n  if (disponibles) { visibles = visibles.filter(a => a.places > 0); }\n  if (tri) { visibles = [...visibles].sort((a,b) => a.titre.localeCompare(b.titre,\"fr\")); }\n  return <main><button id=\"lome\" type=\"button\" onClick={() => setVille(\"Lomé\")}>Lomé</button><button id=\"kara\" type=\"button\" onClick={() => setVille(\"Kara\")}>Kara</button><button id=\"toutes\" type=\"button\" onClick={() => setVille(\"toutes\")}>Toutes les villes</button><button id=\"disponibles\" type=\"button\" aria-pressed={disponibles} onClick={() => setDisponibles(v => !v)}>Disponibles seulement</button><button id=\"trier\" type=\"button\" aria-pressed={tri} onClick={() => setTri(v => !v)}>Tri alphabétique</button><ul id=\"liste\">{visibles.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"total\">Résultats : {visibles.length}</p>{visibles.length === 0 ? <p id=\"vide\">Aucun résultat.</p> : null}<p id=\"source\">Source : {catalogue.map(a => a.titre).join(\", \")}</p></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Combiner jusqu’au vide puis retrouver des résultats",
+        "checks": [],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#lome",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Web",
+                  "Python"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#trier",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Web"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#kara",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Jardin"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#disponibles",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#liste li",
+                "count": 0
+              },
+              {
+                "selector": "#vide",
+                "text": "Aucun résultat."
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#toutes",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#total",
+                "text": "Résultats : 2"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Les critères peuvent être retirés",
+        "checks": [],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#disponibles",
+            "wait_ms": 40,
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#trier",
+            "wait_ms": 40,
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#disponibles",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Jardin",
+                  "Python",
+                  "Web"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#trier",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Web",
+                  "Jardin",
+                  "Python"
+                ]
+              },
+              {
+                "selector": "#source",
+                "text": "Source : Web, Jardin, Python"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#kara",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "Résultats : 1"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Chaque critère doit-il altérer définitivement les données ?",
+      "Repars de catalogue puis applique les critères et le tri du rendu courant.",
+      "const catalogue = [{id:\"we\",titre:\"Web\",ville:\"Lomé\",places:2},{id:\"ja\",titre:\"Jardin\",ville:\"Kara\",places:0},{id:\"py\",titre:\"Python\",ville:\"Lomé\",places:4}];\nfunction App() {\n  const [ville, setVille] = useState(\"toutes\");\n  const [disponibles, setDisponibles] = useState(false);\n  const [tri, setTri] = useState(false);\n  let visibles = catalogue.filter(a => ville === \"toutes\" || a.ville === ville);\n  if (disponibles) { visibles = visibles.filter(a => a.places > 0); }\n  if (tri) { visibles = [...visibles].sort((a,b) => a.titre.localeCompare(b.titre,\"fr\")); }\n  return <main><button id=\"lome\" type=\"button\" onClick={() => setVille(\"Lomé\")}>Lomé</button><button id=\"kara\" type=\"button\" onClick={() => setVille(\"Kara\")}>Kara</button><button id=\"toutes\" type=\"button\" onClick={() => setVille(\"toutes\")}>Toutes les villes</button><button id=\"disponibles\" type=\"button\" aria-pressed={disponibles} onClick={() => setDisponibles(v => !v)}>Disponibles seulement</button><button id=\"trier\" type=\"button\" aria-pressed={tri} onClick={() => setTri(v => !v)}>Tri alphabétique</button><ul id=\"liste\">{visibles.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"total\">Résultats : {visibles.length}</p>{visibles.length === 0 ? <p id=\"vide\">Aucun résultat.</p> : null}<p id=\"source\">Source : {catalogue.map(a => a.titre).join(\", \")}</p></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Les changements indépendants de critères restent cohérents parce que leur résultat est dérivé.",
+    "common_wrong_answers": [],
+    "id": "react-m3-03-e4"
+  }
+]

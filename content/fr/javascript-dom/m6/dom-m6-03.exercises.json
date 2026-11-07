@@ -1,0 +1,1150 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Étape 1 : deux filtres, une sélection",
+    "instruction_fr": "Depuis #source li, afficher les titres de #liste. Combiner le terme trim/minuscule de #recherche et la valeur de #categorie avec ET ; toutes désactive la catégorie. #compte = « N résultat(s) » et #vide visible seulement si zéro. Chaque changement recalcule depuis la collection source. Critères : fonctionnement des deux commandes et clarté des fonctions de calcul/rendu. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"recherche\">Rechercher un atelier fictif</label><input id=\"recherche\" type=\"search\"><label for=\"categorie\">Catégorie</label><select id=\"categorie\"><option value=\"toutes\">Toutes</option><option value=\"code\">Code</option><option value=\"nature\">Nature</option><option value=\"creation\">Création</option></select><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"1\" data-categorie=\"code\" data-places=\"4\" data-duree=\"30\" data-prix=\"1000\">Python</li><li data-id=\"2\" data-categorie=\"nature\" data-places=\"0\" data-duree=\"20\" data-prix=\"500\">Jardin</li><li data-id=\"3\" data-categorie=\"code\" data-places=\"2\" data-duree=\"20\" data-prix=\"1500\">Web</li></ul></main>",
+    "starter_code": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' résultat(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nconst recherche = document.querySelector('#recherche');\nconst categorie = document.querySelector('#categorie');\nfunction selectionner(donnees, texte, choix) {\n  const terme = texte.trim().toLowerCase();\n  return donnees.filter(a => a.titre.toLowerCase().includes(terme));\n}\nfunction rendre() { afficher(selectionner(ateliers, recherche.value, categorie.value)); }\nrecherche.addEventListener('input', rendre);\ncategorie.addEventListener('change', rendre);\nrendre();",
+    "solution": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' résultat(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nconst recherche = document.querySelector('#recherche');\nconst categorie = document.querySelector('#categorie');\nfunction selectionner(donnees, texte, choix) {\n  const terme = texte.trim().toLowerCase();\n  return donnees.filter(a => a.titre.toLowerCase().includes(terme) && (choix === 'toutes' || a.categorie === choix));\n}\nfunction rendre() { afficher(selectionner(ateliers, recherche.value, categorie.value)); }\nrecherche.addEventListener('input', rendre);\ncategorie.addEventListener('change', rendre);\nrendre();",
+    "visible_tests": [
+      {
+        "description_fr": "Un filtre ne remplace pas l’autre",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#categorie",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "2 résultat(s)"
+              }
+            ],
+            "value": "code"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 résultat(s)"
+              }
+            ],
+            "value": "py"
+          },
+          {
+            "action": "input",
+            "selector": "#categorie",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#compte",
+                "text": "0 résultat(s)"
+              },
+              {
+                "selector": "#vide",
+                "attributes": {
+                  "hidden": null
+                }
+              }
+            ],
+            "value": "nature"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Jardin"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 résultat(s)"
+              }
+            ],
+            "value": ""
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Catégorie absente et critère conservé",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Papier",
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "2 résultat(s)"
+              }
+            ],
+            "value": "pi"
+          },
+          {
+            "action": "input",
+            "selector": "#categorie",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#compte",
+                "text": "0 résultat(s)"
+              }
+            ],
+            "value": "code"
+          },
+          {
+            "action": "input",
+            "selector": "#categorie",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Papier",
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "2 résultat(s)"
+              }
+            ],
+            "value": "creation"
+          },
+          {
+            "action": "input",
+            "selector": "#categorie",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Papier",
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "2 résultat(s)"
+              }
+            ],
+            "value": "toutes"
+          }
+        ],
+        "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"recherche\">Rechercher un atelier fictif</label><input id=\"recherche\" type=\"search\"><label for=\"categorie\">Catégorie</label><select id=\"categorie\"><option value=\"toutes\">Toutes</option><option value=\"code\">Code</option><option value=\"nature\">Nature</option><option value=\"creation\">Création</option></select><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"9\" data-categorie=\"creation\" data-places=\"0\" data-duree=\"10\" data-prix=\"300\">Photo</li><li data-id=\"4\" data-categorie=\"creation\" data-places=\"3\" data-duree=\"2\" data-prix=\"500\">Papier</li><li data-id=\"7\" data-categorie=\"creation\" data-places=\"1\" data-duree=\"1\" data-prix=\"300\">Piano</li></ul></main>"
+      }
+    ],
+    "hints": [
+      "Les deux contrôles décrivent la même vue.",
+      "Le résultat doit respecter le terme et le choix de catégorie simultanément.",
+      "Combine le test du titre avec (choix === toutes || a.categorie === choix)."
+    ],
+    "explanation_fr": "Cette étape fournit le calcul partagé du projet. La relecture doit pouvoir nommer ce calcul et montrer le rendu commun, même si les tests jugent avant tout les comportements observables.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^const\\ ateliers\\ =\\ Array\\.from\\(document\\.querySelectorAll\\('\\#source\\ li'\\),\\ el\\ =>\\ \\(\\{id:Number\\(el\\.dataset\\.id\\),\\ titre:el\\.textContent\\.trim\\(\\),\\ categorie:el\\.dataset\\.categorie,\\ places:Number\\(el\\.dataset\\.places\\),\\ duree:Number\\(el\\.dataset\\.duree\\),\\ prix:Number\\(el\\.dataset\\.prix\\)\\}\\)\\);\\\nfunction\\ afficher\\(lignes\\)\\ \\{\\\n\\ \\ const\\ liste\\ =\\ document\\.querySelector\\('\\#liste'\\);\\\n\\ \\ liste\\.replaceChildren\\(\\);\\\n\\ \\ for\\ \\(const\\ atelier\\ of\\ lignes\\)\\ \\{\\\n\\ \\ \\ \\ const\\ li\\ =\\ document\\.createElement\\('li'\\);\\\n\\ \\ \\ \\ li\\.dataset\\.id\\ =\\ String\\(atelier\\.id\\);\\\n\\ \\ \\ \\ li\\.textContent\\ =\\ atelier\\.titre;\\\n\\ \\ \\ \\ liste\\.append\\(li\\);\\\n\\ \\ \\}\\\n\\ \\ document\\.querySelector\\('\\#compte'\\)\\.textContent\\ =\\ lignes\\.length\\ \\+\\ '\\ résultat\\(s\\)';\\\n\\ \\ document\\.querySelector\\('\\#vide'\\)\\.hidden\\ =\\ lignes\\.length\\ !==\\ 0;\\\n\\}\\\nconst\\ recherche\\ =\\ document\\.querySelector\\('\\#recherche'\\);\\\nconst\\ categorie\\ =\\ document\\.querySelector\\('\\#categorie'\\);\\\nfunction\\ selectionner\\(donnees,\\ texte,\\ choix\\)\\ \\{\\\n\\ \\ const\\ terme\\ =\\ texte\\.trim\\(\\)\\.toLowerCase\\(\\);\\\n\\ \\ return\\ donnees\\.filter\\(a\\ =>\\ a\\.titre\\.toLowerCase\\(\\)\\.includes\\(terme\\)\\);\\\n\\}\\\nfunction\\ rendre\\(\\)\\ \\{\\ afficher\\(selectionner\\(ateliers,\\ recherche\\.value,\\ categorie\\.value\\)\\);\\ \\}\\\nrecherche\\.addEventListener\\('input',\\ rendre\\);\\\ncategorie\\.addEventListener\\('change',\\ rendre\\);\\\nrendre\\(\\);$",
+        "feedback_fr": "Le résultat doit respecter le terme et le choix de catégorie simultanément."
+      }
+    ],
+    "id": "dom-m6-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Étape 2 : un ajout validé et identifié",
+    "instruction_fr": "Au submit #ajout, prévenir la navigation. #titre trim : 2 à 30 caractères, unique sans casse ; messages « Écris un titre de 2 à 30 caractères. » ou « Ce titre existe déjà. ». #places non vide, entier 0..20 ; sinon « Choisis un entier de 0 à 20. ». Premier invalide : #erreur, focus, aria-invalid=true, describedby=« aide-ID erreur », #message vide, aucun ajout. Succès : objet depuis champs dont #categorie-ajout, id=max+1, afficher les titres et data-id ; #compte « N affiché(s) / T atelier(s) », #vide si zéro. Effacer erreurs/aria-invalid, conserver aide-ID ; titre vide, places=0, catégorie conservée, focus titre ; #message « Atelier ajouté à cet essai. ». Ne pas modifier #source. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<main><h1>Ateliers fictifs</h1><form id=\"ajout\" novalidate><label for=\"titre\">Titre fictif à ajouter</label><input id=\"titre\" aria-describedby=\"aide-titre\"><p id=\"aide-titre\">2 à 30 caractères, titre unique sans distinction de casse.</p><label for=\"categorie-ajout\">Catégorie de la nouvelle fiche</label><select id=\"categorie-ajout\"><option value=\"code\">Code</option><option value=\"nature\">Nature</option><option value=\"creation\">Création</option></select><label for=\"places\">Places fictives</label><input id=\"places\" type=\"number\" min=\"0\" max=\"20\" step=\"1\" value=\"0\" aria-describedby=\"aide-places\"><p id=\"aide-places\">Un entier de 0 à 20 ; zéro signifie aucune place disponible.</p><p id=\"erreur\" aria-live=\"polite\"></p><button type=\"submit\">Ajouter à l’essai</button></form><p id=\"message\" role=\"status\" aria-live=\"polite\"></p><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"1\" data-categorie=\"code\" data-places=\"4\" data-duree=\"30\" data-prix=\"1000\">Python</li><li data-id=\"2\" data-categorie=\"nature\" data-places=\"0\" data-duree=\"20\" data-prix=\"500\">Jardin</li><li data-id=\"3\" data-categorie=\"code\" data-places=\"2\" data-duree=\"20\" data-prix=\"1500\">Web</li></ul></main>",
+    "starter_code": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' affiché(s) / ' + ateliers.length + ' atelier(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nfunction rendre() { afficher(ateliers); }\nconst titre = document.querySelector('#titre');\nconst places = document.querySelector('#places');\nconst categorieAjout = document.querySelector('#categorie-ajout');\nconst erreur = document.querySelector('#erreur');\nconst message = document.querySelector('#message');\nfunction refuser(champ, texte) {\n  erreur.textContent = texte;\n  champ.setAttribute('aria-invalid', 'true');\n  champ.setAttribute('aria-describedby', 'aide-' + champ.id + ' erreur');\n  champ.focus();\n}\ndocument.querySelector('#ajout').addEventListener('submit', event => {\n  event.preventDefault();\n  erreur.textContent = '';\n  message.textContent = '';\n  for (const champ of [titre, places]) {\n    champ.removeAttribute('aria-invalid');\n    champ.setAttribute('aria-describedby', 'aide-' + champ.id);\n  }\n  const nom = titre.value.trim();\n  const quantite = Number(places.value);\n  if (nom.length < 2 || nom.length > 30) {\n    refuser(titre, 'Écris un titre de 2 à 30 caractères.');\n    return;\n  }\n  if (false) {\n    refuser(titre, 'Ce titre existe déjà.');\n    return;\n  }\n  if (places.value.trim() === '' || !Number.isInteger(quantite) || quantite < 0 || quantite > 20) {\n    refuser(places, 'Choisis un entier de 0 à 20.');\n    return;\n  }\n  let identifiant = 0;\n  for (const atelier of ateliers) identifiant = Math.max(identifiant, atelier.id);\n  ateliers.push({id:identifiant+1, titre:nom, categorie:categorieAjout.value, places:quantite, duree:0, prix:0});\n  titre.value = '';\n  places.value = '0';\n  rendre();\n  message.textContent = 'Atelier ajouté à cet essai.';\n  titre.focus();\n});\nrendre();",
+    "solution": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' affiché(s) / ' + ateliers.length + ' atelier(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nfunction rendre() { afficher(ateliers); }\nconst titre = document.querySelector('#titre');\nconst places = document.querySelector('#places');\nconst categorieAjout = document.querySelector('#categorie-ajout');\nconst erreur = document.querySelector('#erreur');\nconst message = document.querySelector('#message');\nfunction refuser(champ, texte) {\n  erreur.textContent = texte;\n  champ.setAttribute('aria-invalid', 'true');\n  champ.setAttribute('aria-describedby', 'aide-' + champ.id + ' erreur');\n  champ.focus();\n}\ndocument.querySelector('#ajout').addEventListener('submit', event => {\n  event.preventDefault();\n  erreur.textContent = '';\n  message.textContent = '';\n  for (const champ of [titre, places]) {\n    champ.removeAttribute('aria-invalid');\n    champ.setAttribute('aria-describedby', 'aide-' + champ.id);\n  }\n  const nom = titre.value.trim();\n  const quantite = Number(places.value);\n  if (nom.length < 2 || nom.length > 30) {\n    refuser(titre, 'Écris un titre de 2 à 30 caractères.');\n    return;\n  }\n  if (ateliers.some(a => a.titre.toLowerCase() === nom.toLowerCase())) {\n    refuser(titre, 'Ce titre existe déjà.');\n    return;\n  }\n  if (places.value.trim() === '' || !Number.isInteger(quantite) || quantite < 0 || quantite > 20) {\n    refuser(places, 'Choisis un entier de 0 à 20.');\n    return;\n  }\n  let identifiant = 0;\n  for (const atelier of ateliers) identifiant = Math.max(identifiant, atelier.id);\n  ateliers.push({id:identifiant+1, titre:nom, categorie:categorieAjout.value, places:quantite, duree:0, prix:0});\n  titre.value = '';\n  places.value = '0';\n  rendre();\n  message.textContent = 'Atelier ajouté à cet essai.';\n  titre.focus();\n});\nrendre();",
+    "visible_tests": [
+      {
+        "description_fr": "Refuser un doublon puis ajouter",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#titre",
+            "checks": [],
+            "value": " PYTHON "
+          },
+          {
+            "action": "submit",
+            "selector": "#ajout",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Jardin",
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "3 affiché(s) / 3 atelier(s)"
+              },
+              {
+                "selector": "#titre",
+                "focused": true,
+                "attributes": {
+                  "aria-invalid": "true",
+                  "aria-describedby": "aide-titre erreur"
+                }
+              },
+              {
+                "selector": "#erreur",
+                "text": "Ce titre existe déjà."
+              },
+              {
+                "selector": "#message",
+                "text": ""
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#titre",
+            "checks": [],
+            "value": "Couture"
+          },
+          {
+            "action": "input",
+            "selector": "#categorie-ajout",
+            "checks": [],
+            "value": "creation"
+          },
+          {
+            "action": "input",
+            "selector": "#places",
+            "checks": [],
+            "value": "3"
+          },
+          {
+            "action": "submit",
+            "selector": "#ajout",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Jardin",
+                  "Web",
+                  "Couture"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "4 affiché(s) / 4 atelier(s)"
+              },
+              {
+                "selector": "#liste li:last-child",
+                "attributes": {
+                  "data-id": "4"
+                }
+              },
+              {
+                "selector": "#source li",
+                "count": 3
+              },
+              {
+                "selector": "#categorie-ajout",
+                "value": "creation"
+              },
+              {
+                "selector": "#erreur",
+                "text": ""
+              },
+              {
+                "selector": "#message",
+                "text": "Atelier ajouté à cet essai."
+              },
+              {
+                "selector": "#titre",
+                "value": "",
+                "focused": true,
+                "attributes": {
+                  "aria-invalid": null,
+                  "aria-describedby": "aide-titre"
+                }
+              },
+              {
+                "selector": "#places",
+                "value": "0",
+                "attributes": {
+                  "aria-invalid": null,
+                  "aria-describedby": "aide-places"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Maximum non aligné sur la longueur et contraintes numériques",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#titre",
+            "checks": [],
+            "value": "Tissage"
+          },
+          {
+            "action": "input",
+            "selector": "#places",
+            "checks": [],
+            "value": "2.5"
+          },
+          {
+            "action": "submit",
+            "selector": "#ajout",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo",
+                  "Papier",
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "3 affiché(s) / 3 atelier(s)"
+              },
+              {
+                "selector": "#places",
+                "focused": true,
+                "attributes": {
+                  "aria-invalid": "true",
+                  "aria-describedby": "aide-places erreur"
+                }
+              },
+              {
+                "selector": "#erreur",
+                "text": "Choisis un entier de 0 à 20."
+              },
+              {
+                "selector": "#message",
+                "text": ""
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#places",
+            "checks": [],
+            "value": "0"
+          },
+          {
+            "action": "submit",
+            "selector": "#ajout",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo",
+                  "Papier",
+                  "Piano",
+                  "Tissage"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "4 affiché(s) / 4 atelier(s)"
+              },
+              {
+                "selector": "#liste li:last-child",
+                "attributes": {
+                  "data-id": "10"
+                }
+              },
+              {
+                "selector": "#source li",
+                "count": 3
+              },
+              {
+                "selector": "#erreur",
+                "text": ""
+              },
+              {
+                "selector": "#message",
+                "text": "Atelier ajouté à cet essai."
+              },
+              {
+                "selector": "#titre",
+                "value": "",
+                "focused": true,
+                "attributes": {
+                  "aria-invalid": null,
+                  "aria-describedby": "aide-titre"
+                }
+              },
+              {
+                "selector": "#places",
+                "value": "0",
+                "attributes": {
+                  "aria-invalid": null,
+                  "aria-describedby": "aide-places"
+                }
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#titre",
+            "checks": [],
+            "value": " tissage "
+          },
+          {
+            "action": "submit",
+            "selector": "#ajout",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo",
+                  "Papier",
+                  "Piano",
+                  "Tissage"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "4 affiché(s) / 4 atelier(s)"
+              },
+              {
+                "selector": "#titre",
+                "focused": true,
+                "attributes": {
+                  "aria-invalid": "true",
+                  "aria-describedby": "aide-titre erreur"
+                }
+              },
+              {
+                "selector": "#erreur",
+                "text": "Ce titre existe déjà."
+              },
+              {
+                "selector": "#message",
+                "text": ""
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><h1>Ateliers fictifs</h1><form id=\"ajout\" novalidate><label for=\"titre\">Titre fictif à ajouter</label><input id=\"titre\" aria-describedby=\"aide-titre\"><p id=\"aide-titre\">2 à 30 caractères, titre unique sans distinction de casse.</p><label for=\"categorie-ajout\">Catégorie de la nouvelle fiche</label><select id=\"categorie-ajout\"><option value=\"code\">Code</option><option value=\"nature\">Nature</option><option value=\"creation\">Création</option></select><label for=\"places\">Places fictives</label><input id=\"places\" type=\"number\" min=\"0\" max=\"20\" step=\"1\" value=\"0\" aria-describedby=\"aide-places\"><p id=\"aide-places\">Un entier de 0 à 20 ; zéro signifie aucune place disponible.</p><p id=\"erreur\" aria-live=\"polite\"></p><button type=\"submit\">Ajouter à l’essai</button></form><p id=\"message\" role=\"status\" aria-live=\"polite\"></p><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"9\" data-categorie=\"creation\" data-places=\"0\" data-duree=\"10\" data-prix=\"300\">Photo</li><li data-id=\"4\" data-categorie=\"creation\" data-places=\"3\" data-duree=\"2\" data-prix=\"500\">Papier</li><li data-id=\"7\" data-categorie=\"creation\" data-places=\"1\" data-duree=\"1\" data-prix=\"300\">Piano</li></ul></main>"
+      }
+    ],
+    "hints": [
+      "La validation précède push et la création des lignes.",
+      "Deux casses du même titre sont un même titre pour ce contrat.",
+      "Utilise some sur les titres normalisés avant de calculer max+1 et d’ajouter."
+    ],
+    "explanation_fr": "Cette étape vérifie les contraintes et l’identité indépendamment des filtres. Les identifiants initiaux non consécutifs empêchent de confondre longueur et prochain identifiant. Le passage invalide puis valide vérifie aussi l’effacement des erreurs.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^const\\ ateliers\\ =\\ Array\\.from\\(document\\.querySelectorAll\\('\\#source\\ li'\\),\\ el\\ =>\\ \\(\\{id:Number\\(el\\.dataset\\.id\\),\\ titre:el\\.textContent\\.trim\\(\\),\\ categorie:el\\.dataset\\.categorie,\\ places:Number\\(el\\.dataset\\.places\\),\\ duree:Number\\(el\\.dataset\\.duree\\),\\ prix:Number\\(el\\.dataset\\.prix\\)\\}\\)\\);\\\nfunction\\ afficher\\(lignes\\)\\ \\{\\\n\\ \\ const\\ liste\\ =\\ document\\.querySelector\\('\\#liste'\\);\\\n\\ \\ liste\\.replaceChildren\\(\\);\\\n\\ \\ for\\ \\(const\\ atelier\\ of\\ lignes\\)\\ \\{\\\n\\ \\ \\ \\ const\\ li\\ =\\ document\\.createElement\\('li'\\);\\\n\\ \\ \\ \\ li\\.dataset\\.id\\ =\\ String\\(atelier\\.id\\);\\\n\\ \\ \\ \\ li\\.textContent\\ =\\ atelier\\.titre;\\\n\\ \\ \\ \\ liste\\.append\\(li\\);\\\n\\ \\ \\}\\\n\\ \\ document\\.querySelector\\('\\#compte'\\)\\.textContent\\ =\\ lignes\\.length\\ \\+\\ '\\ affiché\\(s\\)\\ /\\ '\\ \\+\\ ateliers\\.length\\ \\+\\ '\\ atelier\\(s\\)';\\\n\\ \\ document\\.querySelector\\('\\#vide'\\)\\.hidden\\ =\\ lignes\\.length\\ !==\\ 0;\\\n\\}\\\nfunction\\ rendre\\(\\)\\ \\{\\ afficher\\(ateliers\\);\\ \\}\\\nconst\\ titre\\ =\\ document\\.querySelector\\('\\#titre'\\);\\\nconst\\ places\\ =\\ document\\.querySelector\\('\\#places'\\);\\\nconst\\ categorieAjout\\ =\\ document\\.querySelector\\('\\#categorie\\-ajout'\\);\\\nconst\\ erreur\\ =\\ document\\.querySelector\\('\\#erreur'\\);\\\nconst\\ message\\ =\\ document\\.querySelector\\('\\#message'\\);\\\nfunction\\ refuser\\(champ,\\ texte\\)\\ \\{\\\n\\ \\ erreur\\.textContent\\ =\\ texte;\\\n\\ \\ champ\\.setAttribute\\('aria\\-invalid',\\ 'true'\\);\\\n\\ \\ champ\\.setAttribute\\('aria\\-describedby',\\ 'aide\\-'\\ \\+\\ champ\\.id\\ \\+\\ '\\ erreur'\\);\\\n\\ \\ champ\\.focus\\(\\);\\\n\\}\\\ndocument\\.querySelector\\('\\#ajout'\\)\\.addEventListener\\('submit',\\ event\\ =>\\ \\{\\\n\\ \\ event\\.preventDefault\\(\\);\\\n\\ \\ erreur\\.textContent\\ =\\ '';\\\n\\ \\ message\\.textContent\\ =\\ '';\\\n\\ \\ for\\ \\(const\\ champ\\ of\\ \\[titre,\\ places\\]\\)\\ \\{\\\n\\ \\ \\ \\ champ\\.removeAttribute\\('aria\\-invalid'\\);\\\n\\ \\ \\ \\ champ\\.setAttribute\\('aria\\-describedby',\\ 'aide\\-'\\ \\+\\ champ\\.id\\);\\\n\\ \\ \\}\\\n\\ \\ const\\ nom\\ =\\ titre\\.value\\.trim\\(\\);\\\n\\ \\ const\\ quantite\\ =\\ Number\\(places\\.value\\);\\\n\\ \\ if\\ \\(nom\\.length\\ <\\ 2\\ \\|\\|\\ nom\\.length\\ >\\ 30\\)\\ \\{\\\n\\ \\ \\ \\ refuser\\(titre,\\ 'Écris\\ un\\ titre\\ de\\ 2\\ à\\ 30\\ caractères\\.'\\);\\\n\\ \\ \\ \\ return;\\\n\\ \\ \\}\\\n\\ \\ if\\ \\(false\\)\\ \\{\\\n\\ \\ \\ \\ refuser\\(titre,\\ 'Ce\\ titre\\ existe\\ déjà\\.'\\);\\\n\\ \\ \\ \\ return;\\\n\\ \\ \\}\\\n\\ \\ if\\ \\(places\\.value\\.trim\\(\\)\\ ===\\ ''\\ \\|\\|\\ !Number\\.isInteger\\(quantite\\)\\ \\|\\|\\ quantite\\ <\\ 0\\ \\|\\|\\ quantite\\ >\\ 20\\)\\ \\{\\\n\\ \\ \\ \\ refuser\\(places,\\ 'Choisis\\ un\\ entier\\ de\\ 0\\ à\\ 20\\.'\\);\\\n\\ \\ \\ \\ return;\\\n\\ \\ \\}\\\n\\ \\ let\\ identifiant\\ =\\ 0;\\\n\\ \\ for\\ \\(const\\ atelier\\ of\\ ateliers\\)\\ identifiant\\ =\\ Math\\.max\\(identifiant,\\ atelier\\.id\\);\\\n\\ \\ ateliers\\.push\\(\\{id:identifiant\\+1,\\ titre:nom,\\ categorie:categorieAjout\\.value,\\ places:quantite,\\ duree:0,\\ prix:0\\}\\);\\\n\\ \\ titre\\.value\\ =\\ '';\\\n\\ \\ places\\.value\\ =\\ '0';\\\n\\ \\ rendre\\(\\);\\\n\\ \\ message\\.textContent\\ =\\ 'Atelier\\ ajouté\\ à\\ cet\\ essai\\.';\\\n\\ \\ titre\\.focus\\(\\);\\\n\\}\\);\\\nrendre\\(\\);$",
+        "feedback_fr": "Deux casses du même titre sont un même titre pour ce contrat."
+      }
+    ],
+    "id": "dom-m6-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Étape 3 : conserver une recherche lors d’un ajout",
+    "instruction_fr": "Conserve toutes les règles d’ajout de l’étape 2, ses messages et attributs. #recherche filtre les titres avec trim/minuscule. Après ajout, relance le rendu filtré sans vider la recherche : #compte distingue « N affiché(s) / T atelier(s) ». Une fiche non correspondante reste masquée ; une correspondante apparaît immédiatement. #vide suit N, pas T. Explique pourquoi la collection peut grandir sans nouvelle ligne visible. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"recherche\">Rechercher un atelier fictif</label><input id=\"recherche\" type=\"search\"><form id=\"ajout\" novalidate><label for=\"titre\">Titre fictif à ajouter</label><input id=\"titre\" aria-describedby=\"aide-titre\"><p id=\"aide-titre\">2 à 30 caractères, titre unique sans distinction de casse.</p><label for=\"categorie-ajout\">Catégorie de la nouvelle fiche</label><select id=\"categorie-ajout\"><option value=\"code\">Code</option><option value=\"nature\">Nature</option><option value=\"creation\">Création</option></select><label for=\"places\">Places fictives</label><input id=\"places\" type=\"number\" min=\"0\" max=\"20\" step=\"1\" value=\"0\" aria-describedby=\"aide-places\"><p id=\"aide-places\">Un entier de 0 à 20 ; zéro signifie aucune place disponible.</p><p id=\"erreur\" aria-live=\"polite\"></p><button type=\"submit\">Ajouter à l’essai</button></form><p id=\"message\" role=\"status\" aria-live=\"polite\"></p><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"1\" data-categorie=\"code\" data-places=\"4\" data-duree=\"30\" data-prix=\"1000\">Python</li><li data-id=\"2\" data-categorie=\"nature\" data-places=\"0\" data-duree=\"20\" data-prix=\"500\">Jardin</li><li data-id=\"3\" data-categorie=\"code\" data-places=\"2\" data-duree=\"20\" data-prix=\"1500\">Web</li></ul></main>",
+    "starter_code": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' affiché(s) / ' + ateliers.length + ' atelier(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nconst recherche = document.querySelector('#recherche');\nfunction rendre() {\n  const terme = recherche.value.trim().toLowerCase();\n  afficher(ateliers.filter(a => a.titre.toLowerCase().includes(terme)));\n}\nrecherche.addEventListener('input', rendre);\nconst titre = document.querySelector('#titre');\nconst places = document.querySelector('#places');\nconst categorieAjout = document.querySelector('#categorie-ajout');\nconst erreur = document.querySelector('#erreur');\nconst message = document.querySelector('#message');\nfunction refuser(champ, texte) {\n  erreur.textContent = texte;\n  champ.setAttribute('aria-invalid', 'true');\n  champ.setAttribute('aria-describedby', 'aide-' + champ.id + ' erreur');\n  champ.focus();\n}\ndocument.querySelector('#ajout').addEventListener('submit', event => {\n  event.preventDefault();\n  erreur.textContent = '';\n  message.textContent = '';\n  for (const champ of [titre, places]) {\n    champ.removeAttribute('aria-invalid');\n    champ.setAttribute('aria-describedby', 'aide-' + champ.id);\n  }\n  const nom = titre.value.trim();\n  const quantite = Number(places.value);\n  if (nom.length < 2 || nom.length > 30) {\n    refuser(titre, 'Écris un titre de 2 à 30 caractères.');\n    return;\n  }\n  if (ateliers.some(a => a.titre.toLowerCase() === nom.toLowerCase())) {\n    refuser(titre, 'Ce titre existe déjà.');\n    return;\n  }\n  if (places.value.trim() === '' || !Number.isInteger(quantite) || quantite < 0 || quantite > 20) {\n    refuser(places, 'Choisis un entier de 0 à 20.');\n    return;\n  }\n  let identifiant = 0;\n  for (const atelier of ateliers) identifiant = Math.max(identifiant, atelier.id);\n  ateliers.push({id:identifiant+1, titre:nom, categorie:categorieAjout.value, places:quantite, duree:0, prix:0});\n  titre.value = '';\n  places.value = '0';\n  afficher(ateliers);\n  message.textContent = 'Atelier ajouté à cet essai.';\n  titre.focus();\n});\nrendre();",
+    "solution": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' affiché(s) / ' + ateliers.length + ' atelier(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nconst recherche = document.querySelector('#recherche');\nfunction rendre() {\n  const terme = recherche.value.trim().toLowerCase();\n  afficher(ateliers.filter(a => a.titre.toLowerCase().includes(terme)));\n}\nrecherche.addEventListener('input', rendre);\nconst titre = document.querySelector('#titre');\nconst places = document.querySelector('#places');\nconst categorieAjout = document.querySelector('#categorie-ajout');\nconst erreur = document.querySelector('#erreur');\nconst message = document.querySelector('#message');\nfunction refuser(champ, texte) {\n  erreur.textContent = texte;\n  champ.setAttribute('aria-invalid', 'true');\n  champ.setAttribute('aria-describedby', 'aide-' + champ.id + ' erreur');\n  champ.focus();\n}\ndocument.querySelector('#ajout').addEventListener('submit', event => {\n  event.preventDefault();\n  erreur.textContent = '';\n  message.textContent = '';\n  for (const champ of [titre, places]) {\n    champ.removeAttribute('aria-invalid');\n    champ.setAttribute('aria-describedby', 'aide-' + champ.id);\n  }\n  const nom = titre.value.trim();\n  const quantite = Number(places.value);\n  if (nom.length < 2 || nom.length > 30) {\n    refuser(titre, 'Écris un titre de 2 à 30 caractères.');\n    return;\n  }\n  if (ateliers.some(a => a.titre.toLowerCase() === nom.toLowerCase())) {\n    refuser(titre, 'Ce titre existe déjà.');\n    return;\n  }\n  if (places.value.trim() === '' || !Number.isInteger(quantite) || quantite < 0 || quantite > 20) {\n    refuser(places, 'Choisis un entier de 0 à 20.');\n    return;\n  }\n  let identifiant = 0;\n  for (const atelier of ateliers) identifiant = Math.max(identifiant, atelier.id);\n  ateliers.push({id:identifiant+1, titre:nom, categorie:categorieAjout.value, places:quantite, duree:0, prix:0});\n  titre.value = '';\n  places.value = '0';\n  rendre();\n  message.textContent = 'Atelier ajouté à cet essai.';\n  titre.focus();\n});\nrendre();",
+    "visible_tests": [
+      {
+        "description_fr": "Ajout exclu par la recherche puis retrouvé",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#compte",
+                "text": "0 affiché(s) / 3 atelier(s)"
+              },
+              {
+                "selector": "#vide",
+                "attributes": {
+                  "hidden": null
+                }
+              }
+            ],
+            "value": "photo"
+          },
+          {
+            "action": "input",
+            "selector": "#titre",
+            "checks": [],
+            "value": "Lecture"
+          },
+          {
+            "action": "input",
+            "selector": "#places",
+            "checks": [],
+            "value": "1"
+          },
+          {
+            "action": "submit",
+            "selector": "#ajout",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#compte",
+                "text": "0 affiché(s) / 4 atelier(s)"
+              },
+              {
+                "selector": "#recherche",
+                "value": "photo"
+              },
+              {
+                "selector": "#vide",
+                "attributes": {
+                  "hidden": null
+                }
+              },
+              {
+                "selector": "#erreur",
+                "text": ""
+              },
+              {
+                "selector": "#message",
+                "text": "Atelier ajouté à cet essai."
+              },
+              {
+                "selector": "#titre",
+                "value": "",
+                "focused": true,
+                "attributes": {
+                  "aria-invalid": null,
+                  "aria-describedby": "aide-titre"
+                }
+              },
+              {
+                "selector": "#places",
+                "value": "0",
+                "attributes": {
+                  "aria-invalid": null,
+                  "aria-describedby": "aide-places"
+                }
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Lecture"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 affiché(s) / 4 atelier(s)"
+              },
+              {
+                "selector": "#vide",
+                "attributes": {
+                  "hidden": ""
+                }
+              }
+            ],
+            "value": "lecture"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Ajout correspondant immédiatement visible",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 affiché(s) / 3 atelier(s)"
+              }
+            ],
+            "value": "photo"
+          },
+          {
+            "action": "input",
+            "selector": "#titre",
+            "checks": [],
+            "value": "Photographie"
+          },
+          {
+            "action": "input",
+            "selector": "#categorie-ajout",
+            "checks": [],
+            "value": "creation"
+          },
+          {
+            "action": "input",
+            "selector": "#places",
+            "checks": [],
+            "value": "20"
+          },
+          {
+            "action": "submit",
+            "selector": "#ajout",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo",
+                  "Photographie"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "2 affiché(s) / 4 atelier(s)"
+              },
+              {
+                "selector": "#recherche",
+                "value": "photo"
+              },
+              {
+                "selector": "#erreur",
+                "text": ""
+              },
+              {
+                "selector": "#message",
+                "text": "Atelier ajouté à cet essai."
+              },
+              {
+                "selector": "#titre",
+                "value": "",
+                "focused": true,
+                "attributes": {
+                  "aria-invalid": null,
+                  "aria-describedby": "aide-titre"
+                }
+              },
+              {
+                "selector": "#places",
+                "value": "0",
+                "attributes": {
+                  "aria-invalid": null,
+                  "aria-describedby": "aide-places"
+                }
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo",
+                  "Papier",
+                  "Piano",
+                  "Photographie"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "4 affiché(s) / 4 atelier(s)"
+              }
+            ],
+            "value": ""
+          }
+        ],
+        "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"recherche\">Rechercher un atelier fictif</label><input id=\"recherche\" type=\"search\"><form id=\"ajout\" novalidate><label for=\"titre\">Titre fictif à ajouter</label><input id=\"titre\" aria-describedby=\"aide-titre\"><p id=\"aide-titre\">2 à 30 caractères, titre unique sans distinction de casse.</p><label for=\"categorie-ajout\">Catégorie de la nouvelle fiche</label><select id=\"categorie-ajout\"><option value=\"code\">Code</option><option value=\"nature\">Nature</option><option value=\"creation\">Création</option></select><label for=\"places\">Places fictives</label><input id=\"places\" type=\"number\" min=\"0\" max=\"20\" step=\"1\" value=\"0\" aria-describedby=\"aide-places\"><p id=\"aide-places\">Un entier de 0 à 20 ; zéro signifie aucune place disponible.</p><p id=\"erreur\" aria-live=\"polite\"></p><button type=\"submit\">Ajouter à l’essai</button></form><p id=\"message\" role=\"status\" aria-live=\"polite\"></p><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"9\" data-categorie=\"creation\" data-places=\"0\" data-duree=\"10\" data-prix=\"300\">Photo</li><li data-id=\"4\" data-categorie=\"creation\" data-places=\"3\" data-duree=\"2\" data-prix=\"500\">Papier</li><li data-id=\"7\" data-categorie=\"creation\" data-places=\"1\" data-duree=\"1\" data-prix=\"300\">Piano</li></ul></main>"
+      }
+    ],
+    "hints": [
+      "Le formulaire doit retrouver le même parcours que la saisie.",
+      "Afficher directement tous les ateliers ignore le critère actif.",
+      "Après push, appelle rendre au lieu de afficher(ateliers)."
+    ],
+    "explanation_fr": "Le débogage porte sur la coopération des composants. Les cas testent un ajout masqué et un ajout déjà correspondant ; aucun des deux ne doit effacer le filtre ou perdre la nouvelle donnée.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^const\\ ateliers\\ =\\ Array\\.from\\(document\\.querySelectorAll\\('\\#source\\ li'\\),\\ el\\ =>\\ \\(\\{id:Number\\(el\\.dataset\\.id\\),\\ titre:el\\.textContent\\.trim\\(\\),\\ categorie:el\\.dataset\\.categorie,\\ places:Number\\(el\\.dataset\\.places\\),\\ duree:Number\\(el\\.dataset\\.duree\\),\\ prix:Number\\(el\\.dataset\\.prix\\)\\}\\)\\);\\\nfunction\\ afficher\\(lignes\\)\\ \\{\\\n\\ \\ const\\ liste\\ =\\ document\\.querySelector\\('\\#liste'\\);\\\n\\ \\ liste\\.replaceChildren\\(\\);\\\n\\ \\ for\\ \\(const\\ atelier\\ of\\ lignes\\)\\ \\{\\\n\\ \\ \\ \\ const\\ li\\ =\\ document\\.createElement\\('li'\\);\\\n\\ \\ \\ \\ li\\.dataset\\.id\\ =\\ String\\(atelier\\.id\\);\\\n\\ \\ \\ \\ li\\.textContent\\ =\\ atelier\\.titre;\\\n\\ \\ \\ \\ liste\\.append\\(li\\);\\\n\\ \\ \\}\\\n\\ \\ document\\.querySelector\\('\\#compte'\\)\\.textContent\\ =\\ lignes\\.length\\ \\+\\ '\\ affiché\\(s\\)\\ /\\ '\\ \\+\\ ateliers\\.length\\ \\+\\ '\\ atelier\\(s\\)';\\\n\\ \\ document\\.querySelector\\('\\#vide'\\)\\.hidden\\ =\\ lignes\\.length\\ !==\\ 0;\\\n\\}\\\nconst\\ recherche\\ =\\ document\\.querySelector\\('\\#recherche'\\);\\\nfunction\\ rendre\\(\\)\\ \\{\\\n\\ \\ const\\ terme\\ =\\ recherche\\.value\\.trim\\(\\)\\.toLowerCase\\(\\);\\\n\\ \\ afficher\\(ateliers\\.filter\\(a\\ =>\\ a\\.titre\\.toLowerCase\\(\\)\\.includes\\(terme\\)\\)\\);\\\n\\}\\\nrecherche\\.addEventListener\\('input',\\ rendre\\);\\\nconst\\ titre\\ =\\ document\\.querySelector\\('\\#titre'\\);\\\nconst\\ places\\ =\\ document\\.querySelector\\('\\#places'\\);\\\nconst\\ categorieAjout\\ =\\ document\\.querySelector\\('\\#categorie\\-ajout'\\);\\\nconst\\ erreur\\ =\\ document\\.querySelector\\('\\#erreur'\\);\\\nconst\\ message\\ =\\ document\\.querySelector\\('\\#message'\\);\\\nfunction\\ refuser\\(champ,\\ texte\\)\\ \\{\\\n\\ \\ erreur\\.textContent\\ =\\ texte;\\\n\\ \\ champ\\.setAttribute\\('aria\\-invalid',\\ 'true'\\);\\\n\\ \\ champ\\.setAttribute\\('aria\\-describedby',\\ 'aide\\-'\\ \\+\\ champ\\.id\\ \\+\\ '\\ erreur'\\);\\\n\\ \\ champ\\.focus\\(\\);\\\n\\}\\\ndocument\\.querySelector\\('\\#ajout'\\)\\.addEventListener\\('submit',\\ event\\ =>\\ \\{\\\n\\ \\ event\\.preventDefault\\(\\);\\\n\\ \\ erreur\\.textContent\\ =\\ '';\\\n\\ \\ message\\.textContent\\ =\\ '';\\\n\\ \\ for\\ \\(const\\ champ\\ of\\ \\[titre,\\ places\\]\\)\\ \\{\\\n\\ \\ \\ \\ champ\\.removeAttribute\\('aria\\-invalid'\\);\\\n\\ \\ \\ \\ champ\\.setAttribute\\('aria\\-describedby',\\ 'aide\\-'\\ \\+\\ champ\\.id\\);\\\n\\ \\ \\}\\\n\\ \\ const\\ nom\\ =\\ titre\\.value\\.trim\\(\\);\\\n\\ \\ const\\ quantite\\ =\\ Number\\(places\\.value\\);\\\n\\ \\ if\\ \\(nom\\.length\\ <\\ 2\\ \\|\\|\\ nom\\.length\\ >\\ 30\\)\\ \\{\\\n\\ \\ \\ \\ refuser\\(titre,\\ 'Écris\\ un\\ titre\\ de\\ 2\\ à\\ 30\\ caractères\\.'\\);\\\n\\ \\ \\ \\ return;\\\n\\ \\ \\}\\\n\\ \\ if\\ \\(ateliers\\.some\\(a\\ =>\\ a\\.titre\\.toLowerCase\\(\\)\\ ===\\ nom\\.toLowerCase\\(\\)\\)\\)\\ \\{\\\n\\ \\ \\ \\ refuser\\(titre,\\ 'Ce\\ titre\\ existe\\ déjà\\.'\\);\\\n\\ \\ \\ \\ return;\\\n\\ \\ \\}\\\n\\ \\ if\\ \\(places\\.value\\.trim\\(\\)\\ ===\\ ''\\ \\|\\|\\ !Number\\.isInteger\\(quantite\\)\\ \\|\\|\\ quantite\\ <\\ 0\\ \\|\\|\\ quantite\\ >\\ 20\\)\\ \\{\\\n\\ \\ \\ \\ refuser\\(places,\\ 'Choisis\\ un\\ entier\\ de\\ 0\\ à\\ 20\\.'\\);\\\n\\ \\ \\ \\ return;\\\n\\ \\ \\}\\\n\\ \\ let\\ identifiant\\ =\\ 0;\\\n\\ \\ for\\ \\(const\\ atelier\\ of\\ ateliers\\)\\ identifiant\\ =\\ Math\\.max\\(identifiant,\\ atelier\\.id\\);\\\n\\ \\ ateliers\\.push\\(\\{id:identifiant\\+1,\\ titre:nom,\\ categorie:categorieAjout\\.value,\\ places:quantite,\\ duree:0,\\ prix:0\\}\\);\\\n\\ \\ titre\\.value\\ =\\ '';\\\n\\ \\ places\\.value\\ =\\ '0';\\\n\\ \\ afficher\\(ateliers\\);\\\n\\ \\ message\\.textContent\\ =\\ 'Atelier\\ ajouté\\ à\\ cet\\ essai\\.';\\\n\\ \\ titre\\.focus\\(\\);\\\n\\}\\);\\\nrendre\\(\\);$",
+        "feedback_fr": "Afficher directement tous les ateliers ignore le critère actif."
+      }
+    ],
+    "id": "dom-m6-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Projet final : catalogue et grille de vérification",
+    "instruction_fr": "Assembler recherche, catégorie, ajout validé et retours accessibles des étapes 1–3. #categorie filtre la vue, #categorie-ajout décrit la nouvelle fiche : ne pas confondre ces contrôles. Conserver filtres et recherche après ajout ; compteur « N affiché(s) / T atelier(s) », #vide selon N. Appliquer toutes les contraintes/messages/focus/attributs de l’étape 2, id=max+1, titres via textContent, source inchangée. Grille : fonctionnement de toutes les séquences ; clarté calcul/rendu/écouteurs uniques ; tests absence/correction/données différentes ; explication du total distinct du visible et de la durée temporaire des données. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"recherche\">Rechercher un atelier fictif</label><input id=\"recherche\" type=\"search\"><label for=\"categorie\">Catégorie</label><select id=\"categorie\"><option value=\"toutes\">Toutes</option><option value=\"code\">Code</option><option value=\"nature\">Nature</option><option value=\"creation\">Création</option></select><form id=\"ajout\" novalidate><label for=\"titre\">Titre fictif à ajouter</label><input id=\"titre\" aria-describedby=\"aide-titre\"><p id=\"aide-titre\">2 à 30 caractères, titre unique sans distinction de casse.</p><label for=\"categorie-ajout\">Catégorie de la nouvelle fiche</label><select id=\"categorie-ajout\"><option value=\"code\">Code</option><option value=\"nature\">Nature</option><option value=\"creation\">Création</option></select><label for=\"places\">Places fictives</label><input id=\"places\" type=\"number\" min=\"0\" max=\"20\" step=\"1\" value=\"0\" aria-describedby=\"aide-places\"><p id=\"aide-places\">Un entier de 0 à 20 ; zéro signifie aucune place disponible.</p><p id=\"erreur\" aria-live=\"polite\"></p><button type=\"submit\">Ajouter à l’essai</button></form><p id=\"message\" role=\"status\" aria-live=\"polite\"></p><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"1\" data-categorie=\"code\" data-places=\"4\" data-duree=\"30\" data-prix=\"1000\">Python</li><li data-id=\"2\" data-categorie=\"nature\" data-places=\"0\" data-duree=\"20\" data-prix=\"500\">Jardin</li><li data-id=\"3\" data-categorie=\"code\" data-places=\"2\" data-duree=\"20\" data-prix=\"1500\">Web</li></ul></main>",
+    "starter_code": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' affiché(s) / ' + ateliers.length + ' atelier(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nconst recherche = document.querySelector('#recherche');\nconst categorie = document.querySelector('#categorie');\nfunction selectionner(donnees, texte, choix) {\n  const terme = texte.trim().toLowerCase();\n  return donnees.filter(a => a.titre.toLowerCase().includes(terme) && (choix === 'toutes' || a.categorie === choix));\n}\nfunction rendre() { afficher(selectionner(ateliers, recherche.value, 'toutes')); }\nrecherche.addEventListener('input', rendre);\ncategorie.addEventListener('change', rendre);\nconst titre = document.querySelector('#titre');\nconst places = document.querySelector('#places');\nconst categorieAjout = document.querySelector('#categorie-ajout');\nconst erreur = document.querySelector('#erreur');\nconst message = document.querySelector('#message');\nfunction refuser(champ, texte) {\n  erreur.textContent = texte;\n  champ.setAttribute('aria-invalid', 'true');\n  champ.setAttribute('aria-describedby', 'aide-' + champ.id + ' erreur');\n  champ.focus();\n}\ndocument.querySelector('#ajout').addEventListener('submit', event => {\n  event.preventDefault();\n  erreur.textContent = '';\n  message.textContent = '';\n  for (const champ of [titre, places]) {\n    champ.removeAttribute('aria-invalid');\n    champ.setAttribute('aria-describedby', 'aide-' + champ.id);\n  }\n  const nom = titre.value.trim();\n  const quantite = Number(places.value);\n  if (nom.length < 2 || nom.length > 30) {\n    refuser(titre, 'Écris un titre de 2 à 30 caractères.');\n    return;\n  }\n  if (ateliers.some(a => a.titre.toLowerCase() === nom.toLowerCase())) {\n    refuser(titre, 'Ce titre existe déjà.');\n    return;\n  }\n  if (places.value.trim() === '' || !Number.isInteger(quantite) || quantite < 0 || quantite > 20) {\n    refuser(places, 'Choisis un entier de 0 à 20.');\n    return;\n  }\n  let identifiant = 0;\n  for (const atelier of ateliers) identifiant = Math.max(identifiant, atelier.id);\n  ateliers.push({id:identifiant+1, titre:nom, categorie:categorieAjout.value, places:quantite, duree:0, prix:0});\n  titre.value = '';\n  places.value = '0';\n  rendre();\n  message.textContent = 'Atelier ajouté à cet essai.';\n  titre.focus();\n});\nrendre();",
+    "solution": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' affiché(s) / ' + ateliers.length + ' atelier(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nconst recherche = document.querySelector('#recherche');\nconst categorie = document.querySelector('#categorie');\nfunction selectionner(donnees, texte, choix) {\n  const terme = texte.trim().toLowerCase();\n  return donnees.filter(a => a.titre.toLowerCase().includes(terme) && (choix === 'toutes' || a.categorie === choix));\n}\nfunction rendre() { afficher(selectionner(ateliers, recherche.value, categorie.value)); }\nrecherche.addEventListener('input', rendre);\ncategorie.addEventListener('change', rendre);\nconst titre = document.querySelector('#titre');\nconst places = document.querySelector('#places');\nconst categorieAjout = document.querySelector('#categorie-ajout');\nconst erreur = document.querySelector('#erreur');\nconst message = document.querySelector('#message');\nfunction refuser(champ, texte) {\n  erreur.textContent = texte;\n  champ.setAttribute('aria-invalid', 'true');\n  champ.setAttribute('aria-describedby', 'aide-' + champ.id + ' erreur');\n  champ.focus();\n}\ndocument.querySelector('#ajout').addEventListener('submit', event => {\n  event.preventDefault();\n  erreur.textContent = '';\n  message.textContent = '';\n  for (const champ of [titre, places]) {\n    champ.removeAttribute('aria-invalid');\n    champ.setAttribute('aria-describedby', 'aide-' + champ.id);\n  }\n  const nom = titre.value.trim();\n  const quantite = Number(places.value);\n  if (nom.length < 2 || nom.length > 30) {\n    refuser(titre, 'Écris un titre de 2 à 30 caractères.');\n    return;\n  }\n  if (ateliers.some(a => a.titre.toLowerCase() === nom.toLowerCase())) {\n    refuser(titre, 'Ce titre existe déjà.');\n    return;\n  }\n  if (places.value.trim() === '' || !Number.isInteger(quantite) || quantite < 0 || quantite > 20) {\n    refuser(places, 'Choisis un entier de 0 à 20.');\n    return;\n  }\n  let identifiant = 0;\n  for (const atelier of ateliers) identifiant = Math.max(identifiant, atelier.id);\n  ateliers.push({id:identifiant+1, titre:nom, categorie:categorieAjout.value, places:quantite, duree:0, prix:0});\n  titre.value = '';\n  places.value = '0';\n  rendre();\n  message.textContent = 'Atelier ajouté à cet essai.';\n  titre.focus();\n});\nrendre();",
+    "visible_tests": [
+      {
+        "description_fr": "Filtrer, corriger puis retrouver un ajout",
+        "checks": [
+          {
+            "selector": "#liste li",
+            "texts": [
+              "Python",
+              "Jardin",
+              "Web"
+            ]
+          },
+          {
+            "selector": "#compte",
+            "text": "3 affiché(s) / 3 atelier(s)"
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#categorie",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "2 affiché(s) / 3 atelier(s)"
+              }
+            ],
+            "value": "code"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#compte",
+                "text": "0 affiché(s) / 3 atelier(s)"
+              }
+            ],
+            "value": "no"
+          },
+          {
+            "action": "submit",
+            "selector": "#ajout",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#compte",
+                "text": "0 affiché(s) / 3 atelier(s)"
+              },
+              {
+                "selector": "#titre",
+                "focused": true,
+                "attributes": {
+                  "aria-invalid": "true",
+                  "aria-describedby": "aide-titre erreur"
+                }
+              },
+              {
+                "selector": "#erreur",
+                "text": "Écris un titre de 2 à 30 caractères."
+              },
+              {
+                "selector": "#message",
+                "text": ""
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#titre",
+            "checks": [],
+            "value": "Notes"
+          },
+          {
+            "action": "input",
+            "selector": "#categorie-ajout",
+            "checks": [],
+            "value": "creation"
+          },
+          {
+            "action": "input",
+            "selector": "#places",
+            "checks": [],
+            "value": "2"
+          },
+          {
+            "action": "submit",
+            "selector": "#ajout",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#compte",
+                "text": "0 affiché(s) / 4 atelier(s)"
+              },
+              {
+                "selector": "#recherche",
+                "value": "no"
+              },
+              {
+                "selector": "#categorie",
+                "value": "code"
+              },
+              {
+                "selector": "#erreur",
+                "text": ""
+              },
+              {
+                "selector": "#message",
+                "text": "Atelier ajouté à cet essai."
+              },
+              {
+                "selector": "#titre",
+                "value": "",
+                "focused": true,
+                "attributes": {
+                  "aria-invalid": null,
+                  "aria-describedby": "aide-titre"
+                }
+              },
+              {
+                "selector": "#places",
+                "value": "0",
+                "attributes": {
+                  "aria-invalid": null,
+                  "aria-describedby": "aide-places"
+                }
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "2 affiché(s) / 4 atelier(s)"
+              }
+            ],
+            "value": ""
+          },
+          {
+            "action": "input",
+            "selector": "#categorie",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Notes"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 affiché(s) / 4 atelier(s)"
+              },
+              {
+                "selector": "#liste li",
+                "attributes": {
+                  "data-id": "4"
+                }
+              }
+            ],
+            "value": "creation"
+          },
+          {
+            "action": "input",
+            "selector": "#categorie",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Jardin",
+                  "Web",
+                  "Notes"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "4 affiché(s) / 4 atelier(s)"
+              }
+            ],
+            "value": "toutes"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autres identifiants, places invalides puis catégorie absente",
+        "checks": [
+          {
+            "selector": "#compte",
+            "text": "3 affiché(s) / 3 atelier(s)"
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 affiché(s) / 3 atelier(s)"
+              }
+            ],
+            "value": "photo"
+          },
+          {
+            "action": "input",
+            "selector": "#titre",
+            "checks": [],
+            "value": "Photographie"
+          },
+          {
+            "action": "input",
+            "selector": "#categorie-ajout",
+            "checks": [],
+            "value": "creation"
+          },
+          {
+            "action": "input",
+            "selector": "#places",
+            "checks": [],
+            "value": "-1"
+          },
+          {
+            "action": "submit",
+            "selector": "#ajout",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 affiché(s) / 3 atelier(s)"
+              },
+              {
+                "selector": "#places",
+                "focused": true,
+                "attributes": {
+                  "aria-invalid": "true",
+                  "aria-describedby": "aide-places erreur"
+                }
+              },
+              {
+                "selector": "#erreur",
+                "text": "Choisis un entier de 0 à 20."
+              },
+              {
+                "selector": "#message",
+                "text": ""
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#places",
+            "checks": [],
+            "value": "0"
+          },
+          {
+            "action": "submit",
+            "selector": "#ajout",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo",
+                  "Photographie"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "2 affiché(s) / 4 atelier(s)"
+              },
+              {
+                "selector": "#liste li:last-child",
+                "attributes": {
+                  "data-id": "10"
+                }
+              },
+              {
+                "selector": "#erreur",
+                "text": ""
+              },
+              {
+                "selector": "#message",
+                "text": "Atelier ajouté à cet essai."
+              },
+              {
+                "selector": "#titre",
+                "value": "",
+                "focused": true,
+                "attributes": {
+                  "aria-invalid": null,
+                  "aria-describedby": "aide-titre"
+                }
+              },
+              {
+                "selector": "#places",
+                "value": "0",
+                "attributes": {
+                  "aria-invalid": null,
+                  "aria-describedby": "aide-places"
+                }
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#categorie",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#compte",
+                "text": "0 affiché(s) / 4 atelier(s)"
+              },
+              {
+                "selector": "#vide",
+                "attributes": {
+                  "hidden": null
+                }
+              }
+            ],
+            "value": "code"
+          },
+          {
+            "action": "input",
+            "selector": "#categorie",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo",
+                  "Photographie"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "2 affiché(s) / 4 atelier(s)"
+              }
+            ],
+            "value": "toutes"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo",
+                  "Papier",
+                  "Piano",
+                  "Photographie"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "4 affiché(s) / 4 atelier(s)"
+              },
+              {
+                "selector": "#source li",
+                "count": 3
+              }
+            ],
+            "value": ""
+          }
+        ],
+        "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"recherche\">Rechercher un atelier fictif</label><input id=\"recherche\" type=\"search\"><label for=\"categorie\">Catégorie</label><select id=\"categorie\"><option value=\"toutes\">Toutes</option><option value=\"code\">Code</option><option value=\"nature\">Nature</option><option value=\"creation\">Création</option></select><form id=\"ajout\" novalidate><label for=\"titre\">Titre fictif à ajouter</label><input id=\"titre\" aria-describedby=\"aide-titre\"><p id=\"aide-titre\">2 à 30 caractères, titre unique sans distinction de casse.</p><label for=\"categorie-ajout\">Catégorie de la nouvelle fiche</label><select id=\"categorie-ajout\"><option value=\"code\">Code</option><option value=\"nature\">Nature</option><option value=\"creation\">Création</option></select><label for=\"places\">Places fictives</label><input id=\"places\" type=\"number\" min=\"0\" max=\"20\" step=\"1\" value=\"0\" aria-describedby=\"aide-places\"><p id=\"aide-places\">Un entier de 0 à 20 ; zéro signifie aucune place disponible.</p><p id=\"erreur\" aria-live=\"polite\"></p><button type=\"submit\">Ajouter à l’essai</button></form><p id=\"message\" role=\"status\" aria-live=\"polite\"></p><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"9\" data-categorie=\"creation\" data-places=\"0\" data-duree=\"10\" data-prix=\"300\">Photo</li><li data-id=\"4\" data-categorie=\"creation\" data-places=\"3\" data-duree=\"2\" data-prix=\"500\">Papier</li><li data-id=\"7\" data-categorie=\"creation\" data-places=\"1\" data-duree=\"1\" data-prix=\"300\">Piano</li></ul></main>"
+      }
+    ],
+    "hints": [
+      "Sépare le filtre de catégorie et la catégorie du formulaire.",
+      "Le rendu doit lire le contrôle #categorie actuel, même après un ajout.",
+      "Transmets categorie.value à selectionner ; garde le formulaire sur la même fonction rendre."
+    ],
+    "explanation_fr": "Le projet final combine les règles sans effacer les états indépendants. Les tests couvrent le fonctionnement et certains aspects accessibles ; la grille demande aussi une relecture du code et une explication argumentée des choix.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^const\\ ateliers\\ =\\ Array\\.from\\(document\\.querySelectorAll\\('\\#source\\ li'\\),\\ el\\ =>\\ \\(\\{id:Number\\(el\\.dataset\\.id\\),\\ titre:el\\.textContent\\.trim\\(\\),\\ categorie:el\\.dataset\\.categorie,\\ places:Number\\(el\\.dataset\\.places\\),\\ duree:Number\\(el\\.dataset\\.duree\\),\\ prix:Number\\(el\\.dataset\\.prix\\)\\}\\)\\);\\\nfunction\\ afficher\\(lignes\\)\\ \\{\\\n\\ \\ const\\ liste\\ =\\ document\\.querySelector\\('\\#liste'\\);\\\n\\ \\ liste\\.replaceChildren\\(\\);\\\n\\ \\ for\\ \\(const\\ atelier\\ of\\ lignes\\)\\ \\{\\\n\\ \\ \\ \\ const\\ li\\ =\\ document\\.createElement\\('li'\\);\\\n\\ \\ \\ \\ li\\.dataset\\.id\\ =\\ String\\(atelier\\.id\\);\\\n\\ \\ \\ \\ li\\.textContent\\ =\\ atelier\\.titre;\\\n\\ \\ \\ \\ liste\\.append\\(li\\);\\\n\\ \\ \\}\\\n\\ \\ document\\.querySelector\\('\\#compte'\\)\\.textContent\\ =\\ lignes\\.length\\ \\+\\ '\\ affiché\\(s\\)\\ /\\ '\\ \\+\\ ateliers\\.length\\ \\+\\ '\\ atelier\\(s\\)';\\\n\\ \\ document\\.querySelector\\('\\#vide'\\)\\.hidden\\ =\\ lignes\\.length\\ !==\\ 0;\\\n\\}\\\nconst\\ recherche\\ =\\ document\\.querySelector\\('\\#recherche'\\);\\\nconst\\ categorie\\ =\\ document\\.querySelector\\('\\#categorie'\\);\\\nfunction\\ selectionner\\(donnees,\\ texte,\\ choix\\)\\ \\{\\\n\\ \\ const\\ terme\\ =\\ texte\\.trim\\(\\)\\.toLowerCase\\(\\);\\\n\\ \\ return\\ donnees\\.filter\\(a\\ =>\\ a\\.titre\\.toLowerCase\\(\\)\\.includes\\(terme\\)\\ \\&\\&\\ \\(choix\\ ===\\ 'toutes'\\ \\|\\|\\ a\\.categorie\\ ===\\ choix\\)\\);\\\n\\}\\\nfunction\\ rendre\\(\\)\\ \\{\\ afficher\\(selectionner\\(ateliers,\\ recherche\\.value,\\ 'toutes'\\)\\);\\ \\}\\\nrecherche\\.addEventListener\\('input',\\ rendre\\);\\\ncategorie\\.addEventListener\\('change',\\ rendre\\);\\\nconst\\ titre\\ =\\ document\\.querySelector\\('\\#titre'\\);\\\nconst\\ places\\ =\\ document\\.querySelector\\('\\#places'\\);\\\nconst\\ categorieAjout\\ =\\ document\\.querySelector\\('\\#categorie\\-ajout'\\);\\\nconst\\ erreur\\ =\\ document\\.querySelector\\('\\#erreur'\\);\\\nconst\\ message\\ =\\ document\\.querySelector\\('\\#message'\\);\\\nfunction\\ refuser\\(champ,\\ texte\\)\\ \\{\\\n\\ \\ erreur\\.textContent\\ =\\ texte;\\\n\\ \\ champ\\.setAttribute\\('aria\\-invalid',\\ 'true'\\);\\\n\\ \\ champ\\.setAttribute\\('aria\\-describedby',\\ 'aide\\-'\\ \\+\\ champ\\.id\\ \\+\\ '\\ erreur'\\);\\\n\\ \\ champ\\.focus\\(\\);\\\n\\}\\\ndocument\\.querySelector\\('\\#ajout'\\)\\.addEventListener\\('submit',\\ event\\ =>\\ \\{\\\n\\ \\ event\\.preventDefault\\(\\);\\\n\\ \\ erreur\\.textContent\\ =\\ '';\\\n\\ \\ message\\.textContent\\ =\\ '';\\\n\\ \\ for\\ \\(const\\ champ\\ of\\ \\[titre,\\ places\\]\\)\\ \\{\\\n\\ \\ \\ \\ champ\\.removeAttribute\\('aria\\-invalid'\\);\\\n\\ \\ \\ \\ champ\\.setAttribute\\('aria\\-describedby',\\ 'aide\\-'\\ \\+\\ champ\\.id\\);\\\n\\ \\ \\}\\\n\\ \\ const\\ nom\\ =\\ titre\\.value\\.trim\\(\\);\\\n\\ \\ const\\ quantite\\ =\\ Number\\(places\\.value\\);\\\n\\ \\ if\\ \\(nom\\.length\\ <\\ 2\\ \\|\\|\\ nom\\.length\\ >\\ 30\\)\\ \\{\\\n\\ \\ \\ \\ refuser\\(titre,\\ 'Écris\\ un\\ titre\\ de\\ 2\\ à\\ 30\\ caractères\\.'\\);\\\n\\ \\ \\ \\ return;\\\n\\ \\ \\}\\\n\\ \\ if\\ \\(ateliers\\.some\\(a\\ =>\\ a\\.titre\\.toLowerCase\\(\\)\\ ===\\ nom\\.toLowerCase\\(\\)\\)\\)\\ \\{\\\n\\ \\ \\ \\ refuser\\(titre,\\ 'Ce\\ titre\\ existe\\ déjà\\.'\\);\\\n\\ \\ \\ \\ return;\\\n\\ \\ \\}\\\n\\ \\ if\\ \\(places\\.value\\.trim\\(\\)\\ ===\\ ''\\ \\|\\|\\ !Number\\.isInteger\\(quantite\\)\\ \\|\\|\\ quantite\\ <\\ 0\\ \\|\\|\\ quantite\\ >\\ 20\\)\\ \\{\\\n\\ \\ \\ \\ refuser\\(places,\\ 'Choisis\\ un\\ entier\\ de\\ 0\\ à\\ 20\\.'\\);\\\n\\ \\ \\ \\ return;\\\n\\ \\ \\}\\\n\\ \\ let\\ identifiant\\ =\\ 0;\\\n\\ \\ for\\ \\(const\\ atelier\\ of\\ ateliers\\)\\ identifiant\\ =\\ Math\\.max\\(identifiant,\\ atelier\\.id\\);\\\n\\ \\ ateliers\\.push\\(\\{id:identifiant\\+1,\\ titre:nom,\\ categorie:categorieAjout\\.value,\\ places:quantite,\\ duree:0,\\ prix:0\\}\\);\\\n\\ \\ titre\\.value\\ =\\ '';\\\n\\ \\ places\\.value\\ =\\ '0';\\\n\\ \\ rendre\\(\\);\\\n\\ \\ message\\.textContent\\ =\\ 'Atelier\\ ajouté\\ à\\ cet\\ essai\\.';\\\n\\ \\ titre\\.focus\\(\\);\\\n\\}\\);\\\nrendre\\(\\);$",
+        "feedback_fr": "Le rendu doit lire le contrôle #categorie actuel, même après un ajout."
+      }
+    ],
+    "id": "dom-m6-03-e4"
+  }
+]

@@ -1,0 +1,359 @@
+{
+  "id": "javascript-dom",
+  "title_fr": "JavaScript : construire des interfaces avec le DOM",
+  "language": "javascript",
+  "runtime": "dom",
+  "level": "intermediaire",
+  "summary_fr": "Relie HTML et JavaScript : boutons, formulaires, listes et recherche. Construis une interface accessible, teste ses interactions et corrige ses erreurs dans le navigateur.",
+  "prerequisite_courses": [
+    "html-bases",
+    "css-bases",
+    "javascript-bases"
+  ],
+  "prerequisites": [
+    "Connaître HTML, CSS et les fondamentaux JavaScript.",
+    "Aucune installation requise : l’atelier est intégré à Nunya."
+  ],
+  "outcomes": [
+    "Sélectionner et modifier précisément un document HTML.",
+    "Réagir aux événements et conserver un état cohérent.",
+    "Construire des formulaires avec messages et focus accessibles.",
+    "Créer, filtrer et trier des listes sans perdre leurs identifiants.",
+    "Assembler un catalogue interactif et vérifier ses comportements."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Sélectionner et modifier le document",
+      "outcome_fr": "Relier des éléments et leurs propriétés au code.",
+      "lesson_ids": [
+        "dom-m1-01",
+        "dom-m1-02",
+        "dom-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Événements et état",
+      "outcome_fr": "Gérer les clics et la délégation sans multiplier les écouteurs.",
+      "lesson_ids": [
+        "dom-m2-01",
+        "dom-m2-02",
+        "dom-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Saisies, formulaires et clavier",
+      "outcome_fr": "Lire les valeurs et guider la saisie par des messages accessibles.",
+      "lesson_ids": [
+        "dom-m3-01",
+        "dom-m3-02",
+        "dom-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Afficher et construire des éléments",
+      "outcome_fr": "Modifier les classes, créer des listes et conserver des identifiants stables.",
+      "lesson_ids": [
+        "dom-m4-01",
+        "dom-m4-02",
+        "dom-m4-03"
+      ]
+    },
+    {
+      "id": "m5",
+      "title_fr": "Recherche, tri et rendu",
+      "outcome_fr": "Dériver l’affichage des données sans perdre leur ordre source.",
+      "lesson_ids": [
+        "dom-m5-01",
+        "dom-m5-02",
+        "dom-m5-03"
+      ]
+    },
+    {
+      "id": "m6",
+      "title_fr": "Validation et projet de catalogue",
+      "outcome_fr": "Tester et assembler une interface accessible.",
+      "lesson_ids": [
+        "dom-m6-01",
+        "dom-m6-02",
+        "dom-m6-03"
+      ]
+    }
+  ],
+  "later_modules": [],
+  "availability": "programme-redige",
+  "status": "brouillon",
+  "reviewer": null,
+  "depth_fr": "Socle progressif avec projets et tests locaux ; relecture pédagogique en cours. Les niveaux supérieurs restent à construire.",
+  "next_courses": [
+    "react-bases",
+    "http-bases"
+  ],
+  "engine_revision": "e35d48ec41a4",
+  "lessons": [
+    {
+      "id": "dom-m1-01",
+      "title_fr": "Relier un arbre HTML à un élément JavaScript",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [],
+      "tags": [
+        "DOM",
+        "sélecteur",
+        "référence",
+        "textContent"
+      ]
+    },
+    {
+      "id": "dom-m1-02",
+      "title_fr": "Distinguer texte, valeurs et attributs",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "dom-m1-01"
+      ],
+      "tags": [
+        "value",
+        "attribut",
+        "dataset",
+        "propriété booléenne"
+      ]
+    },
+    {
+      "id": "dom-m1-03",
+      "title_fr": "Parcourir une collection et prévoir le cas vide",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "dom-m1-02"
+      ],
+      "tags": [
+        "NodeList",
+        "collection statique",
+        "état vide",
+        "accumulateur"
+      ]
+    },
+    {
+      "id": "dom-m2-01",
+      "title_fr": "Déclencher une action au clic et conserver son contexte",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "dom-m1-03"
+      ],
+      "tags": [
+        "écouteur",
+        "événement click",
+        "fermeture",
+        "état"
+      ]
+    },
+    {
+      "id": "dom-m2-02",
+      "title_fr": "Calculer un état numérique et rendre un affichage cohérent",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "dom-m2-01"
+      ],
+      "tags": [
+        "conversion",
+        "rendu",
+        "borne",
+        "valeur dérivée"
+      ]
+    },
+    {
+      "id": "dom-m2-03",
+      "title_fr": "Comprendre la cible et déléguer les clics",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "dom-m2-02"
+      ],
+      "tags": [
+        "target",
+        "currentTarget",
+        "délégation",
+        "closest",
+        "contains"
+      ]
+    },
+    {
+      "id": "dom-m3-01",
+      "title_fr": "Réagir à la saisie et rendre un aperçu cohérent",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "dom-m2-03"
+      ],
+      "tags": [
+        "input",
+        "aperçu",
+        "checked"
+      ]
+    },
+    {
+      "id": "dom-m3-02",
+      "title_fr": "Traiter un formulaire sans perdre la saisie",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "dom-m3-01"
+      ],
+      "tags": [
+        "soumission",
+        "action par défaut",
+        "validation locale"
+      ]
+    },
+    {
+      "id": "dom-m3-03",
+      "title_fr": "Préserver les commandes natives et orienter le focus",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "dom-m3-02"
+      ],
+      "tags": [
+        "focus",
+        "keydown",
+        "tabindex=-1"
+      ]
+    },
+    {
+      "id": "dom-m4-01",
+      "title_fr": "Synchroniser classes, visibilité et état annoncé",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "dom-m3-03"
+      ],
+      "tags": [
+        "classList",
+        "hidden",
+        "état annoncé"
+      ]
+    },
+    {
+      "id": "dom-m4-02",
+      "title_fr": "Créer et remplacer des éléments sans interpréter les saisies",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "dom-m4-01"
+      ],
+      "tags": [
+        "nœud détaché",
+        "append",
+        "reconstruction"
+      ]
+    },
+    {
+      "id": "dom-m4-03",
+      "title_fr": "Garder un état de liste et cibler des identifiants stables",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "dom-m4-02"
+      ],
+      "tags": [
+        "identifiant stable",
+        "état de liste",
+        "délégation"
+      ]
+    },
+    {
+      "id": "dom-m5-01",
+      "title_fr": "Filtrer un tableau et expliquer un résultat vide",
+      "module": "m5",
+      "minutes": 20,
+      "prerequisites": [
+        "dom-m4-03"
+      ],
+      "tags": [
+        "filtrage",
+        "état vide",
+        "filter"
+      ]
+    },
+    {
+      "id": "dom-m5-02",
+      "title_fr": "Trier une copie et retrouver l’ordre source",
+      "module": "m5",
+      "minutes": 20,
+      "prerequisites": [
+        "dom-m5-01"
+      ],
+      "tags": [
+        "comparateur",
+        "copie superficielle",
+        "critère secondaire"
+      ]
+    },
+    {
+      "id": "dom-m5-03",
+      "title_fr": "Composer le calcul et les fonctions de rendu",
+      "module": "m5",
+      "minutes": 20,
+      "prerequisites": [
+        "dom-m5-02"
+      ],
+      "tags": [
+        "composition",
+        "coordination",
+        "paramètre"
+      ]
+    },
+    {
+      "id": "dom-m6-01",
+      "title_fr": "Valider avec des retours accessibles et corrigeables",
+      "module": "m6",
+      "minutes": 20,
+      "prerequisites": [
+        "dom-m5-03"
+      ],
+      "tags": [
+        "aria-describedby",
+        "aria-invalid",
+        "validation"
+      ]
+    },
+    {
+      "id": "dom-m6-02",
+      "title_fr": "Déboguer les écouteurs répétés et l’état oublié",
+      "module": "m6",
+      "minutes": 20,
+      "prerequisites": [
+        "dom-m6-01"
+      ],
+      "tags": [
+        "écouteur",
+        "identité de fonction",
+        "état"
+      ]
+    },
+    {
+      "id": "dom-m6-03",
+      "title_fr": "Projet : un catalogue fictif cohérent et vérifiable",
+      "module": "m6",
+      "minutes": 20,
+      "prerequisites": [
+        "dom-m6-02"
+      ],
+      "tags": [
+        "vue dérivée",
+        "identifiant stable",
+        "grille de vérification"
+      ]
+    }
+  ],
+  "estimated_minutes": 360,
+  "content_revision": "1a61379086f4",
+  "exercise_count": 72,
+  "quiz_count": 54
+}

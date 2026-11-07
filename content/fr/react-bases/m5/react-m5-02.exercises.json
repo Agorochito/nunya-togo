@@ -1,0 +1,475 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Le titre suit la saisie actuelle",
+    "instruction_fr": "Afficher #nom contrôlé, initial « Départ », et #affiche égal au texte. Synchroniser document.title du document enfant à « Note : NOM_TRIM » ou « Note : Sans nom » si vide. #vider remet l’état à vide. Corriger les dépendances de useEffect pour que saisie et bouton soient suivis ; ne pas écrire document.title pendant le calcul du JSX. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function App() {\n  const [nom, setNom] = useState('Départ');\n  useEffect(() => { document.title = 'Note : ' + (nom.trim() || 'Sans nom'); }, []);\n  return <main><h1>Note fictive</h1><label htmlFor=\"nom\">Nom de la note</label><input id=\"nom\" value={nom} onChange={e => setNom(e.target.value)} /><p id=\"affiche\">{nom}</p><button id=\"vider\" type=\"button\" onClick={() => setNom('')}>Vider</button></main>;\n}\nroot.render(<App />);",
+    "solution": "function App() {\n  const [nom, setNom] = useState('Départ');\n  useEffect(() => { document.title = 'Note : ' + (nom.trim() || 'Sans nom'); }, [nom]);\n  return <main><h1>Note fictive</h1><label htmlFor=\"nom\">Nom de la note</label><input id=\"nom\" value={nom} onChange={e => setNom(e.target.value)} /><p id=\"affiche\">{nom}</p><button id=\"vider\" type=\"button\" onClick={() => setNom('')}>Vider</button></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Deux actions mettent le titre à jour",
+        "checks": [
+          {
+            "selector": "title",
+            "text": "Note : Départ"
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#nom",
+            "checks": [
+              {
+                "selector": "title",
+                "text": "Note : Afi"
+              }
+            ],
+            "value": " Afi "
+          },
+          {
+            "action": "click",
+            "selector": "#vider",
+            "checks": [
+              {
+                "selector": "title",
+                "text": "Note : Sans nom"
+              },
+              {
+                "selector": "#nom",
+                "value": ""
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Des espaces et un autre nom",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#nom",
+            "checks": [
+              {
+                "selector": "title",
+                "text": "Note : Sans nom"
+              }
+            ],
+            "value": "  "
+          },
+          {
+            "action": "input",
+            "selector": "#nom",
+            "checks": [
+              {
+                "selector": "title",
+                "text": "Note : Lecture"
+              },
+              {
+                "selector": "#affiche",
+                "text": "Lecture"
+              }
+            ],
+            "value": "Lecture"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La fonction de l’effet lit nom.",
+      "Un tableau vide ne réagit pas à une nouvelle valeur de cet état.",
+      "Déclare [nom] comme dépendances de cette synchronisation."
+    ],
+    "explanation_fr": "L’effet doit rester cohérent après plusieurs états, pas uniquement au montage. Le titre extérieur au JSX est observé directement dans le document enfant.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^function\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ \\[nom,\\ setNom\\]\\ =\\ useState\\('Départ'\\);\\\n\\ \\ useEffect\\(\\(\\)\\ =>\\ \\{\\ document\\.title\\ =\\ 'Note\\ :\\ '\\ \\+\\ \\(nom\\.trim\\(\\)\\ \\|\\|\\ 'Sans\\ nom'\\);\\ \\},\\ \\[\\]\\);\\\n\\ \\ return\\ <main><h1>Note\\ fictive</h1><label\\ htmlFor=\"nom\">Nom\\ de\\ la\\ note</label><input\\ id=\"nom\"\\ value=\\{nom\\}\\ onChange=\\{e\\ =>\\ setNom\\(e\\.target\\.value\\)\\}\\ /><p\\ id=\"affiche\">\\{nom\\}</p><button\\ id=\"vider\"\\ type=\"button\"\\ onClick=\\{\\(\\)\\ =>\\ setNom\\(''\\)\\}>Vider</button></main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "Un tableau vide ne réagit pas à une nouvelle valeur de cet état."
+      }
+    ],
+    "id": "react-m5-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Déclarer les propriétés utilisées",
+    "instruction_fr": "TitreDocument reçoit prefixe et nom et doit afficher #affiche et document.title sous la forme « PRÉFIXE : NOM_TRIM », avec Sans nom si vide. Le parent fournit #nom et #prefixe (Note ou Liste), états contrôlés. Corriger les dépendances : changer le préfixe seul doit être suivi aussi bien que changer le nom. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function TitreDocument({prefixe, nom}) {\n  useEffect(() => { document.title = prefixe + ' : ' + (nom.trim() || 'Sans nom'); }, [nom]);\n  return <p id=\"affiche\">{prefixe} : {nom.trim() || 'Sans nom'}</p>;\n}\nfunction App() {\n  const [nom, setNom] = useState('Départ');\n  const [prefixe, setPrefixe] = useState('Note');\n  return <main><h1>Titre de démonstration</h1><label htmlFor=\"nom\">Nom</label><input id=\"nom\" value={nom} onChange={e => setNom(e.target.value)} /><label htmlFor=\"prefixe\">Préfixe</label><select id=\"prefixe\" value={prefixe} onChange={e => setPrefixe(e.target.value)}><option value=\"Note\">Note</option><option value=\"Liste\">Liste</option></select><TitreDocument prefixe={prefixe} nom={nom} /></main>;\n}\nroot.render(<App />);",
+    "solution": "function TitreDocument({prefixe, nom}) {\n  useEffect(() => { document.title = prefixe + ' : ' + (nom.trim() || 'Sans nom'); }, [prefixe, nom]);\n  return <p id=\"affiche\">{prefixe} : {nom.trim() || 'Sans nom'}</p>;\n}\nfunction App() {\n  const [nom, setNom] = useState('Départ');\n  const [prefixe, setPrefixe] = useState('Note');\n  return <main><h1>Titre de démonstration</h1><label htmlFor=\"nom\">Nom</label><input id=\"nom\" value={nom} onChange={e => setNom(e.target.value)} /><label htmlFor=\"prefixe\">Préfixe</label><select id=\"prefixe\" value={prefixe} onChange={e => setPrefixe(e.target.value)}><option value=\"Note\">Note</option><option value=\"Liste\">Liste</option></select><TitreDocument prefixe={prefixe} nom={nom} /></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Le préfixe change sans le nom",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#prefixe",
+            "checks": [
+              {
+                "selector": "title",
+                "text": "Liste : Départ"
+              },
+              {
+                "selector": "#affiche",
+                "text": "Liste : Départ"
+              }
+            ],
+            "value": "Liste"
+          },
+          {
+            "action": "input",
+            "selector": "#nom",
+            "checks": [
+              {
+                "selector": "title",
+                "text": "Liste : Afi"
+              }
+            ],
+            "value": "Afi"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Nom vide puis autre préfixe",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#nom",
+            "checks": [
+              {
+                "selector": "title",
+                "text": "Note : Sans nom"
+              }
+            ],
+            "value": " "
+          },
+          {
+            "action": "input",
+            "selector": "#prefixe",
+            "checks": [
+              {
+                "selector": "title",
+                "text": "Liste : Sans nom"
+              }
+            ],
+            "value": "Liste"
+          },
+          {
+            "action": "input",
+            "selector": "#nom",
+            "checks": [
+              {
+                "selector": "title",
+                "text": "Liste : Web"
+              }
+            ],
+            "value": "Web"
+          },
+          {
+            "action": "input",
+            "selector": "#prefixe",
+            "checks": [
+              {
+                "selector": "title",
+                "text": "Note : Web"
+              }
+            ],
+            "value": "Note"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les états du parent deviennent des propriétés réactives pour l’enfant.",
+      "L’effet lit prefixe en plus de nom.",
+      "Déclare les deux valeurs dans [prefixe, nom]."
+    ],
+    "explanation_fr": "La variante change la propriété oubliée après une valeur vide puis après un vrai nom. Le texte JSX seul ne suffit pas à prouver que le système externe est synchronisé.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^function\\ TitreDocument\\(\\{prefixe,\\ nom\\}\\)\\ \\{\\\n\\ \\ useEffect\\(\\(\\)\\ =>\\ \\{\\ document\\.title\\ =\\ prefixe\\ \\+\\ '\\ :\\ '\\ \\+\\ \\(nom\\.trim\\(\\)\\ \\|\\|\\ 'Sans\\ nom'\\);\\ \\},\\ \\[nom\\]\\);\\\n\\ \\ return\\ <p\\ id=\"affiche\">\\{prefixe\\}\\ :\\ \\{nom\\.trim\\(\\)\\ \\|\\|\\ 'Sans\\ nom'\\}</p>;\\\n\\}\\\nfunction\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ \\[nom,\\ setNom\\]\\ =\\ useState\\('Départ'\\);\\\n\\ \\ const\\ \\[prefixe,\\ setPrefixe\\]\\ =\\ useState\\('Note'\\);\\\n\\ \\ return\\ <main><h1>Titre\\ de\\ démonstration</h1><label\\ htmlFor=\"nom\">Nom</label><input\\ id=\"nom\"\\ value=\\{nom\\}\\ onChange=\\{e\\ =>\\ setNom\\(e\\.target\\.value\\)\\}\\ /><label\\ htmlFor=\"prefixe\">Préfixe</label><select\\ id=\"prefixe\"\\ value=\\{prefixe\\}\\ onChange=\\{e\\ =>\\ setPrefixe\\(e\\.target\\.value\\)\\}><option\\ value=\"Note\">Note</option><option\\ value=\"Liste\">Liste</option></select><TitreDocument\\ prefixe=\\{prefixe\\}\\ nom=\\{nom\\}\\ /></main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "L’effet lit prefixe en plus de nom."
+      }
+    ],
+    "id": "react-m5-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Calculer la sélection pendant le rendu",
+    "instruction_fr": "Le tableau fictif vient de data-ateliers JSON sur #app, sinon Python/Jardin/Web. #recherche trim/minuscule filtre les titres. #liste contient les li retenus avec keys stables ; #compte et document.title valent « N résultat(s) » ; #vide « Aucun atelier. » existe seulement si zéro. Retirer l’état redondant selection et l’effet qui le calcule ; dériver la sélection pendant le rendu. Garder un effet seulement pour document.title. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "const ateliers = JSON.parse(document.getElementById('app').dataset.ateliers || '[{\"id\":\"py\",\"titre\":\"Python\"},{\"id\":\"jar\",\"titre\":\"Jardin\"},{\"id\":\"web\",\"titre\":\"Web\"}]');\nfunction App() {\n  const [recherche, setRecherche] = useState('');\n  const terme = recherche.trim().toLowerCase();\n  const [selection, setSelection] = useState(ateliers);\n  useEffect(() => { setSelection(ateliers.filter(a => a.titre.toLowerCase().includes(terme))); }, []);\n  useEffect(() => { document.title = selection.length + ' résultat(s)'; }, [selection.length]);\n  return <main><h1>Catalogue fictif</h1><label htmlFor=\"recherche\">Rechercher</label><input id=\"recherche\" value={recherche} onChange={e => setRecherche(e.target.value)} /><ul id=\"liste\">{selection.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"compte\" role=\"status\">{selection.length} résultat(s)</p>{selection.length === 0 && <p id=\"vide\">Aucun atelier.</p>}</main>;\n}\nroot.render(<App />);",
+    "solution": "const ateliers = JSON.parse(document.getElementById('app').dataset.ateliers || '[{\"id\":\"py\",\"titre\":\"Python\"},{\"id\":\"jar\",\"titre\":\"Jardin\"},{\"id\":\"web\",\"titre\":\"Web\"}]');\nfunction App() {\n  const [recherche, setRecherche] = useState('');\n  const terme = recherche.trim().toLowerCase();\n  const selection = ateliers.filter(a => a.titre.toLowerCase().includes(terme));\n  useEffect(() => { document.title = selection.length + ' résultat(s)'; }, [selection.length]);\n  return <main><h1>Catalogue fictif</h1><label htmlFor=\"recherche\">Rechercher</label><input id=\"recherche\" value={recherche} onChange={e => setRecherche(e.target.value)} /><ul id=\"liste\">{selection.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"compte\" role=\"status\">{selection.length} résultat(s)</p>{selection.length === 0 && <p id=\"vide\">Aucun atelier.</p>}</main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Filtrer puis revenir",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 résultat(s)"
+              },
+              {
+                "selector": "title",
+                "text": "1 résultat(s)"
+              }
+            ],
+            "value": " py "
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#vide",
+                "text": "Aucun atelier."
+              },
+              {
+                "selector": "title",
+                "text": "0 résultat(s)"
+              }
+            ],
+            "value": "absent"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Jardin",
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#vide",
+                "exists": false
+              },
+              {
+                "selector": "title",
+                "text": "3 résultat(s)"
+              }
+            ],
+            "value": ""
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autres données et deux résultats",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Papier",
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "2 résultat(s)"
+              },
+              {
+                "selector": "title",
+                "text": "2 résultat(s)"
+              }
+            ],
+            "value": "pi"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo"
+                ]
+              },
+              {
+                "selector": "title",
+                "text": "1 résultat(s)"
+              }
+            ],
+            "value": "photo"
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-ateliers=\"[{&quot;id&quot;: &quot;ph&quot;, &quot;titre&quot;: &quot;Photo&quot;}, {&quot;id&quot;: &quot;pa&quot;, &quot;titre&quot;: &quot;Papier&quot;}, {&quot;id&quot;: &quot;pi&quot;, &quot;titre&quot;: &quot;Piano&quot;}]\"></div>"
+      }
+    ],
+    "hints": [
+      "La sélection ne contient aucune information indépendante de la recherche et de la source.",
+      "Elle peut être une constante calculée à chaque rendu.",
+      "Utilise const selection = ateliers.filter(...), sans setSelection ni effet de filtrage."
+    ],
+    "explanation_fr": "Les tests démontrent que les résultats suivent les contrôles. La relecture complémentaire vérifie que ce calcul ne nécessite plus d’effet ni d’état parallèle.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^const\\ ateliers\\ =\\ JSON\\.parse\\(document\\.getElementById\\('app'\\)\\.dataset\\.ateliers\\ \\|\\|\\ '\\[\\{\"id\":\"py\",\"titre\":\"Python\"\\},\\{\"id\":\"jar\",\"titre\":\"Jardin\"\\},\\{\"id\":\"web\",\"titre\":\"Web\"\\}\\]'\\);\\\nfunction\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ \\[recherche,\\ setRecherche\\]\\ =\\ useState\\(''\\);\\\n\\ \\ const\\ terme\\ =\\ recherche\\.trim\\(\\)\\.toLowerCase\\(\\);\\\n\\ \\ const\\ \\[selection,\\ setSelection\\]\\ =\\ useState\\(ateliers\\);\\\n\\ \\ useEffect\\(\\(\\)\\ =>\\ \\{\\ setSelection\\(ateliers\\.filter\\(a\\ =>\\ a\\.titre\\.toLowerCase\\(\\)\\.includes\\(terme\\)\\)\\);\\ \\},\\ \\[\\]\\);\\\n\\ \\ useEffect\\(\\(\\)\\ =>\\ \\{\\ document\\.title\\ =\\ selection\\.length\\ \\+\\ '\\ résultat\\(s\\)';\\ \\},\\ \\[selection\\.length\\]\\);\\\n\\ \\ return\\ <main><h1>Catalogue\\ fictif</h1><label\\ htmlFor=\"recherche\">Rechercher</label><input\\ id=\"recherche\"\\ value=\\{recherche\\}\\ onChange=\\{e\\ =>\\ setRecherche\\(e\\.target\\.value\\)\\}\\ /><ul\\ id=\"liste\">\\{selection\\.map\\(a\\ =>\\ <li\\ key=\\{a\\.id\\}>\\{a\\.titre\\}</li>\\)\\}</ul><p\\ id=\"compte\"\\ role=\"status\">\\{selection\\.length\\}\\ résultat\\(s\\)</p>\\{selection\\.length\\ ===\\ 0\\ \\&\\&\\ <p\\ id=\"vide\">Aucun\\ atelier\\.</p>\\}</main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "Elle peut être une constante calculée à chaque rendu."
+      }
+    ],
+    "id": "react-m5-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Séparer le filtre et la synchronisation externe",
+    "instruction_fr": "Assembler #recherche et #prefixe contrôlés (Catalogue ou Ateliers). Les données viennent de data-ateliers ou de la liste par défaut. Calculer la sélection directement depuis la recherche trim/minuscule ; #liste, #compte « N résultat(s) » et #vide si zéro suivent le résultat. document.title doit être « PRÉFIXE — N résultat(s) ». Un effet synchronise ce titre avec toutes ses dépendances, sans gérer le calcul des lignes. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "const ateliers = JSON.parse(document.getElementById('app').dataset.ateliers || '[{\"id\":\"py\",\"titre\":\"Python\"},{\"id\":\"jar\",\"titre\":\"Jardin\"},{\"id\":\"web\",\"titre\":\"Web\"}]');\nfunction App() {\n  const [recherche, setRecherche] = useState('');\n  const [prefixe, setPrefixe] = useState('Catalogue');\n  const terme = recherche.trim().toLowerCase();\n  const selection = ateliers.filter(a => a.titre.toLowerCase().includes(terme));\n  useEffect(() => { document.title = prefixe + ' — ' + selection.length + ' résultat(s)'; }, [selection.length]);\n  return <main><h1>Catalogue fictif</h1><label htmlFor=\"recherche\">Rechercher</label><input id=\"recherche\" value={recherche} onChange={e => setRecherche(e.target.value)} /><label htmlFor=\"prefixe\">Préfixe du titre</label><select id=\"prefixe\" value={prefixe} onChange={e => setPrefixe(e.target.value)}><option value=\"Catalogue\">Catalogue</option><option value=\"Ateliers\">Ateliers</option></select><ul id=\"liste\">{selection.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"compte\" role=\"status\">{selection.length} résultat(s)</p>{selection.length === 0 && <p id=\"vide\">Aucun atelier.</p>}</main>;\n}\nroot.render(<App />);",
+    "solution": "const ateliers = JSON.parse(document.getElementById('app').dataset.ateliers || '[{\"id\":\"py\",\"titre\":\"Python\"},{\"id\":\"jar\",\"titre\":\"Jardin\"},{\"id\":\"web\",\"titre\":\"Web\"}]');\nfunction App() {\n  const [recherche, setRecherche] = useState('');\n  const [prefixe, setPrefixe] = useState('Catalogue');\n  const terme = recherche.trim().toLowerCase();\n  const selection = ateliers.filter(a => a.titre.toLowerCase().includes(terme));\n  useEffect(() => { document.title = prefixe + ' — ' + selection.length + ' résultat(s)'; }, [prefixe, selection.length]);\n  return <main><h1>Catalogue fictif</h1><label htmlFor=\"recherche\">Rechercher</label><input id=\"recherche\" value={recherche} onChange={e => setRecherche(e.target.value)} /><label htmlFor=\"prefixe\">Préfixe du titre</label><select id=\"prefixe\" value={prefixe} onChange={e => setPrefixe(e.target.value)}><option value=\"Catalogue\">Catalogue</option><option value=\"Ateliers\">Ateliers</option></select><ul id=\"liste\">{selection.map(a => <li key={a.id}>{a.titre}</li>)}</ul><p id=\"compte\" role=\"status\">{selection.length} résultat(s)</p>{selection.length === 0 && <p id=\"vide\">Aucun atelier.</p>}</main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Deux contrôles indépendants",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Web"
+                ]
+              },
+              {
+                "selector": "title",
+                "text": "Catalogue — 1 résultat(s)"
+              }
+            ],
+            "value": "web"
+          },
+          {
+            "action": "input",
+            "selector": "#prefixe",
+            "checks": [
+              {
+                "selector": "title",
+                "text": "Ateliers — 1 résultat(s)"
+              }
+            ],
+            "value": "Ateliers"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "title",
+                "text": "Ateliers — 0 résultat(s)"
+              }
+            ],
+            "value": "rien"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Jardin",
+                  "Web"
+                ]
+              },
+              {
+                "selector": "title",
+                "text": "Ateliers — 3 résultat(s)"
+              }
+            ],
+            "value": ""
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Même longueur, préfixe différent",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#prefixe",
+            "checks": [
+              {
+                "selector": "title",
+                "text": "Ateliers — 3 résultat(s)"
+              }
+            ],
+            "value": "Ateliers"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Papier",
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "title",
+                "text": "Ateliers — 2 résultat(s)"
+              }
+            ],
+            "value": "pi"
+          },
+          {
+            "action": "input",
+            "selector": "#prefixe",
+            "checks": [
+              {
+                "selector": "title",
+                "text": "Catalogue — 2 résultat(s)"
+              }
+            ],
+            "value": "Catalogue"
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-ateliers=\"[{&quot;id&quot;: &quot;ph&quot;, &quot;titre&quot;: &quot;Photo&quot;}, {&quot;id&quot;: &quot;pa&quot;, &quot;titre&quot;: &quot;Papier&quot;}, {&quot;id&quot;: &quot;pi&quot;, &quot;titre&quot;: &quot;Piano&quot;}]\"></div>"
+      }
+    ],
+    "hints": [
+      "Le titre dépend du nombre et du libellé choisi.",
+      "Le nombre peut rester identique alors que le préfixe change.",
+      "Déclare [prefixe, selection.length] pour l’effet du titre."
+    ],
+    "explanation_fr": "Le mini-projet teste les dépendances indépendantes et le retour à une vue complète. La composition reste locale : des états de contrôle, un calcul de sélection et une synchronisation externe.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^const\\ ateliers\\ =\\ JSON\\.parse\\(document\\.getElementById\\('app'\\)\\.dataset\\.ateliers\\ \\|\\|\\ '\\[\\{\"id\":\"py\",\"titre\":\"Python\"\\},\\{\"id\":\"jar\",\"titre\":\"Jardin\"\\},\\{\"id\":\"web\",\"titre\":\"Web\"\\}\\]'\\);\\\nfunction\\ App\\(\\)\\ \\{\\\n\\ \\ const\\ \\[recherche,\\ setRecherche\\]\\ =\\ useState\\(''\\);\\\n\\ \\ const\\ \\[prefixe,\\ setPrefixe\\]\\ =\\ useState\\('Catalogue'\\);\\\n\\ \\ const\\ terme\\ =\\ recherche\\.trim\\(\\)\\.toLowerCase\\(\\);\\\n\\ \\ const\\ selection\\ =\\ ateliers\\.filter\\(a\\ =>\\ a\\.titre\\.toLowerCase\\(\\)\\.includes\\(terme\\)\\);\\\n\\ \\ useEffect\\(\\(\\)\\ =>\\ \\{\\ document\\.title\\ =\\ prefixe\\ \\+\\ '\\ —\\ '\\ \\+\\ selection\\.length\\ \\+\\ '\\ résultat\\(s\\)';\\ \\},\\ \\[selection\\.length\\]\\);\\\n\\ \\ return\\ <main><h1>Catalogue\\ fictif</h1><label\\ htmlFor=\"recherche\">Rechercher</label><input\\ id=\"recherche\"\\ value=\\{recherche\\}\\ onChange=\\{e\\ =>\\ setRecherche\\(e\\.target\\.value\\)\\}\\ /><label\\ htmlFor=\"prefixe\">Préfixe\\ du\\ titre</label><select\\ id=\"prefixe\"\\ value=\\{prefixe\\}\\ onChange=\\{e\\ =>\\ setPrefixe\\(e\\.target\\.value\\)\\}><option\\ value=\"Catalogue\">Catalogue</option><option\\ value=\"Ateliers\">Ateliers</option></select><ul\\ id=\"liste\">\\{selection\\.map\\(a\\ =>\\ <li\\ key=\\{a\\.id\\}>\\{a\\.titre\\}</li>\\)\\}</ul><p\\ id=\"compte\"\\ role=\"status\">\\{selection\\.length\\}\\ résultat\\(s\\)</p>\\{selection\\.length\\ ===\\ 0\\ \\&\\&\\ <p\\ id=\"vide\">Aucun\\ atelier\\.</p>\\}</main>;\\\n\\}\\\nroot\\.render\\(<App\\ />\\);$",
+        "feedback_fr": "Le nombre peut rester identique alors que le préfixe change."
+      }
+    ],
+    "id": "react-m5-02-e4"
+  }
+]

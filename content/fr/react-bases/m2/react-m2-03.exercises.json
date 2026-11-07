@@ -1,0 +1,728 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Dériver le total de deux ateliers",
+    "instruction_fr": "data-lecture et data-jardin de #app fournissent deux départs numériques. Dans App, utilise deux états ; #lecture-plus et #jardin-plus augmentent leur compte respectif. Affiche les nombres dans #lecture-total, #jardin-total et leur somme dans #total. Ne crée pas d’état pour cette somme. Boutons type=button « Lecture » et « Jardin ».",
+    "fixture_html": "<div id=\"app\" data-lecture=\"1\" data-jardin=\"2\"></div>",
+    "starter_code": "const config = document.querySelector(\"#app\").dataset;\nfunction App() { const [lecture, setLecture] = useState(Number(config.lecture)); const [jardin, setJardin] = useState(Number(config.jardin)); return <main><p id=\"lecture-total\">{lecture}</p><p id=\"jardin-total\">{jardin}</p><p id=\"total\">0</p><button id=\"lecture-plus\" type=\"button\" onClick={() => setLecture(n => n + 1)}>Lecture</button><button id=\"jardin-plus\" type=\"button\" onClick={() => setJardin(n => n + 1)}>Jardin</button></main>; }\nroot.render(<App />);",
+    "solution": "const config = document.querySelector(\"#app\").dataset;\nfunction App() {\n  const [lecture, setLecture] = useState(Number(config.lecture));\n  const [jardin, setJardin] = useState(Number(config.jardin));\n  const total = lecture + jardin;\n  return <main><p id=\"lecture-total\">{lecture}</p><p id=\"jardin-total\">{jardin}</p><p id=\"total\">{total}</p><button id=\"lecture-plus\" type=\"button\" onClick={() => setLecture(n => n + 1)}>Lecture</button><button id=\"jardin-plus\" type=\"button\" onClick={() => setJardin(n => n + 1)}>Jardin</button></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Somme après chaque action",
+        "checks": [
+          {
+            "selector": "#lecture-total",
+            "text": "1"
+          },
+          {
+            "selector": "#jardin-total",
+            "text": "2"
+          },
+          {
+            "selector": "#total",
+            "text": "3"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#lecture-plus",
+            "checks": [
+              {
+                "selector": "#lecture-total",
+                "text": "2"
+              },
+              {
+                "selector": "#jardin-total",
+                "text": "2"
+              },
+              {
+                "selector": "#total",
+                "text": "4"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#jardin-plus",
+            "checks": [
+              {
+                "selector": "#lecture-total",
+                "text": "2"
+              },
+              {
+                "selector": "#jardin-total",
+                "text": "3"
+              },
+              {
+                "selector": "#total",
+                "text": "5"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autres départs et atelier répété",
+        "checks": [
+          {
+            "selector": "#lecture-total",
+            "text": "4"
+          },
+          {
+            "selector": "#jardin-total",
+            "text": "0"
+          },
+          {
+            "selector": "#total",
+            "text": "4"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#jardin-plus",
+            "checks": [
+              {
+                "selector": "#lecture-total",
+                "text": "4"
+              },
+              {
+                "selector": "#jardin-total",
+                "text": "1"
+              },
+              {
+                "selector": "#total",
+                "text": "5"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#jardin-plus",
+            "checks": [
+              {
+                "selector": "#jardin-total",
+                "text": "2"
+              },
+              {
+                "selector": "#total",
+                "text": "6"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#lecture-plus",
+            "checks": [
+              {
+                "selector": "#lecture-total",
+                "text": "5"
+              },
+              {
+                "selector": "#total",
+                "text": "7"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-lecture=\"4\" data-jardin=\"0\"></div>"
+      }
+    ],
+    "hints": [
+      "La somme ne prend aucune décision indépendante.",
+      "Calcule lecture+jardin pendant chaque rendu.",
+      "const config = document.querySelector(\"#app\").dataset;\nfunction App() {\n  const [lecture, setLecture] = useState(Number(config.lecture));\n  const [jardin, setJardin] = useState(Number(config.jardin));\n  const total = lecture + jardin;\n  return <main><p id=\"lecture-total\">{lecture}</p><p id=\"jardin-total\">{jardin}</p><p id=\"total\">{total}</p><button id=\"lecture-plus\" type=\"button\" onClick={() => setLecture(n => n + 1)}>Lecture</button><button id=\"jardin-plus\" type=\"button\" onClick={() => setJardin(n => n + 1)}>Jardin</button></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Les trois sorties restent cohérentes à partir de seulement deux mémoires.",
+    "common_wrong_answers": [],
+    "id": "react-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Changer de titre sans perdre le compteur",
+    "instruction_fr": "La fixture fournit data-a et data-b. App garde atelier initialisé à a et tours initialisé à 0. #a « Premier atelier » choisit a ; #b « Second atelier » choisit b ; #plus « Ajouter un tour » augmente tours. Changer d’atelier conserve les tours. Affiche p#atelier, p#tours et le résumé dérivé p#resume « <atelier> : <tours> tours ». Boutons type=button.",
+    "fixture_html": "<div id=\"app\" data-a=\"Lecture\" data-b=\"Jardin\"></div>",
+    "starter_code": "const config = document.querySelector(\"#app\").dataset;\nfunction App() { const [atelier, setAtelier] = useState(config.a); const [tours, setTours] = useState(0); return <main><p id=\"atelier\">{atelier}</p><p id=\"tours\">{tours}</p><p id=\"resume\">À calculer</p><button id=\"a\" type=\"button\" onClick={() => setAtelier(config.a)}>Premier atelier</button><button id=\"b\" type=\"button\" onClick={() => setAtelier(config.b)}>Second atelier</button><button id=\"plus\" type=\"button\" onClick={() => setTours(t => t + 1)}>Ajouter un tour</button></main>; }\nroot.render(<App />);",
+    "solution": "const config = document.querySelector(\"#app\").dataset;\nfunction App() {\n  const [atelier, setAtelier] = useState(config.a);\n  const [tours, setTours] = useState(0);\n  const resume = atelier + \" : \" + tours + \" tours\";\n  return <main><p id=\"atelier\">{atelier}</p><p id=\"tours\">{tours}</p><p id=\"resume\">{resume}</p><button id=\"a\" type=\"button\" onClick={() => setAtelier(config.a)}>Premier atelier</button><button id=\"b\" type=\"button\" onClick={() => setAtelier(config.b)}>Second atelier</button><button id=\"plus\" type=\"button\" onClick={() => setTours(t => t + 1)}>Ajouter un tour</button></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Deux états indépendants",
+        "checks": [
+          {
+            "selector": "#atelier",
+            "text": "Lecture"
+          },
+          {
+            "selector": "#tours",
+            "text": "0"
+          },
+          {
+            "selector": "#resume",
+            "text": "Lecture : 0 tours"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#tours",
+                "text": "1"
+              },
+              {
+                "selector": "#resume",
+                "text": "Lecture : 1 tours"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#b",
+            "checks": [
+              {
+                "selector": "#atelier",
+                "text": "Jardin"
+              },
+              {
+                "selector": "#tours",
+                "text": "1"
+              },
+              {
+                "selector": "#resume",
+                "text": "Jardin : 1 tours"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#resume",
+                "text": "Jardin : 2 tours"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#a",
+            "checks": [
+              {
+                "selector": "#tours",
+                "text": "2"
+              },
+              {
+                "selector": "#resume",
+                "text": "Lecture : 2 tours"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autres titres et ordre inverse",
+        "checks": [
+          {
+            "selector": "#resume",
+            "text": "Chant : 0 tours"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#b",
+            "checks": [
+              {
+                "selector": "#resume",
+                "text": "Dessin : 0 tours"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#resume",
+                "text": "Dessin : 1 tours"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#a",
+            "checks": [
+              {
+                "selector": "#atelier",
+                "text": "Chant"
+              },
+              {
+                "selector": "#tours",
+                "text": "1"
+              },
+              {
+                "selector": "#resume",
+                "text": "Chant : 1 tours"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#a",
+            "checks": [
+              {
+                "selector": "#resume",
+                "text": "Chant : 1 tours"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-a=\"Chant\" data-b=\"Dessin\"></div>"
+      }
+    ],
+    "hints": [
+      "Le titre et les tours évoluent par des commandes différentes.",
+      "La phrase se recalcule depuis ces deux états sans fonction de mise à jour propre.",
+      "const config = document.querySelector(\"#app\").dataset;\nfunction App() {\n  const [atelier, setAtelier] = useState(config.a);\n  const [tours, setTours] = useState(0);\n  const resume = atelier + \" : \" + tours + \" tours\";\n  return <main><p id=\"atelier\">{atelier}</p><p id=\"tours\">{tours}</p><p id=\"resume\">{resume}</p><button id=\"a\" type=\"button\" onClick={() => setAtelier(config.a)}>Premier atelier</button><button id=\"b\" type=\"button\" onClick={() => setAtelier(config.b)}>Second atelier</button><button id=\"plus\" type=\"button\" onClick={() => setTours(t => t + 1)}>Ajouter un tour</button></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Une phrase dérivée suit chaque décision sans synchronisation manuelle.",
+    "common_wrong_answers": [],
+    "id": "react-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Supprimer un double qui prend du retard",
+    "instruction_fr": "Le double mémorisé est calculé depuis l’ancien nombre. Conserve seulement l’état nombre, initialisé depuis data-depart. Calcule double=nombre*2 au rendu. #plus ajoute 1 ; #reset remet le départ. #nombre et #double doivent rester cohérents après chaque action.",
+    "fixture_html": "<div id=\"app\" data-depart=\"2\"></div>",
+    "starter_code": "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() { const [nombre, setNombre] = useState(depart); const [double, setDouble] = useState(depart * 2); function ajouter() { setNombre(nombre + 1); setDouble(nombre * 2); } return <main><p id=\"nombre\">{nombre}</p><p id=\"double\">{double}</p><button id=\"plus\" type=\"button\" onClick={ajouter}>Ajouter</button><button id=\"reset\" type=\"button\" onClick={() => setNombre(depart)}>Repartir</button></main>; }\nroot.render(<App />);",
+    "solution": "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() {\n  const [nombre, setNombre] = useState(depart);\n  const double = nombre * 2;\n  function ajouter() { setNombre(n => n + 1); }\n  return <main><p id=\"nombre\">{nombre}</p><p id=\"double\">{double}</p><button id=\"plus\" type=\"button\" onClick={ajouter}>Ajouter</button><button id=\"reset\" type=\"button\" onClick={() => setNombre(depart)}>Repartir</button></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Double sans retard",
+        "checks": [
+          {
+            "selector": "#nombre",
+            "text": "2"
+          },
+          {
+            "selector": "#double",
+            "text": "4"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#nombre",
+                "text": "3"
+              },
+              {
+                "selector": "#double",
+                "text": "6"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#nombre",
+                "text": "4"
+              },
+              {
+                "selector": "#double",
+                "text": "8"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#reset",
+            "checks": [
+              {
+                "selector": "#nombre",
+                "text": "2"
+              },
+              {
+                "selector": "#double",
+                "text": "4"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Départ cinq et reprise après reset",
+        "checks": [
+          {
+            "selector": "#nombre",
+            "text": "5"
+          },
+          {
+            "selector": "#double",
+            "text": "10"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#nombre",
+                "text": "6"
+              },
+              {
+                "selector": "#double",
+                "text": "12"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#reset",
+            "checks": [
+              {
+                "selector": "#nombre",
+                "text": "5"
+              },
+              {
+                "selector": "#double",
+                "text": "10"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#nombre",
+                "text": "6"
+              },
+              {
+                "selector": "#double",
+                "text": "12"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-depart=\"5\"></div>"
+      }
+    ],
+    "hints": [
+      "Le double ne contient aucune information absente de nombre.",
+      "Supprime le second useState et son setter, puis calcule une constante locale.",
+      "const depart = Number(document.querySelector(\"#app\").dataset.depart);\nfunction App() {\n  const [nombre, setNombre] = useState(depart);\n  const double = nombre * 2;\n  function ajouter() { setNombre(n => n + 1); }\n  return <main><p id=\"nombre\">{nombre}</p><p id=\"double\">{double}</p><button id=\"plus\" type=\"button\" onClick={ajouter}>Ajouter</button><button id=\"reset\" type=\"button\" onClick={() => setNombre(depart)}>Repartir</button></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Retirer la mémoire redondante règle aussi la remise au départ.",
+    "common_wrong_answers": [],
+    "id": "react-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Partager une capacité fictive entre deux ateliers",
+    "instruction_fr": "data-capacite de #app est un entier positif. App conserve lecture et jardin, initialement 0. Les boutons #lecture-plus « Une place Lecture » et #jardin-plus « Une place Jardin » ajoutent 1 à leur compte seulement si la somme reste dans la capacité. Dérive total et reste, affiche #lecture-total, #jardin-total, #total et #reste. Désactive les deux ajouts à reste===0. #reset « Repartir » remet les deux comptes à 0. Tous les boutons type=button. Aucun service de réservation n’est appelé.",
+    "fixture_html": "<div id=\"app\" data-capacite=\"3\"></div>",
+    "starter_code": "const capacite = Number(document.querySelector(\"#app\").dataset.capacite);\nfunction App() { const [lecture, setLecture] = useState(0); const [jardin, setJardin] = useState(0); return <main><p id=\"lecture-total\">{lecture}</p><p id=\"jardin-total\">{jardin}</p><p id=\"total\">0</p><p id=\"reste\">{capacite}</p><button id=\"lecture-plus\" type=\"button\" onClick={() => setLecture(n => n + 1)}>Une place Lecture</button><button id=\"jardin-plus\" type=\"button\" onClick={() => setJardin(n => n + 1)}>Une place Jardin</button><button id=\"reset\" type=\"button\">Repartir</button></main>; }\nroot.render(<App />);",
+    "solution": "const capacite = Number(document.querySelector(\"#app\").dataset.capacite);\nfunction App() {\n  const [lecture, setLecture] = useState(0);\n  const [jardin, setJardin] = useState(0);\n  const total = lecture + jardin;\n  const reste = capacite - total;\n  function ajouterLecture() { if (total < capacite) { setLecture(n => n + 1); } }\n  function ajouterJardin() { if (total < capacite) { setJardin(n => n + 1); } }\n  function repartir() { setLecture(0); setJardin(0); }\n  return <main><p id=\"lecture-total\">{lecture}</p><p id=\"jardin-total\">{jardin}</p><p id=\"total\">{total}</p><p id=\"reste\">{reste}</p><button id=\"lecture-plus\" type=\"button\" disabled={reste === 0} onClick={ajouterLecture}>Une place Lecture</button><button id=\"jardin-plus\" type=\"button\" disabled={reste === 0} onClick={ajouterJardin}>Une place Jardin</button><button id=\"reset\" type=\"button\" onClick={repartir}>Repartir</button></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Capacité commune atteinte puis libérée",
+        "checks": [
+          {
+            "selector": "#lecture-total",
+            "text": "0"
+          },
+          {
+            "selector": "#jardin-total",
+            "text": "0"
+          },
+          {
+            "selector": "#total",
+            "text": "0"
+          },
+          {
+            "selector": "#reste",
+            "text": "3"
+          },
+          {
+            "selector": "#lecture-plus",
+            "attributes": {
+              "disabled": null
+            }
+          },
+          {
+            "selector": "#jardin-plus",
+            "attributes": {
+              "disabled": null
+            }
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#lecture-plus",
+            "checks": [
+              {
+                "selector": "#lecture-total",
+                "text": "1"
+              },
+              {
+                "selector": "#jardin-total",
+                "text": "0"
+              },
+              {
+                "selector": "#total",
+                "text": "1"
+              },
+              {
+                "selector": "#reste",
+                "text": "2"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#jardin-plus",
+            "checks": [
+              {
+                "selector": "#lecture-total",
+                "text": "1"
+              },
+              {
+                "selector": "#jardin-total",
+                "text": "1"
+              },
+              {
+                "selector": "#total",
+                "text": "2"
+              },
+              {
+                "selector": "#reste",
+                "text": "1"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#lecture-plus",
+            "checks": [
+              {
+                "selector": "#lecture-total",
+                "text": "2"
+              },
+              {
+                "selector": "#jardin-total",
+                "text": "1"
+              },
+              {
+                "selector": "#total",
+                "text": "3"
+              },
+              {
+                "selector": "#reste",
+                "text": "0"
+              },
+              {
+                "selector": "#lecture-plus",
+                "attributes": {
+                  "disabled": ""
+                }
+              },
+              {
+                "selector": "#jardin-plus",
+                "attributes": {
+                  "disabled": ""
+                }
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#reset",
+            "checks": [
+              {
+                "selector": "#lecture-total",
+                "text": "0"
+              },
+              {
+                "selector": "#jardin-total",
+                "text": "0"
+              },
+              {
+                "selector": "#total",
+                "text": "0"
+              },
+              {
+                "selector": "#reste",
+                "text": "3"
+              },
+              {
+                "selector": "#lecture-plus",
+                "attributes": {
+                  "disabled": null
+                }
+              },
+              {
+                "selector": "#jardin-plus",
+                "attributes": {
+                  "disabled": null
+                }
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#jardin-plus",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "1"
+              },
+              {
+                "selector": "#reste",
+                "text": "2"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Plus petite capacité et autre répartition",
+        "checks": [
+          {
+            "selector": "#reste",
+            "text": "2"
+          },
+          {
+            "selector": "#total",
+            "text": "0"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#jardin-plus",
+            "checks": [
+              {
+                "selector": "#jardin-total",
+                "text": "1"
+              },
+              {
+                "selector": "#total",
+                "text": "1"
+              },
+              {
+                "selector": "#reste",
+                "text": "1"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#jardin-plus",
+            "checks": [
+              {
+                "selector": "#lecture-total",
+                "text": "0"
+              },
+              {
+                "selector": "#jardin-total",
+                "text": "2"
+              },
+              {
+                "selector": "#total",
+                "text": "2"
+              },
+              {
+                "selector": "#reste",
+                "text": "0"
+              },
+              {
+                "selector": "#lecture-plus",
+                "attributes": {
+                  "disabled": ""
+                }
+              },
+              {
+                "selector": "#jardin-plus",
+                "attributes": {
+                  "disabled": ""
+                }
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#reset",
+            "checks": [
+              {
+                "selector": "#lecture-total",
+                "text": "0"
+              },
+              {
+                "selector": "#jardin-total",
+                "text": "0"
+              },
+              {
+                "selector": "#total",
+                "text": "0"
+              },
+              {
+                "selector": "#reste",
+                "text": "2"
+              },
+              {
+                "selector": "#jardin-plus",
+                "attributes": {
+                  "disabled": null
+                }
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#lecture-plus",
+            "checks": [
+              {
+                "selector": "#lecture-total",
+                "text": "1"
+              },
+              {
+                "selector": "#jardin-total",
+                "text": "0"
+              },
+              {
+                "selector": "#reste",
+                "text": "1"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-capacite=\"2\"></div>"
+      }
+    ],
+    "hints": [
+      "La capacité est fixe et les deux comptes évoluent séparément.",
+      "Le total, le reste et disabled sont tous calculés depuis ces deux mémoires.",
+      "const capacite = Number(document.querySelector(\"#app\").dataset.capacite);\nfunction App() {\n  const [lecture, setLecture] = useState(0);\n  const [jardin, setJardin] = useState(0);\n  const total = lecture + jardin;\n  const reste = capacite - total;\n  function ajouterLecture() { if (total < capacite) { setLecture(n => n + 1); } }\n  function ajouterJardin() { if (total < capacite) { setJardin(n => n + 1); } }\n  function repartir() { setLecture(0); setJardin(0); }\n  return <main><p id=\"lecture-total\">{lecture}</p><p id=\"jardin-total\">{jardin}</p><p id=\"total\">{total}</p><p id=\"reste\">{reste}</p><button id=\"lecture-plus\" type=\"button\" disabled={reste === 0} onClick={ajouterLecture}>Une place Lecture</button><button id=\"jardin-plus\" type=\"button\" disabled={reste === 0} onClick={ajouterJardin}>Une place Jardin</button><button id=\"reset\" type=\"button\" onClick={repartir}>Repartir</button></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "La remise au départ restaure l’ensemble des sorties sans setters pour les valeurs dérivées.",
+    "common_wrong_answers": [],
+    "id": "react-m2-03-e4"
+  }
+]

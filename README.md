@@ -8,7 +8,7 @@ Apprendre en français, à son rythme, même hors connexion : coder depuis zéro
 
 ## État du projet
 
-Pilote en cours ; version 5.6. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
+Pilote en cours ; version 5.7. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
 
 ## Ce que propose Nunya
 
@@ -18,6 +18,8 @@ Pilote en cours ; version 5.6. Tous les contenus sont des **brouillons** rédig�
    - HTML et CSS (12 leçons, 48 exercices chacun), JavaScript (24 leçons, 96 exercices), HTTP/API (12 leçons, 48 exercices) ;
    - Git/GitHub (12 leçons, 48 activités, dont 32 ateliers Git locaux) ;
    - SQL (18 leçons, 72 exercices) avec SQLite réel et tableaux de résultats ;
+   - JavaScript DOM (18 leçons, 72 exercices) : événements, formulaires et interfaces ;
+   - React (18 leçons, 72 exercices) : composants, état, effets et projet interactif ;
   - le code s’exécute dans le navigateur, et l’élève a des indices gradués et des erreurs expliquées.
 - **Mes cours & examens** : révisions par classe et liens vers 492 documents officiels d’examen (CEPD, BEPC, BAC), consultés depuis leur source.
 - **Mon avenir** : 15 parcours dans 13 domaines, 43 fiches métiers, études à l’étranger et opportunités.
@@ -70,6 +72,8 @@ npm run lint:content && npm run check:prereqs && npm run check:curriculum-links 
 - le bundle principal reste sous **150 000 octets gzip** (`scripts/js-budget.mjs`) ;
 - toute nouvelle page lourde se charge à la demande ;
 - à chaque mise en ligne, on change la version du cache, dans `dist/sw.js` et dans la chaîne de versions de `scripts/build-academy.mjs`.
+
+Les ateliers DOM/React et leurs limites sont décrits dans [docs/INTERACTIVE_WORKSHOPS.md](docs/INTERACTIVE_WORKSHOPS.md). React utilise une bibliothèque réelle ; son service asynchrone de démonstration reste explicitement simulé.
 
 Les tests navigateur utilisent le sélecteur portable `lib/test/browser.mjs` : Chrome macOS ou Chromium Playwright. Voir `docs/COURSE_COVERAGE_AUDIT.md` pour les programmes disponibles, la relecture et les technologies encore à construire.
 

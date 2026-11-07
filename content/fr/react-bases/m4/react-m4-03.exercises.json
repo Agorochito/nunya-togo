@@ -1,0 +1,431 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Guider deux affichages coordonnés",
+    "instruction_fr": "App garde choix=0 et fournit ajouter à Commande. Le bouton #ajouter augmente cet état d’un. Principal et Copie doivent afficher Choix : nombre et Résumé : nombre depuis leurs props valeur, sans copie d’état locale. Conserve les composants et root.render.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function Commande({ surAjouter }) {\n  return <button id=\"ajouter\" type=\"button\" onClick={surAjouter}>Ajouter un choix fictif</button>;\n}\nfunction Principal({ valeur }) { return <p id=\"principal\">Choix : {valeur}</p>; }\nfunction Copie({ valeur }) { const [locale] = useState(0); return <p id=\"copie\">Résumé : {locale}</p>; }\nfunction App() {\n  const [choix, setChoix] = useState(0);\n  function ajouter() { setChoix(n => n + 1); }\n  return <main><Commande surAjouter={ajouter} /><Principal valeur={choix} /><Copie valeur={choix} /></main>;\n}\nroot.render(<App />);",
+    "solution": "function Commande({ surAjouter }) {\n  return <button id=\"ajouter\" type=\"button\" onClick={surAjouter}>Ajouter un choix fictif</button>;\n}\nfunction Principal({ valeur }) { return <p id=\"principal\">Choix : {valeur}</p>; }\nfunction Copie({ valeur }) { return <p id=\"copie\">Résumé : {valeur}</p>; }\nfunction App() {\n  const [choix, setChoix] = useState(0);\n  function ajouter() { setChoix(n => n + 1); }\n  return <main><Commande surAjouter={ajouter} /><Principal valeur={choix} /><Copie valeur={choix} /></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Les valeurs évoluent ensemble",
+        "checks": [
+          {
+            "selector": "#principal",
+            "text": "Choix : 0"
+          },
+          {
+            "selector": "#copie",
+            "text": "Résumé : 0"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#ajouter",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#principal",
+                "text": "Choix : 1"
+              },
+              {
+                "selector": "#copie",
+                "text": "Résumé : 1"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#ajouter",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#copie",
+                "text": "Résumé : 2"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Plusieurs intentions suivent le même parent",
+        "checks": [],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#ajouter",
+            "wait_ms": 40,
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#ajouter",
+            "wait_ms": 40,
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#ajouter",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#principal",
+                "text": "Choix : 3"
+              },
+              {
+                "selector": "#copie",
+                "text": "Résumé : 3"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les deux nombres représentent-ils des données indépendantes ?",
+      "Les affichages lisent valeur au lieu de créer chacun un état concurrent.",
+      "function Commande({ surAjouter }) {\n  return <button id=\"ajouter\" type=\"button\" onClick={surAjouter}>Ajouter un choix fictif</button>;\n}\nfunction Principal({ valeur }) { return <p id=\"principal\">Choix : {valeur}</p>; }\nfunction Copie({ valeur }) { return <p id=\"copie\">Résumé : {valeur}</p>; }\nfunction App() {\n  const [choix, setChoix] = useState(0);\n  function ajouter() { setChoix(n => n + 1); }\n  return <main><Commande surAjouter={ajouter} /><Principal valeur={choix} /><Copie valeur={choix} /></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "La fonction parent est appelée par l’enfant uniquement à l’activation.",
+    "common_wrong_answers": [],
+    "id": "react-m4-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Transmettre le texte depuis un composant enfant",
+    "instruction_fr": "App garde titre. Saisie reçoit valeur et surChanger, contrôle input #titre et appelle surChanger avec e.target.value. Apercu reçoit titre et affiche sa valeur ou Sans titre. #effacer dans le parent remet le seul état à vide. Garde les labels et le texte littéral.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function Saisie({ valeur, surChanger }) {\n  return <div><label htmlFor=\"titre\">Titre fictif</label><input id=\"titre\" value={valeur} onChange={() => {}} aria-describedby=\"apercu\" /></div>;\n}\nfunction Apercu({ titre }) { return <p id=\"apercu\" aria-live=\"polite\">{titre || \"Sans titre.\"}</p>; }\nfunction App() {\n  const [titre, setTitre] = useState(\"\");\n  return <main><Saisie valeur={titre} surChanger={setTitre} /><Apercu titre={titre} /><button id=\"effacer\" type=\"button\" onClick={() => setTitre(\"\")}>Effacer le titre</button></main>;\n}\nroot.render(<App />);",
+    "solution": "function Saisie({ valeur, surChanger }) {\n  return <div><label htmlFor=\"titre\">Titre fictif</label><input id=\"titre\" value={valeur} onChange={e => surChanger(e.target.value)} aria-describedby=\"apercu\" /></div>;\n}\nfunction Apercu({ titre }) { return <p id=\"apercu\" aria-live=\"polite\">{titre || \"Sans titre.\"}</p>; }\nfunction App() {\n  const [titre, setTitre] = useState(\"\");\n  return <main><Saisie valeur={titre} surChanger={setTitre} /><Apercu titre={titre} /><button id=\"effacer\" type=\"button\" onClick={() => setTitre(\"\")}>Effacer le titre</button></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Le champ et le frère suivent le parent",
+        "checks": [],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#titre",
+            "wait_ms": 40,
+            "value": "Semis",
+            "checks": [
+              {
+                "selector": "#titre",
+                "value": "Semis"
+              },
+              {
+                "selector": "#apercu",
+                "text": "Semis"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#effacer",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#titre",
+                "value": ""
+              },
+              {
+                "selector": "#apercu",
+                "text": "Sans titre."
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#titre",
+            "wait_ms": 40,
+            "value": "Lecture",
+            "checks": [
+              {
+                "selector": "#apercu",
+                "text": "Lecture"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Une donnée ressemble à une balise",
+        "checks": [],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#titre",
+            "wait_ms": 40,
+            "value": "<b>Jeu</b>",
+            "checks": [
+              {
+                "selector": "#apercu",
+                "text": "<b>Jeu</b>"
+              },
+              {
+                "selector": "#apercu b",
+                "exists": false
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#titre",
+            "wait_ms": 40,
+            "value": "",
+            "checks": [
+              {
+                "selector": "#apercu",
+                "text": "Sans titre."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le parent a-t-il reçu la nouvelle chaîne ?",
+      "L’enfant transmet une valeur au callback fourni au lieu de garder sa copie.",
+      "function Saisie({ valeur, surChanger }) {\n  return <div><label htmlFor=\"titre\">Titre fictif</label><input id=\"titre\" value={valeur} onChange={e => surChanger(e.target.value)} aria-describedby=\"apercu\" /></div>;\n}\nfunction Apercu({ titre }) { return <p id=\"apercu\" aria-live=\"polite\">{titre || \"Sans titre.\"}</p>; }\nfunction App() {\n  const [titre, setTitre] = useState(\"\");\n  return <main><Saisie valeur={titre} surChanger={setTitre} /><Apercu titre={titre} /><button id=\"effacer\" type=\"button\" onClick={() => setTitre(\"\")}>Effacer le titre</button></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Une mise à jour centrale reste visible dans le champ et dans le composant frère.",
+    "common_wrong_answers": [],
+    "id": "react-m4-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un callback qui ignore la valeur",
+    "instruction_fr": "ChoixVille transmet Lomé ou Kara au callback surChoisir. App doit prendre ce texte comme nouvelle ville et BilanVille doit afficher Ville choisie : ville. Corrige le branchement qui remplace toujours l’intention par Lomé ; ne modifie pas les props.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "function ChoixVille({ surChoisir }) {\n  return <div><button id=\"lome\" type=\"button\" onClick={() => surChoisir(\"Lomé\")}>Choisir Lomé</button><button id=\"kara\" type=\"button\" onClick={() => surChoisir(\"Kara\")}>Choisir Kara</button></div>;\n}\nfunction BilanVille({ ville }) { return <p id=\"bilan\">Ville choisie : {ville}</p>; }\nfunction App() {\n  const [ville, setVille] = useState(\"Lomé\");\n  return <main><ChoixVille surChoisir={() => setVille(\"Lomé\")} /><BilanVille ville={ville} /></main>;\n}\nroot.render(<App />);",
+    "solution": "function ChoixVille({ surChoisir }) {\n  return <div><button id=\"lome\" type=\"button\" onClick={() => surChoisir(\"Lomé\")}>Choisir Lomé</button><button id=\"kara\" type=\"button\" onClick={() => surChoisir(\"Kara\")}>Choisir Kara</button></div>;\n}\nfunction BilanVille({ ville }) { return <p id=\"bilan\">Ville choisie : {ville}</p>; }\nfunction App() {\n  const [ville, setVille] = useState(\"Lomé\");\n  return <main><ChoixVille surChoisir={setVille} /><BilanVille ville={ville} /></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Choisir une ville différente",
+        "checks": [
+          {
+            "selector": "#bilan",
+            "text": "Ville choisie : Lomé"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#kara",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#bilan",
+                "text": "Ville choisie : Kara"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#lome",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#bilan",
+                "text": "Ville choisie : Lomé"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "L’argument reste pris en compte",
+        "checks": [],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#kara",
+            "wait_ms": 40,
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#lome",
+            "wait_ms": 40,
+            "checks": []
+          },
+          {
+            "action": "click",
+            "selector": "#kara",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#bilan",
+                "text": "Ville choisie : Kara"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La valeur transmise à la fonction est-elle utilisée ?",
+      "Le setter du parent peut recevoir directement le texte fourni par l’enfant.",
+      "function ChoixVille({ surChoisir }) {\n  return <div><button id=\"lome\" type=\"button\" onClick={() => surChoisir(\"Lomé\")}>Choisir Lomé</button><button id=\"kara\" type=\"button\" onClick={() => surChoisir(\"Kara\")}>Choisir Kara</button></div>;\n}\nfunction BilanVille({ ville }) { return <p id=\"bilan\">Ville choisie : {ville}</p>; }\nfunction App() {\n  const [ville, setVille] = useState(\"Lomé\");\n  return <main><ChoixVille surChoisir={setVille} /><BilanVille ville={ville} /></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Le callback transporte l’intention ; ignorer son argument casse la coordination.",
+    "common_wrong_answers": [],
+    "id": "react-m4-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Assembler des fiches et un bilan de choix partagé",
+    "instruction_fr": "App possède retenus, tableau d’ids initialement vide. Fiche reçoit atelier, retenu et surBasculer ; son bouton #choix-id transmet atelier.id et annonce aria-pressed. Le parent ajoute ou retire cet id sans mutation. Bilan reçoit les titres retenus dans l’ordre du catalogue et affiche #total=Choix : nombre, #bilan=Aucun choix. ou titres joints par virgule et espace. Les fiches restent toutes visibles, avec clés stables et message de limite temporaire.",
+    "fixture_html": "<div id=\"app\"></div>",
+    "starter_code": "const ateliers = [{id:\"s\",titre:\"Semis\"},{id:\"c\",titre:\"Compost\"}];\nfunction Fiche({ atelier, retenu, surBasculer }) {\n  return <li data-id={atelier.id}><span className=\"titre\">{atelier.titre}</span><button id={\"choix-\" + atelier.id} type=\"button\" aria-pressed={retenu} onClick={() => surBasculer(atelier.id)}>{retenu ? \"Retirer du choix\" : \"Retenir\"}</button></li>;\n}\nfunction Bilan({ titres }) {\n  return <section><p id=\"total\">Choix : {titres.length}</p><p id=\"bilan\" aria-live=\"polite\">{titres.length === 0 ? \"Aucun choix.\" : titres.join(\", \")}</p></section>;\n}\nfunction App() {\n  const [retenus, setRetenus] = useState([]);\n  function basculer(id) { setRetenus(anciens => anciens.includes(id) ? anciens.filter(x => x !== id) : [...anciens,id]); }\n  const titres = ateliers.filter(a => retenus.includes(a.id)).map(a => a.titre);\n  return <main><ul id=\"liste\">{ateliers.map(a => <Fiche key={a.id} atelier={a} retenu={retenus.includes(a.id)} surBasculer={() => {}} />)}</ul><Bilan titres={titres} /><p id=\"limite\">Choix temporaires, aucune inscription.</p></main>;\n}\nroot.render(<App />);",
+    "solution": "const ateliers = [{id:\"s\",titre:\"Semis\"},{id:\"c\",titre:\"Compost\"}];\nfunction Fiche({ atelier, retenu, surBasculer }) {\n  return <li data-id={atelier.id}><span className=\"titre\">{atelier.titre}</span><button id={\"choix-\" + atelier.id} type=\"button\" aria-pressed={retenu} onClick={() => surBasculer(atelier.id)}>{retenu ? \"Retirer du choix\" : \"Retenir\"}</button></li>;\n}\nfunction Bilan({ titres }) {\n  return <section><p id=\"total\">Choix : {titres.length}</p><p id=\"bilan\" aria-live=\"polite\">{titres.length === 0 ? \"Aucun choix.\" : titres.join(\", \")}</p></section>;\n}\nfunction App() {\n  const [retenus, setRetenus] = useState([]);\n  function basculer(id) { setRetenus(anciens => anciens.includes(id) ? anciens.filter(x => x !== id) : [...anciens,id]); }\n  const titres = ateliers.filter(a => retenus.includes(a.id)).map(a => a.titre);\n  return <main><ul id=\"liste\">{ateliers.map(a => <Fiche key={a.id} atelier={a} retenu={retenus.includes(a.id)} surBasculer={basculer} />)}</ul><Bilan titres={titres} /><p id=\"limite\">Choix temporaires, aucune inscription.</p></main>;\n}\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Deux fiches puis retrait d’un choix",
+        "checks": [
+          {
+            "selector": "#total",
+            "text": "Choix : 0"
+          },
+          {
+            "selector": "#bilan",
+            "text": "Aucun choix."
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#choix-s",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "Choix : 1"
+              },
+              {
+                "selector": "#bilan",
+                "text": "Semis"
+              },
+              {
+                "selector": "#choix-s",
+                "attributes": {
+                  "aria-pressed": "true"
+                }
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#choix-c",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "Choix : 2"
+              },
+              {
+                "selector": "#bilan",
+                "text": "Semis, Compost"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#choix-s",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#bilan",
+                "text": "Compost"
+              },
+              {
+                "selector": "#choix-s",
+                "attributes": {
+                  "aria-pressed": "false"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Ordre du catalogue et retour à zéro",
+        "checks": [],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#choix-c",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#bilan",
+                "text": "Compost"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#choix-s",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#bilan",
+                "text": "Semis, Compost"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#choix-c",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#bilan",
+                "text": "Semis"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#choix-s",
+            "wait_ms": 40,
+            "checks": [
+              {
+                "selector": "#bilan",
+                "text": "Aucun choix."
+              },
+              {
+                "selector": "#total",
+                "text": "Choix : 0"
+              },
+              {
+                "selector": "#liste li",
+                "count": 2
+              },
+              {
+                "selector": "#limite",
+                "text": "Choix temporaires, aucune inscription."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Où la liste commune d’identifiants doit-elle vivre ?",
+      "Les enfants transmettent des ids ; le parent calcule le nouveau tableau puis les titres du bilan.",
+      "const ateliers = [{id:\"s\",titre:\"Semis\"},{id:\"c\",titre:\"Compost\"}];\nfunction Fiche({ atelier, retenu, surBasculer }) {\n  return <li data-id={atelier.id}><span className=\"titre\">{atelier.titre}</span><button id={\"choix-\" + atelier.id} type=\"button\" aria-pressed={retenu} onClick={() => surBasculer(atelier.id)}>{retenu ? \"Retirer du choix\" : \"Retenir\"}</button></li>;\n}\nfunction Bilan({ titres }) {\n  return <section><p id=\"total\">Choix : {titres.length}</p><p id=\"bilan\" aria-live=\"polite\">{titres.length === 0 ? \"Aucun choix.\" : titres.join(\", \")}</p></section>;\n}\nfunction App() {\n  const [retenus, setRetenus] = useState([]);\n  function basculer(id) { setRetenus(anciens => anciens.includes(id) ? anciens.filter(x => x !== id) : [...anciens,id]); }\n  const titres = ateliers.filter(a => retenus.includes(a.id)).map(a => a.titre);\n  return <main><ul id=\"liste\">{ateliers.map(a => <Fiche key={a.id} atelier={a} retenu={retenus.includes(a.id)} surBasculer={basculer} />)}</ul><Bilan titres={titres} /><p id=\"limite\">Choix temporaires, aucune inscription.</p></main>;\n}\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Cette synthèse partage uniquement l’état nécessaire et garde ses résultats dérivés.",
+    "common_wrong_answers": [],
+    "id": "react-m4-03-e4"
+  }
+]

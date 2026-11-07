@@ -1,0 +1,238 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Marquer chaque objet",
+    "instruction_fr": "Ajoute exactement « : prêt » précédé d’une espace au texte de chaque li de #materiel. Conserve le nombre et l’ordre des éléments.",
+    "fixture_html": "<main><ul id=\"materiel\"><li>Cahier</li><li>Règle</li></ul></main>",
+    "starter_code": "const lignes = document.querySelectorAll(\"#materiel li\");",
+    "solution": "const lignes = document.querySelectorAll(\"#materiel li\");\nfor (const ligne of lignes) { ligne.textContent = ligne.textContent + \" : prêt\"; }",
+    "visible_tests": [
+      {
+        "description_fr": "Deux objets",
+        "checks": [
+          {
+            "selector": "#materiel li",
+            "texts": [
+              "Cahier : prêt",
+              "Règle : prêt"
+            ],
+            "count": 2
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Trois autres objets",
+        "checks": [
+          {
+            "selector": "#materiel li",
+            "texts": [
+              "Fil : prêt",
+              "Aiguille : prêt",
+              "Tissu : prêt"
+            ],
+            "count": 3
+          }
+        ],
+        "fixture_html": "<main><ul id=\"materiel\"><li>Fil</li><li>Aiguille</li><li>Tissu</li></ul><p>Réserve</p></main>"
+      }
+    ],
+    "hints": [
+      "La collection contient des éléments distincts.",
+      "Écris dans chaque ligne avec for...of.",
+      "const lignes = document.querySelectorAll(\"#materiel li\");\nfor (const ligne of lignes) { ligne.textContent = ligne.textContent + \" : prêt\"; }"
+    ],
+    "explanation_fr": "La boucle s’adapte au nombre de correspondances.",
+    "common_wrong_answers": [],
+    "id": "dom-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Préparer les membres d’un groupe",
+    "instruction_fr": "Pour chaque .membre de #groupe, écris « Membre : <data-nom> ». Dans #bilan, écris « <nombre> membres » ou « Aucun membre » si la collection est vide. Préserve le membre extérieur.",
+    "fixture_html": "<main><p class=\"membre\" data-nom=\"Extérieur\">Ne pas modifier</p><section id=\"groupe\"><p class=\"membre\" data-nom=\"Ama\">?</p><p class=\"membre\" data-nom=\"Kossi\">?</p></section><p id=\"bilan\">?</p></main>",
+    "starter_code": "const membres = document.querySelectorAll(\"#groupe .membre\");\ndocument.querySelector(\"#bilan\").textContent = \"Aucun membre\";",
+    "solution": "const membres = document.querySelectorAll(\"#groupe .membre\");\nfor (const membre of membres) { membre.textContent = \"Membre : \" + membre.dataset.nom; }\ndocument.querySelector(\"#bilan\").textContent = membres.length === 0 ? \"Aucun membre\" : membres.length + \" membres\";",
+    "visible_tests": [
+      {
+        "description_fr": "Deux membres ciblés",
+        "checks": [
+          {
+            "selector": "#groupe .membre",
+            "texts": [
+              "Membre : Ama",
+              "Membre : Kossi"
+            ]
+          },
+          {
+            "selector": "main > .membre",
+            "text": "Ne pas modifier"
+          },
+          {
+            "selector": "#bilan",
+            "text": "2 membres"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Groupe vide",
+        "checks": [
+          {
+            "selector": "#groupe .membre",
+            "count": 0
+          },
+          {
+            "selector": "#bilan",
+            "text": "Aucun membre"
+          },
+          {
+            "selector": "main > .membre",
+            "text": "Ne pas modifier"
+          }
+        ],
+        "fixture_html": "<main><p class=\"membre\" data-nom=\"Extérieur\">Ne pas modifier</p><section id=\"groupe\"></section><p id=\"bilan\">Ancien</p></main>"
+      },
+      {
+        "description_fr": "Deux autres noms",
+        "checks": [
+          {
+            "selector": "#groupe .membre",
+            "texts": [
+              "Membre : Abla",
+              "Membre : Yao"
+            ]
+          },
+          {
+            "selector": "#bilan",
+            "text": "2 membres"
+          }
+        ],
+        "fixture_html": "<main><p class=\"membre\" data-nom=\"Extérieur\">Ne pas modifier</p><section id=\"groupe\"><p class=\"membre\" data-nom=\"Abla\">?</p><p class=\"membre\" data-nom=\"Yao\">?</p></section><p id=\"bilan\">?</p></main>"
+      }
+    ],
+    "hints": [
+      "La portée de la recherche doit rester #groupe.",
+      "Le bilan s’écrit après la boucle, y compris quand elle n’a aucun tour.",
+      "const membres = document.querySelectorAll(\"#groupe .membre\");\nfor (const membre of membres) { membre.textContent = \"Membre : \" + membre.dataset.nom; }\ndocument.querySelector(\"#bilan\").textContent = membres.length === 0 ? \"Aucun membre\" : membres.length + \" membres\";"
+    ],
+    "explanation_fr": "Le cas vide ne dépend pas d’une première ligne inexistante.",
+    "common_wrong_answers": [],
+    "id": "dom-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Corriger une sélection trop courte",
+    "instruction_fr": "Le code ne traite que la première tâche. Pour chaque .tache de #taches dont data-etat vaut \"faite\", ajoute « ✓ » suivi d’une espace devant son texte. Laisse les autres tâches intactes.",
+    "fixture_html": "<main><ul id=\"taches\"><li class=\"tache\" data-etat=\"faite\">Lecture</li><li class=\"tache\" data-etat=\"attente\">Rangement</li><li class=\"tache\" data-etat=\"faite\">Affiche</li></ul></main>",
+    "starter_code": "const tache = document.querySelector(\"#taches .tache\");\nif (tache.dataset.etat === \"faite\") { tache.textContent = \"✓ \" + tache.textContent; }",
+    "solution": "const taches = document.querySelectorAll(\"#taches .tache\");\nfor (const tache of taches) { if (tache.dataset.etat === \"faite\") { tache.textContent = \"✓ \" + tache.textContent; } }",
+    "visible_tests": [
+      {
+        "description_fr": "Deux tâches faites séparées",
+        "checks": [
+          {
+            "selector": "#taches .tache",
+            "texts": [
+              "✓ Lecture",
+              "Rangement",
+              "✓ Affiche"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "La première tâche ne correspond pas",
+        "checks": [
+          {
+            "selector": "#taches .tache",
+            "texts": [
+              "Jardin",
+              "✓ Arrosage"
+            ]
+          }
+        ],
+        "fixture_html": "<main><ul id=\"taches\"><li class=\"tache\" data-etat=\"attente\">Jardin</li><li class=\"tache\" data-etat=\"faite\">Arrosage</li></ul></main>"
+      }
+    ],
+    "hints": [
+      "Il faut parcourir toutes les tâches avant de décider pour chacune.",
+      "Place la condition dans une boucle sur querySelectorAll.",
+      "const taches = document.querySelectorAll(\"#taches .tache\");\nfor (const tache of taches) { if (tache.dataset.etat === \"faite\") { tache.textContent = \"✓ \" + tache.textContent; } }"
+    ],
+    "explanation_fr": "La première correspondance n’est pas forcément la première tâche faite.",
+    "common_wrong_answers": [],
+    "id": "dom-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Calculer le bilan des ouvertures",
+    "instruction_fr": "Compte les .atelier de #ateliers dont data-ouvert vaut \"oui\". #bilan doit afficher « <ouverts> ouverts / <total> ateliers ». Si total vaut zéro, affiche « Aucun atelier ». Ne change pas les fiches.",
+    "fixture_html": "<main><section id=\"ateliers\"><p class=\"atelier\" data-ouvert=\"oui\">Lecture</p><p class=\"atelier\" data-ouvert=\"non\">Dessin</p><p class=\"atelier\" data-ouvert=\"oui\">Chant</p></section><p id=\"bilan\">?</p></main>",
+    "starter_code": "const ateliers = document.querySelectorAll(\"#ateliers .atelier\");\ndocument.querySelector(\"#bilan\").textContent = ateliers.length + \" ouverts\";",
+    "solution": "const ateliers = document.querySelectorAll(\"#ateliers .atelier\");\nlet ouverts = 0;\nfor (const atelier of ateliers) { if (atelier.dataset.ouvert === \"oui\") { ouverts = ouverts + 1; } }\ndocument.querySelector(\"#bilan\").textContent = ateliers.length === 0 ? \"Aucun atelier\" : ouverts + \" ouverts / \" + ateliers.length + \" ateliers\";",
+    "visible_tests": [
+      {
+        "description_fr": "Deux ouverts sur trois",
+        "checks": [
+          {
+            "selector": "#bilan",
+            "text": "2 ouverts / 3 ateliers"
+          },
+          {
+            "selector": "#ateliers .atelier",
+            "texts": [
+              "Lecture",
+              "Dessin",
+              "Chant"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Une fiche fermée",
+        "checks": [
+          {
+            "selector": "#bilan",
+            "text": "0 ouverts / 1 ateliers"
+          },
+          {
+            "selector": "#ateliers .atelier",
+            "texts": [
+              "Jardin"
+            ]
+          }
+        ],
+        "fixture_html": "<main><section id=\"ateliers\"><p class=\"atelier\" data-ouvert=\"non\">Jardin</p></section><p id=\"bilan\">?</p></main>"
+      },
+      {
+        "description_fr": "Aucune fiche",
+        "checks": [
+          {
+            "selector": "#bilan",
+            "text": "Aucun atelier"
+          },
+          {
+            "selector": "#ateliers .atelier",
+            "count": 0
+          }
+        ],
+        "fixture_html": "<main><section id=\"ateliers\"></section><p id=\"bilan\">?</p></main>"
+      }
+    ],
+    "hints": [
+      "La taille totale et le compteur conditionnel n’ont pas le même rôle.",
+      "Initialise le compteur avant la boucle et écris le bilan après.",
+      "const ateliers = document.querySelectorAll(\"#ateliers .atelier\");\nlet ouverts = 0;\nfor (const atelier of ateliers) { if (atelier.dataset.ouvert === \"oui\") { ouverts = ouverts + 1; } }\ndocument.querySelector(\"#bilan\").textContent = ateliers.length === 0 ? \"Aucun atelier\" : ouverts + \" ouverts / \" + ateliers.length + \" ateliers\";"
+    ],
+    "explanation_fr": "Le bilan distingue absence de fiches et absence d’ouvertures.",
+    "common_wrong_answers": [],
+    "id": "dom-m1-03-e4"
+  }
+]

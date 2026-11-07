@@ -1,0 +1,548 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Un rendu sans accumulation",
+    "instruction_fr": "Organise le programme autour de selectionner(donnees, texte), afficher(lignes) et rendre(). Chaque input de #recherche doit remplacer #liste, mettre à jour #compte (« N résultat(s) ») et #vide (visible si zéro). Répéter un rendu ne doit jamais dupliquer les lignes. Recherche trim et minuscule. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"recherche\">Rechercher un atelier fictif</label><input id=\"recherche\" type=\"search\"><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"1\" data-categorie=\"code\" data-places=\"4\" data-duree=\"30\" data-prix=\"1000\">Python</li><li data-id=\"2\" data-categorie=\"nature\" data-places=\"0\" data-duree=\"20\" data-prix=\"500\">Jardin</li><li data-id=\"3\" data-categorie=\"code\" data-places=\"2\" data-duree=\"20\" data-prix=\"1500\">Web</li></ul></main>",
+    "starter_code": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' résultat(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nfunction selectionner(donnees, texte) {\n  const terme = texte.trim().toLowerCase();\n  return donnees.filter(a => a.titre.toLowerCase().includes(terme));\n}\nconst recherche = document.querySelector('#recherche');\nfunction rendre() { afficher(selectionner(ateliers, recherche.value)); }\nrecherche.addEventListener('input', rendre);\nrendre();",
+    "solution": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' résultat(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nfunction selectionner(donnees, texte) {\n  const terme = texte.trim().toLowerCase();\n  return donnees.filter(a => a.titre.toLowerCase().includes(terme));\n}\nconst recherche = document.querySelector('#recherche');\nfunction rendre() { afficher(selectionner(ateliers, recherche.value)); }\nrecherche.addEventListener('input', rendre);\nrendre();",
+    "visible_tests": [
+      {
+        "description_fr": "Plusieurs allers et retours",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 résultat(s)"
+              }
+            ],
+            "value": "web"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Jardin",
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "3 résultat(s)"
+              }
+            ],
+            "value": ""
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 résultat(s)"
+              }
+            ],
+            "value": "py"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Rendu répété sur d’autres données",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Papier"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 résultat(s)"
+              }
+            ],
+            "value": "papier"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Papier"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 résultat(s)"
+              }
+            ],
+            "value": "papier"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo",
+                  "Papier",
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "3 résultat(s)"
+              }
+            ],
+            "value": ""
+          }
+        ],
+        "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"recherche\">Rechercher un atelier fictif</label><input id=\"recherche\" type=\"search\"><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"9\" data-categorie=\"creation\" data-places=\"0\" data-duree=\"10\" data-prix=\"300\">Photo</li><li data-id=\"4\" data-categorie=\"creation\" data-places=\"3\" data-duree=\"2\" data-prix=\"500\">Papier</li><li data-id=\"7\" data-categorie=\"creation\" data-places=\"1\" data-duree=\"1\" data-prix=\"300\">Piano</li></ul></main>"
+      }
+    ],
+    "hints": [
+      "Le nombre d’appels ne doit pas changer le contenu pour un même état.",
+      "Les éléments précédents restent présents si tu ajoutes seulement les suivants.",
+      "Commence afficher par liste.replaceChildren()."
+    ],
+    "explanation_fr": "La sélection est recalculée depuis la source. Le rendu remplace entièrement la vue ; une recherche répétée ne devient donc pas une opération d’ajout.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^const\\ ateliers\\ =\\ Array\\.from\\(document\\.querySelectorAll\\('\\#source\\ li'\\),\\ el\\ =>\\ \\(\\{id:Number\\(el\\.dataset\\.id\\),\\ titre:el\\.textContent\\.trim\\(\\),\\ categorie:el\\.dataset\\.categorie,\\ places:Number\\(el\\.dataset\\.places\\),\\ duree:Number\\(el\\.dataset\\.duree\\),\\ prix:Number\\(el\\.dataset\\.prix\\)\\}\\)\\);\\\nfunction\\ afficher\\(lignes\\)\\ \\{\\\n\\ \\ const\\ liste\\ =\\ document\\.querySelector\\('\\#liste'\\);\\\n\\ \\ for\\ \\(const\\ atelier\\ of\\ lignes\\)\\ \\{\\\n\\ \\ \\ \\ const\\ li\\ =\\ document\\.createElement\\('li'\\);\\\n\\ \\ \\ \\ li\\.dataset\\.id\\ =\\ String\\(atelier\\.id\\);\\\n\\ \\ \\ \\ li\\.textContent\\ =\\ atelier\\.titre;\\\n\\ \\ \\ \\ liste\\.append\\(li\\);\\\n\\ \\ \\}\\\n\\ \\ document\\.querySelector\\('\\#compte'\\)\\.textContent\\ =\\ lignes\\.length\\ \\+\\ '\\ résultat\\(s\\)';\\\n\\ \\ document\\.querySelector\\('\\#vide'\\)\\.hidden\\ =\\ lignes\\.length\\ !==\\ 0;\\\n\\}\\\nfunction\\ selectionner\\(donnees,\\ texte\\)\\ \\{\\\n\\ \\ const\\ terme\\ =\\ texte\\.trim\\(\\)\\.toLowerCase\\(\\);\\\n\\ \\ return\\ donnees\\.filter\\(a\\ =>\\ a\\.titre\\.toLowerCase\\(\\)\\.includes\\(terme\\)\\);\\\n\\}\\\nconst\\ recherche\\ =\\ document\\.querySelector\\('\\#recherche'\\);\\\nfunction\\ rendre\\(\\)\\ \\{\\ afficher\\(selectionner\\(ateliers,\\ recherche\\.value\\)\\);\\ \\}\\\nrecherche\\.addEventListener\\('input',\\ rendre\\);\\\nrendre\\(\\);$",
+        "feedback_fr": "Les éléments précédents restent présents si tu ajoutes seulement les suivants."
+      }
+    ],
+    "id": "dom-m5-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un compteur issu de la bonne sélection",
+    "instruction_fr": "Conserve les trois responsabilités du programme. Corrige le compteur : #compte doit être la longueur des lignes réellement affichées suivie de « résultat(s) ». Vérifie aussi #vide ; une sélection vide n’est pas la collection entière. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"recherche\">Rechercher un atelier fictif</label><input id=\"recherche\" type=\"search\"><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"1\" data-categorie=\"code\" data-places=\"4\" data-duree=\"30\" data-prix=\"1000\">Python</li><li data-id=\"2\" data-categorie=\"nature\" data-places=\"0\" data-duree=\"20\" data-prix=\"500\">Jardin</li><li data-id=\"3\" data-categorie=\"code\" data-places=\"2\" data-duree=\"20\" data-prix=\"1500\">Web</li></ul></main>",
+    "starter_code": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = ateliers.length + ' résultat(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nfunction selectionner(donnees, texte) {\n  const terme = texte.trim().toLowerCase();\n  return donnees.filter(a => a.titre.toLowerCase().includes(terme));\n}\nconst recherche = document.querySelector('#recherche');\nfunction rendre() { afficher(selectionner(ateliers, recherche.value)); }\nrecherche.addEventListener('input', rendre);\nrendre();",
+    "solution": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' résultat(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nfunction selectionner(donnees, texte) {\n  const terme = texte.trim().toLowerCase();\n  return donnees.filter(a => a.titre.toLowerCase().includes(terme));\n}\nconst recherche = document.querySelector('#recherche');\nfunction rendre() { afficher(selectionner(ateliers, recherche.value)); }\nrecherche.addEventListener('input', rendre);\nrendre();",
+    "visible_tests": [
+      {
+        "description_fr": "Liste et nombre racontent la même chose",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Jardin"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 résultat(s)"
+              }
+            ],
+            "value": "jar"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#compte",
+                "text": "0 résultat(s)"
+              },
+              {
+                "selector": "#vide",
+                "attributes": {
+                  "hidden": null
+                }
+              }
+            ],
+            "value": "rien"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Deux résultats puis tous",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Papier",
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "2 résultat(s)"
+              }
+            ],
+            "value": "pi"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo",
+                  "Papier",
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "3 résultat(s)"
+              }
+            ],
+            "value": ""
+          }
+        ],
+        "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"recherche\">Rechercher un atelier fictif</label><input id=\"recherche\" type=\"search\"><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"9\" data-categorie=\"creation\" data-places=\"0\" data-duree=\"10\" data-prix=\"300\">Photo</li><li data-id=\"4\" data-categorie=\"creation\" data-places=\"3\" data-duree=\"2\" data-prix=\"500\">Papier</li><li data-id=\"7\" data-categorie=\"creation\" data-places=\"1\" data-duree=\"1\" data-prix=\"300\">Piano</li></ul></main>"
+      }
+    ],
+    "hints": [
+      "Afficher reçoit les lignes retenues en argument.",
+      "La longueur du catalogue complet ne dépend pas de la recherche.",
+      "Utilise lignes.length pour le compte et pour décider de hidden."
+    ],
+    "explanation_fr": "Une fonction de présentation doit calculer ses sorties à partir de la sélection qu’elle reçoit. Le test vérifie deux puis trois résultats pour éviter un compteur fixe.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^const\\ ateliers\\ =\\ Array\\.from\\(document\\.querySelectorAll\\('\\#source\\ li'\\),\\ el\\ =>\\ \\(\\{id:Number\\(el\\.dataset\\.id\\),\\ titre:el\\.textContent\\.trim\\(\\),\\ categorie:el\\.dataset\\.categorie,\\ places:Number\\(el\\.dataset\\.places\\),\\ duree:Number\\(el\\.dataset\\.duree\\),\\ prix:Number\\(el\\.dataset\\.prix\\)\\}\\)\\);\\\nfunction\\ afficher\\(lignes\\)\\ \\{\\\n\\ \\ const\\ liste\\ =\\ document\\.querySelector\\('\\#liste'\\);\\\n\\ \\ liste\\.replaceChildren\\(\\);\\\n\\ \\ for\\ \\(const\\ atelier\\ of\\ lignes\\)\\ \\{\\\n\\ \\ \\ \\ const\\ li\\ =\\ document\\.createElement\\('li'\\);\\\n\\ \\ \\ \\ li\\.dataset\\.id\\ =\\ String\\(atelier\\.id\\);\\\n\\ \\ \\ \\ li\\.textContent\\ =\\ atelier\\.titre;\\\n\\ \\ \\ \\ liste\\.append\\(li\\);\\\n\\ \\ \\}\\\n\\ \\ document\\.querySelector\\('\\#compte'\\)\\.textContent\\ =\\ ateliers\\.length\\ \\+\\ '\\ résultat\\(s\\)';\\\n\\ \\ document\\.querySelector\\('\\#vide'\\)\\.hidden\\ =\\ lignes\\.length\\ !==\\ 0;\\\n\\}\\\nfunction\\ selectionner\\(donnees,\\ texte\\)\\ \\{\\\n\\ \\ const\\ terme\\ =\\ texte\\.trim\\(\\)\\.toLowerCase\\(\\);\\\n\\ \\ return\\ donnees\\.filter\\(a\\ =>\\ a\\.titre\\.toLowerCase\\(\\)\\.includes\\(terme\\)\\);\\\n\\}\\\nconst\\ recherche\\ =\\ document\\.querySelector\\('\\#recherche'\\);\\\nfunction\\ rendre\\(\\)\\ \\{\\ afficher\\(selectionner\\(ateliers,\\ recherche\\.value\\)\\);\\ \\}\\\nrecherche\\.addEventListener\\('input',\\ rendre\\);\\\nrendre\\(\\);$",
+        "feedback_fr": "La longueur du catalogue complet ne dépend pas de la recherche."
+      }
+    ],
+    "id": "dom-m5-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Relire la saisie au bon moment",
+    "instruction_fr": "Répare la coordination rendre : elle doit relire #recherche.value à chaque appel avant de transmettre les arguments à selectionner. Conserve les lignes, le compteur et l’état vide. Une lecture unique au démarrage n’est pas un état de recherche à jour. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"recherche\">Rechercher un atelier fictif</label><input id=\"recherche\" type=\"search\"><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"1\" data-categorie=\"code\" data-places=\"4\" data-duree=\"30\" data-prix=\"1000\">Python</li><li data-id=\"2\" data-categorie=\"nature\" data-places=\"0\" data-duree=\"20\" data-prix=\"500\">Jardin</li><li data-id=\"3\" data-categorie=\"code\" data-places=\"2\" data-duree=\"20\" data-prix=\"1500\">Web</li></ul></main>",
+    "starter_code": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' résultat(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nfunction selectionner(donnees, texte) {\n  const terme = texte.trim().toLowerCase();\n  return donnees.filter(a => a.titre.toLowerCase().includes(terme));\n}\nconst recherche = document.querySelector('#recherche');\nconst texteInitial = recherche.value;\nfunction rendre() { afficher(selectionner(ateliers, texteInitial)); }\nrecherche.addEventListener('input', rendre);\nrendre();",
+    "solution": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' résultat(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nfunction selectionner(donnees, texte) {\n  const terme = texte.trim().toLowerCase();\n  return donnees.filter(a => a.titre.toLowerCase().includes(terme));\n}\nconst recherche = document.querySelector('#recherche');\nfunction rendre() { afficher(selectionner(ateliers, recherche.value)); }\nrecherche.addEventListener('input', rendre);\nrendre();",
+    "visible_tests": [
+      {
+        "description_fr": "Le deuxième terme remplace le premier",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 résultat(s)"
+              }
+            ],
+            "value": "py"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 résultat(s)"
+              }
+            ],
+            "value": "web"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#compte",
+                "text": "0 résultat(s)"
+              }
+            ],
+            "value": "absent"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Une autre séquence et un retour complet",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 résultat(s)"
+              }
+            ],
+            "value": "photo"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Papier",
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "2 résultat(s)"
+              }
+            ],
+            "value": "pi"
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo",
+                  "Papier",
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "3 résultat(s)"
+              }
+            ],
+            "value": ""
+          }
+        ],
+        "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"recherche\">Rechercher un atelier fictif</label><input id=\"recherche\" type=\"search\"><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"9\" data-categorie=\"creation\" data-places=\"0\" data-duree=\"10\" data-prix=\"300\">Photo</li><li data-id=\"4\" data-categorie=\"creation\" data-places=\"3\" data-duree=\"2\" data-prix=\"500\">Papier</li><li data-id=\"7\" data-categorie=\"creation\" data-places=\"1\" data-duree=\"1\" data-prix=\"300\">Piano</li></ul></main>"
+      }
+    ],
+    "hints": [
+      "L’écouteur se déclenche, mais quelle valeur la fonction lit-elle ?",
+      "La constante initiale conserve le texte du démarrage.",
+      "Lis recherche.value à l’intérieur de rendre."
+    ],
+    "explanation_fr": "Le problème concerne la fraîcheur de la valeur, pas l’installation de l’écouteur. Les recherches successives doivent toutes partir du même tableau source et de la nouvelle saisie.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^const\\ ateliers\\ =\\ Array\\.from\\(document\\.querySelectorAll\\('\\#source\\ li'\\),\\ el\\ =>\\ \\(\\{id:Number\\(el\\.dataset\\.id\\),\\ titre:el\\.textContent\\.trim\\(\\),\\ categorie:el\\.dataset\\.categorie,\\ places:Number\\(el\\.dataset\\.places\\),\\ duree:Number\\(el\\.dataset\\.duree\\),\\ prix:Number\\(el\\.dataset\\.prix\\)\\}\\)\\);\\\nfunction\\ afficher\\(lignes\\)\\ \\{\\\n\\ \\ const\\ liste\\ =\\ document\\.querySelector\\('\\#liste'\\);\\\n\\ \\ liste\\.replaceChildren\\(\\);\\\n\\ \\ for\\ \\(const\\ atelier\\ of\\ lignes\\)\\ \\{\\\n\\ \\ \\ \\ const\\ li\\ =\\ document\\.createElement\\('li'\\);\\\n\\ \\ \\ \\ li\\.dataset\\.id\\ =\\ String\\(atelier\\.id\\);\\\n\\ \\ \\ \\ li\\.textContent\\ =\\ atelier\\.titre;\\\n\\ \\ \\ \\ liste\\.append\\(li\\);\\\n\\ \\ \\}\\\n\\ \\ document\\.querySelector\\('\\#compte'\\)\\.textContent\\ =\\ lignes\\.length\\ \\+\\ '\\ résultat\\(s\\)';\\\n\\ \\ document\\.querySelector\\('\\#vide'\\)\\.hidden\\ =\\ lignes\\.length\\ !==\\ 0;\\\n\\}\\\nfunction\\ selectionner\\(donnees,\\ texte\\)\\ \\{\\\n\\ \\ const\\ terme\\ =\\ texte\\.trim\\(\\)\\.toLowerCase\\(\\);\\\n\\ \\ return\\ donnees\\.filter\\(a\\ =>\\ a\\.titre\\.toLowerCase\\(\\)\\.includes\\(terme\\)\\);\\\n\\}\\\nconst\\ recherche\\ =\\ document\\.querySelector\\('\\#recherche'\\);\\\nconst\\ texteInitial\\ =\\ recherche\\.value;\\\nfunction\\ rendre\\(\\)\\ \\{\\ afficher\\(selectionner\\(ateliers,\\ texteInitial\\)\\);\\ \\}\\\nrecherche\\.addEventListener\\('input',\\ rendre\\);\\\nrendre\\(\\);$",
+        "feedback_fr": "La constante initiale conserve le texte du démarrage."
+      }
+    ],
+    "id": "dom-m5-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Réinitialiser avec la même coordination",
+    "instruction_fr": "Ajoute le comportement de #retablir : au clic, vider #recherche, appeler rendre, puis donner le focus au contrôle. Les lignes de #source doivent toutes revenir, avec compte et message cohérents. Réutilise le calcul et le rendu existants. Les données sont fictives ; chaque essai recrée la page et ne conserve pas ses changements.",
+    "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"recherche\">Rechercher un atelier fictif</label><input id=\"recherche\" type=\"search\"><button id=\"retablir\" type=\"button\">Réinitialiser</button><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"1\" data-categorie=\"code\" data-places=\"4\" data-duree=\"30\" data-prix=\"1000\">Python</li><li data-id=\"2\" data-categorie=\"nature\" data-places=\"0\" data-duree=\"20\" data-prix=\"500\">Jardin</li><li data-id=\"3\" data-categorie=\"code\" data-places=\"2\" data-duree=\"20\" data-prix=\"1500\">Web</li></ul></main>",
+    "starter_code": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' résultat(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nfunction selectionner(donnees, texte) {\n  const terme = texte.trim().toLowerCase();\n  return donnees.filter(a => a.titre.toLowerCase().includes(terme));\n}\nconst recherche = document.querySelector('#recherche');\nfunction rendre() { afficher(selectionner(ateliers, recherche.value)); }\nrecherche.addEventListener('input', rendre);\nrendre();\ndocument.querySelector('#retablir').addEventListener('click', () => {\n  recherche.value = '';\n  recherche.focus();\n});",
+    "solution": "const ateliers = Array.from(document.querySelectorAll('#source li'), el => ({id:Number(el.dataset.id), titre:el.textContent.trim(), categorie:el.dataset.categorie, places:Number(el.dataset.places), duree:Number(el.dataset.duree), prix:Number(el.dataset.prix)}));\nfunction afficher(lignes) {\n  const liste = document.querySelector('#liste');\n  liste.replaceChildren();\n  for (const atelier of lignes) {\n    const li = document.createElement('li');\n    li.dataset.id = String(atelier.id);\n    li.textContent = atelier.titre;\n    liste.append(li);\n  }\n  document.querySelector('#compte').textContent = lignes.length + ' résultat(s)';\n  document.querySelector('#vide').hidden = lignes.length !== 0;\n}\nfunction selectionner(donnees, texte) {\n  const terme = texte.trim().toLowerCase();\n  return donnees.filter(a => a.titre.toLowerCase().includes(terme));\n}\nconst recherche = document.querySelector('#recherche');\nfunction rendre() { afficher(selectionner(ateliers, recherche.value)); }\nrecherche.addEventListener('input', rendre);\nrendre();\ndocument.querySelector('#retablir').addEventListener('click', () => {\n  recherche.value = '';\n  rendre();\n  recherche.focus();\n});",
+    "visible_tests": [
+      {
+        "description_fr": "Réinitialiser une recherche vide de résultats",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": []
+              },
+              {
+                "selector": "#compte",
+                "text": "0 résultat(s)"
+              }
+            ],
+            "value": "aucun"
+          },
+          {
+            "action": "click",
+            "selector": "#retablir",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Python",
+                  "Jardin",
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "3 résultat(s)"
+              },
+              {
+                "selector": "#recherche",
+                "value": "",
+                "focused": true
+              },
+              {
+                "selector": "#vide",
+                "attributes": {
+                  "hidden": ""
+                }
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Web"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 résultat(s)"
+              }
+            ],
+            "value": "web"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Réinitialiser puis rechercher autre chose",
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 résultat(s)"
+              }
+            ],
+            "value": "piano"
+          },
+          {
+            "action": "click",
+            "selector": "#retablir",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo",
+                  "Papier",
+                  "Piano"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "3 résultat(s)"
+              },
+              {
+                "selector": "#recherche",
+                "value": "",
+                "focused": true
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#recherche",
+            "checks": [
+              {
+                "selector": "#liste li",
+                "texts": [
+                  "Photo"
+                ]
+              },
+              {
+                "selector": "#compte",
+                "text": "1 résultat(s)"
+              }
+            ],
+            "value": "photo"
+          }
+        ],
+        "fixture_html": "<main><h1>Ateliers fictifs</h1><label for=\"recherche\">Rechercher un atelier fictif</label><input id=\"recherche\" type=\"search\"><button id=\"retablir\" type=\"button\">Réinitialiser</button><p id=\"compte\" role=\"status\" aria-live=\"polite\"></p><ul id=\"liste\"></ul><p id=\"vide\" hidden>Aucun atelier.</p><ul id=\"source\" hidden><li data-id=\"9\" data-categorie=\"creation\" data-places=\"0\" data-duree=\"10\" data-prix=\"300\">Photo</li><li data-id=\"4\" data-categorie=\"creation\" data-places=\"3\" data-duree=\"2\" data-prix=\"500\">Papier</li><li data-id=\"7\" data-categorie=\"creation\" data-places=\"1\" data-duree=\"1\" data-prix=\"300\">Piano</li></ul></main>"
+      }
+    ],
+    "hints": [
+      "Une affectation de value ne déclenche pas automatiquement input.",
+      "Le contrôle est vide mais la vue conserve l’ancienne sélection.",
+      "Appelle rendre après recherche.value = puis recherche.focus()."
+    ],
+    "explanation_fr": "Le mini-projet ajoute une commande qui réutilise le parcours normal. Il vérifie également qu’une nouvelle recherche fonctionne encore après la remise à zéro.",
+    "common_wrong_answers": [
+      {
+        "pattern": "^const\\ ateliers\\ =\\ Array\\.from\\(document\\.querySelectorAll\\('\\#source\\ li'\\),\\ el\\ =>\\ \\(\\{id:Number\\(el\\.dataset\\.id\\),\\ titre:el\\.textContent\\.trim\\(\\),\\ categorie:el\\.dataset\\.categorie,\\ places:Number\\(el\\.dataset\\.places\\),\\ duree:Number\\(el\\.dataset\\.duree\\),\\ prix:Number\\(el\\.dataset\\.prix\\)\\}\\)\\);\\\nfunction\\ afficher\\(lignes\\)\\ \\{\\\n\\ \\ const\\ liste\\ =\\ document\\.querySelector\\('\\#liste'\\);\\\n\\ \\ liste\\.replaceChildren\\(\\);\\\n\\ \\ for\\ \\(const\\ atelier\\ of\\ lignes\\)\\ \\{\\\n\\ \\ \\ \\ const\\ li\\ =\\ document\\.createElement\\('li'\\);\\\n\\ \\ \\ \\ li\\.dataset\\.id\\ =\\ String\\(atelier\\.id\\);\\\n\\ \\ \\ \\ li\\.textContent\\ =\\ atelier\\.titre;\\\n\\ \\ \\ \\ liste\\.append\\(li\\);\\\n\\ \\ \\}\\\n\\ \\ document\\.querySelector\\('\\#compte'\\)\\.textContent\\ =\\ lignes\\.length\\ \\+\\ '\\ résultat\\(s\\)';\\\n\\ \\ document\\.querySelector\\('\\#vide'\\)\\.hidden\\ =\\ lignes\\.length\\ !==\\ 0;\\\n\\}\\\nfunction\\ selectionner\\(donnees,\\ texte\\)\\ \\{\\\n\\ \\ const\\ terme\\ =\\ texte\\.trim\\(\\)\\.toLowerCase\\(\\);\\\n\\ \\ return\\ donnees\\.filter\\(a\\ =>\\ a\\.titre\\.toLowerCase\\(\\)\\.includes\\(terme\\)\\);\\\n\\}\\\nconst\\ recherche\\ =\\ document\\.querySelector\\('\\#recherche'\\);\\\nfunction\\ rendre\\(\\)\\ \\{\\ afficher\\(selectionner\\(ateliers,\\ recherche\\.value\\)\\);\\ \\}\\\nrecherche\\.addEventListener\\('input',\\ rendre\\);\\\nrendre\\(\\);\\\ndocument\\.querySelector\\('\\#retablir'\\)\\.addEventListener\\('click',\\ \\(\\)\\ =>\\ \\{\\\n\\ \\ recherche\\.value\\ =\\ '';\\\n\\ \\ recherche\\.focus\\(\\);\\\n\\}\\);$",
+        "feedback_fr": "Le contrôle est vide mais la vue conserve l’ancienne sélection."
+      }
+    ],
+    "id": "dom-m5-03-e4"
+  }
+]

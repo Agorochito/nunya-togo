@@ -1,0 +1,95 @@
+{
+  "id": "javascript-dom",
+  "title_fr": "JavaScript : construire des interfaces avec le DOM",
+  "language": "javascript",
+  "runtime": "dom",
+  "level": "intermediaire",
+  "summary_fr": "Relie HTML et JavaScript : boutons, formulaires, listes et recherche. Construis une interface accessible, teste ses interactions et corrige ses erreurs dans le navigateur.",
+  "prerequisite_courses": [
+    "html-bases",
+    "css-bases",
+    "javascript-bases"
+  ],
+  "prerequisites": [
+    "Connaître HTML, CSS et les fondamentaux JavaScript.",
+    "Aucune installation requise : l’atelier est intégré à Nunya."
+  ],
+  "outcomes": [
+    "Sélectionner et modifier précisément un document HTML.",
+    "Réagir aux événements et conserver un état cohérent.",
+    "Construire des formulaires avec messages et focus accessibles.",
+    "Créer, filtrer et trier des listes sans perdre leurs identifiants.",
+    "Assembler un catalogue interactif et vérifier ses comportements."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Sélectionner et modifier le document",
+      "outcome_fr": "Relier des éléments et leurs propriétés au code.",
+      "lesson_ids": [
+        "dom-m1-01",
+        "dom-m1-02",
+        "dom-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Événements et état",
+      "outcome_fr": "Gérer les clics et la délégation sans multiplier les écouteurs.",
+      "lesson_ids": [
+        "dom-m2-01",
+        "dom-m2-02",
+        "dom-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Saisies, formulaires et clavier",
+      "outcome_fr": "Lire les valeurs et guider la saisie par des messages accessibles.",
+      "lesson_ids": [
+        "dom-m3-01",
+        "dom-m3-02",
+        "dom-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Afficher et construire des éléments",
+      "outcome_fr": "Modifier les classes, créer des listes et conserver des identifiants stables.",
+      "lesson_ids": [
+        "dom-m4-01",
+        "dom-m4-02",
+        "dom-m4-03"
+      ]
+    },
+    {
+      "id": "m5",
+      "title_fr": "Recherche, tri et rendu",
+      "outcome_fr": "Dériver l’affichage des données sans perdre leur ordre source.",
+      "lesson_ids": [
+        "dom-m5-01",
+        "dom-m5-02",
+        "dom-m5-03"
+      ]
+    },
+    {
+      "id": "m6",
+      "title_fr": "Validation et projet de catalogue",
+      "outcome_fr": "Tester et assembler une interface accessible.",
+      "lesson_ids": [
+        "dom-m6-01",
+        "dom-m6-02",
+        "dom-m6-03"
+      ]
+    }
+  ],
+  "later_modules": [],
+  "availability": "programme-redige",
+  "status": "brouillon",
+  "reviewer": null,
+  "depth_fr": "Socle progressif avec projets et tests locaux ; relecture pédagogique en cours. Les niveaux supérieurs restent à construire.",
+  "next_courses": [
+    "react-bases",
+    "http-bases"
+  ]
+}

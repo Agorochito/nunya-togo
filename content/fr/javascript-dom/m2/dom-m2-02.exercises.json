@@ -1,0 +1,542 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Synchroniser nombre et résumé",
+    "instruction_fr": "Initialise un nombre total depuis data-depart de #compteur. Écris rendre(), qui affiche total dans #total et « <total> présences » dans #resume. Appelle-la au lancement et après chaque clic sur #plus, qui ajoute 1.",
+    "fixture_html": "<main id=\"compteur\" data-depart=\"3\"><button id=\"plus\" type=\"button\">Une présence de plus</button><p id=\"total\">À calculer</p><p id=\"resume\">À calculer</p></main>",
+    "starter_code": "const compteur = document.querySelector(\"#compteur\");\nlet total = compteur.dataset.depart;\nfunction rendre() { }\ndocument.querySelector(\"#plus\").addEventListener(\"click\", function () { total = total + 1; rendre(); });",
+    "solution": "const compteur = document.querySelector(\"#compteur\");\nlet total = Number(compteur.dataset.depart);\nfunction rendre() {\n  document.querySelector(\"#total\").textContent = total;\n  document.querySelector(\"#resume\").textContent = total + \" présences\";\n}\nrendre();\ndocument.querySelector(\"#plus\").addEventListener(\"click\", function () { total = total + 1; rendre(); });",
+    "visible_tests": [
+      {
+        "description_fr": "Départ à trois",
+        "checks": [
+          {
+            "selector": "#total",
+            "text": "3"
+          },
+          {
+            "selector": "#resume",
+            "text": "3 présences"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "4"
+              },
+              {
+                "selector": "#resume",
+                "text": "4 présences"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "5"
+              },
+              {
+                "selector": "#resume",
+                "text": "5 présences"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Départ différent",
+        "checks": [
+          {
+            "selector": "#total",
+            "text": "8"
+          },
+          {
+            "selector": "#resume",
+            "text": "8 présences"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "9"
+              },
+              {
+                "selector": "#resume",
+                "text": "9 présences"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#plus",
+            "checks": [
+              {
+                "selector": "#total",
+                "text": "10"
+              },
+              {
+                "selector": "#resume",
+                "text": "10 présences"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main id=\"compteur\" data-depart=\"8\"><button id=\"plus\" type=\"button\">Une présence de plus</button><p id=\"total\">À calculer</p><p id=\"resume\">À calculer</p></main>"
+      }
+    ],
+    "hints": [
+      "dataset.depart est une chaîne.",
+      "La fonction de rendu écrit les deux sorties sans incrémenter.",
+      "const compteur = document.querySelector(\"#compteur\");\nlet total = Number(compteur.dataset.depart);\nfunction rendre() {\n  document.querySelector(\"#total\").textContent = total;\n  document.querySelector(\"#resume\").textContent = total + \" présences\";\n}\nrendre();\ndocument.querySelector(\"#plus\").addEventListener(\"click\", function () { total = total + 1; rendre(); });"
+    ],
+    "explanation_fr": "Une seule variable numérique alimente les deux affichages.",
+    "common_wrong_answers": [],
+    "id": "dom-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Suivre un prêt de cahiers fictif",
+    "instruction_fr": "Lis la capacité numérique de #stock ; reste commence à cette capacité. #prendre retire 1 si reste>0 ; #rendre ajoute 1 si reste<capacite. À chaque rendu initial ou après clic, #reste affiche reste et #sortis affiche capacite-reste. Les boutons restent actifs : les conditions doivent empêcher tout dépassement.",
+    "fixture_html": "<main id=\"stock\" data-capacite=\"2\"><button id=\"prendre\" type=\"button\">Prendre</button><button id=\"rendre\" type=\"button\">Rendre</button><p id=\"reste\">?</p><p id=\"sortis\">?</p></main>",
+    "starter_code": "const capacite = Number(document.querySelector(\"#stock\").dataset.capacite);\nlet reste = capacite;\nfunction afficher() { document.querySelector(\"#reste\").textContent = reste; }\nafficher();",
+    "solution": "const capacite = Number(document.querySelector(\"#stock\").dataset.capacite);\nlet reste = capacite;\nfunction afficher() {\n  document.querySelector(\"#reste\").textContent = reste;\n  document.querySelector(\"#sortis\").textContent = capacite - reste;\n}\nafficher();\ndocument.querySelector(\"#prendre\").addEventListener(\"click\", function () { if (reste > 0) { reste = reste - 1; } afficher(); });\ndocument.querySelector(\"#rendre\").addEventListener(\"click\", function () { if (reste < capacite) { reste = reste + 1; } afficher(); });",
+    "visible_tests": [
+      {
+        "description_fr": "Atteindre puis garder les bornes",
+        "checks": [
+          {
+            "selector": "#reste",
+            "text": "2"
+          },
+          {
+            "selector": "#sortis",
+            "text": "0"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#rendre",
+            "checks": [
+              {
+                "selector": "#reste",
+                "text": "2"
+              },
+              {
+                "selector": "#sortis",
+                "text": "0"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#prendre",
+            "checks": [
+              {
+                "selector": "#reste",
+                "text": "1"
+              },
+              {
+                "selector": "#sortis",
+                "text": "1"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#prendre",
+            "checks": [
+              {
+                "selector": "#reste",
+                "text": "0"
+              },
+              {
+                "selector": "#sortis",
+                "text": "2"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#prendre",
+            "checks": [
+              {
+                "selector": "#reste",
+                "text": "0"
+              },
+              {
+                "selector": "#sortis",
+                "text": "2"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#rendre",
+            "checks": [
+              {
+                "selector": "#reste",
+                "text": "1"
+              },
+              {
+                "selector": "#sortis",
+                "text": "1"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Capacité d’un seul cahier",
+        "checks": [
+          {
+            "selector": "#reste",
+            "text": "1"
+          },
+          {
+            "selector": "#sortis",
+            "text": "0"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#prendre",
+            "checks": [
+              {
+                "selector": "#reste",
+                "text": "0"
+              },
+              {
+                "selector": "#sortis",
+                "text": "1"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#prendre",
+            "checks": [
+              {
+                "selector": "#reste",
+                "text": "0"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#rendre",
+            "checks": [
+              {
+                "selector": "#reste",
+                "text": "1"
+              },
+              {
+                "selector": "#sortis",
+                "text": "0"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#rendre",
+            "checks": [
+              {
+                "selector": "#reste",
+                "text": "1"
+              },
+              {
+                "selector": "#sortis",
+                "text": "0"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main id=\"stock\" data-capacite=\"1\"><button id=\"prendre\" type=\"button\">Prendre</button><button id=\"rendre\" type=\"button\">Rendre</button><p id=\"reste\">?</p><p id=\"sortis\">?</p></main>"
+      }
+    ],
+    "hints": [
+      "La capacité est fixe ; seul reste évolue.",
+      "Le nombre sorti est calculé au rendu, pas mémorisé indépendamment.",
+      "const capacite = Number(document.querySelector(\"#stock\").dataset.capacite);\nlet reste = capacite;\nfunction afficher() {\n  document.querySelector(\"#reste\").textContent = reste;\n  document.querySelector(\"#sortis\").textContent = capacite - reste;\n}\nafficher();\ndocument.querySelector(\"#prendre\").addEventListener(\"click\", function () { if (reste > 0) { reste = reste - 1; } afficher(); });\ndocument.querySelector(\"#rendre\").addEventListener(\"click\", function () { if (reste < capacite) { reste = reste + 1; } afficher(); });"
+    ],
+    "explanation_fr": "La règle de borne fonctionne même quand le bouton reste cliquable.",
+    "common_wrong_answers": [],
+    "id": "dom-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Convertir aussi le pas",
+    "instruction_fr": "Corrige le calcul : #valeur affiche le départ de #suivi au lancement, puis chaque clic sur #avancer ajoute son data-pas numérique. Les deux attributs contiennent des entiers valides.",
+    "fixture_html": "<main id=\"suivi\" data-depart=\"1\" data-pas=\"2\"><button id=\"avancer\" type=\"button\">Avancer</button><p id=\"valeur\">?</p></main>",
+    "starter_code": "const suivi = document.querySelector(\"#suivi\");\nlet valeur = Number(suivi.dataset.depart);\nconst pas = suivi.dataset.pas;\nfunction rendre() { document.querySelector(\"#valeur\").textContent = valeur; }\nrendre();\ndocument.querySelector(\"#avancer\").addEventListener(\"click\", function () { valeur = valeur + pas; rendre(); });",
+    "solution": "const suivi = document.querySelector(\"#suivi\");\nlet valeur = Number(suivi.dataset.depart);\nconst pas = Number(suivi.dataset.pas);\nfunction rendre() { document.querySelector(\"#valeur\").textContent = valeur; }\nrendre();\ndocument.querySelector(\"#avancer\").addEventListener(\"click\", function () { valeur = valeur + pas; rendre(); });",
+    "visible_tests": [
+      {
+        "description_fr": "Pas de deux",
+        "checks": [
+          {
+            "selector": "#valeur",
+            "text": "1"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#avancer",
+            "checks": [
+              {
+                "selector": "#valeur",
+                "text": "3"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#avancer",
+            "checks": [
+              {
+                "selector": "#valeur",
+                "text": "5"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Départ quatre, pas trois",
+        "checks": [
+          {
+            "selector": "#valeur",
+            "text": "4"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#avancer",
+            "checks": [
+              {
+                "selector": "#valeur",
+                "text": "7"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#avancer",
+            "checks": [
+              {
+                "selector": "#valeur",
+                "text": "10"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main id=\"suivi\" data-depart=\"4\" data-pas=\"3\"><button id=\"avancer\" type=\"button\">Avancer</button><p id=\"valeur\">?</p></main>"
+      }
+    ],
+    "hints": [
+      "Un opérande chaîne suffit à transformer + en concaténation.",
+      "Le pas doit subir la même conversion que le départ.",
+      "const suivi = document.querySelector(\"#suivi\");\nlet valeur = Number(suivi.dataset.depart);\nconst pas = Number(suivi.dataset.pas);\nfunction rendre() { document.querySelector(\"#valeur\").textContent = valeur; }\nrendre();\ndocument.querySelector(\"#avancer\").addEventListener(\"click\", function () { valeur = valeur + pas; rendre(); });"
+    ],
+    "explanation_fr": "Convertir seulement la première donnée ne garantit pas un calcul numérique.",
+    "common_wrong_answers": [],
+    "id": "dom-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Rendre un défi de points fictif",
+    "instruction_fr": "Le total de points commence à 0. Un clic sur #lecture ou #jardin ajoute le data-points numérique de ce bouton. #recommencer remet 0. Rends #points et #etat après chaque action et au lancement : « Objectif atteint » si total>=data-objectif de #defi, sinon « En cours ». Tous les nombres fournis sont des entiers positifs.",
+    "fixture_html": "<main id=\"defi\" data-objectif=\"7\"><button id=\"lecture\" type=\"button\" data-points=\"2\">Lecture</button><button id=\"jardin\" type=\"button\" data-points=\"3\">Jardin</button><button id=\"recommencer\" type=\"button\">Recommencer</button><p id=\"points\">?</p><p id=\"etat\">?</p></main>",
+    "starter_code": "let total = 0;\nconst objectif = Number(document.querySelector(\"#defi\").dataset.objectif);\nfunction rendre() { document.querySelector(\"#points\").textContent = total; }\nrendre();",
+    "solution": "let total = 0;\nconst objectif = Number(document.querySelector(\"#defi\").dataset.objectif);\nfunction rendre() {\n  document.querySelector(\"#points\").textContent = total;\n  document.querySelector(\"#etat\").textContent = total >= objectif ? \"Objectif atteint\" : \"En cours\";\n}\nfunction relier(bouton) { bouton.addEventListener(\"click\", function () { total = total + Number(bouton.dataset.points); rendre(); }); }\nrelier(document.querySelector(\"#lecture\"));\nrelier(document.querySelector(\"#jardin\"));\ndocument.querySelector(\"#recommencer\").addEventListener(\"click\", function () { total = 0; rendre(); });\nrendre();",
+    "visible_tests": [
+      {
+        "description_fr": "Deux commandes partagent un total",
+        "checks": [
+          {
+            "selector": "#points",
+            "text": "0"
+          },
+          {
+            "selector": "#etat",
+            "text": "En cours"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#lecture",
+            "checks": [
+              {
+                "selector": "#points",
+                "text": "2"
+              },
+              {
+                "selector": "#etat",
+                "text": "En cours"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#jardin",
+            "checks": [
+              {
+                "selector": "#points",
+                "text": "5"
+              },
+              {
+                "selector": "#etat",
+                "text": "En cours"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#lecture",
+            "checks": [
+              {
+                "selector": "#points",
+                "text": "7"
+              },
+              {
+                "selector": "#etat",
+                "text": "Objectif atteint"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#jardin",
+            "checks": [
+              {
+                "selector": "#points",
+                "text": "10"
+              },
+              {
+                "selector": "#etat",
+                "text": "Objectif atteint"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#recommencer",
+            "checks": [
+              {
+                "selector": "#points",
+                "text": "0"
+              },
+              {
+                "selector": "#etat",
+                "text": "En cours"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autres points et autre objectif",
+        "checks": [
+          {
+            "selector": "#points",
+            "text": "0"
+          },
+          {
+            "selector": "#etat",
+            "text": "En cours"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#jardin",
+            "checks": [
+              {
+                "selector": "#points",
+                "text": "4"
+              },
+              {
+                "selector": "#etat",
+                "text": "En cours"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#lecture",
+            "checks": [
+              {
+                "selector": "#points",
+                "text": "5"
+              },
+              {
+                "selector": "#etat",
+                "text": "Objectif atteint"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#recommencer",
+            "checks": [
+              {
+                "selector": "#points",
+                "text": "0"
+              },
+              {
+                "selector": "#etat",
+                "text": "En cours"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#lecture",
+            "checks": [
+              {
+                "selector": "#points",
+                "text": "1"
+              },
+              {
+                "selector": "#etat",
+                "text": "En cours"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main id=\"defi\" data-objectif=\"5\"><button id=\"lecture\" type=\"button\" data-points=\"1\">Lecture</button><button id=\"jardin\" type=\"button\" data-points=\"4\">Jardin</button><button id=\"recommencer\" type=\"button\">Recommencer</button><p id=\"points\">?</p><p id=\"etat\">?</p></main>"
+      }
+    ],
+    "hints": [
+      "Les deux activités modifient la même variable total.",
+      "La remise à zéro appelle aussi le rendu de toutes les sorties.",
+      "let total = 0;\nconst objectif = Number(document.querySelector(\"#defi\").dataset.objectif);\nfunction rendre() {\n  document.querySelector(\"#points\").textContent = total;\n  document.querySelector(\"#etat\").textContent = total >= objectif ? \"Objectif atteint\" : \"En cours\";\n}\nfunction relier(bouton) { bouton.addEventListener(\"click\", function () { total = total + Number(bouton.dataset.points); rendre(); }); }\nrelier(document.querySelector(\"#lecture\"));\nrelier(document.querySelector(\"#jardin\"));\ndocument.querySelector(\"#recommencer\").addEventListener(\"click\", function () { total = 0; rendre(); });\nrendre();"
+    ],
+    "explanation_fr": "L’objectif est une valeur fixe, l’état et les deux textes restent synchronisés.",
+    "common_wrong_answers": [],
+    "id": "dom-m2-02-e4"
+  }
+]

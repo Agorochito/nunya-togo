@@ -1,0 +1,348 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Guider un aperçu de prénom",
+    "instruction_fr": "Sur #nom, écoute input et actualise #apercu : Bonjour suivi d’un espace et de la valeur, ou Ton prénom apparaîtra ici. si elle est vide. Rends aussi l’état initial. Utilise textContent et des prénoms fictifs.",
+    "fixture_html": "<main><label for=\"nom\">Prénom fictif</label><input id=\"nom\" value=\"\"><p id=\"apercu\" aria-live=\"polite\">Aperçu en attente.</p></main>",
+    "starter_code": "const champ = document.querySelector(\"#nom\");\ndocument.querySelector(\"#apercu\").textContent = \"Bonjour \" + champ.value;",
+    "solution": "const champ = document.querySelector(\"#nom\");\nconst apercu = document.querySelector(\"#apercu\");\nfunction rendre() {\n  if (champ.value === \"\") { apercu.textContent = \"Ton prénom apparaîtra ici.\"; }\n  else { apercu.textContent = \"Bonjour \" + champ.value; }\n}\nchamp.addEventListener(\"input\", rendre);\nrendre();",
+    "visible_tests": [
+      {
+        "description_fr": "Départ vide, deux saisies et effacement",
+        "checks": [
+          {
+            "selector": "#apercu",
+            "text": "Ton prénom apparaîtra ici."
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#nom",
+            "value": "Afi",
+            "checks": [
+              {
+                "selector": "#apercu",
+                "text": "Bonjour Afi"
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#nom",
+            "value": "Kofi",
+            "checks": [
+              {
+                "selector": "#apercu",
+                "text": "Bonjour Kofi"
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#nom",
+            "value": "",
+            "checks": [
+              {
+                "selector": "#apercu",
+                "text": "Ton prénom apparaîtra ici."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Départ prérempli et autre texte",
+        "checks": [
+          {
+            "selector": "#apercu",
+            "text": "Bonjour Mina"
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#nom",
+            "value": "Lina",
+            "checks": [
+              {
+                "selector": "#apercu",
+                "text": "Bonjour Lina"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><label for=\"nom\">Prénom fictif</label><input id=\"nom\" value=\"Mina\"><p id=\"apercu\" aria-live=\"polite\">Aperçu en attente.</p></main>"
+      }
+    ],
+    "hints": [
+      "À quel moment faut-il relire value ?",
+      "Crée une fonction de rendu, écoute input et appelle-la au démarrage.",
+      "const champ = document.querySelector(\"#nom\");\nconst apercu = document.querySelector(\"#apercu\");\nfunction rendre() {\n  if (champ.value === \"\") { apercu.textContent = \"Ton prénom apparaîtra ici.\"; }\n  else { apercu.textContent = \"Bonjour \" + champ.value; }\n}\nchamp.addEventListener(\"input\", rendre);\nrendre();"
+    ],
+    "explanation_fr": "Une seule phrase calculée au chargement ne suit pas les changements.",
+    "common_wrong_answers": [],
+    "id": "dom-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Transférer vers un compteur de texte",
+    "instruction_fr": "Affiche dans #compteur le nombre texte.value.length suivi de / 40, séparés par des espaces. Écoute input sur #texte et rends immédiatement la valeur initiale. Il s’agit d’un compteur, pas d’une limite qui coupe la saisie.",
+    "fixture_html": "<main><label for=\"texte\">Texte de démonstration</label><textarea id=\"texte\">Semer</textarea><p id=\"compteur\" aria-live=\"polite\"></p></main>",
+    "starter_code": "document.querySelector(\"#compteur\").textContent = \"0 / 40\";",
+    "solution": "const texte = document.querySelector(\"#texte\");\nconst compteur = document.querySelector(\"#compteur\");\nfunction rendre() { compteur.textContent = String(texte.value.length) + \" / 40\"; }\ntexte.addEventListener(\"input\", rendre);\nrendre();",
+    "visible_tests": [
+      {
+        "description_fr": "Valeur de départ puis deux tailles",
+        "checks": [
+          {
+            "selector": "#compteur",
+            "text": "5 / 40"
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#texte",
+            "value": "Afi",
+            "checks": [
+              {
+                "selector": "#compteur",
+                "text": "3 / 40"
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#texte",
+            "value": "",
+            "checks": [
+              {
+                "selector": "#compteur",
+                "text": "0 / 40"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Un autre texte prérempli",
+        "checks": [
+          {
+            "selector": "#compteur",
+            "text": "7 / 40"
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#texte",
+            "value": "Lina",
+            "checks": [
+              {
+                "selector": "#compteur",
+                "text": "4 / 40"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><label for=\"texte\">Texte de démonstration</label><textarea id=\"texte\">Arroser</textarea><p id=\"compteur\" aria-live=\"polite\"></p></main>"
+      }
+    ],
+    "hints": [
+      "Que mesure la longueur dans cet exercice ?",
+      "Lis value.length à chaque appel, sans modifier la saisie.",
+      "const texte = document.querySelector(\"#texte\");\nconst compteur = document.querySelector(\"#compteur\");\nfunction rendre() { compteur.textContent = String(texte.value.length) + \" / 40\"; }\ntexte.addEventListener(\"input\", rendre);\nrendre();"
+    ],
+    "explanation_fr": "La borne affichée est un repère textuel ; aucune règle de validation n’est ajoutée ici.",
+    "common_wrong_answers": [],
+    "id": "dom-m3-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un message de case figé",
+    "instruction_fr": "#rappel est une checkbox. #retour doit afficher Rappel actif si checked vaut true, Rappel inactif sinon. Corrige le programme qui ne rend que l’état initial ; deux clics successifs doivent mettre à jour le texte.",
+    "fixture_html": "<main><label for=\"rappel\"><input id=\"rappel\" type=\"checkbox\"> Rappel fictif</label><p id=\"retour\" aria-live=\"polite\"></p></main>",
+    "starter_code": "const caseRappel = document.querySelector(\"#rappel\");\nconst retour = document.querySelector(\"#retour\");\nfunction rendre() {\n  if (caseRappel.checked) { retour.textContent = \"Rappel actif\"; }\n  else { retour.textContent = \"Rappel inactif\"; }\n}\nrendre();",
+    "solution": "const caseRappel = document.querySelector(\"#rappel\");\nconst retour = document.querySelector(\"#retour\");\nfunction rendre() {\n  if (caseRappel.checked) { retour.textContent = \"Rappel actif\"; }\n  else { retour.textContent = \"Rappel inactif\"; }\n}\ncaseRappel.addEventListener(\"input\", rendre);\nrendre();",
+    "visible_tests": [
+      {
+        "description_fr": "Activer puis désactiver",
+        "checks": [
+          {
+            "selector": "#rappel",
+            "checked": false
+          },
+          {
+            "selector": "#retour",
+            "text": "Rappel inactif"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#rappel",
+            "checks": [
+              {
+                "selector": "#rappel",
+                "checked": true
+              },
+              {
+                "selector": "#retour",
+                "text": "Rappel actif"
+              }
+            ]
+          },
+          {
+            "action": "click",
+            "selector": "#rappel",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Rappel inactif"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Case initialement cochée",
+        "checks": [
+          {
+            "selector": "#retour",
+            "text": "Rappel actif"
+          }
+        ],
+        "steps": [
+          {
+            "action": "click",
+            "selector": "#rappel",
+            "checks": [
+              {
+                "selector": "#retour",
+                "text": "Rappel inactif"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><label for=\"rappel\"><input id=\"rappel\" type=\"checkbox\" checked> Rappel fictif</label><p id=\"retour\" aria-live=\"polite\"></p></main>"
+      }
+    ],
+    "hints": [
+      "Le contrôle change-t-il sans que ton texte soit recalculé ?",
+      "Enregistre un écouteur input qui rappelle rendre.",
+      "const caseRappel = document.querySelector(\"#rappel\");\nconst retour = document.querySelector(\"#retour\");\nfunction rendre() {\n  if (caseRappel.checked) { retour.textContent = \"Rappel actif\"; }\n  else { retour.textContent = \"Rappel inactif\"; }\n}\ncaseRappel.addEventListener(\"input\", rendre);\nrendre();"
+    ],
+    "explanation_fr": "checked décrit l’état courant ; l’affichage doit suivre la modification native.",
+    "common_wrong_answers": [],
+    "id": "dom-m3-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Assembler deux champs dans un profil fictif",
+    "instruction_fr": "À partir de #prenom et #ville, rends #profil sous la forme prénom · ville. Pour un champ vide, remplace seulement sa partie par Prénom ? ou Ville ?. Écoute input sur les deux champs, rends le départ et garde toute saisie comme texte littéral.",
+    "fixture_html": "<main><label for=\"prenom\">Prénom fictif</label><input id=\"prenom\" value=\"Afi\"><label for=\"ville\">Ville fictive</label><input id=\"ville\" value=\"Lomé\"><p id=\"profil\" aria-live=\"polite\"></p></main>",
+    "starter_code": "document.querySelector(\"#profil\").textContent = \"Afi · Lomé\";",
+    "solution": "const prenom = document.querySelector(\"#prenom\");\nconst ville = document.querySelector(\"#ville\");\nconst profil = document.querySelector(\"#profil\");\nfunction rendre() {\n  let nomAffiche = prenom.value;\n  let villeAffichee = ville.value;\n  if (nomAffiche === \"\") { nomAffiche = \"Prénom ?\"; }\n  if (villeAffichee === \"\") { villeAffichee = \"Ville ?\"; }\n  profil.textContent = nomAffiche + \" · \" + villeAffichee;\n}\nprenom.addEventListener(\"input\", rendre);\nville.addEventListener(\"input\", rendre);\nrendre();",
+    "visible_tests": [
+      {
+        "description_fr": "Modifier les deux parties",
+        "checks": [
+          {
+            "selector": "#profil",
+            "text": "Afi · Lomé"
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#prenom",
+            "value": "Mina",
+            "checks": [
+              {
+                "selector": "#profil",
+                "text": "Mina · Lomé"
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#ville",
+            "value": "Kara",
+            "checks": [
+              {
+                "selector": "#profil",
+                "text": "Mina · Kara"
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#ville",
+            "value": "",
+            "checks": [
+              {
+                "selector": "#profil",
+                "text": "Mina · Ville ?"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autre départ et texte ressemblant à du HTML",
+        "checks": [
+          {
+            "selector": "#profil",
+            "text": "Kofi · Kara"
+          }
+        ],
+        "steps": [
+          {
+            "action": "input",
+            "selector": "#prenom",
+            "value": "<strong>Lina</strong>",
+            "checks": [
+              {
+                "selector": "#profil",
+                "text": "<strong>Lina</strong> · Kara"
+              },
+              {
+                "selector": "#profil strong",
+                "exists": false
+              }
+            ]
+          },
+          {
+            "action": "input",
+            "selector": "#prenom",
+            "value": "",
+            "checks": [
+              {
+                "selector": "#profil",
+                "text": "Prénom ? · Kara"
+              }
+            ]
+          }
+        ],
+        "fixture_html": "<main><label for=\"prenom\">Prénom fictif</label><input id=\"prenom\" value=\"Kofi\"><label for=\"ville\">Ville fictive</label><input id=\"ville\" value=\"Kara\"><p id=\"profil\" aria-live=\"polite\"></p></main>"
+      }
+    ],
+    "hints": [
+      "Quelles deux sources peuvent changer le même aperçu ?",
+      "Utilise une fonction commune et enregistre un écouteur sur chaque champ.",
+      "const prenom = document.querySelector(\"#prenom\");\nconst ville = document.querySelector(\"#ville\");\nconst profil = document.querySelector(\"#profil\");\nfunction rendre() {\n  let nomAffiche = prenom.value;\n  let villeAffichee = ville.value;\n  if (nomAffiche === \"\") { nomAffiche = \"Prénom ?\"; }\n  if (villeAffichee === \"\") { villeAffichee = \"Ville ?\"; }\n  profil.textContent = nomAffiche + \" · \" + villeAffichee;\n}\nprenom.addEventListener(\"input\", rendre);\nville.addEventListener(\"input\", rendre);\nrendre();"
+    ],
+    "explanation_fr": "Le test de balise vérifie que l’aperçu n’interprète pas la saisie comme du HTML.",
+    "common_wrong_answers": [],
+    "id": "dom-m3-01-e4"
+  }
+]

@@ -70,6 +70,34 @@
           "docs/SQL_ENGINE_RESULTS.json",
           "docs/SQL_UI_RESULTS.json"
         ]
+      },
+      {
+        "id": "javascript-dom",
+        "modules": 6,
+        "lessons": 18,
+        "code_exercises": 72,
+        "quizzes": 54,
+        "estimated_minutes": 360,
+        "status": "brouillon",
+        "scope": "Relie HTML et JavaScript : boutons, formulaires, listes et recherche. Construis une interface accessible, teste ses interactions et corrige ses erreurs dans le navigateur. Relecture pédagogique requise.",
+        "evidence": [
+          "docs/INTERACTIVE_CONTENT_RESULTS.json",
+          "docs/DOM_UI_RESULTS.json"
+        ]
+      },
+      {
+        "id": "react-bases",
+        "modules": 6,
+        "lessons": 18,
+        "code_exercises": 72,
+        "quizzes": 54,
+        "estimated_minutes": 360,
+        "status": "brouillon",
+        "scope": "Apprends JSX, les propriétés, l’état, les formulaires et les effets avec React réel. Construis un tableau d’ateliers et vérifie les interactions directement dans Nunya. Relecture pédagogique requise.",
+        "evidence": [
+          "docs/INTERACTIVE_CONTENT_RESULTS.json",
+          "docs/REACT_UI_RESULTS.json"
+        ]
       }
     ]
   },
@@ -187,9 +215,13 @@
       "family": "JS",
       "level": "intermediaire",
       "target_title": "JavaScript — interfaces et API",
-      "status": "a_construire",
-      "evidence": [],
-      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+      "status": "suites-dom-http-redigees-a-relire",
+      "evidence": [
+        "content/fr/javascript-dom",
+        "content/fr/http-bases"
+      ],
+      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire.",
+      "verification_note": "DOM18leçons et HTTP12leçons sont des suites spécialisées ; le niveau intermédiaire global reste à compléter."
     },
     {
       "id": "js-avance",
@@ -768,8 +800,8 @@
     "Objets connectés et robotique",
     "Blockchain"
   ],
-  "updated_for_release": "5.6.0",
-  "updated_at": "2026-11-05",
+  "updated_for_release": "5.7.0",
+  "updated_at": "2026-11-06",
   "additional_implemented": [
     {
       "id": "git-bases",

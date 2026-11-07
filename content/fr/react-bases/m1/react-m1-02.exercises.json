@@ -1,0 +1,245 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Lire les données dans le JSX",
+    "instruction_fr": "La fixture fournit data-club et data-places sur #app. Définis App : h1#club affiche le club et p#places « Places : <nombre> ». Utilise les données réelles et monte App ; ne copie pas les valeurs de la première fixture.",
+    "fixture_html": "<div id=\"app\" data-club=\"Club Avenir\" data-places=\"3\"></div>",
+    "starter_code": "const donnees = document.querySelector(\"#app\").dataset;\nfunction App() { return <main><h1 id=\"club\">donnees.club</h1><p id=\"places\">Places : 0</p></main>; }\nroot.render(<App />);",
+    "solution": "const donnees = document.querySelector(\"#app\").dataset;\nfunction App() { return <main><h1 id=\"club\">{donnees.club}</h1><p id=\"places\">Places : {Number(donnees.places)}</p></main>; }\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Première configuration",
+        "checks": [
+          {
+            "selector": "#club",
+            "text": "Club Avenir"
+          },
+          {
+            "selector": "#places",
+            "text": "Places : 3"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Autre club, autre capacité",
+        "checks": [
+          {
+            "selector": "#club",
+            "text": "Club des lecteurs"
+          },
+          {
+            "selector": "#places",
+            "text": "Places : 7"
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-club=\"Club des lecteurs\" data-places=\"7\"></div>"
+      }
+    ],
+    "hints": [
+      "Le texte littéral n’évalue pas un nom de variable.",
+      "Place les lectures ou calculs à afficher entre accolades.",
+      "const donnees = document.querySelector(\"#app\").dataset;\nfunction App() { return <main><h1 id=\"club\">{donnees.club}</h1><p id=\"places\">Places : {Number(donnees.places)}</p></main>; }\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Le modèle reste identique tandis que ses données changent.",
+    "common_wrong_answers": [],
+    "id": "react-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Relier un label et son champ sans div ajouté",
+    "instruction_fr": "Lis data-champ et data-indication de #app. App retourne un fragment avec label#etiquette « Rechercher un atelier », puis un input type=text dont id vaut data-champ, className vaut recherche et placeholder vaut data-indication. Associe le label avec htmlFor. Ne gère pas encore la saisie.",
+    "fixture_html": "<div id=\"app\" data-champ=\"recherche\" data-indication=\"Titre du livre\"></div>",
+    "starter_code": "const donnees = document.querySelector(\"#app\").dataset;\nfunction App() { return <div><label id=\"etiquette\">Rechercher un atelier</label><input id=\"champ\" type=\"text\" /></div>; }\nroot.render(<App />);",
+    "solution": "const donnees = document.querySelector(\"#app\").dataset;\nfunction App() { return <><label id=\"etiquette\" htmlFor={donnees.champ}>Rechercher un atelier</label><input id={donnees.champ} type=\"text\" className=\"recherche\" placeholder={donnees.indication} /></>; }\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Label recherche",
+        "checks": [
+          {
+            "selector": "#app > label#etiquette",
+            "text": "Rechercher un atelier",
+            "attributes": {
+              "for": "recherche"
+            }
+          },
+          {
+            "selector": "#app > input#recherche",
+            "classes": [
+              "recherche"
+            ],
+            "attributes": {
+              "placeholder": "Titre du livre",
+              "type": "text"
+            }
+          },
+          {
+            "selector": "#app > div",
+            "exists": false
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Identifiant et indication différents",
+        "checks": [
+          {
+            "selector": "#etiquette",
+            "attributes": {
+              "for": "mot-cle"
+            }
+          },
+          {
+            "selector": "#app > input#mot-cle",
+            "classes": [
+              "recherche"
+            ],
+            "attributes": {
+              "placeholder": "Nom de l’atelier"
+            }
+          },
+          {
+            "selector": "#app > div",
+            "exists": false
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-champ=\"mot-cle\" data-indication=\"Nom de l’atelier\"></div>"
+      }
+    ],
+    "hints": [
+      "Le fragment <>...</> évite d’ajouter un parent dans le DOM.",
+      "Le même donnees.champ alimente htmlFor et id.",
+      "const donnees = document.querySelector(\"#app\").dataset;\nfunction App() { return <><label id=\"etiquette\" htmlFor={donnees.champ}>Rechercher un atelier</label><input id={donnees.champ} type=\"text\" className=\"recherche\" placeholder={donnees.indication} /></>; }\nroot.render(<App />);"
+    ],
+    "explanation_fr": "L’association s’appuie sur des identifiants concordants, pas sur la proximité visuelle.",
+    "common_wrong_answers": [],
+    "id": "react-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Remplacer des noms littéraux par leurs valeurs",
+    "instruction_fr": "Répare App : section#fiche porte la classe fiche ; h1#ville affiche data-ville ; p#personnes affiche deux personnes par équipe sous la forme « <nombre> personnes ». data-equipes est un entier valide.",
+    "fixture_html": "<div id=\"app\" data-ville=\"Lomé\" data-equipes=\"3\"></div>",
+    "starter_code": "const donnees = document.querySelector(\"#app\").dataset;\nfunction App() { return <section id=\"fiche\"><h1 id=\"ville\">donnees.ville</h1><p id=\"personnes\">donnees.equipes * 2 personnes</p></section>; }\nroot.render(<App />);",
+    "solution": "const donnees = document.querySelector(\"#app\").dataset;\nfunction App() { return <section id=\"fiche\" className=\"fiche\"><h1 id=\"ville\">{donnees.ville}</h1><p id=\"personnes\">{Number(donnees.equipes) * 2} personnes</p></section>; }\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Trois équipes",
+        "checks": [
+          {
+            "selector": "#fiche",
+            "classes": [
+              "fiche"
+            ]
+          },
+          {
+            "selector": "#ville",
+            "text": "Lomé"
+          },
+          {
+            "selector": "#personnes",
+            "text": "6 personnes"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Cinq équipes ailleurs",
+        "checks": [
+          {
+            "selector": "#fiche",
+            "classes": [
+              "fiche"
+            ]
+          },
+          {
+            "selector": "#ville",
+            "text": "Kara"
+          },
+          {
+            "selector": "#personnes",
+            "text": "10 personnes"
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-ville=\"Kara\" data-equipes=\"5\"></div>"
+      }
+    ],
+    "hints": [
+      "Une expression sans accolades reste du texte dans le JSX.",
+      "Le calcul appartient aux accolades et la classe utilise className.",
+      "const donnees = document.querySelector(\"#app\").dataset;\nfunction App() { return <section id=\"fiche\" className=\"fiche\"><h1 id=\"ville\">{donnees.ville}</h1><p id=\"personnes\">{Number(donnees.equipes) * 2} personnes</p></section>; }\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Les expressions et les propriétés JSX corrigent trois écarts distincts.",
+    "common_wrong_answers": [],
+    "id": "react-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Présenter les places disponibles",
+    "instruction_fr": "La fixture fournit data-titre, data-capacite et data-inscrits. Calcule restantes=capacite-inscrits. App rend article#fiche de classe atelier, h1#titre avec le titre, p#disponibles « <restantes> places restantes » et button#consulter type=button « Consulter », disabled seulement si restantes===0. Aucun clic n’est demandé.",
+    "fixture_html": "<div id=\"app\" data-titre=\"Atelier lecture\" data-capacite=\"8\" data-inscrits=\"3\"></div>",
+    "starter_code": "const donnees = document.querySelector(\"#app\").dataset;\nfunction App() { return <article id=\"fiche\"><h1 id=\"titre\">Atelier</h1><p id=\"disponibles\">0 places restantes</p><button id=\"consulter\" type=\"button\" disabled>Consulter</button></article>; }\nroot.render(<App />);",
+    "solution": "const donnees = document.querySelector(\"#app\").dataset;\nconst restantes = Number(donnees.capacite) - Number(donnees.inscrits);\nfunction App() { return <article id=\"fiche\" className=\"atelier\"><h1 id=\"titre\">{donnees.titre}</h1><p id=\"disponibles\">{restantes} places restantes</p><button id=\"consulter\" type=\"button\" disabled={restantes === 0}>Consulter</button></article>; }\nroot.render(<App />);",
+    "visible_tests": [
+      {
+        "description_fr": "Des places restent",
+        "checks": [
+          {
+            "selector": "#fiche",
+            "classes": [
+              "atelier"
+            ]
+          },
+          {
+            "selector": "#titre",
+            "text": "Atelier lecture"
+          },
+          {
+            "selector": "#disponibles",
+            "text": "5 places restantes"
+          },
+          {
+            "selector": "#consulter",
+            "text": "Consulter",
+            "attributes": {
+              "disabled": null
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Capacité atteinte",
+        "checks": [
+          {
+            "selector": "#titre",
+            "text": "Atelier théâtre"
+          },
+          {
+            "selector": "#disponibles",
+            "text": "0 places restantes"
+          },
+          {
+            "selector": "#consulter",
+            "attributes": {
+              "disabled": ""
+            }
+          }
+        ],
+        "fixture_html": "<div id=\"app\" data-titre=\"Atelier théâtre\" data-capacite=\"5\" data-inscrits=\"5\"></div>"
+      }
+    ],
+    "hints": [
+      "Les données numériques sont converties avant le calcul.",
+      "disabled reçoit le résultat booléen de la comparaison.",
+      "const donnees = document.querySelector(\"#app\").dataset;\nconst restantes = Number(donnees.capacite) - Number(donnees.inscrits);\nfunction App() { return <article id=\"fiche\" className=\"atelier\"><h1 id=\"titre\">{donnees.titre}</h1><p id=\"disponibles\">{restantes} places restantes</p><button id=\"consulter\" type=\"button\" disabled={restantes === 0}>Consulter</button></article>; }\nroot.render(<App />);"
+    ],
+    "explanation_fr": "Le même calcul détermine un texte et un attribut cohérents.",
+    "common_wrong_answers": [],
+    "id": "react-m1-02-e4"
+  }
+]
