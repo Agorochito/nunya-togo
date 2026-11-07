@@ -5,7 +5,8 @@
 - React :18leçons,36exemples,72solutions acceptées et72codes initiaux rejetés ;977assertions Chrome, dont états contrôlés, identité des clés, nettoyage d’écouteurs et réponse obsolète180ms→40ms.
 - Isolation CSP HTTP, refus réseau/accès parent, arrêt, boucles/récursion et redémarrage à froid hors ligne DOM/React vérifiés par `INTERACTIVE_ENGINE_RESULTS.json`.
 - Le bundle principal reste sous150000octets gzip ; les moteurs supplémentaires sont à la demande.
-- Les rapports `DOM_UI_RESULTS.json`, `REACT_UI_RESULTS.json` et les rapports de régression indiquent les derniers résultats de l’interface. Les vérifications automatiques ne remplacent pas la relecture pédagogique ou les essais sur appareils réels au Togo.
+- DOM et React :72exercices et54QCM par programme exécutés dans le site à360px puis1440px ; reprise à froid hors ligne réussie,0erreurJavaScript et0violationaxe sur les vues contrôlées. Le dernier allègement visuel a aussi été revérifié aux deux tailles.
+- Les rapports `DOM_UI_RESULTS.json`, `REACT_UI_RESULTS.json`, `INTERACTIVE_VIEW_RESULTS.json` et les rapports de régression indiquent les derniers résultats de l’interface. Les vérifications automatiques ne remplacent pas la relecture pédagogique ou les essais sur appareils réels au Togo.
 
 # Vérifications 5.6.1 — 6 novembre 2026
 

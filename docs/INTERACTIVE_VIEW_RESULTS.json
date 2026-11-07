@@ -1,0 +1,32 @@
+{
+  "results": [
+    {
+      "width": 360,
+      "id": "javascript-dom",
+      "conciseWorkshopNote": true,
+      "exercisePassed": true,
+      "axeViolations": 0
+    },
+    {
+      "width": 360,
+      "id": "react-bases",
+      "conciseWorkshopNote": true,
+      "exercisePassed": true,
+      "axeViolations": 0
+    },
+    {
+      "width": 1440,
+      "id": "javascript-dom",
+      "conciseWorkshopNote": true,
+      "exercisePassed": true,
+      "axeViolations": 0
+    },
+    {
+      "width": 1440,
+      "id": "react-bases",
+      "conciseWorkshopNote": true,
+      "exercisePassed": true,
+      "axeViolations": 0
+    }
+  ]
+}

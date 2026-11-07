@@ -8,7 +8,7 @@ const p=await ctx.newPage();p.on('pageerror',e=>errors.push(e.message));
 try{
  await p.goto(base+'#/apprendre');await p.locator('#main a[href="#/apprendre/python-bases"]').first().waitFor();await p.evaluate(async()=>{await navigator.serviceWorker.ready;if(!navigator.serviceWorker.controller)await new Promise(r=>navigator.serviceWorker.addEventListener('controllerchange',r,{once:true}))});
  const oldCount=JSON.parse(execFileSync('git',['show',oldRef+':dist/data/curriculum/index.json'],{encoding:'utf8'})).courses.length;expect(oldCount).toBe(oldRef==='2df60ddf'?1:6);modern=true;await p.reload();
- await p.waitForFunction(async()=> (await caches.keys()).some(k=>/^nunya-v5\.[6-9]/.test(k))&&!((await caches.keys()).includes('nunya-v5.4.3')));
+ await p.waitForFunction(async()=>{const keys=await caches.keys(),current='nunya-v'+document.documentElement.dataset.release;return keys.includes(current)&&!keys.some(k=>/^nunya-v[0-9]/.test(k)&&k!==current)});
  if(baseline){await p.waitForTimeout(500);const count=await p.locator('.nunya-course-card').count();console.log(JSON.stringify({oldCount,afterNewServiceWorker:count,expectedFreshCatalogue:8,errors}));expect(count).toBe(1);}
  else{
   await expect(p.locator('.nunya-course-card')).toHaveCount(8);await expect(p.locator('.nunya-course-quick a')).toHaveCount(9);await expect(p.locator('.nunya-course-quick a[href="#/apprendre/sql-bases"]')).toBeVisible();
