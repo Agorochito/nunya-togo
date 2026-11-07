@@ -923,8 +923,11 @@
   "estimated_minutes": 1060,
   "license": "Contenu original Nunya · brouillon",
   "runtime": "python",
+  "next_courses": [
+    "python-intermediaire"
+  ],
   "language": "python",
-  "content_revision": "5a4619dadae6",
+  "content_revision": "a952b01eab28",
   "exercise_count": 212,
   "quiz_count": 159
 }

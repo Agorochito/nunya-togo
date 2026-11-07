@@ -1,0 +1,31 @@
+{
+  "results": [
+    {
+      "width": 360,
+      "courseCount": 9,
+      "cancelAndEscape": true,
+      "switchPreservesCode": true,
+      "nextUnfinishedCourse": true,
+      "backupRestoresGoal": true,
+      "lessonHtml": true,
+      "courseHtmlWhileOffline": true,
+      "standaloneReaderNoRequests": true,
+      "localReport": true,
+      "axeViolations": 0
+    },
+    {
+      "width": 1440,
+      "courseCount": 9,
+      "cancelAndEscape": true,
+      "switchPreservesCode": true,
+      "nextUnfinishedCourse": true,
+      "backupRestoresGoal": true,
+      "lessonHtml": true,
+      "courseHtmlWhileOffline": true,
+      "standaloneReaderNoRequests": true,
+      "localReport": true,
+      "axeViolations": 0
+    }
+  ],
+  "errors": []
+}

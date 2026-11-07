@@ -1,0 +1,8 @@
+import{describe,it,expect}from'vitest';import{fetchCoursePack}from'../lib/runtime/saved-course.mjs';
+const meta={id:'python-bases',content_revision:'222222222222',lessons:[{id:'py-m1-01'}]},old={course:{...meta,content_revision:'111111111111'},lessons:[{id:'py-m1-01',course:'python-bases'}]};
+describe('cours téléchargés avant une mise à jour',()=>{
+ it('utilise une ancienne révision enregistrée en mode hors ligne sans réécrire ses leçons',async()=>{const calls=[],fetcher=async url=>{calls.push(url);if(url.includes('222222'))throw Error('offline');return old};const pack=await fetchCoursePack(meta,'111111111111',false,fetcher);expect(pack.offline_saved_version).toBe(true);expect(pack.lessons).toEqual(old.lessons);expect(calls).toHaveLength(2);expect(old.offline_saved_version).toBeUndefined()});
+ it('ne masque pas un échec réseau en ligne ou un marqueur de téléchargement absent',async()=>{for(const [saved,online]of [[null,false],['bad',false],['111111111111',true]])await expect(fetchCoursePack(meta,saved,online,async()=>{throw Error('réseau')})).rejects.toThrow('réseau')});
+ it('refuse une archive incohérente ou appartenant à un autre cours',async()=>{for(const pack of [{...old,lessons:[]},{...old,course:{...old.course,id:'html-bases'}}])await expect(fetchCoursePack(meta,'111111111111',false,async url=>{if(url.includes('22222'))throw Error('offline');return pack})).rejects.toThrow('incomplet')});
+ it('reprend la dernière version dès qu’elle est accessible',async()=>{const current={course:meta,lessons:old.lessons};expect(await fetchCoursePack(meta,'111111111111',true,async()=>current)).toBe(current)});
+});

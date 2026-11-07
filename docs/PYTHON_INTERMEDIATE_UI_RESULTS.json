@@ -1,0 +1,23 @@
+{
+  "results": [
+    {
+      "width": 360,
+      "lessons": 18,
+      "exercises": 72,
+      "quiz": 54,
+      "coldOffline": true,
+      "axeViolations": 0,
+      "exceptionDescriptions": true
+    },
+    {
+      "width": 1440,
+      "lessons": 18,
+      "exercises": 72,
+      "quiz": 54,
+      "coldOffline": true,
+      "axeViolations": 0,
+      "exceptionDescriptions": true
+    }
+  ],
+  "errors": []
+}

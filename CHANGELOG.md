@@ -1,5 +1,13 @@
 # Historique
 
+## 5.8.0 — 7 novembre 2026
+
+- Python intermédiaire : six modules, 18 leçons détaillées, 72 exercices, 54 questions et 36 exemples originaux en français. Collections, fonctions, exceptions, objets, JSON/CSV, tests et projet de club. Relecture pédagogique encore nécessaire.
+- Quatre parcours entre les programmes disponibles, avec aperçu chronologique, confirmation du changement d’objectif, reprise du premier cours inachevé et sauvegarde des travaux antérieurs.
+- Export HTML autonome d’une leçon ou d’un cours : explications, exemples, exercices et corrigés consultables sans connexion, impression possible en PDF. Bilan local de progression à la fin d’un parcours, sans équivalence de diplôme.
+- Conservation et ouverture hors ligne des anciennes versions de cours téléchargées après mise à jour du catalogue ; récupération de la dernière version au retour en ligne.
+- Les deux niveaux Python sont distincts dans le catalogue. Aucun moteur serveur Node ni cours avancé fictif ajouté.
+
 ## 5.7.0 — 6 novembre 2026
 
 - Deux programmes originaux disponibles dans le catalogue : JavaScript DOM et React,18leçons/72exercices/54QCM/36exemples chacun. Les textes restent en relecture pédagogique.

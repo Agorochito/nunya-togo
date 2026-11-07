@@ -1,0 +1,470 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Calculer un bonus dans une nouvelle liste",
+    "instruction_fr": "Écris ajouter_bonus(notes, bonus). notes contient des nombres et bonus est un nombre. Retourne une nouvelle liste où chaque valeur vaut note+bonus, ordre et répétitions conservés. Aucune borne ou règle de note supplémentaire n’est demandée. Le résultat ne doit partager aucune collection mutable avec les arguments. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def ajouter_bonus(notes, bonus):\n    for indice in range(len(notes)):\n        notes[indice] = notes[indice] + bonus\n    return notes",
+    "solution": "def ajouter_bonus(notes, bonus):\n    return [note + bonus for note in notes]",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ajouter_bonus",
+            "args": [
+              [
+                10,
+                12
+              ],
+              2
+            ],
+            "expected": [
+              12,
+              14
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ajouter_bonus",
+            "args": [
+              [],
+              3
+            ],
+            "expected": [],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ajouter_bonus",
+            "args": [
+              [
+                0,
+                0,
+                5
+              ],
+              0
+            ],
+            "expected": [
+              0,
+              0,
+              5
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ajouter_bonus",
+            "args": [
+              [
+                8,
+                3
+              ],
+              -2
+            ],
+            "expected": [
+              6,
+              1
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le contrat porte sur une nouvelle collection, même si le bonus vaut zéro.",
+      "Une compréhension produit les nouvelles valeurs sans affecter notes.",
+      "Retourne [note + bonus for note in notes] et ne modifie aucune position de notes."
+    ],
+    "explanation_fr": "Un bonus nul teste l’indépendance du résultat, pas seulement l’écart numérique.",
+    "common_wrong_answers": [],
+    "id": "pyi-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Copier tous les niveaux d’une équipe",
+    "instruction_fr": "Écris copier_equipes(equipes). Chaque équipe possède uniquement nom, une chaîne, et membres, une liste de chaînes. Retourne les mêmes valeurs dans une nouvelle liste contenant de nouveaux dictionnaires et de nouvelles listes membres, sans aucun partage mutable avec l’entrée. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def copier_equipes(equipes):\n    return equipes.copy()",
+    "solution": "def copier_equipes(equipes):\n    resultat = []\n    for equipe in equipes:\n        nouvelle = equipe.copy()\n        nouvelle[\"membres\"] = list(equipe[\"membres\"])\n        resultat.append(nouvelle)\n    return resultat",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "copier_equipes",
+            "args": [
+              [
+                {
+                  "nom": "Lecture",
+                  "membres": [
+                    "Ama"
+                  ]
+                },
+                {
+                  "nom": "Jardin",
+                  "membres": []
+                }
+              ]
+            ],
+            "expected": [
+              {
+                "nom": "Lecture",
+                "membres": [
+                  "Ama"
+                ]
+              },
+              {
+                "nom": "Jardin",
+                "membres": []
+              }
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "copier_equipes",
+            "args": [
+              []
+            ],
+            "expected": [],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "copier_equipes",
+            "args": [
+              [
+                {
+                  "nom": "Chant",
+                  "membres": [
+                    "A",
+                    "A",
+                    "B"
+                  ]
+                }
+              ]
+            ],
+            "expected": [
+              {
+                "nom": "Chant",
+                "membres": [
+                  "A",
+                  "A",
+                  "B"
+                ]
+              }
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La copie extérieure laisse les dictionnaires et leurs listes membres partagés.",
+      "Copie chaque dictionnaire puis remplace sa propriété membres par une nouvelle liste.",
+      "Ajoute chaque dictionnaire reconstruit à une nouvelle liste résultat."
+    ],
+    "explanation_fr": "La fidélité des valeurs et l’absence de partage mutable sont contrôlées séparément.",
+    "common_wrong_answers": [],
+    "id": "pyi-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Modifier une proposition sans toucher au stock",
+    "instruction_fr": "Répare modifier_quantite(stock, code, nouvelle). Chaque fiche possède uniquement code textuel unique et quantite entière. Retourne une copie indépendante de toutes les fiches, en remplaçant seulement la quantité du code trouvé. Si le code manque, retourne quand même des copies indépendantes aux valeurs identiques. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def modifier_quantite(stock, code, nouvelle):\n    resultat = stock.copy()\n    for fiche in resultat:\n        if fiche[\"code\"] == code:\n            fiche[\"quantite\"] = nouvelle\n    return resultat",
+    "solution": "def modifier_quantite(stock, code, nouvelle):\n    resultat = [fiche.copy() for fiche in stock]\n    for fiche in resultat:\n        if fiche[\"code\"] == code:\n            fiche[\"quantite\"] = nouvelle\n    return resultat",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "modifier_quantite",
+            "args": [
+              [
+                {
+                  "code": "A",
+                  "quantite": 2
+                },
+                {
+                  "code": "B",
+                  "quantite": 5
+                }
+              ],
+              "B",
+              0
+            ],
+            "expected": [
+              {
+                "code": "A",
+                "quantite": 2
+              },
+              {
+                "code": "B",
+                "quantite": 0
+              }
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "modifier_quantite",
+            "args": [
+              [],
+              "A",
+              3
+            ],
+            "expected": [],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "modifier_quantite",
+            "args": [
+              [
+                {
+                  "code": "A",
+                  "quantite": 2
+                }
+              ],
+              "absent",
+              9
+            ],
+            "expected": [
+              {
+                "code": "A",
+                "quantite": 2
+              }
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "modifier_quantite",
+            "args": [
+              [
+                {
+                  "code": "Z",
+                  "quantite": 0
+                }
+              ],
+              "Z",
+              4
+            ],
+            "expected": [
+              {
+                "code": "Z",
+                "quantite": 4
+              }
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "stock.copy() ne recrée pas ses fiches.",
+      "Les champs internes sont immuables : un nouveau dictionnaire par fiche suffit.",
+      "Commence avec [fiche.copy() for fiche in stock], puis modifie seulement les copies."
+    ],
+    "explanation_fr": "La cible absente exige encore un résultat indépendant, même sans changement de valeur.",
+    "common_wrong_answers": [],
+    "id": "pyi-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Préparer une attribution de matériel",
+    "instruction_fr": "Écris attribuer_materiel(groupes, nom, objet). Chaque groupe possède uniquement un nom textuel unique et materiel, une liste de chaînes. Retourne une nouvelle structure entièrement indépendante aux niveaux liste/dictionnaire. Ajoute objet à la fin du matériel du nom trouvé ; s’il manque, conserve les valeurs. Ne supprime pas les doublons et ne trie pas. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def attribuer_materiel(groupes, nom, objet):\n    return groupes",
+    "solution": "def attribuer_materiel(groupes, nom, objet):\n    resultat = []\n    for groupe in groupes:\n        copie = groupe.copy()\n        copie[\"materiel\"] = list(groupe[\"materiel\"])\n        if groupe[\"nom\"] == nom:\n            copie[\"materiel\"].append(objet)\n        resultat.append(copie)\n    return resultat",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "attribuer_materiel",
+            "args": [
+              [
+                {
+                  "nom": "Lecture",
+                  "materiel": [
+                    "Livre"
+                  ]
+                },
+                {
+                  "nom": "Jardin",
+                  "materiel": []
+                }
+              ],
+              "Jardin",
+              "Graine"
+            ],
+            "expected": [
+              {
+                "nom": "Lecture",
+                "materiel": [
+                  "Livre"
+                ]
+              },
+              {
+                "nom": "Jardin",
+                "materiel": [
+                  "Graine"
+                ]
+              }
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "attribuer_materiel",
+            "args": [
+              [],
+              "Lecture",
+              "Livre"
+            ],
+            "expected": [],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "attribuer_materiel",
+            "args": [
+              [
+                {
+                  "nom": "Chant",
+                  "materiel": [
+                    "Cloche"
+                  ]
+                }
+              ],
+              "Chant",
+              "Cloche"
+            ],
+            "expected": [
+              {
+                "nom": "Chant",
+                "materiel": [
+                  "Cloche",
+                  "Cloche"
+                ]
+              }
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "attribuer_materiel",
+            "args": [
+              [
+                {
+                  "nom": "Dessin",
+                  "materiel": []
+                }
+              ],
+              "Autre",
+              "Crayon"
+            ],
+            "expected": [
+              {
+                "nom": "Dessin",
+                "materiel": []
+              }
+            ],
+            "unchanged_args": true,
+            "result_disjoint_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La transformation vise une seule liste interne, mais toutes les collections retournées doivent être indépendantes.",
+      "Reconstruis chaque dictionnaire et sa liste materiel avant toute addition.",
+      "Ajoute objet uniquement à la liste copiée du groupe trouvé, puis ajoute le dictionnaire au résultat."
+    ],
+    "explanation_fr": "Le mini-projet sépare copie fidèle, recherche de cible et transformation locale.",
+    "common_wrong_answers": [],
+    "id": "pyi-m2-03-e4"
+  }
+]

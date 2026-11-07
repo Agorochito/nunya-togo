@@ -1,0 +1,508 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Un parseur au contrat stable",
+    "instruction_fr": "Écris parser_quantite(texte). Utilise int, un try/except ValueError et raise : une conversion impossible lève ValueError contenant « texte illisible » ; un entier converti négatif lève ValueError contenant « quantité négative ». Sinon retourne l’entier, y compris zéro. Le type str de texte est garanti. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "def parser_quantite(texte):\n    return 0\n",
+    "solution": "def parser_quantite(texte):\n    try:\n        quantite = int(texte)\n    except ValueError:\n        raise ValueError(\"texte illisible\")\n    if quantite < 0:\n        raise ValueError(\"quantité négative\")\n    return quantite\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "parser_quantite",
+            "args": [
+              " 5 "
+            ],
+            "unchanged_args": true,
+            "expected": 5
+          },
+          {
+            "name": "parser_quantite",
+            "args": [
+              "0"
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "parser_quantite",
+            "args": [
+              "?"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "texte illisible"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "parser_quantite",
+            "args": [
+              "-2"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "quantité négative"
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "parser_quantite",
+            "args": [
+              "3.0"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "texte illisible"
+          },
+          {
+            "name": "parser_quantite",
+            "args": [
+              "+8"
+            ],
+            "unchanged_args": true,
+            "expected": 8
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La conversion doit réussir avant que sa valeur puisse être comparée à zéro.",
+      "Le except transforme le motif de lecture ; le contrôle négatif est placé après le try/except.",
+      "def parser_quantite(texte):\n    try:\n        quantite = int(texte)\n    except ValueError:\n        raise ValueError(\"texte illisible\")\n    if quantite < 0:\n        raise ValueError(\"quantité négative\")\n    return quantite"
+    ],
+    "explanation_fr": "Les deux motifs indiquent l’étape de refus sans changer le type normal du résultat. Un entier négatif est lisible mais interdit par ce contrat.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "try",
+      "raise",
+      "call:int"
+    ],
+    "id": "pyi-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Composer sans avaler le refus",
+    "instruction_fr": "Écris parser_quantite(texte) selon le contrat précédent : conversion impossible → ValueError « texte illisible » ; entier négatif → ValueError « quantité négative ». Écris ensuite total_ligne(texte, prix), qui appelle directement parser_quantite puis retourne quantité × prix. Le prix est garanti int >= 0. Utilise try, raise et int dans le parseur ; total_ligne laisse remonter les refus. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "def parser_quantite(texte):\n    return 0\n\n\ndef total_ligne(texte, prix):\n    return 0\n",
+    "solution": "def parser_quantite(texte):\n    try:\n        quantite = int(texte)\n    except ValueError:\n        raise ValueError(\"texte illisible\")\n    if quantite < 0:\n        raise ValueError(\"quantité négative\")\n    return quantite\n\n\ndef total_ligne(texte, prix):\n    quantite = parser_quantite(texte)\n    return quantite * prix\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "total_ligne",
+            "args": [
+              "3",
+              4
+            ],
+            "unchanged_args": true,
+            "expected": 12
+          },
+          {
+            "name": "total_ligne",
+            "args": [
+              "0",
+              4
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "total_ligne",
+            "args": [
+              "x",
+              2
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "texte illisible"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "total_ligne",
+            "args": [
+              "-1",
+              0
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "quantité négative"
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "total_ligne",
+            "args": [
+              " 7 ",
+              0
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "total_ligne",
+            "args": [
+              "2",
+              5
+            ],
+            "unchanged_args": true,
+            "expected": 10
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le calcul ne doit pas confondre un refus avec un montant zéro.",
+      "Récupère le résultat du parseur dans une variable, puis multiplie ; aucun except n’est nécessaire dans total_ligne.",
+      "def parser_quantite(texte):\n    try:\n        quantite = int(texte)\n    except ValueError:\n        raise ValueError(\"texte illisible\")\n    if quantite < 0:\n        raise ValueError(\"quantité négative\")\n    return quantite\n\n\ndef total_ligne(texte, prix):\n    quantite = parser_quantite(texte)\n    return quantite * prix"
+    ],
+    "explanation_fr": "Le parseur garantit le domaine du calcul. Même si le prix vaut zéro, une quantité interdite reste un refus : elle n’est pas dispensée de validation.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "try",
+      "raise",
+      "call:int",
+      "call:parser_quantite"
+    ],
+    "id": "pyi-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le bon niveau de capture",
+    "instruction_fr": "Corrige analyser_lignes(textes) et fournis parser_quantite autonome (int, try et raise). Le parseur lève ValueError « texte illisible » ou « quantité négative ». analyser_lignes appelle ce parseur pour chaque texte et retourne {\"valeurs\": entiers acceptés dans l’ordre, \"erreurs\": [{\"ligne\": numéro à partir de 1, \"motif\": message}]}. Capture ValueError pour chaque ligne et poursuis après les refus. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "def parser_quantite(texte):\n    try:\n        quantite = int(texte)\n    except ValueError:\n        raise ValueError(\"texte illisible\")\n    if quantite < 0:\n        raise ValueError(\"quantité négative\")\n    return quantite\n\n\ndef analyser_lignes(textes):\n    valeurs = []\n    erreurs = []\n    try:\n        for numero, texte in enumerate(textes, start=1):\n            valeurs.append(parser_quantite(texte))\n    except ValueError as erreur:\n        erreurs.append({\"ligne\": numero, \"motif\": str(erreur)})\n    return {\"valeurs\": valeurs, \"erreurs\": erreurs}\n",
+    "solution": "def parser_quantite(texte):\n    try:\n        quantite = int(texte)\n    except ValueError:\n        raise ValueError(\"texte illisible\")\n    if quantite < 0:\n        raise ValueError(\"quantité négative\")\n    return quantite\n\n\ndef analyser_lignes(textes):\n    valeurs = []\n    erreurs = []\n    for numero, texte in enumerate(textes, start=1):\n        try:\n            quantite = parser_quantite(texte)\n        except ValueError as erreur:\n            erreurs.append({\"ligne\": numero, \"motif\": str(erreur)})\n        else:\n            valeurs.append(quantite)\n    return {\"valeurs\": valeurs, \"erreurs\": erreurs}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "analyser_lignes",
+            "args": [
+              [
+                "2",
+                "?",
+                "0",
+                "-1",
+                "4"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "valeurs": [
+                2,
+                0,
+                4
+              ],
+              "erreurs": [
+                {
+                  "ligne": 2,
+                  "motif": "texte illisible"
+                },
+                {
+                  "ligne": 4,
+                  "motif": "quantité négative"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "analyser_lignes",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "valeurs": [],
+              "erreurs": []
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "analyser_lignes",
+            "args": [
+              [
+                "-2",
+                "",
+                "3.5"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "valeurs": [],
+              "erreurs": [
+                {
+                  "ligne": 1,
+                  "motif": "quantité négative"
+                },
+                {
+                  "ligne": 2,
+                  "motif": "texte illisible"
+                },
+                {
+                  "ligne": 3,
+                  "motif": "texte illisible"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "analyser_lignes",
+            "args": [
+              [
+                "0",
+                "0",
+                "5"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "valeurs": [
+                0,
+                0,
+                5
+              ],
+              "erreurs": []
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le bloc try actuel couvre plusieurs lignes : la première erreur fait sortir de toute la boucle.",
+      "Déplace la tentative et son gestionnaire dans le for, en conservant le numéro de chaque texte.",
+      "def parser_quantite(texte):\n    try:\n        quantite = int(texte)\n    except ValueError:\n        raise ValueError(\"texte illisible\")\n    if quantite < 0:\n        raise ValueError(\"quantité négative\")\n    return quantite\n\n\ndef analyser_lignes(textes):\n    valeurs = []\n    erreurs = []\n    for numero, texte in enumerate(textes, start=1):\n        try:\n            quantite = parser_quantite(texte)\n        except ValueError as erreur:\n            erreurs.append({\"ligne\": numero, \"motif\": str(erreur)})\n        else:\n            valeurs.append(quantite)\n    return {\"valeurs\": valeurs, \"erreurs\": erreurs}"
+    ],
+    "explanation_fr": "Le niveau du lot ajoute le contexte que le parseur ne connaît pas. Les doublons et les zéros restent des données valables.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "try",
+      "raise",
+      "call:int",
+      "call:parser_quantite"
+    ],
+    "id": "pyi-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Un bilan de lignes de vente fictives",
+    "instruction_fr": "Fournis parser_quantite autonome avec int, try et raise : ValueError « texte illisible » ou « quantité négative ». Écris bilan_ventes(lignes). Chaque dictionnaire possède nom (str), quantite (str) et prix (int >= 0). Pour chaque ligne, appelle le parseur ; en cas de réussite, cumule quantité × prix et ajoute nom à acceptes, même pour une quantité nulle. En cas de ValueError, ajoute {\"ligne\": numéro à partir de 1, \"message\": message} à erreurs puis continue. Retourne {\"total\": montant, \"acceptes\": [...], \"erreurs\": [...]}. Les noms répétés restent distincts. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "def parser_quantite(texte):\n    try:\n        quantite = int(texte)\n    except ValueError:\n        raise ValueError(\"texte illisible\")\n    if quantite < 0:\n        raise ValueError(\"quantité négative\")\n    return quantite\n\n\ndef bilan_ventes(lignes):\n    return {\"total\": 0, \"acceptes\": [], \"erreurs\": []}\n",
+    "solution": "def parser_quantite(texte):\n    try:\n        quantite = int(texte)\n    except ValueError:\n        raise ValueError(\"texte illisible\")\n    if quantite < 0:\n        raise ValueError(\"quantité négative\")\n    return quantite\n\n\ndef bilan_ventes(lignes):\n    total = 0\n    acceptes = []\n    erreurs = []\n    for numero, ligne in enumerate(lignes, start=1):\n        try:\n            quantite = parser_quantite(ligne[\"quantite\"])\n        except ValueError as erreur:\n            erreurs.append({\"ligne\": numero, \"message\": str(erreur)})\n        else:\n            total += quantite * ligne[\"prix\"]\n            acceptes.append(ligne[\"nom\"])\n    return {\"total\": total, \"acceptes\": acceptes, \"erreurs\": erreurs}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_ventes",
+            "args": [
+              [
+                {
+                  "nom": "Cartes",
+                  "quantite": "2",
+                  "prix": 3
+                },
+                {
+                  "nom": "Affiche",
+                  "quantite": "?",
+                  "prix": 5
+                },
+                {
+                  "nom": "Badge",
+                  "quantite": "0",
+                  "prix": 2
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "total": 6,
+              "acceptes": [
+                "Cartes",
+                "Badge"
+              ],
+              "erreurs": [
+                {
+                  "ligne": 2,
+                  "message": "texte illisible"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_ventes",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "total": 0,
+              "acceptes": [],
+              "erreurs": []
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_ventes",
+            "args": [
+              [
+                {
+                  "nom": "Carte",
+                  "quantite": "-2",
+                  "prix": 0
+                },
+                {
+                  "nom": "Carte",
+                  "quantite": "3",
+                  "prix": 2
+                },
+                {
+                  "nom": "Carte",
+                  "quantite": "1",
+                  "prix": 2
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "total": 8,
+              "acceptes": [
+                "Carte",
+                "Carte"
+              ],
+              "erreurs": [
+                {
+                  "ligne": 1,
+                  "message": "quantité négative"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_ventes",
+            "args": [
+              [
+                {
+                  "nom": "A",
+                  "quantite": "",
+                  "prix": 4
+                },
+                {
+                  "nom": "B",
+                  "quantite": "-1",
+                  "prix": 3
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "total": 0,
+              "acceptes": [],
+              "erreurs": [
+                {
+                  "ligne": 1,
+                  "message": "texte illisible"
+                },
+                {
+                  "ligne": 2,
+                  "message": "quantité négative"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Trois accumulateurs suffisent : total, noms acceptés et erreurs.",
+      "Le calcul et l’ajout du nom vont dans le chemin réussi ; le gestionnaire ajoute seulement le numéro et str(erreur).",
+      "def parser_quantite(texte):\n    try:\n        quantite = int(texte)\n    except ValueError:\n        raise ValueError(\"texte illisible\")\n    if quantite < 0:\n        raise ValueError(\"quantité négative\")\n    return quantite\n\n\ndef bilan_ventes(lignes):\n    total = 0\n    acceptes = []\n    erreurs = []\n    for numero, ligne in enumerate(lignes, start=1):\n        try:\n            quantite = parser_quantite(ligne[\"quantite\"])\n        except ValueError as erreur:\n            erreurs.append({\"ligne\": numero, \"message\": str(erreur)})\n        else:\n            total += quantite * ligne[\"prix\"]\n            acceptes.append(ligne[\"nom\"])\n    return {\"total\": total, \"acceptes\": acceptes, \"erreurs\": erreurs}"
+    ],
+    "explanation_fr": "Le projet assemble lecture, validation et calcul sans les confondre. Un article gratuit ou une quantité nulle n’effacent pas le besoin de valider la ligne.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "try",
+      "raise",
+      "call:int",
+      "call:parser_quantite"
+    ],
+    "id": "pyi-m3-03-e4"
+  }
+]

@@ -16,3 +16,8 @@ describe('complete and partial local backup restoration',()=>{
 });
 
 describe('Git namespace in a full progress backup',()=>{it('preserves valid Git answers and never turns imported cache markers into downloads',()=>{const source={...backup(),git:{passed:{'git-m1-01-a1':true},drafts:{'git-m1-01-a3':{answer:1}},positions:{'git-m1-01':2},last:'git-m1-01',saved:true,savedRevision:'abc123abc123'}},current=initial(),patch=prepareStateExtras(source,current,clean);expect(patch.git.passed['git-m1-01-a1']).toBe(true);expect(patch.git.drafts['git-m1-01-a3'].answer).toBe(1);expect(patch.git.last).toBe('git-m1-01');expect(patch.git.saved).toBe(false);expect(patch.git.savedRevision).toBeNull()})});
+
+describe('guided coding pathway in backups',()=>{
+ it('restores a supported goal and preserves code and exercise positions',()=>{const current=initial(),source=backup();(source.curriculum as any).journey='data';const patch=prepareStateExtras(source,current,clean);expect(patch.curriculum.journey).toBe('data');expect(patch.curriculum.work['py-m12-03-e1'].code).toContain('travail');expect(patch.curriculum.positions['py-m12-03']).toBe(2)});
+ it('keeps the current goal when an older backup has no pathway, and rejects unsafe names',()=>{const current=initial();(current.curriculum as any).journey='frontend';for(const choice of [undefined,'<img>',42]){const source=backup();(source.curriculum as any).journey=choice;const patch=prepareStateExtras(source,current,clean);expect(patch.curriculum.journey).toBe('frontend')}});
+});

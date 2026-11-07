@@ -61,7 +61,7 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
 legacy=[]
 for path in sorted((r/'content/fr').glob('*.json')):
  course=json.loads(path.read_text());legacy.append(dict(id=course['id'],title_fr=course['title'],status='aperçu',lesson_count=len(course['lessons']),source_file=str(path.relative_to(r))))
-available={course['id'].removesuffix('-bases') for course in courses};available.add('git')  # Built separately by prepare-git.py before this catalogue.
+available={course['id'].removesuffix('-bases') for course in courses};available.update(p for c in courses for p in c.get('replaces_plans',[]));available.add('git')  # Built separately by prepare-git.py before this catalogue.
 # Retain planned courses until actual authored packs replace them.
 catalogue=dict(version=2,courses=courses,plans=[p for p in plans if p['id'] not in available],legacy_references=legacy)
 write(data/'catalogue.json',catalogue,True);write(out/'index.json',catalogue)

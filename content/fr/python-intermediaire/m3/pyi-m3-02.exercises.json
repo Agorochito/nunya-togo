@@ -1,0 +1,495 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une quantité entière stricte",
+    "instruction_fr": "Écris quantite_valide(valeur) et utilise raise pour les refus. Retourne valeur si son type est exactement int et si elle est >= 0. Sinon lève TypeError avec « entier » dans le message pour un autre type (y compris bool), ou ValueError avec « positive ou nulle » pour un entier négatif. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "def quantite_valide(valeur):\n    return valeur\n",
+    "solution": "def quantite_valide(valeur):\n    if type(valeur) is not int:\n        raise TypeError(\"quantité : entier attendu\")\n    if valeur < 0:\n        raise ValueError(\"quantité positive ou nulle attendue\")\n    return valeur\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "quantite_valide",
+            "args": [
+              0
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "quantite_valide",
+            "args": [
+              7
+            ],
+            "unchanged_args": true,
+            "expected": 7
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "quantite_valide",
+            "args": [
+              -1
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "positive ou nulle"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "quantite_valide",
+            "args": [
+              true
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "entier"
+          },
+          {
+            "name": "quantite_valide",
+            "args": [
+              "7"
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "entier"
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "quantite_valide",
+            "args": [
+              3.5
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "entier"
+          },
+          {
+            "name": "quantite_valide",
+            "args": [
+              false
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "entier"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Sépare la catégorie de donnée et sa valeur.",
+      "Commence par type(valeur) is not int ; la comparaison avec zéro vient seulement après.",
+      "def quantite_valide(valeur):\n    if type(valeur) is not int:\n        raise TypeError(\"quantité : entier attendu\")\n    if valeur < 0:\n        raise ValueError(\"quantité positive ou nulle attendue\")\n    return valeur"
+    ],
+    "explanation_fr": "Une vraie exception porte le refus jusqu’à l’appelant. Le choix strict de int empêche les booléens de devenir silencieusement des quantités.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "raise"
+    ],
+    "id": "pyi-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Combien de boîtes ?",
+    "instruction_fr": "Écris nombre_boites(quantite, capacite) en utilisant raise. Les deux arguments doivent être exactement des int, sinon TypeError contenant « entier ». quantite doit être >= 0 (ValueError contenant « quantité ») ; capacite doit être > 0 (ValueError contenant « capacité »). Retourne le nombre minimal de boîtes pour ranger quantite articles, sans nombres flottants : une dernière boîte partielle compte. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "def nombre_boites(quantite, capacite):\n    return 0\n",
+    "solution": "def nombre_boites(quantite, capacite):\n    if type(quantite) is not int or type(capacite) is not int:\n        raise TypeError(\"deux entiers attendus\")\n    if quantite < 0:\n        raise ValueError(\"quantité négative\")\n    if capacite <= 0:\n        raise ValueError(\"capacité strictement positive attendue\")\n    return (quantite + capacite - 1) // capacite\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "nombre_boites",
+            "args": [
+              7,
+              3
+            ],
+            "unchanged_args": true,
+            "expected": 3
+          },
+          {
+            "name": "nombre_boites",
+            "args": [
+              6,
+              3
+            ],
+            "unchanged_args": true,
+            "expected": 2
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "nombre_boites",
+            "args": [
+              2,
+              0
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "capacité"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "nombre_boites",
+            "args": [
+              0,
+              4
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "nombre_boites",
+            "args": [
+              1,
+              8
+            ],
+            "unchanged_args": true,
+            "expected": 1
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "nombre_boites",
+            "args": [
+              -1,
+              4
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "quantité"
+          },
+          {
+            "name": "nombre_boites",
+            "args": [
+              true,
+              4
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "entier"
+          },
+          {
+            "name": "nombre_boites",
+            "args": [
+              4,
+              false
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "entier"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Contrôle les types avant les bornes et avant la division.",
+      "Le quotient entier de quantite + capacite - 1 par capacite compte la boîte partielle et garde zéro à zéro.",
+      "def nombre_boites(quantite, capacite):\n    if type(quantite) is not int or type(capacite) is not int:\n        raise TypeError(\"deux entiers attendus\")\n    if quantite < 0:\n        raise ValueError(\"quantité négative\")\n    if capacite <= 0:\n        raise ValueError(\"capacité strictement positive attendue\")\n    return (quantite + capacite - 1) // capacite"
+    ],
+    "explanation_fr": "La capacité nulle est refusée par une règle métier explicite avant qu’une division par zéro survienne. Le calcul entier respecte les limites exactes.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "raise"
+    ],
+    "id": "pyi-m3-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Refuser une sortie impossible",
+    "instruction_fr": "Corrige vendre_stock(stock, demande) avec raise. Les arguments doivent être exactement des int (TypeError contenant « entier »), puis >= 0 (ValueError contenant « négative »). Une demande supérieure au stock lève ValueError contenant « stock insuffisant ». Sinon retourne stock - demande ; une demande nulle et une sortie complète sont admises. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "def vendre_stock(stock, demande):\n    if demande > stock:\n        return \"stock insuffisant\"\n    return stock - demande\n",
+    "solution": "def vendre_stock(stock, demande):\n    if type(stock) is not int or type(demande) is not int:\n        raise TypeError(\"stock et demande : entiers attendus\")\n    if stock < 0 or demande < 0:\n        raise ValueError(\"quantité négative\")\n    if demande > stock:\n        raise ValueError(\"stock insuffisant\")\n    return stock - demande\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "vendre_stock",
+            "args": [
+              5,
+              2
+            ],
+            "unchanged_args": true,
+            "expected": 3
+          },
+          {
+            "name": "vendre_stock",
+            "args": [
+              5,
+              5
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "vendre_stock",
+            "args": [
+              2,
+              3
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "stock insuffisant"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "vendre_stock",
+            "args": [
+              0,
+              0
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "vendre_stock",
+            "args": [
+              5,
+              -1
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "négative"
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "vendre_stock",
+            "args": [
+              true,
+              0
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "entier"
+          },
+          {
+            "name": "vendre_stock",
+            "args": [
+              3,
+              "1"
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "entier"
+          },
+          {
+            "name": "vendre_stock",
+            "args": [
+              -1,
+              0
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "négative"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Retourner un texte n’est pas lever une exception.",
+      "Prévois trois contrôles successifs : types, bornes, puis disponibilité ; soustrais ensuite.",
+      "def vendre_stock(stock, demande):\n    if type(stock) is not int or type(demande) is not int:\n        raise TypeError(\"stock et demande : entiers attendus\")\n    if stock < 0 or demande < 0:\n        raise ValueError(\"quantité négative\")\n    if demande > stock:\n        raise ValueError(\"stock insuffisant\")\n    return stock - demande"
+    ],
+    "explanation_fr": "Le résultat réussi reste toujours un entier. Les refus sont identifiables sans tester si le retour ressemble à un message.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "raise"
+    ],
+    "id": "pyi-m3-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Vérifier tout un bon de stock",
+    "instruction_fr": "Écris preparer_commande(lignes) avec raise. Chaque ligne est un dictionnaire possédant \"quantite\" ; la structure est garantie. Contrôle chaque quantité dans l’ordre : type exactement int sinon TypeError au message « Ligne N : entier attendu » ; entier négatif sinon ValueError au message « Ligne N : quantité négative », avec N remplacé par le numéro commençant à 1. Le premier refus arrête la fonction. Si tout est valable, retourne {\"lignes\": nombre de lignes, \"total\": somme des quantités}. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "def preparer_commande(lignes):\n    return {\"lignes\": len(lignes), \"total\": 0}\n",
+    "solution": "def preparer_commande(lignes):\n    total = 0\n    for numero, ligne in enumerate(lignes, start=1):\n        quantite = ligne[\"quantite\"]\n        if type(quantite) is not int:\n            raise TypeError(f\"Ligne {numero} : entier attendu\")\n        if quantite < 0:\n            raise ValueError(f\"Ligne {numero} : quantité négative\")\n        total += quantite\n    return {\"lignes\": len(lignes), \"total\": total}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "preparer_commande",
+            "args": [
+              [
+                {
+                  "quantite": 2
+                },
+                {
+                  "quantite": 0
+                },
+                {
+                  "quantite": 3
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "lignes": 3,
+              "total": 5
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "preparer_commande",
+            "args": [
+              [
+                {
+                  "quantite": 2
+                },
+                {
+                  "quantite": -1
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "Ligne 2 : quantité négative"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "preparer_commande",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "lignes": 0,
+              "total": 0
+            }
+          },
+          {
+            "name": "preparer_commande",
+            "args": [
+              [
+                {
+                  "quantite": 4
+                },
+                {
+                  "quantite": 4
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "lignes": 2,
+              "total": 8
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "preparer_commande",
+            "args": [
+              [
+                {
+                  "quantite": 0
+                },
+                {
+                  "quantite": true
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "Ligne 2 : entier"
+          },
+          {
+            "name": "preparer_commande",
+            "args": [
+              [
+                {
+                  "quantite": "3"
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "Ligne 1 : entier"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le compteur de ligne et le total ont des rôles différents.",
+      "Lis la quantité, valide-la et seulement ensuite ajoute-la au total ; une f-string peut inclure le numéro.",
+      "def preparer_commande(lignes):\n    total = 0\n    for numero, ligne in enumerate(lignes, start=1):\n        quantite = ligne[\"quantite\"]\n        if type(quantite) is not int:\n            raise TypeError(f\"Ligne {numero} : entier attendu\")\n        if quantite < 0:\n            raise ValueError(f\"Ligne {numero} : quantité négative\")\n        total += quantite\n    return {\"lignes\": len(lignes), \"total\": total}"
+    ],
+    "explanation_fr": "Le bilan est retourné uniquement pour un lot entièrement valable. Le message localise le premier refus, et aucune ligne reçue n’est réécrite.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "raise"
+    ],
+    "id": "pyi-m3-02-e4"
+  }
+]

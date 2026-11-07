@@ -1,0 +1,412 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Déballer une durée structurée",
+    "instruction_fr": "Écris fiche_duree(fiche). fiche contient exactement [titre, minutes], avec un titre textuel et des minutes entières positives ou nulles. Déballe les deux valeurs et retourne {\"titre\":..., \"heures\":heures complètes, \"minutes\":reste}. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def fiche_duree(fiche):\n    return {\"titre\": fiche[0], \"heures\": 0, \"minutes\": 0}",
+    "solution": "def fiche_duree(fiche):\n    titre, minutes = fiche\n    return {\n        \"titre\": titre,\n        \"heures\": minutes // 60,\n        \"minutes\": minutes % 60,\n    }",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fiche_duree",
+            "args": [
+              [
+                "Lecture",
+                135
+              ]
+            ],
+            "expected": {
+              "titre": "Lecture",
+              "heures": 2,
+              "minutes": 15
+            },
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fiche_duree",
+            "args": [
+              [
+                "Chant",
+                0
+              ]
+            ],
+            "expected": {
+              "titre": "Chant",
+              "heures": 0,
+              "minutes": 0
+            },
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fiche_duree",
+            "args": [
+              [
+                "Jardin",
+                60
+              ]
+            ],
+            "expected": {
+              "titre": "Jardin",
+              "heures": 1,
+              "minutes": 0
+            },
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fiche_duree",
+            "args": [
+              [
+                "Dessin",
+                59
+              ]
+            ],
+            "expected": {
+              "titre": "Dessin",
+              "heures": 0,
+              "minutes": 59
+            },
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les deux positions représentent titre puis durée.",
+      "Le quotient //60 et le reste %60 donnent les deux parties.",
+      "Déballe titre, minutes puis construis le dictionnaire avec ces trois champs."
+    ],
+    "explanation_fr": "Les frontières 59 et 60 distinguent correctement heure complète et reste.",
+    "common_wrong_answers": [],
+    "id": "pyi-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Numéroter même les noms répétés",
+    "instruction_fr": "Écris numeroter(noms) avec un appel explicite à enumerate(noms, start=1). Retourne une nouvelle liste de dictionnaires {\"rang\":rang,\"nom\":nom}, en conservant l’ordre et chaque répétition. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def numeroter(noms):\n    resultat = []\n    for nom in noms:\n        resultat.append({\"rang\": 1, \"nom\": nom})\n    return resultat",
+    "solution": "def numeroter(noms):\n    resultat = []\n    for rang, nom in enumerate(noms, start=1):\n        resultat.append({\"rang\": rang, \"nom\": nom})\n    return resultat",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "numeroter",
+            "args": [
+              [
+                "Chant",
+                "Chant",
+                "Jardin"
+              ]
+            ],
+            "expected": [
+              {
+                "rang": 1,
+                "nom": "Chant"
+              },
+              {
+                "rang": 2,
+                "nom": "Chant"
+              },
+              {
+                "rang": 3,
+                "nom": "Jardin"
+              }
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "numeroter",
+            "args": [
+              []
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "numeroter",
+            "args": [
+              [
+                "Z",
+                "A"
+              ]
+            ],
+            "expected": [
+              {
+                "rang": 1,
+                "nom": "Z"
+              },
+              {
+                "rang": 2,
+                "nom": "A"
+              }
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "numeroter",
+            "args": [
+              [
+                "Unique"
+              ]
+            ],
+            "expected": [
+              {
+                "rang": 1,
+                "nom": "Unique"
+              }
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un rang décrit une position, pas la première occurrence du texte.",
+      "Déballe rang et nom dans la boucle enumerate.",
+      "start=1 fournit le premier rang sans ajouter un décalage manuellement."
+    ],
+    "explanation_fr": "Le doublon révèle une recherche de position par valeur qui serait incorrecte.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "call:enumerate"
+    ],
+    "id": "pyi-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Remettre les colonnes dans le bon ordre",
+    "instruction_fr": "Corrige lire_ligne(ligne). Chaque ligne contient exactement [code, titre, places]. Retourne ces valeurs sous les clés code, titre, places. Les places sont des entiers positifs ou nuls. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def lire_ligne(ligne):\n    code, places, titre = ligne\n    return {\"code\": code, \"titre\": titre, \"places\": places}",
+    "solution": "def lire_ligne(ligne):\n    code, titre, places = ligne\n    return {\"code\": code, \"titre\": titre, \"places\": places}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_ligne",
+            "args": [
+              [
+                "lec",
+                "Lecture",
+                4
+              ]
+            ],
+            "expected": {
+              "code": "lec",
+              "titre": "Lecture",
+              "places": 4
+            },
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_ligne",
+            "args": [
+              [
+                "jar",
+                "Jardin",
+                0
+              ]
+            ],
+            "expected": {
+              "code": "jar",
+              "titre": "Jardin",
+              "places": 0
+            },
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_ligne",
+            "args": [
+              [
+                "x",
+                "Même titre",
+                12
+              ]
+            ],
+            "expected": {
+              "code": "x",
+              "titre": "Même titre",
+              "places": 12
+            },
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’ordre du déballage doit suivre le contrat de la ligne.",
+      "Le deuxième nom reçoit le titre et le troisième reçoit le nombre.",
+      "Réécris uniquement l’ordre des trois noms avant de construire le dictionnaire."
+    ],
+    "explanation_fr": "Une permutation peut exécuter du code valide tout en produisant un bilan faux.",
+    "common_wrong_answers": [],
+    "id": "pyi-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Préparer un planning numéroté",
+    "instruction_fr": "Écris programme(activites). Chaque activité contient [titre, minutes] ; minutes est un entier positif ou nul. Utilise enumerate(..., start=1), puis déballage de chaque activité. Retourne les dictionnaires rang, titre, heures et minutes, avec quotient/reste par 60. Préserve doublons et ordre. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def programme(activites):\n    return []",
+    "solution": "def programme(activites):\n    resultat = []\n    for rang, activite in enumerate(activites, start=1):\n        titre, minutes = activite\n        resultat.append({\n            \"rang\": rang,\n            \"titre\": titre,\n            \"heures\": minutes // 60,\n            \"minutes\": minutes % 60,\n        })\n    return resultat",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "programme",
+            "args": [
+              [
+                [
+                  "Lecture",
+                  90
+                ],
+                [
+                  "Chant",
+                  60
+                ]
+              ]
+            ],
+            "expected": [
+              {
+                "rang": 1,
+                "titre": "Lecture",
+                "heures": 1,
+                "minutes": 30
+              },
+              {
+                "rang": 2,
+                "titre": "Chant",
+                "heures": 1,
+                "minutes": 0
+              }
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "programme",
+            "args": [
+              []
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "programme",
+            "args": [
+              [
+                [
+                  "Même",
+                  0
+                ],
+                [
+                  "Même",
+                  125
+                ]
+              ]
+            ],
+            "expected": [
+              {
+                "rang": 1,
+                "titre": "Même",
+                "heures": 0,
+                "minutes": 0
+              },
+              {
+                "rang": 2,
+                "titre": "Même",
+                "heures": 2,
+                "minutes": 5
+              }
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le compteur décrit la ligne ; les valeurs internes décrivent l’activité.",
+      "Déballe l’activité après avoir récupéré son rang.",
+      "Ajoute un nouveau dictionnaire par tour, sans remplacer les lignes d’entrée."
+    ],
+    "explanation_fr": "Le mini-projet associe positions, champs nommés et conversion déjà connue.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "call:enumerate"
+    ],
+    "id": "pyi-m1-01-e4"
+  }
+]

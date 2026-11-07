@@ -1,0 +1,436 @@
+[
+  {
+    "title_fr": "Écrire un en-tête même pour zéro nom",
+    "instruction_fr": "Avec import csv, from io import StringIO et csv.DictWriter, écrire exporter_noms_csv(noms). List de str exigée, sinon TypeError « liste attendue » ou « noms textuels attendus ». Les textes vides sont permis et non nettoyés. Une colonne nom, delimiter=\";\", lineterminator=\"\\n\", writeheader puis les lignes dans l’ordre, getvalue comme résultat. Aucun ajout d’espace ni suppression du retour final. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés. Utiliser quoting=csv.QUOTE_ALL : tous les champs et l’en-tête sont entourés de guillemets, y compris les nombres.",
+    "starter_code": "import csv\nfrom io import StringIO\n\ndef exporter_noms_csv(noms):\n    if type(noms) is not list:\n        raise TypeError('liste attendue')\n    if any(type(nom) is not str for nom in noms):\n        raise TypeError('noms textuels attendus')\n    flux = StringIO(newline='')\n    auteur = csv.DictWriter(flux, fieldnames=['nom'], delimiter=';', lineterminator='\\n', quoting=csv.QUOTE_ALL)\n    for nom in noms:\n        auteur.writerow({'nom':nom})\n    return flux.getvalue()\n",
+    "solution": "import csv\nfrom io import StringIO\n\ndef exporter_noms_csv(noms):\n    if type(noms) is not list:\n        raise TypeError('liste attendue')\n    if any(type(nom) is not str for nom in noms):\n        raise TypeError('noms textuels attendus')\n    flux = StringIO(newline='')\n    auteur = csv.DictWriter(flux, fieldnames=['nom'], delimiter=';', lineterminator='\\n', quoting=csv.QUOTE_ALL)\n    auteur.writeheader()\n    for nom in noms:\n        auteur.writerow({'nom':nom})\n    return flux.getvalue()\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter_noms_csv",
+            "args": [
+              [
+                "École",
+                "Club; lecture"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "\"nom\"\n\"École\"\n\"Club; lecture\"\n"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter_noms_csv",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": "\"nom\"\n"
+          },
+          {
+            "name": "exporter_noms_csv",
+            "args": [
+              [
+                "",
+                "Atelier \"A\"",
+                "Deux\nlignes"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "\"nom\"\n\"\"\n\"Atelier \"\"A\"\"\"\n\"Deux\nlignes\"\n"
+          },
+          {
+            "name": "exporter_noms_csv",
+            "args": [
+              [
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "noms textuels attendus"
+          },
+          {
+            "name": "exporter_noms_csv",
+            "args": [
+              "Afi"
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "liste attendue"
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter_noms_csv",
+            "args": [
+              [
+                "Avant\rAprès"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "\"nom\"\n\"Avant\rAprès\"\n"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les colonnes ne se déduisent pas d’une première fiche qui pourrait ne pas exister.",
+      "Écris l’en-tête avant toute boucle sur les noms.",
+      "Appelle auteur.writeheader() même si noms est vide."
+    ],
+    "explanation_fr": "La sortie décrit toujours sa colonne. Les valeurs particulières restent confiées au vrai writer, qui applique les protections CSV.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:csv",
+      "import:io"
+    ],
+    "id": "pyi-m5-03-e1",
+    "kind": "guided"
+  },
+  {
+    "title_fr": "Fixer l’ordre et valider avant export",
+    "instruction_fr": "Écrire exporter_places_csv(fiches) avec DictWriter/StringIO. Racine list sinon ValueError « liste attendue » ; chaque dict avec nom/places sinon « fiche invalide ». Nom str non vide après strip sinon « nom invalide » ; places entier exact0..20, bool refusé, sinon « places invalides ». Colonnes nom puis places, séparateur point-virgule, fin de ligne \\n et en-tête systématique. Nettoyer les noms dans de nouvelles fiches ; ignorer les autres champs et conserver l’ordre des fiches. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés. Utiliser quoting=csv.QUOTE_ALL : tous les champs et l’en-tête sont entourés de guillemets, y compris les nombres.",
+    "starter_code": "import csv\nfrom io import StringIO\n\ndef exporter_places_csv(fiches):\n    if type(fiches) is not list:\n        raise ValueError('liste attendue')\n    propres = []\n    for fiche in fiches:\n        if type(fiche) is not dict or 'nom' not in fiche or 'places' not in fiche:\n            raise ValueError('fiche invalide')\n        nom = fiche['nom']\n        places = fiche['places']\n        if type(nom) is not str or not nom.strip():\n            raise ValueError('nom invalide')\n        if type(places) is not int or not 0 <= places <= 20:\n            raise ValueError('places invalides')\n        propres.append({'nom':nom.strip(), 'places':places})\n    flux = StringIO(newline='')\n    auteur = csv.DictWriter(flux, fieldnames=['places', 'nom'], delimiter=';', lineterminator='\\n', quoting=csv.QUOTE_ALL)\n    auteur.writeheader()\n    auteur.writerows(propres)\n    return flux.getvalue()\n",
+    "solution": "import csv\nfrom io import StringIO\n\ndef exporter_places_csv(fiches):\n    if type(fiches) is not list:\n        raise ValueError('liste attendue')\n    propres = []\n    for fiche in fiches:\n        if type(fiche) is not dict or 'nom' not in fiche or 'places' not in fiche:\n            raise ValueError('fiche invalide')\n        nom = fiche['nom']\n        places = fiche['places']\n        if type(nom) is not str or not nom.strip():\n            raise ValueError('nom invalide')\n        if type(places) is not int or not 0 <= places <= 20:\n            raise ValueError('places invalides')\n        propres.append({'nom':nom.strip(), 'places':places})\n    flux = StringIO(newline='')\n    auteur = csv.DictWriter(flux, fieldnames=['nom', 'places'], delimiter=';', lineterminator='\\n', quoting=csv.QUOTE_ALL)\n    auteur.writeheader()\n    auteur.writerows(propres)\n    return flux.getvalue()\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter_places_csv",
+            "args": [
+              [
+                {
+                  "places": 0,
+                  "nom": " Couture ",
+                  "autre": 1
+                },
+                {
+                  "nom": "Lecture",
+                  "places": 2
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "\"nom\";\"places\"\n\"Couture\";\"0\"\n\"Lecture\";\"2\"\n"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter_places_csv",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": "\"nom\";\"places\"\n"
+          },
+          {
+            "name": "exporter_places_csv",
+            "args": [
+              [
+                {
+                  "nom": "Club; lecture",
+                  "places": 20
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "\"nom\";\"places\"\n\"Club; lecture\";\"20\"\n"
+          },
+          {
+            "name": "exporter_places_csv",
+            "args": [
+              [
+                {
+                  "nom": "X",
+                  "places": true
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "places invalides"
+          },
+          {
+            "name": "exporter_places_csv",
+            "args": [
+              [
+                {
+                  "nom": "X",
+                  "places": 0
+                },
+                {
+                  "nom": " ",
+                  "places": 1
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "nom invalide"
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter_places_csv",
+            "args": [
+              [
+                {
+                  "nom": "Avant\rAprès",
+                  "places": 2
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "\"nom\";\"places\"\n\"Avant\rAprès\";\"2\"\n"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La convention porte sur les colonnes, pas sur l’ordre des clés reçues.",
+      "La liste fieldnames doit commencer par nom.",
+      "Utilise fieldnames=['nom','places'] et un terminateur de ligne explicite."
+    ],
+    "explanation_fr": "Un format déterministe permet au destinataire de retrouver les colonnes attendues. La validation et la projection sont séparées de l’écriture.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:csv",
+      "import:io"
+    ],
+    "id": "pyi-m5-03-e2",
+    "kind": "practice"
+  },
+  {
+    "title_fr": "Récupérer tout le flux écrit",
+    "instruction_fr": "Écrire exporter_messages_csv(fiches) avec DictWriter/StringIO. Racine list sinon ValueError « liste attendue » ; dict avec nom et message sinon « fiche invalide » ; deux str sinon « textes attendus ». Conserver exactement les textes, même vides ou sur plusieurs lignes. Colonnes nom,message, séparateur point-virgule, lineterminator=\"\\n\", en-tête systématique. Réparer la récupération de la chaîne : retourner tout le flux produit, pas une lecture vide depuis sa fin. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés. Utiliser quoting=csv.QUOTE_ALL : tous les champs et l’en-tête sont entourés de guillemets, y compris les nombres.",
+    "starter_code": "import csv\nfrom io import StringIO\n\ndef exporter_messages_csv(fiches):\n    if type(fiches) is not list:\n        raise ValueError('liste attendue')\n    propres = []\n    for fiche in fiches:\n        if type(fiche) is not dict or 'nom' not in fiche or 'message' not in fiche:\n            raise ValueError('fiche invalide')\n        if type(fiche['nom']) is not str or type(fiche['message']) is not str:\n            raise ValueError('textes attendus')\n        propres.append({'nom':fiche['nom'], 'message':fiche['message']})\n    flux = StringIO(newline='')\n    auteur = csv.DictWriter(flux, fieldnames=['nom', 'message'], delimiter=';', lineterminator='\\n', quoting=csv.QUOTE_ALL)\n    auteur.writeheader()\n    auteur.writerows(propres)\n    return flux.read()\n",
+    "solution": "import csv\nfrom io import StringIO\n\ndef exporter_messages_csv(fiches):\n    if type(fiches) is not list:\n        raise ValueError('liste attendue')\n    propres = []\n    for fiche in fiches:\n        if type(fiche) is not dict or 'nom' not in fiche or 'message' not in fiche:\n            raise ValueError('fiche invalide')\n        if type(fiche['nom']) is not str or type(fiche['message']) is not str:\n            raise ValueError('textes attendus')\n        propres.append({'nom':fiche['nom'], 'message':fiche['message']})\n    flux = StringIO(newline='')\n    auteur = csv.DictWriter(flux, fieldnames=['nom', 'message'], delimiter=';', lineterminator='\\n', quoting=csv.QUOTE_ALL)\n    auteur.writeheader()\n    auteur.writerows(propres)\n    return flux.getvalue()\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter_messages_csv",
+            "args": [
+              [
+                {
+                  "nom": "Afi",
+                  "message": "Deux\nlignes"
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "\"nom\";\"message\"\n\"Afi\";\"Deux\nlignes\"\n"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter_messages_csv",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": "\"nom\";\"message\"\n"
+          },
+          {
+            "name": "exporter_messages_csv",
+            "args": [
+              [
+                {
+                  "nom": "Ko",
+                  "message": "Dit \"bonjour\"; puis part"
+                },
+                {
+                  "nom": "",
+                  "message": ""
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "\"nom\";\"message\"\n\"Ko\";\"Dit \"\"bonjour\"\"; puis part\"\n\"\";\"\"\n"
+          },
+          {
+            "name": "exporter_messages_csv",
+            "args": [
+              [
+                {
+                  "nom": "Ko",
+                  "message": 2
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "textes attendus"
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter_messages_csv",
+            "args": [
+              [
+                {
+                  "nom": "Afi",
+                  "message": "Avant\rAprès"
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "\"nom\";\"message\"\n\"Afi\";\"Avant\rAprès\"\n"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’écriture a avancé la position du flux.",
+      "read ne part pas automatiquement du début.",
+      "Retourne flux.getvalue(), qui donne tout le texte en mémoire."
+    ],
+    "explanation_fr": "Le débogage porte sur la différence entre contenu total et position de lecture. Les valeurs gardent leur structure lors de l’écriture CSV.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:csv",
+      "import:io"
+    ],
+    "id": "pyi-m5-03-e3",
+    "kind": "debug"
+  },
+  {
+    "title_fr": "Transformer un catalogue JSON en CSV",
+    "instruction_fr": "Écrire exporter_catalogue(texte_json), autonome avec json, csv et StringIO. Décoder et appliquer exactement le contrat normaliser_catalogue_json de M5-01 : texte/syntaxe, list, champs id/nom/places, types exacts, bornes et identifiants uniques ; mêmes messages de refus. Ignorer autres champs. Retourner CSV avec colonnes id,nom,places, en-tête, point-virgule et lineterminator=\"\\n\". Toute la validation précède l’écriture et l’ordre source reste conservé. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés. Utiliser quoting=csv.QUOTE_ALL : tous les champs et l’en-tête sont entourés de guillemets, y compris les nombres.",
+    "starter_code": "import json\n\ndef decoder_json(texte):\n    if type(texte) is not str:\n        raise TypeError('texte attendu')\n    try:\n        return json.loads(texte)\n    except json.JSONDecodeError:\n        raise ValueError('JSON invalide')\ndef preparer_fiche(fiche):\n    if type(fiche) is not dict:\n        raise ValueError('fiche invalide')\n    if not all(cle in fiche for cle in ['id', 'nom', 'places']):\n        raise ValueError('champs manquants')\n    identifiant = fiche['id']\n    nom = fiche['nom']\n    places = fiche['places']\n    if type(identifiant) is not int or identifiant < 1:\n        raise ValueError('id invalide')\n    if type(nom) is not str or not nom.strip():\n        raise ValueError('nom invalide')\n    if type(places) is not int or not 0 <= places <= 20:\n        raise ValueError('places invalides')\n    return {'id':identifiant, 'nom':nom.strip(), 'places':places}\n\ndef valider_catalogue(fiches):\n    if type(fiches) is not list:\n        raise ValueError('liste attendue')\n    resultat = []\n    identifiants = set()\n    for fiche in fiches:\n        propre = preparer_fiche(fiche)\n        if propre['id'] in identifiants:\n            raise ValueError('identifiant duplique')\n        identifiants.add(propre['id'])\n        resultat.append(propre)\n    return resultat\nimport csv\nfrom io import StringIO\n\ndef exporter_catalogue(texte_json):\n    fiches = valider_catalogue(decoder_json(texte_json))\n    flux = StringIO(newline='')\n    auteur = csv.DictWriter(flux, fieldnames=['id', 'nom', 'places'], delimiter=';', lineterminator='\\r\\n', quoting=csv.QUOTE_ALL)\n    auteur.writeheader()\n    auteur.writerows(fiches)\n    return flux.getvalue()\n",
+    "solution": "import json\n\ndef decoder_json(texte):\n    if type(texte) is not str:\n        raise TypeError('texte attendu')\n    try:\n        return json.loads(texte)\n    except json.JSONDecodeError:\n        raise ValueError('JSON invalide')\ndef preparer_fiche(fiche):\n    if type(fiche) is not dict:\n        raise ValueError('fiche invalide')\n    if not all(cle in fiche for cle in ['id', 'nom', 'places']):\n        raise ValueError('champs manquants')\n    identifiant = fiche['id']\n    nom = fiche['nom']\n    places = fiche['places']\n    if type(identifiant) is not int or identifiant < 1:\n        raise ValueError('id invalide')\n    if type(nom) is not str or not nom.strip():\n        raise ValueError('nom invalide')\n    if type(places) is not int or not 0 <= places <= 20:\n        raise ValueError('places invalides')\n    return {'id':identifiant, 'nom':nom.strip(), 'places':places}\n\ndef valider_catalogue(fiches):\n    if type(fiches) is not list:\n        raise ValueError('liste attendue')\n    resultat = []\n    identifiants = set()\n    for fiche in fiches:\n        propre = preparer_fiche(fiche)\n        if propre['id'] in identifiants:\n            raise ValueError('identifiant duplique')\n        identifiants.add(propre['id'])\n        resultat.append(propre)\n    return resultat\nimport csv\nfrom io import StringIO\n\ndef exporter_catalogue(texte_json):\n    fiches = valider_catalogue(decoder_json(texte_json))\n    flux = StringIO(newline='')\n    auteur = csv.DictWriter(flux, fieldnames=['id', 'nom', 'places'], delimiter=';', lineterminator='\\n', quoting=csv.QUOTE_ALL)\n    auteur.writeheader()\n    auteur.writerows(fiches)\n    return flux.getvalue()\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter_catalogue",
+            "args": [
+              "[{\"id\":3,\"nom\":\"Lecture\",\"places\":2},{\"id\":1,\"nom\":\"Couture\",\"places\":0}]"
+            ],
+            "unchanged_args": true,
+            "expected": "\"id\";\"nom\";\"places\"\n\"3\";\"Lecture\";\"2\"\n\"1\";\"Couture\";\"0\"\n"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter_catalogue",
+            "args": [
+              "[]"
+            ],
+            "unchanged_args": true,
+            "expected": "\"id\";\"nom\";\"places\"\n"
+          },
+          {
+            "name": "exporter_catalogue",
+            "args": [
+              "[{\"id\":7,\"nom\":\"École; jardin\",\"places\":20},{\"id\":2,\"nom\":\"Club \\\"A\\\"\",\"places\":1}]"
+            ],
+            "unchanged_args": true,
+            "expected": "\"id\";\"nom\";\"places\"\n\"7\";\"École; jardin\";\"20\"\n\"2\";\"Club \"\"A\"\"\";\"1\"\n"
+          },
+          {
+            "name": "exporter_catalogue",
+            "args": [
+              "{"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "JSON invalide"
+          },
+          {
+            "name": "exporter_catalogue",
+            "args": [
+              "[{\"id\":3,\"nom\":\"Lecture\",\"places\":2},{\"id\":3,\"nom\":\"Lecture\",\"places\":2}]"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "identifiant duplique"
+          },
+          {
+            "name": "exporter_catalogue",
+            "args": [
+              "[{\"id\":1,\"nom\":\"X\",\"places\":false}]"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "places invalides"
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter_catalogue",
+            "args": [
+              "[{\"id\":4,\"nom\":\"Avant\\rAprès\",\"places\":1}]"
+            ],
+            "unchanged_args": true,
+            "expected": "\"id\";\"nom\";\"places\"\n\"4\";\"Avant\rAprès\";\"1\"\n"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le dialecte par défaut peut produire un autre terminateur.",
+      "La consigne exige exactement un saut de ligne après chaque ligne.",
+      "Configure lineterminator=\"\\n\" au lieu de \"\\r\\n\"."
+    ],
+    "explanation_fr": "Le mini-projet assemble deux formats réels et une validation métier. Il renvoie un texte seulement lorsque toutes les fiches satisfont le contrat.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:json",
+      "import:csv",
+      "import:io"
+    ],
+    "id": "pyi-m5-03-e4",
+    "kind": "project"
+  }
+]

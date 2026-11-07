@@ -1,0 +1,427 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une conversion explicite",
+    "instruction_fr": "Écris lire_entier(texte), avec un try/except ValueError ciblé et un appel à int. Retourne l’entier converti, ou None si le texte est illisible. Tous les textes acceptés par int sont admis, y compris les nombres négatifs. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "def lire_entier(texte):\n    return None\n",
+    "solution": "def lire_entier(texte):\n    try:\n        valeur = int(texte)\n    except ValueError:\n        return None\n    return valeur\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_entier",
+            "args": [
+              " 12 "
+            ],
+            "unchanged_args": true,
+            "expected": 12
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_entier",
+            "args": [
+              ""
+            ],
+            "unchanged_args": true,
+            "expected": null
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_entier",
+            "args": [
+              "0"
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "lire_entier",
+            "args": [
+              "-3"
+            ],
+            "unchanged_args": true,
+            "expected": -3
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_entier",
+            "args": [
+              "3.5"
+            ],
+            "unchanged_args": true,
+            "expected": null
+          },
+          {
+            "name": "lire_entier",
+            "args": [
+              "+4"
+            ],
+            "unchanged_args": true,
+            "expected": 4
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Place uniquement la conversion dans try.",
+      "Le gestionnaire ValueError retourne None ; la réussite retourne la valeur obtenue.",
+      "def lire_entier(texte):\n    try:\n        valeur = int(texte)\n    except ValueError:\n        return None\n    return valeur"
+    ],
+    "explanation_fr": "Le type de retour distingue un entier lu, même égal à zéro, d’une conversion impossible. Aucun texte refusé n’est remplacé par un nombre inventé.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "try",
+      "call:int"
+    ],
+    "id": "pyi-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un défaut sans effacer zéro",
+    "instruction_fr": "Écris lire_ou_defaut(texte, defaut). Utilise try/except ValueError et int : retourne la conversion réussie ou l’entier defaut si elle échoue. Le défaut est fourni par l’appelant ; zéro doit rester zéro. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "def lire_ou_defaut(texte, defaut):\n    return defaut\n",
+    "solution": "def lire_ou_defaut(texte, defaut):\n    try:\n        valeur = int(texte)\n    except ValueError:\n        return defaut\n    return valeur\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_ou_defaut",
+            "args": [
+              "7",
+              9
+            ],
+            "unchanged_args": true,
+            "expected": 7
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_ou_defaut",
+            "args": [
+              "?",
+              9
+            ],
+            "unchanged_args": true,
+            "expected": 9
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_ou_defaut",
+            "args": [
+              "0",
+              5
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_ou_defaut",
+            "args": [
+              " -2 ",
+              0
+            ],
+            "unchanged_args": true,
+            "expected": -2
+          },
+          {
+            "name": "lire_ou_defaut",
+            "args": [
+              "2.4",
+              -1
+            ],
+            "unchanged_args": true,
+            "expected": -1
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le défaut sert seulement quand int lève ValueError.",
+      "Ne teste pas « if valeur » : cela écarterait une conversion réussie de zéro.",
+      "def lire_ou_defaut(texte, defaut):\n    try:\n        valeur = int(texte)\n    except ValueError:\n        return defaut\n    return valeur"
+    ],
+    "explanation_fr": "La politique de repli est annoncée au lieu d’être cachée. Deux appels peuvent choisir des défauts différents sans modifier la fonction.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "try",
+      "call:int"
+    ],
+    "id": "pyi-m3-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Ne pas abandonner le lot",
+    "instruction_fr": "Corrige bilan_entiers(textes). Pour chaque chaîne, tente int dans un try/except ValueError. Retourne {\"total\": somme des entiers lisibles, \"rejets\": nombre de textes illisibles}. Continue après chaque refus ; le lot vide donne les deux compteurs à zéro. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "def bilan_entiers(textes):\n    total = 0\n    rejets = 0\n    try:\n        for texte in textes:\n            total += int(texte)\n    except ValueError:\n        rejets += 1\n    return {\"total\": total, \"rejets\": rejets}\n",
+    "solution": "def bilan_entiers(textes):\n    total = 0\n    rejets = 0\n    for texte in textes:\n        try:\n            valeur = int(texte)\n        except ValueError:\n            rejets += 1\n        else:\n            total += valeur\n    return {\"total\": total, \"rejets\": rejets}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_entiers",
+            "args": [
+              [
+                "2",
+                "?",
+                "3"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "total": 5,
+              "rejets": 1
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_entiers",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "total": 0,
+              "rejets": 0
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_entiers",
+            "args": [
+              [
+                "x",
+                "",
+                "0",
+                "-2",
+                "2"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "total": 0,
+              "rejets": 2
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_entiers",
+            "args": [
+              [
+                "4",
+                "4",
+                "1.5",
+                "4"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "total": 12,
+              "rejets": 1
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le try placé autour de toute la boucle empêche de reprendre l’élément suivant.",
+      "Déplace try/except à l’intérieur de la boucle ; additionne seulement dans le chemin réussi.",
+      "def bilan_entiers(textes):\n    total = 0\n    rejets = 0\n    for texte in textes:\n        try:\n            valeur = int(texte)\n        except ValueError:\n            rejets += 1\n        else:\n            total += valeur\n    return {\"total\": total, \"rejets\": rejets}"
+    ],
+    "explanation_fr": "Un gestionnaire ne reprend pas l’instruction qui a échoué. Mettre la tentative dans la boucle permet de traiter réellement toutes les lignes.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "try",
+      "call:int"
+    ],
+    "id": "pyi-m3-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Un rapport de lecture réparable",
+    "instruction_fr": "Écris rapport_lecture(textes) avec try/except ValueError et int. Retourne {\"valeurs\": [...], \"erreurs\": [{\"ligne\": numéro à partir de 1, \"texte\": chaîne originale}, ...]}. Les valeurs et erreurs gardent leur ordre respectif et leurs doublons. Un texte entier négatif reste lisible. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "def rapport_lecture(textes):\n    return {\"valeurs\": [], \"erreurs\": []}\n",
+    "solution": "def rapport_lecture(textes):\n    valeurs = []\n    erreurs = []\n    for numero, texte in enumerate(textes, start=1):\n        try:\n            valeur = int(texte)\n        except ValueError:\n            erreurs.append({\"ligne\": numero, \"texte\": texte})\n        else:\n            valeurs.append(valeur)\n    return {\"valeurs\": valeurs, \"erreurs\": erreurs}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rapport_lecture",
+            "args": [
+              [
+                "2",
+                "?",
+                "0"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "valeurs": [
+                2,
+                0
+              ],
+              "erreurs": [
+                {
+                  "ligne": 2,
+                  "texte": "?"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rapport_lecture",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "valeurs": [],
+              "erreurs": []
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rapport_lecture",
+            "args": [
+              [
+                " ",
+                "-2",
+                "2.0",
+                "-2"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "valeurs": [
+                -2,
+                -2
+              ],
+              "erreurs": [
+                {
+                  "ligne": 1,
+                  "texte": " "
+                },
+                {
+                  "ligne": 3,
+                  "texte": "2.0"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rapport_lecture",
+            "args": [
+              [
+                "x",
+                "x"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "valeurs": [],
+              "erreurs": [
+                {
+                  "ligne": 1,
+                  "texte": "x"
+                },
+                {
+                  "ligne": 2,
+                  "texte": "x"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Prépare deux listes nouvelles avant de parcourir les textes.",
+      "enumerate(textes, start=1) donne la position humaine ; ajoute le texte original seulement dans except.",
+      "def rapport_lecture(textes):\n    valeurs = []\n    erreurs = []\n    for numero, texte in enumerate(textes, start=1):\n        try:\n            valeur = int(texte)\n        except ValueError:\n            erreurs.append({\"ligne\": numero, \"texte\": texte})\n        else:\n            valeurs.append(valeur)\n    return {\"valeurs\": valeurs, \"erreurs\": erreurs}"
+    ],
+    "explanation_fr": "Le rapport localise chaque refus et conserve toutes les lectures réussies. Il reste exploitable même si aucune ligne, ou toutes les lignes, sont lisibles.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "try",
+      "call:int"
+    ],
+    "id": "pyi-m3-01-e4"
+  }
+]

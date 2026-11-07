@@ -1,0 +1,439 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Présenter les codes sans répétition",
+    "instruction_fr": "Écris codes_uniques(codes), avec des codes textuels. Utilise explicitement set puis sorted pour retourner une liste triée de codes distincts. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def codes_uniques(codes):\n    return sorted(codes)",
+    "solution": "def codes_uniques(codes):\n    return sorted(set(codes))",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "codes_uniques",
+            "args": [
+              [
+                "B",
+                "A",
+                "B"
+              ]
+            ],
+            "expected": [
+              "A",
+              "B"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "codes_uniques",
+            "args": [
+              []
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "codes_uniques",
+            "args": [
+              [
+                "Z",
+                "Z",
+                "A",
+                "C"
+              ]
+            ],
+            "expected": [
+              "A",
+              "C",
+              "Z"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "codes_uniques",
+            "args": [
+              [
+                "Unique"
+              ]
+            ],
+            "expected": [
+              "Unique"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Trier ne retire pas les doublons.",
+      "set choisit l’appartenance ; sorted prépare la présentation.",
+      "Retourne sorted(set(codes))."
+    ],
+    "explanation_fr": "Les deux opérations ont des responsabilités différentes.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "call:set",
+      "call:sorted"
+    ],
+    "id": "pyi-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Trouver les codes communs",
+    "instruction_fr": "Écris communs(premier, second). Retourne la liste triée des codes textuels présents dans les deux collections, chacun une seule fois. Utilise leur intersection d’ensembles. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def communs(premier, second):\n    return sorted(set(premier) | set(second))",
+    "solution": "def communs(premier, second):\n    return sorted(set(premier) & set(second))",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "communs",
+            "args": [
+              [
+                "A",
+                "B",
+                "B"
+              ],
+              [
+                "B",
+                "C"
+              ]
+            ],
+            "expected": [
+              "B"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "communs",
+            "args": [
+              [],
+              [
+                "A"
+              ]
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "communs",
+            "args": [
+              [
+                "C",
+                "A"
+              ],
+              [
+                "A",
+                "C",
+                "A"
+              ]
+            ],
+            "expected": [
+              "A",
+              "C"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "communs",
+            "args": [
+              [
+                "A"
+              ],
+              [
+                "Z"
+              ]
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La présence dans au moins une collection serait une union.",
+      "L’intersection se note & entre les deux ensembles.",
+      "Trie le nouvel ensemble obtenu pour retourner une liste."
+    ],
+    "explanation_fr": "Les doublons ne multiplient pas les résultats communs.",
+    "common_wrong_answers": [],
+    "id": "pyi-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Retrouver les nouvelles demandes",
+    "instruction_fr": "Répare nouveaux(anciens, demandes). Le résultat est une liste triée des codes demandés qui ne sont pas encore dans anciens, sans doublons. Le code actuel calcule la différence dans le mauvais sens. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def nouveaux(anciens, demandes):\n    return sorted(set(anciens) - set(demandes))",
+    "solution": "def nouveaux(anciens, demandes):\n    return sorted(set(demandes) - set(anciens))",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "nouveaux",
+            "args": [
+              [
+                "A",
+                "B"
+              ],
+              [
+                "B",
+                "C",
+                "C"
+              ]
+            ],
+            "expected": [
+              "C"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "nouveaux",
+            "args": [
+              [],
+              [
+                "Z",
+                "A"
+              ]
+            ],
+            "expected": [
+              "A",
+              "Z"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "nouveaux",
+            "args": [
+              [
+                "A"
+              ],
+              []
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "nouveaux",
+            "args": [
+              [
+                "B",
+                "A"
+              ],
+              [
+                "A",
+                "B"
+              ]
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La collection de gauche fournit les candidats conservés.",
+      "On veut conserver les demandes absentes des anciens.",
+      "Calcule set(demandes) - set(anciens), puis trie."
+    ],
+    "explanation_fr": "La différence est orientée ; inverser les ensembles répond à une autre question.",
+    "common_wrong_answers": [],
+    "id": "pyi-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Comparer deux groupes",
+    "instruction_fr": "Écris bilan_groupes(premier, second), avec des codes textuels. Retourne {\"communs\":liste triée de leur intersection, \"seulement_premier\":liste triée de premier-second, \"tous\":liste triée de leur union}. Aucun set ne doit être retourné. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def bilan_groupes(premier, second):\n    return {\"communs\": [], \"seulement_premier\": [], \"tous\": []}",
+    "solution": "def bilan_groupes(premier, second):\n    a = set(premier)\n    b = set(second)\n    return {\n        \"communs\": sorted(a & b),\n        \"seulement_premier\": sorted(a - b),\n        \"tous\": sorted(a | b),\n    }",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_groupes",
+            "args": [
+              [
+                "B",
+                "A",
+                "B"
+              ],
+              [
+                "B",
+                "C"
+              ]
+            ],
+            "expected": {
+              "communs": [
+                "B"
+              ],
+              "seulement_premier": [
+                "A"
+              ],
+              "tous": [
+                "A",
+                "B",
+                "C"
+              ]
+            },
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_groupes",
+            "args": [
+              [],
+              []
+            ],
+            "expected": {
+              "communs": [],
+              "seulement_premier": [],
+              "tous": []
+            },
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_groupes",
+            "args": [
+              [
+                "Z"
+              ],
+              [
+                "A"
+              ]
+            ],
+            "expected": {
+              "communs": [],
+              "seulement_premier": [
+                "Z"
+              ],
+              "tous": [
+                "A",
+                "Z"
+              ]
+            },
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_groupes",
+            "args": [
+              [
+                "C",
+                "A"
+              ],
+              [
+                "A",
+                "C",
+                "A"
+              ]
+            ],
+            "expected": {
+              "communs": [
+                "A",
+                "C"
+              ],
+              "seulement_premier": [],
+              "tous": [
+                "A",
+                "C"
+              ]
+            },
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Prépare les ensembles a et b une seule fois.",
+      "Chaque rubrique correspond à un opérateur différent.",
+      "Convertis séparément a&b, a-b et a|b en listes avec sorted."
+    ],
+    "explanation_fr": "Le bilan rassemble trois relations sans confondre leur sens.",
+    "common_wrong_answers": [],
+    "id": "pyi-m1-02-e4"
+  }
+]

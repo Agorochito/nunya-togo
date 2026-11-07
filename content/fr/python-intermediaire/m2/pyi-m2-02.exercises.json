@@ -1,0 +1,486 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Classer par durée avec une fonction clé",
+    "instruction_fr": "Écris trier_durees(activites), avec des fiches contenant id et minutes. Définis une petite fonction cle qui retourne les minutes ; appelle explicitement sorted(activites, key=cle). Retourne les id dans cet ordre croissant, avec égalités dans l’ordre initial. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def trier_durees(activites):\n    return [activite[\"id\"] for activite in activites]",
+    "solution": "def trier_durees(activites):\n    def cle(activite):\n        return activite[\"minutes\"]\n\n    classees = sorted(activites, key=cle)\n    return [activite[\"id\"] for activite in classees]",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "trier_durees",
+            "args": [
+              [
+                {
+                  "id": "b",
+                  "minutes": 60
+                },
+                {
+                  "id": "a",
+                  "minutes": 30
+                },
+                {
+                  "id": "c",
+                  "minutes": 60
+                }
+              ]
+            ],
+            "expected": [
+              "a",
+              "b",
+              "c"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "trier_durees",
+            "args": [
+              []
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "trier_durees",
+            "args": [
+              [
+                {
+                  "id": "z",
+                  "minutes": 0
+                },
+                {
+                  "id": "a",
+                  "minutes": 0
+                }
+              ]
+            ],
+            "expected": [
+              "z",
+              "a"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "trier_durees",
+            "args": [
+              [
+                {
+                  "id": "x",
+                  "minutes": 90
+                },
+                {
+                  "id": "y",
+                  "minutes": 10
+                }
+              ]
+            ],
+            "expected": [
+              "y",
+              "x"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La clé choisit minutes ; le résultat final choisit id.",
+      "Passe le nom cle à sorted, sans l’appeler avec des parenthèses.",
+      "Extrait les id depuis la nouvelle liste triée, pas depuis l’argument."
+    ],
+    "explanation_fr": "L’égalité de durée conserve b avant c, même si les identifiants pourraient suggérer un autre critère.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "call:sorted"
+    ],
+    "id": "pyi-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Classer des mots par longueur uniquement",
+    "instruction_fr": "Écris mots_par_taille(mots) en utilisant sorted avec key=lambda mot: len(mot). Retourne la nouvelle liste classée par longueur croissante. Les égalités gardent strictement l’ordre initial ; aucun tri alphabétique supplémentaire. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def mots_par_taille(mots):\n    return sorted(mots)",
+    "solution": "def mots_par_taille(mots):\n    return sorted(mots, key=lambda mot: len(mot))",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "mots_par_taille",
+            "args": [
+              [
+                "cc",
+                "a",
+                "bb",
+                "d"
+              ]
+            ],
+            "expected": [
+              "a",
+              "d",
+              "cc",
+              "bb"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "mots_par_taille",
+            "args": [
+              []
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "mots_par_taille",
+            "args": [
+              [
+                "long",
+                "x",
+                "yz",
+                "ab"
+              ]
+            ],
+            "expected": [
+              "x",
+              "yz",
+              "ab",
+              "long"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "mots_par_taille",
+            "args": [
+              [
+                "",
+                "B",
+                "A",
+                ""
+              ]
+            ],
+            "expected": [
+              "",
+              "",
+              "B",
+              "A"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une lambda est une fonction qui retourne l’expression après le deux-points.",
+      "La clé est seulement len(mot), pas un tuple avec le mot.",
+      "sorted garde l’ordre des entrées dont les longueurs sont égales."
+    ],
+    "explanation_fr": "La stabilité est observable avec cc avant bb et B avant A.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "call:sorted"
+    ],
+    "id": "pyi-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Retirer un tri en place",
+    "instruction_fr": "Répare priorites(fiches). Chaque fiche possède id et priorite entière. Retourne les id par priorité décroissante avec égalités stables, mais conserve l’ordre et les contenus de fiches. Utilise sorted, pas la méthode sort sur l’argument. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def priorites(fiches):\n    fiches.sort(key=lambda fiche: fiche[\"priorite\"], reverse=True)\n    return [fiche[\"id\"] for fiche in fiches]",
+    "solution": "def priorites(fiches):\n    classees = sorted(\n        fiches,\n        key=lambda fiche: fiche[\"priorite\"],\n        reverse=True,\n    )\n    return [fiche[\"id\"] for fiche in classees]",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "priorites",
+            "args": [
+              [
+                {
+                  "id": "a",
+                  "priorite": 1
+                },
+                {
+                  "id": "b",
+                  "priorite": 3
+                },
+                {
+                  "id": "c",
+                  "priorite": 3
+                }
+              ]
+            ],
+            "expected": [
+              "b",
+              "c",
+              "a"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "priorites",
+            "args": [
+              []
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "priorites",
+            "args": [
+              [
+                {
+                  "id": "z",
+                  "priorite": 0
+                },
+                {
+                  "id": "a",
+                  "priorite": 0
+                }
+              ]
+            ],
+            "expected": [
+              "z",
+              "a"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "priorites",
+            "args": [
+              [
+                {
+                  "id": "x",
+                  "priorite": -1
+                },
+                {
+                  "id": "y",
+                  "priorite": 2
+                }
+              ]
+            ],
+            "expected": [
+              "y",
+              "x"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le défaut concerne la source, même si les identifiants retournés semblent justes.",
+      "sorted crée la nouvelle liste et reverse=True garde le sens décroissant.",
+      "Conserve le paramètre fiches intact et extrais les id depuis la variable classees."
+    ],
+    "explanation_fr": "Le contrôle unchanged_args distingue un tri correct d’un tri qui modifie silencieusement la source.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "call:sorted"
+    ],
+    "id": "pyi-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Composer un ordre de catalogue",
+    "instruction_fr": "Écris ordre_ateliers(ateliers). Chaque fiche possède id unique, titre textuel et places entières positives ou nulles. Retourne les id par places décroissantes puis titre croissant. En égalité complète, garde l’ordre initial. Utilise sorted et une clé tuple (-places, titre). Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def ordre_ateliers(ateliers):\n    classes = sorted(ateliers, key=lambda atelier: atelier[\"titre\"])\n    return [atelier[\"id\"] for atelier in classes]",
+    "solution": "def ordre_ateliers(ateliers):\n    classes = sorted(\n        ateliers,\n        key=lambda atelier: (-atelier[\"places\"], atelier[\"titre\"]),\n    )\n    return [atelier[\"id\"] for atelier in classes]",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ordre_ateliers",
+            "args": [
+              [
+                {
+                  "id": "b",
+                  "titre": "Chant",
+                  "places": 2
+                },
+                {
+                  "id": "a",
+                  "titre": "Jardin",
+                  "places": 3
+                },
+                {
+                  "id": "c",
+                  "titre": "Lecture",
+                  "places": 2
+                }
+              ]
+            ],
+            "expected": [
+              "a",
+              "b",
+              "c"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ordre_ateliers",
+            "args": [
+              []
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ordre_ateliers",
+            "args": [
+              [
+                {
+                  "id": "z",
+                  "titre": "Même",
+                  "places": 4
+                },
+                {
+                  "id": "a",
+                  "titre": "Même",
+                  "places": 4
+                },
+                {
+                  "id": "b",
+                  "titre": "Avant",
+                  "places": 0
+                }
+              ]
+            ],
+            "expected": [
+              "z",
+              "a",
+              "b"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ordre_ateliers",
+            "args": [
+              [
+                {
+                  "id": "x",
+                  "titre": "Z",
+                  "places": 1
+                },
+                {
+                  "id": "y",
+                  "titre": "A",
+                  "places": 1
+                },
+                {
+                  "id": "w",
+                  "titre": "B",
+                  "places": 5
+                }
+              ]
+            ],
+            "expected": [
+              "w",
+              "y",
+              "x"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La première position du tuple est le critère principal.",
+      "Le nombre opposé permet l’ordre décroissant sans inverser celui des titres.",
+      "Après sorted avec le tuple, extrais les id en conservant son ordre."
+    ],
+    "explanation_fr": "L’égalité complète ne doit pas déclencher un tri implicite des identifiants.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "call:sorted"
+    ],
+    "id": "pyi-m2-02-e4"
+  }
+]

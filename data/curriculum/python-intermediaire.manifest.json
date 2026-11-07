@@ -1,0 +1,93 @@
+{
+  "id": "python-intermediaire",
+  "title_fr": "Python : construire des outils fiables",
+  "language": "python",
+  "runtime": "python",
+  "level": "intermediaire",
+  "summary_fr": "Approfondis les collections, les fonctions, les exceptions et les objets. Traite JSON et CSV en mémoire, puis construis et teste le bilan d’un club fictif.",
+  "prerequisite_courses": [
+    "python-bases"
+  ],
+  "prerequisites": [
+    "Savoir écrire des fonctions, parcourir listes et dictionnaires et expliquer leurs résultats.",
+    "Le cours Python débutant fournit ces bases ; les flux et formats sont introduits ici sans package externe."
+  ],
+  "outcomes": [
+    "Choisir des collections et construire des transformations lisibles.",
+    "Éviter les défauts mutables et les modifications inattendues.",
+    "Définir des contrats de validation avec des exceptions ciblées.",
+    "Construire des objets avec un état cohérent et indépendant.",
+    "Traiter JSON et CSV en mémoire, avec contrôle des structures et des données.",
+    "Tester les cas limites et produire un bilan reproductible."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Collections structurées",
+      "outcome_fr": "Manipuler tuples, ensembles et compréhensions.",
+      "lesson_ids": [
+        "pyi-m1-01",
+        "pyi-m1-02",
+        "pyi-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Fonctions et copies fiables",
+      "outcome_fr": "Choisir des paramètres et préserver les données.",
+      "lesson_ids": [
+        "pyi-m2-01",
+        "pyi-m2-02",
+        "pyi-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Erreurs et validation",
+      "outcome_fr": "Distinguer valeur invalide, exception et compte rendu.",
+      "lesson_ids": [
+        "pyi-m3-01",
+        "pyi-m3-02",
+        "pyi-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Objets et invariants",
+      "outcome_fr": "Composer des instances cohérentes et indépendantes.",
+      "lesson_ids": [
+        "pyi-m4-01",
+        "pyi-m4-02",
+        "pyi-m4-03"
+      ]
+    },
+    {
+      "id": "m5",
+      "title_fr": "JSON et CSV en mémoire",
+      "outcome_fr": "Lire, vérifier et produire des formats d’échange.",
+      "lesson_ids": [
+        "pyi-m5-01",
+        "pyi-m5-02",
+        "pyi-m5-03"
+      ]
+    },
+    {
+      "id": "m6",
+      "title_fr": "Tests et projet de bilan",
+      "outcome_fr": "Éprouver les contrats et assembler un outil de club fictif.",
+      "lesson_ids": [
+        "pyi-m6-01",
+        "pyi-m6-02",
+        "pyi-m6-03"
+      ]
+    }
+  ],
+  "later_modules": [],
+  "availability": "programme-redige",
+  "status": "brouillon",
+  "reviewer": null,
+  "depth_fr": "Première série intermédiaire : outils Python synchrones, formats mémoire et tests. Les applications web, la concurrence et les niveaux avancés restent à développer.",
+  "replaces_plans": [
+    "python-projets"
+  ]
+}

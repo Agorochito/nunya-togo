@@ -1,0 +1,382 @@
+[
+  {
+    "title_fr": "Décoder une liste de noms",
+    "instruction_fr": "Avec import json et json.loads, écrire lire_noms_json(texte). Refuser un non-str par TypeError « texte attendu » ; syntaxe incorrecte par ValueError « JSON invalide » ; racine non-list par ValueError « liste attendue » ; élément non-str ou vide après strip par ValueError « nom invalide ». Retourner les noms nettoyés en gardant ordre et doublons. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés.",
+    "starter_code": "import json\n\ndef decoder_json(texte):\n    if type(texte) is not str:\n        raise TypeError('texte attendu')\n    try:\n        return json.loads(texte)\n    except json.JSONDecodeError:\n        raise ValueError('JSON invalide')\ndef lire_noms_json(texte):\n    donnees = decoder_json(texte)\n    if type(donnees) is not list:\n        raise ValueError('liste attendue')\n    resultat = []\n    for nom in donnees:\n        if type(nom) is not str or not nom.strip():\n            raise ValueError('nom invalide')\n        resultat.append(nom.strip())\n    return []\n",
+    "solution": "import json\n\ndef decoder_json(texte):\n    if type(texte) is not str:\n        raise TypeError('texte attendu')\n    try:\n        return json.loads(texte)\n    except json.JSONDecodeError:\n        raise ValueError('JSON invalide')\ndef lire_noms_json(texte):\n    donnees = decoder_json(texte)\n    if type(donnees) is not list:\n        raise ValueError('liste attendue')\n    resultat = []\n    for nom in donnees:\n        if type(nom) is not str or not nom.strip():\n            raise ValueError('nom invalide')\n        resultat.append(nom.strip())\n    return resultat\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_noms_json",
+            "args": [
+              "[\"  Afi \", \"Ko\", \"Afi\"]"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "Afi",
+              "Ko",
+              "Afi"
+            ]
+          },
+          {
+            "name": "lire_noms_json",
+            "args": [
+              "{\"nom\":\"Afi\"}"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "liste attendue"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_noms_json",
+            "args": [
+              "[]"
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "lire_noms_json",
+            "args": [
+              "[\"École\", \" \"]"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "nom invalide"
+          },
+          {
+            "name": "lire_noms_json",
+            "args": [
+              "[1]"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "nom invalide"
+          },
+          {
+            "name": "lire_noms_json",
+            "args": [
+              "["
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "JSON invalide"
+          },
+          {
+            "name": "lire_noms_json",
+            "args": [
+              4
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "texte attendu"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Sépare le décodage, le type de la racine et les éléments.",
+      "Construis une nouvelle liste en ajoutant chaque nom nettoyé.",
+      "Retourne resultat plutôt qu’une liste vide fixe."
+    ],
+    "explanation_fr": "Le décodage conserve les répétitions ; seul le nettoyage annoncé modifie la représentation des noms. Les refus distinguent texte, syntaxe et contenu.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:json"
+    ],
+    "id": "pyi-m5-01-e1",
+    "kind": "guided"
+  },
+  {
+    "title_fr": "Encoder des noms sans perdre les accents",
+    "instruction_fr": "Avec import json et json.dumps, écrire exporter_noms_json(noms). L’argument doit être une list, sinon TypeError « liste attendue » ; tous ses éléments doivent être str, sinon TypeError « noms textuels attendus ». Les textes vides sont permis ici. Retourner le JSON compact, ensure_ascii=False et separators=(virgule,deux-points), dans le même ordre avec doublons. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés.",
+    "starter_code": "import json\n\ndef exporter_noms_json(noms):\n    if type(noms) is not list:\n        raise TypeError('liste attendue')\n    if any(type(nom) is not str for nom in noms):\n        raise TypeError('noms textuels attendus')\n    return json.dumps(noms, ensure_ascii=True, separators=(',', ':'))\n",
+    "solution": "import json\n\ndef exporter_noms_json(noms):\n    if type(noms) is not list:\n        raise TypeError('liste attendue')\n    if any(type(nom) is not str for nom in noms):\n        raise TypeError('noms textuels attendus')\n    return json.dumps(noms, ensure_ascii=False, separators=(',', ':'))\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter_noms_json",
+            "args": [
+              [
+                "École",
+                "Afi",
+                "Afi"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "[\"École\",\"Afi\",\"Afi\"]"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter_noms_json",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": "[]"
+          },
+          {
+            "name": "exporter_noms_json",
+            "args": [
+              [
+                "",
+                "Club \"A\"",
+                "Deux\nlignes"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "[\"\",\"Club \\\"A\\\"\",\"Deux\\nlignes\"]"
+          },
+          {
+            "name": "exporter_noms_json",
+            "args": [
+              "Afi"
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "liste attendue"
+          },
+          {
+            "name": "exporter_noms_json",
+            "args": [
+              [
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "noms textuels attendus"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La sortie doit être une chaîne, pas la liste Python.",
+      "L’option par défaut échappe les caractères non ASCII.",
+      "Passe ensure_ascii=False et separators=(',', ':') à json.dumps."
+    ],
+    "explanation_fr": "Les accents restent lisibles ; les guillemets et retours à la ligne sont néanmoins échappés selon JSON. Aucune écriture durable n’est effectuée.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:json"
+    ],
+    "id": "pyi-m5-01-e2",
+    "kind": "practice"
+  },
+  {
+    "title_fr": "Un booléen n’est pas une quantité",
+    "instruction_fr": "Écrire lire_stock_json(texte) avec import json. Même contrôle du texte et de la syntaxe que l’activité 1. Racine dict sinon ValueError « objet attendu » ; nom et quantite requis sinon « champs manquants ». Nom str non vide après strip sinon « nom invalide ». Quantite entier exact >=0, bool refusé, sinon « quantite invalide ». Retourner seulement nom nettoyé et quantite ; autres champs ignorés. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés.",
+    "starter_code": "import json\n\ndef decoder_json(texte):\n    if type(texte) is not str:\n        raise TypeError('texte attendu')\n    try:\n        return json.loads(texte)\n    except json.JSONDecodeError:\n        raise ValueError('JSON invalide')\ndef lire_stock_json(texte):\n    fiche = decoder_json(texte)\n    if type(fiche) is not dict:\n        raise ValueError('objet attendu')\n    if 'nom' not in fiche or 'quantite' not in fiche:\n        raise ValueError('champs manquants')\n    if type(fiche['nom']) is not str or not fiche['nom'].strip():\n        raise ValueError('nom invalide')\n    quantite = fiche['quantite']\n    if not isinstance(quantite, int) or quantite < 0:\n        raise ValueError('quantite invalide')\n    return {'nom':fiche['nom'].strip(), 'quantite':quantite}\n",
+    "solution": "import json\n\ndef decoder_json(texte):\n    if type(texte) is not str:\n        raise TypeError('texte attendu')\n    try:\n        return json.loads(texte)\n    except json.JSONDecodeError:\n        raise ValueError('JSON invalide')\ndef lire_stock_json(texte):\n    fiche = decoder_json(texte)\n    if type(fiche) is not dict:\n        raise ValueError('objet attendu')\n    if 'nom' not in fiche or 'quantite' not in fiche:\n        raise ValueError('champs manquants')\n    if type(fiche['nom']) is not str or not fiche['nom'].strip():\n        raise ValueError('nom invalide')\n    quantite = fiche['quantite']\n    if type(quantite) is not int or quantite < 0:\n        raise ValueError('quantite invalide')\n    return {'nom':fiche['nom'].strip(), 'quantite':quantite}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_stock_json",
+            "args": [
+              "{\"nom\":\" Cahiers \",\"quantite\":0}"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "nom": "Cahiers",
+              "quantite": 0
+            }
+          },
+          {
+            "name": "lire_stock_json",
+            "args": [
+              "{\"nom\":\"Cahiers\",\"quantite\":true}"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "quantite invalide"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_stock_json",
+            "args": [
+              "{\"nom\":\"Étiquettes\",\"quantite\":4,\"autre\":9}"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "nom": "Étiquettes",
+              "quantite": 4
+            }
+          },
+          {
+            "name": "lire_stock_json",
+            "args": [
+              "{\"nom\":\"X\",\"quantite\":\"2\"}"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "quantite invalide"
+          },
+          {
+            "name": "lire_stock_json",
+            "args": [
+              "{\"nom\":\"X\",\"quantite\":-1}"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "quantite invalide"
+          },
+          {
+            "name": "lire_stock_json",
+            "args": [
+              "{\"nom\":\"X\"}"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "champs manquants"
+          },
+          {
+            "name": "lire_stock_json",
+            "args": [
+              "[]"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "objet attendu"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Regarde la relation entre bool et int.",
+      "isinstance(True,int) est vrai malgré le contrat.",
+      "Exige type(quantite) is int, puis quantite >= 0."
+    ],
+    "explanation_fr": "Le défaut est un contrôle de type trop large. Les tests réussissent pour zéro mais exigent une vraie exception pour le booléen et le nombre textuel.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:json"
+    ],
+    "id": "pyi-m5-01-e3",
+    "kind": "debug"
+  },
+  {
+    "title_fr": "Normaliser un catalogue JSON complet",
+    "instruction_fr": "Écrire normaliser_catalogue_json(texte), autonome avec import json. Texte/syntaxe : mêmes TypeError/ValueError que l’activité 1. Racine list sinon « liste attendue ». Chaque fiche dict sinon « fiche invalide » ; id/nom/places requis sinon « champs manquants ». id entier exact >=1 sinon « id invalide » ; nom str non vide après strip sinon « nom invalide » ; places entier exact0..20 sinon « places invalides ». id unique sinon « identifiant duplique ». Tous ces refus de contenu sont ValueError. Retourner JSON compact Unicode des objets id,nom,places, dans cet ordre et l’ordre source ; ignorer les autres champs. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés.",
+    "starter_code": "import json\n\ndef decoder_json(texte):\n    if type(texte) is not str:\n        raise TypeError('texte attendu')\n    try:\n        return json.loads(texte)\n    except json.JSONDecodeError:\n        raise ValueError('JSON invalide')\ndef preparer_fiche(fiche):\n    if type(fiche) is not dict:\n        raise ValueError('fiche invalide')\n    if not all(cle in fiche for cle in ['id', 'nom', 'places']):\n        raise ValueError('champs manquants')\n    identifiant = fiche['id']\n    nom = fiche['nom']\n    places = fiche['places']\n    if type(identifiant) is not int or identifiant < 1:\n        raise ValueError('id invalide')\n    if type(nom) is not str or not nom.strip():\n        raise ValueError('nom invalide')\n    if type(places) is not int or not 0 <= places <= 20:\n        raise ValueError('places invalides')\n    return {'id':identifiant, 'nom':nom.strip(), 'places':places}\n\ndef valider_catalogue(fiches):\n    if type(fiches) is not list:\n        raise ValueError('liste attendue')\n    resultat = []\n    identifiants = set()\n    for fiche in fiches:\n        propre = preparer_fiche(fiche)\n        if False:\n            raise ValueError('identifiant duplique')\n        identifiants.add(propre['id'])\n        resultat.append(propre)\n    return resultat\ndef normaliser_catalogue_json(texte):\n    fiches = valider_catalogue(decoder_json(texte))\n    return json.dumps(fiches, ensure_ascii=False, separators=(',', ':'))\n",
+    "solution": "import json\n\ndef decoder_json(texte):\n    if type(texte) is not str:\n        raise TypeError('texte attendu')\n    try:\n        return json.loads(texte)\n    except json.JSONDecodeError:\n        raise ValueError('JSON invalide')\ndef preparer_fiche(fiche):\n    if type(fiche) is not dict:\n        raise ValueError('fiche invalide')\n    if not all(cle in fiche for cle in ['id', 'nom', 'places']):\n        raise ValueError('champs manquants')\n    identifiant = fiche['id']\n    nom = fiche['nom']\n    places = fiche['places']\n    if type(identifiant) is not int or identifiant < 1:\n        raise ValueError('id invalide')\n    if type(nom) is not str or not nom.strip():\n        raise ValueError('nom invalide')\n    if type(places) is not int or not 0 <= places <= 20:\n        raise ValueError('places invalides')\n    return {'id':identifiant, 'nom':nom.strip(), 'places':places}\n\ndef valider_catalogue(fiches):\n    if type(fiches) is not list:\n        raise ValueError('liste attendue')\n    resultat = []\n    identifiants = set()\n    for fiche in fiches:\n        propre = preparer_fiche(fiche)\n        if propre['id'] in identifiants:\n            raise ValueError('identifiant duplique')\n        identifiants.add(propre['id'])\n        resultat.append(propre)\n    return resultat\ndef normaliser_catalogue_json(texte):\n    fiches = valider_catalogue(decoder_json(texte))\n    return json.dumps(fiches, ensure_ascii=False, separators=(',', ':'))\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "normaliser_catalogue_json",
+            "args": [
+              "[{\"id\":3,\"nom\":\" Lecture \",\"places\":2,\"extra\":true}]"
+            ],
+            "unchanged_args": true,
+            "expected": "[{\"id\":3,\"nom\":\"Lecture\",\"places\":2}]"
+          },
+          {
+            "name": "normaliser_catalogue_json",
+            "args": [
+              "[{\"id\":3,\"nom\":\"Lecture\",\"places\":2},{\"id\":3,\"nom\":\"Lecture\",\"places\":2}]"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "identifiant duplique"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "normaliser_catalogue_json",
+            "args": [
+              "[]"
+            ],
+            "unchanged_args": true,
+            "expected": "[]"
+          },
+          {
+            "name": "normaliser_catalogue_json",
+            "args": [
+              "[{\"id\":7,\"nom\":\"École; jardin\",\"places\":20},{\"id\":2,\"nom\":\"Club \\\"A\\\"\",\"places\":1}]"
+            ],
+            "unchanged_args": true,
+            "expected": "[{\"id\":7,\"nom\":\"École; jardin\",\"places\":20},{\"id\":2,\"nom\":\"Club \\\"A\\\"\",\"places\":1}]"
+          },
+          {
+            "name": "normaliser_catalogue_json",
+            "args": [
+              "[{\"id\":true,\"nom\":\"X\",\"places\":2}]"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "id invalide"
+          },
+          {
+            "name": "normaliser_catalogue_json",
+            "args": [
+              "[{\"id\":3,\"nom\":\"Lecture\",\"places\":2},{\"id\":2,\"nom\":\"X\",\"places\":21}]"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "places invalides"
+          },
+          {
+            "name": "normaliser_catalogue_json",
+            "args": [
+              "null"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "liste attendue"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Normalise une fiche avant de l’ajouter au résultat.",
+      "Un ensemble des identifiants déjà vus détecte les doublons.",
+      "Avant add, refuse si propre['id'] est déjà dans identifiants."
+    ],
+    "explanation_fr": "Le projet sépare syntaxe, schéma et identité. Une erreur tardive provoque un refus complet ; aucun argument ni document durable n’est modifié.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:json"
+    ],
+    "id": "pyi-m5-01-e4",
+    "kind": "project"
+  }
+]

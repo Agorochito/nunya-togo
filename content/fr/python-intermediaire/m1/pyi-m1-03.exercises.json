@@ -1,0 +1,413 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Sélectionner des titres avec une compréhension",
+    "instruction_fr": "Écris titres_assez_longs(activites, minimum) avec une compréhension de liste. Chaque activité contient [titre, minutes], minutes et minimum sont des entiers positifs ou nuls. Retourne les titres dont minutes>=minimum, dans l’ordre, sans dédupliquer. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def titres_assez_longs(activites, minimum):\n    return [titre for titre, minutes in activites]",
+    "solution": "def titres_assez_longs(activites, minimum):\n    return [\n        titre\n        for titre, minutes in activites\n        if minutes >= minimum\n    ]",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "titres_assez_longs",
+            "args": [
+              [
+                [
+                  "Lecture",
+                  45
+                ],
+                [
+                  "Chant",
+                  60
+                ],
+                [
+                  "Jardin",
+                  90
+                ]
+              ],
+              60
+            ],
+            "expected": [
+              "Chant",
+              "Jardin"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "titres_assez_longs",
+            "args": [
+              [],
+              0
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "titres_assez_longs",
+            "args": [
+              [
+                [
+                  "Même",
+                  0
+                ],
+                [
+                  "Même",
+                  30
+                ]
+              ],
+              0
+            ],
+            "expected": [
+              "Même",
+              "Même"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "titres_assez_longs",
+            "args": [
+              [
+                [
+                  "Court",
+                  20
+                ]
+              ],
+              30
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La production est le titre ; le filtre examine les minutes.",
+      "Le seuil est inclusif et les répétitions doivent rester.",
+      "Place if minutes >= minimum à la fin de la compréhension."
+    ],
+    "explanation_fr": "La liste produite conserve l’ordre des activités retenues.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "listcomp"
+    ],
+    "id": "pyi-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Transformer un stock en dictionnaire",
+    "instruction_fr": "Écris stock_double(stock) avec une compréhension de dictionnaire. Les clés sont des codes et les valeurs des quantités entières positives ou nulles. Garde seulement les quantités >0 et double leur valeur, sans changer les clés. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def stock_double(stock):\n    return {code: quantite for code, quantite in stock.items()}",
+    "solution": "def stock_double(stock):\n    return {\n        code: quantite * 2\n        for code, quantite in stock.items()\n        if quantite > 0\n    }",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "stock_double",
+            "args": [
+              {
+                "C": 0,
+                "A": 3,
+                "B": 2
+              }
+            ],
+            "expected": {
+              "A": 6,
+              "B": 4
+            },
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "stock_double",
+            "args": [
+              {}
+            ],
+            "expected": {},
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "stock_double",
+            "args": [
+              {
+                "Z": 1,
+                "A": 0
+              }
+            ],
+            "expected": {
+              "Z": 2
+            },
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "stock_double",
+            "args": [
+              {
+                "X": 0
+              }
+            ],
+            "expected": {},
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une compréhension de dictionnaire produit une clé et une valeur.",
+      "Le filtre porte sur la quantité initiale.",
+      "Écris code: quantite * 2 avant le parcours de stock.items()."
+    ],
+    "explanation_fr": "Transformer la valeur ne demande pas de modifier le stock source.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "dictcomp"
+    ],
+    "id": "pyi-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Comparer les minutes avant de les transformer",
+    "instruction_fr": "Corrige heures_completes(durees) en gardant une compréhension de liste. Les durées sont des minutes entières positives ou nulles. Conserve celles >=60 puis retourne leur nombre d’heures complètes. Le code actuel compare une valeur transformée au mauvais seuil. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def heures_completes(durees):\n    return [minutes // 60 for minutes in durees if minutes // 60 >= 60]",
+    "solution": "def heures_completes(durees):\n    return [\n        minutes // 60\n        for minutes in durees\n        if minutes >= 60\n    ]",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "heures_completes",
+            "args": [
+              [
+                30,
+                60,
+                90,
+                0
+              ]
+            ],
+            "expected": [
+              1,
+              1
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "heures_completes",
+            "args": [
+              []
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "heures_completes",
+            "args": [
+              [
+                0,
+                60,
+                119,
+                120
+              ]
+            ],
+            "expected": [
+              1,
+              1,
+              2
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "heures_completes",
+            "args": [
+              [
+                3600
+              ]
+            ],
+            "expected": [
+              60
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le seuil 60 est exprimé en minutes.",
+      "La division entière appartient à la valeur produite, pas au critère du seuil.",
+      "Compare minutes >= 60 et conserve minutes // 60 comme résultat."
+    ],
+    "explanation_fr": "La présence d’une très longue durée ne doit pas masquer l’unité incorrecte du filtre.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "listcomp"
+    ],
+    "id": "pyi-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Produire des fiches de disponibilité",
+    "instruction_fr": "Écris fiches_disponibles(ateliers) avec une compréhension de liste. Chaque fiche possède id, capacite et inscrits ; les deux nombres sont des entiers avec 0<=inscrits<=capacite. Pour chaque atelier ayant encore une place, retourne un nouveau dictionnaire avec seulement id et libres=capacite-inscrits. Conserve l’ordre. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def fiches_disponibles(ateliers):\n    return []",
+    "solution": "def fiches_disponibles(ateliers):\n    return [\n        {\n            \"id\": atelier[\"id\"],\n            \"libres\": atelier[\"capacite\"] - atelier[\"inscrits\"],\n        }\n        for atelier in ateliers\n        if atelier[\"capacite\"] > atelier[\"inscrits\"]\n    ]",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fiches_disponibles",
+            "args": [
+              [
+                {
+                  "id": "lec",
+                  "capacite": 5,
+                  "inscrits": 3
+                },
+                {
+                  "id": "jar",
+                  "capacite": 2,
+                  "inscrits": 2
+                }
+              ]
+            ],
+            "expected": [
+              {
+                "id": "lec",
+                "libres": 2
+              }
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fiches_disponibles",
+            "args": [
+              []
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fiches_disponibles",
+            "args": [
+              [
+                {
+                  "id": "z",
+                  "capacite": 0,
+                  "inscrits": 0
+                },
+                {
+                  "id": "b",
+                  "capacite": 4,
+                  "inscrits": 0
+                },
+                {
+                  "id": "a",
+                  "capacite": 3,
+                  "inscrits": 2
+                }
+              ]
+            ],
+            "expected": [
+              {
+                "id": "b",
+                "libres": 4
+              },
+              {
+                "id": "a",
+                "libres": 1
+              }
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une fiche à capacité nulle n’a aucune disponibilité.",
+      "Le filtre compare capacite et inscrits ; la production construit deux champs.",
+      "Produis {\"id\": atelier[\"id\"], \"libres\": ...} seulement quand la différence est strictement positive."
+    ],
+    "explanation_fr": "Le résumé constitue un nouveau modèle de données et ne recopie pas les propriétés non demandées.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "listcomp"
+    ],
+    "id": "pyi-m1-03-e4"
+  }
+]

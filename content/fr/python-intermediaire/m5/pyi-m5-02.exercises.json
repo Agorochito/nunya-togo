@@ -1,0 +1,433 @@
+[
+  {
+    "title_fr": "Lire toutes les colonnes sans découpage manuel",
+    "instruction_fr": "Avec import csv et from io import StringIO, écrire lire_table_csv(texte). Non-str : TypeError « texte attendu ». Retourner list(csv.reader(...)) avec StringIO(texte,newline=\"\"), delimiter=\";\" et strict=True. Conserver chaque champ textuel, les lignes vides telles que reader les donne et les retours dans un champ protégé ; pas d’en-tête imposé. Traduire csv.Error en ValueError « CSV invalide ». Ne pas utiliser split ou splitlines pour parser. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés.",
+    "starter_code": "import csv\nfrom io import StringIO\n\ndef lire_table_csv(texte):\n    if type(texte) is not str:\n        raise TypeError('texte attendu')\n    try:\n        return list(csv.reader(StringIO(texte, newline=''), delimiter=',', strict=True))\n    except csv.Error:\n        raise ValueError('CSV invalide')\n",
+    "solution": "import csv\nfrom io import StringIO\n\ndef lire_table_csv(texte):\n    if type(texte) is not str:\n        raise TypeError('texte attendu')\n    try:\n        return list(csv.reader(StringIO(texte, newline=''), delimiter=';', strict=True))\n    except csv.Error:\n        raise ValueError('CSV invalide')\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_table_csv",
+            "args": [
+              "\"Club; lecture\";2\n\"Atelier \"\"A\"\"\";0\n"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                "Club; lecture",
+                "2"
+              ],
+              [
+                "Atelier \"A\"",
+                "0"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_table_csv",
+            "args": [
+              ""
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "lire_table_csv",
+            "args": [
+              "Afi;\"Deux\nlignes\"\n"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                "Afi",
+                "Deux\nlignes"
+              ]
+            ]
+          },
+          {
+            "name": "lire_table_csv",
+            "args": [
+              "A;1\n\nB;2\n"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                "A",
+                "1"
+              ],
+              [],
+              [
+                "B",
+                "2"
+              ]
+            ]
+          },
+          {
+            "name": "lire_table_csv",
+            "args": [
+              "\"champ non termine"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "CSV invalide"
+          },
+          {
+            "name": "lire_table_csv",
+            "args": [
+              3
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "texte attendu"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le séparateur décrit le format fourni, pas le nom CSV.",
+      "Les données de l’activité utilisent un point-virgule.",
+      "Donne delimiter=\";\" au vrai csv.reader alimenté par StringIO."
+    ],
+    "explanation_fr": "Le parseur traite les guillemets et les retours intégrés. Un découpage manuel échouerait sur des valeurs qui contiennent le séparateur.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:csv",
+      "import:io"
+    ],
+    "id": "pyi-m5-02-e1",
+    "kind": "guided"
+  },
+  {
+    "title_fr": "Convertir les champs d’un DictReader",
+    "instruction_fr": "Écrire lire_inscriptions_csv(texte), autonome avec csv.DictReader et StringIO. En-tête exact nom;places sinon ValueError « en-tete invalide ». Trop/pas assez de colonnes : « colonnes invalides ». Non-str : TypeError « texte attendu » ; csv.Error : ValueError « CSV invalide ». Nom strip non vide sinon ValueError « nom invalide ». Places int du texte strip, bornes0..20 ; conversion/bornes sinon « places invalides ». Retourner des dicts nom,places dans l’ordre ; en-tête seul et lignes totalement vides après lui donnent aucune fiche. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés.",
+    "starter_code": "import csv\nfrom io import StringIO\n\ndef lire_dicts_csv(texte, colonnes):\n    if type(texte) is not str:\n        raise TypeError('texte attendu')\n    try:\n        lecteur = csv.DictReader(StringIO(texte, newline=''), delimiter=';', strict=True)\n        if lecteur.fieldnames != colonnes:\n            raise ValueError('en-tete invalide')\n        lignes = list(lecteur)\n    except csv.Error:\n        raise ValueError('CSV invalide')\n    for ligne in lignes:\n        if None in ligne or any(valeur is None for valeur in ligne.values()):\n            raise ValueError('colonnes invalides')\n    return lignes\ndef lire_inscriptions_csv(texte):\n    lignes = lire_dicts_csv(texte, ['nom', 'places'])\n    resultat = []\n    for ligne in lignes:\n        nom = ligne['nom'].strip()\n        if not nom:\n            raise ValueError('nom invalide')\n        try:\n            places = 0\n        except ValueError:\n            raise ValueError('places invalides')\n        if not 0 <= places <= 20:\n            raise ValueError('places invalides')\n        resultat.append({'nom':nom, 'places':places})\n    return resultat\n",
+    "solution": "import csv\nfrom io import StringIO\n\ndef lire_dicts_csv(texte, colonnes):\n    if type(texte) is not str:\n        raise TypeError('texte attendu')\n    try:\n        lecteur = csv.DictReader(StringIO(texte, newline=''), delimiter=';', strict=True)\n        if lecteur.fieldnames != colonnes:\n            raise ValueError('en-tete invalide')\n        lignes = list(lecteur)\n    except csv.Error:\n        raise ValueError('CSV invalide')\n    for ligne in lignes:\n        if None in ligne or any(valeur is None for valeur in ligne.values()):\n            raise ValueError('colonnes invalides')\n    return lignes\ndef lire_inscriptions_csv(texte):\n    lignes = lire_dicts_csv(texte, ['nom', 'places'])\n    resultat = []\n    for ligne in lignes:\n        nom = ligne['nom'].strip()\n        if not nom:\n            raise ValueError('nom invalide')\n        try:\n            places = int(ligne['places'].strip())\n        except ValueError:\n            raise ValueError('places invalides')\n        if not 0 <= places <= 20:\n            raise ValueError('places invalides')\n        resultat.append({'nom':nom, 'places':places})\n    return resultat\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_inscriptions_csv",
+            "args": [
+              "nom;places\n Afi ;2\nKo;0\n"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              {
+                "nom": "Afi",
+                "places": 2
+              },
+              {
+                "nom": "Ko",
+                "places": 0
+              }
+            ]
+          },
+          {
+            "name": "lire_inscriptions_csv",
+            "args": [
+              "nom;places\nAfi;2;extra\n"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "colonnes invalides"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_inscriptions_csv",
+            "args": [
+              "nom;places\n"
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "lire_inscriptions_csv",
+            "args": [
+              "nom;places\n\nÉcole;+20\n"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              {
+                "nom": "École",
+                "places": 20
+              }
+            ]
+          },
+          {
+            "name": "lire_inscriptions_csv",
+            "args": [
+              "places;nom\n2;Afi\n"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "en-tete invalide"
+          },
+          {
+            "name": "lire_inscriptions_csv",
+            "args": [
+              "nom;places\nAfi\n"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "colonnes invalides"
+          },
+          {
+            "name": "lire_inscriptions_csv",
+            "args": [
+              "nom;places\nAfi;1.5\n"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "places invalides"
+          },
+          {
+            "name": "lire_inscriptions_csv",
+            "args": [
+              "nom;places\n ;2\n"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "nom invalide"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "DictReader conserve les quantités sous forme de textes.",
+      "Une valeur fixe ne reflète pas la cellule lue.",
+      "Convertis ligne['places'].strip() avec int et vérifie les bornes."
+    ],
+    "explanation_fr": "L’activité sépare structure du tableau et valeurs métier. Les données valables conservent leur ordre, et les lignes irrégulières provoquent une exception réelle.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:csv",
+      "import:io"
+    ],
+    "id": "pyi-m5-02-e2",
+    "kind": "practice"
+  },
+  {
+    "title_fr": "Conserver les retours intégrés dans un champ",
+    "instruction_fr": "Écrire lire_messages_csv(texte) avec DictReader/StringIO. En-tête exact nom;message, mêmes refus texte/syntaxe/colonnes que l’activité 2. Nom nettoyé non vide sinon « nom invalide ». Message conservé exactement, y compris texte vide, point-virgule, guillemet et retour à la ligne. Retourner les dicts nom,message sans transformer ces retours en séparations de fiches. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés.",
+    "starter_code": "import csv\nfrom io import StringIO\n\ndef lire_dicts_csv(texte, colonnes):\n    if type(texte) is not str:\n        raise TypeError('texte attendu')\n    try:\n        lecteur = csv.DictReader(texte.splitlines(), delimiter=';', strict=True)\n        if lecteur.fieldnames != colonnes:\n            raise ValueError('en-tete invalide')\n        lignes = list(lecteur)\n    except csv.Error:\n        raise ValueError('CSV invalide')\n    for ligne in lignes:\n        if None in ligne or any(valeur is None for valeur in ligne.values()):\n            raise ValueError('colonnes invalides')\n    return lignes\ndef lire_messages_csv(texte):\n    lignes = lire_dicts_csv(texte, ['nom', 'message'])\n    resultat = []\n    for ligne in lignes:\n        nom = ligne['nom'].strip()\n        if not nom:\n            raise ValueError('nom invalide')\n        resultat.append({'nom':nom, 'message':ligne['message']})\n    return resultat\n",
+    "solution": "import csv\nfrom io import StringIO\n\ndef lire_dicts_csv(texte, colonnes):\n    if type(texte) is not str:\n        raise TypeError('texte attendu')\n    try:\n        lecteur = csv.DictReader(StringIO(texte, newline=''), delimiter=';', strict=True)\n        if lecteur.fieldnames != colonnes:\n            raise ValueError('en-tete invalide')\n        lignes = list(lecteur)\n    except csv.Error:\n        raise ValueError('CSV invalide')\n    for ligne in lignes:\n        if None in ligne or any(valeur is None for valeur in ligne.values()):\n            raise ValueError('colonnes invalides')\n    return lignes\ndef lire_messages_csv(texte):\n    lignes = lire_dicts_csv(texte, ['nom', 'message'])\n    resultat = []\n    for ligne in lignes:\n        nom = ligne['nom'].strip()\n        if not nom:\n            raise ValueError('nom invalide')\n        resultat.append({'nom':nom, 'message':ligne['message']})\n    return resultat\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_messages_csv",
+            "args": [
+              "nom;message\nAfi;\"Deux\nlignes\"\n"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              {
+                "nom": "Afi",
+                "message": "Deux\nlignes"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_messages_csv",
+            "args": [
+              "nom;message\n Ko ;\"Dit \"\"bonjour\"\"; puis part\"\nÉcole;\n"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              {
+                "nom": "Ko",
+                "message": "Dit \"bonjour\"; puis part"
+              },
+              {
+                "nom": "École",
+                "message": ""
+              }
+            ]
+          },
+          {
+            "name": "lire_messages_csv",
+            "args": [
+              "nom;message\nAfi;\"Une\r\nlettre\"\r\n"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              {
+                "nom": "Afi",
+                "message": "Une\r\nlettre"
+              }
+            ]
+          },
+          {
+            "name": "lire_messages_csv",
+            "args": [
+              "nom;message\nAfi\n"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "colonnes invalides"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le texte contient un retour qui appartient à une valeur.",
+      "splitlines supprime les séparateurs avant que csv puisse les conserver dans le champ.",
+      "Donne StringIO(texte,newline=\"\") au lecteur, pas texte.splitlines()."
+    ],
+    "explanation_fr": "Le débogage porte sur la source du parseur. Le flux mémoire laisse le module CSV distinguer un changement de fiche d’un caractère qui appartient au message.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:csv",
+      "import:io"
+    ],
+    "id": "pyi-m5-02-e3",
+    "kind": "debug"
+  },
+  {
+    "title_fr": "Importer un catalogue CSV typé",
+    "instruction_fr": "Écrire lire_catalogue_csv(texte), autonome : en-tête exact id;nom;places, même gestion texte/syntaxe/colonnes. Convertir id et places avec int après strip, sinon ValueError « nombres invalides ». id exact >=1 sinon « id invalide » ; nom strip non vide sinon « nom invalide » ; places0..20 sinon « places invalides ». Refuser un id répété par « identifiant duplique ». Retourner les dicts id,nom,places dans l’ordre. Les lignes totalement vides sont ignorées par DictReader ; en-tête seul donne []. Tous ces refus de contenu sont ValueError. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés.",
+    "starter_code": "import csv\nfrom io import StringIO\n\ndef lire_dicts_csv(texte, colonnes):\n    if type(texte) is not str:\n        raise TypeError('texte attendu')\n    try:\n        lecteur = csv.DictReader(StringIO(texte, newline=''), delimiter=';', strict=True)\n        if lecteur.fieldnames != colonnes:\n            raise ValueError('en-tete invalide')\n        lignes = list(lecteur)\n    except csv.Error:\n        raise ValueError('CSV invalide')\n    for ligne in lignes:\n        if None in ligne or any(valeur is None for valeur in ligne.values()):\n            raise ValueError('colonnes invalides')\n    return lignes\ndef preparer_fiche(fiche):\n    if type(fiche) is not dict:\n        raise ValueError('fiche invalide')\n    if not all(cle in fiche for cle in ['id', 'nom', 'places']):\n        raise ValueError('champs manquants')\n    identifiant = fiche['id']\n    nom = fiche['nom']\n    places = fiche['places']\n    if type(identifiant) is not int or identifiant < 1:\n        raise ValueError('id invalide')\n    if type(nom) is not str or not nom.strip():\n        raise ValueError('nom invalide')\n    if type(places) is not int or not 0 <= places <= 20:\n        raise ValueError('places invalides')\n    return {'id':identifiant, 'nom':nom.strip(), 'places':places}\n\ndef valider_catalogue(fiches):\n    if type(fiches) is not list:\n        raise ValueError('liste attendue')\n    resultat = []\n    identifiants = set()\n    for fiche in fiches:\n        propre = preparer_fiche(fiche)\n        if False:\n            raise ValueError('identifiant duplique')\n        identifiants.add(propre['id'])\n        resultat.append(propre)\n    return resultat\ndef lire_catalogue_csv(texte):\n    lignes = lire_dicts_csv(texte, ['id', 'nom', 'places'])\n    fiches = []\n    for ligne in lignes:\n        try:\n            identifiant = int(ligne['id'].strip())\n            places = int(ligne['places'].strip())\n        except ValueError:\n            raise ValueError('nombres invalides')\n        fiches.append({'id':identifiant, 'nom':ligne['nom'], 'places':places})\n    return valider_catalogue(fiches)\n",
+    "solution": "import csv\nfrom io import StringIO\n\ndef lire_dicts_csv(texte, colonnes):\n    if type(texte) is not str:\n        raise TypeError('texte attendu')\n    try:\n        lecteur = csv.DictReader(StringIO(texte, newline=''), delimiter=';', strict=True)\n        if lecteur.fieldnames != colonnes:\n            raise ValueError('en-tete invalide')\n        lignes = list(lecteur)\n    except csv.Error:\n        raise ValueError('CSV invalide')\n    for ligne in lignes:\n        if None in ligne or any(valeur is None for valeur in ligne.values()):\n            raise ValueError('colonnes invalides')\n    return lignes\ndef preparer_fiche(fiche):\n    if type(fiche) is not dict:\n        raise ValueError('fiche invalide')\n    if not all(cle in fiche for cle in ['id', 'nom', 'places']):\n        raise ValueError('champs manquants')\n    identifiant = fiche['id']\n    nom = fiche['nom']\n    places = fiche['places']\n    if type(identifiant) is not int or identifiant < 1:\n        raise ValueError('id invalide')\n    if type(nom) is not str or not nom.strip():\n        raise ValueError('nom invalide')\n    if type(places) is not int or not 0 <= places <= 20:\n        raise ValueError('places invalides')\n    return {'id':identifiant, 'nom':nom.strip(), 'places':places}\n\ndef valider_catalogue(fiches):\n    if type(fiches) is not list:\n        raise ValueError('liste attendue')\n    resultat = []\n    identifiants = set()\n    for fiche in fiches:\n        propre = preparer_fiche(fiche)\n        if propre['id'] in identifiants:\n            raise ValueError('identifiant duplique')\n        identifiants.add(propre['id'])\n        resultat.append(propre)\n    return resultat\ndef lire_catalogue_csv(texte):\n    lignes = lire_dicts_csv(texte, ['id', 'nom', 'places'])\n    fiches = []\n    for ligne in lignes:\n        try:\n            identifiant = int(ligne['id'].strip())\n            places = int(ligne['places'].strip())\n        except ValueError:\n            raise ValueError('nombres invalides')\n        fiches.append({'id':identifiant, 'nom':ligne['nom'], 'places':places})\n    return valider_catalogue(fiches)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_catalogue_csv",
+            "args": [
+              "id;nom;places\n3; Lecture ;2\n1;Couture;0\n"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              {
+                "id": 3,
+                "nom": "Lecture",
+                "places": 2
+              },
+              {
+                "id": 1,
+                "nom": "Couture",
+                "places": 0
+              }
+            ]
+          },
+          {
+            "name": "lire_catalogue_csv",
+            "args": [
+              "id;nom;places\n3;Lecture;2\n3;Autre;1\n"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "identifiant duplique"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_catalogue_csv",
+            "args": [
+              "id;nom;places\n"
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "lire_catalogue_csv",
+            "args": [
+              "\"id\";\"nom\";\"places\"\n\"7\";\"École; jardin\";\"20\"\n\"2\";\"Club \"\"A\"\"\";\"1\"\n"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              {
+                "id": 7,
+                "nom": "École; jardin",
+                "places": 20
+              },
+              {
+                "id": 2,
+                "nom": "Club \"A\"",
+                "places": 1
+              }
+            ]
+          },
+          {
+            "name": "lire_catalogue_csv",
+            "args": [
+              "id;nom;places\n1;X;vingt\n"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "nombres invalides"
+          },
+          {
+            "name": "lire_catalogue_csv",
+            "args": [
+              "id;nom;places\n0;X;2\n"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "id invalide"
+          },
+          {
+            "name": "lire_catalogue_csv",
+            "args": [
+              "id;nom;places\n1;X;21\n"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "places invalides"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La conversion des nombres ne suffit pas à donner une identité unique.",
+      "Un ensemble garde les identifiants normalisés déjà rencontrés.",
+      "Refuse propre['id'] déjà présent avant d’ajouter la fiche."
+    ],
+    "explanation_fr": "Le mini-projet joint parsing, conversion et validation. Les guillemets sont traités par csv ; les règles du club sont appliquées ensuite sans toucher au texte de départ.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:csv",
+      "import:io"
+    ],
+    "id": "pyi-m5-02-e4",
+    "kind": "project"
+  }
+]

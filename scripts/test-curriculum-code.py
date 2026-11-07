@@ -26,7 +26,8 @@ for bad in ['print("24")\n# int(texte)','quantite="24"\nprint(quantite)\nint("1"
  actual=json.loads(result.stdout)
  if actual['constructs_passed'] and all(x.get('assertions_passed') for x in actual['results']):raise Exception('False positive in conversion regression')
 # Fixed-output printing is the point of module 1, but it must not replace the variable/type tasks of module 2.
-for lesson in pack['lessons']:
+basic_pack=json.loads((r/'dist/data/curriculum/python-bases.json').read_text())
+for lesson in basic_pack['lessons']:
  if lesson['id'] not in ['py-m2-01','py-m2-02','py-m2-03','py-m2-04']:continue
  for item in lesson['exercises']:
   tests=item['visible_tests']+item['hidden_tests'];constant='print('+repr(tests[0]['expected_output'])+')'

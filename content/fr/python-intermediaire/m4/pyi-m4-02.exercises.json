@@ -1,0 +1,534 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une réserve avec ajout contrôlé",
+    "instruction_fr": "Définis Reserve, son __init__(self, initial) et sa méthode ajouter(self, quantite), avec raise pour les refus. initial doit être exactement int (TypeError contenant « entier »), puis >= 0 (ValueError contenant « initial »). ajouter exige un int strict (TypeError « entier »), puis > 0 (ValueError « ajout »), avant d’augmenter self.quantite. Écris simuler_reserve(initial, ajouts), qui appelle Reserve puis ajouter pour chaque élément et retourne la quantité finale. Laisse remonter le premier refus. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "class Reserve:\n\n    def __init__(self, initial):\n        self.quantite = initial\n\n    def ajouter(self, quantite):\n        self.quantite += quantite\n\n\ndef simuler_reserve(initial, ajouts):\n    reserve = Reserve(initial)\n    for quantite in ajouts:\n        reserve.ajouter(quantite)\n    return reserve.quantite\n",
+    "solution": "class Reserve:\n\n    def __init__(self, initial):\n        if type(initial) is not int:\n            raise TypeError(\"initial : entier attendu\")\n        if initial < 0:\n            raise ValueError(\"initial négatif\")\n        self.quantite = initial\n\n    def ajouter(self, quantite):\n        if type(quantite) is not int:\n            raise TypeError(\"ajout : entier attendu\")\n        if quantite <= 0:\n            raise ValueError(\"ajout strictement positif attendu\")\n        self.quantite += quantite\n\n\ndef simuler_reserve(initial, ajouts):\n    reserve = Reserve(initial)\n    for quantite in ajouts:\n        reserve.ajouter(quantite)\n    return reserve.quantite\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "simuler_reserve",
+            "args": [
+              2,
+              [
+                3,
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 6
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "simuler_reserve",
+            "args": [
+              0,
+              [
+                0
+              ]
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "ajout"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "simuler_reserve",
+            "args": [
+              0,
+              []
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "simuler_reserve",
+            "args": [
+              5,
+              [
+                2,
+                2
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 9
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "simuler_reserve",
+            "args": [
+              -1,
+              []
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "initial"
+          },
+          {
+            "name": "simuler_reserve",
+            "args": [
+              true,
+              []
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "entier"
+          },
+          {
+            "name": "simuler_reserve",
+            "args": [
+              1,
+              [
+                false
+              ]
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "entier"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le constructeur valide l’état initial ; ajouter contrôle une demande nouvelle.",
+      "Place chaque affectation après les contrôles de type et de borne qui la concernent.",
+      "class Reserve:\n\n    def __init__(self, initial):\n        if type(initial) is not int:\n            raise TypeError(\"initial : entier attendu\")\n        if initial < 0:\n            raise ValueError(\"initial négatif\")\n        self.quantite = initial\n\n    def ajouter(self, quantite):\n        if type(quantite) is not int:\n            raise TypeError(\"ajout : entier attendu\")\n        if quantite <= 0:\n            raise ValueError(\"ajout strictement positif attendu\")\n        self.quantite += quantite\n\n\ndef simuler_reserve(initial, ajouts):\n    reserve = Reserve(initial)\n    for quantite in ajouts:\n        reserve.ajouter(quantite)\n    return reserve.quantite"
+    ],
+    "explanation_fr": "Le constructeur et la méthode protègent deux frontières distinctes : une réserve vide est valable, mais un ajout nul ne respecte pas cette activité.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "class:Reserve",
+      "call:Reserve",
+      "raise"
+    ],
+    "id": "pyi-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Continuer après une réservation refusée",
+    "instruction_fr": "Définis Places avec __init__(self, capacite) et reserver(self, nombre). La capacité doit être int strict >= 0 ; mauvais type → TypeError « entier », négatif → ValueError « capacité ». Une réservation exige int strict > 0 et nombre <= self.restantes, avant soustraction. Les messages exacts des refus de réservation sont « réservation : entier attendu » pour TypeError, « réservation strictement positive attendue » pour une valeur <= 0, et « places insuffisantes » si le stock de places est insuffisant (ces deux derniers sont ValueError). Écris parcours_places(capacite, demandes) : appelle Places, traite chaque demande, capture (TypeError, ValueError) par demande, puis retourne {\"restantes\": quantité finale, \"refus\": liste des messages str(erreur)}. Utilise un try et de vrais raise ; un refus ne change pas restantes. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "class Places:\n    pass\n\n\ndef parcours_places(capacite, demandes):\n    return {\"restantes\": capacite, \"refus\": []}\n",
+    "solution": "class Places:\n\n    def __init__(self, capacite):\n        if type(capacite) is not int:\n            raise TypeError(\"capacité : entier attendu\")\n        if capacite < 0:\n            raise ValueError(\"capacité négative\")\n        self.restantes = capacite\n\n    def reserver(self, nombre):\n        if type(nombre) is not int:\n            raise TypeError(\"réservation : entier attendu\")\n        if nombre <= 0:\n            raise ValueError(\"réservation strictement positive attendue\")\n        if nombre > self.restantes:\n            raise ValueError(\"places insuffisantes\")\n        self.restantes -= nombre\n\n\ndef parcours_places(capacite, demandes):\n    places = Places(capacite)\n    refus = []\n    for nombre in demandes:\n        try:\n            places.reserver(nombre)\n        except (TypeError, ValueError) as erreur:\n            refus.append(str(erreur))\n    return {\"restantes\": places.restantes, \"refus\": refus}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "parcours_places",
+            "args": [
+              3,
+              [
+                2,
+                2,
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "restantes": 0,
+              "refus": [
+                "places insuffisantes"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "parcours_places",
+            "args": [
+              0,
+              []
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "restantes": 0,
+              "refus": []
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "parcours_places",
+            "args": [
+              2,
+              [
+                true,
+                0,
+                -1,
+                2
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "restantes": 0,
+              "refus": [
+                "réservation : entier attendu",
+                "réservation strictement positive attendue",
+                "réservation strictement positive attendue"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "parcours_places",
+            "args": [
+              0,
+              [
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "restantes": 0,
+              "refus": [
+                "places insuffisantes"
+              ]
+            }
+          },
+          {
+            "name": "parcours_places",
+            "args": [
+              -1,
+              []
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "capacité"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Seule la boucle pilote capture les refus ; reserver vérifie avant de soustraire.",
+      "Ajoute str(erreur) dans le gestionnaire et laisse la boucle passer à la demande suivante.",
+      "class Places:\n\n    def __init__(self, capacite):\n        if type(capacite) is not int:\n            raise TypeError(\"capacité : entier attendu\")\n        if capacite < 0:\n            raise ValueError(\"capacité négative\")\n        self.restantes = capacite\n\n    def reserver(self, nombre):\n        if type(nombre) is not int:\n            raise TypeError(\"réservation : entier attendu\")\n        if nombre <= 0:\n            raise ValueError(\"réservation strictement positive attendue\")\n        if nombre > self.restantes:\n            raise ValueError(\"places insuffisantes\")\n        self.restantes -= nombre\n\n\ndef parcours_places(capacite, demandes):\n    places = Places(capacite)\n    refus = []\n    for nombre in demandes:\n        try:\n            places.reserver(nombre)\n        except (TypeError, ValueError) as erreur:\n            refus.append(str(erreur))\n    return {\"restantes\": places.restantes, \"refus\": refus}"
+    ],
+    "explanation_fr": "La suite 2, 2, 1 sur trois places détecte un débit prématuré : le refus du milieu doit conserver la place nécessaire à la dernière réussite.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "class:Places",
+      "call:Places",
+      "try",
+      "raise"
+    ],
+    "id": "pyi-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Une exception ne rembourse pas seule",
+    "instruction_fr": "Corrige PorteMonnaie et écris evolution_solde(initial, retraits). Le constructeur exige int strict >= 0 (TypeError « entier », ValueError « solde »). retirer exige int strict > 0 (TypeError « entier », ValueError « positif ») et montant <= self.solde (ValueError « solde insuffisant »). Les messages exacts pour les refus d’opération sont « retrait : entier attendu », « retrait strictement positif attendu » et « solde insuffisant ». Valide avant mutation. Le pilote appelle PorteMonnaie, capture (TypeError, ValueError) par retrait avec try, mémorise str(erreur) dans erreurs et le solde après chaque tentative dans soldes, puis retourne ces deux listes. Utilise la classe, son appel direct et raise. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "class PorteMonnaie:\n\n    def __init__(self, initial):\n        if type(initial) is not int:\n            raise TypeError(\"solde : entier attendu\")\n        if initial < 0:\n            raise ValueError(\"solde négatif\")\n        self.solde = initial\n\n    def retirer(self, montant):\n        if type(montant) is not int:\n            raise TypeError(\"retrait : entier attendu\")\n        if montant <= 0:\n            raise ValueError(\"retrait strictement positif attendu\")\n        self.solde -= montant\n        if self.solde < 0:\n            raise ValueError(\"solde insuffisant\")\n\n\ndef evolution_solde(initial, retraits):\n    porte_monnaie = PorteMonnaie(initial)\n    soldes = []\n    erreurs = []\n    for montant in retraits:\n        try:\n            porte_monnaie.retirer(montant)\n        except (TypeError, ValueError) as erreur:\n            erreurs.append(str(erreur))\n        soldes.append(porte_monnaie.solde)\n    return {\"soldes\": soldes, \"erreurs\": erreurs}\n",
+    "solution": "class PorteMonnaie:\n\n    def __init__(self, initial):\n        if type(initial) is not int:\n            raise TypeError(\"solde : entier attendu\")\n        if initial < 0:\n            raise ValueError(\"solde négatif\")\n        self.solde = initial\n\n    def retirer(self, montant):\n        if type(montant) is not int:\n            raise TypeError(\"retrait : entier attendu\")\n        if montant <= 0:\n            raise ValueError(\"retrait strictement positif attendu\")\n        if montant > self.solde:\n            raise ValueError(\"solde insuffisant\")\n        self.solde -= montant\n\n\ndef evolution_solde(initial, retraits):\n    porte_monnaie = PorteMonnaie(initial)\n    soldes = []\n    erreurs = []\n    for montant in retraits:\n        try:\n            porte_monnaie.retirer(montant)\n        except (TypeError, ValueError) as erreur:\n            erreurs.append(str(erreur))\n        soldes.append(porte_monnaie.solde)\n    return {\"soldes\": soldes, \"erreurs\": erreurs}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "evolution_solde",
+            "args": [
+              5,
+              [
+                2,
+                9,
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "soldes": [
+                3,
+                3,
+                2
+              ],
+              "erreurs": [
+                "solde insuffisant"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "evolution_solde",
+            "args": [
+              0,
+              []
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "soldes": [],
+              "erreurs": []
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "evolution_solde",
+            "args": [
+              3,
+              [
+                0,
+                true,
+                -1,
+                3,
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "soldes": [
+                3,
+                3,
+                3,
+                0,
+                0
+              ],
+              "erreurs": [
+                "retrait strictement positif attendu",
+                "retrait : entier attendu",
+                "retrait strictement positif attendu",
+                "solde insuffisant"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "evolution_solde",
+            "args": [
+              false,
+              []
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "entier"
+          },
+          {
+            "name": "evolution_solde",
+            "args": [
+              -1,
+              []
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "solde"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le gestionnaire ne défait pas la soustraction déjà faite par retirer.",
+      "Compare montant à self.solde avant self.solde -= montant ; mémorise ensuite le solde dans le pilote, succès ou refus.",
+      "class PorteMonnaie:\n\n    def __init__(self, initial):\n        if type(initial) is not int:\n            raise TypeError(\"solde : entier attendu\")\n        if initial < 0:\n            raise ValueError(\"solde négatif\")\n        self.solde = initial\n\n    def retirer(self, montant):\n        if type(montant) is not int:\n            raise TypeError(\"retrait : entier attendu\")\n        if montant <= 0:\n            raise ValueError(\"retrait strictement positif attendu\")\n        if montant > self.solde:\n            raise ValueError(\"solde insuffisant\")\n        self.solde -= montant\n\n\ndef evolution_solde(initial, retraits):\n    porte_monnaie = PorteMonnaie(initial)\n    soldes = []\n    erreurs = []\n    for montant in retraits:\n        try:\n            porte_monnaie.retirer(montant)\n        except (TypeError, ValueError) as erreur:\n            erreurs.append(str(erreur))\n        soldes.append(porte_monnaie.solde)\n    return {\"soldes\": soldes, \"erreurs\": erreurs}"
+    ],
+    "explanation_fr": "La trace des soldes démontre l’invariant après toutes les tentatives. Le retrait refusé laisse une valeur utilisable pour les opérations suivantes.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "class:PorteMonnaie",
+      "call:PorteMonnaie",
+      "try",
+      "raise"
+    ],
+    "id": "pyi-m4-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Un stock piloté par des actions",
+    "instruction_fr": "Définis Stock avec __init__(self, initial), ajouter et retirer. Chaque quantité, y compris initial, est exactement int >= 0 ; sinon lève TypeError « quantité : entier attendu » ou ValueError « quantité négative ». Zéro est admis et ne change rien. retirer lève aussi ValueError « stock insuffisant » si la demande dépasse le stock, avant mutation. Écris gerer_stock(initial, operations), où chaque dictionnaire possède action, garantie « ajouter » ou « retirer », et quantite. Le pilote appelle Stock, utilise ses méthodes et capture (TypeError, ValueError) par opération avec try. Retourne {\"quantite\": état final, \"erreurs\": [{\"operation\": numéro à partir de 1, \"message\": str(erreur)}]}. Un initial invalide remonte à l’appelant. Utilise la classe, son appel direct et raise. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "class Stock:\n    pass\n\n\ndef gerer_stock(initial, operations):\n    return {\"quantite\": initial, \"erreurs\": []}\n",
+    "solution": "def verifier_quantite(quantite):\n    if type(quantite) is not int:\n        raise TypeError(\"quantité : entier attendu\")\n    if quantite < 0:\n        raise ValueError(\"quantité négative\")\n    return quantite\n\n\nclass Stock:\n\n    def __init__(self, initial):\n        self.quantite = verifier_quantite(initial)\n\n    def ajouter(self, quantite):\n        quantite = verifier_quantite(quantite)\n        self.quantite += quantite\n\n    def retirer(self, quantite):\n        quantite = verifier_quantite(quantite)\n        if quantite > self.quantite:\n            raise ValueError(\"stock insuffisant\")\n        self.quantite -= quantite\n\n\ndef gerer_stock(initial, operations):\n    stock = Stock(initial)\n    erreurs = []\n    for numero, operation in enumerate(operations, start=1):\n        try:\n            if operation[\"action\"] == \"ajouter\":\n                stock.ajouter(operation[\"quantite\"])\n            else:\n                stock.retirer(operation[\"quantite\"])\n        except (TypeError, ValueError) as erreur:\n            erreurs.append({\"operation\": numero, \"message\": str(erreur)})\n    return {\"quantite\": stock.quantite, \"erreurs\": erreurs}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "gerer_stock",
+            "args": [
+              2,
+              [
+                {
+                  "action": "retirer",
+                  "quantite": 3
+                },
+                {
+                  "action": "ajouter",
+                  "quantite": 2
+                },
+                {
+                  "action": "retirer",
+                  "quantite": 4
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "quantite": 0,
+              "erreurs": [
+                {
+                  "operation": 1,
+                  "message": "stock insuffisant"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "gerer_stock",
+            "args": [
+              0,
+              []
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "quantite": 0,
+              "erreurs": []
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "gerer_stock",
+            "args": [
+              3,
+              [
+                {
+                  "action": "ajouter",
+                  "quantite": true
+                },
+                {
+                  "action": "retirer",
+                  "quantite": -1
+                },
+                {
+                  "action": "retirer",
+                  "quantite": 0
+                },
+                {
+                  "action": "retirer",
+                  "quantite": 3
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "quantite": 0,
+              "erreurs": [
+                {
+                  "operation": 1,
+                  "message": "quantité : entier attendu"
+                },
+                {
+                  "operation": 2,
+                  "message": "quantité négative"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "gerer_stock",
+            "args": [
+              -1,
+              []
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "quantité négative"
+          },
+          {
+            "name": "gerer_stock",
+            "args": [
+              false,
+              []
+            ],
+            "unchanged_args": true,
+            "raises": "TypeError",
+            "message_contains": "entier"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les deux méthodes peuvent appeler un même auxiliaire de validation pour garder les règles cohérentes.",
+      "Le pilote choisit la méthode, puis capture seulement les deux types de refus attendus ; les méthodes protègent elles-mêmes l’état.",
+      "def verifier_quantite(quantite):\n    if type(quantite) is not int:\n        raise TypeError(\"quantité : entier attendu\")\n    if quantite < 0:\n        raise ValueError(\"quantité négative\")\n    return quantite\n\n\nclass Stock:\n\n    def __init__(self, initial):\n        self.quantite = verifier_quantite(initial)\n\n    def ajouter(self, quantite):\n        quantite = verifier_quantite(quantite)\n        self.quantite += quantite\n\n    def retirer(self, quantite):\n        quantite = verifier_quantite(quantite)\n        if quantite > self.quantite:\n            raise ValueError(\"stock insuffisant\")\n        self.quantite -= quantite\n\n\ndef gerer_stock(initial, operations):\n    stock = Stock(initial)\n    erreurs = []\n    for numero, operation in enumerate(operations, start=1):\n        try:\n            if operation[\"action\"] == \"ajouter\":\n                stock.ajouter(operation[\"quantite\"])\n            else:\n                stock.retirer(operation[\"quantite\"])\n        except (TypeError, ValueError) as erreur:\n            erreurs.append({\"operation\": numero, \"message\": str(erreur)})\n    return {\"quantite\": stock.quantite, \"erreurs\": erreurs}"
+    ],
+    "explanation_fr": "L’objet garde la quantité et les règles de mutation ; le pilote garde l’ordre et les messages. Une erreur ne modifie ni le stock ni la liste des actions reçue.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "class:Stock",
+      "call:Stock",
+      "try",
+      "raise"
+    ],
+    "id": "pyi-m4-02-e4"
+  }
+]

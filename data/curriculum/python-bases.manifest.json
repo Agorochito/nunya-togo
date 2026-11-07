@@ -407,5 +407,8 @@
   ],
   "estimated_minutes": 440,
   "license": "Contenu original Nunya · brouillon",
-  "runtime": "python"
+  "runtime": "python",
+  "next_courses": [
+    "python-intermediaire"
+  ]
 }

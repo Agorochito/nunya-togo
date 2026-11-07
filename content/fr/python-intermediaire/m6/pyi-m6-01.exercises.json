@@ -1,0 +1,483 @@
+[
+  {
+    "title_fr": "Une comparaison qui rejette un faux total",
+    "instruction_fr": "Écrire total_places(fiches) puis verifier_total(fiches,attendu). Les fiches fournies ont places entier non négatif et attendu est un entier. La fonction de vérification appelle total_places, utilise une vraie assertion d’égalité puis retourne True si elle passe, False si AssertionError. Ne pas modifier les fiches. Utiliser explicitement assert, pas un simple retour constant. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés.",
+    "starter_code": "def total_places(fiches):\n    return sum(fiche['places'] for fiche in fiches)\n\ndef verifier_total(fiches, attendu):\n    obtenu = total_places(fiches)\n    try:\n        assert True, 'total different'\n    except AssertionError:\n        return False\n    return True\n",
+    "solution": "def total_places(fiches):\n    return sum(fiche['places'] for fiche in fiches)\n\ndef verifier_total(fiches, attendu):\n    obtenu = total_places(fiches)\n    try:\n        assert obtenu == attendu, 'total different'\n    except AssertionError:\n        return False\n    return True\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier_total",
+            "args": [
+              [
+                {
+                  "places": 2
+                },
+                {
+                  "places": 0
+                }
+              ],
+              2
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "verifier_total",
+            "args": [
+              [
+                {
+                  "places": 2
+                }
+              ],
+              9
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier_total",
+            "args": [
+              [],
+              0
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "verifier_total",
+            "args": [
+              [],
+              1
+            ],
+            "unchanged_args": true,
+            "expected": false
+          },
+          {
+            "name": "verifier_total",
+            "args": [
+              [
+                {
+                  "places": 20
+                },
+                {
+                  "places": 1
+                },
+                {
+                  "places": 3
+                }
+              ],
+              24
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "verifier_total",
+            "args": [
+              [
+                {
+                  "places": 0
+                }
+              ],
+              1
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une assertion doit comparer deux valeurs indépendantes.",
+      "Le contrat demande obtenu égal à attendu, même si attendu est volontairement faux.",
+      "Écris assert obtenu == attendu, puis capture AssertionError pour retourner False."
+    ],
+    "explanation_fr": "Le test de la batterie inclut un faux attendu : il démontre que l’assertion peut réellement échouer. Les règles d’entrée métier restent distinctes.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "assert",
+      "call:total_places"
+    ],
+    "id": "pyi-m6-01-e1",
+    "kind": "guided"
+  },
+  {
+    "title_fr": "Une batterie de remises avec positions d’échec",
+    "instruction_fr": "Écrire calculer_remise(prix,taux)=prix*(100-taux)//100, puis tester_remises(cas). Chaque cas fourni a prix entier>=0, taux entier0..100 et attendu entier. Appeler la fonction, assert obtenu==attendu ; capturer AssertionError et conserver la position1..N. Retourner {reussis:compte,echecs:liste_positions}, sans arrêter aux premières erreurs. Batterie vide valide. Arrondi inférieur en centimes explicitement choisi. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés.",
+    "starter_code": "def calculer_remise(prix, taux):\n    return prix * (100 - taux) // 100\n\ndef tester_remises(cas):\n    reussis = 0\n    echecs = []\n    for numero, exemple in enumerate(cas, start=1):\n        obtenu = calculer_remise(exemple['prix'], exemple['taux'])\n        try:\n            assert obtenu >= 0, 'prix different'\n        except AssertionError:\n            echecs.append(numero)\n        else:\n            reussis += 1\n    return {'reussis':reussis, 'echecs':echecs}\n",
+    "solution": "def calculer_remise(prix, taux):\n    return prix * (100 - taux) // 100\n\ndef tester_remises(cas):\n    reussis = 0\n    echecs = []\n    for numero, exemple in enumerate(cas, start=1):\n        obtenu = calculer_remise(exemple['prix'], exemple['taux'])\n        try:\n            assert obtenu == exemple['attendu'], 'prix different'\n        except AssertionError:\n            echecs.append(numero)\n        else:\n            reussis += 1\n    return {'reussis':reussis, 'echecs':echecs}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tester_remises",
+            "args": [
+              [
+                {
+                  "prix": 1000,
+                  "taux": 0,
+                  "attendu": 1000
+                },
+                {
+                  "prix": 101,
+                  "taux": 50,
+                  "attendu": 51
+                },
+                {
+                  "prix": 1000,
+                  "taux": 100,
+                  "attendu": 0
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "reussis": 2,
+              "echecs": [
+                2
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tester_remises",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "reussis": 0,
+              "echecs": []
+            }
+          },
+          {
+            "name": "tester_remises",
+            "args": [
+              [
+                {
+                  "prix": 0,
+                  "taux": 20,
+                  "attendu": 1
+                },
+                {
+                  "prix": 300,
+                  "taux": 25,
+                  "attendu": 225
+                },
+                {
+                  "prix": 99,
+                  "taux": 100,
+                  "attendu": 99
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "reussis": 1,
+              "echecs": [
+                1,
+                3
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un prix positif peut quand même être faux.",
+      "Le résultat doit être comparé à la valeur attendue du cas courant.",
+      "Utilise assert obtenu == exemple['attendu'] et ajoute le numéro au bon endroit."
+    ],
+    "explanation_fr": "La batterie doit distinguer un calcul plausible d’un calcul exact. Les positions rendent les diagnostics utiles sans modifier les cas fournis.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "assert",
+      "call:calculer_remise"
+    ],
+    "id": "pyi-m6-01-e2",
+    "kind": "practice"
+  },
+  {
+    "title_fr": "Une copie avant le tri, pas un alias",
+    "instruction_fr": "Écrire auditer_tri(fiches,en_place). Fiches plates nom/places valides ; en_place booléen. Copier les fiches dans travail pour préserver l’argument. Créer une copie indépendante avant. Si en_place, trier travail par places croissantes ; sinon utiliser sorted. Avec assert travail==avant, déterminer intact ; capturer AssertionError et retourner {noms:ordre_tri,intact:bool}. Un tri qui ne change effectivement rien est intact=True, même en place. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés.",
+    "starter_code": "def auditer_tri(fiches, en_place):\n    travail = [dict(fiche) for fiche in fiches]\n    avant = travail\n    if en_place:\n        travail.sort(key=lambda fiche: fiche['places'])\n        resultat = travail\n    else:\n        resultat = sorted(travail, key=lambda fiche: fiche['places'])\n    try:\n        assert travail == avant, 'source modifiee'\n    except AssertionError:\n        intact = False\n    else:\n        intact = True\n    return {'noms':[fiche['nom'] for fiche in resultat], 'intact':intact}\n",
+    "solution": "def auditer_tri(fiches, en_place):\n    travail = [dict(fiche) for fiche in fiches]\n    avant = [dict(fiche) for fiche in travail]\n    if en_place:\n        travail.sort(key=lambda fiche: fiche['places'])\n        resultat = travail\n    else:\n        resultat = sorted(travail, key=lambda fiche: fiche['places'])\n    try:\n        assert travail == avant, 'source modifiee'\n    except AssertionError:\n        intact = False\n    else:\n        intact = True\n    return {'noms':[fiche['nom'] for fiche in resultat], 'intact':intact}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "auditer_tri",
+            "args": [
+              [
+                {
+                  "nom": "A",
+                  "places": 3
+                },
+                {
+                  "nom": "B",
+                  "places": 1
+                }
+              ],
+              true
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "noms": [
+                "B",
+                "A"
+              ],
+              "intact": false
+            }
+          },
+          {
+            "name": "auditer_tri",
+            "args": [
+              [
+                {
+                  "nom": "A",
+                  "places": 3
+                },
+                {
+                  "nom": "B",
+                  "places": 1
+                }
+              ],
+              false
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "noms": [
+                "B",
+                "A"
+              ],
+              "intact": true
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "auditer_tri",
+            "args": [
+              [],
+              true
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "noms": [],
+              "intact": true
+            }
+          },
+          {
+            "name": "auditer_tri",
+            "args": [
+              [
+                {
+                  "nom": "Z",
+                  "places": 0
+                },
+                {
+                  "nom": "Y",
+                  "places": 0
+                }
+              ],
+              true
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "noms": [
+                "Z",
+                "Y"
+              ],
+              "intact": true
+            }
+          },
+          {
+            "name": "auditer_tri",
+            "args": [
+              [
+                {
+                  "nom": "C",
+                  "places": 20
+                },
+                {
+                  "nom": "B",
+                  "places": 2
+                },
+                {
+                  "nom": "A",
+                  "places": 1
+                }
+              ],
+              true
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "noms": [
+                "A",
+                "B",
+                "C"
+              ],
+              "intact": false
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Deux noms d’une même liste changent ensemble.",
+      "Avant doit conserver l’état observé avant l’opération.",
+      "Crée avant = [dict(fiche) for fiche in travail], puis compare après le tri."
+    ],
+    "explanation_fr": "Le débogage montre pourquoi une preuve de non-mutation a besoin d’un instantané indépendant. Les arguments restent inchangés, car l’opération travaille sur une autre liste.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "assert"
+    ],
+    "id": "pyi-m6-01-e3",
+    "kind": "debug"
+  },
+  {
+    "title_fr": "Tester des valeurs et des refus d’import",
+    "instruction_fr": "Écrire une batterie autonome tester_imports(cas), avec lire_noms_json de M5-01 inclus et import json. Chaque cas a texte str et soit attendu=list_noms, soit erreur=True. Appeler réellement lire_noms_json ; un ValueError est correct seulement pour erreur=True, un succès seulement sans erreur et avec obtenu==attendu. Une vraie assertion vérifie ce booléen ; capturer AssertionError pour retourner {reussis:N,echecs:positions1..N}. Ne pas capturer d’autres erreurs de programmation. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés.",
+    "starter_code": "import json\n\ndef decoder_json(texte):\n    if type(texte) is not str:\n        raise TypeError('texte attendu')\n    try:\n        return json.loads(texte)\n    except json.JSONDecodeError:\n        raise ValueError('JSON invalide')\ndef lire_noms_json(texte):\n    donnees = decoder_json(texte)\n    if type(donnees) is not list:\n        raise ValueError('liste attendue')\n    resultat = []\n    for nom in donnees:\n        if type(nom) is not str or not nom.strip():\n            raise ValueError('nom invalide')\n        resultat.append(nom.strip())\n    return resultat\ndef tester_imports(cas):\n    reussis = 0\n    echecs = []\n    for numero, exemple in enumerate(cas, start=1):\n        try:\n            obtenu = lire_noms_json(exemple['texte'])\n        except ValueError:\n            correct = exemple.get('erreur', False)\n        else:\n            correct = not exemple.get('erreur', False) and obtenu == exemple['attendu']\n        try:\n            assert True, 'contrat non respecte'\n        except AssertionError:\n            echecs.append(numero)\n        else:\n            reussis += 1\n    return {'reussis':reussis, 'echecs':echecs}\n",
+    "solution": "import json\n\ndef decoder_json(texte):\n    if type(texte) is not str:\n        raise TypeError('texte attendu')\n    try:\n        return json.loads(texte)\n    except json.JSONDecodeError:\n        raise ValueError('JSON invalide')\ndef lire_noms_json(texte):\n    donnees = decoder_json(texte)\n    if type(donnees) is not list:\n        raise ValueError('liste attendue')\n    resultat = []\n    for nom in donnees:\n        if type(nom) is not str or not nom.strip():\n            raise ValueError('nom invalide')\n        resultat.append(nom.strip())\n    return resultat\ndef tester_imports(cas):\n    reussis = 0\n    echecs = []\n    for numero, exemple in enumerate(cas, start=1):\n        try:\n            obtenu = lire_noms_json(exemple['texte'])\n        except ValueError:\n            correct = exemple.get('erreur', False)\n        else:\n            correct = not exemple.get('erreur', False) and obtenu == exemple['attendu']\n        try:\n            assert correct, 'contrat non respecte'\n        except AssertionError:\n            echecs.append(numero)\n        else:\n            reussis += 1\n    return {'reussis':reussis, 'echecs':echecs}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tester_imports",
+            "args": [
+              [
+                {
+                  "texte": "[\" Afi \"]",
+                  "attendu": [
+                    "Afi"
+                  ]
+                },
+                {
+                  "texte": "[",
+                  "erreur": true
+                },
+                {
+                  "texte": "[\"Ko\"]",
+                  "attendu": [
+                    "Autre"
+                  ]
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "reussis": 2,
+              "echecs": [
+                3
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tester_imports",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "reussis": 0,
+              "echecs": []
+            }
+          },
+          {
+            "name": "tester_imports",
+            "args": [
+              [
+                {
+                  "texte": "[]",
+                  "attendu": []
+                },
+                {
+                  "texte": "{}",
+                  "attendu": []
+                },
+                {
+                  "texte": "[\"X\"]",
+                  "erreur": true
+                },
+                {
+                  "texte": "[1]",
+                  "erreur": true
+                },
+                {
+                  "texte": "[\"École\",\"École\"]",
+                  "attendu": [
+                    "École",
+                    "École"
+                  ]
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "reussis": 3,
+              "echecs": [
+                2,
+                3
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Réussite de parsing et réussite du test ne sont pas toujours la même chose.",
+      "Le booléen correct tient déjà compte de l’issue attendue.",
+      "Vérifie assert correct puis compte seulement les assertions passées."
+    ],
+    "explanation_fr": "Le mini-projet teste un contrat à deux issues. Des attentes volontairement incompatibles prouvent que les refus et les valeurs sont réellement contrôlés.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:json",
+      "assert",
+      "call:lire_noms_json"
+    ],
+    "id": "pyi-m6-01-e4",
+    "kind": "project"
+  }
+]

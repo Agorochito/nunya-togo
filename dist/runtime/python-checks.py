@@ -29,7 +29,16 @@ def nunya_run(code,cases,constructs=None):
  results=[]
  try:
   tree=ast.parse(code)
-  constructs_passed=all(any(isinstance(n,ast.Call) and isinstance(n.func,ast.Name) and n.func.id==rule[5:] for n in ast.walk(tree)) if rule.startswith('call:') else any(isinstance(n,ast.JoinedStr) for n in ast.walk(tree)) if rule=='fstring' else False for rule in (constructs or []))
+  nodes=list(ast.walk(tree))
+  def has_construct(rule):
+   if rule.startswith('call:'):return any(isinstance(n,ast.Call) and isinstance(n.func,ast.Name) and n.func.id==rule[5:] for n in nodes)
+   if rule.startswith('class:'):return any(isinstance(n,ast.ClassDef) and n.name==rule[6:] for n in nodes)
+   if rule.startswith('import:'):
+    module=rule[7:]
+    return any(isinstance(n,ast.Import) and any(a.name==module for a in n.names) or isinstance(n,ast.ImportFrom) and n.module==module for n in nodes)
+   kind={'fstring':ast.JoinedStr,'listcomp':ast.ListComp,'dictcomp':ast.DictComp,'setcomp':ast.SetComp,'try':ast.Try,'raise':ast.Raise,'assert':ast.Assert}.get(rule)
+   return kind is not None and any(isinstance(n,kind) for n in nodes)
+  constructs_passed=all(has_construct(rule) for rule in (constructs or []))
  except SyntaxError:constructs_passed=False
  for case in cases:
   values=iter(case.get('inputs',[]));buf=_NunyaOutput();old_input=builtins.input;namespace={'__name__':'__main__'}
@@ -41,11 +50,19 @@ def nunya_run(code,cases,constructs=None):
     for assertion in case.get('calls',[]):
      name=assertion['name'];target=namespace.get(name);args=copy.deepcopy(assertion.get('args',[]));before=copy.deepcopy(args)
      if not callable(target):raise AssertionError('La fonction '+name+' est absente ou n’est pas appelable.')
-     actual=target(*args)
-     passed=_nunya_equal(actual,assertion['expected'],assertion.get('tolerance',0))
+     if assertion.get('raises'):
+      try:
+       actual=target(*args);passed=False;description='Aucune exception levée'
+      except Exception as exc:
+       actual=None;description=type(exc).__name__+': '+str(exc)
+       passed=type(exc).__name__==assertion['raises'] and assertion.get('message_contains','') in str(exc)
+      expected='Exception '+assertion['raises']+(' contenant '+repr(assertion['message_contains']) if assertion.get('message_contains') else '')
+     else:
+      actual=target(*args);passed=_nunya_equal(actual,assertion['expected'],assertion.get('tolerance',0))
+      if assertion.get('result_disjoint_args'):passed=passed and not (_nunya_mutable_ids(actual)&_nunya_mutable_ids(args))
+      description=repr(actual);expected=repr(assertion['expected'])
      if assertion.get('unchanged_args'):passed=passed and _nunya_equal(args,before)
-     if assertion.get('result_disjoint_args'):passed=passed and not (_nunya_mutable_ids(actual)&_nunya_mutable_ids(args))
-     checks.append({'name':name,'passed':passed,'actual':repr(actual)[:500],'expected':repr(assertion['expected'])[:500]})
+     checks.append({'name':name,'passed':passed,'actual':description[:500],'expected':expected[:500]})
     for name,constraint in case.get('variables',{}).items():
      actual=namespace.get(name);expected_type={'int':int,'float':float,'str':str,'bool':bool,'list':list,'dict':dict}.get(constraint.get('type'))
      passed=(expected_type is None or type(actual) is expected_type) and _nunya_equal(actual,constraint['value'],constraint.get('tolerance',0))

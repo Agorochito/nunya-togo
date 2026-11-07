@@ -926,8 +926,11 @@
       "estimated_minutes": 1060,
       "license": "Contenu original Nunya · brouillon",
       "runtime": "python",
+      "next_courses": [
+        "python-intermediaire"
+      ],
       "language": "python",
-      "content_revision": "5a4619dadae6",
+      "content_revision": "a952b01eab28",
       "exercise_count": 212,
       "quiz_count": 159
     },
@@ -2448,6 +2451,371 @@
       "quiz_count": 54
     },
     {
+      "id": "python-intermediaire",
+      "title_fr": "Python : construire des outils fiables",
+      "language": "python",
+      "runtime": "python",
+      "level": "intermediaire",
+      "summary_fr": "Approfondis les collections, les fonctions, les exceptions et les objets. Traite JSON et CSV en mémoire, puis construis et teste le bilan d’un club fictif.",
+      "prerequisite_courses": [
+        "python-bases"
+      ],
+      "prerequisites": [
+        "Savoir écrire des fonctions, parcourir listes et dictionnaires et expliquer leurs résultats.",
+        "Le cours Python débutant fournit ces bases ; les flux et formats sont introduits ici sans package externe."
+      ],
+      "outcomes": [
+        "Choisir des collections et construire des transformations lisibles.",
+        "Éviter les défauts mutables et les modifications inattendues.",
+        "Définir des contrats de validation avec des exceptions ciblées.",
+        "Construire des objets avec un état cohérent et indépendant.",
+        "Traiter JSON et CSV en mémoire, avec contrôle des structures et des données.",
+        "Tester les cas limites et produire un bilan reproductible."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Collections structurées",
+          "outcome_fr": "Manipuler tuples, ensembles et compréhensions.",
+          "lesson_ids": [
+            "pyi-m1-01",
+            "pyi-m1-02",
+            "pyi-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Fonctions et copies fiables",
+          "outcome_fr": "Choisir des paramètres et préserver les données.",
+          "lesson_ids": [
+            "pyi-m2-01",
+            "pyi-m2-02",
+            "pyi-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Erreurs et validation",
+          "outcome_fr": "Distinguer valeur invalide, exception et compte rendu.",
+          "lesson_ids": [
+            "pyi-m3-01",
+            "pyi-m3-02",
+            "pyi-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Objets et invariants",
+          "outcome_fr": "Composer des instances cohérentes et indépendantes.",
+          "lesson_ids": [
+            "pyi-m4-01",
+            "pyi-m4-02",
+            "pyi-m4-03"
+          ]
+        },
+        {
+          "id": "m5",
+          "title_fr": "JSON et CSV en mémoire",
+          "outcome_fr": "Lire, vérifier et produire des formats d’échange.",
+          "lesson_ids": [
+            "pyi-m5-01",
+            "pyi-m5-02",
+            "pyi-m5-03"
+          ]
+        },
+        {
+          "id": "m6",
+          "title_fr": "Tests et projet de bilan",
+          "outcome_fr": "Éprouver les contrats et assembler un outil de club fictif.",
+          "lesson_ids": [
+            "pyi-m6-01",
+            "pyi-m6-02",
+            "pyi-m6-03"
+          ]
+        }
+      ],
+      "later_modules": [],
+      "availability": "programme-redige",
+      "status": "brouillon",
+      "reviewer": null,
+      "depth_fr": "Première série intermédiaire : outils Python synchrones, formats mémoire et tests. Les applications web, la concurrence et les niveaux avancés restent à développer.",
+      "replaces_plans": [
+        "python-projets"
+      ],
+      "lessons": [
+        {
+          "id": "pyi-m1-01",
+          "title_fr": "Nommer une structure et numéroter son parcours",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "py-m12-03"
+          ],
+          "tags": [
+            "tuple",
+            "déballage",
+            "enumerate",
+            "contrat positionnel"
+          ]
+        },
+        {
+          "id": "pyi-m1-02",
+          "title_fr": "Comparer des ensembles sans conserver les doublons",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "pyi-m1-01"
+          ],
+          "tags": [
+            "ensemble",
+            "intersection",
+            "union",
+            "différence"
+          ]
+        },
+        {
+          "id": "pyi-m1-03",
+          "title_fr": "Construire une collection par compréhension lisible",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "pyi-m1-02"
+          ],
+          "tags": [
+            "compréhension de liste",
+            "compréhension de dictionnaire",
+            "filtre",
+            "transformation"
+          ]
+        },
+        {
+          "id": "pyi-m2-01",
+          "title_fr": "Définir des options sans partager un défaut mutable",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "pyi-m1-03"
+          ],
+          "tags": [
+            "valeur par défaut",
+            "argument nommé",
+            "défaut mutable",
+            "marqueur None"
+          ]
+        },
+        {
+          "id": "pyi-m2-02",
+          "title_fr": "Trier par une clé sans modifier la source",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "pyi-m2-01"
+          ],
+          "tags": [
+            "fonction clé",
+            "lambda",
+            "tri stable",
+            "critères lexicographiques"
+          ]
+        },
+        {
+          "id": "pyi-m2-03",
+          "title_fr": "Transformer sans modifier et copier les niveaux utiles",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "pyi-m2-02"
+          ],
+          "tags": [
+            "fonction pure",
+            "alias",
+            "copie superficielle",
+            "indépendance mutable"
+          ]
+        },
+        {
+          "id": "pyi-m3-01",
+          "title_fr": "Convertir un texte et traiter ValueError",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "pyi-m2-03"
+          ],
+          "tags": [
+            "exceptions",
+            "try",
+            "ValueError",
+            "conversion"
+          ]
+        },
+        {
+          "id": "pyi-m3-02",
+          "title_fr": "Définir un contrat et lever une exception",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "pyi-m3-01"
+          ],
+          "tags": [
+            "contrat",
+            "raise",
+            "TypeError",
+            "validation"
+          ]
+        },
+        {
+          "id": "pyi-m3-03",
+          "title_fr": "Séparer lecture, validation et calcul",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "pyi-m3-02"
+          ],
+          "tags": [
+            "composition",
+            "validation",
+            "rapport",
+            "exceptions"
+          ]
+        },
+        {
+          "id": "pyi-m4-01",
+          "title_fr": "Construire des instances indépendantes",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "pyi-m3-03"
+          ],
+          "tags": [
+            "classes",
+            "__init__",
+            "self",
+            "instances",
+            "copies"
+          ]
+        },
+        {
+          "id": "pyi-m4-02",
+          "title_fr": "Protéger l’état avec des méthodes",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "pyi-m4-01"
+          ],
+          "tags": [
+            "méthodes",
+            "invariants",
+            "mutation",
+            "exceptions"
+          ]
+        },
+        {
+          "id": "pyi-m4-03",
+          "title_fr": "Composer un petit catalogue d’objets",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "pyi-m4-02"
+          ],
+          "tags": [
+            "composition",
+            "catalogue",
+            "identifiants",
+            "projet",
+            "KeyError"
+          ]
+        },
+        {
+          "id": "pyi-m5-01",
+          "title_fr": "Lire et produire du JSON sans oublier le contrat",
+          "module": "m5",
+          "minutes": 20,
+          "prerequisites": [
+            "pyi-m4-03"
+          ],
+          "tags": [
+            "JSON",
+            "schéma",
+            "sérialisation"
+          ]
+        },
+        {
+          "id": "pyi-m5-02",
+          "title_fr": "Lire du CSV avec un vrai flux texte en mémoire",
+          "module": "m5",
+          "minutes": 20,
+          "prerequisites": [
+            "pyi-m5-01"
+          ],
+          "tags": [
+            "CSV",
+            "flux mémoire",
+            "en-tête"
+          ]
+        },
+        {
+          "id": "pyi-m5-03",
+          "title_fr": "Produire un CSV déterministe avec DictWriter",
+          "module": "m5",
+          "minutes": 20,
+          "prerequisites": [
+            "pyi-m5-02"
+          ],
+          "tags": [
+            "DictWriter",
+            "getvalue",
+            "quoting"
+          ]
+        },
+        {
+          "id": "pyi-m6-01",
+          "title_fr": "Écrire des assertions qui peuvent réellement échouer",
+          "module": "m6",
+          "minutes": 20,
+          "prerequisites": [
+            "pyi-m5-03"
+          ],
+          "tags": [
+            "assertion",
+            "cas limite",
+            "instantané"
+          ]
+        },
+        {
+          "id": "pyi-m6-02",
+          "title_fr": "Projet autonome : préparer et importer deux formats",
+          "module": "m6",
+          "minutes": 20,
+          "prerequisites": [
+            "pyi-m6-01"
+          ],
+          "tags": [
+            "adaptateur",
+            "canonique",
+            "conflit d’identité"
+          ]
+        },
+        {
+          "id": "pyi-m6-03",
+          "title_fr": "Projet final : bilan du club et exports vérifiés",
+          "module": "m6",
+          "minutes": 20,
+          "prerequisites": [
+            "pyi-m6-02"
+          ],
+          "tags": [
+            "composition",
+            "aller-retour",
+            "bilan"
+          ]
+        }
+      ],
+      "estimated_minutes": 360,
+      "content_revision": "6213b293aa3d",
+      "exercise_count": 72,
+      "quiz_count": 54
+    },
+    {
       "id": "react-bases",
       "title_fr": "React : des composants à une application interactive",
       "language": "javascript",
@@ -3152,12 +3520,6 @@
     }
   ],
   "plans": [
-    {
-      "id": "python-projets",
-      "title_fr": "Python : pratique et projets",
-      "summary_fr": "Stock, carnet de notes et jeu ; après les bases.",
-      "status": "bientôt"
-    },
     {
       "id": "web-projet",
       "title_fr": "Projet web : ma page personnelle",

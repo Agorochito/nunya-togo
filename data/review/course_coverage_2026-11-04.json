@@ -1,7 +1,7 @@
 {
   "audit_date": "2026-11-04",
   "production_base_commit": "c4c548ba282fb9d00913fd5916f3775c85826b6e",
-  "scope": "État vérifié du premier lot étendu ; la cible de 72 cours sur trois niveaux reste entière.",
+  "scope": "Suivi des programmes rédigés et de la cible de 72 cours sur trois niveaux, encore incomplète.",
   "canonical_existing": {
     "courses": [
       {
@@ -98,6 +98,21 @@
           "docs/INTERACTIVE_CONTENT_RESULTS.json",
           "docs/REACT_UI_RESULTS.json"
         ]
+      },
+      {
+        "id": "python-intermediaire",
+        "modules": 6,
+        "lessons": 18,
+        "code_exercises": 72,
+        "quizzes": 54,
+        "estimated_minutes": 360,
+        "status": "brouillon",
+        "scope": "Série intermédiaire distincte : collections, fonctions, exceptions, objets, JSON/CSV, tests et projet de club ; relecture humaine nécessaire.",
+        "evidence": [
+          "docs/PYTHON_INTERMEDIATE_NATIVE_RESULTS.json",
+          "docs/PYTHON_INTERMEDIATE_ENGINE_RESULTS.json",
+          "docs/PYTHON_INTERMEDIATE_UI_RESULTS.json"
+        ]
       }
     ]
   },
@@ -122,9 +137,12 @@
       "family": "PY",
       "level": "intermediaire",
       "target_title": "Python — écrire des applications structurées",
-      "status": "a_construire",
-      "evidence": [],
-      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+      "status": "premiere_serie_redigee_a_relire",
+      "evidence": [
+        "content/fr/python-intermediaire/",
+        "docs/PYTHON_INTERMEDIATE_ENGINE_RESULTS.json"
+      ],
+      "next_action": "Faire relire les 18 leçons et tester avec des élèves ; poursuivre le niveau avancé distinct."
     },
     {
       "id": "py-avance",
@@ -800,7 +818,7 @@
     "Objets connectés et robotique",
     "Blockchain"
   ],
-  "updated_for_release": "5.7.0",
+  "updated_for_release": "5.8.0",
   "updated_at": "2026-11-06",
   "additional_implemented": [
     {

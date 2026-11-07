@@ -1,0 +1,487 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Ajouter un nom dans une liste indépendante",
+    "instruction_fr": "Écris ajouter_nom(nom, noms=None). Sans noms, crée une nouvelle liste vide ; sinon copie la liste de textes fournie avec list. Ajoute nom et retourne cette nouvelle liste. Chaque appel sans liste doit être indépendant. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def ajouter_nom(nom, noms=[]):\n    noms.append(nom)\n    return noms",
+    "solution": "def ajouter_nom(nom, noms=None):\n    if noms is None:\n        resultat = []\n    else:\n        resultat = list(noms)\n    resultat.append(nom)\n    return resultat",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ajouter_nom",
+            "args": [
+              "Lecture"
+            ],
+            "expected": [
+              "Lecture"
+            ],
+            "unchanged_args": true
+          },
+          {
+            "name": "ajouter_nom",
+            "args": [
+              "Jardin"
+            ],
+            "expected": [
+              "Jardin"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ajouter_nom",
+            "args": [
+              "Dessin",
+              [
+                "Chant"
+              ]
+            ],
+            "expected": [
+              "Chant",
+              "Dessin"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ajouter_nom",
+            "args": [
+              "A"
+            ],
+            "expected": [
+              "A"
+            ],
+            "unchanged_args": true
+          },
+          {
+            "name": "ajouter_nom",
+            "args": [
+              "A"
+            ],
+            "expected": [
+              "A"
+            ],
+            "unchanged_args": true
+          },
+          {
+            "name": "ajouter_nom",
+            "args": [
+              "B"
+            ],
+            "expected": [
+              "B"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ajouter_nom",
+            "args": [
+              "Fin",
+              []
+            ],
+            "expected": [
+              "Fin"
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le défaut [] est créé une seule fois par définition.",
+      "Utilise None, puis distingue absence et liste fournie.",
+      "Crée [] dans la première branche et list(noms) dans la seconde avant append."
+    ],
+    "explanation_fr": "Les appels successifs détectent le partage du défaut et le cas explicite détecte la mutation de l’argument.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "call:list"
+    ],
+    "id": "pyi-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Transmettre des options par leur nom",
+    "instruction_fr": "Écris creer_fiche(titre, ville=\"Lomé\", places=0), qui retourne titre, ville et places dans un dictionnaire. Écris depuis_options(titre, options), où options possède ville et places. Cette seconde fonction doit appeler explicitement creer_fiche avec titre positionnel puis places et ville nommés. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def creer_fiche(titre, ville=\"Lomé\", places=0):\n    return {\"titre\": titre, \"ville\": ville, \"places\": places}\n\n\ndef depuis_options(titre, options):\n    return creer_fiche(titre)",
+    "solution": "def creer_fiche(titre, ville=\"Lomé\", places=0):\n    return {\"titre\": titre, \"ville\": ville, \"places\": places}\n\n\ndef depuis_options(titre, options):\n    return creer_fiche(\n        titre,\n        places=options[\"places\"],\n        ville=options[\"ville\"],\n    )",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "creer_fiche",
+            "args": [
+              "Lecture"
+            ],
+            "expected": {
+              "titre": "Lecture",
+              "ville": "Lomé",
+              "places": 0
+            },
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "depuis_options",
+            "args": [
+              "Jardin",
+              {
+                "ville": "Kara",
+                "places": 4
+              }
+            ],
+            "expected": {
+              "titre": "Jardin",
+              "ville": "Kara",
+              "places": 4
+            },
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "depuis_options",
+            "args": [
+              "Chant",
+              {
+                "ville": "Sokodé",
+                "places": 0
+              }
+            ],
+            "expected": {
+              "titre": "Chant",
+              "ville": "Sokodé",
+              "places": 0
+            },
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "creer_fiche",
+            "args": [
+              "Dessin",
+              "Kpalimé"
+            ],
+            "expected": {
+              "titre": "Dessin",
+              "ville": "Kpalimé",
+              "places": 0
+            },
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La fonction de base définit les défauts ; le relais fournit les options présentes.",
+      "Les noms ville= et places= précisent le paramètre de chaque valeur.",
+      "Retourne creer_fiche(titre, places=options[\"places\"], ville=options[\"ville\"])."
+    ],
+    "explanation_fr": "Une option fournie remplace son défaut, y compris lorsque sa valeur vaut zéro.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "call:creer_fiche"
+    ],
+    "id": "pyi-m2-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Retirer un dictionnaire par défaut partagé",
+    "instruction_fr": "Répare incrementer(categorie, comptes=None). Retourne un nouveau dictionnaire associant categorie à son ancien compte +1, avec toutes les autres clés conservées. Les comptes sont des entiers positifs ou nuls. Sans comptes, chaque appel commence à vide. Une copie dict(comptes) suffit ici, car les valeurs sont des nombres. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def incrementer(categorie, comptes={}):\n    comptes[categorie] = comptes.get(categorie, 0) + 1\n    return comptes",
+    "solution": "def incrementer(categorie, comptes=None):\n    if comptes is None:\n        resultat = {}\n    else:\n        resultat = dict(comptes)\n    resultat[categorie] = resultat.get(categorie, 0) + 1\n    return resultat",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "incrementer",
+            "args": [
+              "A"
+            ],
+            "expected": {
+              "A": 1
+            },
+            "unchanged_args": true
+          },
+          {
+            "name": "incrementer",
+            "args": [
+              "B"
+            ],
+            "expected": {
+              "B": 1
+            },
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "incrementer",
+            "args": [
+              "A",
+              {
+                "A": 2,
+                "B": 4
+              }
+            ],
+            "expected": {
+              "A": 3,
+              "B": 4
+            },
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "incrementer",
+            "args": [
+              "A"
+            ],
+            "expected": {
+              "A": 1
+            },
+            "unchanged_args": true
+          },
+          {
+            "name": "incrementer",
+            "args": [
+              "A"
+            ],
+            "expected": {
+              "A": 1
+            },
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "incrementer",
+            "args": [
+              "",
+              {}
+            ],
+            "expected": {
+              "": 1
+            },
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le dictionnaire par défaut et un dictionnaire reçu ne doivent pas être modifiés.",
+      "Utilise None puis une nouvelle collection de travail.",
+      "Copie avec dict lorsque l’argument est présent, puis mets à jour seulement le résultat."
+    ],
+    "explanation_fr": "Le texte vide est une catégorie permise ; aucune suppression implicite n’est demandée.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "call:dict"
+    ],
+    "id": "pyi-m2-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Préparer un catalogue avec options facultatives",
+    "instruction_fr": "Écris creer_fiche(titre, ville=\"Lomé\", places=0), puis catalogue(titres, options). Pour chaque titre, catalogue appelle creer_fiche avec arguments ville et places nommés. options peut manquer ces clés : utilise alors Lomé et 0. Retourne la liste dans l’ordre, doublons conservés. Les valeurs présentes, même \"\" ou 0, sont conservées. Écris les fonctions sans print. Les arguments doivent rester inchangés.",
+    "starter_code": "def creer_fiche(titre, ville=\"Lomé\", places=0):\n    return {\"titre\": titre, \"ville\": ville, \"places\": places}\n\n\ndef catalogue(titres, options):\n    return []",
+    "solution": "def creer_fiche(titre, ville=\"Lomé\", places=0):\n    return {\"titre\": titre, \"ville\": ville, \"places\": places}\n\n\ndef catalogue(titres, options):\n    resultat = []\n    for titre in titres:\n        resultat.append(creer_fiche(\n            titre,\n            places=options.get(\"places\", 0),\n            ville=options.get(\"ville\", \"Lomé\"),\n        ))\n    return resultat",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "catalogue",
+            "args": [
+              [
+                "Lecture",
+                "Jardin"
+              ],
+              {
+                "ville": "Kara",
+                "places": 2
+              }
+            ],
+            "expected": [
+              {
+                "titre": "Lecture",
+                "ville": "Kara",
+                "places": 2
+              },
+              {
+                "titre": "Jardin",
+                "ville": "Kara",
+                "places": 2
+              }
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "catalogue",
+            "args": [
+              [],
+              {}
+            ],
+            "expected": [],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "catalogue",
+            "args": [
+              [
+                "Même",
+                "Même"
+              ],
+              {}
+            ],
+            "expected": [
+              {
+                "titre": "Même",
+                "ville": "Lomé",
+                "places": 0
+              },
+              {
+                "titre": "Même",
+                "ville": "Lomé",
+                "places": 0
+              }
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "catalogue",
+            "args": [
+              [
+                "Chant"
+              ],
+              {
+                "ville": "",
+                "places": 0
+              }
+            ],
+            "expected": [
+              {
+                "titre": "Chant",
+                "ville": "",
+                "places": 0
+              }
+            ],
+            "unchanged_args": true
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "catalogue",
+            "args": [
+              [
+                "Dessin"
+              ],
+              {
+                "places": 5
+              }
+            ],
+            "expected": [
+              {
+                "titre": "Dessin",
+                "ville": "Lomé",
+                "places": 5
+              }
+            ],
+            "unchanged_args": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le dictionnaire options n’est pas un stock à compléter sur place.",
+      "get distingue clé absente et valeur présente.",
+      "Dans la boucle, appelle creer_fiche en nommant chaque option issue de get."
+    ],
+    "explanation_fr": "Le catalogue compose une API de fonction avec des options sans modifier les données d’entrée.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "call:creer_fiche"
+    ],
+    "id": "pyi-m2-01-e4"
+  }
+]

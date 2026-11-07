@@ -8,19 +8,22 @@ Apprendre en français, à son rythme, même hors connexion : coder depuis zéro
 
 ## État du projet
 
-Pilote en cours ; version 5.7. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
+Pilote en cours ; version 5.8. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
 
 ## Ce que propose Nunya
 
 - **Apprendre à coder**
   - *Découverte du numérique* (niveau 0, 20 leçons) ;
   - *Python : les bases* (12 modules, 53 leçons, 212 exercices) ;
+  - *Python intermédiaire* (6 modules, 18 leçons, 72 exercices) : collections, exceptions, objets, JSON/CSV et projet ;
    - HTML et CSS (12 leçons, 48 exercices chacun), JavaScript (24 leçons, 96 exercices), HTTP/API (12 leçons, 48 exercices) ;
    - Git/GitHub (12 leçons, 48 activités, dont 32 ateliers Git locaux) ;
    - SQL (18 leçons, 72 exercices) avec SQLite réel et tableaux de résultats ;
    - JavaScript DOM (18 leçons, 72 exercices) : événements, formulaires et interfaces ;
    - React (18 leçons, 72 exercices) : composants, état, effets et projet interactif ;
   - le code s’exécute dans le navigateur, et l’élève a des indices gradués et des erreurs expliquées.
+- **Parcours entre technologies** : front-end, analyse de données, fondations back-end et prérequis cybersécurité. Changer d’objectif conserve les brouillons et les positions de chaque cours.
+- **Fiches de lecture HTML** : une leçon ou un cours, téléchargeables et imprimables sans connexion ; l’exécution du code reste dans Nunya.
 - **Mes cours & examens** : révisions par classe et liens vers 492 documents officiels d’examen (CEPD, BEPC, BAC), consultés depuis leur source.
 - **Mon avenir** : 15 parcours dans 13 domaines, 43 fiches métiers, études à l’étranger et opportunités.
 - **Bibliothèque**

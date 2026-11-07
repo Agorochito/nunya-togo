@@ -1,4 +1,4 @@
-# Couverture des cours — livraison 5.7.0, 6 novembre 2026
+# Couverture des cours — livraison 5.8.0, 7 novembre 2026
 
 Le prompt maître impose une réalisation par lots, avec une cible finale de 72 cours répartis sur trois niveaux et des séries complémentaires. Cette livraison ne termine pas cette cible. L’audit initial est conservé dans [BASELINE_COURSE_AUDIT_5.2.1.md](BASELINE_COURSE_AUDIT_5.2.1.md).
 
@@ -7,6 +7,7 @@ Le prompt maître impose une réalisation par lots, avec une cible finale de 72 
 | Programme | Modules | Leçons | Exercices | Périmètre |
 |---|---:|---:|---:|---|
 | Python : les bases | 12 | 53 | 212 | Contenu original rédigé ; relecture pédagogique en cours. |
+| Python intermédiaire : construire et traiter des données | 6 | 18 | 72 | Collections, fonctions, exceptions, objets, JSON/CSV et projet original ; relecture en cours. |
 | CSS : premières interfaces | 4 | 12 | 48 | Contenu original rédigé ; relecture pédagogique en cours. |
 | HTML : premières pages accessibles | 4 | 12 | 48 | Contenu original rédigé ; relecture pédagogique en cours. |
 | JavaScript : les fondamentaux en pratique | 8 | 24 | 96 | Socle synchrone de console rédigé, jusqu’au projet final ; relecture pédagogique en cours. |
@@ -15,7 +16,7 @@ Le prompt maître impose une réalisation par lots, avec une cible finale de 72 
 | JavaScript : interfaces DOM | 6 | 18 | 72 | DOM natif, événements, formulaires, recherche/tri et projet ; contenu à relire. |
 | React : composants et application interactive | 6 | 18 | 72 | React/ReactDOM réels, JSX, état, formulaires, effets et service de démonstration simulé ; contenu à relire. |
 
-Huit programmes principaux :50modules,167leçons,668exercices et501QCM. Git/GitHub et Découverte sont comptés séparément ci-dessous. DOM est une suite intermédiaire aux fondamentaux JavaScript ; ce cours ne prétend pas couvrir à lui seul tout le niveau intermédiaire.
+Neuf programmes principaux : 56 modules, 185 leçons, 740 exercices et 555 QCM. Git/GitHub et Découverte sont comptés séparément ci-dessous. DOM est une suite intermédiaire aux fondamentaux JavaScript ; ce cours ne prétend pas couvrir à lui seul tout le niveau intermédiaire.
 
 Les leçons possèdent chacune 300–700 mots d’explication, deux exemples commentés, quatre exercices, trois questions de compréhension, des erreurs fréquentes, un glossaire et un récapitulatif. Elles sont des brouillons originaux : aucun enseignant réviseur, partenariat ou certificat externe n’est inventé. Les 22 chapitres Python antérieurs, leurs identifiants et leurs questions de fin de chapitre restent conservés.
 
@@ -29,9 +30,9 @@ Le socle HTTP/API utilise le vrai fetch et les vrais objets Request/Response d�
 
 ## Ce qui reste à construire
 
-SQL possède maintenant le socle progressif de 18 leçons décrit ci-dessus, incluant une première approche des jointures et transactions. Ce contenu ne remplace pas des niveaux intermédiaire et avancé distincts. Git/GitHub dispose désormais du socle débutant décrit ci-dessus, sans niveau intermédiaire ou avancé annoncé. Node.js et les autres familles ne possèdent pas encore leurs cours complets. Aucun cours intermédiaire ou avancé complet n’est annoncé comme disponible. Le socle JavaScript synchrone est rédigé ; DOM, événements et asynchronisme appartiennent à une suite distincte.
+SQL possède maintenant le socle progressif de 18 leçons décrit ci-dessus, incluant une première approche des jointures et transactions. Ce contenu ne remplace pas des niveaux intermédiaire et avancé distincts. Git/GitHub dispose désormais du socle débutant décrit ci-dessus, sans niveau intermédiaire ou avancé annoncé. Node.js et les autres familles ne possèdent pas encore leurs cours complets. Python dispose maintenant d’une série intermédiaire distincte, décrite ci-dessus ; ses 18 leçons restent en relecture. Aucun niveau avancé n’est annoncé terminé. Le socle JavaScript synchrone est rédigé ; DOM, événements et asynchronisme appartiennent à une suite distincte.
 
-La suite doit produire les séries DOM, événements, TypeScript, React, asynchronisme approfondi et Node.js après leurs prérequis et avec un moteur réel adapté. Les niveaux intermédiaire et avancé doivent avoir leurs propres leçons, projets et évaluations ; une sélection de niveau ne doit pas réutiliser artificiellement le même contenu. Les autres familles restent suivies dans la matrice JSON de 72 entrées, avec les 20 séries complémentaires. Aucun cours vide n’est ajouté pour augmenter le compteur.
+La suite doit approfondir les séries DOM et React, et produire TypeScript, asynchronisme approfondi et Node.js après leurs prérequis et avec un moteur réel adapté. Les niveaux intermédiaire et avancé doivent avoir leurs propres leçons, projets et évaluations ; une sélection de niveau ne doit pas réutiliser artificiellement le même contenu. Les autres familles restent suivies dans la matrice JSON de 72 entrées, avec les 20 séries complémentaires. Aucun cours vide n’est ajouté pour augmenter le compteur.
 
 ## Vérifications et limites
 
@@ -39,11 +40,11 @@ La suite doit produire les séries DOM, événements, TypeScript, React, asynchr
 - HTTP : 162 cas de référence, 48 solutions acceptées et 48 codes de départ rejetés, 24 exemples. API froide hors ligne, AbortController, erreur réseau, refus d’une URL Request masquée et import externe bloqué par CSP vérifiés. Les 12 leçons, 48 exercices et 36 questions sont parcourus sur 360 et 1440 px puis repris à froid hors ligne ; axe : zéro violation sur les vues testées. Voir `HTTP_ENGINE_RESULTS.json` et `HTTP_UI_RESULTS.json`.
 - Audit initial de 78 écrans de production avant les changements.
 - SQL : 36 exemples et 176 cas de référence exécutés avec SQLite/sql.js réel ; 72 solutions acceptées, 72 codes de départ et scripts vides rejetés. Arrêt du Worker, résultat vide avec colonnes, erreurs, limite de l’allocateur SQLite et redémarrage à froid hors ligne vérifiés. Voir `SQL_ENGINE_RESULTS.json` et `SQL_UI_RESULTS.json`.
-- 182 tests unitaires ; schémas, ordre des prérequis, propriété des modules et liens internes contrôlés.
-- 743 cas Python en CPython, exemples et solutions ; 274 cas JavaScript dans le même protocole que le Worker.
+- 202 tests unitaires ; schémas, ordre des prérequis, propriété des modules et liens internes contrôlés.
+- 1 022 cas Python en CPython, exemples et solutions ; 274 cas JavaScript dans le même protocole que le Worker.
 - 96 solutions HTML/CSS acceptées et 96 codes de départ rejetés par le vrai vérificateur de navigateur.
 - 42 unités / 182 leçons / 562 questions parcourues sur 360 et 1440 px ; aucun saut vers une leçon suivante avant la fin des questions.
-- Huit séries / 167 leçons affichées ; navigation des exercices et mini-quiz, mauvaise réponse, retour, rechargement, ancien chapitre revu et reprise hors ligne testés. Axe : zéro violation sur les vues de leçon testées, sans prétention de certification complète.
+- Neuf séries / 185 leçons affichées ; navigation des exercices et mini-quiz, mauvaise réponse, retour, rechargement, ancien chapitre revu et reprise hors ligne testés. Axe : zéro violation sur les vues de leçon testées, sans prétention de certification complète.
 - Fonctions Python, absence de mutation/copie, réservation et JavaScript vérifiés dans les vrais Workers. Délai et arrêt JavaScript testés. Les tests sont formatifs, livrés au navigateur ; ils ne sont pas une frontière d’intégrité d’examen.
 
 Les correspondances aux programmes scolaires, la relecture des nouveaux contenus et les essais avec de vrais élèves restent nécessaires. Les ateliers DOM/React sont décrits dans `INTERACTIVE_WORKSHOPS.md` ; leurs rapports distinguent vérification technique et relecture pédagogique. Les contrôles de liens externes sous réseau restreint retournent des liens non confirmés ; cela ne prouve pas que tous les fournisseurs sont joignables. Comptes et synchronisation distante restent hors de ce lot, conformément au choix de conservation locale.

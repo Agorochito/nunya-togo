@@ -1,0 +1,576 @@
+[
+  {
+    "title_fr": "Étape 1 : objets indépendants et bilan",
+    "instruction_fr": "Définir class Atelier et class CatalogueClub, puis bilan_club(fiches) qui construit le catalogue et retourne son bilan primitif. Appliquer toutes les règles de preparer_fiche/valider_catalogue de M6-02, avec mêmes ValueError/messages et bool refusés ; inclure ces fonctions. Bilan exact {ateliers:nombre_fiches,places:somme,ouverts:nombre_places>0}. Données vides : trois zéros. Les instances gardent des valeurs propres sans muter les arguments. Grille : fonctionnement des compteurs et clarté de la composition. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés.",
+    "starter_code": "import json\nimport csv\nfrom io import StringIO\ndef preparer_fiche(fiche):\n    if type(fiche) is not dict:\n        raise ValueError('fiche invalide')\n    if not all(cle in fiche for cle in ['id', 'nom', 'places']):\n        raise ValueError('champs manquants')\n    identifiant = fiche['id']\n    nom = fiche['nom']\n    places = fiche['places']\n    if type(identifiant) is not int or identifiant < 1:\n        raise ValueError('id invalide')\n    if type(nom) is not str or not nom.strip():\n        raise ValueError('nom invalide')\n    if type(places) is not int or not 0 <= places <= 20:\n        raise ValueError('places invalides')\n    return {'id':identifiant, 'nom':nom.strip(), 'places':places}\n\ndef valider_catalogue(fiches):\n    if type(fiches) is not list:\n        raise ValueError('liste attendue')\n    resultat = []\n    identifiants = set()\n    for fiche in fiches:\n        propre = preparer_fiche(fiche)\n        if propre['id'] in identifiants:\n            raise ValueError('identifiant duplique')\n        identifiants.add(propre['id'])\n        resultat.append(propre)\n    return resultat\nclass Atelier:\n    def __init__(self, fiche):\n        propre = preparer_fiche(fiche)\n        self.id = propre['id']\n        self.nom = propre['nom']\n        self.places = propre['places']\n\n    def en_donnees(self):\n        return {'id':self.id, 'nom':self.nom, 'places':self.places}\n\nclass CatalogueClub:\n    def __init__(self, fiches):\n        propres = valider_catalogue(fiches)\n        self.ateliers = [Atelier(fiche) for fiche in propres]\n\n    def en_donnees(self):\n        return [atelier.en_donnees() for atelier in self.ateliers]\n\n    def bilan(self):\n        return {\n            'ateliers':len(self.ateliers),\n            'places':len(self.ateliers),\n            'ouverts':sum(1 for atelier in self.ateliers if atelier.places > 0)\n        }\n\n    def exporter_json(self):\n        donnees = {'ateliers':self.en_donnees(), 'bilan':self.bilan()}\n        return json.dumps(donnees, ensure_ascii=False, separators=(',', ':'))\n\n    def exporter_csv(self):\n        flux = StringIO(newline='')\n        auteur = csv.DictWriter(flux, fieldnames=['id', 'nom', 'places'], delimiter=';', lineterminator='\\n', quoting=csv.QUOTE_ALL)\n        auteur.writeheader()\n        auteur.writerows(self.en_donnees())\n        return flux.getvalue()\ndef bilan_club(fiches):\n    catalogue = CatalogueClub(fiches)\n    return catalogue.bilan()\n",
+    "solution": "import json\nimport csv\nfrom io import StringIO\ndef preparer_fiche(fiche):\n    if type(fiche) is not dict:\n        raise ValueError('fiche invalide')\n    if not all(cle in fiche for cle in ['id', 'nom', 'places']):\n        raise ValueError('champs manquants')\n    identifiant = fiche['id']\n    nom = fiche['nom']\n    places = fiche['places']\n    if type(identifiant) is not int or identifiant < 1:\n        raise ValueError('id invalide')\n    if type(nom) is not str or not nom.strip():\n        raise ValueError('nom invalide')\n    if type(places) is not int or not 0 <= places <= 20:\n        raise ValueError('places invalides')\n    return {'id':identifiant, 'nom':nom.strip(), 'places':places}\n\ndef valider_catalogue(fiches):\n    if type(fiches) is not list:\n        raise ValueError('liste attendue')\n    resultat = []\n    identifiants = set()\n    for fiche in fiches:\n        propre = preparer_fiche(fiche)\n        if propre['id'] in identifiants:\n            raise ValueError('identifiant duplique')\n        identifiants.add(propre['id'])\n        resultat.append(propre)\n    return resultat\nclass Atelier:\n    def __init__(self, fiche):\n        propre = preparer_fiche(fiche)\n        self.id = propre['id']\n        self.nom = propre['nom']\n        self.places = propre['places']\n\n    def en_donnees(self):\n        return {'id':self.id, 'nom':self.nom, 'places':self.places}\n\nclass CatalogueClub:\n    def __init__(self, fiches):\n        propres = valider_catalogue(fiches)\n        self.ateliers = [Atelier(fiche) for fiche in propres]\n\n    def en_donnees(self):\n        return [atelier.en_donnees() for atelier in self.ateliers]\n\n    def bilan(self):\n        return {\n            'ateliers':len(self.ateliers),\n            'places':sum(atelier.places for atelier in self.ateliers),\n            'ouverts':sum(1 for atelier in self.ateliers if atelier.places > 0)\n        }\n\n    def exporter_json(self):\n        donnees = {'ateliers':self.en_donnees(), 'bilan':self.bilan()}\n        return json.dumps(donnees, ensure_ascii=False, separators=(',', ':'))\n\n    def exporter_csv(self):\n        flux = StringIO(newline='')\n        auteur = csv.DictWriter(flux, fieldnames=['id', 'nom', 'places'], delimiter=';', lineterminator='\\n', quoting=csv.QUOTE_ALL)\n        auteur.writeheader()\n        auteur.writerows(self.en_donnees())\n        return flux.getvalue()\ndef bilan_club(fiches):\n    catalogue = CatalogueClub(fiches)\n    return catalogue.bilan()\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_club",
+            "args": [
+              [
+                {
+                  "id": 1,
+                  "nom": " Lecture ",
+                  "places": 4
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "ateliers": 1,
+              "places": 4,
+              "ouverts": 1
+            }
+          },
+          {
+            "name": "bilan_club",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "ateliers": 0,
+              "places": 0,
+              "ouverts": 0
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan_club",
+            "args": [
+              [
+                {
+                  "id": 3,
+                  "nom": "Lecture",
+                  "places": 2
+                },
+                {
+                  "id": 1,
+                  "nom": "Couture",
+                  "places": 0
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "ateliers": 2,
+              "places": 2,
+              "ouverts": 1
+            }
+          },
+          {
+            "name": "bilan_club",
+            "args": [
+              [
+                {
+                  "id": 7,
+                  "nom": "École; jardin",
+                  "places": 20
+                },
+                {
+                  "id": 2,
+                  "nom": "Club \"A\"",
+                  "places": 1
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "ateliers": 2,
+              "places": 21,
+              "ouverts": 2
+            }
+          },
+          {
+            "name": "bilan_club",
+            "args": [
+              [
+                {
+                  "id": 3,
+                  "nom": "Lecture",
+                  "places": 2
+                },
+                {
+                  "id": 3,
+                  "nom": "Lecture",
+                  "places": 2
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "identifiant duplique"
+          },
+          {
+            "name": "bilan_club",
+            "args": [
+              [
+                {
+                  "id": 1,
+                  "nom": "X",
+                  "places": false
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "places invalides"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le nombre d’ateliers n’est pas le nombre de places.",
+      "Chaque instance possède sa propre quantité places.",
+      "Calcule sum(atelier.places for atelier in self.ateliers) pour ce compteur."
+    ],
+    "explanation_fr": "La première étape vérifie le sens de chaque indicateur avant de produire des formats. La composition conserve les invariants et retourne seulement un bilan simple.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "class:Atelier",
+      "class:CatalogueClub"
+    ],
+    "id": "pyi-m6-03-e1",
+    "kind": "guided"
+  },
+  {
+    "title_fr": "Étape 2 : un document JSON compact du club",
+    "instruction_fr": "Avec class Atelier, class CatalogueClub et import json, écrire exporter_club_json(fiches). Mêmes validation/refus que l’étape 1. Retourner JSON compact Unicode, ensure_ascii=False et separators=(virgule,deux-points), contenant d’abord ateliers (fiches id,nom,places canoniques dans l’ordre), puis bilan (ateliers,places,ouverts). Aucun objet de classe ne doit être sérialisé directement. Grille : fonctionnement du format et explication du passage des instances aux valeurs primitives. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés.",
+    "starter_code": "import json\nimport csv\nfrom io import StringIO\ndef preparer_fiche(fiche):\n    if type(fiche) is not dict:\n        raise ValueError('fiche invalide')\n    if not all(cle in fiche for cle in ['id', 'nom', 'places']):\n        raise ValueError('champs manquants')\n    identifiant = fiche['id']\n    nom = fiche['nom']\n    places = fiche['places']\n    if type(identifiant) is not int or identifiant < 1:\n        raise ValueError('id invalide')\n    if type(nom) is not str or not nom.strip():\n        raise ValueError('nom invalide')\n    if type(places) is not int or not 0 <= places <= 20:\n        raise ValueError('places invalides')\n    return {'id':identifiant, 'nom':nom.strip(), 'places':places}\n\ndef valider_catalogue(fiches):\n    if type(fiches) is not list:\n        raise ValueError('liste attendue')\n    resultat = []\n    identifiants = set()\n    for fiche in fiches:\n        propre = preparer_fiche(fiche)\n        if propre['id'] in identifiants:\n            raise ValueError('identifiant duplique')\n        identifiants.add(propre['id'])\n        resultat.append(propre)\n    return resultat\nclass Atelier:\n    def __init__(self, fiche):\n        propre = preparer_fiche(fiche)\n        self.id = propre['id']\n        self.nom = propre['nom']\n        self.places = propre['places']\n\n    def en_donnees(self):\n        return {'id':self.id, 'nom':self.nom, 'places':self.places}\n\nclass CatalogueClub:\n    def __init__(self, fiches):\n        propres = valider_catalogue(fiches)\n        self.ateliers = [Atelier(fiche) for fiche in propres]\n\n    def en_donnees(self):\n        return [atelier.en_donnees() for atelier in self.ateliers]\n\n    def bilan(self):\n        return {\n            'ateliers':len(self.ateliers),\n            'places':sum(atelier.places for atelier in self.ateliers),\n            'ouverts':sum(1 for atelier in self.ateliers if atelier.places > 0)\n        }\n\n    def exporter_json(self):\n        donnees = {'ateliers':self.en_donnees(), 'bilan':self.bilan()}\n        return json.dumps(donnees, ensure_ascii=True, separators=(',', ':'))\n\n    def exporter_csv(self):\n        flux = StringIO(newline='')\n        auteur = csv.DictWriter(flux, fieldnames=['id', 'nom', 'places'], delimiter=';', lineterminator='\\n', quoting=csv.QUOTE_ALL)\n        auteur.writeheader()\n        auteur.writerows(self.en_donnees())\n        return flux.getvalue()\ndef exporter_club_json(fiches):\n    catalogue = CatalogueClub(fiches)\n    return catalogue.exporter_json()\n",
+    "solution": "import json\nimport csv\nfrom io import StringIO\ndef preparer_fiche(fiche):\n    if type(fiche) is not dict:\n        raise ValueError('fiche invalide')\n    if not all(cle in fiche for cle in ['id', 'nom', 'places']):\n        raise ValueError('champs manquants')\n    identifiant = fiche['id']\n    nom = fiche['nom']\n    places = fiche['places']\n    if type(identifiant) is not int or identifiant < 1:\n        raise ValueError('id invalide')\n    if type(nom) is not str or not nom.strip():\n        raise ValueError('nom invalide')\n    if type(places) is not int or not 0 <= places <= 20:\n        raise ValueError('places invalides')\n    return {'id':identifiant, 'nom':nom.strip(), 'places':places}\n\ndef valider_catalogue(fiches):\n    if type(fiches) is not list:\n        raise ValueError('liste attendue')\n    resultat = []\n    identifiants = set()\n    for fiche in fiches:\n        propre = preparer_fiche(fiche)\n        if propre['id'] in identifiants:\n            raise ValueError('identifiant duplique')\n        identifiants.add(propre['id'])\n        resultat.append(propre)\n    return resultat\nclass Atelier:\n    def __init__(self, fiche):\n        propre = preparer_fiche(fiche)\n        self.id = propre['id']\n        self.nom = propre['nom']\n        self.places = propre['places']\n\n    def en_donnees(self):\n        return {'id':self.id, 'nom':self.nom, 'places':self.places}\n\nclass CatalogueClub:\n    def __init__(self, fiches):\n        propres = valider_catalogue(fiches)\n        self.ateliers = [Atelier(fiche) for fiche in propres]\n\n    def en_donnees(self):\n        return [atelier.en_donnees() for atelier in self.ateliers]\n\n    def bilan(self):\n        return {\n            'ateliers':len(self.ateliers),\n            'places':sum(atelier.places for atelier in self.ateliers),\n            'ouverts':sum(1 for atelier in self.ateliers if atelier.places > 0)\n        }\n\n    def exporter_json(self):\n        donnees = {'ateliers':self.en_donnees(), 'bilan':self.bilan()}\n        return json.dumps(donnees, ensure_ascii=False, separators=(',', ':'))\n\n    def exporter_csv(self):\n        flux = StringIO(newline='')\n        auteur = csv.DictWriter(flux, fieldnames=['id', 'nom', 'places'], delimiter=';', lineterminator='\\n', quoting=csv.QUOTE_ALL)\n        auteur.writeheader()\n        auteur.writerows(self.en_donnees())\n        return flux.getvalue()\ndef exporter_club_json(fiches):\n    catalogue = CatalogueClub(fiches)\n    return catalogue.exporter_json()\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter_club_json",
+            "args": [
+              [
+                {
+                  "id": 7,
+                  "nom": "École; jardin",
+                  "places": 20
+                },
+                {
+                  "id": 2,
+                  "nom": "Club \"A\"",
+                  "places": 1
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "{\"ateliers\":[{\"id\":7,\"nom\":\"École; jardin\",\"places\":20},{\"id\":2,\"nom\":\"Club \\\"A\\\"\",\"places\":1}],\"bilan\":{\"ateliers\":2,\"places\":21,\"ouverts\":2}}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter_club_json",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": "{\"ateliers\":[],\"bilan\":{\"ateliers\":0,\"places\":0,\"ouverts\":0}}"
+          },
+          {
+            "name": "exporter_club_json",
+            "args": [
+              [
+                {
+                  "id": 3,
+                  "nom": " Lecture ",
+                  "places": 2
+                },
+                {
+                  "id": 1,
+                  "nom": "Couture",
+                  "places": 0
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "{\"ateliers\":[{\"id\":3,\"nom\":\"Lecture\",\"places\":2},{\"id\":1,\"nom\":\"Couture\",\"places\":0}],\"bilan\":{\"ateliers\":2,\"places\":2,\"ouverts\":1}}"
+          },
+          {
+            "name": "exporter_club_json",
+            "args": [
+              [
+                {
+                  "id": 0,
+                  "nom": "X",
+                  "places": 1
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "id invalide"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les méthodes en_donnees et bilan fournissent des valeurs compatibles JSON.",
+      "Le paramètre par défaut transforme les caractères non ASCII en échappements.",
+      "Demande ensure_ascii=False pour la chaîne Unicode lisible et garde les séparateurs compacts."
+    ],
+    "explanation_fr": "L’export ne renvoie pas une instance ni un fichier. Il traduit explicitement l’état du catalogue et ses compteurs en un document textuel stable.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "class:Atelier",
+      "class:CatalogueClub",
+      "import:json"
+    ],
+    "id": "pyi-m6-03-e2",
+    "kind": "practice"
+  },
+  {
+    "title_fr": "Étape 3 : CSV relisible et fin de ligne précise",
+    "instruction_fr": "Avec class Atelier, class CatalogueClub, import csv et from io import StringIO, écrire exporter_club_csv(fiches). Mêmes validation/refus que l’étape 1. Retourner uniquement les fiches canoniques avec DictWriter, fieldnames id,nom,places, delimiter=\";\", writeheader, lineterminator=\"\\n\" et getvalue. En-tête même si vide ; pas de ligne de bilan ajoutée. Préserver accents, guillemets et retours dans les noms via le writer. Grille : caractères protégés, cas vide et tests précis. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés. Utiliser quoting=csv.QUOTE_ALL : tous les champs et l’en-tête sont entourés de guillemets, y compris les nombres.",
+    "starter_code": "import json\nimport csv\nfrom io import StringIO\ndef preparer_fiche(fiche):\n    if type(fiche) is not dict:\n        raise ValueError('fiche invalide')\n    if not all(cle in fiche for cle in ['id', 'nom', 'places']):\n        raise ValueError('champs manquants')\n    identifiant = fiche['id']\n    nom = fiche['nom']\n    places = fiche['places']\n    if type(identifiant) is not int or identifiant < 1:\n        raise ValueError('id invalide')\n    if type(nom) is not str or not nom.strip():\n        raise ValueError('nom invalide')\n    if type(places) is not int or not 0 <= places <= 20:\n        raise ValueError('places invalides')\n    return {'id':identifiant, 'nom':nom.strip(), 'places':places}\n\ndef valider_catalogue(fiches):\n    if type(fiches) is not list:\n        raise ValueError('liste attendue')\n    resultat = []\n    identifiants = set()\n    for fiche in fiches:\n        propre = preparer_fiche(fiche)\n        if propre['id'] in identifiants:\n            raise ValueError('identifiant duplique')\n        identifiants.add(propre['id'])\n        resultat.append(propre)\n    return resultat\nclass Atelier:\n    def __init__(self, fiche):\n        propre = preparer_fiche(fiche)\n        self.id = propre['id']\n        self.nom = propre['nom']\n        self.places = propre['places']\n\n    def en_donnees(self):\n        return {'id':self.id, 'nom':self.nom, 'places':self.places}\n\nclass CatalogueClub:\n    def __init__(self, fiches):\n        propres = valider_catalogue(fiches)\n        self.ateliers = [Atelier(fiche) for fiche in propres]\n\n    def en_donnees(self):\n        return [atelier.en_donnees() for atelier in self.ateliers]\n\n    def bilan(self):\n        return {\n            'ateliers':len(self.ateliers),\n            'places':sum(atelier.places for atelier in self.ateliers),\n            'ouverts':sum(1 for atelier in self.ateliers if atelier.places > 0)\n        }\n\n    def exporter_json(self):\n        donnees = {'ateliers':self.en_donnees(), 'bilan':self.bilan()}\n        return json.dumps(donnees, ensure_ascii=False, separators=(',', ':'))\n\n    def exporter_csv(self):\n        flux = StringIO(newline='')\n        auteur = csv.DictWriter(flux, fieldnames=['id', 'nom', 'places'], delimiter=';', lineterminator='\\r\\n', quoting=csv.QUOTE_ALL)\n        auteur.writeheader()\n        auteur.writerows(self.en_donnees())\n        return flux.getvalue()\ndef exporter_club_csv(fiches):\n    catalogue = CatalogueClub(fiches)\n    return catalogue.exporter_csv()\n",
+    "solution": "import json\nimport csv\nfrom io import StringIO\ndef preparer_fiche(fiche):\n    if type(fiche) is not dict:\n        raise ValueError('fiche invalide')\n    if not all(cle in fiche for cle in ['id', 'nom', 'places']):\n        raise ValueError('champs manquants')\n    identifiant = fiche['id']\n    nom = fiche['nom']\n    places = fiche['places']\n    if type(identifiant) is not int or identifiant < 1:\n        raise ValueError('id invalide')\n    if type(nom) is not str or not nom.strip():\n        raise ValueError('nom invalide')\n    if type(places) is not int or not 0 <= places <= 20:\n        raise ValueError('places invalides')\n    return {'id':identifiant, 'nom':nom.strip(), 'places':places}\n\ndef valider_catalogue(fiches):\n    if type(fiches) is not list:\n        raise ValueError('liste attendue')\n    resultat = []\n    identifiants = set()\n    for fiche in fiches:\n        propre = preparer_fiche(fiche)\n        if propre['id'] in identifiants:\n            raise ValueError('identifiant duplique')\n        identifiants.add(propre['id'])\n        resultat.append(propre)\n    return resultat\nclass Atelier:\n    def __init__(self, fiche):\n        propre = preparer_fiche(fiche)\n        self.id = propre['id']\n        self.nom = propre['nom']\n        self.places = propre['places']\n\n    def en_donnees(self):\n        return {'id':self.id, 'nom':self.nom, 'places':self.places}\n\nclass CatalogueClub:\n    def __init__(self, fiches):\n        propres = valider_catalogue(fiches)\n        self.ateliers = [Atelier(fiche) for fiche in propres]\n\n    def en_donnees(self):\n        return [atelier.en_donnees() for atelier in self.ateliers]\n\n    def bilan(self):\n        return {\n            'ateliers':len(self.ateliers),\n            'places':sum(atelier.places for atelier in self.ateliers),\n            'ouverts':sum(1 for atelier in self.ateliers if atelier.places > 0)\n        }\n\n    def exporter_json(self):\n        donnees = {'ateliers':self.en_donnees(), 'bilan':self.bilan()}\n        return json.dumps(donnees, ensure_ascii=False, separators=(',', ':'))\n\n    def exporter_csv(self):\n        flux = StringIO(newline='')\n        auteur = csv.DictWriter(flux, fieldnames=['id', 'nom', 'places'], delimiter=';', lineterminator='\\n', quoting=csv.QUOTE_ALL)\n        auteur.writeheader()\n        auteur.writerows(self.en_donnees())\n        return flux.getvalue()\ndef exporter_club_csv(fiches):\n    catalogue = CatalogueClub(fiches)\n    return catalogue.exporter_csv()\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter_club_csv",
+            "args": [
+              [
+                {
+                  "id": 3,
+                  "nom": "Lecture",
+                  "places": 2
+                },
+                {
+                  "id": 1,
+                  "nom": "Couture",
+                  "places": 0
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "\"id\";\"nom\";\"places\"\n\"3\";\"Lecture\";\"2\"\n\"1\";\"Couture\";\"0\"\n"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter_club_csv",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": "\"id\";\"nom\";\"places\"\n"
+          },
+          {
+            "name": "exporter_club_csv",
+            "args": [
+              [
+                {
+                  "id": 7,
+                  "nom": "École; jardin",
+                  "places": 20
+                },
+                {
+                  "id": 2,
+                  "nom": "Club \"A\"",
+                  "places": 1
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "\"id\";\"nom\";\"places\"\n\"7\";\"École; jardin\";\"20\"\n\"2\";\"Club \"\"A\"\"\";\"1\"\n"
+          },
+          {
+            "name": "exporter_club_csv",
+            "args": [
+              [
+                {
+                  "id": 4,
+                  "nom": "Deux\nlignes",
+                  "places": 20
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "\"id\";\"nom\";\"places\"\n\"4\";\"Deux\nlignes\";\"20\"\n"
+          },
+          {
+            "name": "exporter_club_csv",
+            "args": [
+              [
+                {
+                  "id": 4,
+                  "nom": "X",
+                  "places": 21
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "places invalides"
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter_club_csv",
+            "args": [
+              [
+                {
+                  "id": 4,
+                  "nom": "Avant\rAprès",
+                  "places": 1
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "\"id\";\"nom\";\"places\"\n\"4\";\"Avant\rAprès\";\"1\"\n"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un export peut être valide dans un autre dialecte mais ne pas respecter celui annoncé.",
+      "La convention demande exactement un saut de ligne pour chaque ligne produite.",
+      "Passe lineterminator=\"\\n\" à DictWriter au lieu du terminateur \"\\r\\n\"."
+    ],
+    "explanation_fr": "Le débogage conserve de vraies règles CSV tout en respectant une convention reproductible. Le compteur du bilan n’est jamais confondu avec une fiche de données.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "class:Atelier",
+      "class:CatalogueClub",
+      "import:csv",
+      "import:io"
+    ],
+    "id": "pyi-m6-03-e3",
+    "kind": "debug"
+  },
+  {
+    "title_fr": "Projet final : dossier et trois assertions réelles",
+    "instruction_fr": "Écrire dossier_club(fiches) autonome avec class Atelier, class CatalogueClub, imports json/csv/StringIO et validation de l’étape 1. Retourner {bilan:dict,json:texte_compact,csv:texte_CSV,verifications:3} selon étapes 2/3. Avant ce retour, exécuter trois vraies assertions : JSON relu == {ateliers:données_canoniques,bilan:bilan} ; CSV relu avec id/places convertis en int == données_canoniques ; somme des places canoniques == bilan.places. Ne pas capturer AssertionError ici. Grille : fonctionnement, clarté, tests, accessibilité des messages de refus, explication du modèle et de sa durée en mémoire. Écris les fonctions demandées sans print. Tous les échanges restent en mémoire ; conserve les arguments inchangés. Utiliser quoting=csv.QUOTE_ALL : tous les champs et l’en-tête sont entourés de guillemets, y compris les nombres.",
+    "starter_code": "import json\nimport csv\nfrom io import StringIO\ndef preparer_fiche(fiche):\n    if type(fiche) is not dict:\n        raise ValueError('fiche invalide')\n    if not all(cle in fiche for cle in ['id', 'nom', 'places']):\n        raise ValueError('champs manquants')\n    identifiant = fiche['id']\n    nom = fiche['nom']\n    places = fiche['places']\n    if type(identifiant) is not int or identifiant < 1:\n        raise ValueError('id invalide')\n    if type(nom) is not str or not nom.strip():\n        raise ValueError('nom invalide')\n    if type(places) is not int or not 0 <= places <= 20:\n        raise ValueError('places invalides')\n    return {'id':identifiant, 'nom':nom.strip(), 'places':places}\n\ndef valider_catalogue(fiches):\n    if type(fiches) is not list:\n        raise ValueError('liste attendue')\n    resultat = []\n    identifiants = set()\n    for fiche in fiches:\n        propre = preparer_fiche(fiche)\n        if propre['id'] in identifiants:\n            raise ValueError('identifiant duplique')\n        identifiants.add(propre['id'])\n        resultat.append(propre)\n    return resultat\nclass Atelier:\n    def __init__(self, fiche):\n        propre = preparer_fiche(fiche)\n        self.id = propre['id']\n        self.nom = propre['nom']\n        self.places = propre['places']\n\n    def en_donnees(self):\n        return {'id':self.id, 'nom':self.nom, 'places':self.places}\n\nclass CatalogueClub:\n    def __init__(self, fiches):\n        propres = valider_catalogue(fiches)\n        self.ateliers = [Atelier(fiche) for fiche in propres]\n\n    def en_donnees(self):\n        return [atelier.en_donnees() for atelier in self.ateliers]\n\n    def bilan(self):\n        return {\n            'ateliers':len(self.ateliers),\n            'places':sum(atelier.places for atelier in self.ateliers),\n            'ouverts':sum(1 for atelier in self.ateliers if atelier.places > 0)\n        }\n\n    def exporter_json(self):\n        donnees = {'ateliers':self.en_donnees(), 'bilan':self.bilan()}\n        return json.dumps(donnees, ensure_ascii=False, separators=(',', ':'))\n\n    def exporter_csv(self):\n        flux = StringIO(newline='')\n        auteur = csv.DictWriter(flux, fieldnames=['id', 'nom', 'places'], delimiter=';', lineterminator='\\n', quoting=csv.QUOTE_ALL)\n        auteur.writeheader()\n        auteur.writerows(self.en_donnees())\n        return flux.getvalue()\ndef dossier_club(fiches):\n    catalogue = CatalogueClub(fiches)\n    return {\n        'bilan':catalogue.bilan(),\n        'json':catalogue.exporter_json(),\n        'csv':catalogue.exporter_csv(),\n        'verifications':0\n    }\n",
+    "solution": "import json\nimport csv\nfrom io import StringIO\ndef preparer_fiche(fiche):\n    if type(fiche) is not dict:\n        raise ValueError('fiche invalide')\n    if not all(cle in fiche for cle in ['id', 'nom', 'places']):\n        raise ValueError('champs manquants')\n    identifiant = fiche['id']\n    nom = fiche['nom']\n    places = fiche['places']\n    if type(identifiant) is not int or identifiant < 1:\n        raise ValueError('id invalide')\n    if type(nom) is not str or not nom.strip():\n        raise ValueError('nom invalide')\n    if type(places) is not int or not 0 <= places <= 20:\n        raise ValueError('places invalides')\n    return {'id':identifiant, 'nom':nom.strip(), 'places':places}\n\ndef valider_catalogue(fiches):\n    if type(fiches) is not list:\n        raise ValueError('liste attendue')\n    resultat = []\n    identifiants = set()\n    for fiche in fiches:\n        propre = preparer_fiche(fiche)\n        if propre['id'] in identifiants:\n            raise ValueError('identifiant duplique')\n        identifiants.add(propre['id'])\n        resultat.append(propre)\n    return resultat\nclass Atelier:\n    def __init__(self, fiche):\n        propre = preparer_fiche(fiche)\n        self.id = propre['id']\n        self.nom = propre['nom']\n        self.places = propre['places']\n\n    def en_donnees(self):\n        return {'id':self.id, 'nom':self.nom, 'places':self.places}\n\nclass CatalogueClub:\n    def __init__(self, fiches):\n        propres = valider_catalogue(fiches)\n        self.ateliers = [Atelier(fiche) for fiche in propres]\n\n    def en_donnees(self):\n        return [atelier.en_donnees() for atelier in self.ateliers]\n\n    def bilan(self):\n        return {\n            'ateliers':len(self.ateliers),\n            'places':sum(atelier.places for atelier in self.ateliers),\n            'ouverts':sum(1 for atelier in self.ateliers if atelier.places > 0)\n        }\n\n    def exporter_json(self):\n        donnees = {'ateliers':self.en_donnees(), 'bilan':self.bilan()}\n        return json.dumps(donnees, ensure_ascii=False, separators=(',', ':'))\n\n    def exporter_csv(self):\n        flux = StringIO(newline='')\n        auteur = csv.DictWriter(flux, fieldnames=['id', 'nom', 'places'], delimiter=';', lineterminator='\\n', quoting=csv.QUOTE_ALL)\n        auteur.writeheader()\n        auteur.writerows(self.en_donnees())\n        return flux.getvalue()\ndef dossier_club(fiches):\n    catalogue = CatalogueClub(fiches)\n    donnees = catalogue.en_donnees()\n    bilan = catalogue.bilan()\n    texte_json = catalogue.exporter_json()\n    texte_csv = catalogue.exporter_csv()\n    assert json.loads(texte_json) == {'ateliers':donnees, 'bilan':bilan}, 'aller-retour JSON'\n    lecteur = csv.DictReader(StringIO(texte_csv, newline=''), delimiter=';')\n    relues = []\n    for ligne in lecteur:\n        relues.append({'id':int(ligne['id']), 'nom':ligne['nom'], 'places':int(ligne['places'])})\n    assert relues == donnees, 'aller-retour CSV'\n    assert bilan['places'] == sum(fiche['places'] for fiche in donnees), 'total places'\n    return {'bilan':bilan, 'json':texte_json, 'csv':texte_csv, 'verifications':3}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dossier_club",
+            "args": [
+              [
+                {
+                  "id": 3,
+                  "nom": "Lecture",
+                  "places": 2
+                },
+                {
+                  "id": 1,
+                  "nom": "Couture",
+                  "places": 0
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "bilan": {
+                "ateliers": 2,
+                "places": 2,
+                "ouverts": 1
+              },
+              "json": "{\"ateliers\":[{\"id\":3,\"nom\":\"Lecture\",\"places\":2},{\"id\":1,\"nom\":\"Couture\",\"places\":0}],\"bilan\":{\"ateliers\":2,\"places\":2,\"ouverts\":1}}",
+              "csv": "\"id\";\"nom\";\"places\"\n\"3\";\"Lecture\";\"2\"\n\"1\";\"Couture\";\"0\"\n",
+              "verifications": 3
+            }
+          },
+          {
+            "name": "dossier_club",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "bilan": {
+                "ateliers": 0,
+                "places": 0,
+                "ouverts": 0
+              },
+              "json": "{\"ateliers\":[],\"bilan\":{\"ateliers\":0,\"places\":0,\"ouverts\":0}}",
+              "csv": "\"id\";\"nom\";\"places\"\n",
+              "verifications": 3
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dossier_club",
+            "args": [
+              [
+                {
+                  "id": 7,
+                  "nom": "École; jardin",
+                  "places": 20
+                },
+                {
+                  "id": 2,
+                  "nom": "Club \"A\"",
+                  "places": 1
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "bilan": {
+                "ateliers": 2,
+                "places": 21,
+                "ouverts": 2
+              },
+              "json": "{\"ateliers\":[{\"id\":7,\"nom\":\"École; jardin\",\"places\":20},{\"id\":2,\"nom\":\"Club \\\"A\\\"\",\"places\":1}],\"bilan\":{\"ateliers\":2,\"places\":21,\"ouverts\":2}}",
+              "csv": "\"id\";\"nom\";\"places\"\n\"7\";\"École; jardin\";\"20\"\n\"2\";\"Club \"\"A\"\"\";\"1\"\n",
+              "verifications": 3
+            }
+          },
+          {
+            "name": "dossier_club",
+            "args": [
+              [
+                {
+                  "id": 5,
+                  "nom": " Deux\nlignes ",
+                  "places": 0
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "bilan": {
+                "ateliers": 1,
+                "places": 0,
+                "ouverts": 0
+              },
+              "json": "{\"ateliers\":[{\"id\":5,\"nom\":\"Deux\\nlignes\",\"places\":0}],\"bilan\":{\"ateliers\":1,\"places\":0,\"ouverts\":0}}",
+              "csv": "\"id\";\"nom\";\"places\"\n\"5\";\"Deux\nlignes\";\"0\"\n",
+              "verifications": 3
+            }
+          },
+          {
+            "name": "dossier_club",
+            "args": [
+              [
+                {
+                  "id": 3,
+                  "nom": "Lecture",
+                  "places": 2
+                },
+                {
+                  "id": 3,
+                  "nom": "Lecture",
+                  "places": 2
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "identifiant duplique"
+          },
+          {
+            "name": "dossier_club",
+            "args": [
+              [
+                {
+                  "id": 1,
+                  "nom": " ",
+                  "places": 0
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "nom invalide"
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dossier_club",
+            "args": [
+              [
+                {
+                  "id": 4,
+                  "nom": "Avant\rAprès",
+                  "places": 1
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "bilan": {
+                "ateliers": 1,
+                "places": 1,
+                "ouverts": 1
+              },
+              "json": "{\"ateliers\":[{\"id\":4,\"nom\":\"Avant\\rAprès\",\"places\":1}],\"bilan\":{\"ateliers\":1,\"places\":1,\"ouverts\":1}}",
+              "csv": "\"id\";\"nom\";\"places\"\n\"4\";\"Avant\rAprès\";\"1\"\n",
+              "verifications": 3
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les exports sont des résultats à relire, pas seulement des chaînes non vides.",
+      "Compare les données relues aux objets canoniques, puis contrôle le total.",
+      "Ajoute les trois assert avant le retour ; seulement ensuite verifications vaut trois."
+    ],
+    "explanation_fr": "Le dossier final relie la représentation interne à deux formats réellement parsés. Les assertions vérifient des égalités concrètes ; les exceptions d’entrée et les copies continuent à garantir le contrat métier.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "class:Atelier",
+      "class:CatalogueClub",
+      "import:json",
+      "import:csv",
+      "import:io",
+      "assert"
+    ],
+    "id": "pyi-m6-03-e4",
+    "kind": "project"
+  }
+]

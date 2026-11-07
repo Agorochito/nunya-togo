@@ -1,3 +1,16 @@
+# Vérifications 5.8.0 — 7 novembre 2026
+
+- 202 tests unitaires réussis ; TypeScript, ESLint, compilation, schémas, prérequis, liens internes et budget JavaScript réussis. Bundle principal avec garde de démarrage : 147 656 octets gzip, sous 150 000.
+- Python natif : 71 leçons et 1 022 cas exécutés pour exemples et solutions. Nouvelle série intermédiaire : 18 leçons, 36 exemples, 72 solutions acceptées, 72 codes initiaux incomplets refusés, 243 cas de référence.
+- Pyodide réel : mêmes 36 exemples et 72 solutions acceptés, 72 codes initiaux refusés ; projet final JSON/CSV/objets exécuté dans une nouvelle page et un nouveau Worker sans connexion (`PYTHON_INTERMEDIATE_ENGINE_RESULTS.json`). Un cas flottant intégral `3.0` a été remplacé par `3.5` pour préserver la distinction de type à travers JSON JavaScript/Python.
+- Interface Python intermédiaire : 18 leçons, 72 exercices et 54 questions résolus à 360 puis 1440 px ; progression, rechargement, exercice suivant dans la même leçon, leçon suivante après validation et reprise à froid hors ligne vérifiés. Aucune erreur JavaScript, zéro violation axe sur les vues testées (`PYTHON_INTERMEDIATE_UI_RESULTS.json`).
+- Catalogue : 9 programmes et 10 raccourcis, filtres, préservation des préférences saisies et catalogue hors ligne vérifiés. Les 185 leçons ont été rendues ; exercices/mini-quiz restent dans la leçon, retour et rechargement conservés (`GLOBAL_CURRICULUM_UI_RESULTS.json`, `COURSE_CATALOGUE_RESULTS.json`).
+- Parcours : confirmation, annulation et Échap, premier cours inachevé, codes/positions conservés, sauvegarde et restauration de l’objectif aux deux tailles. Bilan local refusé avant la fin et proposé après les validations. Export natif d’une leçon et d’un cours déjà téléchargé en mode hors ligne ; fichier HTML ouvert sans connexion, aucune requête HTTP ni script actif (`JOURNEYS_READING_RESULTS.json`). Les fiches comprennent aussi les données SQL, contrats d’interaction et anciennes questions de fin de chapitre.
+- Migration réelle depuis 5.7 (`0c959e4b`) : 8→9 cours sans deuxième rechargement ; SQL ouvert, brouillon et position conservés. L’ancien pack Python téléchargé s’ouvre dans une nouvelle page hors ligne malgré la révision récente du catalogue, puis la dernière version redevient disponible en ligne (`SAVED_COURSE_UPGRADE_RESULTS.json`).
+- Sauvegardes Python/niveau 0, questionnaire facultatif, liens directs et moteurs Python/JavaScript existants revérifiés. Les contrôles précédents DOM/React/SQL/Git/HTTP restent documentés ci-dessous ; ils ne sont pas présentés comme une nouvelle exécution intégrale de tous les moteurs.
+
+Les vérifications techniques ne remplacent pas une relecture pédagogique humaine ni un essai sur les téléphones des élèves. Tous les nouveaux contenus restent en brouillon, reviewer:null. Le rapport de progression local n’est ni un diplôme ni une certification professionnelle.
+
 # Vérifications 5.7.0 — 6 novembre 2026
 
 - 182 tests unitaires, TypeScript et ESLint réussis ; compilation et schémas/prérequis cohérents.

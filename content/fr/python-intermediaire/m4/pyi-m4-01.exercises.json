@@ -1,0 +1,459 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une fiche d’adhérent",
+    "instruction_fr": "Définis la classe Membre avec __init__(self, nom, annee), qui stocke self.nom et self.annee. Les arguments sont garantis str et int. Écris fiche_membre(nom, annee), qui appelle Membre puis retourne {\"nom\": attribut nom, \"annee\": attribut annee} depuis l’instance créée. La définition de Membre et son appel direct sont demandés. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "class Membre:\n    pass\n\n\ndef fiche_membre(nom, annee):\n    return {}\n",
+    "solution": "class Membre:\n\n    def __init__(self, nom, annee):\n        self.nom = nom\n        self.annee = annee\n\n\ndef fiche_membre(nom, annee):\n    membre = Membre(nom, annee)\n    return {\"nom\": membre.nom, \"annee\": membre.annee}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fiche_membre",
+            "args": [
+              "Awa",
+              2026
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "nom": "Awa",
+              "annee": 2026
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fiche_membre",
+            "args": [
+              "Noé",
+              2025
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "nom": "Noé",
+              "annee": 2025
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fiche_membre",
+            "args": [
+              "",
+              0
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "nom": "",
+              "annee": 0
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fiche_membre",
+            "args": [
+              "Club des arts",
+              2030
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "nom": "Club des arts",
+              "annee": 2030
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "__init__ reçoit l’instance sous le nom self.",
+      "Affecte les deux attributs dans __init__, puis lis-les depuis l’objet construit dans fiche_membre.",
+      "class Membre:\n\n    def __init__(self, nom, annee):\n        self.nom = nom\n        self.annee = annee\n\n\ndef fiche_membre(nom, annee):\n    membre = Membre(nom, annee)\n    return {\"nom\": membre.nom, \"annee\": membre.annee}"
+    ],
+    "explanation_fr": "La fonction de contrat rend observables les attributs d’une instance tout en retournant des valeurs JSON simples. Les valeurs ne sont pas inscrites en dur.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "class:Membre",
+      "call:Membre"
+    ],
+    "id": "pyi-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Deux compteurs distincts",
+    "instruction_fr": "Définis Compteur avec __init__(self, depart) stockant self.valeur. Dans deux_compteurs(depart, ajout), appelle deux fois Compteur avec depart, augmente seulement la valeur du premier de ajout, puis retourne [valeur du premier, valeur du second]. Les deux arguments sont des int, positifs, nuls ou négatifs. Utilise la classe Compteur et ses appels directs. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "class Compteur:\n\n    def __init__(self, depart):\n        self.valeur = depart\n\n\ndef deux_compteurs(depart, ajout):\n    premier = Compteur(depart)\n    second = premier\n    premier.valeur += ajout\n    return [premier.valeur, second.valeur]\n",
+    "solution": "class Compteur:\n\n    def __init__(self, depart):\n        self.valeur = depart\n\n\ndef deux_compteurs(depart, ajout):\n    premier = Compteur(depart)\n    second = Compteur(depart)\n    premier.valeur += ajout\n    return [premier.valeur, second.valeur]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "deux_compteurs",
+            "args": [
+              2,
+              3
+            ],
+            "unchanged_args": true,
+            "expected": [
+              5,
+              2
+            ]
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "deux_compteurs",
+            "args": [
+              0,
+              0
+            ],
+            "unchanged_args": true,
+            "expected": [
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "deux_compteurs",
+            "args": [
+              -2,
+              1
+            ],
+            "unchanged_args": true,
+            "expected": [
+              -1,
+              -2
+            ]
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "deux_compteurs",
+            "args": [
+              8,
+              -3
+            ],
+            "unchanged_args": true,
+            "expected": [
+              5,
+              8
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’affectation second = premier crée seulement un alias.",
+      "Un second appel de Compteur crée un second objet ; modifie ensuite uniquement premier.valeur.",
+      "class Compteur:\n\n    def __init__(self, depart):\n        self.valeur = depart\n\n\ndef deux_compteurs(depart, ajout):\n    premier = Compteur(depart)\n    second = Compteur(depart)\n    premier.valeur += ajout\n    return [premier.valeur, second.valeur]"
+    ],
+    "explanation_fr": "Le cas où ajout vaut zéro ne révèle pas un alias. Les tests avec une variation non nulle prouvent que les deux états sont indépendants.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "class:Compteur",
+      "call:Compteur"
+    ],
+    "id": "pyi-m4-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Des carnets sans liste partagée",
+    "instruction_fr": "Corrige la classe Carnet : sa liste noms doit appartenir à chaque instance et être créée dans __init__. Écris remplir_carnets(noms1, noms2), qui appelle deux fois Carnet, ajoute les chaînes de noms1 au premier et celles de noms2 au second, puis retourne [liste du premier, liste du second]. Les listes reçues peuvent être vides ou contenir des doublons. Utilise Carnet et ses appels directs. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "class Carnet:\n    noms = []\n\n\ndef remplir_carnets(noms1, noms2):\n    premier = Carnet()\n    second = Carnet()\n    for nom in noms1:\n        premier.noms.append(nom)\n    for nom in noms2:\n        second.noms.append(nom)\n    return [premier.noms, second.noms]\n",
+    "solution": "class Carnet:\n\n    def __init__(self):\n        self.noms = []\n\n\ndef remplir_carnets(noms1, noms2):\n    premier = Carnet()\n    second = Carnet()\n    for nom in noms1:\n        premier.noms.append(nom)\n    for nom in noms2:\n        second.noms.append(nom)\n    return [premier.noms, second.noms]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "remplir_carnets",
+            "args": [
+              [
+                "Awa"
+              ],
+              [
+                "Noé"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                "Awa"
+              ],
+              [
+                "Noé"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "remplir_carnets",
+            "args": [
+              [],
+              []
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [],
+              []
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "remplir_carnets",
+            "args": [
+              [
+                "Lina",
+                "Lina"
+              ],
+              []
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                "Lina",
+                "Lina"
+              ],
+              []
+            ]
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "remplir_carnets",
+            "args": [
+              [],
+              [
+                "Sam",
+                "Awa"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [],
+              [
+                "Sam",
+                "Awa"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La liste au niveau de class est commune aux deux objets.",
+      "Déplace la création de [] dans __init__ en l’affectant à self.noms.",
+      "class Carnet:\n\n    def __init__(self):\n        self.noms = []\n\n\ndef remplir_carnets(noms1, noms2):\n    premier = Carnet()\n    second = Carnet()\n    for nom in noms1:\n        premier.noms.append(nom)\n    for nom in noms2:\n        second.noms.append(nom)\n    return [premier.noms, second.noms]"
+    ],
+    "explanation_fr": "Une nouvelle liste par instance empêche les notes du premier carnet de réapparaître dans le second. Les doublons appartiennent aux données et sont conservés.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "class:Carnet",
+      "call:Carnet"
+    ],
+    "id": "pyi-m4-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Deux dossiers issus de la même entrée",
+    "instruction_fr": "Définis Dossier avec __init__(self, nom, notes) : stocke le nom et une nouvelle liste self.notes copiée de notes, liste de chaînes. Écris comparer_dossiers(nom, notes, nouvelle_note), qui crée deux Dossier à partir des mêmes arguments, ajoute nouvelle_note seulement aux notes du premier, puis retourne {\"premier\": {\"nom\": ..., \"notes\": [...]}, \"second\": {\"nom\": ..., \"notes\": [...]}} depuis les attributs. Utilise Dossier et ses appels directs ; la copie superficielle suffit pour ces chaînes. Le programme doit être autonome, ne rien afficher et conserver tous ses arguments. Les fonctions de contrat renvoient uniquement les données demandées, jamais les instances.",
+    "starter_code": "class Dossier:\n\n    def __init__(self, nom, notes):\n        self.nom = nom\n        self.notes = notes\n\n\ndef comparer_dossiers(nom, notes, nouvelle_note):\n    premier = Dossier(nom, notes)\n    second = Dossier(nom, notes)\n    premier.notes.append(nouvelle_note)\n    return {\n        \"premier\": {\"nom\": premier.nom, \"notes\": premier.notes},\n        \"second\": {\"nom\": second.nom, \"notes\": second.notes},\n    }\n",
+    "solution": "class Dossier:\n\n    def __init__(self, nom, notes):\n        self.nom = nom\n        self.notes = list(notes)\n\n\ndef comparer_dossiers(nom, notes, nouvelle_note):\n    premier = Dossier(nom, notes)\n    second = Dossier(nom, notes)\n    premier.notes.append(nouvelle_note)\n    return {\n        \"premier\": {\"nom\": premier.nom, \"notes\": premier.notes},\n        \"second\": {\"nom\": second.nom, \"notes\": second.notes},\n    }\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "comparer_dossiers",
+            "args": [
+              "Awa",
+              [
+                "Accueil"
+              ],
+              "Affiches"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "premier": {
+                "nom": "Awa",
+                "notes": [
+                  "Accueil",
+                  "Affiches"
+                ]
+              },
+              "second": {
+                "nom": "Awa",
+                "notes": [
+                  "Accueil"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "comparer_dossiers",
+            "args": [
+              "Noé",
+              [],
+              "Début"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "premier": {
+                "nom": "Noé",
+                "notes": [
+                  "Début"
+                ]
+              },
+              "second": {
+                "nom": "Noé",
+                "notes": []
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "comparer_dossiers",
+            "args": [
+              "",
+              [
+                "x",
+                "x"
+              ],
+              "x"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "premier": {
+                "nom": "",
+                "notes": [
+                  "x",
+                  "x",
+                  "x"
+                ]
+              },
+              "second": {
+                "nom": "",
+                "notes": [
+                  "x",
+                  "x"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "comparer_dossiers",
+            "args": [
+              "Sam",
+              [
+                "Un",
+                "Deux"
+              ],
+              ""
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "premier": {
+                "nom": "Sam",
+                "notes": [
+                  "Un",
+                  "Deux",
+                  ""
+                ]
+              },
+              "second": {
+                "nom": "Sam",
+                "notes": [
+                  "Un",
+                  "Deux"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Deux instances ne suffisent pas si elles stockent la même liste reçue.",
+      "Dans __init__, list(notes) produit une liste propre à chaque dossier sans changer l’entrée.",
+      "class Dossier:\n\n    def __init__(self, nom, notes):\n        self.nom = nom\n        self.notes = list(notes)\n\n\ndef comparer_dossiers(nom, notes, nouvelle_note):\n    premier = Dossier(nom, notes)\n    second = Dossier(nom, notes)\n    premier.notes.append(nouvelle_note)\n    return {\n        \"premier\": {\"nom\": premier.nom, \"notes\": premier.notes},\n        \"second\": {\"nom\": second.nom, \"notes\": second.notes},\n    }"
+    ],
+    "explanation_fr": "L’indépendance concerne à la fois les deux instances et la liste de l’appelant. Une copie superficielle est adaptée aux chaînes annoncées, pas à tous les objets imbriqués.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "class:Dossier",
+      "call:Dossier"
+    ],
+    "id": "pyi-m4-01-e4"
+  }
+]
