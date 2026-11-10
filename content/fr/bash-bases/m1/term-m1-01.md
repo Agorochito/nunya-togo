@@ -1,0 +1,231 @@
+---
+{
+  "id": "term-m1-01",
+  "title_fr": "Parler au terminal : commandes, options et arguments",
+  "course": "bash-bases",
+  "module": "m1",
+  "order": 1,
+  "minutes": 20,
+  "prerequisites": [],
+  "outcomes": [
+    "Écrire une commande avec son nom, ses options et ses arguments.",
+    "Afficher du texte avec echo et printf, et lire un message d’erreur du terminal."
+  ],
+  "idea_fr": "Le terminal exécute des commandes écrites ligne par ligne ; chaque commande a un nom, des options qui changent son comportement et des arguments sur lesquels elle agit.",
+  "analogy_fr": "Au marché, on dit au vendeur ce qu’on veut (le nom), comment on le veut (l’option : « bien mûres ») et en quelle quantité (l’argument).",
+  "examples": [
+    {
+      "code": "# Mon premier script\necho \"Bonjour depuis Lomé !\"\necho -n \"Club de code \"\necho \"Nunya\"",
+      "expected_output": "Bonjour depuis Lomé !\nClub de code Nunya",
+      "inputs": [],
+      "trace_fr": [
+        "Le commentaire est ignoré.",
+        "echo affiche le texte et passe à la ligne.",
+        "L’option -n supprime le retour à la ligne.",
+        "Le troisième echo complète donc la même ligne."
+      ]
+    },
+    {
+      "code": "printf \"%s a %d ans\\n\" Afi 17\nprintf \"Cotisation : %d FCFA\\n\" 2500",
+      "expected_output": "Afi a 17 ans\nCotisation : 2500 FCFA",
+      "inputs": [],
+      "trace_fr": [
+        "%s est remplacé par Afi, %d par 17.",
+        "printf n’ajoute pas de retour à la ligne : \\n le fait.",
+        "Chaque ligne est une commande séparée.",
+        "Les arguments sont séparés par des espaces."
+      ]
+    }
+  ],
+  "common_mistakes": [
+    {
+      "error": "Coller le nom et l’argument",
+      "why_fr": "echoBonjour est lu comme un seul nom de commande.",
+      "fix_fr": "Sépare le nom et les arguments par un espace."
+    },
+    {
+      "error": "Oublier les guillemets",
+      "why_fr": "Certains caractères ont un sens spécial pour Bash.",
+      "fix_fr": "Mets les textes affichés entre guillemets."
+    },
+    {
+      "error": "Écrire Echo avec une majuscule",
+      "why_fr": "Les commandes distinguent les majuscules.",
+      "fix_fr": "Écris les commandes en minuscules."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Dans ls -a photos, que désigne -a ?",
+      "options": [
+        "Le nom de la commande.",
+        "Une option.",
+        "Un fichier.",
+        "Un commentaire."
+      ],
+      "answer": 1,
+      "explanation": "Une option commence par un tiret et modifie le comportement.",
+      "id": "term-m1-01-q1"
+    },
+    {
+      "question": "Que signifie le message command not found ?",
+      "options": [
+        "Le fichier est vide.",
+        "La commande est mal écrite ou n’existe pas.",
+        "Le terminal est éteint.",
+        "Le script a réussi."
+      ],
+      "answer": 1,
+      "explanation": "Bash ne trouve aucune commande portant ce nom.",
+      "id": "term-m1-01-q2"
+    },
+    {
+      "question": "Qu’affiche printf \"%s-%s\\n\" Lomé Kara ?",
+      "options": [
+        "Lomé Kara",
+        "%s-%s",
+        "Lomé-Kara",
+        "Kara-Lomé"
+      ],
+      "answer": 2,
+      "explanation": "Chaque %s est remplacé, dans l’ordre, par un argument.",
+      "id": "term-m1-01-q3"
+    }
+  ],
+  "glossary": [
+    {
+      "term": "terminal",
+      "definition": "Interface où l’on pilote l’ordinateur en écrivant des commandes."
+    },
+    {
+      "term": "Bash",
+      "definition": "Programme qui lit et exécute les commandes sous Linux."
+    },
+    {
+      "term": "option",
+      "definition": "Élément commençant par un tiret qui modifie le comportement d’une commande."
+    },
+    {
+      "term": "argument",
+      "definition": "Élément sur lequel une commande agit, comme un texte ou un fichier."
+    }
+  ],
+  "recap_fr": [
+    "Écrire une commande avec son nom, ses options et ses arguments.",
+    "Afficher du texte avec echo et printf, et lire un message d’erreur du terminal.",
+    "Lire le message d’erreur du terminal, retrouver la ligne indiquée et corriger la commande."
+  ],
+  "tags": [
+    "terminal",
+    "linux",
+    "bash",
+    "débutant",
+    "terminal",
+    "Bash",
+    "option",
+    "argument"
+  ],
+  "status": "brouillon",
+  "reviewer": null,
+  "last_reviewed": null,
+  "language": "bash",
+  "runtime": "bash",
+  "level": "debutant",
+  "technical_checked_on": "2026-11-09",
+  "environment_fr": "Bash 5.2 dans un vrai système Linux en ligne, sur le service Wandbox (wandbox.org, Japon) : une connexion est nécessaire pour exécuter. Chaque essai démarre dans un dossier neuf avec ses fichiers de départ. Seuls tes commandes, les saisies et ces fichiers fictifs sont envoyés, sans nom ni compte.",
+  "references": [
+    {
+      "title": "Manuel GNU Bash",
+      "url": "https://www.gnu.org/software/bash/manual/bash.html"
+    },
+    {
+      "title": "Manuel GNU Coreutils",
+      "url": "https://www.gnu.org/software/coreutils/manual/coreutils.html"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Manuel GNU Bash",
+      "url": "https://www.gnu.org/software/bash/manual/bash.html",
+      "scope": "Manuel officiel GNU ; texte, exemples et exercices originaux Nunya.",
+      "last_checked": "2026-11-09"
+    },
+    {
+      "title": "Manuel GNU Coreutils",
+      "url": "https://www.gnu.org/software/coreutils/manual/coreutils.html",
+      "scope": "Manuel officiel GNU ; texte, exemples et exercices originaux Nunya.",
+      "last_checked": "2026-11-09"
+    }
+  ]
+}
+---
+
+
+## Explication pas à pas
+
+Les ordinateurs se pilotent de deux façons. L’interface graphique, avec ses fenêtres et ses icônes, est la plus connue. Le terminal, ou ligne de commande, consiste à écrire des instructions sous forme de texte. Il paraît austère au début, mais il est incontournable : les serveurs qui font fonctionner les sites, les applications mobiles et les services bancaires n’ont souvent aucun écran. Les développeurs, les administrateurs système et les analystes en cybersécurité y passent une grande partie de leur journée.
+
+Dans ce cours, tes commandes s’exécutent dans un vrai système Linux, avec Bash, le programme qui lit et exécute les commandes. Il tourne en ligne sur le service Wandbox : il faut une connexion pour exécuter. Chaque essai démarre dans un dossier neuf, préparé avec les fichiers de l’exercice. Tu écris tes commandes dans l’éditeur, une par ligne, comme dans un petit script ; elles s’exécutent de haut en bas.
+
+Une commande commence par son nom, suivi d’éléments séparés par des espaces. echo Bonjour exécute la commande echo avec l’argument Bonjour : elle l’affiche. Les options commencent souvent par un tiret et modifient le comportement : echo -n Bonjour affiche sans passer à la ligne. Les espaces comptent : echoBonjour est un nom de commande inconnu.
+
+Pour afficher un texte qui contient des espaces ou des caractères spéciaux, mets-le entre guillemets : echo "Club de code : salle 2". Les guillemets indiquent que tout le texte forme un seul argument. Sans eux, certains caractères comme * ou > ont un sens particulier pour Bash, que tu découvriras plus loin.
+
+printf offre plus de contrôle. Il n’ajoute jamais de retour à la ligne de lui-même : printf "Bonjour\n" en ajoute un grâce à \n. Il peut aussi formater des valeurs : printf "%s a %d ans\n" Afi 17 remplace %s par un texte et %d par un nombre entier.
+
+Une ligne qui commence par # est un commentaire : Bash l’ignore. Utilise-le pour expliquer ce que fait une commande.
+
+Quand une commande échoue, le terminal affiche un message d’erreur. Le plus fréquent au début est command not found : le nom de la commande est mal écrit, ou la commande n’existe pas sur ce système. L’atelier indique la ligne concernée, par exemple ligne 2 : ech: command not found. Contrairement à un compilateur, Bash continue souvent avec les lignes suivantes ; une erreur au milieu n’empêche pas forcément la suite de s’exécuter. Les exercices exigent toutefois un script sans aucune erreur.
+
+Les commandes Linux sont sensibles à la casse : Echo n’est pas echo. Elles sont aussi très courtes, souvent deux ou trois lettres, et silencieuses quand tout va bien : beaucoup ne disent rien en cas de succès. Le silence est une bonne nouvelle.
+
+## Exemple guidé 1
+
+```bash
+# Mon premier script
+echo "Bonjour depuis Lomé !"
+echo -n "Club de code "
+echo "Nunya"
+```
+
+Affichage attendu :
+
+    Bonjour depuis Lomé !
+    Club de code Nunya
+
+Trace :
+
+- Le commentaire est ignoré.
+- echo affiche le texte et passe à la ligne.
+- L’option -n supprime le retour à la ligne.
+- Le troisième echo complète donc la même ligne.
+
+## Exemple guidé 2
+
+```bash
+printf "%s a %d ans\n" Afi 17
+printf "Cotisation : %d FCFA\n" 2500
+```
+
+Affichage attendu :
+
+    Afi a 17 ans
+    Cotisation : 2500 FCFA
+
+Trace :
+
+- %s est remplacé par Afi, %d par 17.
+- printf n’ajoute pas de retour à la ligne : \n le fait.
+- Chaque ligne est une commande séparée.
+- Les arguments sont séparés par des espaces.
+
+## Vérifier et expliquer
+
+Exécute chaque script, puis provoque volontairement une erreur (une commande mal écrite) pour apprendre à lire le message et sa ligne.
+
+## Références techniques
+
+Explications et activités originales Nunya. Commandes vérifiées dans les manuels GNU :
+
+- [Manuel GNU Bash](https://www.gnu.org/software/bash/manual/bash.html)
+- [Manuel GNU Coreutils](https://www.gnu.org/software/coreutils/manual/coreutils.html)

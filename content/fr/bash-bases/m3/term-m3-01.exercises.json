@@ -1,0 +1,159 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Enregistrer une liste",
+    "instruction_fr": "Enregistre dans suspects.txt les adresses IP (troisième colonne) des lignes ECHEC de journal.log, triées sans doublon. N’affiche rien.",
+    "starter_code": "grep ECHEC journal.log | cut -d \" \" -f 3",
+    "solution": "grep ECHEC journal.log | cut -d \" \" -f 3 | sort -u > suspects.txt",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "files": {
+          "journal.log": "OK afi 10.0.0.5\nECHEC kossi 10.0.0.9\nOK yawa 10.0.0.7\nECHEC admin 10.0.0.9\nECHEC admin 10.0.0.9\nOK kossi 10.0.0.5\nECHEC root 10.0.0.12\n"
+        },
+        "expressions": [
+          {
+            "expr": "cat suspects.txt",
+            "expected": "10.0.0.12\n10.0.0.9"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "files": {
+          "journal.log": "ECHEC a 3.3.3.3\nECHEC b 3.3.3.3\nOK c 4.4.4.4\n"
+        },
+        "expressions": [
+          {
+            "expr": "cat suspects.txt",
+            "expected": "3.3.3.3"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le résultat s’affiche au lieu d’être enregistré.",
+      "sort -u trie et retire les doublons.",
+      "Termine la chaîne par > suspects.txt."
+    ],
+    "explanation_fr": "La vérification relit le fichier créé par ton script.",
+    "common_wrong_answers": [],
+    "id": "term-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Construire un journal",
+    "instruction_fr": "Crée bilan.txt avec la ligne Bilan des ventes, ajoute la ligne Jours : suivi du nombre de lignes de ventes.txt (même ligne), puis ajoute la meilleure vente (ligne complète, triée sur la colonne 2). N’affiche rien.",
+    "starter_code": "echo \"Bilan des ventes\" > bilan.txt\necho \"Jours :\" > bilan.txt",
+    "solution": "echo \"Bilan des ventes\" > bilan.txt\necho \"Jours : $(wc -l < ventes.txt)\" >> bilan.txt\nsort -k2 -n -r ventes.txt | head -n 1 >> bilan.txt",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "files": {
+          "ventes.txt": "lundi 3000\nmardi 1200\nmercredi 4500\njeudi 2500\nvendredi 3800\nsamedi 6200\ndimanche 900\n"
+        },
+        "expressions": [
+          {
+            "expr": "cat bilan.txt",
+            "expected": "Bilan des ventes\nJours : 7\nsamedi 6200"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "files": {
+          "ventes.txt": "a 5\nb 50\n"
+        },
+        "expressions": [
+          {
+            "expr": "cat bilan.txt",
+            "expected": "Bilan des ventes\nJours : 2\nb 50"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le second > efface la première ligne.",
+      "$( … ) insère le résultat d’une commande dans un texte.",
+      "Une ligne avec >, deux lignes avec >>."
+    ],
+    "explanation_fr": "$( … ) sera détaillé au chapitre suivant ; ici, il place le nombre dans la phrase.",
+    "common_wrong_answers": [],
+    "id": "term-m3-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un tri sur place",
+    "instruction_fr": "Le script doit trier membres.txt par ordre alphabétique en gardant le résultat dans membres.txt, puis afficher le fichier. Il vide le fichier en redirigeant vers lui-même.",
+    "starter_code": "sort membres.txt > membres.txt\ncat membres.txt",
+    "solution": "sort -o membres.txt membres.txt\ncat membres.txt",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Afi\nKossi\nYawa",
+        "files": {
+          "membres.txt": "Yawa\nAfi\nKossi\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Ama\nEdem",
+        "files": {
+          "membres.txt": "Edem\nAma\n"
+        }
+      }
+    ],
+    "hints": [
+      "Après le script, le fichier est vide.",
+      "Bash vide membres.txt avant que sort le lise.",
+      "sort -o membres.txt membres.txt"
+    ],
+    "explanation_fr": "sort -o lit d’abord tout le fichier, puis écrit le résultat.",
+    "common_wrong_answers": [],
+    "id": "term-m3-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Rapport d’analyse horodaté",
+    "instruction_fr": "Crée analyse.txt : ligne Analyse du journal, ligne Lignes analysées : X, ligne Échecs : Y, puis les adresses en échec triées sans doublon. Affiche enfin le rapport avec cat. Cherche aussi un fichier ancien.log qui peut ne pas exister, avec ls, sans afficher d’erreur.",
+    "starter_code": "echo \"Analyse du journal\"",
+    "solution": "ls ancien.log 2> /dev/null\necho \"Analyse du journal\" > analyse.txt\necho \"Lignes analysées : $(wc -l < journal.log)\" >> analyse.txt\necho \"Échecs : $(grep -c ECHEC journal.log)\" >> analyse.txt\ngrep ECHEC journal.log | cut -d \" \" -f 3 | sort -u >> analyse.txt\ncat analyse.txt",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Analyse du journal\nLignes analysées : 7\nÉchecs : 4\n10.0.0.12\n10.0.0.9",
+        "files": {
+          "journal.log": "OK afi 10.0.0.5\nECHEC kossi 10.0.0.9\nOK yawa 10.0.0.7\nECHEC admin 10.0.0.9\nECHEC admin 10.0.0.9\nOK kossi 10.0.0.5\nECHEC root 10.0.0.12\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "ancien.log\nAnalyse du journal\nLignes analysées : 2\nÉchecs : 1\n8.8.8.8",
+        "files": {
+          "journal.log": "OK a 1.1.1.1\nECHEC b 8.8.8.8\n",
+          "ancien.log": "x\n"
+        }
+      }
+    ],
+    "hints": [
+      "Un rapport commence par >, puis chaque ligne s’ajoute avec >>.",
+      "ls ancien.log 2> /dev/null n’affiche rien si le fichier manque.",
+      "Termine par cat analyse.txt."
+    ],
+    "explanation_fr": "Dans le cas caché, ancien.log existe : ls l’affiche normalement.",
+    "common_wrong_answers": [],
+    "id": "term-m3-01-e4"
+  }
+]

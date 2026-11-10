@@ -53,3 +53,7 @@ Le moteur tourne dans `coding-php-worker.js` (sources `lib/php/`), avec la même
 
 Le propriétaire a accepté le 9 novembre 2026 que les langages compilés s’exécutent en ligne. Service retenu : Wandbox (wandbox.org), gratuit, sans clé, réponses CORS ouvertes ; sa FAQ autorise l’usage en cours et commercial, avec des limites par adresse IP et sans engagement de disponibilité. Le service Piston public est réservé sur liste blanche depuis février 2026 ; l’API de Compiler Explorer n’est pas prévue pour cet usage. Une classe entière derrière une même adresse IP peut atteindre les limites de Wandbox : c’est pourquoi chaque vérification regroupe tous ses cas en une requête. Si la charge augmente, l’alternative est d’héberger notre propre instance Wandbox ou Piston (`lib/remote/` ne dépend que du format de requête). Java (OpenJDK 21), C, Go, Rust et un terminal Bash sont disponibles sur le même service et réutiliseront `lib/remote/worker.mjs`.
 
+### Terminal — 5.13.0
+
+Bash 5.2 sur Wandbox, avec les commandes GNU usuelles (vérifiées : ls, mkdir, cp, mv, rm, cat, head, tail, wc, sort, uniq, grep, cut, tr, find, chmod, stat, sed, awk, timeout). Chaque cas reçoit un dossier neuf, ses fichiers et leurs droits de départ ; `LC_ALL=C` rend les tris identiques sur Wandbox et en local. Les tests locaux utilisent Bash natif sous Linux, sinon un conteneur `debian:bookworm-slim` sans réseau (Docker). awk diffère entre Debian (mawk) et d’autres systèmes : le cours ne l’utilise pas.
+

@@ -17,9 +17,9 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
   course['modules']=course['modules'][:4]+extension['modules'];course['later_modules']=[]
   course['summary_fr']='De ton premier programme aux collections, fonctions et projets : apprends, teste et construis en français.'
  language=course.get('language',course.get('runtime','python'))
- if language not in ['python','javascript','html','css','sql','php','cpp']:raise ValueError('Unsupported offline runtime: '+language)
+ if language not in ['python','javascript','html','css','sql','php','cpp','bash']:raise ValueError('Unsupported offline runtime: '+language)
  runtime=course.get('runtime',language)
- if runtime not in ['python','javascript','html','css','http','sql','dom','react','php','cpp'] or (runtime=='http' and language!='javascript'):raise ValueError('Unsupported runtime/language pair')
+ if runtime not in ['python','javascript','html','css','http','sql','dom','react','php','cpp','bash'] or (runtime=='http' and language!='javascript'):raise ValueError('Unsupported runtime/language pair')
  if runtime in ['dom','react']:
   engine_files=['lib/dom/client.mjs','lib/dom/compile.mjs','lib/dom/frame.mjs','lib/dom/react-libs.mjs','package-lock.json']
   course['engine_revision']=hashlib.sha256(b''.join((r/f).read_bytes() for f in engine_files)).hexdigest()[:12]
@@ -36,13 +36,14 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
    all_ids.add(row['id'])
    prose=markdown.split('## Explication pas à pas\n',1)[1].split('## Exemple guidé',1)[0]
    row['body_fr']=[part.strip() for part in prose.strip().split('\n\n') if part.strip()]
-   fences={'python':'python','html':'html','css':'css','javascript':'javascript|jsx|js','sql':'sql','php':'php','cpp':'cpp'}[language]
+   fences={'python':'python','html':'html','css':'css','javascript':'javascript|jsx|js','sql':'sql','php':'php','cpp':'cpp','bash':'bash'}[language]
    codes=re.findall(r'```(?:'+fences+r')\n(.*?)\n```',markdown,re.S)
    if len(codes)!=len(row['examples']):raise ValueError(f'{path}: each example requires its code block')
    for example,code in zip(row['examples'],codes):example['code']=code
    if row['id'] in chapter_end:row['chapter_end']=chapter_end[row['id']]
    row['exercises']=json.loads(path.with_suffix('.exercises.json').read_text())
    if runtime=='http':row.setdefault('environment_fr','API pédagogique locale : données fictives, pas de serveur distant ni d’écriture conservée. Les requêtes restent sur cet appareil. await est autorisé dans l’atelier.')
+   if runtime=='bash':row.setdefault('environment_fr','Bash 5.2 dans un vrai système Linux en ligne, sur le service Wandbox (wandbox.org, Japon) : une connexion est nécessaire pour exécuter. Chaque essai démarre dans un dossier neuf avec ses fichiers de départ. Seuls tes commandes, les saisies et ces fichiers fictifs sont envoyés, sans nom ni compte.')
    if runtime=='cpp':row.setdefault('environment_fr','C++17 compilé en ligne par GCC 13 sur le service Wandbox (wandbox.org, Japon) : une connexion est nécessaire pour exécuter. Seul le code du programme et les saisies de test sont envoyés, sans nom ni compte. Les leçons, exemples et questions restent lisibles hors ligne.')
    if runtime=='php':row.setdefault('environment_fr','PHP 8.3 réel, exécuté sur cet appareil dans un Worker isolé, comme en ligne de commande. Chaque saisie se lit avec trim(fgets(STDIN)). Pas de serveur web, de réseau, de fichiers conservés ni de base de données dans ce cours.')
    if runtime=='sql':row.setdefault('environment_fr','SQLite local · Données fictives. Chaque exécution repart de la base initiale. Tes scripts et ta progression sont sauvegardés, pas les modifications de cette base temporaire.')

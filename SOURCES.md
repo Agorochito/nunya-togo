@@ -91,3 +91,7 @@ Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités origin
 
 Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la référence cppreference.com, citée dans chaque leçon ; aucun texte n’en est repris. Compilation : service Wandbox (https://wandbox.org, logiciel sous Boost Software License 1.0), appelé depuis le navigateur de l’élève. Aucune bibliothèque n’est ajoutée au site ; la coloration utilise `@codemirror/lang-cpp` (MIT).
 
+## Terminal et Linux : les bases — 9 novembre 2026
+
+Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide des manuels officiels GNU Bash, Coreutils, grep et findutils, cités dans chaque leçon ; aucun texte n’en est repris. Les journaux de connexion et les fichiers des exercices sont fictifs. Exécution : service Wandbox (Bash 5.2). Coloration : mode `shell` de `@codemirror/legacy-modes` (MIT).
+

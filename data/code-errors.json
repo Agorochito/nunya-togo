@@ -74,5 +74,13 @@
   "NotRun": [
     "Ce cas n’a pas été exécuté.",
     "Corrige d’abord le cas précédent qui a arrêté le programme."
+  ],
+  "ShellError": [
+    "Une commande du script a signalé une erreur.",
+    "Lis la ligne indiquée : nom de commande, option, chemin de fichier ou syntaxe (then, fi, do, done)."
+  ],
+  "TimeoutError": [
+    "Le script a dépassé le temps autorisé.",
+    "Vérifie qu’une boucle s’arrête et qu’aucune commande n’attend une saisie absente."
   ]
 }

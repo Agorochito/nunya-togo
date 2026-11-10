@@ -1,0 +1,64 @@
+{
+  "id": "bash-bases",
+  "title_fr": "Terminal et Linux : les bases",
+  "language": "bash",
+  "runtime": "bash",
+  "level": "debutant",
+  "summary_fr": "Pilote un vrai système Linux en ligne de commande : dossiers et fichiers, recherche avec grep, tubes, redirections, scripts, droits d’accès, jusqu’à l’analyse d’un journal de connexions.",
+  "prerequisite_courses": [],
+  "prerequisites": [
+    "Aucun prérequis en programmation : le cours part de zéro.",
+    "Une connexion est nécessaire pour exécuter les commandes, dans un Linux en ligne ; les leçons restent lisibles hors ligne."
+  ],
+  "outcomes": [
+    "Se déplacer et organiser des fichiers au terminal.",
+    "Chercher, trier et compter dans des fichiers de texte avec des tubes.",
+    "Écrire des scripts Bash avec variables, conditions et boucles.",
+    "Protéger des fichiers et analyser un journal de connexions."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Se repérer dans le terminal",
+      "outcome_fr": "Écrire des commandes, naviguer et organiser des fichiers.",
+      "lesson_ids": [
+        "term-m1-01",
+        "term-m1-02",
+        "term-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Lire et chercher",
+      "outcome_fr": "Lire, filtrer, trier et compter le contenu de fichiers.",
+      "lesson_ids": [
+        "term-m2-01",
+        "term-m2-02",
+        "term-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Rediriger et écrire des scripts",
+      "outcome_fr": "Enregistrer des résultats, utiliser des variables et décider.",
+      "lesson_ids": [
+        "term-m3-01",
+        "term-m3-02",
+        "term-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Automatiser et sécuriser",
+      "outcome_fr": "Répéter avec des boucles, régler les droits et analyser un journal.",
+      "lesson_ids": [
+        "term-m4-01",
+        "term-m4-02",
+        "term-m4-03"
+      ]
+    }
+  ],
+  "next_courses": [],
+  "status": "brouillon",
+  "reviewer": null
+}

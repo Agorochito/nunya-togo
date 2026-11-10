@@ -1,3 +1,10 @@
+# Vérifications 5.13.0 — 9 novembre 2026
+
+- Terminal dans le contrôle de compilation, exécuté dans un conteneur Debian sans réseau (Bash 5.2, GNU coreutils), au format de Wandbox : 24 exemples et 105 cas de référence ; 48 solutions acceptées et 48 scripts de départ refusés. GitHub Actions exécute le même contrôle avec Bash natif.
+- Interface Terminal : 12 leçons, 48 exercices et 36 questions résolus à 360 puis 1440 px, une requête par vérification (48), cours relu à froid hors ligne et exécution hors ligne expliquée, zéro violation axe (`BASH_BASES_UI_RESULTS.json`). Interface C++ revérifiée avec le Worker partagé.
+- Service réel : le projet final (`term-m4-03-e4`, trois cas, fichiers et droits vérifiés) accepté par Bash sur wandbox.org en 3,4 s, en une requête.
+- 217 tests unitaires, dont l’enveloppe Bash ; ESLint et TypeScript réussis. Catalogue (14 programmes, 15 raccourcis), parcours, rendu des 251 leçons et migration depuis 5.12.0 réussis. Comme en 5.11.0, la migration a échoué à sa première exécution puis réussi à la suivante ; cause non identifiée.
+
 # Vérifications 5.12.0 — 9 novembre 2026
 
 - Parcours et fiches (`JOURNEYS_READING_RESULTS.json`) : six parcours ; la fenêtre du parcours front-end compte ses 9 cours et ses 2 étapes en préparation ; confirmation, annulation, Échap, reprise du premier cours inachevé, sauvegarde et restauration de l’objectif, bilan local et fiches hors ligne réussis à 360 et 1440 px, zéro violation axe.

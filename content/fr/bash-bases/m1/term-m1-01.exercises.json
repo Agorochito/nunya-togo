@@ -1,0 +1,110 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Afficher deux lignes",
+    "instruction_fr": "Affiche Bonjour Afi puis, sur la ligne suivante, Bienvenue au club.",
+    "starter_code": "echo \"Bonjour Afi\" \"Bienvenue au club\"",
+    "solution": "echo \"Bonjour Afi\"\necho \"Bienvenue au club\"",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bonjour Afi\nBienvenue au club"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bonjour Afi\nBienvenue au club"
+      }
+    ],
+    "hints": [
+      "Un seul echo affiche ses arguments sur une même ligne.",
+      "Il faut deux commandes echo.",
+      "Écris une commande echo par ligne."
+    ],
+    "explanation_fr": "echo sépare ses arguments par un espace : deux lignes demandent deux commandes.",
+    "common_wrong_answers": [],
+    "id": "term-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Affiche du marché",
+    "instruction_fr": "Affiche trois lignes : Marché de Sokodé, Tomates : 500 FCFA le tas et Ignames : 1000 FCFA. Utilise printf au moins une fois.",
+    "starter_code": "# Écris ici tes commandes\n",
+    "solution": "echo \"Marché de Sokodé\"\nprintf \"Tomates : %d FCFA le tas\\n\" 500\nprintf \"Ignames : %d FCFA\\n\" 1000",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Marché de Sokodé\nTomates : 500 FCFA le tas\nIgnames : 1000 FCFA"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Marché de Sokodé\nTomates : 500 FCFA le tas\nIgnames : 1000 FCFA"
+      }
+    ],
+    "hints": [
+      "Trois lignes, trois commandes.",
+      "printf demande \\n pour passer à la ligne.",
+      "printf \"Tomates : %d FCFA le tas\\n\" 500"
+    ],
+    "explanation_fr": "echo et printf produisent ici le même résultat ; printf sera utile pour formater des nombres.",
+    "common_wrong_answers": [],
+    "id": "term-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer trois commandes",
+    "instruction_fr": "Le script contient une majuscule fautive, un espace oublié et un printf sans retour à la ligne. Corrige-le pour afficher Club de code, Salle 2 puis Entrée libre, chacun sur sa ligne.",
+    "starter_code": "Echo \"Club de code\"\necho\"Salle 2\"\nprintf \"Entrée libre\"\nprintf \"\\n\"\nprintf \"fin\"",
+    "solution": "echo \"Club de code\"\necho \"Salle 2\"\nprintf \"Entrée libre\\n\"",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Club de code\nSalle 2\nEntrée libre"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Club de code\nSalle 2\nEntrée libre"
+      }
+    ],
+    "hints": [
+      "Lis la ligne de chaque erreur command not found.",
+      "Les commandes s’écrivent en minuscules et sont suivies d’un espace.",
+      "Garde un seul printf, terminé par \\n, et retire la ligne fin."
+    ],
+    "explanation_fr": "Bash continue après une erreur : seule une relecture complète révèle tous les défauts.",
+    "common_wrong_answers": [],
+    "id": "term-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Carte de visite",
+    "instruction_fr": "Affiche quatre lignes : Club Nunya, Lieu : Atakpamé, Membres : 24 (avec printf et %d) et Entrée libre.",
+    "starter_code": "echo \"Club Nunya\"",
+    "solution": "echo \"Club Nunya\"\necho \"Lieu : Atakpamé\"\nprintf \"Membres : %d\\n\" 24\necho \"Entrée libre\"",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Club Nunya\nLieu : Atakpamé\nMembres : 24\nEntrée libre"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Club Nunya\nLieu : Atakpamé\nMembres : 24\nEntrée libre"
+      }
+    ],
+    "hints": [
+      "Quatre lignes affichées.",
+      "Le nombre de membres passe par printf.",
+      "printf \"Membres : %d\\n\" 24"
+    ],
+    "explanation_fr": "Chaque commande a une ligne : le script se lit de haut en bas.",
+    "common_wrong_answers": [],
+    "id": "term-m1-01-e4"
+  }
+]

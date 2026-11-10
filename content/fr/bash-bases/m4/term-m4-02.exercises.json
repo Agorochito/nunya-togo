@@ -1,0 +1,197 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Rendre un fichier privé",
+    "instruction_fr": "Le fichier mots_de_passe.txt est lisible par tous. Rends-le lisible et modifiable par son propriétaire uniquement. N’affiche rien.",
+    "starter_code": "chmod 644 mots_de_passe.txt",
+    "solution": "chmod 600 mots_de_passe.txt",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "files": {
+          "mots_de_passe.txt": "fictif\n"
+        },
+        "expressions": [
+          {
+            "expr": "stat -c '%A %n' mots_de_passe.txt",
+            "expected": "-rw------- mots_de_passe.txt"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "files": {
+          "mots_de_passe.txt": "x\n",
+          "autre.txt": "y\n"
+        },
+        "expressions": [
+          {
+            "expr": "stat -c '%A %n' mots_de_passe.txt autre.txt",
+            "expected": "-rw------- mots_de_passe.txt\n-rw-r--r-- autre.txt"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "644 laisse le fichier lisible par tous.",
+      "Le propriétaire garde r et w : 6 ; les autres rien : 0.",
+      "chmod 600 mots_de_passe.txt"
+    ],
+    "explanation_fr": "Le cas caché vérifie aussi qu’aucun autre fichier n’a été modifié.",
+    "common_wrong_answers": [],
+    "id": "term-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Préparer un script exécutable",
+    "instruction_fr": "Rends bonjour.sh exécutable par tous et lisible par tous, modifiable seulement par son propriétaire, puis lance-le avec ./bonjour.sh.",
+    "starter_code": "./bonjour.sh",
+    "solution": "chmod 755 bonjour.sh\n./bonjour.sh",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bonjour du script",
+        "files": {
+          "bonjour.sh": "echo \"Bonjour du script\"\n"
+        },
+        "expressions": [
+          {
+            "expr": "stat -c '%A %n' bonjour.sh",
+            "expected": "-rwxr-xr-x bonjour.sh"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Autre message",
+        "files": {
+          "bonjour.sh": "echo \"Autre message\"\n"
+        },
+        "expressions": [
+          {
+            "expr": "stat -c '%A %n' bonjour.sh",
+            "expected": "-rwxr-xr-x bonjour.sh"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Sans droit x : Permission denied.",
+      "rwx pour le propriétaire, r-x pour les autres.",
+      "chmod 755 bonjour.sh puis ./bonjour.sh"
+    ],
+    "explanation_fr": "755 est le réglage classique d’un script partagé.",
+    "common_wrong_answers": [],
+    "id": "term-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer des droits trop ouverts",
+    "instruction_fr": "L’ancien administrateur a mis tous les fichiers en 777 « pour que ça marche ». Remets rapport.txt en 644, cle.txt en 600 et outil.sh en 755. N’affiche rien.",
+    "starter_code": "chmod 777 rapport.txt cle.txt outil.sh",
+    "solution": "chmod 644 rapport.txt\nchmod 600 cle.txt\nchmod 755 outil.sh",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "files": {
+          "rapport.txt": "r\n",
+          "cle.txt": "k\n",
+          "outil.sh": "echo\n"
+        },
+        "modes": {
+          "rapport.txt": "777",
+          "cle.txt": "777",
+          "outil.sh": "777"
+        },
+        "expressions": [
+          {
+            "expr": "stat -c '%A %n' cle.txt outil.sh rapport.txt",
+            "expected": "-rw------- cle.txt\n-rwxr-xr-x outil.sh\n-rw-r--r-- rapport.txt"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "files": {
+          "rapport.txt": "a\n",
+          "cle.txt": "b\n",
+          "outil.sh": "c\n"
+        },
+        "modes": {
+          "rapport.txt": "777",
+          "cle.txt": "777",
+          "outil.sh": "777"
+        },
+        "expressions": [
+          {
+            "expr": "find . -type f -perm -o=w | wc -l",
+            "expected": "0"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "777 donne tous les droits à tout le monde.",
+      "Chaque fichier reçoit seulement ce dont il a besoin.",
+      "Trois chmod, un par fichier."
+    ],
+    "explanation_fr": "Le cas caché vérifie qu’aucun fichier ne reste modifiable par tous.",
+    "common_wrong_answers": [],
+    "id": "term-m4-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Audit des droits",
+    "instruction_fr": "Affiche Fichiers modifiables par tous : puis la liste triée de ces fichiers (find . -type f -perm -o=w). Corrige-les ensuite en retirant le droit w aux autres (chmod o-w), puis affiche Après correction : N fichiers ouverts.",
+    "starter_code": "find . -type f -perm -o=w",
+    "solution": "echo \"Fichiers modifiables par tous :\"\nfind . -type f -perm -o=w | sort\nfind . -type f -perm -o=w -exec chmod o-w {} +\necho \"Après correction : $(find . -type f -perm -o=w | wc -l) fichiers ouverts\"",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Fichiers modifiables par tous :\n./compta.txt\n./partage/notes.txt\nAprès correction : 0 fichiers ouverts",
+        "files": {
+          "compta.txt": "c\n",
+          "partage/notes.txt": "n\n",
+          "public.txt": "p\n"
+        },
+        "modes": {
+          "compta.txt": "666",
+          "partage/notes.txt": "666"
+        },
+        "expressions": [
+          {
+            "expr": "stat -c '%A %n' compta.txt public.txt",
+            "expected": "-rw-rw-r-- compta.txt\n-rw-r--r-- public.txt"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Fichiers modifiables par tous :\nAprès correction : 0 fichiers ouverts",
+        "files": {
+          "ok.txt": "o\n"
+        }
+      }
+    ],
+    "hints": [
+      "La liste se trie avec sort.",
+      "find … -exec chmod o-w {} + applique chmod à chaque fichier trouvé.",
+      "Recompte avec find … | wc -l après la correction."
+    ],
+    "explanation_fr": "o-w retire seulement l’écriture aux autres : un fichier en 666 passe en 664, le groupe garde son droit d’écriture.",
+    "common_wrong_answers": [],
+    "id": "term-m4-02-e4"
+  }
+]

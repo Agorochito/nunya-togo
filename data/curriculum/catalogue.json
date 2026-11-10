@@ -935,6 +935,303 @@
       "quiz_count": 159
     },
     {
+      "id": "bash-bases",
+      "title_fr": "Terminal et Linux : les bases",
+      "language": "bash",
+      "runtime": "bash",
+      "level": "debutant",
+      "summary_fr": "Pilote un vrai système Linux en ligne de commande : dossiers et fichiers, recherche avec grep, tubes, redirections, scripts, droits d’accès, jusqu’à l’analyse d’un journal de connexions.",
+      "prerequisite_courses": [],
+      "prerequisites": [
+        "Aucun prérequis en programmation : le cours part de zéro.",
+        "Une connexion est nécessaire pour exécuter les commandes, dans un Linux en ligne ; les leçons restent lisibles hors ligne."
+      ],
+      "outcomes": [
+        "Se déplacer et organiser des fichiers au terminal.",
+        "Chercher, trier et compter dans des fichiers de texte avec des tubes.",
+        "Écrire des scripts Bash avec variables, conditions et boucles.",
+        "Protéger des fichiers et analyser un journal de connexions."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Se repérer dans le terminal",
+          "outcome_fr": "Écrire des commandes, naviguer et organiser des fichiers.",
+          "lesson_ids": [
+            "term-m1-01",
+            "term-m1-02",
+            "term-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Lire et chercher",
+          "outcome_fr": "Lire, filtrer, trier et compter le contenu de fichiers.",
+          "lesson_ids": [
+            "term-m2-01",
+            "term-m2-02",
+            "term-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Rediriger et écrire des scripts",
+          "outcome_fr": "Enregistrer des résultats, utiliser des variables et décider.",
+          "lesson_ids": [
+            "term-m3-01",
+            "term-m3-02",
+            "term-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Automatiser et sécuriser",
+          "outcome_fr": "Répéter avec des boucles, régler les droits et analyser un journal.",
+          "lesson_ids": [
+            "term-m4-01",
+            "term-m4-02",
+            "term-m4-03"
+          ]
+        }
+      ],
+      "next_courses": [],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "term-m1-01",
+          "title_fr": "Parler au terminal : commandes, options et arguments",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [],
+          "tags": [
+            "terminal",
+            "linux",
+            "bash",
+            "débutant",
+            "terminal",
+            "Bash",
+            "option",
+            "argument"
+          ]
+        },
+        {
+          "id": "term-m1-02",
+          "title_fr": "Se déplacer dans les dossiers",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "term-m1-01"
+          ],
+          "tags": [
+            "terminal",
+            "linux",
+            "bash",
+            "débutant",
+            "dossier courant",
+            "chemin relatif",
+            "chemin absolu",
+            "fichier caché"
+          ]
+        },
+        {
+          "id": "term-m1-03",
+          "title_fr": "Créer, copier, déplacer et supprimer",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "term-m1-02"
+          ],
+          "tags": [
+            "terminal",
+            "linux",
+            "bash",
+            "débutant",
+            "mkdir",
+            "touch",
+            "récursif",
+            "arbre de fichiers"
+          ]
+        },
+        {
+          "id": "term-m2-01",
+          "title_fr": "Lire et mesurer des fichiers",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "term-m1-03"
+          ],
+          "tags": [
+            "terminal",
+            "linux",
+            "bash",
+            "débutant",
+            "cat",
+            "head et tail",
+            "wc",
+            "journal"
+          ]
+        },
+        {
+          "id": "term-m2-02",
+          "title_fr": "Chercher dans des fichiers avec grep",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "term-m2-01"
+          ],
+          "tags": [
+            "terminal",
+            "linux",
+            "bash",
+            "débutant",
+            "grep",
+            "motif",
+            "expression régulière",
+            "code de sortie"
+          ]
+        },
+        {
+          "id": "term-m2-03",
+          "title_fr": "Trier, compter et découper avec les tubes",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "term-m2-02"
+          ],
+          "tags": [
+            "terminal",
+            "linux",
+            "bash",
+            "débutant",
+            "tube",
+            "sort",
+            "uniq -c",
+            "cut"
+          ]
+        },
+        {
+          "id": "term-m3-01",
+          "title_fr": "Rediriger les entrées et les sorties",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "term-m2-03"
+          ],
+          "tags": [
+            "terminal",
+            "linux",
+            "bash",
+            "débutant",
+            "sortie standard",
+            "sortie d’erreur",
+            "redirection",
+            "/dev/null"
+          ]
+        },
+        {
+          "id": "term-m3-02",
+          "title_fr": "Variables, saisies et calculs",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "term-m3-01"
+          ],
+          "tags": [
+            "terminal",
+            "linux",
+            "bash",
+            "débutant",
+            "variable",
+            "read",
+            "substitution de commande",
+            "arithmétique"
+          ]
+        },
+        {
+          "id": "term-m3-03",
+          "title_fr": "Décider dans un script avec if",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "term-m3-02"
+          ],
+          "tags": [
+            "terminal",
+            "linux",
+            "bash",
+            "débutant",
+            "if … fi",
+            "[ ]",
+            "-eq, -lt, -ge",
+            "grep -q"
+          ]
+        },
+        {
+          "id": "term-m4-01",
+          "title_fr": "Répéter avec for et while",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "term-m3-03"
+          ],
+          "tags": [
+            "terminal",
+            "linux",
+            "bash",
+            "débutant",
+            "for",
+            "while read",
+            "motif de fichiers",
+            "seq"
+          ]
+        },
+        {
+          "id": "term-m4-02",
+          "title_fr": "Protéger ses fichiers avec les droits",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "term-m4-01"
+          ],
+          "tags": [
+            "terminal",
+            "linux",
+            "bash",
+            "débutant",
+            "droits",
+            "chmod",
+            "notation octale",
+            "moindre privilège"
+          ]
+        },
+        {
+          "id": "term-m4-03",
+          "title_fr": "Projet : analyser un journal de connexions",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "term-m4-02"
+          ],
+          "tags": [
+            "terminal",
+            "linux",
+            "bash",
+            "débutant",
+            "journal de connexions",
+            "force brute",
+            "seuil d’alerte",
+            "rapport d’incident"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "d37f05ca580f",
+      "exercise_count": 48,
+      "quiz_count": 36
+    },
+    {
       "id": "cpp-bases",
       "title_fr": "C++ : les fondamentaux",
       "language": "cpp",
@@ -3132,7 +3429,7 @@
         "react-bases",
         "http-bases"
       ],
-      "engine_revision": "b419a62330bb",
+      "engine_revision": "42d813e139d4",
       "lessons": [
         {
           "id": "dom-m1-01",
@@ -3393,7 +3690,7 @@
         }
       ],
       "estimated_minutes": 360,
-      "content_revision": "6f29e713c4ab",
+      "content_revision": "64d7f8d4220b",
       "exercise_count": 72,
       "quiz_count": 54
     },
@@ -4129,7 +4426,7 @@
       "status": "brouillon",
       "reviewer": null,
       "depth_fr": "Socle progressif avec projets et tests locaux ; relecture pédagogique en cours. Les niveaux supérieurs restent à construire.",
-      "engine_revision": "b419a62330bb",
+      "engine_revision": "42d813e139d4",
       "lessons": [
         {
           "id": "react-m1-01",
@@ -4389,7 +4686,7 @@
         }
       ],
       "estimated_minutes": 360,
-      "content_revision": "b4a663d8fcb4",
+      "content_revision": "560f61445638",
       "exercise_count": 72,
       "quiz_count": 54
     },

@@ -1,0 +1,148 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Lister un dossier",
+    "instruction_fr": "Affiche le contenu du dossier photos, un élément par ligne.",
+    "starter_code": "ls",
+    "solution": "ls -1 photos",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "arrivee.jpg\nfete.jpg",
+        "files": {
+          "photos/fete.jpg": "x",
+          "photos/arrivee.jpg": "y",
+          "notes.txt": "n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "match.jpg",
+        "files": {
+          "photos/match.jpg": "z",
+          "agenda.txt": "a"
+        }
+      }
+    ],
+    "hints": [
+      "ls sans argument liste le dossier courant.",
+      "Donne le nom du dossier en argument.",
+      "ls -1 photos"
+    ],
+    "explanation_fr": "L’argument choisit le dossier listé, sans s’y déplacer.",
+    "common_wrong_answers": [],
+    "id": "term-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Trouver le fichier caché",
+    "instruction_fr": "Affiche tout le contenu du dossier courant, fichiers cachés compris, un élément par ligne.",
+    "starter_code": "ls -1",
+    "solution": "ls -1a",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": ".\n..\n.secret\nagenda.txt\nmembres.txt\nphotos",
+        "files": {
+          "membres.txt": "Afi\nKossi\nYawa\n",
+          "agenda.txt": "mardi : lecture\njeudi : jardin\n",
+          "photos/": "",
+          ".secret": "code fictif\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": ".\n..\n.cache\nrapport.txt",
+        "files": {
+          ".cache": "c",
+          "rapport.txt": "r"
+        }
+      }
+    ],
+    "hints": [
+      "ls -1 cache les fichiers commençant par un point.",
+      "Les options se combinent : -1 et -a.",
+      "ls -1a"
+    ],
+    "explanation_fr": "Les options d’une lettre peuvent s’écrire ensemble après un seul tiret.",
+    "common_wrong_answers": [],
+    "id": "term-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un déplacement",
+    "instruction_fr": "Le script doit entrer dans archives/2025, y lister les fichiers un par ligne, revenir au dossier de départ puis lister ce dossier. Corrige les deux chemins.",
+    "starter_code": "cd archives/2026\nls -1\ncd ..\nls -1",
+    "solution": "cd archives/2025\nls -1\ncd ../..\nls -1",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "bilan.txt\nbudget.txt\narchives\nlisez-moi.txt",
+        "files": {
+          "archives/2025/bilan.txt": "b",
+          "archives/2025/budget.txt": "u",
+          "lisez-moi.txt": "l"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "releve.txt\narchives\nindex.txt",
+        "files": {
+          "archives/2025/releve.txt": "r",
+          "index.txt": "i"
+        }
+      }
+    ],
+    "hints": [
+      "Lis le message No such file or directory.",
+      "Le dossier s’appelle 2025, et il faut remonter de deux niveaux.",
+      "cd archives/2025 puis cd ../.."
+    ],
+    "explanation_fr": "Après un cd raté, Bash reste où il était : la suite liste alors le mauvais dossier.",
+    "common_wrong_answers": [],
+    "id": "term-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Visite guidée",
+    "instruction_fr": "Le dossier projet contient src et docs. Affiche Contenu de src :, puis le contenu de projet/src un par ligne, puis Contenu de docs :, puis le contenu de projet/docs. Utilise cd et .. pour passer de src à docs.",
+    "starter_code": "echo \"Contenu de src :\"",
+    "solution": "cd projet/src\necho \"Contenu de src :\"\nls -1\ncd ../docs\necho \"Contenu de docs :\"\nls -1",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Contenu de src :\nmain.py\nutils.py\nContenu de docs :\nguide.txt",
+        "files": {
+          "projet/src/main.py": "m",
+          "projet/src/utils.py": "u",
+          "projet/docs/guide.txt": "g"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Contenu de src :\napp.py\nContenu de docs :\nfaq.txt\nlisez-moi.txt",
+        "files": {
+          "projet/src/app.py": "a",
+          "projet/docs/faq.txt": "f",
+          "projet/docs/lisez-moi.txt": "l"
+        }
+      }
+    ],
+    "hints": [
+      "Entre d’abord dans projet/src.",
+      "Pour passer de src à docs, remonte puis redescends : ../docs.",
+      "cd projet/src, ls -1, cd ../docs, ls -1."
+    ],
+    "explanation_fr": "../docs combine une remontée et une descente en un seul chemin.",
+    "common_wrong_answers": [],
+    "id": "term-m1-02-e4"
+  }
+]

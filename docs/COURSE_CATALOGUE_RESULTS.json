@@ -2,9 +2,9 @@
   "results": [
     {
       "width": 360,
-      "courses": 13,
+      "courses": 14,
       "filters": true,
-      "quickLinks": 14,
+      "quickLinks": 15,
       "discoveryPreserved": true,
       "refreshKeepsTypedQuery": true,
       "offlineCanonicalCatalogue": true,
@@ -13,9 +13,9 @@
     },
     {
       "width": 1440,
-      "courses": 13,
+      "courses": 14,
       "filters": true,
-      "quickLinks": 14,
+      "quickLinks": 15,
       "discoveryPreserved": true,
       "refreshKeepsTypedQuery": true,
       "offlineCanonicalCatalogue": true,

@@ -38,13 +38,10 @@
       "sql-bases",
       "php-bases",
       "http-bases",
+      "bash-bases",
       "git-bases"
     ],
     "planned_fr": [
-      {
-        "title_fr": "Terminal et Linux",
-        "summary_fr": "Se déplacer, gérer des fichiers et lancer des programmes en ligne de commande."
-      },
       {
         "title_fr": "PHP intermédiaire : objets et données",
         "summary_fr": "Classes, exceptions, JSON et organisation d’un projet."
@@ -54,7 +51,7 @@
         "summary_fr": "Empaqueter une application et la mettre en ligne."
       }
     ],
-    "outcome_fr": "Comprendre les données et les échanges d’un service, en Python comme en PHP ; le terminal, les objets PHP et le déploiement suivront."
+    "outcome_fr": "Comprendre les données et les échanges d’un service, en Python comme en PHP, et travailler au terminal ; les objets PHP et le déploiement suivront."
   },
   {
     "id": "fullstack",
@@ -94,6 +91,7 @@
       "python-intermediaire",
       "cpp-bases",
       "sql-bases",
+      "bash-bases",
       "git-bases"
     ],
     "planned_fr": [
@@ -149,13 +147,10 @@
       "javascript-bases",
       "http-bases",
       "sql-bases",
+      "bash-bases",
       "git-bases"
     ],
     "planned_fr": [
-      {
-        "title_fr": "Terminal et Linux",
-        "summary_fr": "La ligne de commande, outil de base de toute investigation."
-      },
       {
         "title_fr": "Réseaux informatiques",
         "summary_fr": "Adresses IP, ports, protocoles et outils de diagnostic."

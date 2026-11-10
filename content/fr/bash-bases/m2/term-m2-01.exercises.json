@@ -1,0 +1,134 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Les trois premières ventes",
+    "instruction_fr": "Affiche les trois premières lignes de ventes.txt.",
+    "starter_code": "cat ventes.txt",
+    "solution": "head -n 3 ventes.txt",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "lundi 3000\nmardi 1200\nmercredi 4500",
+        "files": {
+          "ventes.txt": "lundi 3000\nmardi 1200\nmercredi 4500\njeudi 2500\nvendredi 3800\nsamedi 6200\ndimanche 900\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "a 1\nb 2\nc 3",
+        "files": {
+          "ventes.txt": "a 1\nb 2\nc 3\nd 4\n"
+        }
+      }
+    ],
+    "hints": [
+      "cat affiche tout le fichier.",
+      "head lit le début.",
+      "head -n 3 ventes.txt"
+    ],
+    "explanation_fr": "Le cas caché a quatre lignes : seules les trois premières doivent apparaître.",
+    "common_wrong_answers": [],
+    "id": "term-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Compter les membres",
+    "instruction_fr": "Affiche Membres : suivi du nombre de lignes de membres.txt, sur la même ligne. Utilise echo -n puis wc -l avec <.",
+    "starter_code": "echo \"Membres :\"\nwc -l membres.txt",
+    "solution": "echo -n \"Membres : \"\nwc -l < membres.txt",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Membres : 3",
+        "files": {
+          "membres.txt": "Afi\nKossi\nYawa\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Membres : 5",
+        "files": {
+          "membres.txt": "A\nB\nC\nD\nE\n"
+        }
+      }
+    ],
+    "hints": [
+      "Le nom du fichier ne doit pas apparaître.",
+      "echo -n garde la ligne ouverte.",
+      "echo -n \"Membres : \" puis wc -l < membres.txt"
+    ],
+    "explanation_fr": "Le compte vient du fichier : le cas caché en a cinq.",
+    "common_wrong_answers": [],
+    "id": "term-m2-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un aperçu de journal",
+    "instruction_fr": "Le script doit afficher les 2 dernières lignes de journal.log puis Total : suivi du nombre de lignes. Il lit le début, oublie -n et affiche le nom du fichier.",
+    "starter_code": "head 2 journal.log\necho -n \"Total : \"\nwc -l journal.log",
+    "solution": "tail -n 2 journal.log\necho -n \"Total : \"\nwc -l < journal.log",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "OK kossi 10.0.0.5\nECHEC root 10.0.0.12\nTotal : 7",
+        "files": {
+          "journal.log": "OK afi 10.0.0.5\nECHEC kossi 10.0.0.9\nOK yawa 10.0.0.7\nECHEC admin 10.0.0.9\nECHEC admin 10.0.0.9\nOK kossi 10.0.0.5\nECHEC root 10.0.0.12\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "b\nc\nTotal : 3",
+        "files": {
+          "journal.log": "a\nb\nc\n"
+        }
+      }
+    ],
+    "hints": [
+      "Lis le message d’erreur de head.",
+      "Les événements récents sont à la fin : tail.",
+      "tail -n 2 et wc -l < journal.log."
+    ],
+    "explanation_fr": "Trois défauts : la mauvaise commande, l’option manquante et le nom affiché.",
+    "common_wrong_answers": [],
+    "id": "term-m2-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Fiche de lecture d’un fichier",
+    "instruction_fr": "Pour ventes.txt, affiche Lignes : X, puis Premier jour : suivi de la première ligne, puis Dernier jour : suivi de la dernière ligne.",
+    "starter_code": "echo \"Lignes :\"",
+    "solution": "echo -n \"Lignes : \"\nwc -l < ventes.txt\necho -n \"Premier jour : \"\nhead -n 1 ventes.txt\necho -n \"Dernier jour : \"\ntail -n 1 ventes.txt",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Lignes : 7\nPremier jour : lundi 3000\nDernier jour : dimanche 900",
+        "files": {
+          "ventes.txt": "lundi 3000\nmardi 1200\nmercredi 4500\njeudi 2500\nvendredi 3800\nsamedi 6200\ndimanche 900\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Lignes : 2\nPremier jour : jour1 10\nDernier jour : jour2 20",
+        "files": {
+          "ventes.txt": "jour1 10\njour2 20\n"
+        }
+      }
+    ],
+    "hints": [
+      "Trois mesures, chacune précédée d’un echo -n.",
+      "head -n 1 et tail -n 1 donnent la première et la dernière ligne.",
+      "wc -l < ventes.txt donne le nombre seul."
+    ],
+    "explanation_fr": "Les trois commandes lisent le même fichier sans jamais le modifier.",
+    "common_wrong_answers": [],
+    "id": "term-m2-01-e4"
+  }
+]

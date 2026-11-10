@@ -1,0 +1,134 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Trouver les échecs",
+    "instruction_fr": "Affiche les lignes de journal.log qui contiennent ECHEC.",
+    "starter_code": "cat journal.log",
+    "solution": "grep ECHEC journal.log",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "ECHEC kossi 10.0.0.9\nECHEC admin 10.0.0.9\nECHEC admin 10.0.0.9\nECHEC root 10.0.0.12",
+        "files": {
+          "journal.log": "OK afi 10.0.0.5\nECHEC kossi 10.0.0.9\nOK yawa 10.0.0.7\nECHEC admin 10.0.0.9\nECHEC admin 10.0.0.9\nOK kossi 10.0.0.5\nECHEC root 10.0.0.12\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "ECHEC test 1.1.1.1",
+        "files": {
+          "journal.log": "OK a 2.2.2.2\nECHEC test 1.1.1.1\n"
+        }
+      }
+    ],
+    "hints": [
+      "cat affiche aussi les connexions réussies.",
+      "grep garde seulement les lignes avec le motif.",
+      "grep ECHEC journal.log"
+    ],
+    "explanation_fr": "Le motif vient avant le nom du fichier.",
+    "common_wrong_answers": [],
+    "id": "term-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Compter sans tenir compte de la casse",
+    "instruction_fr": "Le fichier commentaires.txt mélange Merci, merci et MERCI. Affiche le nombre de lignes qui contiennent ce mot, quelle que soit la casse.",
+    "starter_code": "grep -c merci commentaires.txt",
+    "solution": "grep -c -i merci commentaires.txt",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "3",
+        "files": {
+          "commentaires.txt": "Merci pour l’atelier\nTrop court\nmerci beaucoup\nMERCI !\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "1",
+        "files": {
+          "commentaires.txt": "Super\nmErCi\n"
+        }
+      }
+    ],
+    "hints": [
+      "Sans option, seule la forme en minuscules est trouvée.",
+      "Une option ignore la casse.",
+      "grep -c -i merci commentaires.txt"
+    ],
+    "explanation_fr": "-c et -i se combinent : compter en ignorant la casse.",
+    "common_wrong_answers": [],
+    "id": "term-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une recherche d’adresse",
+    "instruction_fr": "Le script doit afficher, avec leur numéro, les lignes de journal.log dont l’adresse IP finit exactement par .9. Le motif sans guillemets ni échappement trouve trop de lignes, et le numéro manque.",
+    "starter_code": "grep .9 journal.log",
+    "solution": "grep -n \"\\.9$\" journal.log",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "2:ECHEC kossi 10.0.0.9\n4:ECHEC admin 10.0.0.9\n5:ECHEC admin 10.0.0.9",
+        "files": {
+          "journal.log": "OK afi 10.0.0.5\nECHEC kossi 10.0.0.9\nOK yawa 10.0.0.7\nECHEC admin 10.0.0.9\nECHEC admin 10.0.0.9\nOK kossi 10.0.0.5\nECHEC root 10.0.0.12\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "2:x 192.168.1.9",
+        "files": {
+          "journal.log": "x 192.168.1.90\nx 192.168.1.9\n"
+        }
+      }
+    ],
+    "hints": [
+      "Le point seul signifie « n’importe quel caractère ».",
+      "Un vrai point s’écrit \\. et la fin de ligne $.",
+      "grep -n \"\\.9$\" journal.log"
+    ],
+    "explanation_fr": "Le cas caché contient .90 : sans $, il serait trouvé à tort.",
+    "common_wrong_answers": [],
+    "id": "term-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Premier tri d’un journal",
+    "instruction_fr": "Affiche trois lignes : Total : X (lignes du journal), Échecs : Y (lignes avec ECHEC) et Comptes admin ou root en échec : Z (lignes avec ECHEC qui contiennent admin ou root). Pour Z, utilise grep deux fois avec un tube : grep ECHEC journal.log | grep -c -E \"admin|root\".",
+    "starter_code": "echo \"Total : \"",
+    "solution": "echo -n \"Total : \"\nwc -l < journal.log\necho -n \"Échecs : \"\ngrep -c ECHEC journal.log\necho -n \"Comptes admin ou root en échec : \"\ngrep ECHEC journal.log | grep -c -E \"admin|root\"",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Total : 7\nÉchecs : 4\nComptes admin ou root en échec : 3",
+        "files": {
+          "journal.log": "OK afi 10.0.0.5\nECHEC kossi 10.0.0.9\nOK yawa 10.0.0.7\nECHEC admin 10.0.0.9\nECHEC admin 10.0.0.9\nOK kossi 10.0.0.5\nECHEC root 10.0.0.12\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Total : 3\nÉchecs : 1\nComptes admin ou root en échec : 0",
+        "files": {
+          "journal.log": "OK root 1.1.1.1\nECHEC afi 2.2.2.2\nOK admin 3.3.3.3\n"
+        }
+      }
+    ],
+    "hints": [
+      "Trois mesures, chacune après un echo -n.",
+      "grep -c compte ; -E permet le « ou » avec |.",
+      "Le résultat du premier grep passe au second par le tube |."
+    ],
+    "explanation_fr": "Le cas caché a des connexions admin réussies : seules les lignes en échec comptent.",
+    "common_wrong_answers": [],
+    "id": "term-m2-02-e4"
+  }
+]

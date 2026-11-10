@@ -1,5 +1,12 @@
 # Historique
 
+## 5.13.0 — 9 novembre 2026
+
+- Nouveau cours : **Terminal et Linux : les bases**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux en français : commandes et arguments, dossiers et chemins, `mkdir`/`cp`/`mv`/`rm`, `cat`/`head`/`tail`/`wc`, `grep`, tubes avec `sort`/`uniq`/`cut`, redirections, variables et `read`, `if`, boucles, droits avec `chmod`, et projet d’analyse d’un journal de connexions qui signale les adresses suspectes.
+- Les commandes s’exécutent dans un vrai Linux (Bash 5.2) sur Wandbox, en une requête par vérification : chaque cas démarre dans un dossier neuf avec ses fichiers et leurs droits de départ, puis des commandes de vérification inspectent le résultat. Erreurs de commande signalées avec leur ligne ; script arrêté au-delà de 5 secondes. Les fichiers de départ sont visibles sous l’éditeur.
+- Le cours remplace l’étape « Terminal et Linux — en préparation » des parcours back-end et cybersécurité, et rejoint le parcours ingénieur·e logiciel. Le catalogue gagne le domaine « Outils et systèmes ».
+- La page « Tes données, en clair » précise ce qui est envoyé à Wandbox pour les ateliers C++ et Terminal.
+
 ## 5.12.0 — 9 novembre 2026
 
 - Six **parcours métiers** au lieu de quatre : développeur·se web front-end, back-end, full-stack (nouveau), ingénieur·e logiciel (nouveau), analyste de données et cybersécurité. Chaque carte indique les métiers visés et le nombre d’étapes encore en préparation.

@@ -1,0 +1,192 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Préparer des dossiers",
+    "instruction_fr": "Crée l’arbre factures/2026/janvier et le fichier vide factures/2026/janvier/client_afi.txt.",
+    "starter_code": "mkdir factures/2026/janvier",
+    "solution": "mkdir -p factures/2026/janvier\ntouch factures/2026/janvier/client_afi.txt",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "find . | sort",
+            "expected": ".\n./factures\n./factures/2026\n./factures/2026/janvier\n./factures/2026/janvier/client_afi.txt"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "files": {
+          "factures/": ""
+        },
+        "expressions": [
+          {
+            "expr": "find . | sort",
+            "expected": ".\n./factures\n./factures/2026\n./factures/2026/janvier\n./factures/2026/janvier/client_afi.txt"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Sans -p, mkdir refuse les dossiers parents manquants.",
+      "touch crée le fichier vide.",
+      "mkdir -p puis touch avec le chemin complet."
+    ],
+    "explanation_fr": "Le cas caché part d’un dossier factures existant : -p ne signale alors aucune erreur.",
+    "common_wrong_answers": [],
+    "id": "term-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Sauvegarder avant de modifier",
+    "instruction_fr": "Crée un dossier sauvegarde, copies-y budget.txt et le dossier photos complet, sans toucher aux originaux.",
+    "starter_code": "mkdir sauvegarde\ncp budget.txt sauvegarde/",
+    "solution": "mkdir -p sauvegarde\ncp budget.txt sauvegarde/\ncp -r photos sauvegarde/",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "files": {
+          "budget.txt": "1200\n",
+          "photos/fete.jpg": "f"
+        },
+        "expressions": [
+          {
+            "expr": "find . | sort",
+            "expected": ".\n./budget.txt\n./photos\n./photos/fete.jpg\n./sauvegarde\n./sauvegarde/budget.txt\n./sauvegarde/photos\n./sauvegarde/photos/fete.jpg"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "files": {
+          "budget.txt": "9\n",
+          "photos/a.jpg": "a",
+          "photos/b.jpg": "b"
+        },
+        "expressions": [
+          {
+            "expr": "find . | sort",
+            "expected": ".\n./budget.txt\n./photos\n./photos/a.jpg\n./photos/b.jpg\n./sauvegarde\n./sauvegarde/budget.txt\n./sauvegarde/photos\n./sauvegarde/photos/a.jpg\n./sauvegarde/photos/b.jpg"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le dossier photos manque dans la sauvegarde.",
+      "Un dossier se copie avec -r.",
+      "cp -r photos sauvegarde/"
+    ],
+    "explanation_fr": "Une sauvegarde laisse les originaux à leur place : on vérifie les deux.",
+    "common_wrong_answers": [],
+    "id": "term-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un rangement",
+    "instruction_fr": "Le script doit renommer brouillon.txt en rapport.txt, le ranger dans archives (à créer) et supprimer seulement temp.txt. Il copie au lieu de déplacer et supprime le mauvais fichier.",
+    "starter_code": "mkdir archives\ncp brouillon.txt archives/rapport.txt\nrm notes.txt",
+    "solution": "mkdir -p archives\nmv brouillon.txt archives/rapport.txt\nrm temp.txt",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "files": {
+          "brouillon.txt": "b\n",
+          "temp.txt": "t\n",
+          "notes.txt": "n\n"
+        },
+        "expressions": [
+          {
+            "expr": "find . | sort",
+            "expected": ".\n./archives\n./archives/rapport.txt\n./notes.txt"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "files": {
+          "brouillon.txt": "x\n",
+          "temp.txt": "y\n",
+          "notes.txt": "z\n",
+          "archives/ancien.txt": "a\n"
+        },
+        "expressions": [
+          {
+            "expr": "find . | sort",
+            "expected": ".\n./archives\n./archives/ancien.txt\n./archives/rapport.txt\n./notes.txt"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "cp laisse une copie de brouillon.txt en place.",
+      "mv peut renommer et déplacer en une seule commande.",
+      "mv brouillon.txt archives/rapport.txt, puis rm temp.txt."
+    ],
+    "explanation_fr": "Le cas caché a déjà un dossier archives : mkdir -p évite une erreur.",
+    "common_wrong_answers": [],
+    "id": "term-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Organiser le dossier du club",
+    "instruction_fr": "Crée les dossiers club/membres, club/finances et club/archives. Déplace membres.txt dans club/membres, copie budget.txt dans club/finances et déplace ancien.txt dans club/archives.",
+    "starter_code": "mkdir club",
+    "solution": "mkdir -p club/membres club/finances club/archives\nmv membres.txt club/membres/\ncp budget.txt club/finances/\nmv ancien.txt club/archives/",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "files": {
+          "membres.txt": "Afi\n",
+          "budget.txt": "5000\n",
+          "ancien.txt": "2025\n"
+        },
+        "expressions": [
+          {
+            "expr": "find . | sort",
+            "expected": ".\n./budget.txt\n./club\n./club/archives\n./club/archives/ancien.txt\n./club/finances\n./club/finances/budget.txt\n./club/membres\n./club/membres/membres.txt"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "files": {
+          "membres.txt": "K\n",
+          "budget.txt": "1\n",
+          "ancien.txt": "0\n",
+          "club/": ""
+        },
+        "expressions": [
+          {
+            "expr": "find . | sort",
+            "expected": ".\n./budget.txt\n./club\n./club/archives\n./club/archives/ancien.txt\n./club/finances\n./club/finances/budget.txt\n./club/membres\n./club/membres/membres.txt"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "mkdir -p accepte plusieurs chemins dans la même commande.",
+      "Déplacer : mv ; copier : cp.",
+      "budget.txt reste aussi à la racine, car il est copié."
+    ],
+    "explanation_fr": "Créer d’abord les destinations, puis déplacer et copier : l’ordre évite les erreurs.",
+    "common_wrong_answers": [],
+    "id": "term-m1-03-e4"
+  }
+]

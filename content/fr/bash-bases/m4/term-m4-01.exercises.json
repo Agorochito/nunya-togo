@@ -1,0 +1,150 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Saluer chaque membre",
+    "instruction_fr": "Lis membres.txt ligne par ligne et affiche Bienvenue suivi du prénom, pour chaque ligne.",
+    "starter_code": "echo \"Bienvenue Afi\"",
+    "solution": "while read -r nom; do\n  echo \"Bienvenue $nom\"\ndone < membres.txt",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bienvenue Afi\nBienvenue Kossi\nBienvenue Yawa",
+        "files": {
+          "membres.txt": "Afi\nKossi\nYawa\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bienvenue Edem",
+        "files": {
+          "membres.txt": "Edem\n"
+        }
+      }
+    ],
+    "hints": [
+      "Les prénoms viennent du fichier.",
+      "while read -r nom lit une ligne par tour.",
+      "Termine par done < membres.txt."
+    ],
+    "explanation_fr": "Le cas caché n’a qu’un membre.",
+    "common_wrong_answers": [],
+    "id": "term-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Renommer des fichiers",
+    "instruction_fr": "Pour chaque fichier .jpg du dossier, ajoute le préfixe fete_ à son nom (fete_photo1.jpg…). Ne touche pas aux autres fichiers.",
+    "starter_code": "for f in *.jpg; do\n  echo \"$f\"\ndone",
+    "solution": "for f in *.jpg; do\n  [ -f \"$f\" ] || continue\n  mv \"$f\" \"fete_$f\"\ndone",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "files": {
+          "photo1.jpg": "a",
+          "photo2.jpg": "b",
+          "liste.txt": "l\n"
+        },
+        "expressions": [
+          {
+            "expr": "find . | sort",
+            "expected": ".\n./fete_photo1.jpg\n./fete_photo2.jpg\n./liste.txt"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "files": {
+          "notes.txt": "n\n"
+        },
+        "expressions": [
+          {
+            "expr": "find . | sort",
+            "expected": ".\n./notes.txt"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La boucle affiche les noms sans rien renommer.",
+      "mv \"$f\" \"fete_$f\" renomme chaque fichier.",
+      "Protège le cas sans .jpg avec [ -f \"$f\" ] || continue."
+    ],
+    "explanation_fr": "Le cas caché n’a aucune photo : sans protection, mv échouerait sur le motif *.jpg.",
+    "common_wrong_answers": [],
+    "id": "term-m4-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un total de cotisations",
+    "instruction_fr": "Le script doit lire cotisations.txt (nom montant) et afficher Total : X FCFA. Le total est remis à zéro dans la boucle, la redirection est mal placée et done manque.",
+    "starter_code": "while read -r nom montant < cotisations.txt; do\n  total=0\n  total=$(( total + montant ))\necho \"Total : $total FCFA\"",
+    "solution": "total=0\nwhile read -r nom montant; do\n  total=$(( total + montant ))\ndone < cotisations.txt\necho \"Total : $total FCFA\"",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Total : 7500 FCFA",
+        "files": {
+          "cotisations.txt": "Afi 2500\nKossi 2500\nYawa 2500\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Total : 1000 FCFA",
+        "files": {
+          "cotisations.txt": "Ama 1000\n"
+        }
+      }
+    ],
+    "hints": [
+      "Lis le message : la boucle n’est pas fermée.",
+      "Avec < après read, chaque tour relirait la première ligne.",
+      "total=0 avant while, et done < cotisations.txt."
+    ],
+    "explanation_fr": "Placée sur read, la redirection rouvrirait le fichier à chaque tour : la boucle ne finirait jamais.",
+    "common_wrong_answers": [],
+    "id": "term-m4-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Inventaire des journaux",
+    "instruction_fr": "Pour chaque fichier .log du dossier, affiche nom : X échecs (lignes contenant ECHEC). Termine par Total des échecs : Y.",
+    "starter_code": "for f in *.log; do\n  echo \"$f\"\ndone",
+    "solution": "total=0\nfor f in *.log; do\n  [ -f \"$f\" ] || continue\n  n=$(grep -c ECHEC \"$f\")\n  echo \"$f : $n échecs\"\n  total=$(( total + n ))\ndone\necho \"Total des échecs : $total\"",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "lundi.log : 2 échecs\nmardi.log : 0 échecs\nTotal des échecs : 2",
+        "files": {
+          "lundi.log": "ECHEC a 1.1.1.1\nOK b 2.2.2.2\nECHEC c 3.3.3.3\n",
+          "mardi.log": "OK a 1.1.1.1\n",
+          "notes.txt": "ECHEC ignoré\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Total des échecs : 0",
+        "files": {
+          "notes.txt": "rien\n"
+        }
+      }
+    ],
+    "hints": [
+      "Un tour par fichier .log.",
+      "grep -c compte les échecs d’un fichier.",
+      "Additionne dans total, initialisé avant la boucle."
+    ],
+    "explanation_fr": "notes.txt contient ECHEC mais n’est pas un journal : le motif *.log l’exclut.",
+    "common_wrong_answers": [],
+    "id": "term-m4-01-e4"
+  }
+]

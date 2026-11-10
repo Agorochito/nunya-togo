@@ -1,0 +1,197 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Classer les adresses en échec",
+    "instruction_fr": "Affiche, au format de uniq -c, le nombre d’échecs par adresse IP de journal.log, de la plus fréquente à la moins fréquente.",
+    "starter_code": "grep ECHEC journal.log | cut -d \" \" -f 3 | uniq -c",
+    "solution": "grep ECHEC journal.log | cut -d \" \" -f 3 | sort | uniq -c | sort -rn",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "      3 10.0.0.9\n      1 10.0.0.12",
+        "files": {
+          "journal.log": "OK afi 10.0.0.5\nECHEC kossi 10.0.0.9\nOK yawa 10.0.0.7\nECHEC admin 10.0.0.9\nECHEC admin 10.0.0.9\nOK kossi 10.0.0.5\nECHEC root 10.0.0.12\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "      2 7.7.7.7\n      1 8.8.8.8",
+        "files": {
+          "journal.log": "ECHEC a 7.7.7.7\nECHEC b 8.8.8.8\nECHEC c 7.7.7.7\n"
+        }
+      }
+    ],
+    "hints": [
+      "Les adresses identiques ne sont pas voisines.",
+      "Trie avant uniq -c, puis trie les comptes.",
+      "Ajoute sort avant uniq et sort -rn après."
+    ],
+    "explanation_fr": "Le cas caché sépare les deux échecs de 7.7.7.7 par une autre adresse.",
+    "common_wrong_answers": [],
+    "id": "term-m4-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Seuil d’alerte variable",
+    "instruction_fr": "Lis un seuil. Affiche Suspecte : ip (N échecs) pour chaque adresse dont le nombre d’échecs atteint le seuil, de la plus fréquente à la moins fréquente, puis Adresses suspectes : X.",
+    "starter_code": "read -r seuil\necho \"Adresses suspectes : 0\"",
+    "solution": "read -r seuil\nsuspectes=0\ngrep ECHEC journal.log | cut -d \" \" -f 3 | sort | uniq -c | sort -rn > comptes.txt\nwhile read -r nombre ip; do\n  if [ \"$nombre\" -ge \"$seuil\" ]; then\n    echo \"Suspecte : $ip ($nombre échecs)\"\n    suspectes=$(( suspectes + 1 ))\n  fi\ndone < comptes.txt\necho \"Adresses suspectes : $suspectes\"",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "Suspecte : 10.0.0.9 (3 échecs)\nAdresses suspectes : 1",
+        "files": {
+          "journal.log": "OK afi 10.0.0.5\nECHEC kossi 10.0.0.9\nOK yawa 10.0.0.7\nECHEC admin 10.0.0.9\nECHEC admin 10.0.0.9\nOK kossi 10.0.0.5\nECHEC root 10.0.0.12\n"
+        }
+      },
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "Suspecte : 10.0.0.9 (3 échecs)\nSuspecte : 10.0.0.12 (1 échecs)\nAdresses suspectes : 2",
+        "files": {
+          "journal.log": "OK afi 10.0.0.5\nECHEC kossi 10.0.0.9\nOK yawa 10.0.0.7\nECHEC admin 10.0.0.9\nECHEC admin 10.0.0.9\nOK kossi 10.0.0.5\nECHEC root 10.0.0.12\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "Adresses suspectes : 0",
+        "files": {
+          "journal.log": "OK afi 10.0.0.5\nECHEC kossi 10.0.0.9\nOK yawa 10.0.0.7\nECHEC admin 10.0.0.9\nECHEC admin 10.0.0.9\nOK kossi 10.0.0.5\nECHEC root 10.0.0.12\n"
+        }
+      }
+    ],
+    "hints": [
+      "Enregistre d’abord le classement dans un fichier.",
+      "while read -r nombre ip lit chaque ligne de ce fichier.",
+      "Compare avec -ge et le seuil saisi."
+    ],
+    "explanation_fr": "Avec un seuil de 4, aucune adresse n’est signalée.",
+    "common_wrong_answers": [],
+    "id": "term-m4-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un rapport",
+    "instruction_fr": "Le script doit créer rapport.txt avec Rapport, Lignes : X et Échecs : Y, le protéger en 600, puis l’afficher. Il écrase les lignes, oublie le dollar d’une substitution et laisse le rapport en 666.",
+    "starter_code": "echo \"Rapport\" > rapport.txt\necho \"Lignes : (wc -l < journal.log)\" > rapport.txt\necho \"Échecs : $(grep -c ECHEC journal.log)\" > rapport.txt\nchmod 666 rapport.txt\ncat rapport.txt",
+    "solution": "echo \"Rapport\" > rapport.txt\necho \"Lignes : $(wc -l < journal.log)\" >> rapport.txt\necho \"Échecs : $(grep -c ECHEC journal.log)\" >> rapport.txt\nchmod 600 rapport.txt\ncat rapport.txt",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Rapport\nLignes : 7\nÉchecs : 4",
+        "files": {
+          "journal.log": "OK afi 10.0.0.5\nECHEC kossi 10.0.0.9\nOK yawa 10.0.0.7\nECHEC admin 10.0.0.9\nECHEC admin 10.0.0.9\nOK kossi 10.0.0.5\nECHEC root 10.0.0.12\n"
+        },
+        "expressions": [
+          {
+            "expr": "stat -c '%A %n' rapport.txt",
+            "expected": "-rw------- rapport.txt"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Rapport\nLignes : 2\nÉchecs : 0",
+        "files": {
+          "journal.log": "OK a 1.1.1.1\nOK b 2.2.2.2\n"
+        },
+        "expressions": [
+          {
+            "expr": "stat -c '%A %n' rapport.txt",
+            "expected": "-rw------- rapport.txt"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Seule la dernière ligne survit : > remplace le fichier.",
+      "Sans $, les parenthèses s’affichent telles quelles.",
+      "Utilise >> pour ajouter, $( … ) pour calculer, chmod 600."
+    ],
+    "explanation_fr": "Trois défauts distincts : la redirection, la substitution et les droits.",
+    "common_wrong_answers": [],
+    "id": "term-m4-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Le script d’analyse complet",
+    "instruction_fr": "Lis le nom du journal puis le seuil. Si le journal n’existe pas, affiche seulement Journal introuvable. Sinon crée rapport.txt contenant : Analyse de nom, Lignes : X, Échecs : Y, puis une ligne Suspecte : ip (N échecs) par adresse atteignant le seuil (de la plus fréquente à la moins fréquente), et enfin Adresses suspectes : Z. Protège le rapport en 600 et affiche-le.",
+    "starter_code": "read -r journal\nread -r seuil",
+    "solution": "read -r journal\nread -r seuil\nif [ ! -f \"$journal\" ]; then\n  echo \"Journal introuvable\"\nelse\n  echo \"Analyse de $journal\" > rapport.txt\n  echo \"Lignes : $(wc -l < \"$journal\")\" >> rapport.txt\n  echo \"Échecs : $(grep -c ECHEC \"$journal\")\" >> rapport.txt\n  suspectes=0\n  grep ECHEC \"$journal\" | cut -d \" \" -f 3 | sort | uniq -c | sort -rn > comptes.txt\n  while read -r nombre ip; do\n    if [ \"$nombre\" -ge \"$seuil\" ]; then\n      echo \"Suspecte : $ip ($nombre échecs)\" >> rapport.txt\n      suspectes=$(( suspectes + 1 ))\n    fi\n  done < comptes.txt\n  echo \"Adresses suspectes : $suspectes\" >> rapport.txt\n  chmod 600 rapport.txt\n  cat rapport.txt\nfi",
+    "visible_tests": [
+      {
+        "inputs": [
+          "journal.log",
+          "3"
+        ],
+        "expected_output": "Analyse de journal.log\nLignes : 7\nÉchecs : 4\nSuspecte : 10.0.0.9 (3 échecs)\nAdresses suspectes : 1",
+        "files": {
+          "journal.log": "OK afi 10.0.0.5\nECHEC kossi 10.0.0.9\nOK yawa 10.0.0.7\nECHEC admin 10.0.0.9\nECHEC admin 10.0.0.9\nOK kossi 10.0.0.5\nECHEC root 10.0.0.12\n"
+        },
+        "expressions": [
+          {
+            "expr": "stat -c '%A %n' rapport.txt",
+            "expected": "-rw------- rapport.txt"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "hier.log",
+          "3"
+        ],
+        "expected_output": "Journal introuvable",
+        "files": {
+          "journal.log": "OK afi 10.0.0.5\nECHEC kossi 10.0.0.9\nOK yawa 10.0.0.7\nECHEC admin 10.0.0.9\nECHEC admin 10.0.0.9\nOK kossi 10.0.0.5\nECHEC root 10.0.0.12\n"
+        },
+        "expressions": [
+          {
+            "expr": "ls rapport.txt 2>&1 | wc -l",
+            "expected": "1"
+          },
+          {
+            "expr": "[ -e rapport.txt ] && echo existe || echo absent",
+            "expected": "absent"
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "auth.log",
+          "2"
+        ],
+        "expected_output": "Analyse de auth.log\nLignes : 5\nÉchecs : 5\nSuspecte : 9.9.9.9 (3 échecs)\nSuspecte : 5.5.5.5 (2 échecs)\nAdresses suspectes : 2",
+        "files": {
+          "auth.log": "ECHEC a 9.9.9.9\nECHEC b 5.5.5.5\nECHEC c 9.9.9.9\nECHEC d 5.5.5.5\nECHEC e 9.9.9.9\n"
+        },
+        "expressions": [
+          {
+            "expr": "stat -c '%A %n' rapport.txt",
+            "expected": "-rw------- rapport.txt"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Vérifie d’abord le journal ; tout le reste va dans le else.",
+      "Le classement et la boucle viennent de l’exercice 2 ; écris dans le rapport avec >>.",
+      "Termine par chmod 600 puis cat rapport.txt."
+    ],
+    "explanation_fr": "Quand le journal manque, aucun rapport n’est créé : le cas caché le vérifie.",
+    "common_wrong_answers": [],
+    "id": "term-m4-03-e4"
+  }
+]

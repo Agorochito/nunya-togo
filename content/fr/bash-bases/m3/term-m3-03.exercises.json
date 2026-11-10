@@ -1,0 +1,189 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Le fichier existe-t-il ?",
+    "instruction_fr": "Lis un nom de fichier. Affiche Trouvé : nom s’il existe comme fichier, sinon Introuvable : nom.",
+    "starter_code": "read -r f\necho \"Trouvé : $f\"",
+    "solution": "read -r f\nif [ -f \"$f\" ]; then\n  echo \"Trouvé : $f\"\nelse\n  echo \"Introuvable : $f\"\nfi",
+    "visible_tests": [
+      {
+        "inputs": [
+          "journal.log"
+        ],
+        "expected_output": "Trouvé : journal.log",
+        "files": {
+          "journal.log": "OK afi 10.0.0.5\nECHEC kossi 10.0.0.9\nOK yawa 10.0.0.7\nECHEC admin 10.0.0.9\nECHEC admin 10.0.0.9\nOK kossi 10.0.0.5\nECHEC root 10.0.0.12\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "ancien.log"
+        ],
+        "expected_output": "Introuvable : ancien.log",
+        "files": {
+          "journal.log": "OK afi 10.0.0.5\nECHEC kossi 10.0.0.9\nOK yawa 10.0.0.7\nECHEC admin 10.0.0.9\nECHEC admin 10.0.0.9\nOK kossi 10.0.0.5\nECHEC root 10.0.0.12\n"
+        }
+      },
+      {
+        "inputs": [
+          "archives"
+        ],
+        "expected_output": "Introuvable : archives",
+        "files": {
+          "archives/a.txt": "a"
+        }
+      }
+    ],
+    "hints": [
+      "Le script affiche toujours Trouvé.",
+      "[ -f \"$f\" ] teste un fichier ordinaire.",
+      "Ajoute un else pour le cas contraire."
+    ],
+    "explanation_fr": "Le dernier cas caché est un dossier : -f le refuse, car ce n’est pas un fichier ordinaire.",
+    "common_wrong_answers": [],
+    "id": "term-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Niveau d’alerte",
+    "instruction_fr": "Lis un nombre d’échecs. Affiche Bloquer à partir de 5, Surveiller à partir de 2, sinon Normal.",
+    "starter_code": "read -r n\nif [ \"$n\" -gt 2 ]; then\n  echo \"Surveiller\"\nelse\n  echo \"Normal\"\nfi",
+    "solution": "read -r n\nif [ \"$n\" -ge 5 ]; then\n  echo \"Bloquer\"\nelif [ \"$n\" -ge 2 ]; then\n  echo \"Surveiller\"\nelse\n  echo \"Normal\"\nfi",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "Surveiller"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "Normal"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "5"
+        ],
+        "expected_output": "Bloquer"
+      },
+      {
+        "inputs": [
+          "2"
+        ],
+        "expected_output": "Surveiller"
+      },
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "Normal"
+      }
+    ],
+    "hints": [
+      "« À partir de » inclut la borne : -ge.",
+      "Teste d’abord le seuil le plus élevé.",
+      "if -ge 5, elif -ge 2, else."
+    ],
+    "explanation_fr": "Les cas cachés testent exactement les bornes 5 et 2.",
+    "common_wrong_answers": [],
+    "id": "term-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une sauvegarde prudente",
+    "instruction_fr": "Le script doit créer le dossier sauvegarde seulement s’il n’existe pas, y copier budget.txt, puis afficher Sauvegarde prête. Les espaces manquent dans le test, la comparaison crée un fichier, et fi est absent.",
+    "starter_code": "if [! -d sauvegarde]; then\n  mkdir sauvegarde\nif [ 1 > 0 ]; then\n  cp budget.txt sauvegarde/\nfi\necho \"Sauvegarde prête\"",
+    "solution": "if [ ! -d sauvegarde ]; then\n  mkdir sauvegarde\nfi\ncp budget.txt sauvegarde/\necho \"Sauvegarde prête\"",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Sauvegarde prête",
+        "files": {
+          "budget.txt": "1\n"
+        },
+        "expressions": [
+          {
+            "expr": "find . | sort",
+            "expected": ".\n./budget.txt\n./sauvegarde\n./sauvegarde/budget.txt"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Sauvegarde prête",
+        "files": {
+          "budget.txt": "2\n",
+          "sauvegarde/ancien.txt": "a\n"
+        },
+        "expressions": [
+          {
+            "expr": "find . | sort",
+            "expected": ".\n./budget.txt\n./sauvegarde\n./sauvegarde/ancien.txt\n./sauvegarde/budget.txt"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis le premier message : [! est un nom de commande inconnu.",
+      "Le second if est inutile, et > y crée un fichier nommé 0.",
+      "Écris [ ! -d sauvegarde ], ferme par fi, et copie sans condition."
+    ],
+    "explanation_fr": "L’arbre vérifié révèle le fichier 0 créé par erreur dans le code de départ.",
+    "common_wrong_answers": [],
+    "id": "term-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Contrôle avant analyse",
+    "instruction_fr": "Lis un nom de fichier journal. S’il n’existe pas, affiche seulement Journal introuvable. Sinon affiche Échecs : X, puis Alerte root si une ligne en échec concerne root (ECHEC root), sinon Aucune alerte root.",
+    "starter_code": "read -r journal\necho \"Échecs : $(grep -c ECHEC \"$journal\")\"",
+    "solution": "read -r journal\nif [ ! -f \"$journal\" ]; then\n  echo \"Journal introuvable\"\nelse\n  echo \"Échecs : $(grep -c ECHEC \"$journal\")\"\n  if grep -q \"^ECHEC root\" \"$journal\"; then\n    echo \"Alerte root\"\n  else\n    echo \"Aucune alerte root\"\n  fi\nfi",
+    "visible_tests": [
+      {
+        "inputs": [
+          "journal.log"
+        ],
+        "expected_output": "Échecs : 4\nAlerte root",
+        "files": {
+          "journal.log": "OK afi 10.0.0.5\nECHEC kossi 10.0.0.9\nOK yawa 10.0.0.7\nECHEC admin 10.0.0.9\nECHEC admin 10.0.0.9\nOK kossi 10.0.0.5\nECHEC root 10.0.0.12\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "hier.log"
+        ],
+        "expected_output": "Journal introuvable",
+        "files": {
+          "journal.log": "OK afi 10.0.0.5\nECHEC kossi 10.0.0.9\nOK yawa 10.0.0.7\nECHEC admin 10.0.0.9\nECHEC admin 10.0.0.9\nOK kossi 10.0.0.5\nECHEC root 10.0.0.12\n"
+        }
+      },
+      {
+        "inputs": [
+          "journal.log"
+        ],
+        "expected_output": "Échecs : 1\nAucune alerte root",
+        "files": {
+          "journal.log": "OK root 1.1.1.1\nECHEC afi 2.2.2.2\n"
+        }
+      }
+    ],
+    "hints": [
+      "Vérifie d’abord que le fichier existe.",
+      "grep -q \"^ECHEC root\" teste une ligne précise sans rien afficher.",
+      "Un if peut contenir un autre if."
+    ],
+    "explanation_fr": "Le dernier cas caché a une connexion root réussie : seule une ligne en échec déclenche l’alerte.",
+    "common_wrong_answers": [],
+    "id": "term-m3-03-e4"
+  }
+]

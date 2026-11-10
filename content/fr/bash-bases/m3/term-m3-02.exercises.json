@@ -1,0 +1,154 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Rendre la monnaie",
+    "instruction_fr": "Lis le prix puis la somme donnée, et affiche Monnaie : X FCFA.",
+    "starter_code": "read -r prix\nread -r donne\necho \"Monnaie : 500 FCFA\"",
+    "solution": "read -r prix\nread -r donne\necho \"Monnaie : $(( donne - prix )) FCFA\"",
+    "visible_tests": [
+      {
+        "inputs": [
+          "1500",
+          "2000"
+        ],
+        "expected_output": "Monnaie : 500 FCFA"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1750",
+          "5000"
+        ],
+        "expected_output": "Monnaie : 3250 FCFA"
+      },
+      {
+        "inputs": [
+          "1000",
+          "1000"
+        ],
+        "expected_output": "Monnaie : 0 FCFA"
+      }
+    ],
+    "hints": [
+      "L’affichage ne dépend pas des saisies.",
+      "Calcule avec $(( )).",
+      "echo \"Monnaie : $(( donne - prix )) FCFA\""
+    ],
+    "explanation_fr": "Les cas cachés changent les saisies.",
+    "common_wrong_answers": [],
+    "id": "term-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Fiche d’un fichier",
+    "instruction_fr": "Lis un nom de fichier. Affiche Fichier : nom, puis Lignes : X et Mots : Y pour ce fichier, en utilisant des variables remplies avec $( … ).",
+    "starter_code": "read -r fichier\necho \"Fichier : fichier\"",
+    "solution": "read -r fichier\nlignes=$(wc -l < \"$fichier\")\nmots=$(wc -w < \"$fichier\")\necho \"Fichier : $fichier\"\necho \"Lignes : $lignes\"\necho \"Mots : $mots\"",
+    "visible_tests": [
+      {
+        "inputs": [
+          "ventes.txt"
+        ],
+        "expected_output": "Fichier : ventes.txt\nLignes : 7\nMots : 14",
+        "files": {
+          "ventes.txt": "lundi 3000\nmardi 1200\nmercredi 4500\njeudi 2500\nvendredi 3800\nsamedi 6200\ndimanche 900\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "notes.txt"
+        ],
+        "expected_output": "Fichier : notes.txt\nLignes : 2\nMots : 5",
+        "files": {
+          "notes.txt": "un deux trois\nquatre cinq\n"
+        }
+      }
+    ],
+    "hints": [
+      "Le nom du fichier vient de la saisie.",
+      "Range chaque mesure dans une variable.",
+      "lignes=$(wc -l < \"$fichier\")"
+    ],
+    "explanation_fr": "Les guillemets protègent le nom du fichier, même s’il contenait un espace.",
+    "common_wrong_answers": [],
+    "id": "term-m3-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un calcul de cotisations",
+    "instruction_fr": "Le script doit lire un nombre de membres et une cotisation, puis afficher Total : X FCFA. Il met des espaces autour de =, oublie le dollar et utilise des guillemets simples.",
+    "starter_code": "read -r membres\nread -r cotisation\ntotal = membres * cotisation\necho 'Total : $total FCFA'",
+    "solution": "read -r membres\nread -r cotisation\ntotal=$(( membres * cotisation ))\necho \"Total : $total FCFA\"",
+    "visible_tests": [
+      {
+        "inputs": [
+          "12",
+          "2500"
+        ],
+        "expected_output": "Total : 30000 FCFA"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0",
+          "2500"
+        ],
+        "expected_output": "Total : 0 FCFA"
+      },
+      {
+        "inputs": [
+          "7",
+          "1000"
+        ],
+        "expected_output": "Total : 7000 FCFA"
+      }
+    ],
+    "hints": [
+      "Lis le message : total est pris pour une commande.",
+      "Le calcul s’écrit dans $(( )).",
+      "Utilise des guillemets doubles pour afficher la variable."
+    ],
+    "explanation_fr": "Trois règles : l’affectation collée, l’arithmétique et les guillemets.",
+    "common_wrong_answers": [],
+    "id": "term-m3-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Calculatrice de tontine",
+    "instruction_fr": "Lis le nom du groupe, le nombre de membres et la cotisation mensuelle. Affiche Groupe : nom, Par mois : X FCFA (membres × cotisation) et Sur un an : Y FCFA.",
+    "starter_code": "read -r groupe",
+    "solution": "read -r groupe\nread -r membres\nread -r cotisation\nmois=$(( membres * cotisation ))\necho \"Groupe : $groupe\"\necho \"Par mois : $mois FCFA\"\necho \"Sur un an : $(( mois * 12 )) FCFA\"",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Les Battantes",
+          "10",
+          "5000"
+        ],
+        "expected_output": "Groupe : Les Battantes\nPar mois : 50000 FCFA\nSur un an : 600000 FCFA"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "Solidarité",
+          "3",
+          "2500"
+        ],
+        "expected_output": "Groupe : Solidarité\nPar mois : 7500 FCFA\nSur un an : 90000 FCFA"
+      }
+    ],
+    "hints": [
+      "Trois saisies : le nom avec espaces, puis deux nombres.",
+      "Calcule le total mensuel une fois et réutilise-le.",
+      "mois=$(( membres * cotisation ))"
+    ],
+    "explanation_fr": "read garde toute la ligne : le nom du groupe peut contenir des espaces.",
+    "common_wrong_answers": [],
+    "id": "term-m3-02-e4"
+  }
+]

@@ -1,0 +1,134 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "La meilleure vente",
+    "instruction_fr": "Affiche uniquement le plus grand montant de ventes.txt (deuxième colonne), avec cut, sort -n et tail.",
+    "starter_code": "cut -d \" \" -f 2 ventes.txt | sort | tail -n 1",
+    "solution": "cut -d \" \" -f 2 ventes.txt | sort -n | tail -n 1",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "6200",
+        "files": {
+          "ventes.txt": "lundi 3000\nmardi 1200\nmercredi 4500\njeudi 2500\nvendredi 3800\nsamedi 6200\ndimanche 900\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "10",
+        "files": {
+          "ventes.txt": "a 9\nb 10\nc 2\n"
+        }
+      }
+    ],
+    "hints": [
+      "Sans -n, sort compare les caractères.",
+      "Le cas caché contient 9 et 10.",
+      "Ajoute -n à sort."
+    ],
+    "explanation_fr": "Le tri alphabétique placerait 9 après 10 : le cas caché le révèle.",
+    "common_wrong_answers": [],
+    "id": "term-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Membres par ville",
+    "instruction_fr": "Le fichier membres.csv contient nom,ville. Affiche le nombre de membres de chaque ville, classé de la ville la plus représentée à la moins représentée (format de uniq -c).",
+    "starter_code": "cut -d \",\" -f 2 membres.csv",
+    "solution": "cut -d \",\" -f 2 membres.csv | sort | uniq -c | sort -rn",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "      3 Lome\n      2 Kara\n      1 Sokode",
+        "files": {
+          "membres.csv": "Afi,Lome\nKossi,Kara\nYawa,Lome\nEdem,Sokode\nAma,Kara\nKofi,Lome\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "      2 Dapaong\n      1 Aneho",
+        "files": {
+          "membres.csv": "A,Dapaong\nB,Aneho\nC,Dapaong\n"
+        }
+      }
+    ],
+    "hints": [
+      "Extrais d’abord la colonne des villes.",
+      "Trie, compte, puis trie les comptes.",
+      "cut | sort | uniq -c | sort -rn"
+    ],
+    "explanation_fr": "Le schéma extraire, trier, compter, classer revient sans cesse.",
+    "common_wrong_answers": [],
+    "id": "term-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un comptage d’adresses",
+    "instruction_fr": "Le script doit afficher l’adresse IP qui a le plus d’échecs, sans son nombre. Il oublie le tri avant uniq, garde la mauvaise colonne et ne sépare pas le nombre.",
+    "starter_code": "grep ECHEC journal.log | cut -d \" \" -f 2 | uniq -c | head -n 1",
+    "solution": "grep ECHEC journal.log | cut -d \" \" -f 3 | sort | uniq -c | sort -rn | head -n 1 | tr -s \" \" | cut -d \" \" -f 3",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "10.0.0.9",
+        "files": {
+          "journal.log": "OK afi 10.0.0.5\nECHEC kossi 10.0.0.9\nOK yawa 10.0.0.7\nECHEC admin 10.0.0.9\nECHEC admin 10.0.0.9\nOK kossi 10.0.0.5\nECHEC root 10.0.0.12\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "5.5.5.5",
+        "files": {
+          "journal.log": "ECHEC a 5.5.5.5\nECHEC b 6.6.6.6\nOK c 5.5.5.5\nECHEC d 5.5.5.5\n"
+        }
+      }
+    ],
+    "hints": [
+      "La colonne 2 contient le compte utilisateur, pas l’adresse.",
+      "uniq exige des lignes triées, puis sort -rn classe les comptes.",
+      "Pour retirer le nombre : tr -s \" \" réduit les espaces, puis cut -d \" \" -f 3."
+    ],
+    "explanation_fr": "tr -s \" \" remplace les suites d’espaces par un seul espace, ce qui rend cut utilisable.",
+    "common_wrong_answers": [],
+    "id": "term-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Palmarès des produits",
+    "instruction_fr": "Le fichier ventes.csv contient produit,quantite. Affiche les trois lignes du fichier qui ont les plus grandes quantités, de la plus grande à la plus petite, puis Produits différents : N.",
+    "starter_code": "sort ventes.csv | head -n 3",
+    "solution": "sort -t \",\" -k2 -n -r ventes.csv | head -n 3\necho -n \"Produits différents : \"\ncut -d \",\" -f 1 ventes.csv | sort | uniq | wc -l",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "riz,40\nhuile,25\ngari,12\nProduits différents : 4",
+        "files": {
+          "ventes.csv": "gari,12\nriz,40\nsavon,7\nhuile,25\n"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "mil,9\nmil,5\nsel,3\nProduits différents : 2",
+        "files": {
+          "ventes.csv": "sel,3\nmil,5\nmil,9\n"
+        }
+      }
+    ],
+    "hints": [
+      "-t \",\" indique à sort le séparateur des colonnes.",
+      "Les produits différents se comptent après sort | uniq.",
+      "sort -t \",\" -k2 -n -r puis head -n 3."
+    ],
+    "explanation_fr": "Le cas caché répète un produit : uniq évite de le compter deux fois.",
+    "common_wrong_answers": [],
+    "id": "term-m2-03-e4"
+  }
+]
