@@ -1,0 +1,194 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Afficher une liste numérotée",
+    "instruction_fr": "Le tableau $membres contient Afi, Kossi et Yawa. Ajoute Edem à la fin, puis affiche chaque membre au format 1. Afi, une ligne par membre, avec foreach.",
+    "starter_code": "<?php\n$membres = [\"Afi\", \"Kossi\", \"Yawa\"];\necho \"1. Afi\\n2. Kossi\\n3. Yawa\";",
+    "solution": "<?php\n$membres = [\"Afi\", \"Kossi\", \"Yawa\"];\n$membres[] = \"Edem\";\nforeach ($membres as $i => $nom) {\n    echo $i + 1, \". $nom\\n\";\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "1. Afi\n2. Kossi\n3. Yawa\n4. Edem",
+        "calls": [
+          {
+            "name": "$membres",
+            "args": [],
+            "expected": [
+              "Afi",
+              "Kossi",
+              "Yawa",
+              "Edem"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "1. Afi\n2. Kossi\n3. Yawa\n4. Edem",
+        "calls": [
+          {
+            "name": "$membres",
+            "args": [],
+            "expected": [
+              "Afi",
+              "Kossi",
+              "Yawa",
+              "Edem"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le tableau doit contenir quatre membres.",
+      "Ajoute avec $membres[] = \"Edem\";",
+      "foreach ($membres as $i => $nom) puis echo $i + 1, \". $nom\\n\";"
+    ],
+    "explanation_fr": "La vérification lit aussi le tableau lui-même : l’affichage seul ne suffit pas.",
+    "common_wrong_answers": [],
+    "id": "php-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Ventes de la semaine",
+    "instruction_fr": "Lis N puis N ventes entières et range-les dans un tableau $ventes. Affiche Total : X FCFA puis Jours au-dessus de 2000 : Y.",
+    "starter_code": "<?php\n$n = (int) trim(fgets(STDIN));\n$ventes = [];\n",
+    "solution": "<?php\n$n = (int) trim(fgets(STDIN));\n$ventes = [];\nfor ($i = 0; $i < $n; $i++) {\n    $ventes[] = (int) trim(fgets(STDIN));\n}\n$total = 0;\n$bons = 0;\nforeach ($ventes as $vente) {\n    $total += $vente;\n    if ($vente > 2000) {\n        $bons++;\n    }\n}\necho \"Total : $total FCFA\\n\";\necho \"Jours au-dessus de 2000 : $bons\";",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4",
+          "1500",
+          "3000",
+          "2000",
+          "3000"
+        ],
+        "expected_output": "Total : 9500 FCFA\nJours au-dessus de 2000 : 2",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "2",
+          "499",
+          "2001"
+        ],
+        "expected_output": "Total : 2500 FCFA\nJours au-dessus de 2000 : 1",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "Total : 0 FCFA\nJours au-dessus de 2000 : 0",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Commence par remplir le tableau dans une boucle for.",
+      "Puis parcours-le avec foreach pour le total et le compte.",
+      "« au-dessus » signifie strictement plus grand : 2000 ne compte pas."
+    ],
+    "explanation_fr": "Lire d’abord, traiter ensuite : chaque boucle a un rôle unique.",
+    "common_wrong_answers": [],
+    "id": "php-m3-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Corriger un classement",
+    "instruction_fr": "Le script doit lire 3 temps de course (en secondes), les trier et afficher Meilleur temps : X. Il range le résultat de sort dans une variable et lit l’indice 1. Corrige-le.",
+    "starter_code": "<?php\n$temps = [];\nfor ($i = 0; $i < 3; $i++) {\n    $temps[] = (int) trim(fgets(STDIN));\n}\n$tries = sort($temps);\necho \"Meilleur temps : $tries[1]\";",
+    "solution": "<?php\n$temps = [];\nfor ($i = 0; $i < 3; $i++) {\n    $temps[] = (int) trim(fgets(STDIN));\n}\nsort($temps);\necho \"Meilleur temps : $temps[0]\";",
+    "visible_tests": [
+      {
+        "inputs": [
+          "63",
+          "58",
+          "71"
+        ],
+        "expected_output": "Meilleur temps : 58",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "55",
+          "60",
+          "49"
+        ],
+        "expected_output": "Meilleur temps : 49",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "40",
+          "41",
+          "42"
+        ],
+        "expected_output": "Meilleur temps : 40",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "sort renvoie true, pas un tableau.",
+      "Le plus petit temps est le premier après le tri.",
+      "Appelle sort($temps); puis lis $temps[0]."
+    ],
+    "explanation_fr": "sort travaille sur place : le tableau d’origine est modifié.",
+    "common_wrong_answers": [],
+    "id": "php-m3-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Relevé de pluie",
+    "instruction_fr": "Lis N puis N relevés de pluie en mm, rangés dans un tableau. Affiche trois lignes : Total : X mm, Jours de pluie : Y (relevés supérieurs à 0) et Record : Z mm (le plus grand relevé, obtenu sans fonction max, avec foreach). On suppose N ≥ 1.",
+    "starter_code": "<?php\n$n = (int) trim(fgets(STDIN));\n$releves = [];\n",
+    "solution": "<?php\n$n = (int) trim(fgets(STDIN));\n$releves = [];\nfor ($i = 0; $i < $n; $i++) {\n    $releves[] = (int) trim(fgets(STDIN));\n}\n$total = 0;\n$jours = 0;\n$record = $releves[0];\nforeach ($releves as $mm) {\n    $total += $mm;\n    if ($mm > 0) {\n        $jours++;\n    }\n    if ($mm > $record) {\n        $record = $mm;\n    }\n}\necho \"Total : $total mm\\n\";\necho \"Jours de pluie : $jours\\n\";\necho \"Record : $record mm\";",
+    "visible_tests": [
+      {
+        "inputs": [
+          "5",
+          "0",
+          "12",
+          "30",
+          "0",
+          "5"
+        ],
+        "expected_output": "Total : 47 mm\nJours de pluie : 3\nRecord : 30 mm",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "3",
+          "0",
+          "0",
+          "0"
+        ],
+        "expected_output": "Total : 0 mm\nJours de pluie : 0\nRecord : 0 mm",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "1",
+          "9"
+        ],
+        "expected_output": "Total : 9 mm\nJours de pluie : 1\nRecord : 9 mm",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Trois accumulateurs : total, nombre de jours et record.",
+      "Initialise le record avec le premier relevé, pas avec 0.",
+      "Dans foreach, compare chaque relevé au record actuel."
+    ],
+    "explanation_fr": "Initialiser le record avec le premier relevé fonctionne même si toutes les valeurs sont nulles.",
+    "common_wrong_answers": [],
+    "id": "php-m3-01-e4"
+  }
+]

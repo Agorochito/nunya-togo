@@ -2847,7 +2847,7 @@
         "react-bases",
         "http-bases"
       ],
-      "engine_revision": "e35d48ec41a4",
+      "engine_revision": "59131fb8e828",
       "lessons": [
         {
           "id": "dom-m1-01",
@@ -3108,9 +3108,284 @@
         }
       ],
       "estimated_minutes": 360,
-      "content_revision": "1a61379086f4",
+      "content_revision": "56b80e725086",
       "exercise_count": 72,
       "quiz_count": 54
+    },
+    {
+      "id": "php-bases",
+      "title_fr": "PHP : les bases de la programmation",
+      "language": "php",
+      "runtime": "php",
+      "level": "debutant",
+      "summary_fr": "Écris tes premiers scripts PHP avec un vrai interpréteur PHP 8.3 sur ton appareil : variables, conditions, boucles, tableaux, fonctions, jusqu’à la caisse d’une boutique.",
+      "prerequisite_courses": [],
+      "prerequisites": [
+        "Aucun prérequis en programmation : le cours part de zéro.",
+        "Si tu n’as jamais programmé, le niveau 0 « Découverte du numérique » ou Python peuvent aussi servir de première étape."
+      ],
+      "outcomes": [
+        "Écrire, exécuter et corriger un script PHP.",
+        "Décider et répéter avec if, match, for, while et foreach.",
+        "Organiser des données dans des tableaux indexés et associatifs.",
+        "Découper un programme en fonctions typées et valider des saisies."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Premiers scripts",
+          "outcome_fr": "Afficher, ranger des valeurs, calculer et lire des saisies.",
+          "lesson_ids": [
+            "php-m1-01",
+            "php-m1-02",
+            "php-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Décider et répéter",
+          "outcome_fr": "Choisir avec if et match, répéter avec for et while.",
+          "lesson_ids": [
+            "php-m2-01",
+            "php-m2-02",
+            "php-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Les tableaux",
+          "outcome_fr": "Ranger, parcourir et résumer des listes et des tableaux associatifs.",
+          "lesson_ids": [
+            "php-m3-01",
+            "php-m3-02",
+            "php-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Fonctions et projet",
+          "outcome_fr": "Découper un programme en fonctions et livrer la caisse d’une boutique.",
+          "lesson_ids": [
+            "php-m4-01",
+            "php-m4-02",
+            "php-m4-03"
+          ]
+        }
+      ],
+      "next_courses": [
+        "sql-bases"
+      ],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "php-m1-01",
+          "title_fr": "Écrire un premier script PHP",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [],
+          "tags": [
+            "php",
+            "débutant",
+            "script",
+            "echo",
+            "point-virgule",
+            "commentaire"
+          ]
+        },
+        {
+          "id": "php-m1-02",
+          "title_fr": "Ranger des valeurs dans des variables",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "php-m1-01"
+          ],
+          "tags": [
+            "php",
+            "débutant",
+            "variable",
+            "type",
+            "concaténation",
+            "interpolation"
+          ]
+        },
+        {
+          "id": "php-m1-03",
+          "title_fr": "Calculer et lire des saisies",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "php-m1-02"
+          ],
+          "tags": [
+            "php",
+            "débutant",
+            "opérateur",
+            "modulo",
+            "entrée standard",
+            "conversion"
+          ]
+        },
+        {
+          "id": "php-m2-01",
+          "title_fr": "Prendre des décisions avec if",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "php-m1-03"
+          ],
+          "tags": [
+            "php",
+            "débutant",
+            "condition",
+            "comparaison stricte",
+            "opérateur logique",
+            "cas limite"
+          ]
+        },
+        {
+          "id": "php-m2-02",
+          "title_fr": "Répéter avec for et while",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "php-m2-01"
+          ],
+          "tags": [
+            "php",
+            "débutant",
+            "boucle",
+            "compteur",
+            "accumulateur",
+            "boucle infinie"
+          ]
+        },
+        {
+          "id": "php-m2-03",
+          "title_fr": "Choisir parmi plusieurs cas avec match",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "php-m2-02"
+          ],
+          "tags": [
+            "php",
+            "débutant",
+            "match",
+            "default",
+            "validation",
+            "UnhandledMatchError"
+          ]
+        },
+        {
+          "id": "php-m3-01",
+          "title_fr": "Ranger une liste dans un tableau",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "php-m2-03"
+          ],
+          "tags": [
+            "php",
+            "débutant",
+            "tableau",
+            "indice",
+            "foreach",
+            "count"
+          ]
+        },
+        {
+          "id": "php-m3-02",
+          "title_fr": "Associer des clés et des valeurs",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "php-m3-01"
+          ],
+          "tags": [
+            "php",
+            "débutant",
+            "tableau associatif",
+            "clé",
+            "paire",
+            "array_key_exists"
+          ]
+        },
+        {
+          "id": "php-m3-03",
+          "title_fr": "Transformer des tableaux avec les fonctions natives",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "php-m3-02"
+          ],
+          "tags": [
+            "php",
+            "débutant",
+            "fonction native",
+            "explode",
+            "implode",
+            "arrondi"
+          ]
+        },
+        {
+          "id": "php-m4-01",
+          "title_fr": "Écrire ses propres fonctions",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "php-m3-03"
+          ],
+          "tags": [
+            "php",
+            "débutant",
+            "fonction",
+            "paramètre",
+            "valeur de retour",
+            "portée locale"
+          ]
+        },
+        {
+          "id": "php-m4-02",
+          "title_fr": "Mettre en forme du texte",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "php-m4-01"
+          ],
+          "tags": [
+            "php",
+            "débutant",
+            "casse",
+            "sprintf",
+            "marqueur de format",
+            "octet"
+          ]
+        },
+        {
+          "id": "php-m4-03",
+          "title_fr": "Projet : la caisse de la boutique",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "php-m4-02"
+          ],
+          "tags": [
+            "php",
+            "débutant",
+            "découpage",
+            "validation",
+            "catalogue",
+            "reçu"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "728e82f9f610",
+      "exercise_count": 48,
+      "quiz_count": 36
     },
     {
       "id": "python-intermediaire",
@@ -3569,7 +3844,7 @@
       "status": "brouillon",
       "reviewer": null,
       "depth_fr": "Socle progressif avec projets et tests locaux ; relecture pédagogique en cours. Les niveaux supérieurs restent à construire.",
-      "engine_revision": "e35d48ec41a4",
+      "engine_revision": "59131fb8e828",
       "lessons": [
         {
           "id": "react-m1-01",
@@ -3829,7 +4104,7 @@
         }
       ],
       "estimated_minutes": 360,
-      "content_revision": "52b40cdb01c8",
+      "content_revision": "22f1ecaf7c2f",
       "exercise_count": 72,
       "quiz_count": 54
     },
@@ -4205,6 +4480,25 @@
       "title_fr": "TypeScript : démarrer avec les types",
       "summary_fr": "Types, fonctions et unions ; après JavaScript.",
       "status": "bientôt"
+    },
+    {
+      "id": "java",
+      "title_fr": "Java : premiers programmes",
+      "summary_fr": "Classes, types et méthodes avec un vrai compilateur Java ; ouverture quand un moteur hors ligne aura été vérifié.",
+      "status": "bientôt"
+    },
+    {
+      "id": "cpp",
+      "title_fr": "C++ : les fondamentaux",
+      "summary_fr": "Variables, fonctions, tableaux et mémoire ; ouverture quand un compilateur assez léger pour les connexions des élèves aura été vérifié.",
+      "status": "bientôt"
+    },
+    {
+      "id": "php-intermediaire",
+      "title_fr": "PHP intermédiaire : objets et données",
+      "summary_fr": "Classes, exceptions, JSON et organisation d’un projet ; après PHP : les bases.",
+      "status": "bientôt",
+      "level": "intermediaire"
     }
   ],
   "legacy_references": [

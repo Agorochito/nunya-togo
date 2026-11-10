@@ -31,15 +31,16 @@
   {
     "id": "backend",
     "title_fr": "Back-end : les fondations",
-    "summary_fr": "Fonctions, objets, données et contrats HTTP avant les applications serveur.",
+    "summary_fr": "Fonctions, objets, données et contrats HTTP en Python et en PHP, avant les applications serveur.",
     "course_ids": [
       "python-bases",
       "python-intermediaire",
+      "php-bases",
       "sql-bases",
       "http-bases",
       "git-bases"
     ],
-    "outcome_fr": "Comprendre les données et les échanges d’un service. Node.js, Linux et Docker ne sont pas inclus dans ce socle."
+    "outcome_fr": "Comprendre les données et les échanges d’un service, en Python comme en PHP. Node.js, Linux et Docker ne sont pas inclus dans ce socle."
   },
   {
     "id": "cyber",

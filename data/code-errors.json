@@ -34,5 +34,29 @@
   "RangeError": [
     "Une limite du programme est dépassée.",
     "Vérifie la condition des boucles, les saisies et la quantité d’affichage."
+  ],
+  "ParseError": [
+    "PHP ne comprend pas cette écriture.",
+    "Regarde la ligne indiquée et celle d’avant : il manque souvent un point-virgule, une parenthèse, une accolade ou un guillemet."
+  ],
+  "Error": [
+    "PHP rencontre une instruction impossible, par exemple une fonction ou une constante inconnue.",
+    "Vérifie l’orthographe du nom et que la fonction est bien définie avant son appel."
+  ],
+  "DivisionByZeroError": [
+    "Le programme essaie de diviser par zéro.",
+    "Vérifie le diviseur avec une condition avant le calcul."
+  ],
+  "ArgumentCountError": [
+    "La fonction ne reçoit pas le nombre d’arguments prévu.",
+    "Compare l’appel avec la liste des paramètres de la fonction."
+  ],
+  "FatalError": [
+    "PHP a dû arrêter le script.",
+    "Lis le message : il indique la ligne et la cause ; corrige-la puis relance."
+  ],
+  "Script": [
+    "Le script ne peut pas être lancé tel quel.",
+    "Lis la consigne affichée : elle indique ce qu’il faut changer avant l’exécution."
   ]
 }

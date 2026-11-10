@@ -1,0 +1,258 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Calculer une remise",
+    "instruction_fr": "Écris la fonction prixRemise(int $prix, int $pourcentage): int qui renvoie le prix après remise, arrondi à l’entier inférieur avec intdiv : intdiv($prix * (100 - $pourcentage), 100). Le programme n’affiche rien.",
+    "starter_code": "<?php\nfunction prixRemise(int $prix, int $pourcentage): int\n{\n    echo $prix - $pourcentage;\n    return 0;\n}",
+    "solution": "<?php\nfunction prixRemise(int $prix, int $pourcentage): int\n{\n    return intdiv($prix * (100 - $pourcentage), 100);\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "prixRemise",
+            "args": [
+              1000,
+              10
+            ],
+            "expected": 900,
+            "expected_type": "int"
+          },
+          {
+            "name": "prixRemise",
+            "args": [
+              5000,
+              25
+            ],
+            "expected": 3750,
+            "expected_type": "int"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "prixRemise",
+            "args": [
+              1999,
+              33
+            ],
+            "expected": 1339,
+            "expected_type": "int"
+          },
+          {
+            "name": "prixRemise",
+            "args": [
+              700,
+              0
+            ],
+            "expected": 700,
+            "expected_type": "int"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La fonction doit renvoyer, pas afficher.",
+      "Un pourcentage s’applique sur 100.",
+      "return intdiv($prix * (100 - $pourcentage), 100);"
+    ],
+    "explanation_fr": "Les vérifications appellent la fonction directement avec d’autres arguments.",
+    "common_wrong_answers": [],
+    "id": "php-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Mention avec une fonction",
+    "instruction_fr": "Écris mention(int $note): string qui renvoie Très bien (≥ 16), Bien (≥ 14), Assez bien (≥ 12), Passable (≥ 10) ou Insuffisant. Puis lis une note et affiche Note X : mention.",
+    "starter_code": "<?php\nfunction mention(int $note): string\n{\n}\n\n$note = (int) trim(fgets(STDIN));\n",
+    "solution": "<?php\nfunction mention(int $note): string\n{\n    return match (true) {\n        $note >= 16 => \"Très bien\",\n        $note >= 14 => \"Bien\",\n        $note >= 12 => \"Assez bien\",\n        $note >= 10 => \"Passable\",\n        default => \"Insuffisant\",\n    };\n}\n\n$note = (int) trim(fgets(STDIN));\necho \"Note $note : \", mention($note);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "15"
+        ],
+        "expected_output": "Note 15 : Bien",
+        "calls": [
+          {
+            "name": "mention",
+            "args": [
+              16
+            ],
+            "expected": "Très bien"
+          },
+          {
+            "name": "mention",
+            "args": [
+              9
+            ],
+            "expected": "Insuffisant"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "12"
+        ],
+        "expected_output": "Note 12 : Assez bien",
+        "calls": [
+          {
+            "name": "mention",
+            "args": [
+              10
+            ],
+            "expected": "Passable"
+          },
+          {
+            "name": "mention",
+            "args": [
+              14
+            ],
+            "expected": "Bien"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une fonction peut renvoyer directement le résultat de match.",
+      "Les bornes : 16, 14, 12, 10.",
+      "return match (true) { $note >= 16 => \"Très bien\", … };"
+    ],
+    "explanation_fr": "La fonction se teste seule ; le programme principal ne fait que lire et afficher.",
+    "common_wrong_answers": [],
+    "id": "php-m4-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une conversion",
+    "instruction_fr": "convertir(int $fcfa, float $taux = 655.957): float doit renvoyer le montant en euros arrondi à 2 décimales. La fonction lit un taux global, affiche au lieu de renvoyer et place le paramètre par défaut en premier. Corrige-la ; le programme n’affiche rien.",
+    "starter_code": "<?php\n$taux = 655.957;\nfunction convertir(float $taux = 655.957, int $fcfa)\n{\n    echo round($fcfa / $GLOBALS[\"taux\"], 2);\n}",
+    "solution": "<?php\nfunction convertir(int $fcfa, float $taux = 655.957): float\n{\n    return round($fcfa / $taux, 2);\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "convertir",
+            "args": [
+              10000
+            ],
+            "expected": 15.24,
+            "expected_type": "float"
+          },
+          {
+            "name": "convertir",
+            "args": [
+              656,
+              656.0
+            ],
+            "expected": 1.0,
+            "expected_type": "float"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "convertir",
+            "args": [
+              50000
+            ],
+            "expected": 76.22,
+            "expected_type": "float"
+          },
+          {
+            "name": "convertir",
+            "args": [
+              0
+            ],
+            "expected": 0.0,
+            "expected_type": "float"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le paramètre obligatoire doit précéder celui qui a une valeur par défaut.",
+      "La fonction doit utiliser son paramètre $taux, pas une variable globale.",
+      "function convertir(int $fcfa, float $taux = 655.957): float { return round($fcfa / $taux, 2); }"
+    ],
+    "explanation_fr": "round renvoie un float ; le type de retour le garantit, même pour 0.0.",
+    "common_wrong_answers": [],
+    "id": "php-m4-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Calculatrice de facture",
+    "instruction_fr": "Écris sousTotal(int $prix, int $quantite): int, tva(int $montant): int (18 % arrondi à l’entier inférieur avec intdiv) et totalTTC(int $prix, int $quantite): int qui utilise les deux autres. Lis un prix puis une quantité et affiche trois lignes : Sous-total : X FCFA, TVA : Y FCFA, Total : Z FCFA.",
+    "starter_code": "<?php\nfunction sousTotal(int $prix, int $quantite): int\n{\n    return $prix * $quantite;\n}\n\n$prix = (int) trim(fgets(STDIN));\n$quantite = (int) trim(fgets(STDIN));\n",
+    "solution": "<?php\nfunction sousTotal(int $prix, int $quantite): int\n{\n    return $prix * $quantite;\n}\n\nfunction tva(int $montant): int\n{\n    return intdiv($montant * 18, 100);\n}\n\nfunction totalTTC(int $prix, int $quantite): int\n{\n    $base = sousTotal($prix, $quantite);\n    return $base + tva($base);\n}\n\n$prix = (int) trim(fgets(STDIN));\n$quantite = (int) trim(fgets(STDIN));\n$base = sousTotal($prix, $quantite);\necho \"Sous-total : $base FCFA\\n\";\necho \"TVA : \", tva($base), \" FCFA\\n\";\necho \"Total : \", totalTTC($prix, $quantite), \" FCFA\";",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2500",
+          "2"
+        ],
+        "expected_output": "Sous-total : 5000 FCFA\nTVA : 900 FCFA\nTotal : 5900 FCFA",
+        "calls": [
+          {
+            "name": "tva",
+            "args": [
+              1000
+            ],
+            "expected": 180,
+            "expected_type": "int"
+          },
+          {
+            "name": "totalTTC",
+            "args": [
+              500,
+              2
+            ],
+            "expected": 1180,
+            "expected_type": "int"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1250",
+          "1"
+        ],
+        "expected_output": "Sous-total : 1250 FCFA\nTVA : 225 FCFA\nTotal : 1475 FCFA",
+        "calls": [
+          {
+            "name": "tva",
+            "args": [
+              99
+            ],
+            "expected": 17,
+            "expected_type": "int"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Trois fonctions courtes, chacune avec un rôle.",
+      "totalTTC appelle sousTotal puis tva.",
+      "Le programme principal lit les saisies et affiche les trois lignes."
+    ],
+    "explanation_fr": "Chaque fonction est vérifiée séparément, puis l’ensemble par l’affichage.",
+    "common_wrong_answers": [],
+    "id": "php-m4-01-e4"
+  }
+]

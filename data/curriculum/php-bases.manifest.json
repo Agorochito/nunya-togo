@@ -1,0 +1,66 @@
+{
+  "id": "php-bases",
+  "title_fr": "PHP : les bases de la programmation",
+  "language": "php",
+  "runtime": "php",
+  "level": "debutant",
+  "summary_fr": "Écris tes premiers scripts PHP avec un vrai interpréteur PHP 8.3 sur ton appareil : variables, conditions, boucles, tableaux, fonctions, jusqu’à la caisse d’une boutique.",
+  "prerequisite_courses": [],
+  "prerequisites": [
+    "Aucun prérequis en programmation : le cours part de zéro.",
+    "Si tu n’as jamais programmé, le niveau 0 « Découverte du numérique » ou Python peuvent aussi servir de première étape."
+  ],
+  "outcomes": [
+    "Écrire, exécuter et corriger un script PHP.",
+    "Décider et répéter avec if, match, for, while et foreach.",
+    "Organiser des données dans des tableaux indexés et associatifs.",
+    "Découper un programme en fonctions typées et valider des saisies."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Premiers scripts",
+      "outcome_fr": "Afficher, ranger des valeurs, calculer et lire des saisies.",
+      "lesson_ids": [
+        "php-m1-01",
+        "php-m1-02",
+        "php-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Décider et répéter",
+      "outcome_fr": "Choisir avec if et match, répéter avec for et while.",
+      "lesson_ids": [
+        "php-m2-01",
+        "php-m2-02",
+        "php-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Les tableaux",
+      "outcome_fr": "Ranger, parcourir et résumer des listes et des tableaux associatifs.",
+      "lesson_ids": [
+        "php-m3-01",
+        "php-m3-02",
+        "php-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Fonctions et projet",
+      "outcome_fr": "Découper un programme en fonctions et livrer la caisse d’une boutique.",
+      "lesson_ids": [
+        "php-m4-01",
+        "php-m4-02",
+        "php-m4-03"
+      ]
+    }
+  ],
+  "next_courses": [
+    "sql-bases"
+  ],
+  "status": "brouillon",
+  "reviewer": null
+}

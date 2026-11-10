@@ -1,0 +1,165 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Résumer des notes",
+    "instruction_fr": "Lis une ligne de notes entières séparées par des espaces. Affiche Moyenne : X (arrondie à 1 décimale), puis Meilleure : Y. Utilise explode, array_map, array_sum, count, round et max.",
+    "starter_code": "<?php\n$ligne = trim(fgets(STDIN));\n$notes = explode(\" \", $ligne);\n",
+    "solution": "<?php\n$ligne = trim(fgets(STDIN));\n$notes = array_map(\"intval\", explode(\" \", $ligne));\necho \"Moyenne : \", round(array_sum($notes) / count($notes), 1), \"\\n\";\necho \"Meilleure : \", max($notes);",
+    "visible_tests": [
+      {
+        "inputs": [
+          "12 15 9 17"
+        ],
+        "expected_output": "Moyenne : 13.3\nMeilleure : 17",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "10"
+        ],
+        "expected_output": "Moyenne : 10\nMeilleure : 10",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "14 12 18"
+        ],
+        "expected_output": "Moyenne : 14.7\nMeilleure : 18",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "La ligne doit être découpée puis convertie.",
+      "La moyenne est la somme divisée par le nombre de notes.",
+      "round(array_sum($notes) / count($notes), 1)"
+    ],
+    "explanation_fr": "round(10.0, 1) s’affiche 10 : PHP n’écrit pas la décimale nulle.",
+    "common_wrong_answers": [],
+    "id": "php-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Liste de courses",
+    "instruction_fr": "Lis une liste de produits séparés par des virgules, puis un produit à chercher. Affiche Produits : … (séparés par une virgule et un espace), puis Présent ou Absent selon in_array en mode strict.",
+    "starter_code": "<?php\n$liste = explode(\",\", trim(fgets(STDIN)));\n$cherche = trim(fgets(STDIN));\n",
+    "solution": "<?php\n$liste = explode(\",\", trim(fgets(STDIN)));\n$cherche = trim(fgets(STDIN));\necho \"Produits : \", implode(\", \", $liste), \"\\n\";\necho in_array($cherche, $liste, true) ? \"Présent\" : \"Absent\";",
+    "visible_tests": [
+      {
+        "inputs": [
+          "riz,huile,sel",
+          "huile"
+        ],
+        "expected_output": "Produits : riz, huile, sel\nPrésent",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "gari",
+          "sucre"
+        ],
+        "expected_output": "Produits : gari\nAbsent",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "riz,sel",
+          "Riz"
+        ],
+        "expected_output": "Produits : riz, sel\nAbsent",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Le tableau existe déjà grâce à explode.",
+      "implode assemble l’affichage.",
+      "in_array($cherche, $liste, true) ? \"Présent\" : \"Absent\""
+    ],
+    "explanation_fr": "La recherche distingue les majuscules : Riz n’est pas riz.",
+    "common_wrong_answers": [],
+    "id": "php-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une moyenne de classe",
+    "instruction_fr": "Le script lit des notes séparées par des points-virgules. Il calcule avec les morceaux texte, inverse les arguments de in_array et plante si la ligne est vide. Affiche Moyenne : X (1 décimale) puis Un 20 : oui ou Un 20 : non, ou seulement Aucune note pour une ligne vide.",
+    "starter_code": "<?php\n$notes = explode(\";\", trim(fgets(STDIN)));\necho \"Moyenne : \", round(array_sum($notes) / count($notes), 1), \"\\n\";\necho \"Un 20 : \", in_array($notes, 20, true) ? \"oui\" : \"non\";",
+    "solution": "<?php\n$ligne = trim(fgets(STDIN));\nif ($ligne === \"\") {\n    echo \"Aucune note\";\n} else {\n    $notes = array_map(\"intval\", explode(\";\", $ligne));\n    echo \"Moyenne : \", round(array_sum($notes) / count($notes), 1), \"\\n\";\n    echo \"Un 20 : \", in_array(20, $notes, true) ? \"oui\" : \"non\";\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "20;10;15"
+        ],
+        "expected_output": "Moyenne : 15\nUn 20 : oui",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          ""
+        ],
+        "expected_output": "Aucune note",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "11;12"
+        ],
+        "expected_output": "Moyenne : 11.5\nUn 20 : non",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Lis le message d’erreur : quel argument de in_array est faux ?",
+      "Les morceaux doivent devenir des entiers pour la comparaison stricte.",
+      "Teste d’abord la ligne vide, puis convertis avec array_map(\"intval\", …)."
+    ],
+    "explanation_fr": "explode(\"\") renvoie [\"\"] : un tableau d’un élément vide, d’où le test sur la ligne.",
+    "common_wrong_answers": [],
+    "id": "php-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Bilan de la coopérative",
+    "instruction_fr": "Lis une ligne de récoltes en kg séparées par des espaces (au moins une valeur). Affiche quatre lignes : Récoltes : 3 (le nombre), Total : X kg, Moyenne : Y kg (1 décimale), Écart : Z kg (différence entre la plus grande et la plus petite).",
+    "starter_code": "<?php\n// Lis la ligne puis calcule le bilan\n",
+    "solution": "<?php\n$recoltes = array_map(\"intval\", explode(\" \", trim(fgets(STDIN))));\n$total = array_sum($recoltes);\necho \"Récoltes : \", count($recoltes), \"\\n\";\necho \"Total : $total kg\\n\";\necho \"Moyenne : \", round($total / count($recoltes), 1), \" kg\\n\";\necho \"Écart : \", max($recoltes) - min($recoltes), \" kg\";",
+    "visible_tests": [
+      {
+        "inputs": [
+          "120 80 170"
+        ],
+        "expected_output": "Récoltes : 3\nTotal : 370 kg\nMoyenne : 123.3 kg\nÉcart : 90 kg",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "55"
+        ],
+        "expected_output": "Récoltes : 1\nTotal : 55 kg\nMoyenne : 55 kg\nÉcart : 0 kg",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "100 400 250 250"
+        ],
+        "expected_output": "Récoltes : 4\nTotal : 1000 kg\nMoyenne : 250 kg\nÉcart : 300 kg",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Une seule ligne de saisie, découpée puis convertie.",
+      "Le total sert deux fois : range-le dans une variable.",
+      "max($recoltes) - min($recoltes) donne l’écart."
+    ],
+    "explanation_fr": "Quatre fonctions natives remplacent quatre boucles.",
+    "common_wrong_answers": [],
+    "id": "php-m3-03-e4"
+  }
+]

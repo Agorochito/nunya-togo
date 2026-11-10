@@ -1,0 +1,167 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Numéro de ticket",
+    "instruction_fr": "Écris ticket(int $numero, string $nom): string qui renvoie par exemple N° 0042 - AFI : le numéro sur 4 chiffres avec des zéros à gauche, puis le nom en majuscules. Le programme n’affiche rien.",
+    "starter_code": "<?php\nfunction ticket(int $numero, string $nom): string\n{\n    return \"N° $numero - $nom\";\n}",
+    "solution": "<?php\nfunction ticket(int $numero, string $nom): string\n{\n    return sprintf(\"N° %04d - %s\", $numero, strtoupper($nom));\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ticket",
+            "args": [
+              42,
+              "Afi"
+            ],
+            "expected": "N° 0042 - AFI"
+          },
+          {
+            "name": "ticket",
+            "args": [
+              1234,
+              "kossi"
+            ],
+            "expected": "N° 1234 - KOSSI"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ticket",
+            "args": [
+              7,
+              "Edem"
+            ],
+            "expected": "N° 0007 - EDEM"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le numéro doit occuper 4 chiffres.",
+      "%04d complète avec des zéros ; strtoupper change la casse.",
+      "return sprintf(\"N° %04d - %s\", $numero, strtoupper($nom));"
+    ],
+    "explanation_fr": "sprintf renvoie le texte construit : la fonction peut le renvoyer directement.",
+    "common_wrong_answers": [],
+    "id": "php-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Nettoyer une saisie",
+    "instruction_fr": "Lis un nom et une ville, avec des espaces et des majuscules désordonnées. Affiche Membre : Nom (Ville), chaque mot avec une majuscule initiale et le reste en minuscules. Utilise trim, strtolower et ucwords.",
+    "starter_code": "<?php\n$nom = fgets(STDIN);\n$ville = fgets(STDIN);\necho \"Membre : $nom ($ville)\";",
+    "solution": "<?php\n$nom = ucwords(strtolower(trim(fgets(STDIN))));\n$ville = ucwords(strtolower(trim(fgets(STDIN))));\necho \"Membre : $nom ($ville)\";",
+    "visible_tests": [
+      {
+        "inputs": [
+          "  kOFI mensah ",
+          "LOME"
+        ],
+        "expected_output": "Membre : Kofi Mensah (Lome)",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "ama",
+          " kpalime  "
+        ],
+        "expected_output": "Membre : Ama (Kpalime)",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "YAO AGBEKO",
+          "kara"
+        ],
+        "expected_output": "Membre : Yao Agbeko (Kara)",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Chaque saisie contient un retour à la ligne et des espaces.",
+      "Mets tout en minuscules avant de remettre les majuscules.",
+      "ucwords(strtolower(trim(fgets(STDIN))))"
+    ],
+    "explanation_fr": "Les villes sont écrites sans accent : ces fonctions ne traitent que les lettres simples.",
+    "common_wrong_answers": [],
+    "id": "php-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un reçu aligné",
+    "instruction_fr": "Le reçu doit afficher chaque ligne au format %-10s%5d (nom à gauche sur 10, quantité à droite sur 5), puis Total : X articles. Le script additionne des textes formatés et inverse les marqueurs. Corrige-le.",
+    "starter_code": "<?php\n$panier = [\"Savon\" => 3, \"Bougie\" => 12, \"Allumettes\" => 5];\n$total = 0;\nforeach ($panier as $article => $n) {\n    $ligne = sprintf(\"%5d%-10s\", $article, $n);\n    echo $ligne, \"\\n\";\n    $total += $ligne;\n}\necho \"Total : $total articles\";",
+    "solution": "<?php\n$panier = [\"Savon\" => 3, \"Bougie\" => 12, \"Allumettes\" => 5];\n$total = 0;\nforeach ($panier as $article => $n) {\n    echo sprintf(\"%-10s%5d\", $article, $n), \"\\n\";\n    $total += $n;\n}\necho \"Total : $total articles\";",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Savon         3\nBougie       12\nAllumettes    5\nTotal : 20 articles",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Savon         3\nBougie       12\nAllumettes    5\nTotal : 20 articles",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Les marqueurs suivent l’ordre des arguments.",
+      "Le total doit additionner les quantités, pas les lignes formatées.",
+      "sprintf(\"%-10s%5d\", $article, $n) et $total += $n;"
+    ],
+    "explanation_fr": "Additionner un texte formaté provoque une erreur : on calcule avec les nombres d’origine.",
+    "common_wrong_answers": [],
+    "id": "php-m4-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Tableau des scores",
+    "instruction_fr": "Lis N puis N lignes au format Nom:points. Affiche une ligne par équipe avec printf(\"%-10s%4d pts\\n\", …), dans l’ordre de saisie, puis Meilleure équipe : Nom (le plus de points ; en cas d’égalité, la première saisie).",
+    "starter_code": "<?php\n$n = (int) trim(fgets(STDIN));\n$scores = [];\n",
+    "solution": "<?php\n$n = (int) trim(fgets(STDIN));\n$scores = [];\nfor ($i = 0; $i < $n; $i++) {\n    [$nom, $points] = explode(\":\", trim(fgets(STDIN)));\n    $scores[$nom] = (int) $points;\n}\nforeach ($scores as $nom => $points) {\n    printf(\"%-10s%4d pts\\n\", $nom, $points);\n}\n$meilleure = \"\";\n$record = -1;\nforeach ($scores as $nom => $points) {\n    if ($points > $record) {\n        $record = $points;\n        $meilleure = $nom;\n    }\n}\necho \"Meilleure équipe : $meilleure\";",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3",
+          "Lions:12",
+          "Aigles:9",
+          "Panthères:15"
+        ],
+        "expected_output": "Lions       12 pts\nAigles       9 pts\nPanthères  15 pts\nMeilleure équipe : Panthères",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "2",
+          "Kara:7",
+          "Lome:7"
+        ],
+        "expected_output": "Kara         7 pts\nLome         7 pts\nMeilleure équipe : Kara",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "explode(\":\", …) sépare le nom et les points.",
+      "[$nom, $points] = explode(…) range les deux morceaux en une ligne.",
+      "Cherche le meilleur avec > pour garder la première équipe en cas d’égalité."
+    ],
+    "explanation_fr": "Panthères contient un accent : son nom occupe un octet de plus, donc sprintf ajoute un espace de moins et la colonne paraît décalée d’un caractère.",
+    "common_wrong_answers": [],
+    "id": "php-m4-02-e4"
+  }
+]

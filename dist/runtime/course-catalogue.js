@@ -15,6 +15,7 @@ const TECHNOLOGIES={
   react:{label:'React',mark:'R',aliases:'react jsx composants etat interface javascript js'},
   http:{label:'HTTP et API',mark:'API',aliases:'http api fetch requete reponse client'},
   sql:{label:'SQL',mark:'SQL',aliases:'sql sqlite donnees base requete'},
+  php:{label:'PHP',mark:'php',aliases:'php programmation serveur web back-end backend script'},
   git:{label:'Git',mark:'Git',aliases:'git versions branches historique'}
 };
 

@@ -1,0 +1,224 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Quai de départ",
+    "instruction_fr": "Lis une ville. Avec match, affiche Quai 1 pour Kara, Quai 2 pour Sokodé ou Atakpamé, sinon Destination inconnue.",
+    "starter_code": "<?php\n$ville = trim(fgets(STDIN));\n$quai = match ($ville) {\n    \"Kara\" => \"Quai 1\",\n};\necho $quai;",
+    "solution": "<?php\n$ville = trim(fgets(STDIN));\n$quai = match ($ville) {\n    \"Kara\" => \"Quai 1\",\n    \"Sokodé\", \"Atakpamé\" => \"Quai 2\",\n    default => \"Destination inconnue\",\n};\necho $quai;",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Kara"
+        ],
+        "expected_output": "Quai 1",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "Sokodé"
+        ],
+        "expected_output": "Quai 2",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "Atakpamé"
+        ],
+        "expected_output": "Quai 2",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "Dapaong"
+        ],
+        "expected_output": "Destination inconnue",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Une ville inconnue arrête le script : il manque un cas.",
+      "Deux villes partagent le quai 2.",
+      "Ajoute \"Sokodé\", \"Atakpamé\" => \"Quai 2\", puis default."
+    ],
+    "explanation_fr": "Avec default, une destination imprévue produit un message au lieu d’une erreur fatale.",
+    "common_wrong_answers": [],
+    "id": "php-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Nom du jour",
+    "instruction_fr": "Lis un numéro de jour de 1 à 7 (1 = lundi). Affiche le nom du jour en minuscules : lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche. Pour tout autre numéro, affiche Numéro invalide.",
+    "starter_code": "<?php\n$n = trim(fgets(STDIN));\necho match ($n) {\n    1 => \"lundi\",\n    default => \"Numéro invalide\",\n};",
+    "solution": "<?php\n$n = (int) trim(fgets(STDIN));\necho match ($n) {\n    1 => \"lundi\",\n    2 => \"mardi\",\n    3 => \"mercredi\",\n    4 => \"jeudi\",\n    5 => \"vendredi\",\n    6 => \"samedi\",\n    7 => \"dimanche\",\n    default => \"Numéro invalide\",\n};",
+    "visible_tests": [
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "lundi",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "jeudi",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "7"
+        ],
+        "expected_output": "dimanche",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "8"
+        ],
+        "expected_output": "Numéro invalide",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "Numéro invalide",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "La saisie \"1\" ne correspond pas au cas entier 1.",
+      "Convertis la saisie avec (int).",
+      "Écris les sept cas puis default."
+    ],
+    "explanation_fr": "Sans conversion, même le lundi tombe dans default.",
+    "common_wrong_answers": [],
+    "id": "php-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une grille de frais",
+    "instruction_fr": "Le script classe une quantité : 0 ou moins donne Quantité invalide, 1 à 9 donne Prix détail, 10 et plus donne Prix de gros. Il manque le point-virgule final et les conditions sont dans le mauvais ordre. Corrige-le.",
+    "starter_code": "<?php\n$q = (int) trim(fgets(STDIN));\n$prix = match (true) {\n    $q >= 1 => \"Prix détail\",\n    $q >= 10 => \"Prix de gros\",\n    default => \"Quantité invalide\",\n}\necho $prix;",
+    "solution": "<?php\n$q = (int) trim(fgets(STDIN));\n$prix = match (true) {\n    $q >= 10 => \"Prix de gros\",\n    $q >= 1 => \"Prix détail\",\n    default => \"Quantité invalide\",\n};\necho $prix;",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "Prix détail",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "25"
+        ],
+        "expected_output": "Prix de gros",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "10"
+        ],
+        "expected_output": "Prix de gros",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "Quantité invalide",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "9"
+        ],
+        "expected_output": "Prix détail",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Le message d’erreur indique la ligne de echo : regarde celle d’avant.",
+      "Avec match (true), le premier cas vrai l’emporte.",
+      "Ajoute ; après } et place $q >= 10 en premier."
+    ],
+    "explanation_fr": "L’ordre des cas de match (true) suit la même règle que les elseif.",
+    "common_wrong_answers": [],
+    "id": "php-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Bulletin météo du village",
+    "instruction_fr": "Lis un mois (1 à 12) puis une température entière. Si le mois est invalide, affiche seulement Mois invalide. Sinon, affiche Saison des pluies pour les mois 4 à 10, Saison sèche sinon ; puis, sur une deuxième ligne, Chaud à partir de 33 °C, Doux à partir de 25 °C, sinon Frais.",
+    "starter_code": "<?php\n$mois = (int) trim(fgets(STDIN));\n$temp = (int) trim(fgets(STDIN));\n",
+    "solution": "<?php\n$mois = (int) trim(fgets(STDIN));\n$temp = (int) trim(fgets(STDIN));\nif ($mois < 1 || $mois > 12) {\n    echo \"Mois invalide\";\n} else {\n    $saison = match (true) {\n        $mois >= 4 && $mois <= 10 => \"Saison des pluies\",\n        default => \"Saison sèche\",\n    };\n    $ressenti = match (true) {\n        $temp >= 33 => \"Chaud\",\n        $temp >= 25 => \"Doux\",\n        default => \"Frais\",\n    };\n    echo \"$saison\\n$ressenti\";\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2",
+          "35"
+        ],
+        "expected_output": "Saison sèche\nChaud",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "8",
+          "27"
+        ],
+        "expected_output": "Saison des pluies\nDoux",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "13",
+          "30"
+        ],
+        "expected_output": "Mois invalide",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "4",
+          "24"
+        ],
+        "expected_output": "Saison des pluies\nFrais",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "11",
+          "33"
+        ],
+        "expected_output": "Saison sèche\nChaud",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "12",
+          "25"
+        ],
+        "expected_output": "Saison sèche\nDoux",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Commence par rejeter les mois invalides avec if.",
+      "Deux match (true) indépendants : la saison, puis le ressenti.",
+      "Teste $temp >= 33 avant $temp >= 25."
+    ],
+    "explanation_fr": "if rejette, match classe : chaque outil garde son rôle.",
+    "common_wrong_answers": [],
+    "id": "php-m2-03-e4"
+  }
+]

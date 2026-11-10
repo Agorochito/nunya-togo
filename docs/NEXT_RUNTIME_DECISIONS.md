@@ -34,7 +34,7 @@ Demande du propriétaire : ouvrir de nouveaux langages (PHP, C++, Java…) du ni
 
 | Langage | Candidat | Licence | Poids mesuré ou publié | Avis |
 |---|---|---|---|---|
-| PHP | `php-wasm` 0.2.0 (interpréteur PHP 8.0 à 8.5 compilé en WebAssembly) | Apache-2.0 ou GPL-2.0 au choix | PHP 8.3 : 12,2 Mo, soit 3,1 Mo gzip ; colle JavaScript d’environ 0,65 Mo | **Premier candidat.** Plus léger que le moteur Python déjà en ligne (9,6 Mo de WebAssembly et 2,5 Mo de bibliothèque standard). L’option Apache-2.0 convient à un projet propriétaire. |
+| PHP | `php-wasm` 0.2.0 (interpréteur PHP 8.0 à 8.5 compilé en WebAssembly) | Apache-2.0 ou GPL-2.0 au choix | PHP 8.3 : 12,2 Mo, soit 3,1 Mo gzip ; Worker de 134 Ko gzip | **Intégré en 5.10.0** (voir ci-dessous). Utilisé sous l’option Apache-2.0. |
 | PHP | `@php-wasm/web` 3.1 (WordPress Playground) | GPL-2.0-or-later | paquet de 31 à 50 Mo | Écarté par prudence : licence à réciprocité, à faire examiner avant tout usage dans un projet propriétaire. |
 | C++ | `@yowasp/clang`, `browsercc` (vrai compilateur Clang) | ISC, MIT | 105 à 114 Mo décompressés | Vrai compilateur, mais trop lourd pour les connexions visées. À réévaluer seulement avec un téléchargement facultatif et annoncé. |
 | C++ | `JSCPP` 2.0.9 | MIT | interpréteur JavaScript, bien plus léger | Interprète un **sous-ensemble** de C++ et n’est plus mis à jour depuis 2022. Utilisable seulement si le cours est nommé honnêtement et borné aux constructions réellement vérifiées. |
@@ -44,4 +44,8 @@ Demande du propriétaire : ouvrir de nouveaux langages (PHP, C++, Java…) du ni
 Étapes pour PHP, dans l’ordre : prototype dans un Worker avec capture de la sortie, des erreurs et arrêt d’une boucle infinie ; vérification du démarrage à froid hors ligne ; mesure sur un téléphone d’entrée de gamme ; puis rédaction d’un premier cours « PHP : les bases » sur le même contrat que les autres programmes (deux exemples, quatre exercices et trois questions par leçon). PHP s’exécuterait ici comme un interpréteur en ligne de commande : les pages dynamiques servies par un vrai serveur ne doivent pas être annoncées tant qu’elles ne sont pas réellement disponibles.
 
 Sans moteur supplémentaire, les suites suivantes peuvent être rédigées dès maintenant avec les moteurs déjà vérifiés : SQL intermédiaire (SQLite), JavaScript intermédiaire et asynchrone (Worker), Python avancé (Pyodide), HTML et CSS avancés (vérificateur de navigateur).
+
+### PHP intégré — 5.10.0
+
+Le moteur tourne dans `coding-php-worker.js` (sources `lib/php/`), avec la même politique de sécurité de contenu que le Worker SQL. Le paquet publié vise une page : il nomme `window` et `document` au chargement, d’où des substituts inertes dans le Worker. L’interface « embed » de cette version ne définit pas `STDIN` et `readline()` attend un clavier : l’atelier définit `STDIN` comme PHP en ligne de commande, sur la ligne de la balise d’ouverture pour garder les numéros de ligne, et refuse `readline()` avec une explication. L’extension mbstring est absente : le cours le dit et évite les fonctions de texte sur des lettres accentuées. Les vérifications de valeurs sont faites en PHP par un épilogue ajouté après le script, puis comparées en JSON, ordre des clés compris. Résultats : `PHP_ENGINE_RESULTS.json` et `PHP_BASES_UI_RESULTS.json`.
 

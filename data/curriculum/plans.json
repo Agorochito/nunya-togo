@@ -77,5 +77,24 @@
     "title_fr": "React : construire une interface avec des composants",
     "summary_fr": "Composants, propriétés, état et formulaires ; après HTML, CSS, JavaScript et les interactions du navigateur.",
     "status": "bientôt"
+  },
+  {
+    "id": "java",
+    "title_fr": "Java : premiers programmes",
+    "summary_fr": "Classes, types et méthodes avec un vrai compilateur Java ; ouverture quand un moteur hors ligne aura été vérifié.",
+    "status": "bientôt"
+  },
+  {
+    "id": "cpp",
+    "title_fr": "C++ : les fondamentaux",
+    "summary_fr": "Variables, fonctions, tableaux et mémoire ; ouverture quand un compilateur assez léger pour les connexions des élèves aura été vérifié.",
+    "status": "bientôt"
+  },
+  {
+    "id": "php-intermediaire",
+    "title_fr": "PHP intermédiaire : objets et données",
+    "summary_fr": "Classes, exceptions, JSON et organisation d’un projet ; après PHP : les bases.",
+    "status": "bientôt",
+    "level": "intermediaire"
   }
 ]

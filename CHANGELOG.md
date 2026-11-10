@@ -1,5 +1,14 @@
 # Historique
 
+## 5.10.0 — 9 novembre 2026
+
+- Nouveau langage : **PHP : les bases**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux en français, de `echo` à la caisse d’une boutique : variables et types, calculs et saisies, `if` et `match`, boucles, tableaux indexés et associatifs, fonctions natives, fonctions typées et projet final avec validation des saisies.
+- Vrai interpréteur PHP 8.3 (`php-wasm`, licence Apache-2.0) dans un Worker isolé, sans serveur : 3,1 Mo compressés, téléchargés seulement en ouvrant le cours et conservés pour l’usage hors ligne. Réseau et stockage coupés pour le code de l’élève, boucles infinies arrêtées, affichage limité, erreurs PHP expliquées en français avec leur ligne.
+- Les saisies se lisent comme en PHP en ligne de commande, avec `trim(fgets(STDIN))`. Les exercices vérifient l’affichage, mais aussi les valeurs et les types renvoyés par les fonctions et contenus dans les variables.
+- Le parcours « Back-end : les fondations » inclut PHP. Java, C++ et PHP intermédiaire rejoignent les séries annoncées « en préparation ».
+- Correction : dans le résultat d’une vérification, l’intitulé du cas et le nom de l’erreur n’étaient plus collés (« à revoirParseError »).
+- Contenu en brouillon, à relire (`reviewer: null`).
+
 ## 5.9.0 — 9 novembre 2026
 
 - HTML intermédiaire : quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux en français. Régions et titres, formulaires reliés à leurs aides et erreurs, tableaux à en-têtes multiples, images, langue et projet d’annuaire associatif.

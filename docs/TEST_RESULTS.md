@@ -1,3 +1,13 @@
+# Vérifications 5.10.0 — 9 novembre 2026
+
+- PHP réel dans le contrôle de compilation : 24 exemples et 137 cas de référence exécutés ; 48 solutions acceptées, 48 codes de départ et 48 scripts vides refusés.
+- Moteur PHP dans un vrai Worker de navigateur (`PHP_ENGINE_RESULTS.json`) : PHP 8.3, démarrage local en environ 0,1 s une fois le moteur en cache, état neuf à chaque cas, saisies par STDIN, `readline()` expliqué au lieu de bloquer, `strict_types` conservé, erreurs de syntaxe et erreurs fatales lues avec leur ligne, avertissements visibles, boucle infinie arrêtée, affichage limité, `fetch`, IndexedDB et caches inaccessibles depuis PHP.
+- Interface PHP : 12 leçons, 48 exercices et 36 questions résolus à 360 puis 1440 px, reprise à froid hors ligne, aucune erreur JavaScript et zéro violation axe sur les vues testées (`PHP_BASES_UI_RESULTS.json`).
+- 207 tests unitaires, dont les auxiliaires du moteur PHP ; ESLint, TypeScript, schémas, prérequis et liens internes réussis. Bundle principal : 147 453 octets gzip, sous 150 000.
+- Revérifiés avec 12 programmes : catalogue, parcours et fiches de lecture, rendu des 227 leçons, Python et JavaScript réels, SQL (18 leçons à deux tailles), 216 solutions HTML/CSS, ancien pack enregistré, migrations depuis 5.9.0, 5.8.0 et 5.4.3.
+
+Le moteur pèse 3,1 Mo compressés : il n’est téléchargé qu’à l’ouverture du cours PHP. Ces contrôles ne remplacent ni une relecture pédagogique ni un essai sur les téléphones des élèves.
+
 # Vérifications 5.9.0 — 9 novembre 2026
 
 - 202 tests unitaires réussis ; TypeScript, ESLint, compilation, schémas, prérequis de leçons et de cours, liens internes et budget JavaScript réussis. Bundle principal : 147 404 octets gzip, sous 150 000.

@@ -1,0 +1,190 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Mettre à jour un stock",
+    "instruction_fr": "Le tableau $stock vaut [\"savon\" => 12, \"huile\" => 5]. Retire 2 savons, ajoute la clé \"sucre\" avec 20, puis affiche chaque paire au format savon : 10.",
+    "starter_code": "<?php\n$stock = [\"savon\" => 12, \"huile\" => 5];\n",
+    "solution": "<?php\n$stock = [\"savon\" => 12, \"huile\" => 5];\n$stock[\"savon\"] = $stock[\"savon\"] - 2;\n$stock[\"sucre\"] = 20;\nforeach ($stock as $article => $quantite) {\n    echo \"$article : $quantite\\n\";\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "savon : 10\nhuile : 5\nsucre : 20",
+        "calls": [
+          {
+            "name": "$stock",
+            "args": [],
+            "expected": {
+              "savon": 10,
+              "huile": 5,
+              "sucre": 20
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "savon : 10\nhuile : 5\nsucre : 20",
+        "calls": [
+          {
+            "name": "$stock",
+            "args": [],
+            "expected": {
+              "savon": 10,
+              "huile": 5,
+              "sucre": 20
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une clé se lit et se modifie avec $stock[\"savon\"].",
+      "Affecter une clé absente l’ajoute à la fin.",
+      "Puis foreach ($stock as $article => $quantite)."
+    ],
+    "explanation_fr": "Le tableau vérifié doit garder l’ordre : savon, huile, puis sucre.",
+    "common_wrong_answers": [],
+    "id": "php-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Prix d’un produit",
+    "instruction_fr": "Avec $prix = [\"riz\" => 600, \"mil\" => 400, \"maïs\" => 350], lis un produit puis une quantité entière. Si le produit existe, affiche Total : X FCFA ; sinon affiche Produit indisponible.",
+    "starter_code": "<?php\n$prix = [\"riz\" => 600, \"mil\" => 400, \"maïs\" => 350];\n$produit = trim(fgets(STDIN));\n$quantite = (int) trim(fgets(STDIN));\necho \"Total : \", $prix[$produit] * $quantite, \" FCFA\";",
+    "solution": "<?php\n$prix = [\"riz\" => 600, \"mil\" => 400, \"maïs\" => 350];\n$produit = trim(fgets(STDIN));\n$quantite = (int) trim(fgets(STDIN));\nif (array_key_exists($produit, $prix)) {\n    echo \"Total : \", $prix[$produit] * $quantite, \" FCFA\";\n} else {\n    echo \"Produit indisponible\";\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "riz",
+          "3"
+        ],
+        "expected_output": "Total : 1800 FCFA",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "fonio",
+          "2"
+        ],
+        "expected_output": "Produit indisponible",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "maïs",
+          "2"
+        ],
+        "expected_output": "Total : 700 FCFA",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Le starter fonctionne seulement pour un produit connu.",
+      "Vérifie la clé avant de la lire.",
+      "if (array_key_exists($produit, $prix)) { … } else { … }"
+    ],
+    "explanation_fr": "Sans vérification, un produit inconnu produit un avertissement et un total faux.",
+    "common_wrong_answers": [],
+    "id": "php-m3-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Corriger un palmarès",
+    "instruction_fr": "Le script doit afficher les équipes de la plus forte à la plus faible, au format Lions : 9. Il utilise sort, qui perd les noms. Corrige le tri.",
+    "starter_code": "<?php\n$points = [\"Éperviers\" => 7, \"Lions\" => 9, \"Aigles\" => 4];\nsort($points);\nforeach ($points as $equipe => $total) {\n    echo \"$equipe : $total\\n\";\n}",
+    "solution": "<?php\n$points = [\"Éperviers\" => 7, \"Lions\" => 9, \"Aigles\" => 4];\narsort($points);\nforeach ($points as $equipe => $total) {\n    echo \"$equipe : $total\\n\";\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Lions : 9\nÉperviers : 7\nAigles : 4",
+        "calls": [
+          {
+            "name": "$points",
+            "args": [],
+            "expected": {
+              "Lions": 9,
+              "Éperviers": 7,
+              "Aigles": 4
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Lions : 9\nÉperviers : 7\nAigles : 4",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Après sort, les clés deviennent 0, 1, 2.",
+      "Il faut trier par valeur décroissante en gardant les clés.",
+      "Remplace sort par arsort."
+    ],
+    "explanation_fr": "arsort conserve chaque nom avec ses points.",
+    "common_wrong_answers": [],
+    "id": "php-m3-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Dépouiller un vote",
+    "instruction_fr": "Lis N puis N votes (un prénom par ligne). Compte les voix dans un tableau associatif $voix, dans l’ordre d’apparition des prénoms. Affiche chaque candidat au format Afi : 3 voix, puis une dernière ligne Votants : N.",
+    "starter_code": "<?php\n$n = (int) trim(fgets(STDIN));\n$voix = [];\n",
+    "solution": "<?php\n$n = (int) trim(fgets(STDIN));\n$voix = [];\nfor ($i = 0; $i < $n; $i++) {\n    $nom = trim(fgets(STDIN));\n    if (!array_key_exists($nom, $voix)) {\n        $voix[$nom] = 0;\n    }\n    $voix[$nom]++;\n}\nforeach ($voix as $nom => $total) {\n    echo \"$nom : $total voix\\n\";\n}\necho \"Votants : $n\";",
+    "visible_tests": [
+      {
+        "inputs": [
+          "5",
+          "Afi",
+          "Komlan",
+          "Afi",
+          "Komlan",
+          "Afi"
+        ],
+        "expected_output": "Afi : 3 voix\nKomlan : 2 voix\nVotants : 5",
+        "calls": [
+          {
+            "name": "$voix",
+            "args": [],
+            "expected": {
+              "Afi": 3,
+              "Komlan": 2
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "3",
+          "Ablavi",
+          "Edem",
+          "Edem"
+        ],
+        "expected_output": "Ablavi : 1 voix\nEdem : 2 voix\nVotants : 3",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "Votants : 0",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Une clé par candidat, une valeur par nombre de voix.",
+      "Une clé nouvelle doit d’abord recevoir 0.",
+      "if (!array_key_exists($nom, $voix)) { $voix[$nom] = 0; } puis $voix[$nom]++;"
+    ],
+    "explanation_fr": "Le tableau garde l’ordre d’apparition : le premier prénom lu est affiché en premier.",
+    "common_wrong_answers": [],
+    "id": "php-m3-02-e4"
+  }
+]

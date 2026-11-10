@@ -592,9 +592,13 @@
       "family": "PHP",
       "level": "debutant",
       "target_title": "PHP — créer des pages dynamiques",
-      "status": "a_construire",
-      "evidence": [],
-      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+      "status": "premier-cours-redige-a-relire",
+      "evidence": [
+        "content/fr/php-bases/",
+        "docs/PHP_ENGINE_RESULTS.json",
+        "docs/PHP_BASES_UI_RESULTS.json"
+      ],
+      "next_action": "Relecture pédagogique humaine ; rédiger PHP intermédiaire (objets, exceptions, JSON) sur le même moteur."
     },
     {
       "id": "php-intermediaire",
@@ -826,7 +830,7 @@
     "Objets connectés et robotique",
     "Blockchain"
   ],
-  "updated_for_release": "5.9.0",
+  "updated_for_release": "5.10.0",
   "updated_at": "2026-11-09",
   "additional_implemented": [
     {

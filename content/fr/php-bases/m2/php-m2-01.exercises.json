@@ -1,0 +1,209 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Pair ou impair",
+    "instruction_fr": "Lis un entier. Affiche Pair s’il est divisible par 2, sinon Impair. Utilise % et ===.",
+    "starter_code": "<?php\n$n = (int) trim(fgets(STDIN));\necho \"Pair\";",
+    "solution": "<?php\n$n = (int) trim(fgets(STDIN));\nif ($n % 2 === 0) {\n    echo \"Pair\";\n} else {\n    echo \"Impair\";\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "8"
+        ],
+        "expected_output": "Pair",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "7"
+        ],
+        "expected_output": "Impair",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "Pair",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Un nombre pair a un reste nul quand on le divise par 2.",
+      "Teste $n % 2 === 0.",
+      "Ajoute un else qui affiche Impair."
+    ],
+    "explanation_fr": "Zéro est pair : son reste par 2 vaut 0.",
+    "common_wrong_answers": [],
+    "id": "php-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Mention du bulletin",
+    "instruction_fr": "Lis une note entière. Affiche Très bien à partir de 16, Bien à partir de 14, Assez bien à partir de 12, Passable à partir de 10, sinon Insuffisant.",
+    "starter_code": "<?php\n$note = (int) trim(fgets(STDIN));\nif ($note >= 10) {\n    echo \"Passable\";\n} elseif ($note >= 16) {\n    echo \"Très bien\";\n} else {\n    echo \"Insuffisant\";\n}",
+    "solution": "<?php\n$note = (int) trim(fgets(STDIN));\nif ($note >= 16) {\n    echo \"Très bien\";\n} elseif ($note >= 14) {\n    echo \"Bien\";\n} elseif ($note >= 12) {\n    echo \"Assez bien\";\n} elseif ($note >= 10) {\n    echo \"Passable\";\n} else {\n    echo \"Insuffisant\";\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "15"
+        ],
+        "expected_output": "Bien",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "9"
+        ],
+        "expected_output": "Insuffisant",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "16"
+        ],
+        "expected_output": "Très bien",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "12"
+        ],
+        "expected_output": "Assez bien",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "10"
+        ],
+        "expected_output": "Passable",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Le starter teste la condition la plus large en premier.",
+      "Commence par >= 16, puis descends.",
+      "Cinq branches : quatre conditions et un else."
+    ],
+    "explanation_fr": "Les cas cachés testent exactement les bornes 16, 12 et 10.",
+    "common_wrong_answers": [],
+    "id": "php-m2-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un contrôle d’accès",
+    "instruction_fr": "L’atelier est ouvert aux 13–18 ans inclus. Le script utilise = au lieu d’une comparaison et oublie la borne 18. Corrige-le pour afficher Accès autorisé ou Accès refusé.",
+    "starter_code": "<?php\n$age = (int) trim(fgets(STDIN));\nif ($age = 13 || $age < 18) {\n    echo \"Accès autorisé\";\n} else {\n    echo \"Accès refusé\";\n}",
+    "solution": "<?php\n$age = (int) trim(fgets(STDIN));\nif ($age >= 13 && $age <= 18) {\n    echo \"Accès autorisé\";\n} else {\n    echo \"Accès refusé\";\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "15"
+        ],
+        "expected_output": "Accès autorisé",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "25"
+        ],
+        "expected_output": "Accès refusé",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "18"
+        ],
+        "expected_output": "Accès autorisé",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "12"
+        ],
+        "expected_output": "Accès refusé",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "13"
+        ],
+        "expected_output": "Accès autorisé",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Un seul = range une valeur dans $age.",
+      "Les deux bornes doivent être vraies en même temps : utilise &&.",
+      "Écris $age >= 13 && $age <= 18."
+    ],
+    "explanation_fr": "Avec =, la variable était modifiée et la condition presque toujours vraie.",
+    "common_wrong_answers": [],
+    "id": "php-m2-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Tarif du taxi-moto",
+    "instruction_fr": "Lis la distance en km puis l’heure (0 à 23). Le tarif vaut 200 FCFA jusqu’à 3 km, 400 FCFA jusqu’à 8 km, sinon 700 FCFA. De 22 h à 5 h inclus, ajoute 100 FCFA. Affiche : Tarif : X FCFA",
+    "starter_code": "<?php\n$km = (int) trim(fgets(STDIN));\n$heure = (int) trim(fgets(STDIN));\n$tarif = 200;\necho \"Tarif : $tarif FCFA\";",
+    "solution": "<?php\n$km = (int) trim(fgets(STDIN));\n$heure = (int) trim(fgets(STDIN));\nif ($km <= 3) {\n    $tarif = 200;\n} elseif ($km <= 8) {\n    $tarif = 400;\n} else {\n    $tarif = 700;\n}\nif ($heure >= 22 || $heure <= 5) {\n    $tarif = $tarif + 100;\n}\necho \"Tarif : $tarif FCFA\";",
+    "visible_tests": [
+      {
+        "inputs": [
+          "5",
+          "14"
+        ],
+        "expected_output": "Tarif : 400 FCFA",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "12",
+          "23"
+        ],
+        "expected_output": "Tarif : 800 FCFA",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "3",
+          "5"
+        ],
+        "expected_output": "Tarif : 300 FCFA",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "8",
+          "6"
+        ],
+        "expected_output": "Tarif : 400 FCFA",
+        "calls": []
+      },
+      {
+        "inputs": [
+          "4",
+          "22"
+        ],
+        "expected_output": "Tarif : 500 FCFA",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Deux décisions indépendantes : la distance, puis l’heure.",
+      "La nuit traverse minuit : utilise || entre 22 et 5.",
+      "Calcule $tarif avec if/elseif/else, puis ajoute 100 dans un second if."
+    ],
+    "explanation_fr": "La plage de nuit 22 h–5 h se décrit avec « ou », car aucune heure n’est à la fois ≥ 22 et ≤ 5.",
+    "common_wrong_answers": [],
+    "id": "php-m2-01-e4"
+  }
+]

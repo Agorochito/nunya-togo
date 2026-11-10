@@ -1,4 +1,4 @@
-# Couverture des cours — livraison 5.9.0, 9 novembre 2026
+# Couverture des cours — livraison 5.10.0, 9 novembre 2026
 
 Le prompt maître impose une réalisation par lots, avec une cible finale de 72 cours répartis sur trois niveaux et des séries complémentaires. Cette livraison ne termine pas cette cible. L’audit initial est conservé dans [BASELINE_COURSE_AUDIT_5.2.1.md](BASELINE_COURSE_AUDIT_5.2.1.md).
 
@@ -16,9 +16,10 @@ Le prompt maître impose une réalisation par lots, avec une cible finale de 72 
 | JavaScript : interfaces DOM | 6 | 18 | 72 | DOM natif, événements, formulaires, recherche/tri et projet ; contenu à relire. |
 | React : composants et application interactive | 6 | 18 | 72 | React/ReactDOM réels, JSX, état, formulaires, effets et service de démonstration simulé ; contenu à relire. |
 | HTML : documents et formulaires accessibles | 4 | 12 | 48 | Niveau intermédiaire : régions, formulaires reliés, tableaux, images, langue et annuaire ; vrai navigateur, contenu à relire. |
+| PHP : les bases de la programmation | 4 | 12 | 48 | Vrai PHP 8.3 hors ligne : variables, conditions, boucles, tableaux, fonctions et caisse de boutique ; contenu à relire. |
 | CSS : interfaces robustes et adaptatives | 6 | 18 | 72 | Niveau intermédiaire : cascade, Flexbox, grilles, media queries, typographie, états et thème ; styles calculés à deux largeurs, contenu à relire. |
 
-Onze programmes principaux : 66 modules, 215 leçons, 860 exercices et 645 QCM. Git/GitHub et Découverte sont comptés séparément ci-dessous. DOM est une suite intermédiaire aux fondamentaux JavaScript ; ce cours ne prétend pas couvrir à lui seul tout le niveau intermédiaire.
+Douze programmes principaux : 70 modules, 227 leçons, 908 exercices et 681 QCM. Git/GitHub et Découverte sont comptés séparément ci-dessous. DOM est une suite intermédiaire aux fondamentaux JavaScript ; ce cours ne prétend pas couvrir à lui seul tout le niveau intermédiaire.
 
 Les leçons possèdent chacune 300–700 mots d’explication, deux exemples commentés, quatre exercices, trois questions de compréhension, des erreurs fréquentes, un glossaire et un récapitulatif. Elles sont des brouillons originaux : aucun enseignant réviseur, partenariat ou certificat externe n’est inventé. Les 22 chapitres Python antérieurs, leurs identifiants et leurs questions de fin de chapitre restent conservés.
 

@@ -1,0 +1,18 @@
+{
+  "version": "8.3",
+  "coldStartMs": 102,
+  "functionAndVariableChecks": true,
+  "keyOrderCompared": true,
+  "freshStatePerCase": true,
+  "stdin": "Afi a 17 ans",
+  "readlineExplained": true,
+  "strictTypesKept": true,
+  "parseError": "syntax error, unexpected token \"echo\", expecting \",\" or \";\" (ligne 3)",
+  "uncaughtError": "Division by zero (ligne 3)",
+  "warningVisible": true,
+  "openingTagRequired": true,
+  "infiniteLoopStopped": true,
+  "learnerApis": "bool(false)\nbool(false)\nbool(false)\n",
+  "outputLimited": true,
+  "errors": []
+}

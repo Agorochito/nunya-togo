@@ -1,0 +1,188 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Créer trois variables",
+    "instruction_fr": "Crée $produit valant \"Gari\", $prix valant l’entier 300 et $disponible valant true. Affiche ensuite : Gari : 300 FCFA",
+    "starter_code": "<?php\n$produit = \"Gari\";\n$prix = \"300\";\n",
+    "solution": "<?php\n$produit = \"Gari\";\n$prix = 300;\n$disponible = true;\necho \"$produit : $prix FCFA\";",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Gari : 300 FCFA",
+        "calls": [
+          {
+            "name": "$produit",
+            "args": [],
+            "expected": "Gari"
+          },
+          {
+            "name": "$prix",
+            "args": [],
+            "expected": 300,
+            "expected_type": "int"
+          },
+          {
+            "name": "$disponible",
+            "args": [],
+            "expected": true,
+            "expected_type": "bool"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Gari : 300 FCFA",
+        "calls": [
+          {
+            "name": "$prix",
+            "args": [],
+            "expected": 300,
+            "expected_type": "int"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "\"300\" entre guillemets est un texte, pas un entier.",
+      "true s’écrit sans guillemets.",
+      "Écris $prix = 300; puis echo \"$produit : $prix FCFA\";"
+    ],
+    "explanation_fr": "L’affichage serait identique avec le texte \"300\", mais le type vérifié ne le serait pas.",
+    "common_wrong_answers": [],
+    "id": "php-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Fiche d’un membre",
+    "instruction_fr": "Crée $nom = \"Kossi\", $age = 16 et $ville = \"Tsévié\". Affiche en concaténant avec le point : Kossi, 16 ans, Tsévié",
+    "starter_code": "<?php\n$nom = \"Kossi\";\n$age = 16;\n$ville = \"Tsévié\";\n",
+    "solution": "<?php\n$nom = \"Kossi\";\n$age = 16;\n$ville = \"Tsévié\";\necho $nom . \", \" . $age . \" ans, \" . $ville;",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Kossi, 16 ans, Tsévié",
+        "calls": [
+          {
+            "name": "$age",
+            "args": [],
+            "expected": 16,
+            "expected_type": "int"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Kossi, 16 ans, Tsévié",
+        "calls": [
+          {
+            "name": "$ville",
+            "args": [],
+            "expected": "Tsévié"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Assemble cinq morceaux avec le point.",
+      "Les espaces et la virgule font partie des textes.",
+      "$nom . \", \" . $age . \" ans, \" . $ville"
+    ],
+    "explanation_fr": "Le point accepte un entier : PHP le convertit en texte pour l’assembler.",
+    "common_wrong_answers": [],
+    "id": "php-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un message",
+    "instruction_fr": "Le script utilise + pour coller des textes, des guillemets simples et un $ oublié. Corrige-le pour afficher : Bonjour Yawa, ton solde est de 2500 FCFA",
+    "starter_code": "<?php\n$prenom = \"Yawa\";\nsolde = 2500;\necho 'Bonjour $prenom, ' + \"ton solde est de $solde FCFA\";",
+    "solution": "<?php\n$prenom = \"Yawa\";\n$solde = 2500;\necho \"Bonjour $prenom, \" . \"ton solde est de $solde FCFA\";",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bonjour Yawa, ton solde est de 2500 FCFA",
+        "calls": [
+          {
+            "name": "$solde",
+            "args": [],
+            "expected": 2500,
+            "expected_type": "int"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bonjour Yawa, ton solde est de 2500 FCFA",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Lis la première erreur signalée.",
+      "Une variable commence toujours par $, et + n’assemble pas de texte.",
+      "Écris $solde, remplace + par . et utilise des guillemets doubles."
+    ],
+    "explanation_fr": "Trois règles différentes : le nom des variables, l’opérateur de concaténation et l’interpolation.",
+    "common_wrong_answers": [],
+    "id": "php-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Étiquette de produit",
+    "instruction_fr": "Crée $article = \"Pagne wax\", $longueur = 6, $prixMetre = 1500 et $enStock = true. Affiche deux lignes : Pagne wax (6m) puis 1500 FCFA le mètre. Utilise des accolades pour coller 6 et m.",
+    "starter_code": "<?php\n$article = \"Pagne wax\";\n",
+    "solution": "<?php\n$article = \"Pagne wax\";\n$longueur = 6;\n$prixMetre = 1500;\n$enStock = true;\necho \"$article ({$longueur}m)\\n\";\necho \"$prixMetre FCFA le mètre\";",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Pagne wax (6m)\n1500 FCFA le mètre",
+        "calls": [
+          {
+            "name": "$longueur",
+            "args": [],
+            "expected": 6,
+            "expected_type": "int"
+          },
+          {
+            "name": "$prixMetre",
+            "args": [],
+            "expected": 1500,
+            "expected_type": "int"
+          },
+          {
+            "name": "$enStock",
+            "args": [],
+            "expected": true,
+            "expected_type": "bool"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Pagne wax (6m)\n1500 FCFA le mètre",
+        "calls": [
+          {
+            "name": "$article",
+            "args": [],
+            "expected": "Pagne wax"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Quatre variables, deux lignes affichées.",
+      "\"$longueurm\" chercherait une variable nommée $longueurm.",
+      "Écris \"{$longueur}m\" pour coller la lettre."
+    ],
+    "explanation_fr": "Les accolades délimitent le nom de la variable dans un texte interpolé.",
+    "common_wrong_answers": [],
+    "id": "php-m1-02-e4"
+  }
+]

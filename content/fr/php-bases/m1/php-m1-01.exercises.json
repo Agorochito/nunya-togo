@@ -1,0 +1,118 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Afficher deux lignes",
+    "instruction_fr": "Affiche exactement deux lignes : Bonjour Afi puis Bienvenue au club. Utilise echo et \\n.",
+    "starter_code": "<?php\necho \"Bonjour Afi\";\necho \"Bienvenue au club\";",
+    "solution": "<?php\necho \"Bonjour Afi\\n\";\necho \"Bienvenue au club\";",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bonjour Afi\nBienvenue au club",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bonjour Afi\nBienvenue au club",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Les deux textes sont collés.",
+      "Il manque un saut de ligne après le premier texte.",
+      "Écris \"Bonjour Afi\\n\" dans le premier echo."
+    ],
+    "explanation_fr": "Le saut de ligne fait partie du texte affiché ; echo ne l’ajoute pas seul.",
+    "common_wrong_answers": [],
+    "id": "php-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Une affiche de marché",
+    "instruction_fr": "Affiche trois lignes : Marché de Sokodé, Tomates : 500 FCFA le tas, puis Ignames : 1000 FCFA. Respecte les espaces autour des deux-points.",
+    "starter_code": "<?php\n// Écris ici les trois lignes\n",
+    "solution": "<?php\necho \"Marché de Sokodé\\n\";\necho \"Tomates : 500 FCFA le tas\\n\";\necho \"Ignames : 1000 FCFA\";",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Marché de Sokodé\nTomates : 500 FCFA le tas\nIgnames : 1000 FCFA",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Marché de Sokodé\nTomates : 500 FCFA le tas\nIgnames : 1000 FCFA",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Une ligne affichée correspond à un echo ou à un \\n.",
+      "Recopie les textes exactement, espaces compris.",
+      "Termine les deux premiers textes par \\n."
+    ],
+    "explanation_fr": "L’affichage est comparé caractère par caractère : la précision fait partie de l’exercice.",
+    "common_wrong_answers": [],
+    "id": "php-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un script",
+    "instruction_fr": "Ce script contient deux erreurs : un point-virgule manquant et un saut de ligne écrit entre guillemets simples. Corrige-les pour afficher Club de code puis Salle 2.",
+    "starter_code": "<?php\necho 'Club de code\\n'\necho \"Salle 2\";",
+    "solution": "<?php\necho \"Club de code\\n\";\necho \"Salle 2\";",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Club de code\nSalle 2",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Club de code\nSalle 2",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Lis la ligne indiquée par le message d’erreur et celle d’avant.",
+      "La première instruction n’est pas terminée.",
+      "Remplace les guillemets simples par des doubles et ajoute ;."
+    ],
+    "explanation_fr": "Une erreur de syntaxe empêche tout le script de s’exécuter, même les lignes correctes.",
+    "common_wrong_answers": [],
+    "id": "php-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Carte de visite du club",
+    "instruction_fr": "Affiche quatre lignes avec echo : Club Nunya, Lieu : Atakpamé, Jour : mercredi, puis Entrée libre. Utilise au moins une fois plusieurs morceaux séparés par des virgules dans un même echo.",
+    "starter_code": "<?php\necho \"Club Nunya\";",
+    "solution": "<?php\necho \"Club Nunya\\n\";\necho \"Lieu : \", \"Atakpamé\", \"\\n\";\necho \"Jour : mercredi\\n\";\necho \"Entrée libre\";",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Club Nunya\nLieu : Atakpamé\nJour : mercredi\nEntrée libre",
+        "calls": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Club Nunya\nLieu : Atakpamé\nJour : mercredi\nEntrée libre",
+        "calls": []
+      }
+    ],
+    "hints": [
+      "Quatre lignes : trois sauts de ligne.",
+      "Un echo peut recevoir plusieurs textes séparés par des virgules.",
+      "Par exemple : echo \"Lieu : \", \"Atakpamé\", \"\\n\";"
+    ],
+    "explanation_fr": "Les morceaux séparés par des virgules s’affichent à la suite, sans espace ajouté.",
+    "common_wrong_answers": [],
+    "id": "php-m1-01-e4"
+  }
+]

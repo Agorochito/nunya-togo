@@ -90,7 +90,7 @@
   "status": "brouillon",
   "reviewer": null,
   "depth_fr": "Socle progressif avec projets et tests locaux ; relecture pédagogique en cours. Les niveaux supérieurs restent à construire.",
-  "engine_revision": "e35d48ec41a4",
+  "engine_revision": "59131fb8e828",
   "lessons": [
     {
       "id": "react-m1-01",
@@ -350,7 +350,7 @@
     }
   ],
   "estimated_minutes": 360,
-  "content_revision": "52b40cdb01c8",
+  "content_revision": "22f1ecaf7c2f",
   "exercise_count": 72,
   "quiz_count": 54
 }
