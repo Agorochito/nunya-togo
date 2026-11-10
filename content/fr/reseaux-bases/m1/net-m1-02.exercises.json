@@ -1,0 +1,293 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Nombre d’hôtes",
+    "instruction_fr": "Écris hotes(prefixe) qui renvoie le nombre d’adresses utilisables dans un réseau IPv4 de ce préfixe (de 1 à 30).",
+    "starter_code": "def hotes(prefixe):\n    return 2 ** prefixe - 2\n",
+    "solution": "def hotes(prefixe):\n    return 2 ** (32 - prefixe) - 2\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "hotes",
+            "args": [
+              24
+            ],
+            "unchanged_args": true,
+            "expected": 254
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "hotes",
+            "args": [
+              30
+            ],
+            "unchanged_args": true,
+            "expected": 2
+          },
+          {
+            "name": "hotes",
+            "args": [
+              26
+            ],
+            "unchanged_args": true,
+            "expected": 62
+          },
+          {
+            "name": "hotes",
+            "args": [
+              16
+            ],
+            "unchanged_args": true,
+            "expected": 65534
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le préfixe compte les bits du réseau, pas ceux des machines.",
+      "Il reste 32 - prefixe bits pour les machines.",
+      "2 ** (32 - prefixe) - 2"
+    ],
+    "explanation_fr": "Chaque bit retiré au préfixe double la taille du réseau.",
+    "common_wrong_answers": [],
+    "id": "net-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Fiche d’un réseau",
+    "instruction_fr": "Écris infos(cidr) : à partir d’un texte comme \"192.168.10.77/24\", renvoie {\"réseau\": \"192.168.10.0/24\", \"masque\": \"255.255.255.0\", \"diffusion\": \"192.168.10.255\", \"hôtes\": 254}.",
+    "starter_code": "import ipaddress\n\ndef infos(cidr):\n    return {}\n",
+    "solution": "import ipaddress\n\ndef infos(cidr):\n    r = ipaddress.ip_network(cidr, strict=False)\n    return {\"réseau\": str(r), \"masque\": str(r.netmask), \"diffusion\": str(r.broadcast_address), \"hôtes\": r.num_addresses - 2}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "infos",
+            "args": [
+              "192.168.10.77/24"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "réseau": "192.168.10.0/24",
+              "masque": "255.255.255.0",
+              "diffusion": "192.168.10.255",
+              "hôtes": 254
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "infos",
+            "args": [
+              "10.0.0.70/26"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "réseau": "10.0.0.64/26",
+              "masque": "255.255.255.192",
+              "diffusion": "10.0.0.127",
+              "hôtes": 62
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "strict=False accepte une adresse de machine avec son préfixe.",
+      "str() transforme chaque objet en texte.",
+      "Retire 2 à num_addresses."
+    ],
+    "explanation_fr": "Cette fiche est ce qu’un technicien vérifie en premier sur une configuration.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:ipaddress"
+    ],
+    "id": "net-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Même réseau ?",
+    "instruction_fr": "meme_reseau(a, b, prefixe) doit dire si deux adresses sont dans le même réseau pour ce préfixe. Elle compare les trois premiers octets, ce qui est faux hors des /24. Corrige-la avec ipaddress.",
+    "starter_code": "def meme_reseau(a, b, prefixe):\n    return a.split(\".\")[:3] == b.split(\".\")[:3]\n",
+    "solution": "import ipaddress\n\ndef meme_reseau(a, b, prefixe):\n    reseau = ipaddress.ip_network(a + \"/\" + str(prefixe), strict=False)\n    return ipaddress.ip_address(b) in reseau\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "meme_reseau",
+            "args": [
+              "10.0.0.20",
+              "10.0.0.70",
+              26
+            ],
+            "unchanged_args": true,
+            "expected": false
+          },
+          {
+            "name": "meme_reseau",
+            "args": [
+              "192.168.1.20",
+              "192.168.1.200",
+              24
+            ],
+            "unchanged_args": true,
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "meme_reseau",
+            "args": [
+              "172.16.0.1",
+              "172.16.5.1",
+              16
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "meme_reseau",
+            "args": [
+              "10.0.0.1",
+              "10.0.0.2",
+              30
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "meme_reseau",
+            "args": [
+              "10.0.0.1",
+              "10.0.0.5",
+              30
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "10.0.0.20 et 10.0.0.70 sont dans deux blocs /26 différents.",
+      "Construis le réseau de a avec strict=False.",
+      "Teste ensuite b in reseau."
+    ],
+    "explanation_fr": "Le calcul remplace une intuition qui ne marche que pour les /24.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:ipaddress"
+    ],
+    "id": "net-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Diagnostic de passerelle",
+    "instruction_fr": "Écris diagnostic(ip, prefixe, passerelle) : renvoie \"adresse réservée\" si ip est l’adresse de réseau ou de diffusion, sinon \"passerelle identique à l’adresse\" si les deux sont égales, sinon \"passerelle hors du réseau\" si elle n’y appartient pas, sinon \"ok\".",
+    "starter_code": "def diagnostic(ip, prefixe, passerelle):\n    return \"ok\"\n",
+    "solution": "import ipaddress\n\ndef diagnostic(ip, prefixe, passerelle):\n    reseau = ipaddress.ip_network(ip + \"/\" + str(prefixe), strict=False)\n    adresse = ipaddress.ip_address(ip)\n    if adresse in (reseau.network_address, reseau.broadcast_address):\n        return \"adresse réservée\"\n    if ip == passerelle:\n        return \"passerelle identique à l’adresse\"\n    if ipaddress.ip_address(passerelle) not in reseau:\n        return \"passerelle hors du réseau\"\n    return \"ok\"\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "diagnostic",
+            "args": [
+              "192.168.1.20",
+              24,
+              "192.168.1.1"
+            ],
+            "unchanged_args": true,
+            "expected": "ok"
+          },
+          {
+            "name": "diagnostic",
+            "args": [
+              "192.168.1.20",
+              24,
+              "192.168.2.1"
+            ],
+            "unchanged_args": true,
+            "expected": "passerelle hors du réseau"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "diagnostic",
+            "args": [
+              "192.168.1.255",
+              24,
+              "192.168.1.1"
+            ],
+            "unchanged_args": true,
+            "expected": "adresse réservée"
+          },
+          {
+            "name": "diagnostic",
+            "args": [
+              "10.0.0.5",
+              30,
+              "10.0.0.5"
+            ],
+            "unchanged_args": true,
+            "expected": "passerelle identique à l’adresse"
+          },
+          {
+            "name": "diagnostic",
+            "args": [
+              "10.0.0.70",
+              26,
+              "10.0.0.1"
+            ],
+            "unchanged_args": true,
+            "expected": "passerelle hors du réseau"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Construis le réseau à partir de l’adresse et du préfixe.",
+      "Vérifie les cas dans l’ordre demandé.",
+      "in compare une adresse et un réseau."
+    ],
+    "explanation_fr": "Ces trois erreurs couvrent la plupart des pannes de configuration manuelle.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:ipaddress"
+    ],
+    "id": "net-m1-02-e4"
+  }
+]

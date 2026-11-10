@@ -1,0 +1,283 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Valider une adresse",
+    "instruction_fr": "Écris ipv4_valide(texte) sans le module ipaddress : quatre parties séparées par des points, chacune faite de chiffres et comprise entre 0 et 255.",
+    "starter_code": "def ipv4_valide(texte):\n    return len(texte.split(\".\")) == 4\n",
+    "solution": "def ipv4_valide(texte):\n    parties = texte.split(\".\")\n    if len(parties) != 4:\n        return False\n    for p in parties:\n        if not p.isdigit() or int(p) > 255:\n            return False\n    return True\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ipv4_valide",
+            "args": [
+              "192.168.1.20"
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "ipv4_valide",
+            "args": [
+              "192.168.1.300"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ipv4_valide",
+            "args": [
+              "1.2.3"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          },
+          {
+            "name": "ipv4_valide",
+            "args": [
+              "a.b.c.d"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          },
+          {
+            "name": "ipv4_valide",
+            "args": [
+              "0.0.0.0"
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "ipv4_valide",
+            "args": [
+              "1.2.3.-4"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "300 dépasse la valeur maximale d’un octet.",
+      "Vérifie chaque partie : chiffres, puis valeur.",
+      "isdigit() refuse les lettres et le signe moins."
+    ],
+    "explanation_fr": "Valider à la main montre exactement ce que le module ipaddress vérifie pour toi.",
+    "common_wrong_answers": [],
+    "id": "net-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Adresse en binaire",
+    "instruction_fr": "Écris en_binaire(texte) qui renvoie l’adresse écrite en binaire, chaque octet sur 8 chiffres, séparés par des points.",
+    "starter_code": "def en_binaire(texte):\n    return texte\n",
+    "solution": "def en_binaire(texte):\n    return \".\".join(format(int(x), \"08b\") for x in texte.split(\".\"))\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "en_binaire",
+            "args": [
+              "192.168.1.20"
+            ],
+            "unchanged_args": true,
+            "expected": "11000000.10101000.00000001.00010100"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "en_binaire",
+            "args": [
+              "10.0.0.255"
+            ],
+            "unchanged_args": true,
+            "expected": "00001010.00000000.00000000.11111111"
+          },
+          {
+            "name": "en_binaire",
+            "args": [
+              "0.0.0.0"
+            ],
+            "unchanged_args": true,
+            "expected": "00000000.00000000.00000000.00000000"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Découpe aux points et convertis chaque partie en entier.",
+      "format(n, \"08b\") ajoute les zéros à gauche.",
+      "Recolle avec \".\".join."
+    ],
+    "explanation_fr": "Le binaire montre où se trouve la frontière entre réseau et machine.",
+    "common_wrong_answers": [],
+    "id": "net-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Catégorie d’une adresse",
+    "instruction_fr": "categorie(texte) doit renvoyer \"bouclage\", \"privée\" ou \"publique\". Elle classe 127.0.0.1 comme privée, car elle teste is_private en premier. Corrige l’ordre.",
+    "starter_code": "import ipaddress\n\ndef categorie(texte):\n    ip = ipaddress.ip_address(texte)\n    if ip.is_private:\n        return \"privée\"\n    if ip.is_loopback:\n        return \"bouclage\"\n    return \"publique\"\n",
+    "solution": "import ipaddress\n\ndef categorie(texte):\n    ip = ipaddress.ip_address(texte)\n    if ip.is_loopback:\n        return \"bouclage\"\n    if ip.is_private:\n        return \"privée\"\n    return \"publique\"\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "categorie",
+            "args": [
+              "127.0.0.1"
+            ],
+            "unchanged_args": true,
+            "expected": "bouclage"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "categorie",
+            "args": [
+              "192.168.0.10"
+            ],
+            "unchanged_args": true,
+            "expected": "privée"
+          },
+          {
+            "name": "categorie",
+            "args": [
+              "41.207.160.5"
+            ],
+            "unchanged_args": true,
+            "expected": "publique"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "127.0.0.1 répond True à is_private et à is_loopback.",
+      "Le cas le plus précis doit être testé d’abord.",
+      "Place le test is_loopback avant is_private."
+    ],
+    "explanation_fr": "Quand des catégories se recouvrent, l’ordre des tests décide du résultat.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:ipaddress"
+    ],
+    "id": "net-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Inventaire d’adresses",
+    "instruction_fr": "Écris inventaire(adresses) : renvoie un dictionnaire avec \"privées\", \"publiques\" et \"bouclage\" (nombres) et \"invalides\" (liste des textes refusés par ipaddress, dans l’ordre).",
+    "starter_code": "def inventaire(adresses):\n    return {\"privées\": len(adresses)}\n",
+    "solution": "import ipaddress\n\ndef inventaire(adresses):\n    r = {\"privées\": 0, \"publiques\": 0, \"bouclage\": 0, \"invalides\": []}\n    for texte in adresses:\n        try:\n            ip = ipaddress.ip_address(texte)\n        except ValueError:\n            r[\"invalides\"].append(texte)\n            continue\n        if ip.is_loopback:\n            r[\"bouclage\"] += 1\n        elif ip.is_private:\n            r[\"privées\"] += 1\n        else:\n            r[\"publiques\"] += 1\n    return r\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "inventaire",
+            "args": [
+              [
+                "10.0.0.5",
+                "8.8.8.8",
+                "127.0.0.1",
+                "999.1.1.1",
+                "192.168.1.4"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "privées": 2,
+              "publiques": 1,
+              "bouclage": 1,
+              "invalides": [
+                "999.1.1.1"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "inventaire",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "privées": 0,
+              "publiques": 0,
+              "bouclage": 0,
+              "invalides": []
+            }
+          },
+          {
+            "name": "inventaire",
+            "args": [
+              [
+                "x",
+                "1.1.1.1",
+                "y"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "privées": 0,
+              "publiques": 1,
+              "bouclage": 0,
+              "invalides": [
+                "x",
+                "y"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Prépare le dictionnaire avec ses quatre clés.",
+      "try/except ValueError traite les adresses invalides.",
+      "Réutilise l’ordre bouclage, privée, publique."
+    ],
+    "explanation_fr": "Un inventaire propre est la première étape de tout diagnostic réseau.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:ipaddress",
+      "try"
+    ],
+    "id": "net-m1-01-e4"
+  }
+]

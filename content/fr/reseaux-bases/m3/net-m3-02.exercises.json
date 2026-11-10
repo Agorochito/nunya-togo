@@ -1,0 +1,499 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Dernier saut atteint",
+    "instruction_fr": "Écris dernier_saut(sauts) qui renvoie l’adresse du dernier saut qui a répondu, ou None si aucun n’a répondu.",
+    "starter_code": "def dernier_saut(sauts):\n    return sauts[-1][1]\n",
+    "solution": "def dernier_saut(sauts):\n    for numero, ip, ms in reversed(sauts):\n        if ip is not None:\n            return ip\n    return None\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dernier_saut",
+            "args": [
+              [
+                [
+                  1,
+                  "192.168.1.1",
+                  2
+                ],
+                [
+                  2,
+                  "10.20.0.1",
+                  9
+                ],
+                [
+                  3,
+                  null,
+                  null
+                ],
+                [
+                  4,
+                  null,
+                  null
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "10.20.0.1"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dernier_saut",
+            "args": [
+              [
+                [
+                  1,
+                  "192.168.1.1",
+                  2
+                ],
+                [
+                  2,
+                  "10.20.0.1",
+                  9
+                ],
+                [
+                  3,
+                  "41.207.0.1",
+                  14
+                ],
+                [
+                  4,
+                  "41.207.0.9",
+                  95
+                ],
+                [
+                  5,
+                  null,
+                  null
+                ],
+                [
+                  6,
+                  "41.207.160.5",
+                  101
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "41.207.160.5"
+          },
+          {
+            "name": "dernier_saut",
+            "args": [
+              [
+                [
+                  1,
+                  null,
+                  null
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": null
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le dernier élément ne répond pas toujours.",
+      "Parcours la liste à l’envers avec reversed.",
+      "Renvoie la première adresse qui n’est pas None."
+    ],
+    "explanation_fr": "Le dernier saut atteint est l’information à donner au fournisseur d’accès.",
+    "common_wrong_answers": [],
+    "id": "net-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Le plus grand bond",
+    "instruction_fr": "Écris plus_grand_bond(sauts) qui renvoie [numéro, écart] : le saut dont la latence augmente le plus par rapport au saut précédent ayant répondu. Ignore les sauts sans réponse.",
+    "starter_code": "def plus_grand_bond(sauts):\n    return [0, 0]\n",
+    "solution": "def plus_grand_bond(sauts):\n    meilleur = [0, 0]\n    precedent = None\n    for numero, ip, ms in sauts:\n        if ms is None:\n            continue\n        if precedent is not None and ms - precedent > meilleur[1]:\n            meilleur = [numero, ms - precedent]\n        precedent = ms\n    return meilleur\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "plus_grand_bond",
+            "args": [
+              [
+                [
+                  1,
+                  "192.168.1.1",
+                  2
+                ],
+                [
+                  2,
+                  "10.20.0.1",
+                  9
+                ],
+                [
+                  3,
+                  "41.207.0.1",
+                  14
+                ],
+                [
+                  4,
+                  "41.207.0.9",
+                  95
+                ],
+                [
+                  5,
+                  null,
+                  null
+                ],
+                [
+                  6,
+                  "41.207.160.5",
+                  101
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              4,
+              81
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "plus_grand_bond",
+            "args": [
+              [
+                [
+                  1,
+                  "192.168.1.1",
+                  2
+                ],
+                [
+                  2,
+                  "10.20.0.1",
+                  9
+                ],
+                [
+                  3,
+                  null,
+                  null
+                ],
+                [
+                  4,
+                  null,
+                  null
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              2,
+              7
+            ]
+          },
+          {
+            "name": "plus_grand_bond",
+            "args": [
+              [
+                [
+                  1,
+                  "a",
+                  5
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Garde la latence du dernier saut qui a répondu.",
+      "Saute les mesures None avec continue.",
+      "Mets à jour le meilleur bond quand l’écart est plus grand."
+    ],
+    "explanation_fr": "Le bond de 14 à 95 ms désigne le lien à surveiller.",
+    "common_wrong_answers": [],
+    "id": "net-m3-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Premier saut public",
+    "instruction_fr": "premier_public(sauts) doit renvoyer le numéro du premier saut dont l’adresse est publique, ou None. Elle ne reconnaît que 192.168 comme privé et prend 10.20.0.1 pour une adresse publique. Corrige-la avec ipaddress.",
+    "starter_code": "def premier_public(sauts):\n    for numero, ip, ms in sauts:\n        if ip is not None and not ip.startswith(\"192.168\"):\n            return numero\n    return None\n",
+    "solution": "import ipaddress\n\ndef premier_public(sauts):\n    for numero, ip, ms in sauts:\n        if ip is not None and not ipaddress.ip_address(ip).is_private:\n            return numero\n    return None\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "premier_public",
+            "args": [
+              [
+                [
+                  1,
+                  "192.168.1.1",
+                  2
+                ],
+                [
+                  2,
+                  "10.20.0.1",
+                  9
+                ],
+                [
+                  3,
+                  "41.207.0.1",
+                  14
+                ],
+                [
+                  4,
+                  "41.207.0.9",
+                  95
+                ],
+                [
+                  5,
+                  null,
+                  null
+                ],
+                [
+                  6,
+                  "41.207.160.5",
+                  101
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 3
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "premier_public",
+            "args": [
+              [
+                [
+                  1,
+                  "192.168.1.1",
+                  2
+                ],
+                [
+                  2,
+                  "10.20.0.1",
+                  9
+                ],
+                [
+                  3,
+                  null,
+                  null
+                ],
+                [
+                  4,
+                  null,
+                  null
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": null
+          },
+          {
+            "name": "premier_public",
+            "args": [
+              [
+                [
+                  1,
+                  "172.20.0.1",
+                  1
+                ],
+                [
+                  2,
+                  "8.8.8.8",
+                  20
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 2
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "10.20.0.1 est une adresse privée.",
+      "Trois plages sont privées, pas une seule.",
+      "Utilise ipaddress.ip_address(ip).is_private."
+    ],
+    "explanation_fr": "La fin du réseau privé situe la frontière entre l’école, son fournisseur et Internet.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:ipaddress"
+    ],
+    "id": "net-m3-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Diagnostic d’un trajet",
+    "instruction_fr": "Écris diagnostic(sauts, destination) : \"atteinte en N sauts\" si un saut a l’adresse destination (N est son numéro) ; sinon \"bloqué après le saut N (ip)\" pour le dernier saut qui a répondu ; \"aucune réponse\" si aucun saut n’a répondu.",
+    "starter_code": "def diagnostic(sauts, destination):\n    return \"atteinte en \" + str(len(sauts)) + \" sauts\"\n",
+    "solution": "def diagnostic(sauts, destination):\n    for numero, ip, ms in sauts:\n        if ip == destination:\n            return \"atteinte en \" + str(numero) + \" sauts\"\n    for numero, ip, ms in reversed(sauts):\n        if ip is not None:\n            return \"bloqué après le saut \" + str(numero) + \" (\" + ip + \")\"\n    return \"aucune réponse\"\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "diagnostic",
+            "args": [
+              [
+                [
+                  1,
+                  "192.168.1.1",
+                  2
+                ],
+                [
+                  2,
+                  "10.20.0.1",
+                  9
+                ],
+                [
+                  3,
+                  "41.207.0.1",
+                  14
+                ],
+                [
+                  4,
+                  "41.207.0.9",
+                  95
+                ],
+                [
+                  5,
+                  null,
+                  null
+                ],
+                [
+                  6,
+                  "41.207.160.5",
+                  101
+                ]
+              ],
+              "41.207.160.5"
+            ],
+            "unchanged_args": true,
+            "expected": "atteinte en 6 sauts"
+          },
+          {
+            "name": "diagnostic",
+            "args": [
+              [
+                [
+                  1,
+                  "192.168.1.1",
+                  2
+                ],
+                [
+                  2,
+                  "10.20.0.1",
+                  9
+                ],
+                [
+                  3,
+                  null,
+                  null
+                ],
+                [
+                  4,
+                  null,
+                  null
+                ]
+              ],
+              "41.207.160.5"
+            ],
+            "unchanged_args": true,
+            "expected": "bloqué après le saut 2 (10.20.0.1)"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "diagnostic",
+            "args": [
+              [
+                [
+                  1,
+                  null,
+                  null
+                ]
+              ],
+              "1.1.1.1"
+            ],
+            "unchanged_args": true,
+            "expected": "aucune réponse"
+          },
+          {
+            "name": "diagnostic",
+            "args": [
+              [
+                [
+                  1,
+                  "192.168.1.1",
+                  1
+                ],
+                [
+                  2,
+                  "1.1.1.1",
+                  15
+                ],
+                [
+                  3,
+                  null,
+                  null
+                ]
+              ],
+              "1.1.1.1"
+            ],
+            "unchanged_args": true,
+            "expected": "atteinte en 2 sauts"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Cherche d’abord la destination parmi les sauts.",
+      "Sinon, parcours à l’envers pour trouver le dernier saut qui a répondu.",
+      "Trois cas, trois messages."
+    ],
+    "explanation_fr": "Ce message est exactement ce que le support du fournisseur d’accès a besoin d’entendre.",
+    "common_wrong_answers": [],
+    "id": "net-m3-02-e4"
+  }
+]

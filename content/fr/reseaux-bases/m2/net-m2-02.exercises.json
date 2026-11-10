@@ -1,0 +1,300 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Service d’un port",
+    "instruction_fr": "Écris service(port) qui renvoie le nom du service selon le dictionnaire SERVICES fourni, ou \"inconnu\".",
+    "starter_code": "SERVICES = {22: \"SSH\", 25: \"SMTP\", 53: \"DNS\", 80: \"HTTP\", 443: \"HTTPS\", 3306: \"MySQL\", 3389: \"RDP\"}\n\ndef service(port):\n    return SERVICES[port]\n",
+    "solution": "SERVICES = {22: \"SSH\", 25: \"SMTP\", 53: \"DNS\", 80: \"HTTP\", 443: \"HTTPS\", 3306: \"MySQL\", 3389: \"RDP\"}\n\ndef service(port):\n    return SERVICES.get(port, \"inconnu\")\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "service",
+            "args": [
+              443
+            ],
+            "unchanged_args": true,
+            "expected": "HTTPS"
+          },
+          {
+            "name": "service",
+            "args": [
+              8080
+            ],
+            "unchanged_args": true,
+            "expected": "inconnu"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "service",
+            "args": [
+              22
+            ],
+            "unchanged_args": true,
+            "expected": "SSH"
+          },
+          {
+            "name": "service",
+            "args": [
+              0
+            ],
+            "unchanged_args": true,
+            "expected": "inconnu"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un port absent provoque KeyError.",
+      "get accepte une valeur par défaut.",
+      "SERVICES.get(port, \"inconnu\")"
+    ],
+    "explanation_fr": "Un outil de diagnostic doit traiter les cas inconnus sans planter.",
+    "common_wrong_answers": [],
+    "id": "net-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Lire ip:port",
+    "instruction_fr": "Écris lire_socket(texte) qui renvoie [ip, port] avec port en entier. Si le port n’est pas un entier entre 0 et 65535, lève ValueError(\"port invalide\").",
+    "starter_code": "def lire_socket(texte):\n    return texte.split(\":\")\n",
+    "solution": "def lire_socket(texte):\n    ip, port = texte.rsplit(\":\", 1)\n    if not port.isdigit() or int(port) > 65535:\n        raise ValueError(\"port invalide\")\n    return [ip, int(port)]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_socket",
+            "args": [
+              "41.207.160.5:443"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "41.207.160.5",
+              443
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_socket",
+            "args": [
+              "10.0.0.1:70000"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "port invalide"
+          },
+          {
+            "name": "lire_socket",
+            "args": [
+              "10.0.0.1:http"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "port invalide"
+          },
+          {
+            "name": "lire_socket",
+            "args": [
+              "127.0.0.1:0"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "127.0.0.1",
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Coupe au dernier deux-points avec rsplit.",
+      "isdigit refuse les lettres et le signe moins.",
+      "Convertis puis vérifie la limite 65535."
+    ],
+    "explanation_fr": "Valider ce qu’on lit évite des erreurs plus loin dans l’analyse.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "raise"
+    ],
+    "id": "net-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Ports en trop",
+    "instruction_fr": "ports_en_trop(ouverts, autorises) doit renvoyer la liste triée des ports ouverts qui ne sont pas autorisés. Elle calcule la différence dans le mauvais sens. Corrige-la.",
+    "starter_code": "def ports_en_trop(ouverts, autorises):\n    return sorted(set(autorises) - set(ouverts))\n",
+    "solution": "def ports_en_trop(ouverts, autorises):\n    return sorted(set(ouverts) - set(autorises))\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ports_en_trop",
+            "args": [
+              [
+                22,
+                80,
+                443,
+                3306
+              ],
+              [
+                80,
+                443
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              22,
+              3306
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ports_en_trop",
+            "args": [
+              [
+                443
+              ],
+              [
+                80,
+                443
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "ports_en_trop",
+            "args": [
+              [
+                3389,
+                21,
+                23
+              ],
+              []
+            ],
+            "unchanged_args": true,
+            "expected": [
+              21,
+              23,
+              3389
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le résultat contient des ports autorisés mais fermés.",
+      "On cherche ce qui est ouvert sans être autorisé.",
+      "set(ouverts) - set(autorises)"
+    ],
+    "explanation_fr": "L’ordre d’une différence d’ensembles change complètement la question posée.",
+    "common_wrong_answers": [],
+    "id": "net-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Rapport d’exposition",
+    "instruction_fr": "Écris exposition(machines) : machines associe un nom à la liste de ses ports ouverts. Pour chaque port de la liste RISQUES = {21: \"FTP non chiffré\", 23: \"Telnet non chiffré\", 3306: \"base de données exposée\", 3389: \"bureau à distance exposé\"}, produis la ligne \"machine : port (raison)\". Renvoie les lignes triées par machine puis par port.",
+    "starter_code": "def exposition(machines):\n    return []\n",
+    "solution": "RISQUES = {21: \"FTP non chiffré\", 23: \"Telnet non chiffré\", 3306: \"base de données exposée\", 3389: \"bureau à distance exposé\"}\n\ndef exposition(machines):\n    lignes = []\n    for nom in sorted(machines):\n        for port in sorted(machines[nom]):\n            if port in RISQUES:\n                lignes.append(nom + \" : \" + str(port) + \" (\" + RISQUES[port] + \")\")\n    return lignes\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exposition",
+            "args": [
+              {
+                "serveur": [
+                  443,
+                  3306,
+                  22
+                ],
+                "caisse": [
+                  3389,
+                  80
+                ]
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "caisse : 3389 (bureau à distance exposé)",
+              "serveur : 3306 (base de données exposée)"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exposition",
+            "args": [
+              {}
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "exposition",
+            "args": [
+              {
+                "vieux": [
+                  23,
+                  21
+                ],
+                "web": [
+                  443
+                ]
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "vieux : 21 (FTP non chiffré)",
+              "vieux : 23 (Telnet non chiffré)"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Parcours les machines dans l’ordre alphabétique.",
+      "Parcours leurs ports triés.",
+      "N’ajoute une ligne que pour un port de RISQUES."
+    ],
+    "explanation_fr": "Ce rapport transforme un résultat de balayage en liste d’actions concrètes.",
+    "common_wrong_answers": [],
+    "id": "net-m2-02-e4"
+  }
+]

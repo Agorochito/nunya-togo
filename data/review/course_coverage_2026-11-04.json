@@ -839,7 +839,7 @@
     "Objets connectés et robotique",
     "Blockchain"
   ],
-  "updated_for_release": "5.15.0",
+  "updated_for_release": "5.16.0",
   "updated_at": "2026-11-10",
   "additional_implemented": [
     {
@@ -868,6 +868,19 @@
       "evidence": [
         "content/fr/cyber-bases/",
         "docs/TEST_RESULTS.md"
+      ]
+    },
+    {
+      "id": "reseaux-bases",
+      "modules": 4,
+      "lessons": 12,
+      "activities": 48,
+      "quizzes": 36,
+      "status": "brouillon",
+      "scope": "Réseaux en Python hors ligne (ipaddress), relevés fictifs ; série complémentaire « Linux, réseaux et systèmes ».",
+      "evidence": [
+        "content/fr/reseaux-bases/",
+        "docs/RESEAUX_BASES_UI_RESULTS.json"
       ]
     }
   ]

@@ -1,0 +1,288 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Lire une configuration",
+    "instruction_fr": "Écris lire_config(texte) : renvoie un dictionnaire des lignes clé = valeur, en retirant les espaces, en ignorant les lignes vides et celles qui commencent par #.",
+    "starter_code": "def lire_config(texte):\n    config = {}\n    for ligne in texte.split(\"\\n\"):\n        cle, valeur = ligne.split(\"=\")\n        config[cle] = valeur\n    return config\n",
+    "solution": "def lire_config(texte):\n    config = {}\n    for ligne in texte.split(\"\\n\"):\n        ligne = ligne.strip()\n        if not ligne or ligne.startswith(\"#\"):\n            continue\n        cle, valeur = ligne.split(\"=\", 1)\n        config[cle.strip()] = valeur.strip()\n    return config\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_config",
+            "args": [
+              "# poste du secrétariat\nadresse = 192.168.1.20\nprefixe = 24\n\npasserelle = 192.168.1.1\ndns = 192.168.1.1\n"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "adresse": "192.168.1.20",
+              "prefixe": "24",
+              "passerelle": "192.168.1.1",
+              "dns": "192.168.1.1"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_config",
+            "args": [
+              ""
+            ],
+            "unchanged_args": true,
+            "expected": {}
+          },
+          {
+            "name": "lire_config",
+            "args": [
+              "note = a=b\n#x\n"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "note": "a=b"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les lignes vides et les commentaires font planter la version actuelle.",
+      "strip puis continue pour les ignorer.",
+      "split(\"=\", 1) puis strip sur la clé et la valeur."
+    ],
+    "explanation_fr": "Lire proprement est la moitié du travail de vérification.",
+    "common_wrong_answers": [],
+    "id": "net-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Adresses en double",
+    "instruction_fr": "Écris conflits(adresses) : adresses associe un nom de machine à son adresse. Renvoie la liste triée des lignes \"adresse : machine1, machine2\" pour chaque adresse utilisée par au moins deux machines, les noms triés.",
+    "starter_code": "def conflits(adresses):\n    return []\n",
+    "solution": "def conflits(adresses):\n    par_ip = {}\n    for machine, ip in adresses.items():\n        par_ip.setdefault(ip, []).append(machine)\n    return sorted(ip + \" : \" + \", \".join(sorted(m)) for ip, m in par_ip.items() if len(m) > 1)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "conflits",
+            "args": [
+              {
+                "imprimante": "192.168.1.50",
+                "camera": "192.168.1.50",
+                "caisse": "192.168.1.20"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "192.168.1.50 : camera, imprimante"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "conflits",
+            "args": [
+              {}
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "conflits",
+            "args": [
+              {
+                "b": "10.0.0.2",
+                "a": "10.0.0.2",
+                "c": "10.0.0.1",
+                "d": "10.0.0.1"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "10.0.0.1 : c, d",
+              "10.0.0.2 : a, b"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Regroupe les machines par adresse.",
+      "setdefault crée la liste au premier passage.",
+      "Ne garde que les adresses avec plus d’une machine."
+    ],
+    "explanation_fr": "Regrouper par valeur révèle ce qu’aucune machine ne voit seule.",
+    "common_wrong_answers": [],
+    "id": "net-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Vérifier une configuration",
+    "instruction_fr": "verifier(config) doit renvoyer la liste des problèmes dans cet ordre : \"adresse invalide\" (seul, si l’adresse ou le préfixe sont illisibles), sinon \"passerelle hors du réseau\", puis \"dns invalide\". Elle compare le texte de la passerelle au réseau et plante sur une erreur AttributeError. Corrige-la.",
+    "starter_code": "import ipaddress\n\ndef verifier(config):\n    problemes = []\n    try:\n        reseau = ipaddress.ip_network(config[\"adresse\"] + \"/\" + config[\"prefixe\"], strict=False)\n    except (KeyError, ValueError):\n        return [\"adresse invalide\"]\n    try:\n        if config.get(\"passerelle\", \"\") not in reseau:\n            problemes.append(\"passerelle hors du réseau\")\n    except ValueError:\n        problemes.append(\"passerelle hors du réseau\")\n    try:\n        ipaddress.ip_address(config.get(\"dns\", \"\"))\n    except ValueError:\n        problemes.append(\"dns invalide\")\n    return problemes\n\n",
+    "solution": "import ipaddress\n\ndef verifier(config):\n    problemes = []\n    try:\n        reseau = ipaddress.ip_network(config[\"adresse\"] + \"/\" + config[\"prefixe\"], strict=False)\n    except (KeyError, ValueError):\n        return [\"adresse invalide\"]\n    try:\n        if ipaddress.ip_address(config.get(\"passerelle\", \"\")) not in reseau:\n            problemes.append(\"passerelle hors du réseau\")\n    except ValueError:\n        problemes.append(\"passerelle hors du réseau\")\n    try:\n        ipaddress.ip_address(config.get(\"dns\", \"\"))\n    except ValueError:\n        problemes.append(\"dns invalide\")\n    return problemes\n\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              {
+                "adresse": "192.168.1.20",
+                "prefixe": "24",
+                "passerelle": "192.168.1.1",
+                "dns": "8.8.8.8"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": []
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              {
+                "adresse": "192.168.1.20",
+                "prefixe": "24",
+                "passerelle": "192.168.2.1",
+                "dns": "x"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "passerelle hors du réseau",
+              "dns invalide"
+            ]
+          },
+          {
+            "name": "verifier",
+            "args": [
+              {
+                "adresse": "300.1.1.1",
+                "prefixe": "24"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "adresse invalide"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis le nom de l’erreur : AttributeError.",
+      "Le texte de la passerelle n’est pas une adresse.",
+      "Convertis-la avec ipaddress.ip_address avant le test in."
+    ],
+    "explanation_fr": "Le même piège de type se cache dans beaucoup de programmes : un texte n’est pas une adresse.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:ipaddress",
+      "try"
+    ],
+    "id": "net-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Audit de configurations",
+    "instruction_fr": "Écris audit(configs) : configs associe un nom de machine au texte de sa configuration. Renvoie les lignes \"machine : problème\" (machines triées, problèmes dans l’ordre de verifier), suivies des lignes \"conflit adresse : machines\" pour les adresses en double (format de conflits). lire_config et verifier sont fournies.",
+    "starter_code": "def lire_config(texte):\n    config = {}\n    for ligne in texte.split(\"\\n\"):\n        ligne = ligne.strip()\n        if not ligne or ligne.startswith(\"#\"):\n            continue\n        cle, valeur = ligne.split(\"=\", 1)\n        config[cle.strip()] = valeur.strip()\n    return config\n\nimport ipaddress\n\ndef verifier(config):\n    problemes = []\n    try:\n        reseau = ipaddress.ip_network(config[\"adresse\"] + \"/\" + config[\"prefixe\"], strict=False)\n    except (KeyError, ValueError):\n        return [\"adresse invalide\"]\n    try:\n        if ipaddress.ip_address(config.get(\"passerelle\", \"\")) not in reseau:\n            problemes.append(\"passerelle hors du réseau\")\n    except ValueError:\n        problemes.append(\"passerelle hors du réseau\")\n    try:\n        ipaddress.ip_address(config.get(\"dns\", \"\"))\n    except ValueError:\n        problemes.append(\"dns invalide\")\n    return problemes\n\ndef audit(configs):\n    return []\n",
+    "solution": "def lire_config(texte):\n    config = {}\n    for ligne in texte.split(\"\\n\"):\n        ligne = ligne.strip()\n        if not ligne or ligne.startswith(\"#\"):\n            continue\n        cle, valeur = ligne.split(\"=\", 1)\n        config[cle.strip()] = valeur.strip()\n    return config\n\nimport ipaddress\n\ndef verifier(config):\n    problemes = []\n    try:\n        reseau = ipaddress.ip_network(config[\"adresse\"] + \"/\" + config[\"prefixe\"], strict=False)\n    except (KeyError, ValueError):\n        return [\"adresse invalide\"]\n    try:\n        if ipaddress.ip_address(config.get(\"passerelle\", \"\")) not in reseau:\n            problemes.append(\"passerelle hors du réseau\")\n    except ValueError:\n        problemes.append(\"passerelle hors du réseau\")\n    try:\n        ipaddress.ip_address(config.get(\"dns\", \"\"))\n    except ValueError:\n        problemes.append(\"dns invalide\")\n    return problemes\n\ndef audit(configs):\n    lignes = []\n    par_ip = {}\n    for machine in sorted(configs):\n        config = lire_config(configs[machine])\n        for probleme in verifier(config):\n            lignes.append(machine + \" : \" + probleme)\n        if \"adresse\" in config:\n            par_ip.setdefault(config[\"adresse\"], []).append(machine)\n    for ip in sorted(par_ip):\n        if len(par_ip[ip]) > 1:\n            lignes.append(\"conflit \" + ip + \" : \" + \", \".join(sorted(par_ip[ip])))\n    return lignes\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "audit",
+            "args": [
+              {
+                "secretariat": "# poste du secrétariat\nadresse = 192.168.1.20\nprefixe = 24\n\npasserelle = 192.168.1.1\ndns = 192.168.1.1\n",
+                "imprimante": "adresse=192.168.1.20\nprefixe=24\npasserelle=10.0.0.1\ndns=192.168.1.1"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "imprimante : passerelle hors du réseau",
+              "conflit 192.168.1.20 : imprimante, secretariat"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "audit",
+            "args": [
+              {}
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "audit",
+            "args": [
+              {
+                "a": "# poste du secrétariat\nadresse = 192.168.1.20\nprefixe = 24\n\npasserelle = 192.168.1.1\ndns = 192.168.1.1\n"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "audit",
+            "args": [
+              {
+                "b": "adresse=x\nprefixe=24"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "b : adresse invalide"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis chaque configuration, puis vérifie-la.",
+      "Regroupe en même temps les machines par adresse.",
+      "Ajoute les conflits après les problèmes individuels."
+    ],
+    "explanation_fr": "Un seul rapport couvre les erreurs de chaque machine et celles qui n’apparaissent qu’ensemble.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:ipaddress"
+    ],
+    "id": "net-m3-03-e4"
+  }
+]

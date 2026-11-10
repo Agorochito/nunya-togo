@@ -1,0 +1,460 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Suivre les alias",
+    "instruction_fr": "Écris resoudre(zone, nom) : zone associe un nom à [\"A\", ip] ou [\"CNAME\", autre nom]. Suis les CNAME jusqu’à un A et renvoie l’adresse ; renvoie None si un nom manque dans la zone.",
+    "starter_code": "def resoudre(zone, nom):\n    return zone[nom][1]\n",
+    "solution": "def resoudre(zone, nom):\n    while nom in zone:\n        genre, valeur = zone[nom]\n        if genre == \"A\":\n            return valeur\n        nom = valeur\n    return None\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "resoudre",
+            "args": [
+              {
+                "ecole-avenir.tg": [
+                  "A",
+                  "41.207.160.5"
+                ],
+                "www.ecole-avenir.tg": [
+                  "CNAME",
+                  "ecole-avenir.tg"
+                ],
+                "notes.ecole-avenir.tg": [
+                  "CNAME",
+                  "www.ecole-avenir.tg"
+                ],
+                "mail.ecole-avenir.tg": [
+                  "A",
+                  "41.207.160.9"
+                ]
+              },
+              "www.ecole-avenir.tg"
+            ],
+            "unchanged_args": true,
+            "expected": "41.207.160.5"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "resoudre",
+            "args": [
+              {
+                "a.tg": [
+                  "A",
+                  "1.2.3.4"
+                ]
+              },
+              "a.tg"
+            ],
+            "unchanged_args": true,
+            "expected": "1.2.3.4"
+          },
+          {
+            "name": "resoudre",
+            "args": [
+              {
+                "a.tg": [
+                  "CNAME",
+                  "b.tg"
+                ]
+              },
+              "a.tg"
+            ],
+            "unchanged_args": true,
+            "expected": null
+          },
+          {
+            "name": "resoudre",
+            "args": [
+              {},
+              "x.tg"
+            ],
+            "unchanged_args": true,
+            "expected": null
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un CNAME donne un autre nom, pas une adresse.",
+      "Boucle tant que le nom existe dans la zone.",
+      "Renvoie la valeur dès que le type est A."
+    ],
+    "explanation_fr": "Une chaîne d’alias se suit pas à pas, comme un renvoi d’appel.",
+    "common_wrong_answers": [],
+    "id": "net-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Niveaux d’un nom",
+    "instruction_fr": "Écris niveaux(nom) qui renvoie la liste des domaines du plus général au plus précis : \"notes.ecole-avenir.tg\" donne [\"tg\", \"ecole-avenir.tg\", \"notes.ecole-avenir.tg\"].",
+    "starter_code": "def niveaux(nom):\n    return nom.split(\".\")\n",
+    "solution": "def niveaux(nom):\n    parties = nom.split(\".\")\n    return [\".\".join(parties[i:]) for i in range(len(parties) - 1, -1, -1)]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "niveaux",
+            "args": [
+              "notes.ecole-avenir.tg"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "tg",
+              "ecole-avenir.tg",
+              "notes.ecole-avenir.tg"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "niveaux",
+            "args": [
+              "tg"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "tg"
+            ]
+          },
+          {
+            "name": "niveaux",
+            "args": [
+              "a.b.c.tg"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "tg",
+              "c.tg",
+              "b.c.tg",
+              "a.b.c.tg"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le domaine de premier niveau est la dernière partie.",
+      "Pars de la fin et ajoute une partie à chaque fois.",
+      "range(len(parties) - 1, -1, -1) parcourt à l’envers."
+    ],
+    "explanation_fr": "C’est l’ordre dans lequel la résolution descend la hiérarchie.",
+    "common_wrong_answers": [],
+    "id": "net-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Cache expiré",
+    "instruction_fr": "depuis_cache(cache, nom, maintenant) : cache associe un nom à [ip, expiration] (en secondes). Elle doit renvoyer l’ip si maintenant est strictement avant l’expiration, sinon None (et None si le nom est absent). La comparaison est inversée. Corrige-la.",
+    "starter_code": "def depuis_cache(cache, nom, maintenant):\n    if nom not in cache:\n        return None\n    ip, expiration = cache[nom]\n    if maintenant > expiration:\n        return ip\n    return None\n",
+    "solution": "def depuis_cache(cache, nom, maintenant):\n    if nom not in cache:\n        return None\n    ip, expiration = cache[nom]\n    if maintenant < expiration:\n        return ip\n    return None\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "depuis_cache",
+            "args": [
+              {
+                "a.tg": [
+                  "1.2.3.4",
+                  1000
+                ]
+              },
+              "a.tg",
+              500
+            ],
+            "unchanged_args": true,
+            "expected": "1.2.3.4"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "depuis_cache",
+            "args": [
+              {
+                "a.tg": [
+                  "1.2.3.4",
+                  1000
+                ]
+              },
+              "a.tg",
+              1000
+            ],
+            "unchanged_args": true,
+            "expected": null
+          },
+          {
+            "name": "depuis_cache",
+            "args": [
+              {
+                "a.tg": [
+                  "1.2.3.4",
+                  1000
+                ]
+              },
+              "a.tg",
+              1500
+            ],
+            "unchanged_args": true,
+            "expected": null
+          },
+          {
+            "name": "depuis_cache",
+            "args": [
+              {},
+              "a.tg",
+              0
+            ],
+            "unchanged_args": true,
+            "expected": null
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une réponse valable est utilisée avant son expiration.",
+      "À l’instant exact de l’expiration, elle ne vaut plus.",
+      "Utilise maintenant < expiration."
+    ],
+    "explanation_fr": "Utiliser une réponse expirée peut envoyer vers une ancienne adresse.",
+    "common_wrong_answers": [],
+    "id": "net-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Résolveur prudent",
+    "instruction_fr": "Écris resoudre_prudent(zone, nom, limite) : suis les CNAME comme resoudre, mais lève ValueError(\"trop de redirections\") si plus de limite alias sont suivis, et ValueError(\"nom inconnu\") si un nom manque.",
+    "starter_code": "def resoudre_prudent(zone, nom, limite):\n    return None\n",
+    "solution": "def resoudre_prudent(zone, nom, limite):\n    sauts = 0\n    while True:\n        if nom not in zone:\n            raise ValueError(\"nom inconnu\")\n        genre, valeur = zone[nom]\n        if genre == \"A\":\n            return valeur\n        sauts += 1\n        if sauts > limite:\n            raise ValueError(\"trop de redirections\")\n        nom = valeur\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "resoudre_prudent",
+            "args": [
+              {
+                "ecole-avenir.tg": [
+                  "A",
+                  "41.207.160.5"
+                ],
+                "www.ecole-avenir.tg": [
+                  "CNAME",
+                  "ecole-avenir.tg"
+                ],
+                "notes.ecole-avenir.tg": [
+                  "CNAME",
+                  "www.ecole-avenir.tg"
+                ],
+                "mail.ecole-avenir.tg": [
+                  "A",
+                  "41.207.160.9"
+                ],
+                "boucle.tg": [
+                  "CNAME",
+                  "retour.tg"
+                ],
+                "retour.tg": [
+                  "CNAME",
+                  "boucle.tg"
+                ]
+              },
+              "notes.ecole-avenir.tg",
+              5
+            ],
+            "unchanged_args": true,
+            "expected": "41.207.160.5"
+          },
+          {
+            "name": "resoudre_prudent",
+            "args": [
+              {
+                "ecole-avenir.tg": [
+                  "A",
+                  "41.207.160.5"
+                ],
+                "www.ecole-avenir.tg": [
+                  "CNAME",
+                  "ecole-avenir.tg"
+                ],
+                "notes.ecole-avenir.tg": [
+                  "CNAME",
+                  "www.ecole-avenir.tg"
+                ],
+                "mail.ecole-avenir.tg": [
+                  "A",
+                  "41.207.160.9"
+                ],
+                "boucle.tg": [
+                  "CNAME",
+                  "retour.tg"
+                ],
+                "retour.tg": [
+                  "CNAME",
+                  "boucle.tg"
+                ]
+              },
+              "boucle.tg",
+              5
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "trop de redirections"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "resoudre_prudent",
+            "args": [
+              {
+                "ecole-avenir.tg": [
+                  "A",
+                  "41.207.160.5"
+                ],
+                "www.ecole-avenir.tg": [
+                  "CNAME",
+                  "ecole-avenir.tg"
+                ],
+                "notes.ecole-avenir.tg": [
+                  "CNAME",
+                  "www.ecole-avenir.tg"
+                ],
+                "mail.ecole-avenir.tg": [
+                  "A",
+                  "41.207.160.9"
+                ],
+                "boucle.tg": [
+                  "CNAME",
+                  "retour.tg"
+                ],
+                "retour.tg": [
+                  "CNAME",
+                  "boucle.tg"
+                ]
+              },
+              "notes.ecole-avenir.tg",
+              1
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "trop de redirections"
+          },
+          {
+            "name": "resoudre_prudent",
+            "args": [
+              {
+                "ecole-avenir.tg": [
+                  "A",
+                  "41.207.160.5"
+                ],
+                "www.ecole-avenir.tg": [
+                  "CNAME",
+                  "ecole-avenir.tg"
+                ],
+                "notes.ecole-avenir.tg": [
+                  "CNAME",
+                  "www.ecole-avenir.tg"
+                ],
+                "mail.ecole-avenir.tg": [
+                  "A",
+                  "41.207.160.9"
+                ],
+                "boucle.tg": [
+                  "CNAME",
+                  "retour.tg"
+                ],
+                "retour.tg": [
+                  "CNAME",
+                  "boucle.tg"
+                ]
+              },
+              "inconnu.tg",
+              5
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "nom inconnu"
+          },
+          {
+            "name": "resoudre_prudent",
+            "args": [
+              {
+                "ecole-avenir.tg": [
+                  "A",
+                  "41.207.160.5"
+                ],
+                "www.ecole-avenir.tg": [
+                  "CNAME",
+                  "ecole-avenir.tg"
+                ],
+                "notes.ecole-avenir.tg": [
+                  "CNAME",
+                  "www.ecole-avenir.tg"
+                ],
+                "mail.ecole-avenir.tg": [
+                  "A",
+                  "41.207.160.9"
+                ],
+                "boucle.tg": [
+                  "CNAME",
+                  "retour.tg"
+                ],
+                "retour.tg": [
+                  "CNAME",
+                  "boucle.tg"
+                ]
+              },
+              "mail.ecole-avenir.tg",
+              0
+            ],
+            "unchanged_args": true,
+            "expected": "41.207.160.9"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Compte chaque alias suivi.",
+      "Dépasse la limite : lève l’exception demandée.",
+      "Un nom absent lève \"nom inconnu\"."
+    ],
+    "explanation_fr": "Un résolveur réel applique exactement cette prudence face aux zones mal configurées.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "raise"
+    ],
+    "id": "net-m2-03-e4"
+  }
+]

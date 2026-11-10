@@ -1,5 +1,10 @@
 # Historique
 
+## 5.16.0 — 10 novembre 2026
+
+- Nouveau cours : **Réseaux informatiques : comprendre et diagnostiquer**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, en Python hors ligne avec le module ipaddress et des relevés fictifs : adresses IPv4 privées et publiques, masques et notation CIDR, plan d’adressage d’une école en sous-réseaux, couches TCP/IP et encapsulation (MTU, TTL), ports et protocoles, DNS et alias, ping (perte, latence, gigue), traceroute, vérification de configurations et conflits d’adresses, règles de pare-feu à première correspondance, Wi-Fi sécurisé et matrice de flux entre zones, puis diagnostic complet du réseau d’un collège.
+- Le cours complète le parcours cybersécurité (il remplace sa dernière étape en préparation) et rejoint le domaine « Outils et systèmes » du catalogue.
+
 ## 5.15.0 — 10 novembre 2026
 
 - **Sept ambiances visuelles** remplacent l’ancien choix de couleur : Nunya (vert forêt et orange, nouvelle apparence par défaut), Lagune, Kente, Sauge, Prune, Nuit et **Verre liquide** (panneaux translucides sur des champs de couleur animés). Chaque ambiance existe en clair et en sombre ; le choix se fait dès l’écran d’accueil ou dans « Mon profil & confort », avec un aperçu par carte, et reste sur l’appareil. La couleur personnalisée reste disponible (« Ou compose ta propre couleur ») et les anciens choix sont conservés.

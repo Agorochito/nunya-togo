@@ -2,7 +2,7 @@
   "results": [
     {
       "width": 360,
-      "courseCount": 16,
+      "courseCount": 17,
       "cancelAndEscape": true,
       "switchPreservesCode": true,
       "nextUnfinishedCourse": true,
@@ -15,7 +15,7 @@
     },
     {
       "width": 1440,
-      "courseCount": 16,
+      "courseCount": 17,
       "cancelAndEscape": true,
       "switchPreservesCode": true,
       "nextUnfinishedCourse": true,

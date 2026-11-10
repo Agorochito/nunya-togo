@@ -1,0 +1,302 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Préfixe adapté",
+    "instruction_fr": "Écris prefixe_pour(besoin) qui renvoie le plus grand préfixe (donc le plus petit réseau) offrant au moins besoin hôtes, en partant de /30.",
+    "starter_code": "def prefixe_pour(besoin):\n    return 24\n",
+    "solution": "def prefixe_pour(besoin):\n    prefixe = 30\n    while 2 ** (32 - prefixe) - 2 < besoin:\n        prefixe -= 1\n    return prefixe\n\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "prefixe_pour",
+            "args": [
+              50
+            ],
+            "unchanged_args": true,
+            "expected": 26
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "prefixe_pour",
+            "args": [
+              2
+            ],
+            "unchanged_args": true,
+            "expected": 30
+          },
+          {
+            "name": "prefixe_pour",
+            "args": [
+              254
+            ],
+            "unchanged_args": true,
+            "expected": 24
+          },
+          {
+            "name": "prefixe_pour",
+            "args": [
+              255
+            ],
+            "unchanged_args": true,
+            "expected": 23
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un /24 pour tout le monde gaspille ou manque d’adresses.",
+      "Pars de 30 et diminue tant que les hôtes sont insuffisants.",
+      "while 2 ** (32 - prefixe) - 2 < besoin: prefixe -= 1"
+    ],
+    "explanation_fr": "Le plus petit bloc suffisant laisse de la place aux autres usages.",
+    "common_wrong_answers": [],
+    "id": "net-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Découpage régulier",
+    "instruction_fr": "Écris decouper(cidr, nouveau) qui renvoie la liste des sous-réseaux, en texte, obtenus en découpant cidr au préfixe nouveau.",
+    "starter_code": "import ipaddress\n\ndef decouper(cidr, nouveau):\n    return [cidr]\n",
+    "solution": "import ipaddress\n\ndef decouper(cidr, nouveau):\n    return [str(s) for s in ipaddress.ip_network(cidr).subnets(new_prefix=nouveau)]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "decouper",
+            "args": [
+              "10.10.0.0/24",
+              25
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "10.10.0.0/25",
+              "10.10.0.128/25"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "decouper",
+            "args": [
+              "192.168.0.0/23",
+              24
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "192.168.0.0/24",
+              "192.168.1.0/24"
+            ]
+          },
+          {
+            "name": "decouper",
+            "args": [
+              "10.0.0.0/30",
+              30
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "10.0.0.0/30"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "subnets(new_prefix=…) fait le découpage.",
+      "Convertis chaque sous-réseau avec str.",
+      "Une compréhension de liste suffit."
+    ],
+    "explanation_fr": "Le découpage régulier convient quand les usages ont des tailles proches.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:ipaddress"
+    ],
+    "id": "net-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Plage utilisable",
+    "instruction_fr": "premier_dernier(cidr) doit renvoyer [première adresse utilisable, dernière adresse utilisable]. Elle renvoie l’adresse de réseau et la diffusion. Corrige-la.",
+    "starter_code": "import ipaddress\n\ndef premier_dernier(cidr):\n    r = ipaddress.ip_network(cidr)\n    return [str(r.network_address), str(r.broadcast_address)]\n",
+    "solution": "import ipaddress\n\ndef premier_dernier(cidr):\n    r = ipaddress.ip_network(cidr)\n    return [str(r.network_address + 1), str(r.broadcast_address - 1)]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "premier_dernier",
+            "args": [
+              "192.168.1.0/24"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "192.168.1.1",
+              "192.168.1.254"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "premier_dernier",
+            "args": [
+              "10.10.0.64/26"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "10.10.0.65",
+              "10.10.0.126"
+            ]
+          },
+          {
+            "name": "premier_dernier",
+            "args": [
+              "10.0.0.0/30"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "10.0.0.1",
+              "10.0.0.2"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les deux adresses renvoyées sont réservées.",
+      "Une adresse IP s’additionne avec un entier.",
+      "network_address + 1 et broadcast_address - 1."
+    ],
+    "explanation_fr": "La première adresse utilisable deviendra souvent la passerelle.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:ipaddress"
+    ],
+    "id": "net-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Plan d’adressage",
+    "instruction_fr": "Écris plan(cidr, besoins) : besoins est une liste de [nom, appareils]. Attribue à chaque besoin le plus petit bloc suffisant (prefixe_pour, fournie), du plus grand besoin au plus petit (à égalité, par nom), à la suite depuis le début de cidr. Renvoie les lignes \"nom : sous-réseau (passerelle première adresse)\", ou [\"espace insuffisant\"] si les blocs dépassent cidr.",
+    "starter_code": "import ipaddress\n\ndef prefixe_pour(besoin):\n    prefixe = 30\n    while 2 ** (32 - prefixe) - 2 < besoin:\n        prefixe -= 1\n    return prefixe\n\ndef plan(cidr, besoins):\n    return []\n",
+    "solution": "import ipaddress\n\ndef prefixe_pour(besoin):\n    prefixe = 30\n    while 2 ** (32 - prefixe) - 2 < besoin:\n        prefixe -= 1\n    return prefixe\n\ndef plan(cidr, besoins):\n    reseau = ipaddress.ip_network(cidr)\n    position = int(reseau.network_address)\n    fin = int(reseau.broadcast_address) + 1\n    lignes = []\n    for nom, appareils in sorted(besoins, key=lambda b: (-b[1], b[0])):\n        prefixe = prefixe_pour(appareils)\n        taille = 2 ** (32 - prefixe)\n        if position + taille > fin:\n            return [\"espace insuffisant\"]\n        sous = ipaddress.ip_network((position, prefixe))\n        lignes.append(nom + \" : \" + str(sous) + \" (passerelle \" + str(sous.network_address + 1) + \")\")\n        position += taille\n    return lignes\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "plan",
+            "args": [
+              "10.10.0.0/24",
+              [
+                [
+                  "admin",
+                  10
+                ],
+                [
+                  "salle1",
+                  50
+                ],
+                [
+                  "invites",
+                  100
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "invites : 10.10.0.0/25 (passerelle 10.10.0.1)",
+              "salle1 : 10.10.0.128/26 (passerelle 10.10.0.129)",
+              "admin : 10.10.0.192/28 (passerelle 10.10.0.193)"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "plan",
+            "args": [
+              "10.10.0.0/26",
+              [
+                [
+                  "a",
+                  50
+                ],
+                [
+                  "b",
+                  20
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "espace insuffisant"
+            ]
+          },
+          {
+            "name": "plan",
+            "args": [
+              "192.168.0.0/24",
+              [
+                [
+                  "b",
+                  20
+                ],
+                [
+                  "a",
+                  20
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "a : 192.168.0.0/27 (passerelle 192.168.0.1)",
+              "b : 192.168.0.32/27 (passerelle 192.168.0.33)"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Trie les besoins du plus grand au plus petit.",
+      "Avance un compteur d’adresse de la taille de chaque bloc.",
+      "ip_network((entier, prefixe)) crée le bloc à partir d’une position."
+    ],
+    "explanation_fr": "Ce plan est exactement ce qu’on remet à l’installateur du réseau de l’école.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:ipaddress"
+    ],
+    "id": "net-m1-03-e4"
+  }
+]

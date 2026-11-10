@@ -1,3 +1,9 @@
+# Vérifications 5.16.0 — 10 novembre 2026
+
+- Réseaux : 24 exemples, 48 solutions et 48 codes de départ vérifiés dans le vrai Pyodide 3.14 du site (120 contrôles, tous les départs refusés) ; contrôle Python de la construction réussi (1 262 cas, Python 3.9). Interface (`RESEAUX_BASES_UI_RESULTS.json`) : 12 leçons, 48 exercices et 36 questions à 360 et 1440 px, lecture hors ligne à froid, zéro violation axe.
+- 222 tests unitaires, ESLint, TypeScript, schémas, prérequis et liens réussis ; 40 tests navigateur réussis, dont catalogue (17 programmes, 18 raccourcis), parcours, rendu des 287 leçons, ambiances, cybersécurité et migrations depuis 5.12.0 à 5.15.0. Bundle principal : 148 941 octets gzip.
+- GitHub Actions : la tâche navigateur de 5.15.0 a été arrêtée par sa limite de 45 minutes, sans échec de test (la précédente durait déjà 42 minutes). Limite portée à 90 minutes. Bash et Java restent vérifiés par GitHub Actions ; Docker était en pause localement.
+
 # Vérifications 5.15.0 — 10 novembre 2026
 
 - Ambiances (`AMBIANCES_UI_RESULTS.json`) : choix depuis l’écran d’accueil et depuis les réglages, enregistrement sur l’appareil, Nuit qui active le thème sombre, Verre léger, couleur personnalisée conservée ; 26 audits axe par largeur (7 ambiances × clair/sombre × réglages et catalogue) à 360 et 1440 px, zéro violation, aucun défilement horizontal. Le générateur de palettes refuse tout texte sous 4,5:1 (plus faible : 4,93:1, texte secondaire du verre sombre au-dessus de sa couleur la plus vive).

@@ -19,6 +19,7 @@ const TECHNOLOGIES={
   cpp:{label:'C++',mark:'C++',aliases:'c++ cpp c plus plus programmation compilee systeme'},
   java:{label:'Java',mark:'Jv',aliases:'java jdk objet objets classes programmation compilee android logiciel entreprise backend'},
   php:{label:'PHP',mark:'php',aliases:'php programmation serveur web back-end backend script'},
+  reseaux:{label:'Réseaux',mark:'IP',aliases:'reseaux reseau network ip adresse masque cidr sous-reseau dns ping traceroute pare-feu firewall wifi ports protocoles tcp udp'},
   cyber:{label:'Cybersécurité',mark:'Sec',aliases:'cybersecurite securite cyber defense hameconnage phishing mots de passe journaux logs audit incident sauvegarde python'},
   git:{label:'Git',mark:'Git',aliases:'git versions branches historique'}
 };
@@ -87,7 +88,7 @@ const DOMAINS=[
   {key:'langages',title:'Langages de programmation',text:'Programmer des scripts, des logiciels et des serveurs avec un langage généraliste.',technologies:['python','php','cpp','java']},
   {key:'donnees',title:'Données',text:'Interroger, organiser et analyser des informations avec une base de données.',technologies:['sql']},
   {key:'securite',title:'Cybersécurité',text:'Protéger les comptes, détecter les attaques et réagir aux incidents, sur des données fictives et dans un cadre légal.',technologies:['cyber']},
-  {key:'outils',title:'Outils et systèmes',text:'Le terminal, Linux et les outils que tout développeur et tout analyste en sécurité utilisent chaque jour.',technologies:['bash']}
+  {key:'outils',title:'Outils et systèmes',text:'Le terminal, Linux, les réseaux et les outils que tout développeur et tout analyste en sécurité utilisent chaque jour.',technologies:['bash','reseaux']}
 ];
 function filtering(){return filters.q.trim()!==''||filters.technology!=='all'||filters.level!=='all';}
 function renderDomains(api,courses,state){

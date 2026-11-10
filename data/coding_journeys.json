@@ -147,15 +147,11 @@
       "sql-bases",
       "bash-bases",
       "git-bases",
+      "reseaux-bases",
       "cyber-bases"
     ],
-    "planned_fr": [
-      {
-        "title_fr": "Réseaux informatiques",
-        "summary_fr": "Adresses IP, ports, protocoles et outils de diagnostic."
-      }
-    ],
-    "outcome_fr": "Défendre une petite organisation : risques, mots de passe, journaux, droits, sauvegardes et réponse aux incidents ; les réseaux suivront pour compléter la formation.",
+    "planned_fr": [],
+    "outcome_fr": "Comprendre les réseaux et défendre une petite organisation : adresses, filtrage, mots de passe, journaux, droits, sauvegardes et réponse aux incidents.",
     "discovery_route": "#/parcours/cybersecurite"
   }
 ]

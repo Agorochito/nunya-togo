@@ -5253,6 +5253,295 @@
       "quiz_count": 54
     },
     {
+      "id": "reseaux-bases",
+      "title_fr": "Réseaux informatiques : comprendre et diagnostiquer",
+      "language": "python",
+      "runtime": "python",
+      "technology": "reseaux",
+      "level": "debutant",
+      "summary_fr": "Comprends comment les données voyagent et dépanne un vrai réseau d’école : adresses IP, masques et sous-réseaux, couches, ports, DNS, ping et traceroute, configurations, pare-feu, Wi-Fi et segmentation. En Python hors ligne, sur des relevés fictifs.",
+      "prerequisite_courses": [
+        "python-bases"
+      ],
+      "prerequisites": [
+        "Savoir écrire des fonctions Python, parcourir listes et dictionnaires, et utiliser if, for et try.",
+        "Aucun paquet n’est envoyé : les relevés réseau des exercices sont fournis et fictifs."
+      ],
+      "outcomes": [
+        "Lire et valider des adresses IPv4, des masques et des réseaux en notation CIDR.",
+        "Bâtir un plan d’adressage découpé en sous-réseaux pour une école.",
+        "Expliquer couches, ports, protocoles et résolution DNS.",
+        "Analyser ping, traceroute et configurations pour trouver une panne.",
+        "Appliquer pare-feu, Wi-Fi sécurisé et segmentation, puis livrer un diagnostic complet."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Adresses et sous-réseaux",
+          "outcome_fr": "Lire les adresses IP, les masques CIDR et découper un réseau.",
+          "lesson_ids": [
+            "net-m1-01",
+            "net-m1-02",
+            "net-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Comment voyagent les données",
+          "outcome_fr": "Comprendre couches, ports, protocoles et DNS.",
+          "lesson_ids": [
+            "net-m2-01",
+            "net-m2-02",
+            "net-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Mesurer et dépanner",
+          "outcome_fr": "Interpréter ping, traceroute et configurations réseau.",
+          "lesson_ids": [
+            "net-m3-01",
+            "net-m3-02",
+            "net-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Filtrer, séparer et diagnostiquer",
+          "outcome_fr": "Écrire des règles de pare-feu, segmenter et livrer un diagnostic d’école.",
+          "lesson_ids": [
+            "net-m4-01",
+            "net-m4-02",
+            "net-m4-03"
+          ]
+        }
+      ],
+      "next_courses": [],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "net-m1-01",
+          "title_fr": "Les adresses IP : l’adresse postale des appareils",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [],
+          "tags": [
+            "réseaux",
+            "python",
+            "IP",
+            "adresse IP",
+            "octet",
+            "adresse privée",
+            "NAT"
+          ]
+        },
+        {
+          "id": "net-m1-02",
+          "title_fr": "Masques et notation CIDR",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "net-m1-01"
+          ],
+          "tags": [
+            "réseaux",
+            "python",
+            "IP",
+            "masque",
+            "CIDR",
+            "diffusion",
+            "passerelle"
+          ]
+        },
+        {
+          "id": "net-m1-03",
+          "title_fr": "Découper un réseau pour une école",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "net-m1-02"
+          ],
+          "tags": [
+            "réseaux",
+            "python",
+            "IP",
+            "sous-réseau",
+            "cloisonnement",
+            "plan d’adressage",
+            "DHCP"
+          ]
+        },
+        {
+          "id": "net-m2-01",
+          "title_fr": "Couches et encapsulation",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "net-m1-03"
+          ],
+          "tags": [
+            "réseaux",
+            "python",
+            "IP",
+            "encapsulation",
+            "MTU",
+            "TTL",
+            "adresse MAC"
+          ]
+        },
+        {
+          "id": "net-m2-02",
+          "title_fr": "Ports et protocoles",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "net-m2-01"
+          ],
+          "tags": [
+            "réseaux",
+            "python",
+            "IP",
+            "port",
+            "TCP",
+            "UDP",
+            "balayage de ports"
+          ]
+        },
+        {
+          "id": "net-m2-03",
+          "title_fr": "Le DNS : l’annuaire d’Internet",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "net-m2-02"
+          ],
+          "tags": [
+            "réseaux",
+            "python",
+            "IP",
+            "DNS",
+            "enregistrement A",
+            "CNAME",
+            "cache DNS"
+          ]
+        },
+        {
+          "id": "net-m3-01",
+          "title_fr": "Mesurer une connexion : ping, perte et gigue",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "net-m2-03"
+          ],
+          "tags": [
+            "réseaux",
+            "python",
+            "IP",
+            "ping",
+            "latence",
+            "perte",
+            "gigue"
+          ]
+        },
+        {
+          "id": "net-m3-02",
+          "title_fr": "Suivre le chemin des paquets avec traceroute",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "net-m3-01"
+          ],
+          "tags": [
+            "réseaux",
+            "python",
+            "IP",
+            "saut",
+            "traceroute",
+            "ICMP",
+            "fournisseur d’accès"
+          ]
+        },
+        {
+          "id": "net-m3-03",
+          "title_fr": "Lire et vérifier une configuration réseau",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "net-m3-02"
+          ],
+          "tags": [
+            "réseaux",
+            "python",
+            "IP",
+            "configuration fixe",
+            "conflit d’adresses",
+            "strip",
+            "constat"
+          ]
+        },
+        {
+          "id": "net-m4-01",
+          "title_fr": "Filtrer avec un pare-feu",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "net-m3-03"
+          ],
+          "tags": [
+            "réseaux",
+            "python",
+            "IP",
+            "pare-feu",
+            "première correspondance",
+            "politique par défaut",
+            "règle masquée"
+          ]
+        },
+        {
+          "id": "net-m4-02",
+          "title_fr": "Wi-Fi et segmentation : chacun dans sa zone",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "net-m4-01"
+          ],
+          "tags": [
+            "réseaux",
+            "python",
+            "IP",
+            "WPA2/WPA3",
+            "réseau invité",
+            "segmentation",
+            "matrice de flux"
+          ]
+        },
+        {
+          "id": "net-m4-03",
+          "title_fr": "Projet : diagnostiquer le réseau d’une école",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "net-m4-02"
+          ],
+          "tags": [
+            "réseaux",
+            "python",
+            "IP",
+            "diagnostic",
+            "gravité",
+            "rang",
+            "synthèse"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "e9755d6fdb77",
+      "exercise_count": 48,
+      "quiz_count": 36
+    },
+    {
       "id": "sql-bases",
       "title_fr": "SQL : des premières requêtes au projet de données",
       "language": "sql",

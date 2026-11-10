@@ -106,3 +106,7 @@ Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités origin
 ## Ambiances visuelles — 10 novembre 2026
 
 Palettes, aperçus et effet de verre originaux Nunya, en CSS sans police ni image téléchargée. Contrastes calculés selon la formule de luminance relative des WCAG 2.
+
+## Réseaux informatiques : comprendre et diagnostiquer — 10 novembre 2026
+
+Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la documentation Python (ipaddress), des RFC 791, 792, 1035, 1918 et 4632, du registre des ports de l’IANA, des pages d’apprentissage de MDN et des recommandations de l’ANSSI sur l’interconnexion et le Wi-Fi, cités dans chaque leçon ; aucun texte n’en est repris. Réseaux, mesures, configurations et établissements sont fictifs.

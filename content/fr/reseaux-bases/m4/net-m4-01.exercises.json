@@ -1,0 +1,460 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une règle correspond-elle ?",
+    "instruction_fr": "Écris correspond(regle, ip, port) : regle est [action, réseau source, port ou \"*\"]. Renvoie True si l’adresse est dans le réseau et si le port est égal ou si la règle porte \"*\".",
+    "starter_code": "import ipaddress\n\ndef correspond(regle, ip, port):\n    action, source, port_regle = regle\n    return ipaddress.ip_address(ip) in ipaddress.ip_network(source)\n",
+    "solution": "import ipaddress\n\ndef correspond(regle, ip, port):\n    action, source, port_regle = regle\n    dans = ipaddress.ip_address(ip) in ipaddress.ip_network(source)\n    return dans and (port_regle == \"*\" or port_regle == port)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "correspond",
+            "args": [
+              [
+                "autoriser",
+                "192.168.10.0/24",
+                443
+              ],
+              "192.168.10.7",
+              22
+            ],
+            "unchanged_args": true,
+            "expected": false
+          },
+          {
+            "name": "correspond",
+            "args": [
+              [
+                "autoriser",
+                "192.168.10.0/24",
+                443
+              ],
+              "192.168.10.7",
+              443
+            ],
+            "unchanged_args": true,
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "correspond",
+            "args": [
+              [
+                "refuser",
+                "192.168.20.0/24",
+                "*"
+              ],
+              "192.168.20.4",
+              3389
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "correspond",
+            "args": [
+              [
+                "autoriser",
+                "192.168.0.0/16",
+                53
+              ],
+              "10.0.0.1",
+              53
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La version actuelle ignore le port.",
+      "Le port doit être égal, sauf si la règle porte une étoile.",
+      "and (port_regle == \"*\" or port_regle == port)"
+    ],
+    "explanation_fr": "Une règle filtre sur la source et sur le service : les deux doivent correspondre.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:ipaddress"
+    ],
+    "id": "net-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Décision du pare-feu",
+    "instruction_fr": "Écris decision(regles, ip, port) avec correspond (fournie) : renvoie l’action de la première règle qui correspond, ou \"refuser\" si aucune ne correspond.",
+    "starter_code": "import ipaddress\n\ndef correspond(regle, ip, port):\n    action, source, port_regle = regle\n    dans = ipaddress.ip_address(ip) in ipaddress.ip_network(source)\n    return dans and (port_regle == \"*\" or port_regle == port)\n\ndef decision(regles, ip, port):\n    return \"autoriser\"\n",
+    "solution": "import ipaddress\n\ndef correspond(regle, ip, port):\n    action, source, port_regle = regle\n    dans = ipaddress.ip_address(ip) in ipaddress.ip_network(source)\n    return dans and (port_regle == \"*\" or port_regle == port)\n\ndef decision(regles, ip, port):\n    for regle in regles:\n        if correspond(regle, ip, port):\n            return regle[0]\n    return \"refuser\"\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "decision",
+            "args": [
+              [
+                [
+                  "autoriser",
+                  "192.168.10.0/24",
+                  443
+                ],
+                [
+                  "refuser",
+                  "192.168.20.0/24",
+                  "*"
+                ],
+                [
+                  "autoriser",
+                  "192.168.0.0/16",
+                  53
+                ]
+              ],
+              "192.168.10.7",
+              443
+            ],
+            "unchanged_args": true,
+            "expected": "autoriser"
+          },
+          {
+            "name": "decision",
+            "args": [
+              [
+                [
+                  "autoriser",
+                  "192.168.10.0/24",
+                  443
+                ],
+                [
+                  "refuser",
+                  "192.168.20.0/24",
+                  "*"
+                ],
+                [
+                  "autoriser",
+                  "192.168.0.0/16",
+                  53
+                ]
+              ],
+              "8.8.8.8",
+              443
+            ],
+            "unchanged_args": true,
+            "expected": "refuser"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "decision",
+            "args": [
+              [
+                [
+                  "autoriser",
+                  "192.168.10.0/24",
+                  443
+                ],
+                [
+                  "refuser",
+                  "192.168.20.0/24",
+                  "*"
+                ],
+                [
+                  "autoriser",
+                  "192.168.0.0/16",
+                  53
+                ]
+              ],
+              "192.168.20.4",
+              53
+            ],
+            "unchanged_args": true,
+            "expected": "refuser"
+          },
+          {
+            "name": "decision",
+            "args": [
+              [
+                [
+                  "autoriser",
+                  "192.168.10.0/24",
+                  443
+                ],
+                [
+                  "refuser",
+                  "192.168.20.0/24",
+                  "*"
+                ],
+                [
+                  "autoriser",
+                  "192.168.0.0/16",
+                  53
+                ]
+              ],
+              "192.168.30.4",
+              53
+            ],
+            "unchanged_args": true,
+            "expected": "autoriser"
+          },
+          {
+            "name": "decision",
+            "args": [
+              [],
+              "192.168.10.7",
+              443
+            ],
+            "unchanged_args": true,
+            "expected": "refuser"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Parcours les règles dans l’ordre.",
+      "Renvoie l’action dès la première correspondance.",
+      "Après la boucle, refuse par défaut."
+    ],
+    "explanation_fr": "Le réseau invité est refusé même pour le DNS, car sa règle arrive avant celle du port 53.",
+    "common_wrong_answers": [],
+    "id": "net-m4-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Ordre d’évaluation",
+    "instruction_fr": "decision_buggee doit appliquer la première règle qui correspond. Elle continue la boucle et garde la dernière correspondance. Corrige-la.",
+    "starter_code": "import ipaddress\n\ndef correspond(regle, ip, port):\n    action, source, port_regle = regle\n    dans = ipaddress.ip_address(ip) in ipaddress.ip_network(source)\n    return dans and (port_regle == \"*\" or port_regle == port)\n\ndef decision_buggee(regles, ip, port):\n    action = \"refuser\"\n    for regle in regles:\n        if correspond(regle, ip, port):\n            action = regle[0]\n    return action\n",
+    "solution": "import ipaddress\n\ndef correspond(regle, ip, port):\n    action, source, port_regle = regle\n    dans = ipaddress.ip_address(ip) in ipaddress.ip_network(source)\n    return dans and (port_regle == \"*\" or port_regle == port)\n\ndef decision_buggee(regles, ip, port):\n    action = \"refuser\"\n    for regle in regles:\n        if correspond(regle, ip, port):\n            return regle[0]\n    return action\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "decision_buggee",
+            "args": [
+              [
+                [
+                  "autoriser",
+                  "192.168.10.0/24",
+                  443
+                ],
+                [
+                  "refuser",
+                  "192.168.0.0/16",
+                  "*"
+                ]
+              ],
+              "192.168.10.7",
+              443
+            ],
+            "unchanged_args": true,
+            "expected": "autoriser"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "decision_buggee",
+            "args": [
+              [
+                [
+                  "refuser",
+                  "192.168.20.0/24",
+                  "*"
+                ],
+                [
+                  "autoriser",
+                  "192.168.0.0/16",
+                  53
+                ]
+              ],
+              "192.168.20.4",
+              53
+            ],
+            "unchanged_args": true,
+            "expected": "refuser"
+          },
+          {
+            "name": "decision_buggee",
+            "args": [
+              [],
+              "1.1.1.1",
+              1
+            ],
+            "unchanged_args": true,
+            "expected": "refuser"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La règle générale du bas écrase la règle précise du haut.",
+      "Le pare-feu s’arrête à la première correspondance.",
+      "Remplace l’affectation par un return."
+    ],
+    "explanation_fr": "Un seul mot change, et toute la politique de sécurité s’inverse.",
+    "common_wrong_answers": [],
+    "id": "net-m4-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Rejouer le trafic",
+    "instruction_fr": "Écris rejouer(regles, connexions) : connexions est une liste de [ip, port]. Renvoie {\"décisions\": [\"ip:port -> action\", …], \"inutilisées\": [indices des règles jamais appliquées, triés]}.",
+    "starter_code": "import ipaddress\n\ndef correspond(regle, ip, port):\n    action, source, port_regle = regle\n    dans = ipaddress.ip_address(ip) in ipaddress.ip_network(source)\n    return dans and (port_regle == \"*\" or port_regle == port)\n\ndef rejouer(regles, connexions):\n    return {\"décisions\": [], \"inutilisées\": []}\n",
+    "solution": "import ipaddress\n\ndef correspond(regle, ip, port):\n    action, source, port_regle = regle\n    dans = ipaddress.ip_address(ip) in ipaddress.ip_network(source)\n    return dans and (port_regle == \"*\" or port_regle == port)\n\ndef rejouer(regles, connexions):\n    decisions = []\n    utilisees = set()\n    for ip, port in connexions:\n        action = \"refuser\"\n        for i, regle in enumerate(regles):\n            if correspond(regle, ip, port):\n                action = regle[0]\n                utilisees.add(i)\n                break\n        decisions.append(ip + \":\" + str(port) + \" -> \" + action)\n    inutiles = [i for i in range(len(regles)) if i not in utilisees]\n    return {\"décisions\": decisions, \"inutilisées\": inutiles}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rejouer",
+            "args": [
+              [
+                [
+                  "autoriser",
+                  "192.168.10.0/24",
+                  443
+                ],
+                [
+                  "refuser",
+                  "192.168.20.0/24",
+                  "*"
+                ],
+                [
+                  "autoriser",
+                  "192.168.0.0/16",
+                  53
+                ]
+              ],
+              [
+                [
+                  "192.168.10.7",
+                  443
+                ],
+                [
+                  "192.168.20.4",
+                  53
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "décisions": [
+                "192.168.10.7:443 -> autoriser",
+                "192.168.20.4:53 -> refuser"
+              ],
+              "inutilisées": [
+                2
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rejouer",
+            "args": [
+              [
+                [
+                  "autoriser",
+                  "192.168.10.0/24",
+                  443
+                ],
+                [
+                  "refuser",
+                  "192.168.20.0/24",
+                  "*"
+                ],
+                [
+                  "autoriser",
+                  "192.168.0.0/16",
+                  53
+                ]
+              ],
+              []
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "décisions": [],
+              "inutilisées": [
+                0,
+                1,
+                2
+              ]
+            }
+          },
+          {
+            "name": "rejouer",
+            "args": [
+              [
+                [
+                  "autoriser",
+                  "10.0.0.0/8",
+                  "*"
+                ],
+                [
+                  "refuser",
+                  "10.1.0.0/16",
+                  22
+                ]
+              ],
+              [
+                [
+                  "10.1.2.3",
+                  22
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "décisions": [
+                "10.1.2.3:22 -> autoriser"
+              ],
+              "inutilisées": [
+                1
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "enumerate donne le numéro de chaque règle.",
+      "Note la règle appliquée avant de sortir de la boucle.",
+      "Les règles jamais notées sont inutilisées."
+    ],
+    "explanation_fr": "Le second test montre une règle masquée : la règle large du haut l’empêche de jamais s’appliquer.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:ipaddress"
+    ],
+    "id": "net-m4-01-e4"
+  }
+]

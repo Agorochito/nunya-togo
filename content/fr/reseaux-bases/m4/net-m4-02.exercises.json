@@ -1,0 +1,435 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Zone d’une adresse",
+    "instruction_fr": "Écris zone_de(ip, zones) : zones associe un nom de zone à un réseau CIDR. Renvoie le nom de la zone qui contient l’adresse, ou \"inconnue\".",
+    "starter_code": "import ipaddress\n\ndef zone_de(ip, zones):\n    for nom, cidr in zones.items():\n        if ip.startswith(cidr.rsplit(\".\", 1)[0]):\n            return nom\n    return \"inconnue\"\n",
+    "solution": "import ipaddress\n\ndef zone_de(ip, zones):\n    adresse = ipaddress.ip_address(ip)\n    for nom, cidr in zones.items():\n        if adresse in ipaddress.ip_network(cidr):\n            return nom\n    return \"inconnue\"\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "zone_de",
+            "args": [
+              "10.10.2.14",
+              {
+                "eleves": "10.10.1.0/24",
+                "admin": "10.10.2.0/24",
+                "invites": "10.10.3.0/24",
+                "serveurs": "10.10.9.0/24"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": "admin"
+          },
+          {
+            "name": "zone_de",
+            "args": [
+              "10.10.7.1",
+              {
+                "eleves": "10.10.1.0/24",
+                "admin": "10.10.2.0/24",
+                "invites": "10.10.3.0/24",
+                "serveurs": "10.10.9.0/24"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": "inconnue"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "zone_de",
+            "args": [
+              "10.10.9.200",
+              {
+                "eleves": "10.10.1.0/24",
+                "admin": "10.10.2.0/24",
+                "invites": "10.10.3.0/24",
+                "serveurs": "10.10.9.0/24"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": "serveurs"
+          },
+          {
+            "name": "zone_de",
+            "args": [
+              "10.10.1.0",
+              {
+                "eleves": "10.10.1.0/24",
+                "admin": "10.10.2.0/24",
+                "invites": "10.10.3.0/24",
+                "serveurs": "10.10.9.0/24"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": "eleves"
+          },
+          {
+            "name": "zone_de",
+            "args": [
+              "10.10.10.5",
+              {
+                "eleves": "10.10.1.0/24",
+                "admin": "10.10.2.0/24",
+                "invites": "10.10.3.0/24",
+                "serveurs": "10.10.9.0/24"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": "inconnue"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Comparer des débuts de texte confond 10.10.1.x et 10.10.10.x.",
+      "Teste l’appartenance avec ipaddress.",
+      "adresse in ipaddress.ip_network(cidr)"
+    ],
+    "explanation_fr": "Le calcul évite les confusions que la lecture des textes provoque.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:ipaddress"
+    ],
+    "id": "net-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Flux autorisé ?",
+    "instruction_fr": "Écris flux_autorise(matrice, source, destination) : True si les deux zones sont identiques ou si destination figure dans la liste de la source ; une source absente de la matrice n’autorise rien.",
+    "starter_code": "def flux_autorise(matrice, source, destination):\n    return True\n",
+    "solution": "def flux_autorise(matrice, source, destination):\n    return source == destination or destination in matrice.get(source, [])\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "flux_autorise",
+            "args": [
+              {
+                "eleves": [
+                  "serveurs"
+                ],
+                "admin": [
+                  "serveurs",
+                  "eleves"
+                ],
+                "invites": []
+              },
+              "eleves",
+              "serveurs"
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "flux_autorise",
+            "args": [
+              {
+                "eleves": [
+                  "serveurs"
+                ],
+                "admin": [
+                  "serveurs",
+                  "eleves"
+                ],
+                "invites": []
+              },
+              "invites",
+              "admin"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "flux_autorise",
+            "args": [
+              {
+                "eleves": [
+                  "serveurs"
+                ],
+                "admin": [
+                  "serveurs",
+                  "eleves"
+                ],
+                "invites": []
+              },
+              "eleves",
+              "admin"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          },
+          {
+            "name": "flux_autorise",
+            "args": [
+              {
+                "eleves": [
+                  "serveurs"
+                ],
+                "admin": [
+                  "serveurs",
+                  "eleves"
+                ],
+                "invites": []
+              },
+              "inconnue",
+              "serveurs"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          },
+          {
+            "name": "flux_autorise",
+            "args": [
+              {
+                "eleves": [
+                  "serveurs"
+                ],
+                "admin": [
+                  "serveurs",
+                  "eleves"
+                ],
+                "invites": []
+              },
+              "invites",
+              "invites"
+            ],
+            "unchanged_args": true,
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un flux non prévu est refusé.",
+      "get avec une liste vide gère les zones absentes.",
+      "Une même zone est toujours permise."
+    ],
+    "explanation_fr": "La matrice applique le refus par défaut aux échanges entre zones.",
+    "common_wrong_answers": [],
+    "id": "net-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Vérifier un point d’accès",
+    "instruction_fr": "verifier_wifi(reglages) reçoit {\"chiffrement\", \"cle\", \"invite_separe\"} et doit renvoyer, dans l’ordre, les problèmes : \"chiffrement obsolète\" (autre que WPA2 ou WPA3), \"clé trop courte\" (moins de 12 caractères), \"pas de réseau invité\". Elle accepte WEP et WPA. Corrige-la.",
+    "starter_code": "def verifier_wifi(reglages):\n    problemes = []\n    if reglages[\"chiffrement\"] not in [\"WEP\", \"WPA\", \"WPA2\", \"WPA3\"]:\n        problemes.append(\"chiffrement obsolète\")\n    if len(reglages[\"cle\"]) < 12:\n        problemes.append(\"clé trop courte\")\n    if not reglages[\"invite_separe\"]:\n        problemes.append(\"pas de réseau invité\")\n    return problemes\n",
+    "solution": "def verifier_wifi(reglages):\n    problemes = []\n    if reglages[\"chiffrement\"] not in [\"WPA2\", \"WPA3\"]:\n        problemes.append(\"chiffrement obsolète\")\n    if len(reglages[\"cle\"]) < 12:\n        problemes.append(\"clé trop courte\")\n    if not reglages[\"invite_separe\"]:\n        problemes.append(\"pas de réseau invité\")\n    return problemes\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier_wifi",
+            "args": [
+              {
+                "chiffrement": "WEP",
+                "cle": "ecole2026",
+                "invite_separe": false
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "chiffrement obsolète",
+              "clé trop courte",
+              "pas de réseau invité"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier_wifi",
+            "args": [
+              {
+                "chiffrement": "WPA3",
+                "cle": "mangue-pirogue-lampe",
+                "invite_separe": true
+              }
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "verifier_wifi",
+            "args": [
+              {
+                "chiffrement": "WPA",
+                "cle": "mangue-pirogue-lampe",
+                "invite_separe": true
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "chiffrement obsolète"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "WEP et WPA figurent dans la liste acceptée.",
+      "Seuls WPA2 et WPA3 sont sûrs aujourd’hui.",
+      "Réduis la liste à [\"WPA2\", \"WPA3\"]."
+    ],
+    "explanation_fr": "Une liste autorisée trop large accepte les configurations dangereuses.",
+    "common_wrong_answers": [],
+    "id": "net-m4-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Contrôler les flux entre machines",
+    "instruction_fr": "Écris controler(zones, matrice, essais) avec zone_de et flux_autorise (fournies) : essais est une liste de [ip source, ip destination]. Renvoie les lignes \"ip_src (zone) -> ip_dst (zone) : autorisé\" ou \"bloqué\" ; un flux dont une adresse est en zone inconnue est toujours bloqué.",
+    "starter_code": "import ipaddress\n\ndef zone_de(ip, zones):\n    adresse = ipaddress.ip_address(ip)\n    for nom, cidr in zones.items():\n        if adresse in ipaddress.ip_network(cidr):\n            return nom\n    return \"inconnue\"\n\ndef flux_autorise(matrice, source, destination):\n    return source == destination or destination in matrice.get(source, [])\n\ndef controler(zones, matrice, essais):\n    return []\n",
+    "solution": "import ipaddress\n\ndef zone_de(ip, zones):\n    adresse = ipaddress.ip_address(ip)\n    for nom, cidr in zones.items():\n        if adresse in ipaddress.ip_network(cidr):\n            return nom\n    return \"inconnue\"\n\ndef flux_autorise(matrice, source, destination):\n    return source == destination or destination in matrice.get(source, [])\n\ndef controler(zones, matrice, essais):\n    lignes = []\n    for src, dst in essais:\n        zs, zd = zone_de(src, zones), zone_de(dst, zones)\n        ok = \"inconnue\" not in (zs, zd) and flux_autorise(matrice, zs, zd)\n        lignes.append(src + \" (\" + zs + \") -> \" + dst + \" (\" + zd + \") : \" + (\"autorisé\" if ok else \"bloqué\"))\n    return lignes\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "controler",
+            "args": [
+              {
+                "eleves": "10.10.1.0/24",
+                "admin": "10.10.2.0/24",
+                "invites": "10.10.3.0/24",
+                "serveurs": "10.10.9.0/24"
+              },
+              {
+                "eleves": [
+                  "serveurs"
+                ],
+                "admin": [
+                  "serveurs",
+                  "eleves"
+                ],
+                "invites": []
+              },
+              [
+                [
+                  "10.10.1.25",
+                  "10.10.9.10"
+                ],
+                [
+                  "10.10.3.7",
+                  "10.10.2.5"
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "10.10.1.25 (eleves) -> 10.10.9.10 (serveurs) : autorisé",
+              "10.10.3.7 (invites) -> 10.10.2.5 (admin) : bloqué"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "controler",
+            "args": [
+              {
+                "eleves": "10.10.1.0/24",
+                "admin": "10.10.2.0/24",
+                "invites": "10.10.3.0/24",
+                "serveurs": "10.10.9.0/24"
+              },
+              {
+                "eleves": [
+                  "serveurs"
+                ],
+                "admin": [
+                  "serveurs",
+                  "eleves"
+                ],
+                "invites": []
+              },
+              []
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "controler",
+            "args": [
+              {
+                "eleves": "10.10.1.0/24",
+                "admin": "10.10.2.0/24",
+                "invites": "10.10.3.0/24",
+                "serveurs": "10.10.9.0/24"
+              },
+              {
+                "eleves": [
+                  "serveurs"
+                ],
+                "admin": [
+                  "serveurs",
+                  "eleves"
+                ],
+                "invites": []
+              },
+              [
+                [
+                  "10.10.7.1",
+                  "10.10.7.2"
+                ],
+                [
+                  "10.10.2.5",
+                  "10.10.1.25"
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "10.10.7.1 (inconnue) -> 10.10.7.2 (inconnue) : bloqué",
+              "10.10.2.5 (admin) -> 10.10.1.25 (eleves) : autorisé"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Trouve la zone de chaque adresse.",
+      "Une zone inconnue bloque, même si les deux sont identiques.",
+      "Construis chaque ligne avec les deux zones."
+    ],
+    "explanation_fr": "Ce contrôle simule ce qu’un pare-feu interne ferait de chaque tentative.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:ipaddress"
+    ],
+    "id": "net-m4-02-e4"
+  }
+]

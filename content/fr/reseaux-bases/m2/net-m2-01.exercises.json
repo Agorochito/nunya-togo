@@ -1,0 +1,304 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Nombre de fragments",
+    "instruction_fr": "Écris fragments(taille, mtu) qui renvoie le nombre de fragments nécessaires, arrondi vers le haut.",
+    "starter_code": "def fragments(taille, mtu):\n    return taille // mtu\n",
+    "solution": "import math\n\ndef fragments(taille, mtu):\n    return math.ceil(taille / mtu)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fragments",
+            "args": [
+              4000,
+              1500
+            ],
+            "unchanged_args": true,
+            "expected": 3
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fragments",
+            "args": [
+              1500,
+              1500
+            ],
+            "unchanged_args": true,
+            "expected": 1
+          },
+          {
+            "name": "fragments",
+            "args": [
+              1,
+              1500
+            ],
+            "unchanged_args": true,
+            "expected": 1
+          },
+          {
+            "name": "fragments",
+            "args": [
+              3001,
+              1500
+            ],
+            "unchanged_args": true,
+            "expected": 3
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "4000 // 1500 vaut 2 : un morceau manque.",
+      "Il faut arrondir vers le haut.",
+      "math.ceil(taille / mtu)"
+    ],
+    "explanation_fr": "Un fragment partiellement rempli reste un fragment à envoyer.",
+    "common_wrong_answers": [],
+    "id": "net-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Encapsuler un message",
+    "instruction_fr": "Écris encapsuler(message, port, ip_src, ip_dst) qui renvoie {\"ip_source\": ip_src, \"ip_destination\": ip_dst, \"ttl\": 64, \"donnees\": {\"port_destination\": port, \"donnees\": message}}.",
+    "starter_code": "def encapsuler(message, port, ip_src, ip_dst):\n    return {\"donnees\": message}\n",
+    "solution": "def encapsuler(message, port, ip_src, ip_dst):\n    segment = {\"port_destination\": port, \"donnees\": message}\n    return {\"ip_source\": ip_src, \"ip_destination\": ip_dst, \"ttl\": 64, \"donnees\": segment}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "encapsuler",
+            "args": [
+              "GET /",
+              80,
+              "192.168.1.20",
+              "41.207.160.5"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "ip_source": "192.168.1.20",
+              "ip_destination": "41.207.160.5",
+              "ttl": 64,
+              "donnees": {
+                "port_destination": 80,
+                "donnees": "GET /"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "encapsuler",
+            "args": [
+              "ping",
+              7,
+              "10.0.0.1",
+              "10.0.0.2"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "ip_source": "10.0.0.1",
+              "ip_destination": "10.0.0.2",
+              "ttl": 64,
+              "donnees": {
+                "port_destination": 7,
+                "donnees": "ping"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Construis d’abord le segment, puis le paquet qui le contient.",
+      "Le TTL de départ vaut 64.",
+      "Le message va dans le segment, pas dans le paquet."
+    ],
+    "explanation_fr": "Chaque couche ne connaît que son enveloppe et son contenu.",
+    "common_wrong_answers": [],
+    "id": "net-m2-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Traverser des routeurs",
+    "instruction_fr": "traverser(paquet, routeurs) doit renvoyer une copie du paquet avec un TTL diminué de routeurs, ou None si le TTL tombe à 0 ou moins. Elle modifie le paquet reçu et ne détruit jamais le paquet. Corrige-la.",
+    "starter_code": "def traverser(paquet, routeurs):\n    paquet[\"ttl\"] -= routeurs\n    return paquet\n",
+    "solution": "def traverser(paquet, routeurs):\n    ttl = paquet[\"ttl\"] - routeurs\n    if ttl <= 0:\n        return None\n    copie = dict(paquet)\n    copie[\"ttl\"] = ttl\n    return copie\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "traverser",
+            "args": [
+              {
+                "ip_destination": "41.207.160.5",
+                "ttl": 64
+              },
+              10
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "ip_destination": "41.207.160.5",
+              "ttl": 54
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "traverser",
+            "args": [
+              {
+                "ttl": 3
+              },
+              3
+            ],
+            "unchanged_args": true,
+            "expected": null
+          },
+          {
+            "name": "traverser",
+            "args": [
+              {
+                "ttl": 2
+              },
+              5
+            ],
+            "unchanged_args": true,
+            "expected": null
+          },
+          {
+            "name": "traverser",
+            "args": [
+              {
+                "ttl": 1
+              },
+              0
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "ttl": 1
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le paquet d’origine ne doit pas changer.",
+      "dict(paquet) crée une copie.",
+      "Un TTL à 0 ou moins signifie que le paquet est détruit."
+    ],
+    "explanation_fr": "Renvoyer une copie évite des effets surprenants pour l’appelant.",
+    "common_wrong_answers": [],
+    "id": "net-m2-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Lire une trame",
+    "instruction_fr": "Écris resume(trame) qui renvoie {\"de\": ip_source, \"vers\": ip_destination, \"port\": port_destination, \"message\": message} en lisant les enveloppes imbriquées. Si une clé manque, lève ValueError(\"trame incomplète\").",
+    "starter_code": "def resume(trame):\n    return trame[\"donnees\"]\n",
+    "solution": "def resume(trame):\n    try:\n        paquet = trame[\"donnees\"]\n        segment = paquet[\"donnees\"]\n        return {\"de\": paquet[\"ip_source\"], \"vers\": paquet[\"ip_destination\"], \"port\": segment[\"port_destination\"], \"message\": segment[\"donnees\"]}\n    except KeyError:\n        raise ValueError(\"trame incomplète\")\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "resume",
+            "args": [
+              {
+                "mac_source": "aa:bb:cc:00:00:01",
+                "mac_destination": "aa:bb:cc:00:00:fe",
+                "donnees": {
+                  "ip_source": "192.168.1.20",
+                  "ip_destination": "41.207.160.5",
+                  "ttl": 64,
+                  "donnees": {
+                    "port_source": 50432,
+                    "port_destination": 443,
+                    "donnees": "GET /notes"
+                  }
+                }
+              }
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "de": "192.168.1.20",
+              "vers": "41.207.160.5",
+              "port": 443,
+              "message": "GET /notes"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "resume",
+            "args": [
+              {
+                "donnees": {
+                  "ip_source": "x"
+                }
+              }
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "trame incomplète"
+          },
+          {
+            "name": "resume",
+            "args": [
+              {
+                "mac_source": "a"
+              }
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "trame incomplète"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Descends d’une enveloppe à la fois.",
+      "Une clé absente lève KeyError.",
+      "Transforme KeyError en ValueError avec le message demandé."
+    ],
+    "explanation_fr": "Un outil d’analyse ne doit jamais planter sur une trame mal formée : il la signale.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "try",
+      "raise"
+    ],
+    "id": "net-m2-01-e4"
+  }
+]
