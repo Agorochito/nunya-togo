@@ -1,0 +1,194 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Calculer une remise",
+    "instruction_fr": "Écris int prixRemise(int prix, int pourcentage) qui renvoie le prix après remise : prix * (100 - pourcentage) / 100, en division entière. main n’affiche rien.",
+    "starter_code": "#include <iostream>\n\nint prixRemise(int prix, int pourcentage) {\n    std::cout << prix - pourcentage;\n    return 0;\n}\n\nint main() {\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nint prixRemise(int prix, int pourcentage) {\n    return prix * (100 - pourcentage) / 100;\n}\n\nint main() {\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "prixRemise(1000, 10)",
+            "expected": "900"
+          },
+          {
+            "expr": "prixRemise(5000, 25)",
+            "expected": "3750"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "prixRemise(1999, 33)",
+            "expected": "1339"
+          },
+          {
+            "expr": "prixRemise(700, 0)",
+            "expected": "700"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La fonction doit renvoyer, pas afficher.",
+      "Un pourcentage s’applique sur 100.",
+      "return prix * (100 - pourcentage) / 100;"
+    ],
+    "explanation_fr": "Les vérifications appellent la fonction avec d’autres valeurs que l’énoncé.",
+    "common_wrong_answers": [],
+    "id": "cpp-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Mention avec une fonction",
+    "instruction_fr": "Écris std::string mention(int note) qui renvoie Très bien (≥ 16), Bien (≥ 14), Assez bien (≥ 12), Passable (≥ 10) ou Insuffisant. Dans main, lis une note et affiche Note X : mention.",
+    "starter_code": "#include <iostream>\n#include <string>\n\nstd::string mention(int note) {\n    return \"\";\n}\n\nint main() {\n    int note;\n    std::cin >> note;\n    return 0;\n}",
+    "solution": "#include <iostream>\n#include <string>\n\nstd::string mention(int note) {\n    if (note >= 16) {\n        return \"Très bien\";\n    } else if (note >= 14) {\n        return \"Bien\";\n    } else if (note >= 12) {\n        return \"Assez bien\";\n    } else if (note >= 10) {\n        return \"Passable\";\n    }\n    return \"Insuffisant\";\n}\n\nint main() {\n    int note;\n    std::cin >> note;\n    std::cout << \"Note \" << note << \" : \" << mention(note) << \"\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "15"
+        ],
+        "expected_output": "Note 15 : Bien",
+        "expressions": [
+          {
+            "expr": "mention(16)",
+            "expected": "Très bien"
+          },
+          {
+            "expr": "mention(9)",
+            "expected": "Insuffisant"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "12"
+        ],
+        "expected_output": "Note 12 : Assez bien",
+        "expressions": [
+          {
+            "expr": "mention(10)",
+            "expected": "Passable"
+          },
+          {
+            "expr": "mention(14)",
+            "expected": "Bien"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Chaque branche renvoie un texte.",
+      "Le dernier return couvre tous les autres cas.",
+      "main lit la note et affiche le résultat de mention(note)."
+    ],
+    "explanation_fr": "La fonction se teste seule ; main se contente de lire et d’afficher.",
+    "common_wrong_answers": [],
+    "id": "cpp-m3-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une moyenne",
+    "instruction_fr": "double moyenne(int a, int b) doit renvoyer la moyenne décimale. Elle est appelée avant d’être déclarée, divise des entiers et oublie return. Corrige-la ; main affiche Moyenne : X pour deux entiers lus.",
+    "starter_code": "#include <iostream>\n\nint main() {\n    int a, b;\n    std::cin >> a >> b;\n    std::cout << \"Moyenne : \" << moyenne(a, b) << \"\\n\";\n    return 0;\n}\n\ndouble moyenne(int a, int b) {\n    double m = (a + b) / 2;\n}",
+    "solution": "#include <iostream>\n\ndouble moyenne(int a, int b) {\n    return (a + b) / 2.0;\n}\n\nint main() {\n    int a, b;\n    std::cin >> a >> b;\n    std::cout << \"Moyenne : \" << moyenne(a, b) << \"\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "12",
+          "15"
+        ],
+        "expected_output": "Moyenne : 13.5",
+        "expressions": [
+          {
+            "expr": "moyenne(10, 11)",
+            "expected": "10.5"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "10",
+          "10"
+        ],
+        "expected_output": "Moyenne : 10",
+        "expressions": [
+          {
+            "expr": "moyenne(0, 1)",
+            "expected": "0.5"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis le premier message : moyenne n’est pas encore connue.",
+      "Déplace la fonction au-dessus de main.",
+      "return (a + b) / 2.0;"
+    ],
+    "explanation_fr": "Trois défauts : l’ordre de déclaration, la division entière et le return manquant.",
+    "common_wrong_answers": [],
+    "id": "cpp-m3-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Calculatrice de facture",
+    "instruction_fr": "Écris int sousTotal(int prix, int quantite), int tva(int montant) (18 %, division entière) et int totalTTC(int prix, int quantite) qui utilise les deux autres. Dans main, lis un prix et une quantité et affiche Sous-total : X FCFA, TVA : Y FCFA et Total : Z FCFA.",
+    "starter_code": "#include <iostream>\n\nint sousTotal(int prix, int quantite) {\n    return prix * quantite;\n}\n\nint main() {\n    int prix, quantite;\n    std::cin >> prix >> quantite;\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nint sousTotal(int prix, int quantite) {\n    return prix * quantite;\n}\n\nint tva(int montant) {\n    return montant * 18 / 100;\n}\n\nint totalTTC(int prix, int quantite) {\n    int base = sousTotal(prix, quantite);\n    return base + tva(base);\n}\n\nint main() {\n    int prix, quantite;\n    std::cin >> prix >> quantite;\n    int base = sousTotal(prix, quantite);\n    std::cout << \"Sous-total : \" << base << \" FCFA\\n\";\n    std::cout << \"TVA : \" << tva(base) << \" FCFA\\n\";\n    std::cout << \"Total : \" << totalTTC(prix, quantite) << \" FCFA\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2500",
+          "2"
+        ],
+        "expected_output": "Sous-total : 5000 FCFA\nTVA : 900 FCFA\nTotal : 5900 FCFA",
+        "expressions": [
+          {
+            "expr": "tva(1000)",
+            "expected": "180"
+          },
+          {
+            "expr": "totalTTC(500, 2)",
+            "expected": "1180"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1250",
+          "1"
+        ],
+        "expected_output": "Sous-total : 1250 FCFA\nTVA : 225 FCFA\nTotal : 1475 FCFA",
+        "expressions": [
+          {
+            "expr": "tva(99)",
+            "expected": "17"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Trois fonctions courtes, chacune avec un rôle.",
+      "totalTTC appelle sousTotal puis tva.",
+      "main lit, puis affiche les trois lignes."
+    ],
+    "explanation_fr": "Chaque fonction est vérifiée séparément, puis l’ensemble par l’affichage.",
+    "common_wrong_answers": [],
+    "id": "cpp-m3-01-e4"
+  }
+]

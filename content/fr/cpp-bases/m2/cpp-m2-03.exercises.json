@@ -1,0 +1,190 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Nom du jour",
+    "instruction_fr": "Lis un numéro de 1 à 7 (1 = lundi) et affiche le nom du jour en minuscules avec switch. Pour toute autre valeur, affiche Numéro invalide.",
+    "starter_code": "#include <iostream>\n\nint main() {\n    int n;\n    std::cin >> n;\n    switch (n) {\n        case 1:\n            std::cout << \"lundi\\n\";\n        default:\n            std::cout << \"Numéro invalide\\n\";\n    }\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nint main() {\n    int n;\n    std::cin >> n;\n    switch (n) {\n        case 1: std::cout << \"lundi\\n\"; break;\n        case 2: std::cout << \"mardi\\n\"; break;\n        case 3: std::cout << \"mercredi\\n\"; break;\n        case 4: std::cout << \"jeudi\\n\"; break;\n        case 5: std::cout << \"vendredi\\n\"; break;\n        case 6: std::cout << \"samedi\\n\"; break;\n        case 7: std::cout << \"dimanche\\n\"; break;\n        default: std::cout << \"Numéro invalide\\n\";\n    }\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "lundi"
+      },
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "jeudi"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "7"
+        ],
+        "expected_output": "dimanche"
+      },
+      {
+        "inputs": [
+          "8"
+        ],
+        "expected_output": "Numéro invalide"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "Numéro invalide"
+      }
+    ],
+    "hints": [
+      "Avec 1, deux lignes s’affichent : il manque break.",
+      "Ajoute les six autres jours.",
+      "Chaque case se termine par break."
+    ],
+    "explanation_fr": "Le code de départ montre le passage à travers : lundi, puis Numéro invalide.",
+    "common_wrong_answers": [],
+    "id": "cpp-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Menu de la cantine",
+    "instruction_fr": "Lis un caractère : r pour riz (500 FCFA), a pour attiéké (400 FCFA), f pour foufou (600 FCFA). Affiche Prix : X FCFA, ou Choix inconnu pour un autre caractère.",
+    "starter_code": "#include <iostream>\n\nint main() {\n    char choix;\n    std::cin >> choix;\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nint main() {\n    char choix;\n    std::cin >> choix;\n    switch (choix) {\n        case 'r': std::cout << \"Prix : 500 FCFA\\n\"; break;\n        case 'a': std::cout << \"Prix : 400 FCFA\\n\"; break;\n        case 'f': std::cout << \"Prix : 600 FCFA\\n\"; break;\n        default: std::cout << \"Choix inconnu\\n\";\n    }\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "r"
+        ],
+        "expected_output": "Prix : 500 FCFA"
+      },
+      {
+        "inputs": [
+          "f"
+        ],
+        "expected_output": "Prix : 600 FCFA"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "a"
+        ],
+        "expected_output": "Prix : 400 FCFA"
+      },
+      {
+        "inputs": [
+          "x"
+        ],
+        "expected_output": "Choix inconnu"
+      },
+      {
+        "inputs": [
+          "R"
+        ],
+        "expected_output": "Choix inconnu"
+      }
+    ],
+    "hints": [
+      "Un caractère s’écrit entre apostrophes.",
+      "Trois cas et un default.",
+      "case 'r': … break;"
+    ],
+    "explanation_fr": "R majuscule n’est pas r : le menu distingue les majuscules.",
+    "common_wrong_answers": [],
+    "id": "cpp-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une saisie de quantité",
+    "instruction_fr": "Le programme doit redemander la quantité tant qu’elle n’est pas comprise entre 1 et 50, puis afficher Quantité : X. La condition est inversée et le point-virgule final manque. Corrige-le.",
+    "starter_code": "#include <iostream>\n\nint main() {\n    int q;\n    do {\n        std::cin >> q;\n    } while (q >= 1 && q <= 50)\n    std::cout << \"Quantité : \" << q << \"\\n\";\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nint main() {\n    int q;\n    do {\n        std::cin >> q;\n    } while (q < 1 || q > 50);\n    std::cout << \"Quantité : \" << q << \"\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "0",
+          "12"
+        ],
+        "expected_output": "Quantité : 12"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "-3",
+          "51",
+          "50"
+        ],
+        "expected_output": "Quantité : 50"
+      },
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "Quantité : 1"
+      }
+    ],
+    "hints": [
+      "La boucle doit continuer tant que la valeur est invalide.",
+      "Une valeur est invalide si elle est sous 1 ou au-dessus de 50.",
+      "Écris while (q < 1 || q > 50); avec le point-virgule."
+    ],
+    "explanation_fr": "La condition d’un do-while décrit quand recommencer, pas quand accepter.",
+    "common_wrong_answers": [],
+    "id": "cpp-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Menu du distributeur",
+    "instruction_fr": "Lis un choix jusqu’à obtenir 1, 2 ou 3 (redemande sinon). Lis ensuite un montant entier. Choix 1 : affiche Dépôt : X FCFA. Choix 2 : affiche Retrait : X FCFA. Choix 3 : affiche Frais : Y FCFA, où Y vaut 1 % du montant (division entière). Affiche enfin Essais : N, le nombre de choix lus.",
+    "starter_code": "#include <iostream>\n\nint main() {\n    int choix;\n    int essais = 0;\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nint main() {\n    int choix;\n    int essais = 0;\n    do {\n        std::cin >> choix;\n        essais++;\n    } while (choix < 1 || choix > 3);\n    int montant;\n    std::cin >> montant;\n    switch (choix) {\n        case 1: std::cout << \"Dépôt : \" << montant << \" FCFA\\n\"; break;\n        case 2: std::cout << \"Retrait : \" << montant << \" FCFA\\n\"; break;\n        case 3: std::cout << \"Frais : \" << montant / 100 << \" FCFA\\n\"; break;\n    }\n    std::cout << \"Essais : \" << essais << \"\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "1",
+          "5000"
+        ],
+        "expected_output": "Dépôt : 5000 FCFA\nEssais : 1"
+      },
+      {
+        "inputs": [
+          "9",
+          "0",
+          "3",
+          "25000"
+        ],
+        "expected_output": "Frais : 250 FCFA\nEssais : 3"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "4",
+          "2",
+          "2000"
+        ],
+        "expected_output": "Retrait : 2000 FCFA\nEssais : 2"
+      },
+      {
+        "inputs": [
+          "3",
+          "199"
+        ],
+        "expected_output": "Frais : 1 FCFA\nEssais : 1"
+      }
+    ],
+    "hints": [
+      "Une boucle do-while pour le choix, puis switch pour l’action.",
+      "Compte chaque lecture du choix.",
+      "1 % se calcule avec montant / 100 en division entière."
+    ],
+    "explanation_fr": "do-while valide, switch exécute : chaque outil garde son rôle.",
+    "common_wrong_answers": [],
+    "id": "cpp-m2-03-e4"
+  }
+]

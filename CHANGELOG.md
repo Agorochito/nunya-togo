@@ -1,5 +1,13 @@
 # Historique
 
+## 5.11.0 — 9 novembre 2026
+
+- Nouveau langage : **C++ : les fondamentaux**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux en français : compilation et affichage, types, saisies et division entière, `if`, `switch`, boucles et validation, fonctions, `std::vector`, `std::string`, références, `struct` et projet de bulletin de classe.
+- Premier atelier **compilé en ligne** : GCC 13 sur le service gratuit Wandbox (wandbox.org), qui autorise un usage pédagogique. Une seule requête par vérification : tous les cas d’un exercice et les vérifications de fonctions s’exécutent dans une même compilation, séparés par des marqueurs aléatoires. Les numéros de ligne des erreurs restent ceux du code de l’élève.
+- Le cours reste lisible hors ligne ; une exécution sans connexion affiche un message clair. La page « Tes données, en clair » et le README indiquent ce qui est envoyé à Wandbox : le programme et ses saisies de test, sans pseudo ni progression.
+- Le contrôle de compilation et les tests de navigateur compilent avec un compilateur local au format de Wandbox : la suite de tests ne sollicite jamais le service public.
+- C++ quitte les séries « en préparation ».
+
 ## 5.10.0 — 9 novembre 2026
 
 - Nouveau langage : **PHP : les bases**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux en français, de `echo` à la caisse d’une boutique : variables et types, calculs et saisies, `if` et `match`, boucles, tableaux indexés et associatifs, fonctions natives, fonctions typées et projet final avec validation des saisies.

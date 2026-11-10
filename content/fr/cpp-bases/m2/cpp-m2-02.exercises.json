@@ -1,0 +1,151 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Compter jusqu’à N",
+    "instruction_fr": "Lis un entier N et affiche les nombres de 1 à N, un par ligne, avec une boucle for.",
+    "starter_code": "#include <iostream>\n\nint main() {\n    int n;\n    std::cin >> n;\n    std::cout << \"1\\n2\\n3\\n\";\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nint main() {\n    int n;\n    std::cin >> n;\n    for (int i = 1; i <= n; i++) {\n        std::cout << i << \"\\n\";\n    }\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "1\n2\n3"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "6"
+        ],
+        "expected_output": "1\n2\n3\n4\n5\n6"
+      },
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "1"
+      }
+    ],
+    "hints": [
+      "Le nombre de lignes dépend de la saisie.",
+      "Le compteur va de 1 à n inclus.",
+      "for (int i = 1; i <= n; i++) { std::cout << i << \"\\n\"; }"
+    ],
+    "explanation_fr": "La comparaison ignore le dernier saut de ligne.",
+    "common_wrong_answers": [],
+    "id": "cpp-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Table de multiplication",
+    "instruction_fr": "Lis un entier et affiche sa table de 1 à 10 au format 7 x 1 = 7, une ligne par multiplication.",
+    "starter_code": "#include <iostream>\n\nint main() {\n    int n;\n    std::cin >> n;\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nint main() {\n    int n;\n    std::cin >> n;\n    for (int i = 1; i <= 10; i++) {\n        std::cout << n << \" x \" << i << \" = \" << n * i << \"\\n\";\n    }\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "7"
+        ],
+        "expected_output": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35\n7 x 6 = 42\n7 x 7 = 49\n7 x 8 = 56\n7 x 9 = 63\n7 x 10 = 70"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "12"
+        ],
+        "expected_output": "12 x 1 = 12\n12 x 2 = 24\n12 x 3 = 36\n12 x 4 = 48\n12 x 5 = 60\n12 x 6 = 72\n12 x 7 = 84\n12 x 8 = 96\n12 x 9 = 108\n12 x 10 = 120"
+      }
+    ],
+    "hints": [
+      "Dix lignes : le compteur va de 1 à 10.",
+      "Le produit se calcule à chaque tour.",
+      "std::cout << n << \" x \" << i << \" = \" << n * i << \"\\n\";"
+    ],
+    "explanation_fr": "Chaque tour réutilise la même instruction avec une valeur de i différente.",
+    "common_wrong_answers": [],
+    "id": "cpp-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Additionner des cotisations",
+    "instruction_fr": "Le programme doit lire N puis N cotisations et afficher Total : X FCFA. Le total est remis à zéro dans la boucle et la condition fait un tour de trop. Corrige-le.",
+    "starter_code": "#include <iostream>\n\nint main() {\n    int n;\n    std::cin >> n;\n    int total;\n    for (int i = 0; i <= n; i++) {\n        total = 0;\n        int c;\n        std::cin >> c;\n        total += c;\n    }\n    std::cout << \"Total : \" << total << \" FCFA\\n\";\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nint main() {\n    int n;\n    std::cin >> n;\n    int total = 0;\n    for (int i = 0; i < n; i++) {\n        int c;\n        std::cin >> c;\n        total += c;\n    }\n    std::cout << \"Total : \" << total << \" FCFA\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3",
+          "500",
+          "1000",
+          "1500"
+        ],
+        "expected_output": "Total : 3000 FCFA"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1",
+          "2000"
+        ],
+        "expected_output": "Total : 2000 FCFA"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "Total : 0 FCFA"
+      }
+    ],
+    "hints": [
+      "Trace le premier tour : que vaut total après ?",
+      "L’initialisation doit précéder la boucle.",
+      "Écris int total = 0; avant for, et i < n."
+    ],
+    "explanation_fr": "Avec i de 0 à n inclus, la boucle tentait de lire une cotisation de trop.",
+    "common_wrong_answers": [],
+    "id": "cpp-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Épargne de la tontine",
+    "instruction_fr": "Lis l’objectif d’épargne puis le versement par semaine (positif). Avec une boucle while, compte les semaines nécessaires pour atteindre ou dépasser l’objectif. Affiche Semaines : N puis Épargne : X FCFA.",
+    "starter_code": "#include <iostream>\n\nint main() {\n    int objectif, versement;\n    std::cin >> objectif >> versement;\n    int epargne = 0;\n    int semaines = 0;\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nint main() {\n    int objectif, versement;\n    std::cin >> objectif >> versement;\n    int epargne = 0;\n    int semaines = 0;\n    while (epargne < objectif) {\n        epargne += versement;\n        semaines++;\n    }\n    std::cout << \"Semaines : \" << semaines << \"\\n\";\n    std::cout << \"Épargne : \" << epargne << \" FCFA\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "20000",
+          "5000"
+        ],
+        "expected_output": "Semaines : 4\nÉpargne : 20000 FCFA"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "13000",
+          "3000"
+        ],
+        "expected_output": "Semaines : 5\nÉpargne : 15000 FCFA"
+      },
+      {
+        "inputs": [
+          "0",
+          "1000"
+        ],
+        "expected_output": "Semaines : 0\nÉpargne : 0 FCFA"
+      }
+    ],
+    "hints": [
+      "Tant que l’épargne est sous l’objectif, une semaine passe.",
+      "Chaque tour ajoute le versement et compte une semaine.",
+      "while (epargne < objectif) { epargne += versement; semaines++; }"
+    ],
+    "explanation_fr": "Un objectif nul n’exige aucune semaine : la condition est fausse dès le départ.",
+    "common_wrong_answers": [],
+    "id": "cpp-m2-02-e4"
+  }
+]

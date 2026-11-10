@@ -85,12 +85,6 @@
     "status": "bientôt"
   },
   {
-    "id": "cpp",
-    "title_fr": "C++ : les fondamentaux",
-    "summary_fr": "Variables, fonctions, tableaux et mémoire ; ouverture quand un compilateur assez léger pour les connexions des élèves aura été vérifié.",
-    "status": "bientôt"
-  },
-  {
     "id": "php-intermediaire",
     "title_fr": "PHP intermédiaire : objets et données",
     "summary_fr": "Classes, exceptions, JSON et organisation d’un projet ; après PHP : les bases.",

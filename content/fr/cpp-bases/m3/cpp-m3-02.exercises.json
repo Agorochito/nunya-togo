@@ -1,0 +1,182 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Liste des membres",
+    "instruction_fr": "Le vecteur membres contient Afi, Kossi et Yawa. Ajoute Edem avec push_back, puis affiche chaque membre au format 1. Afi, un par ligne.",
+    "starter_code": "#include <iostream>\n#include <vector>\n#include <string>\n\nint main() {\n    std::vector<std::string> membres = {\"Afi\", \"Kossi\", \"Yawa\"};\n    std::cout << \"1. Afi\\n2. Kossi\\n3. Yawa\\n\";\n    return 0;\n}",
+    "solution": "#include <iostream>\n#include <vector>\n#include <string>\n\nint main() {\n    std::vector<std::string> membres = {\"Afi\", \"Kossi\", \"Yawa\"};\n    membres.push_back(\"Edem\");\n    for (int i = 0; i < (int) membres.size(); i++) {\n        std::cout << i + 1 << \". \" << membres[i] << \"\\n\";\n    }\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "1. Afi\n2. Kossi\n3. Yawa\n4. Edem"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "1. Afi\n2. Kossi\n3. Yawa\n4. Edem"
+      }
+    ],
+    "hints": [
+      "Le vecteur doit contenir quatre membres.",
+      "membres.push_back(\"Edem\");",
+      "Une boucle avec indice numérote chaque ligne."
+    ],
+    "explanation_fr": "Un vecteur peut contenir des std::string comme des int.",
+    "common_wrong_answers": [],
+    "id": "cpp-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Ventes de la semaine",
+    "instruction_fr": "Lis N puis N ventes dans un vecteur. Affiche Total : X FCFA puis Jours au-dessus de 2000 : Y (strictement plus de 2000).",
+    "starter_code": "#include <iostream>\n#include <vector>\n\nint main() {\n    int n;\n    std::cin >> n;\n    std::vector<int> ventes;\n    return 0;\n}",
+    "solution": "#include <iostream>\n#include <vector>\n\nint main() {\n    int n;\n    std::cin >> n;\n    std::vector<int> ventes;\n    for (int i = 0; i < n; i++) {\n        int v;\n        std::cin >> v;\n        ventes.push_back(v);\n    }\n    int total = 0;\n    int bons = 0;\n    for (int v : ventes) {\n        total += v;\n        if (v > 2000) {\n            bons++;\n        }\n    }\n    std::cout << \"Total : \" << total << \" FCFA\\n\";\n    std::cout << \"Jours au-dessus de 2000 : \" << bons << \"\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4",
+          "1500",
+          "3000",
+          "2000",
+          "3000"
+        ],
+        "expected_output": "Total : 9500 FCFA\nJours au-dessus de 2000 : 2"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "2",
+          "499",
+          "2001"
+        ],
+        "expected_output": "Total : 2500 FCFA\nJours au-dessus de 2000 : 1"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "Total : 0 FCFA\nJours au-dessus de 2000 : 0"
+      }
+    ],
+    "hints": [
+      "Remplis d’abord le vecteur.",
+      "Parcours-le ensuite pour le total et le compte.",
+      "2000 lui-même ne compte pas."
+    ],
+    "explanation_fr": "Lire d’abord, traiter ensuite : chaque boucle a un rôle unique.",
+    "common_wrong_answers": [],
+    "id": "cpp-m3-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Corriger un relevé de températures",
+    "instruction_fr": "Le programme lit N températures (N ≥ 1, valeurs parfois négatives) et affiche Maximum : X. Il initialise le maximum à 0 et sa boucle va un indice trop loin. Corrige-le.",
+    "starter_code": "#include <iostream>\n#include <vector>\n\nint main() {\n    int n;\n    std::cin >> n;\n    std::vector<int> t;\n    for (int i = 0; i < n; i++) {\n        int x;\n        std::cin >> x;\n        t.push_back(x);\n    }\n    int maximum = 0;\n    for (int i = 0; i <= (int) t.size(); i++) {\n        if (t.at(i) > maximum) {\n            maximum = t.at(i);\n        }\n    }\n    std::cout << \"Maximum : \" << maximum << \"\\n\";\n    return 0;\n}",
+    "solution": "#include <iostream>\n#include <vector>\n\nint main() {\n    int n;\n    std::cin >> n;\n    std::vector<int> t;\n    for (int i = 0; i < n; i++) {\n        int x;\n        std::cin >> x;\n        t.push_back(x);\n    }\n    int maximum = t[0];\n    for (int i = 0; i < (int) t.size(); i++) {\n        if (t.at(i) > maximum) {\n            maximum = t.at(i);\n        }\n    }\n    std::cout << \"Maximum : \" << maximum << \"\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3",
+          "28",
+          "31",
+          "25"
+        ],
+        "expected_output": "Maximum : 31"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "3",
+          "-5",
+          "-2",
+          "-9"
+        ],
+        "expected_output": "Maximum : -2"
+      },
+      {
+        "inputs": [
+          "1",
+          "7"
+        ],
+        "expected_output": "Maximum : 7"
+      }
+    ],
+    "hints": [
+      "at() signale l’indice trop grand : lis le message.",
+      "Le dernier indice valide est size() - 1.",
+      "Initialise le maximum avec t[0] et utilise i < size()."
+    ],
+    "explanation_fr": "Avec des valeurs toutes négatives, un maximum initialisé à 0 donnerait 0.",
+    "common_wrong_answers": [],
+    "id": "cpp-m3-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Relevé de pluie",
+    "instruction_fr": "Écris int total(const std::vector<int>& releves), int joursDePluie(const std::vector<int>& releves) (relevés > 0) et int record(const std::vector<int>& releves) (le plus grand, vecteur non vide). Dans main, lis N puis N relevés et affiche Total : X mm, Jours de pluie : Y et Record : Z mm.",
+    "starter_code": "#include <iostream>\n#include <vector>\n\nint total(const std::vector<int>& releves) {\n    return 0;\n}\n\nint main() {\n    return 0;\n}",
+    "solution": "#include <iostream>\n#include <vector>\n\nint total(const std::vector<int>& releves) {\n    int s = 0;\n    for (int mm : releves) {\n        s += mm;\n    }\n    return s;\n}\n\nint joursDePluie(const std::vector<int>& releves) {\n    int jours = 0;\n    for (int mm : releves) {\n        if (mm > 0) {\n            jours++;\n        }\n    }\n    return jours;\n}\n\nint record(const std::vector<int>& releves) {\n    int r = releves[0];\n    for (int mm : releves) {\n        if (mm > r) {\n            r = mm;\n        }\n    }\n    return r;\n}\n\nint main() {\n    int n;\n    std::cin >> n;\n    std::vector<int> releves;\n    for (int i = 0; i < n; i++) {\n        int mm;\n        std::cin >> mm;\n        releves.push_back(mm);\n    }\n    std::cout << \"Total : \" << total(releves) << \" mm\\n\";\n    std::cout << \"Jours de pluie : \" << joursDePluie(releves) << \"\\n\";\n    std::cout << \"Record : \" << record(releves) << \" mm\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "5",
+          "0",
+          "12",
+          "30",
+          "0",
+          "5"
+        ],
+        "expected_output": "Total : 47 mm\nJours de pluie : 3\nRecord : 30 mm",
+        "expressions": [
+          {
+            "expr": "total({1, 2, 3})",
+            "expected": "6"
+          },
+          {
+            "expr": "joursDePluie({0, 4, 0})",
+            "expected": "1"
+          },
+          {
+            "expr": "record({3, 9, 2})",
+            "expected": "9"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "3",
+          "0",
+          "0",
+          "0"
+        ],
+        "expected_output": "Total : 0 mm\nJours de pluie : 0\nRecord : 0 mm",
+        "expressions": [
+          {
+            "expr": "record({7})",
+            "expected": "7"
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "1",
+          "9"
+        ],
+        "expected_output": "Total : 9 mm\nJours de pluie : 1\nRecord : 9 mm"
+      }
+    ],
+    "hints": [
+      "Trois fonctions, chacune parcourt le vecteur.",
+      "const std::vector<int>& transmet la liste sans la copier.",
+      "main lit les relevés puis appelle les trois fonctions."
+    ],
+    "explanation_fr": "Chaque fonction est vérifiée avec ses propres listes, indépendamment des saisies.",
+    "common_wrong_answers": [],
+    "id": "cpp-m3-02-e4"
+  }
+]

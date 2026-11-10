@@ -8,7 +8,7 @@ Apprendre en français, à son rythme, même hors connexion : coder depuis zéro
 
 ## État du projet
 
-Pilote en cours ; version 5.10. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
+Pilote en cours ; version 5.11. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
 
 ## Ce que propose Nunya
 
@@ -20,6 +20,7 @@ Pilote en cours ; version 5.10. Tous les contenus sont des **brouillons** rédig
    - *HTML intermédiaire* (4 modules, 12 leçons, 48 exercices) : structure accessible, formulaires, tableaux, localisation et annuaire associatif ;
    - *CSS intermédiaire* (6 modules, 18 leçons, 72 exercices) : cascade, Flexbox et grilles robustes, interfaces adaptatives, états accessibles et tableau de club ;
    - *PHP : les bases* (4 modules, 12 leçons, 48 exercices) avec un vrai interpréteur PHP 8.3 sur l’appareil : variables, conditions, boucles, tableaux, fonctions et caisse de boutique ;
+   - *C++ : les fondamentaux* (4 modules, 12 leçons, 48 exercices), compilé en ligne par GCC 13 sur Wandbox : types, boucles, fonctions, vecteurs, textes, références, structures et bulletin de classe ;
    - Git/GitHub (12 leçons, 48 activités, dont 32 ateliers Git locaux) ;
    - SQL (18 leçons, 72 exercices) avec SQLite réel et tableaux de résultats ;
    - JavaScript DOM (18 leçons, 72 exercices) : événements, formulaires et interfaces ;
@@ -40,7 +41,7 @@ Pilote en cours ; version 5.10. Tous les contenus sont des **brouillons** rédig
 
 La progression, le profil et les notes restent **sur l’appareil** (localStorage et IndexedDB), sans compte. Ils peuvent être exportés et restaurés.
 
-Seul Nunya Aide utilise un serveur :
+Deux fonctions utilisent un service en ligne. Les ateliers C++ envoient le programme et ses saisies de test au service de compilation Wandbox (Japon), sans pseudo ni progression. Nunya Aide utilise un serveur :
 - une session anonyme Supabase (Union européenne) ;
 - un modèle à poids ouverts *gpt-oss* hébergé par Groq (États-Unis) ;
 - aucune question n’est enregistrée par Nunya.

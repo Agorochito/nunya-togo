@@ -1,0 +1,110 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Afficher deux lignes",
+    "instruction_fr": "Complète main pour afficher exactement Bonjour Afi puis, sur la ligne suivante, Bienvenue au club.",
+    "starter_code": "#include <iostream>\n\nint main() {\n    std::cout << \"Bonjour Afi\";\n    std::cout << \"Bienvenue au club\";\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nint main() {\n    std::cout << \"Bonjour Afi\\n\";\n    std::cout << \"Bienvenue au club\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bonjour Afi\nBienvenue au club"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bonjour Afi\nBienvenue au club"
+      }
+    ],
+    "hints": [
+      "Les deux textes sont collés à l’affichage.",
+      "Il manque un saut de ligne après le premier texte.",
+      "Ajoute \"\\n\" à la fin du premier texte."
+    ],
+    "explanation_fr": "Le saut de ligne fait partie du texte envoyé à std::cout.",
+    "common_wrong_answers": [],
+    "id": "cpp-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Affiche du marché",
+    "instruction_fr": "Affiche trois lignes : Marché de Sokodé, Tomates : 500 FCFA le tas, puis Ignames : 1000 FCFA.",
+    "starter_code": "#include <iostream>\n\nint main() {\n    // Écris ici les trois lignes\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nint main() {\n    std::cout << \"Marché de Sokodé\\n\";\n    std::cout << \"Tomates : 500 FCFA le tas\\n\";\n    std::cout << \"Ignames : 1000 FCFA\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Marché de Sokodé\nTomates : 500 FCFA le tas\nIgnames : 1000 FCFA"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Marché de Sokodé\nTomates : 500 FCFA le tas\nIgnames : 1000 FCFA"
+      }
+    ],
+    "hints": [
+      "Une ligne affichée correspond à un texte terminé par \\n.",
+      "Recopie les textes exactement, espaces compris.",
+      "Trois instructions std::cout suffisent."
+    ],
+    "explanation_fr": "L’affichage est comparé caractère par caractère.",
+    "common_wrong_answers": [],
+    "id": "cpp-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un programme",
+    "instruction_fr": "Ce programme ne compile pas : une majuscule fautive, un préfixe std:: oublié et un point-virgule manquant. Corrige-le pour afficher Club de code puis Salle 2.",
+    "starter_code": "#include <iostream>\n\nint main() {\n    Std::cout << \"Club de code\\n\"\n    cout << \"Salle 2\\n\";\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nint main() {\n    std::cout << \"Club de code\\n\";\n    std::cout << \"Salle 2\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Club de code\nSalle 2"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Club de code\nSalle 2"
+      }
+    ],
+    "hints": [
+      "Lis le premier message du compilateur et sa ligne.",
+      "C++ distingue les majuscules : std s’écrit en minuscules.",
+      "Écris std::cout sur les deux lignes et termine la première par ;."
+    ],
+    "explanation_fr": "Une seule faute suffit à empêcher la compilation de tout le programme.",
+    "common_wrong_answers": [],
+    "id": "cpp-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Carte de visite du club",
+    "instruction_fr": "Affiche quatre lignes : Club Nunya, Lieu : Atakpamé, Jour : mercredi et Entrée libre. Utilise au moins une fois plusieurs << dans une même instruction.",
+    "starter_code": "#include <iostream>\n\nint main() {\n    std::cout << \"Club Nunya\\n\";\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nint main() {\n    std::cout << \"Club Nunya\\n\";\n    std::cout << \"Lieu : \" << \"Atakpamé\" << \"\\n\";\n    std::cout << \"Jour : mercredi\\n\";\n    std::cout << \"Entrée libre\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Club Nunya\nLieu : Atakpamé\nJour : mercredi\nEntrée libre"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Club Nunya\nLieu : Atakpamé\nJour : mercredi\nEntrée libre"
+      }
+    ],
+    "hints": [
+      "Quatre lignes : quatre sauts de ligne.",
+      "Une instruction peut enchaîner plusieurs <<.",
+      "std::cout << \"Lieu : \" << \"Atakpamé\" << \"\\n\";"
+    ],
+    "explanation_fr": "Chaque << envoie un morceau de plus vers l’affichage.",
+    "common_wrong_answers": [],
+    "id": "cpp-m1-01-e4"
+  }
+]

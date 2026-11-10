@@ -58,5 +58,21 @@
   "Script": [
     "Le script ne peut pas être lancé tel quel.",
     "Lis la consigne affichée : elle indique ce qu’il faut changer avant l’exécution."
+  ],
+  "CompileError": [
+    "Le compilateur ne comprend pas cette écriture : le programme n’a pas été lancé.",
+    "Regarde la ligne indiquée et celle d’avant : point-virgule, accolade, guillemet ou nom mal écrit."
+  ],
+  "CheckError": [
+    "Ton programme compile, mais il manque ce que les vérifications utilisent.",
+    "Vérifie le nom, les paramètres et le type de retour de la fonction demandée dans la consigne."
+  ],
+  "RuntimeError": [
+    "Le programme s’est arrêté brutalement pendant son exécution.",
+    "Cherche une division par zéro, un indice en dehors du tableau ou une boucle qui ne s’arrête pas."
+  ],
+  "NotRun": [
+    "Ce cas n’a pas été exécuté.",
+    "Corrige d’abord le cas précédent qui a arrêté le programme."
   ]
 }

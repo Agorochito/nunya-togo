@@ -1,0 +1,285 @@
+{
+  "id": "cpp-bases",
+  "title_fr": "C++ : les fondamentaux",
+  "language": "cpp",
+  "runtime": "cpp",
+  "level": "debutant",
+  "summary_fr": "Apprends un langage compilé, utilisé pour les jeux, les systèmes et les logiciels rapides : types, conditions, boucles, fonctions, vecteurs, textes, références et structures, jusqu’au bulletin d’une classe.",
+  "prerequisite_courses": [],
+  "prerequisites": [
+    "Aucun prérequis en programmation : le cours part de zéro.",
+    "Une connexion est nécessaire pour exécuter le code, compilé en ligne ; les leçons restent lisibles hors ligne."
+  ],
+  "outcomes": [
+    "Écrire, compiler et corriger un programme C++ complet.",
+    "Décider et répéter avec if, switch, while, for et do-while.",
+    "Organiser des données avec std::vector, std::string et struct.",
+    "Découper un programme en fonctions et choisir entre valeur et référence."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Premiers programmes",
+      "outcome_fr": "Compiler, afficher, déclarer des variables, calculer et lire des saisies.",
+      "lesson_ids": [
+        "cpp-m1-01",
+        "cpp-m1-02",
+        "cpp-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Décider et répéter",
+      "outcome_fr": "Choisir avec if et switch, répéter avec while, for et do-while.",
+      "lesson_ids": [
+        "cpp-m2-01",
+        "cpp-m2-02",
+        "cpp-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Fonctions et collections",
+      "outcome_fr": "Écrire des fonctions et manipuler vecteurs et textes.",
+      "lesson_ids": [
+        "cpp-m3-01",
+        "cpp-m3-02",
+        "cpp-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Références, structures et projet",
+      "outcome_fr": "Passer par référence, regrouper avec struct et livrer un bulletin de classe.",
+      "lesson_ids": [
+        "cpp-m4-01",
+        "cpp-m4-02",
+        "cpp-m4-03"
+      ]
+    }
+  ],
+  "next_courses": [],
+  "status": "brouillon",
+  "reviewer": null,
+  "later_modules": [],
+  "lessons": [
+    {
+      "id": "cpp-m1-01",
+      "title_fr": "Compiler et afficher un premier programme",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [],
+      "tags": [
+        "c++",
+        "cpp",
+        "débutant",
+        "compilateur",
+        "main",
+        "std::cout",
+        "bibliothèque standard"
+      ]
+    },
+    {
+      "id": "cpp-m1-02",
+      "title_fr": "Déclarer des variables et choisir leur type",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "cpp-m1-01"
+      ],
+      "tags": [
+        "c++",
+        "cpp",
+        "débutant",
+        "déclaration",
+        "initialisation",
+        "type",
+        "const"
+      ]
+    },
+    {
+      "id": "cpp-m1-03",
+      "title_fr": "Calculer et lire des saisies",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "cpp-m1-02"
+      ],
+      "tags": [
+        "c++",
+        "cpp",
+        "débutant",
+        "std::cin",
+        "division entière",
+        "static_cast",
+        "setprecision"
+      ]
+    },
+    {
+      "id": "cpp-m2-01",
+      "title_fr": "Décider avec if et else",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "cpp-m1-03"
+      ],
+      "tags": [
+        "c++",
+        "cpp",
+        "débutant",
+        "condition",
+        "opérateur de comparaison",
+        "opérateur logique",
+        "cas limite"
+      ]
+    },
+    {
+      "id": "cpp-m2-02",
+      "title_fr": "Répéter avec while et for",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "cpp-m2-01"
+      ],
+      "tags": [
+        "c++",
+        "cpp",
+        "débutant",
+        "boucle",
+        "compteur",
+        "accumulateur",
+        "boucle infinie"
+      ]
+    },
+    {
+      "id": "cpp-m2-03",
+      "title_fr": "Choisir avec switch et valider avec do-while",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "cpp-m2-02"
+      ],
+      "tags": [
+        "c++",
+        "cpp",
+        "débutant",
+        "switch",
+        "break",
+        "default",
+        "do-while"
+      ]
+    },
+    {
+      "id": "cpp-m3-01",
+      "title_fr": "Découper un programme en fonctions",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "cpp-m2-03"
+      ],
+      "tags": [
+        "c++",
+        "cpp",
+        "débutant",
+        "fonction",
+        "paramètre",
+        "valeur de retour",
+        "prototype"
+      ]
+    },
+    {
+      "id": "cpp-m3-02",
+      "title_fr": "Ranger des valeurs dans un std::vector",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "cpp-m3-01"
+      ],
+      "tags": [
+        "c++",
+        "cpp",
+        "débutant",
+        "std::vector",
+        "indice",
+        "push_back",
+        "accès hors limites"
+      ]
+    },
+    {
+      "id": "cpp-m3-03",
+      "title_fr": "Manipuler du texte avec std::string",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "cpp-m3-02"
+      ],
+      "tags": [
+        "c++",
+        "cpp",
+        "débutant",
+        "std::string",
+        "substr",
+        "find",
+        "npos"
+      ]
+    },
+    {
+      "id": "cpp-m4-01",
+      "title_fr": "Passer par valeur ou par référence",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "cpp-m3-03"
+      ],
+      "tags": [
+        "c++",
+        "cpp",
+        "débutant",
+        "passage par valeur",
+        "référence",
+        "référence constante",
+        "variable temporaire"
+      ]
+    },
+    {
+      "id": "cpp-m4-02",
+      "title_fr": "Regrouper des données avec struct",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "cpp-m4-01"
+      ],
+      "tags": [
+        "c++",
+        "cpp",
+        "débutant",
+        "struct",
+        "champ",
+        "initialisation par accolades",
+        "vecteurs parallèles"
+      ]
+    },
+    {
+      "id": "cpp-m4-03",
+      "title_fr": "Projet : le bulletin de la classe",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "cpp-m4-02"
+      ],
+      "tags": [
+        "c++",
+        "cpp",
+        "débutant",
+        "découpage",
+        "validation",
+        "std::setw",
+        "major"
+      ]
+    }
+  ],
+  "estimated_minutes": 240,
+  "content_revision": "0a730ae04f8b",
+  "exercise_count": 48,
+  "quiz_count": 36
+}

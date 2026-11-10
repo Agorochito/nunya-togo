@@ -1,0 +1,168 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Rendre la monnaie",
+    "instruction_fr": "Lis deux entiers : le prix puis la somme donnée. Affiche : Monnaie : X FCFA",
+    "starter_code": "#include <iostream>\n\nint main() {\n    int prix, donne;\n    std::cin >> prix >> donne;\n    std::cout << \"Monnaie : 500 FCFA\\n\";\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nint main() {\n    int prix, donne;\n    std::cin >> prix >> donne;\n    std::cout << \"Monnaie : \" << donne - prix << \" FCFA\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "1500",
+          "2000"
+        ],
+        "expected_output": "Monnaie : 500 FCFA"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1750",
+          "5000"
+        ],
+        "expected_output": "Monnaie : 3250 FCFA"
+      },
+      {
+        "inputs": [
+          "1000",
+          "1000"
+        ],
+        "expected_output": "Monnaie : 0 FCFA"
+      }
+    ],
+    "hints": [
+      "L’affichage actuel ne dépend pas des saisies.",
+      "La monnaie est la différence des deux saisies.",
+      "std::cout << \"Monnaie : \" << donne - prix << \" FCFA\\n\";"
+    ],
+    "explanation_fr": "Les cas cachés changent les saisies : seul un vrai calcul réussit.",
+    "common_wrong_answers": [],
+    "id": "cpp-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Répartir des oranges",
+    "instruction_fr": "Lis le nombre d’oranges puis la taille d’un sac. Affiche Sacs : X puis Reste : Y.",
+    "starter_code": "#include <iostream>\n\nint main() {\n    int oranges, taille;\n    std::cin >> oranges >> taille;\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nint main() {\n    int oranges, taille;\n    std::cin >> oranges >> taille;\n    std::cout << \"Sacs : \" << oranges / taille << \"\\n\";\n    std::cout << \"Reste : \" << oranges % taille << \"\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "26",
+          "6"
+        ],
+        "expected_output": "Sacs : 4\nReste : 2"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "50",
+          "5"
+        ],
+        "expected_output": "Sacs : 10\nReste : 0"
+      },
+      {
+        "inputs": [
+          "3",
+          "4"
+        ],
+        "expected_output": "Sacs : 0\nReste : 3"
+      }
+    ],
+    "hints": [
+      "Le nombre de sacs pleins est une division entière.",
+      "Le reste se calcule avec %.",
+      "oranges / taille puis oranges % taille."
+    ],
+    "explanation_fr": "Ici, la division entière est exactement ce qu’il faut.",
+    "common_wrong_answers": [],
+    "id": "cpp-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Corriger une moyenne",
+    "instruction_fr": "Le programme doit lire trois notes entières et afficher Moyenne : X avec deux décimales. Il divise des entiers et oublie les parenthèses. Corrige-le.",
+    "starter_code": "#include <iostream>\n#include <iomanip>\n\nint main() {\n    int a, b, c;\n    std::cin >> a >> b >> c;\n    double moyenne = a + b + c / 3;\n    std::cout << \"Moyenne : \" << std::fixed << std::setprecision(2) << moyenne << \"\\n\";\n    return 0;\n}",
+    "solution": "#include <iostream>\n#include <iomanip>\n\nint main() {\n    int a, b, c;\n    std::cin >> a >> b >> c;\n    double moyenne = static_cast<double>(a + b + c) / 3;\n    std::cout << \"Moyenne : \" << std::fixed << std::setprecision(2) << moyenne << \"\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "12",
+          "15",
+          "18"
+        ],
+        "expected_output": "Moyenne : 15.00"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "12",
+          "14",
+          "15"
+        ],
+        "expected_output": "Moyenne : 13.67"
+      },
+      {
+        "inputs": [
+          "10",
+          "10",
+          "11"
+        ],
+        "expected_output": "Moyenne : 10.33"
+      }
+    ],
+    "hints": [
+      "La division passe avant l’addition.",
+      "Même avec des parenthèses, 41 / 3 entre int donne 13.",
+      "Écris static_cast<double>(a + b + c) / 3."
+    ],
+    "explanation_fr": "Deux défauts distincts : la priorité des opérateurs et la division entière.",
+    "common_wrong_answers": [],
+    "id": "cpp-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Facture du marché",
+    "instruction_fr": "Lis le nom du client sur une ligne, puis le prix d’un tas et le nombre de tas. Affiche trois lignes : Client : nom, Total : X FCFA et Prix moyen par tas : Y FCFA (le total divisé par le nombre de tas, avec une décimale).",
+    "starter_code": "#include <iostream>\n#include <iomanip>\n#include <string>\n\nint main() {\n    return 0;\n}",
+    "solution": "#include <iostream>\n#include <iomanip>\n#include <string>\n\nint main() {\n    std::string client;\n    std::getline(std::cin, client);\n    int prix, tas;\n    std::cin >> prix >> tas;\n    int total = prix * tas;\n    std::cout << \"Client : \" << client << \"\\n\";\n    std::cout << \"Total : \" << total << \" FCFA\\n\";\n    std::cout << \"Prix moyen par tas : \" << std::fixed << std::setprecision(1) << static_cast<double>(total) / tas << \" FCFA\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Yawa Ama",
+          "500",
+          "4"
+        ],
+        "expected_output": "Client : Yawa Ama\nTotal : 2000 FCFA\nPrix moyen par tas : 500.0 FCFA"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "Edem",
+          "1150",
+          "1"
+        ],
+        "expected_output": "Client : Edem\nTotal : 1150 FCFA\nPrix moyen par tas : 1150.0 FCFA"
+      },
+      {
+        "inputs": [
+          "Kossi Agbo",
+          "750",
+          "3"
+        ],
+        "expected_output": "Client : Kossi Agbo\nTotal : 2250 FCFA\nPrix moyen par tas : 750.0 FCFA"
+      }
+    ],
+    "hints": [
+      "Lis le nom avec getline avant les nombres.",
+      "Le total est entier ; la moyenne demande un double.",
+      "std::fixed << std::setprecision(1) avant la moyenne."
+    ],
+    "explanation_fr": "Lire la ligne de texte d’abord évite le piège du retour à la ligne laissé par std::cin >>.",
+    "common_wrong_answers": [],
+    "id": "cpp-m1-03-e4"
+  }
+]

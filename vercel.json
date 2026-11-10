@@ -42,6 +42,15 @@
       ]
     },
     {
+      "source": "/coding-remote-worker.js",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'none'; connect-src https://wandbox.org; base-uri 'none'"
+        }
+      ]
+    },
+    {
       "source": "/coding-http-worker.js",
       "headers": [
         {

@@ -1,0 +1,201 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Moyenne d’un élève",
+    "instruction_fr": "Avec struct Eleve { std::string nom; std::vector<int> notes; };, écris double moyenneEleve(const Eleve& e) qui renvoie la moyenne décimale, ou 0 si l’élève n’a aucune note. main n’affiche rien.",
+    "starter_code": "#include <iostream>\n#include <vector>\n#include <string>\n\nstruct Eleve {\n    std::string nom;\n    std::vector<int> notes;\n};\n\ndouble moyenneEleve(const Eleve& e) {\n    return 0;\n}\n\nint main() {\n    return 0;\n}",
+    "solution": "#include <iostream>\n#include <vector>\n#include <string>\n\nstruct Eleve {\n    std::string nom;\n    std::vector<int> notes;\n};\n\ndouble moyenneEleve(const Eleve& e) {\n    if (e.notes.empty()) {\n        return 0;\n    }\n    int somme = 0;\n    for (int n : e.notes) {\n        somme += n;\n    }\n    return static_cast<double>(somme) / e.notes.size();\n}\n\nint main() {\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "moyenneEleve(Eleve{\"Afi\", {14, 16, 15}})",
+            "expected": "15"
+          },
+          {
+            "expr": "moyenneEleve(Eleve{\"Kossi\", {9, 10}})",
+            "expected": "9.5"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "moyenneEleve(Eleve{\"Yawa\", {}})",
+            "expected": "0"
+          },
+          {
+            "expr": "moyenneEleve(Eleve{\"Edem\", {20}})",
+            "expected": "20"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Commence par traiter le vecteur vide.",
+      "Additionne les notes dans un int.",
+      "Convertis en double avant de diviser par size()."
+    ],
+    "explanation_fr": "empty() teste si un vecteur ne contient aucun élément.",
+    "common_wrong_answers": [],
+    "id": "cpp-m4-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Lire les notes valides",
+    "instruction_fr": "Lis un nom puis N et N notes. Garde seulement les notes comprises entre 0 et 20 dans un vecteur. Affiche Nom : notes gardées X, ignorées Y.",
+    "starter_code": "#include <iostream>\n#include <vector>\n#include <string>\n\nint main() {\n    std::string nom;\n    int n;\n    std::cin >> nom >> n;\n    std::vector<int> notes;\n    for (int i = 0; i < n; i++) {\n        int x;\n        std::cin >> x;\n        notes.push_back(x);\n    }\n    std::cout << nom << \" : notes gardées \" << notes.size() << \", ignorées 0\\n\";\n    return 0;\n}",
+    "solution": "#include <iostream>\n#include <vector>\n#include <string>\n\nint main() {\n    std::string nom;\n    int n;\n    std::cin >> nom >> n;\n    std::vector<int> notes;\n    int ignorees = 0;\n    for (int i = 0; i < n; i++) {\n        int x;\n        std::cin >> x;\n        if (x >= 0 && x <= 20) {\n            notes.push_back(x);\n        } else {\n            ignorees++;\n        }\n    }\n    std::cout << nom << \" : notes gardées \" << notes.size() << \", ignorées \" << ignorees << \"\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Afi",
+          "4",
+          "14",
+          "25",
+          "16",
+          "15"
+        ],
+        "expected_output": "Afi : notes gardées 3, ignorées 1"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "Kossi",
+          "2",
+          "0",
+          "20"
+        ],
+        "expected_output": "Kossi : notes gardées 2, ignorées 0"
+      },
+      {
+        "inputs": [
+          "Yawa",
+          "2",
+          "-1",
+          "21"
+        ],
+        "expected_output": "Yawa : notes gardées 0, ignorées 2"
+      }
+    ],
+    "hints": [
+      "Le code de départ garde toutes les notes.",
+      "Une note valide est entre 0 et 20 inclus.",
+      "Ajoute un if qui garde ou compte la note."
+    ],
+    "explanation_fr": "Les bornes 0 et 20 sont acceptées : elles sont testées dans les cas cachés.",
+    "common_wrong_answers": [],
+    "id": "cpp-m4-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer le major",
+    "instruction_fr": "const Eleve& major(const std::vector<Eleve>& classe) doit renvoyer l’élève de meilleure moyenne (le premier en cas d’égalité, classe non vide). La fonction renvoie une référence vers une variable locale et compare les noms. Corrige-la en gardant un indice. moyenneEleve est fournie ; main n’affiche rien.",
+    "starter_code": "#include <iostream>\n#include <vector>\n#include <string>\n\nstruct Eleve {\n    std::string nom;\n    std::vector<int> notes;\n};\n\ndouble moyenneEleve(const Eleve& e) {\n    int s = 0;\n    for (int n : e.notes) { s += n; }\n    return e.notes.empty() ? 0 : static_cast<double>(s) / e.notes.size();\n}\n\nconst Eleve& major(const std::vector<Eleve>& classe) {\n    Eleve meilleur = classe[0];\n    for (const Eleve& e : classe) {\n        if (e.nom > meilleur.nom) {\n            meilleur = e;\n        }\n    }\n    return meilleur;\n}\n\nint main() {\n    return 0;\n}",
+    "solution": "#include <iostream>\n#include <vector>\n#include <string>\n\nstruct Eleve {\n    std::string nom;\n    std::vector<int> notes;\n};\n\ndouble moyenneEleve(const Eleve& e) {\n    int s = 0;\n    for (int n : e.notes) { s += n; }\n    return e.notes.empty() ? 0 : static_cast<double>(s) / e.notes.size();\n}\n\nconst Eleve& major(const std::vector<Eleve>& classe) {\n    int meilleur = 0;\n    for (int i = 1; i < (int) classe.size(); i++) {\n        if (moyenneEleve(classe[i]) > moyenneEleve(classe[meilleur])) {\n            meilleur = i;\n        }\n    }\n    return classe[meilleur];\n}\n\nint main() {\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "[]{ std::vector<Eleve> c = {{\"Afi\", {14, 16}}, {\"Kossi\", {18, 17}}, {\"Yawa\", {9}}}; return major(c).nom; }()",
+            "expected": "Kossi"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "[]{ std::vector<Eleve> c = {{\"Edem\", {15}}, {\"Ama\", {15}}}; return major(c).nom; }()",
+            "expected": "Edem"
+          },
+          {
+            "expr": "[]{ std::vector<Eleve> c = {{\"Zoe\", {8, 12}}}; return major(c).nom; }()",
+            "expected": "Zoe"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une référence vers une variable locale désigne une variable détruite à la sortie.",
+      "Garde l’indice du meilleur élève, puis renvoie classe[indice].",
+      "Compare les moyennes, pas les noms."
+    ],
+    "explanation_fr": "classe[meilleur] existe encore après l’appel : la référence renvoyée reste valide.",
+    "common_wrong_answers": [],
+    "id": "cpp-m4-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Le bulletin complet",
+    "instruction_fr": "Lis N élèves. Pour chacun, lis son nom (sans espace), puis K et K notes ; ignore les notes hors de 0 à 20. Affiche pour chaque élève une ligne std::left << std::setw(8) << nom puis la moyenne avec std::fixed << std::setprecision(2), puis \" \" et la mention (Très bien ≥ 16, Bien ≥ 14, Assez bien ≥ 12, Passable ≥ 10, sinon Insuffisant ; un élève sans note valide a une moyenne de 0). Termine par Moyenne de la classe : X (2 décimales, moyenne des moyennes), Major : nom, et Notes ignorées : Y.",
+    "starter_code": "#include <iostream>\n#include <vector>\n#include <iomanip>\n#include <string>\n\nint main() {\n    int n;\n    std::cin >> n;\n    return 0;\n}",
+    "solution": "#include <iostream>\n#include <vector>\n#include <iomanip>\n#include <string>\n\nstruct Eleve {\n    std::string nom;\n    std::vector<int> notes;\n};\n\ndouble moyenneEleve(const Eleve& e) {\n    if (e.notes.empty()) {\n        return 0;\n    }\n    int somme = 0;\n    for (int n : e.notes) {\n        somme += n;\n    }\n    return static_cast<double>(somme) / e.notes.size();\n}\n\nstd::string mention(double m) {\n    if (m >= 16) { return \"Très bien\"; }\n    if (m >= 14) { return \"Bien\"; }\n    if (m >= 12) { return \"Assez bien\"; }\n    if (m >= 10) { return \"Passable\"; }\n    return \"Insuffisant\";\n}\n\nconst Eleve& major(const std::vector<Eleve>& classe) {\n    int meilleur = 0;\n    for (int i = 1; i < (int) classe.size(); i++) {\n        if (moyenneEleve(classe[i]) > moyenneEleve(classe[meilleur])) {\n            meilleur = i;\n        }\n    }\n    return classe[meilleur];\n}\n\nint main() {\n    int n;\n    std::cin >> n;\n    std::vector<Eleve> classe;\n    int ignorees = 0;\n    for (int i = 0; i < n; i++) {\n        Eleve e;\n        int k;\n        std::cin >> e.nom >> k;\n        for (int j = 0; j < k; j++) {\n            int note;\n            std::cin >> note;\n            if (note >= 0 && note <= 20) {\n                e.notes.push_back(note);\n            } else {\n                ignorees++;\n            }\n        }\n        classe.push_back(e);\n    }\n    double total = 0;\n    std::cout << std::fixed << std::setprecision(2);\n    for (const Eleve& e : classe) {\n        double m = moyenneEleve(e);\n        total += m;\n        std::cout << std::left << std::setw(8) << e.nom << m << \" \" << mention(m) << \"\\n\";\n    }\n    std::cout << \"Moyenne de la classe : \" << total / classe.size() << \"\\n\";\n    std::cout << \"Major : \" << major(classe).nom << \"\\n\";\n    std::cout << \"Notes ignorées : \" << ignorees << \"\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3",
+          "Afi",
+          "3",
+          "14",
+          "16",
+          "15",
+          "Kossi",
+          "2",
+          "18",
+          "17",
+          "Yawa",
+          "3",
+          "9",
+          "10",
+          "42"
+        ],
+        "expected_output": "Afi     15.00 Bien\nKossi   17.50 Très bien\nYawa    9.50 Insuffisant\nMoyenne de la classe : 14.00\nMajor : Kossi\nNotes ignorées : 1"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1",
+          "Edem",
+          "1",
+          "12"
+        ],
+        "expected_output": "Edem    12.00 Assez bien\nMoyenne de la classe : 12.00\nMajor : Edem\nNotes ignorées : 0"
+      },
+      {
+        "inputs": [
+          "2",
+          "Ama",
+          "1",
+          "-4",
+          "Ben",
+          "2",
+          "10",
+          "30"
+        ],
+        "expected_output": "Ama     0.00 Insuffisant\nBen     10.00 Passable\nMoyenne de la classe : 5.00\nMajor : Ben\nNotes ignorées : 2"
+      }
+    ],
+    "hints": [
+      "Reprends la structure et les trois fonctions des exercices précédents.",
+      "La lecture valide chaque note avant de l’ajouter.",
+      "std::setw(8) ne règle que le nom ; la moyenne suit directement."
+    ],
+    "explanation_fr": "Le programme assemble structure, vecteurs, références, validation et mise en forme : tout le cours en un seul outil.",
+    "common_wrong_answers": [],
+    "id": "cpp-m4-03-e4"
+  }
+]

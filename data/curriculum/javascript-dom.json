@@ -92,7 +92,7 @@
     "react-bases",
     "http-bases"
   ],
-  "engine_revision": "59131fb8e828",
+  "engine_revision": "b419a62330bb",
   "lessons": [
     {
       "id": "dom-m1-01",
@@ -353,7 +353,7 @@
     }
   ],
   "estimated_minutes": 360,
-  "content_revision": "56b80e725086",
+  "content_revision": "6f29e713c4ab",
   "exercise_count": 72,
   "quiz_count": 54
 }

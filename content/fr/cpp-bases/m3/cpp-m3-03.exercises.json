@@ -1,0 +1,186 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Initiales",
+    "instruction_fr": "Écris std::string initiales(std::string prenom, std::string nom) qui renvoie les deux premières lettres en majuscules suivies chacune d’un point, par exemple A.M. pour afi et mensah. main n’affiche rien.",
+    "starter_code": "#include <iostream>\n#include <string>\n#include <cctype>\n\nstd::string initiales(std::string prenom, std::string nom) {\n    return prenom + nom;\n}\n\nint main() {\n    return 0;\n}",
+    "solution": "#include <iostream>\n#include <string>\n#include <cctype>\n\nstd::string initiales(std::string prenom, std::string nom) {\n    std::string r;\n    r += static_cast<char>(std::toupper(prenom[0]));\n    r += \".\";\n    r += static_cast<char>(std::toupper(nom[0]));\n    r += \".\";\n    return r;\n}\n\nint main() {\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "initiales(\"afi\", \"mensah\")",
+            "expected": "A.M."
+          },
+          {
+            "expr": "initiales(\"Kossi\", \"Agbo\")",
+            "expected": "K.A."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "initiales(\"yawa\", \"dzidzo\")",
+            "expected": "Y.D."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le premier caractère d’un texte est texte[0].",
+      "std::toupper renvoie un int : convertis-le en char.",
+      "Assemble avec += : lettre, point, lettre, point."
+    ],
+    "explanation_fr": "static_cast<char> est nécessaire, car std::toupper renvoie un nombre.",
+    "common_wrong_answers": [],
+    "id": "cpp-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Découper un trajet",
+    "instruction_fr": "Lis un trajet au format VILLE-VILLE. S’il contient un tiret, affiche Départ : X puis Arrivée : Y ; sinon affiche Format invalide.",
+    "starter_code": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string trajet;\n    std::cin >> trajet;\n    std::size_t tiret = trajet.find(\"-\");\n    std::cout << \"Départ : \" << trajet.substr(0, tiret) << \"\\n\";\n    std::cout << \"Arrivée : \" << trajet.substr(tiret + 1) << \"\\n\";\n    return 0;\n}",
+    "solution": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string trajet;\n    std::cin >> trajet;\n    std::size_t tiret = trajet.find(\"-\");\n    if (tiret == std::string::npos) {\n        std::cout << \"Format invalide\\n\";\n    } else {\n        std::cout << \"Départ : \" << trajet.substr(0, tiret) << \"\\n\";\n        std::cout << \"Arrivée : \" << trajet.substr(tiret + 1) << \"\\n\";\n    }\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "LOME-KARA"
+        ],
+        "expected_output": "Départ : LOME\nArrivée : KARA"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "LOMEKARA"
+        ],
+        "expected_output": "Format invalide"
+      },
+      {
+        "inputs": [
+          "TSEVIE-AFLAO"
+        ],
+        "expected_output": "Départ : TSEVIE\nArrivée : AFLAO"
+      }
+    ],
+    "hints": [
+      "Le code de départ ne vérifie pas la présence du tiret.",
+      "Compare le résultat de find à std::string::npos.",
+      "Place les deux affichages dans le else."
+    ],
+    "explanation_fr": "Sans tiret, npos + 1 vaut 0 : l’ancien code affichait des morceaux absurdes.",
+    "common_wrong_answers": [],
+    "id": "cpp-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une mise en majuscules",
+    "instruction_fr": "std::string enMajuscules(std::string texte) doit renvoyer le texte en majuscules. La boucle modifie des copies et la fonction renvoie un texte vide. Corrige-la ; main n’affiche rien.",
+    "starter_code": "#include <iostream>\n#include <string>\n#include <cctype>\n\nstd::string enMajuscules(std::string texte) {\n    for (char c : texte) {\n        c = std::toupper(c);\n    }\n    return \"\";\n}\n\nint main() {\n    return 0;\n}",
+    "solution": "#include <iostream>\n#include <string>\n#include <cctype>\n\nstd::string enMajuscules(std::string texte) {\n    for (char& c : texte) {\n        c = std::toupper(c);\n    }\n    return texte;\n}\n\nint main() {\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "enMajuscules(\"kara\")",
+            "expected": "KARA"
+          },
+          {
+            "expr": "enMajuscules(\"Lome 2026\")",
+            "expected": "LOME 2026"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "enMajuscules(\"\")",
+            "expected": ""
+          },
+          {
+            "expr": "enMajuscules(\"ABC\")",
+            "expected": "ABC"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Sans &, chaque c est une copie.",
+      "Écris for (char& c : texte).",
+      "Renvoie le texte modifié."
+    ],
+    "explanation_fr": "Le texte reçu en paramètre est lui-même une copie : on peut le modifier et le renvoyer.",
+    "common_wrong_answers": [],
+    "id": "cpp-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Vérifier un numéro de téléphone",
+    "instruction_fr": "Écris bool numeroValide(std::string numero) : vrai seulement si le numéro a exactement 8 caractères, tous des chiffres. Dans main, lis un numéro et affiche Numéro valide : +228 XX XX XX XX (par groupes de deux) ou Numéro invalide.",
+    "starter_code": "#include <iostream>\n#include <string>\n#include <cctype>\n\nbool numeroValide(std::string numero) {\n    return true;\n}\n\nint main() {\n    std::string numero;\n    std::cin >> numero;\n    return 0;\n}",
+    "solution": "#include <iostream>\n#include <string>\n#include <cctype>\n\nbool numeroValide(std::string numero) {\n    if (numero.size() != 8) {\n        return false;\n    }\n    for (char c : numero) {\n        if (!std::isdigit(c)) {\n            return false;\n        }\n    }\n    return true;\n}\n\nint main() {\n    std::string numero;\n    std::cin >> numero;\n    if (numeroValide(numero)) {\n        std::cout << \"Numéro valide : +228\";\n        for (int i = 0; i < 8; i += 2) {\n            std::cout << \" \" << numero.substr(i, 2);\n        }\n        std::cout << \"\\n\";\n    } else {\n        std::cout << \"Numéro invalide\\n\";\n    }\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "90123456"
+        ],
+        "expected_output": "Numéro valide : +228 90 12 34 56",
+        "expressions": [
+          {
+            "expr": "numeroValide(\"90123456\")",
+            "expected": "true"
+          },
+          {
+            "expr": "numeroValide(\"9012345\")",
+            "expected": "false"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "9012345A"
+        ],
+        "expected_output": "Numéro invalide",
+        "expressions": [
+          {
+            "expr": "numeroValide(\"901234567\")",
+            "expected": "false"
+          },
+          {
+            "expr": "numeroValide(\"70000000\")",
+            "expected": "true"
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "123"
+        ],
+        "expected_output": "Numéro invalide"
+      }
+    ],
+    "hints": [
+      "Deux conditions : la longueur, puis chaque caractère.",
+      "Renvoie false dès qu’un caractère n’est pas un chiffre.",
+      "Pour l’affichage, avance de 2 en 2 avec substr(i, 2)."
+    ],
+    "explanation_fr": "Les numéros sont fictifs ; la fonction se teste seule avec plusieurs cas.",
+    "common_wrong_answers": [],
+    "id": "cpp-m3-03-e4"
+  }
+]

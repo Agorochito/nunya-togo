@@ -7,6 +7,8 @@ class Handler(SimpleHTTPRequestHandler):
  def end_headers(self):
   if self.path.split('?')[0] in ['/coding-http-worker.js','/coding-javascript-worker.js']:
    self.send_header('Content-Security-Policy',policy)
+  if self.path.split('?')[0]=='/coding-remote-worker.js':
+   self.send_header('Content-Security-Policy',"default-src 'none'; connect-src https://wandbox.org; base-uri 'none'")
   if self.path.split('?')[0] in ['/coding-sql-worker.js','/coding-php-worker.js']:
    self.send_header('Content-Security-Policy',"default-src 'none'; script-src 'wasm-unsafe-eval'; connect-src 'self'; worker-src 'none'; base-uri 'none'")
   if self.path.split('?')[0] in ['/runtime/dom-frame.html','/runtime/react-frame.html']:

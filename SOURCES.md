@@ -87,3 +87,7 @@ Les 30 leçons, leurs 60 exemples et leurs 120 exercices sont des textes et des 
 
 Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide du manuel PHP officiel en français (https://www.php.net/manual/fr/), cité dans chaque leçon. Aucun texte du manuel n’est repris. Moteur : `php-wasm` 0.2.0 de Sean Morris, double licence Apache-2.0 ou GPL-2.0, utilisé sous Apache-2.0 ; l’interpréteur PHP est distribué sous la PHP License 3.01. Les notices sont copiées dans `dist/runtime/php/LICENSE.txt` à chaque compilation.
 
+## C++ : les fondamentaux — 9 novembre 2026
+
+Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la référence cppreference.com, citée dans chaque leçon ; aucun texte n’en est repris. Compilation : service Wandbox (https://wandbox.org, logiciel sous Boost Software License 1.0), appelé depuis le navigateur de l’élève. Aucune bibliothèque n’est ajoutée au site ; la coloration utilise `@codemirror/lang-cpp` (MIT).
+

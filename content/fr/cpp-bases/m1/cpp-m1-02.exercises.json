@@ -1,0 +1,110 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Déclarer trois variables",
+    "instruction_fr": "Déclare std::string produit = \"Gari\", int prix = 300 et bool disponible = true, puis affiche : Gari : 300 FCFA",
+    "starter_code": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string produit = \"Gari\";\n    // Déclare prix et disponible\n    return 0;\n}",
+    "solution": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string produit = \"Gari\";\n    int prix = 300;\n    bool disponible = true;\n    std::cout << produit << \" : \" << prix << \" FCFA\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Gari : 300 FCFA"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Gari : 300 FCFA"
+      }
+    ],
+    "hints": [
+      "Chaque déclaration commence par le type.",
+      "Assemble l’affichage avec plusieurs <<.",
+      "std::cout << produit << \" : \" << prix << \" FCFA\\n\";"
+    ],
+    "explanation_fr": "Les espaces autour des deux-points font partie du texte affiché.",
+    "common_wrong_answers": [],
+    "id": "cpp-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Fiche d’un membre",
+    "instruction_fr": "Déclare std::string nom = \"Kossi\", int age = 16, double taille = 1.75 et char classe = 'C'. Affiche : Kossi, 16 ans, 1.75 m, classe C",
+    "starter_code": "#include <iostream>\n#include <string>\n\nint main() {\n    return 0;\n}",
+    "solution": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string nom = \"Kossi\";\n    int age = 16;\n    double taille = 1.75;\n    char classe = 'C';\n    std::cout << nom << \", \" << age << \" ans, \" << taille << \" m, classe \" << classe << \"\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Kossi, 16 ans, 1.75 m, classe C"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Kossi, 16 ans, 1.75 m, classe C"
+      }
+    ],
+    "hints": [
+      "Quatre déclarations, une ligne affichée.",
+      "Le caractère s’écrit entre apostrophes.",
+      "Enchaîne les variables et les textes avec <<."
+    ],
+    "explanation_fr": "Le double 1.75 s’affiche avec ses deux décimales utiles.",
+    "common_wrong_answers": [],
+    "id": "cpp-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer des déclarations",
+    "instruction_fr": "Le programme range un texte dans un int, répète un type lors d’une réaffectation et modifie une constante. Corrige-le pour afficher Stock : 8 puis Seuil : 5 : la variable stock vaut d’abord 10, puis 8 ; le seuil reste constant à 5.",
+    "starter_code": "#include <iostream>\n\nint main() {\n    const int SEUIL = 5;\n    int stock = \"10\";\n    int stock = 8;\n    SEUIL = 6;\n    std::cout << \"Stock : \" << stock << \"\\n\";\n    std::cout << \"Seuil : \" << SEUIL << \"\\n\";\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nint main() {\n    const int SEUIL = 5;\n    int stock = 10;\n    stock = 8;\n    std::cout << \"Stock : \" << stock << \"\\n\";\n    std::cout << \"Seuil : \" << SEUIL << \"\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Stock : 8\nSeuil : 5"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Stock : 8\nSeuil : 5"
+      }
+    ],
+    "hints": [
+      "Lis le premier message : un texte ne va pas dans un int.",
+      "Une réaffectation ne répète pas le type.",
+      "Supprime la ligne qui modifie la constante."
+    ],
+    "explanation_fr": "Trois erreurs de compilation, chacune liée à une règle des types.",
+    "common_wrong_answers": [],
+    "id": "cpp-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Étiquette de produit",
+    "instruction_fr": "Déclare const std::string ARTICLE = \"Pagne wax\", int longueur = 6, double prixMetre = 1500.5 et bool enStock = true. Affiche deux lignes : Pagne wax (6 m) puis 1500.5 FCFA le mètre, en stock : 1",
+    "starter_code": "#include <iostream>\n#include <string>\n\nint main() {\n    return 0;\n}",
+    "solution": "#include <iostream>\n#include <string>\n\nint main() {\n    const std::string ARTICLE = \"Pagne wax\";\n    int longueur = 6;\n    double prixMetre = 1500.5;\n    bool enStock = true;\n    std::cout << ARTICLE << \" (\" << longueur << \" m)\\n\";\n    std::cout << prixMetre << \" FCFA le mètre, en stock : \" << enStock << \"\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Pagne wax (6 m)\n1500.5 FCFA le mètre, en stock : 1"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Pagne wax (6 m)\n1500.5 FCFA le mètre, en stock : 1"
+      }
+    ],
+    "hints": [
+      "Quatre variables de quatre types.",
+      "Un booléen vrai s’affiche 1.",
+      "Deux instructions std::cout, chacune terminée par \"\\n\"."
+    ],
+    "explanation_fr": "const fonctionne aussi avec std::string.",
+    "common_wrong_answers": [],
+    "id": "cpp-m1-02-e4"
+  }
+]

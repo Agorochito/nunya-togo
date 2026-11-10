@@ -1,0 +1,184 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Échanger deux valeurs",
+    "instruction_fr": "Écris void echanger(int& a, int& b) qui échange réellement les deux variables, avec une variable temporaire. N’utilise pas std::swap. main n’affiche rien.",
+    "starter_code": "#include <iostream>\n\nvoid echanger(int a, int b) {\n    a = b;\n    b = a;\n}\n\nint main() {\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nvoid echanger(int& a, int& b) {\n    int temporaire = a;\n    a = b;\n    b = temporaire;\n}\n\nint main() {\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "[]{ int x = 1, y = 2; echanger(x, y); return x * 10 + y; }()",
+            "expected": "21"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "[]{ int x = 7, y = 7; echanger(x, y); return x * 10 + y; }()",
+            "expected": "77"
+          },
+          {
+            "expr": "[]{ int x = 30, y = 5; echanger(x, y); return x * 100 + y; }()",
+            "expected": "530"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Sans &, la fonction échange des copies.",
+      "Sauve a dans une variable temporaire avant de l’écraser.",
+      "int temporaire = a; a = b; b = temporaire;"
+    ],
+    "explanation_fr": "La vérification crée ses propres variables, appelle echanger et les relit.",
+    "common_wrong_answers": [],
+    "id": "cpp-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Ajouter un bonus",
+    "instruction_fr": "Écris void ajouterBonus(int& note, int bonus) qui ajoute le bonus sans dépasser 20 (la note est alors ramenée à 20). Dans main, lis une note et un bonus, appelle la fonction puis affiche Note finale : X.",
+    "starter_code": "#include <iostream>\n\nvoid ajouterBonus(int note, int bonus) {\n    note = note + bonus;\n}\n\nint main() {\n    int note, bonus;\n    std::cin >> note >> bonus;\n    ajouterBonus(note, bonus);\n    std::cout << \"Note finale : \" << note << \"\\n\";\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nvoid ajouterBonus(int& note, int bonus) {\n    note = note + bonus;\n    if (note > 20) {\n        note = 20;\n    }\n}\n\nint main() {\n    int note, bonus;\n    std::cin >> note >> bonus;\n    ajouterBonus(note, bonus);\n    std::cout << \"Note finale : \" << note << \"\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "12",
+          "2"
+        ],
+        "expected_output": "Note finale : 14"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "19",
+          "3"
+        ],
+        "expected_output": "Note finale : 20"
+      },
+      {
+        "inputs": [
+          "18",
+          "2"
+        ],
+        "expected_output": "Note finale : 20"
+      }
+    ],
+    "hints": [
+      "main affiche la note d’origine : la fonction modifie une copie.",
+      "Ajoute & au premier paramètre.",
+      "Plafonne ensuite à 20 avec un if."
+    ],
+    "explanation_fr": "Le bonus reste passé par valeur : la fonction ne le modifie pas.",
+    "common_wrong_answers": [],
+    "id": "cpp-m4-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un calcul de statistiques",
+    "instruction_fr": "void stats(const std::vector<int>& t, int& somme, double& moyenne) doit remplir la somme et la moyenne décimale d’un vecteur non vide. Les deux résultats sont passés par valeur et la moyenne divise des entiers. Corrige la fonction ; main n’affiche rien.",
+    "starter_code": "#include <iostream>\n#include <vector>\n\nvoid stats(const std::vector<int>& t, int somme, double moyenne) {\n    somme = 0;\n    for (int x : t) {\n        somme += x;\n    }\n    moyenne = somme / t.size();\n}\n\nint main() {\n    return 0;\n}",
+    "solution": "#include <iostream>\n#include <vector>\n\nvoid stats(const std::vector<int>& t, int& somme, double& moyenne) {\n    somme = 0;\n    for (int x : t) {\n        somme += x;\n    }\n    moyenne = static_cast<double>(somme) / t.size();\n}\n\nint main() {\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "[]{ int s = 0; double m = 0; stats({12, 15}, s, m); return s; }()",
+            "expected": "27"
+          },
+          {
+            "expr": "[]{ int s = 0; double m = 0; stats({12, 15}, s, m); return m; }()",
+            "expected": "13.5"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "[]{ int s = 0; double m = 0; stats({4}, s, m); return m; }()",
+            "expected": "4"
+          },
+          {
+            "expr": "[]{ int s = 0; double m = 0; stats({1, 2, 2}, s, m); return s * 10; }()",
+            "expected": "50"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les résultats doivent atteindre les variables de l’appelant.",
+      "Ajoute & à somme et à moyenne.",
+      "Convertis la somme en double avant de diviser."
+    ],
+    "explanation_fr": "Le vecteur reste en référence constante : il est lu, jamais modifié.",
+    "common_wrong_answers": [],
+    "id": "cpp-m4-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Répartir une cagnotte",
+    "instruction_fr": "Écris void repartir(int montant, int personnes, int& part, int& reste) qui remplit la part de chacun (division entière) et ce qui reste. Dans main, lis le montant et le nombre de personnes ; si le nombre est 0 ou moins, affiche Nombre de personnes invalide, sinon affiche Part : X FCFA puis Reste : Y FCFA.",
+    "starter_code": "#include <iostream>\n\nint main() {\n    int montant, personnes;\n    std::cin >> montant >> personnes;\n    return 0;\n}",
+    "solution": "#include <iostream>\n\nvoid repartir(int montant, int personnes, int& part, int& reste) {\n    part = montant / personnes;\n    reste = montant % personnes;\n}\n\nint main() {\n    int montant, personnes;\n    std::cin >> montant >> personnes;\n    if (personnes <= 0) {\n        std::cout << \"Nombre de personnes invalide\\n\";\n        return 0;\n    }\n    int part, reste;\n    repartir(montant, personnes, part, reste);\n    std::cout << \"Part : \" << part << \" FCFA\\n\";\n    std::cout << \"Reste : \" << reste << \" FCFA\\n\";\n    return 0;\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "10000",
+          "3"
+        ],
+        "expected_output": "Part : 3333 FCFA\nReste : 1 FCFA",
+        "expressions": [
+          {
+            "expr": "[]{ int p = 0, r = 0; repartir(25000, 4, p, r); return p * 10 + r; }()",
+            "expected": "62500"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "5000",
+          "0"
+        ],
+        "expected_output": "Nombre de personnes invalide"
+      },
+      {
+        "inputs": [
+          "5000",
+          "2"
+        ],
+        "expected_output": "Part : 2500 FCFA\nReste : 0 FCFA",
+        "expressions": [
+          {
+            "expr": "[]{ int p = 0, r = 0; repartir(7, 2, p, r); return p * 10 + r; }()",
+            "expected": "31"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Deux résultats : deux paramètres par référence.",
+      "Vérifie le nombre de personnes avant d’appeler la fonction.",
+      "part = montant / personnes; reste = montant % personnes;"
+    ],
+    "explanation_fr": "La vérification de 0 personne évite une division par zéro.",
+    "common_wrong_answers": [],
+    "id": "cpp-m4-01-e4"
+  }
+]

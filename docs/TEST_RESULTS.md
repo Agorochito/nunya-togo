@@ -1,3 +1,10 @@
+# Vérifications 5.11.0 — 9 novembre 2026
+
+- C++ compilé par g++ local au format de Wandbox, dans le contrôle de compilation : 24 exemples et 132 cas de référence ; 48 solutions acceptées et 48 codes de départ refusés.
+- Interface C++ : 12 leçons, 48 exercices et 36 questions résolus à 360 puis 1440 px, exactement une requête de compilation par vérification (48), cours relu à froid hors ligne et exécution hors ligne expliquée, zéro violation axe (`CPP_BASES_UI_RESULTS.json`). Les requêtes vers Wandbox sont servies par le compilateur local pendant ce test.
+- Service réel : le projet final (`cpp-m4-03-e4`, trois cas) accepté par GCC 13 sur wandbox.org en 6,4 s, en une requête.
+- 212 tests unitaires, dont l’enveloppe C++ ; ESLint et TypeScript réussis. Catalogue (13 programmes, 14 raccourcis), parcours et fiches, rendu des 239 leçons, PHP, ancien pack enregistré et migration depuis 5.10.0 revérifiés. La migration depuis 5.10.0 a échoué une fois sur quatre exécutions, sans cause identifiée ; les trois autres ont réussi.
+
 # Vérifications 5.10.0 — 9 novembre 2026
 
 - PHP réel dans le contrôle de compilation : 24 exemples et 137 cas de référence exécutés ; 48 solutions acceptées, 48 codes de départ et 48 scripts vides refusés.
