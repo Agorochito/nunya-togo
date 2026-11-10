@@ -1,0 +1,196 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Renvoyer plutôt qu’afficher",
+    "instruction_fr": "La méthode carre affiche son résultat au lieu de le renvoyer. Transforme-la en static int carre(int n) qui renvoie n × n ; main doit afficher carre(5).",
+    "starter_code": "public class Main {\n    static void carre(int n) {\n        System.out.println(n * n);\n    }\n\n    public static void main(String[] args) {\n        carre(5);\n    }\n}",
+    "solution": "public class Main {\n    static int carre(int n) {\n        return n * n;\n    }\n\n    public static void main(String[] args) {\n        System.out.println(carre(5));\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "25",
+        "expressions": [
+          {
+            "expr": "Main.carre(4)",
+            "expected": "16"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "25",
+        "expressions": [
+          {
+            "expr": "Main.carre(-3)",
+            "expected": "9"
+          },
+          {
+            "expr": "Main.carre(0)",
+            "expected": "0"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le type de retour doit être int, pas void.",
+      "Remplace l’affichage par return.",
+      "Dans main : System.out.println(carre(5));"
+    ],
+    "explanation_fr": "Une méthode qui renvoie sa valeur peut être réutilisée dans n’importe quel calcul.",
+    "common_wrong_answers": [],
+    "id": "java-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Prix au marché",
+    "instruction_fr": "Écris static int avecTva(int prixHt) qui renvoie prixHt + prixHt × 18 / 100, et static boolean estCher(int prix) qui renvoie true si le prix dépasse 5000 (strictement). main lit un prix et affiche TTC : t puis Cher : true ou false.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    // Écris avecTva et estCher ici\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int prix = Integer.parseInt(sc.nextLine());\n        // Appelle tes deux méthodes\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    static int avecTva(int prixHt) {\n        return prixHt + prixHt * 18 / 100;\n    }\n\n    static boolean estCher(int prix) {\n        return prix > 5000;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int prix = Integer.parseInt(sc.nextLine());\n        int ttc = avecTva(prix);\n        System.out.println(\"TTC : \" + ttc);\n        System.out.println(\"Cher : \" + estCher(ttc));\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "1000"
+        ],
+        "expected_output": "TTC : 1180\nCher : false",
+        "expressions": [
+          {
+            "expr": "Main.avecTva(250)",
+            "expected": "295"
+          },
+          {
+            "expr": "Main.estCher(5001)",
+            "expected": "true"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "5000"
+        ],
+        "expected_output": "TTC : 5900\nCher : true",
+        "expressions": [
+          {
+            "expr": "Main.avecTva(0)",
+            "expected": "0"
+          },
+          {
+            "expr": "Main.estCher(5000)",
+            "expected": "false"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Deux méthodes static, à côté de main.",
+      "return prix > 5000; renvoie directement un boolean.",
+      "main affiche estCher(ttc), calculé sur le prix TTC."
+    ],
+    "explanation_fr": "Une comparaison est déjà un boolean : pas besoin de if pour le renvoyer.",
+    "common_wrong_answers": [],
+    "id": "java-m3-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le plus grand de deux",
+    "instruction_fr": "La méthode plusGrand ne compile pas : un chemin n’a pas de return, et main l’appelle avec un seul argument. Corrige-la pour que main affiche le plus grand de deux nombres lus.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    static int plusGrand(int a, int b) {\n        if (a > b) {\n            return a;\n        }\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int a = Integer.parseInt(sc.nextLine());\n        int b = Integer.parseInt(sc.nextLine());\n        System.out.println(plusGrand(a));\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    static int plusGrand(int a, int b) {\n        if (a > b) {\n            return a;\n        }\n        return b;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int a = Integer.parseInt(sc.nextLine());\n        int b = Integer.parseInt(sc.nextLine());\n        System.out.println(plusGrand(a, b));\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4",
+          "9"
+        ],
+        "expected_output": "9",
+        "expressions": [
+          {
+            "expr": "Main.plusGrand(7, 2)",
+            "expected": "7"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "5",
+          "5"
+        ],
+        "expected_output": "5",
+        "expressions": [
+          {
+            "expr": "Main.plusGrand(-1, -8)",
+            "expected": "-1"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis le premier message : missing return statement.",
+      "Si a n’est pas plus grand, que renvoyer ?",
+      "Ajoute return b; et passe deux arguments à l’appel."
+    ],
+    "explanation_fr": "Le compilateur exige un return sur chaque chemin possible.",
+    "common_wrong_answers": [],
+    "id": "java-m3-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Bulletin avec méthodes",
+    "instruction_fr": "Écris static String mention(int note) : Très bien (16+), Bien (14+), Assez bien (12+), Passable (10+), sinon Insuffisant ; et static boolean admis(int note) (10 ou plus). main lit une note et affiche Mention : m puis Admis : true ou false.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    static String mention(int note) {\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int note = Integer.parseInt(sc.nextLine());\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    static String mention(int note) {\n        if (note >= 16) return \"Très bien\";\n        if (note >= 14) return \"Bien\";\n        if (note >= 12) return \"Assez bien\";\n        if (note >= 10) return \"Passable\";\n        return \"Insuffisant\";\n    }\n\n    static boolean admis(int note) {\n        return note >= 10;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int note = Integer.parseInt(sc.nextLine());\n        System.out.println(\"Mention : \" + mention(note));\n        System.out.println(\"Admis : \" + admis(note));\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "15"
+        ],
+        "expected_output": "Mention : Bien\nAdmis : true",
+        "expressions": [
+          {
+            "expr": "Main.mention(17)",
+            "expected": "Très bien"
+          },
+          {
+            "expr": "Main.admis(9)",
+            "expected": "false"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "6"
+        ],
+        "expected_output": "Mention : Insuffisant\nAdmis : false",
+        "expressions": [
+          {
+            "expr": "Main.mention(12)",
+            "expected": "Assez bien"
+          },
+          {
+            "expr": "Main.mention(10)",
+            "expected": "Passable"
+          },
+          {
+            "expr": "Main.admis(10)",
+            "expected": "true"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Chaque return termine la méthode : une suite de if suffit.",
+      "admis renvoie directement la comparaison.",
+      "main se contente d’appeler et d’afficher."
+    ],
+    "explanation_fr": "main devient courte et lisible : les règles vivent dans des méthodes testables.",
+    "common_wrong_answers": [],
+    "id": "java-m3-01-e4"
+  }
+]

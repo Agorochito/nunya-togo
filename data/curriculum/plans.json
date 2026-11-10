@@ -79,12 +79,6 @@
     "status": "bientôt"
   },
   {
-    "id": "java",
-    "title_fr": "Java : premiers programmes",
-    "summary_fr": "Classes, types et méthodes avec un vrai compilateur Java ; ouverture quand un moteur hors ligne aura été vérifié.",
-    "status": "bientôt"
-  },
-  {
     "id": "php-intermediaire",
     "title_fr": "PHP intermédiaire : objets et données",
     "summary_fr": "Classes, exceptions, JSON et organisation d’un projet ; après PHP : les bases.",

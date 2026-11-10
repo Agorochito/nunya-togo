@@ -1,0 +1,27 @@
+{
+  "results": [
+    {
+      "width": 360,
+      "lessons": 12,
+      "exercises": 48,
+      "quiz": 36,
+      "compileRequests": 49,
+      "compileErrorExplained": true,
+      "coldOfflineReadable": true,
+      "offlineRunExplained": true,
+      "axeViolations": 0
+    },
+    {
+      "width": 1440,
+      "lessons": 12,
+      "exercises": 48,
+      "quiz": 36,
+      "compileRequests": 49,
+      "compileErrorExplained": true,
+      "coldOfflineReadable": true,
+      "offlineRunExplained": true,
+      "axeViolations": 0
+    }
+  ],
+  "errors": []
+}

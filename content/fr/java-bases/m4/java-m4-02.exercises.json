@@ -1,0 +1,197 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Retrait sans découvert",
+    "instruction_fr": "boolean retirer(int montant) accepte tous les retraits, même au-delà du solde. Corrige-la : si le montant dépasse le solde, elle renvoie false sans rien modifier ; sinon elle retire et renvoie true.",
+    "starter_code": "public class Main {\n    public static void main(String[] args) {\n        Compte c = new Compte(1000);\n        System.out.println(c.retirer(1500) + \" \" + c.getSolde());\n        System.out.println(c.retirer(400) + \" \" + c.getSolde());\n    }\n}\n\nclass Compte {\n    private int solde;\n\n    Compte(int solde) {\n        this.solde = solde;\n    }\n\n    int getSolde() {\n        return solde;\n    }\n\n    boolean retirer(int montant) {\n        solde -= montant;\n        return true;\n    }\n}",
+    "solution": "public class Main {\n    public static void main(String[] args) {\n        Compte c = new Compte(1000);\n        System.out.println(c.retirer(1500) + \" \" + c.getSolde());\n        System.out.println(c.retirer(400) + \" \" + c.getSolde());\n    }\n}\n\nclass Compte {\n    private int solde;\n\n    Compte(int solde) {\n        this.solde = solde;\n    }\n\n    int getSolde() {\n        return solde;\n    }\n\n    boolean retirer(int montant) {\n        if (montant > solde) {\n            return false;\n        }\n        solde -= montant;\n        return true;\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "false 1000\ntrue 600",
+        "expressions": [
+          {
+            "expr": "new Compte(100).retirer(100)",
+            "expected": "true"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "false 1000\ntrue 600",
+        "expressions": [
+          {
+            "expr": "new Compte(50).retirer(51)",
+            "expected": "false"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le premier retrait ne devrait pas passer.",
+      "Vérifie avant de modifier le solde.",
+      "if (montant > solde) return false;"
+    ],
+    "explanation_fr": "Vérifier d’abord garantit qu’un refus ne laisse aucune trace.",
+    "common_wrong_answers": [],
+    "id": "java-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Saisie robuste",
+    "instruction_fr": "Écris static int lireEntier(String texte, int parDefaut) : elle renvoie le nombre contenu dans texte (espaces autour acceptés) ou parDefaut si ce n’est pas un nombre. main lit trois lignes et affiche leur somme : Somme : s, en comptant 0 pour une ligne invalide.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    static int lireEntier(String texte, int parDefaut) {\n        return Integer.parseInt(texte);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int somme = 0;\n        // Lis trois lignes avec lireEntier\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    static int lireEntier(String texte, int parDefaut) {\n        try {\n            return Integer.parseInt(texte.trim());\n        } catch (NumberFormatException e) {\n            return parDefaut;\n        }\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int somme = 0;\n        for (int i = 0; i < 3; i++) {\n            somme += lireEntier(sc.nextLine(), 0);\n        }\n        System.out.println(\"Somme : \" + somme);\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "5",
+          "dix",
+          " 10 "
+        ],
+        "expected_output": "Somme : 15",
+        "expressions": [
+          {
+            "expr": "Main.lireEntier(\"12\", 0)",
+            "expected": "12"
+          },
+          {
+            "expr": "Main.lireEntier(\"douze\", -1)",
+            "expected": "-1"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "a",
+          "b",
+          ""
+        ],
+        "expected_output": "Somme : 0",
+        "expressions": [
+          {
+            "expr": "Main.lireEntier(\" 7 \", 0)",
+            "expected": "7"
+          },
+          {
+            "expr": "Main.lireEntier(\"3.5\", 9)",
+            "expected": "9"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "parseInt lève une NumberFormatException sur un texte qui n’est pas un entier.",
+      "Entoure la conversion d’un try et renvoie parDefaut dans le catch.",
+      "Pense à trim() pour accepter les espaces."
+    ],
+    "explanation_fr": "Le catch transforme un arrêt brutal en valeur de secours choisie par l’appelant.",
+    "common_wrong_answers": [],
+    "id": "java-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La caisse qui plante",
+    "instruction_fr": "Le programme additionne des montants jusqu’à fin et doit afficher Invalide : x pour chaque ligne qui n’est pas un nombre, puis Total : t. Il attrape le mauvais type d’exception. Corrige-le.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int total = 0;\n        String ligne = sc.nextLine();\n        while (!ligne.equals(\"fin\")) {\n            try {\n                total += Integer.parseInt(ligne);\n            } catch (ArithmeticException e) {\n                System.out.println(\"Invalide : \" + ligne);\n            }\n            ligne = sc.nextLine();\n        }\n        System.out.println(\"Total : \" + total);\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int total = 0;\n        String ligne = sc.nextLine();\n        while (!ligne.equals(\"fin\")) {\n            try {\n                total += Integer.parseInt(ligne);\n            } catch (NumberFormatException e) {\n                System.out.println(\"Invalide : \" + ligne);\n            }\n            ligne = sc.nextLine();\n        }\n        System.out.println(\"Total : \" + total);\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "200",
+          "1OO",
+          "500",
+          "fin"
+        ],
+        "expected_output": "Invalide : 1OO\nTotal : 700"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "fin"
+        ],
+        "expected_output": "Total : 0"
+      },
+      {
+        "inputs": [
+          "x",
+          "1",
+          "y",
+          "fin"
+        ],
+        "expected_output": "Invalide : x\nInvalide : y\nTotal : 1"
+      }
+    ],
+    "hints": [
+      "Lis le nom de l’exception affichée par l’atelier.",
+      "parseInt lève une NumberFormatException.",
+      "Remplace ArithmeticException par NumberFormatException dans le catch."
+    ],
+    "explanation_fr": "Le catch ne s’applique qu’au type d’exception qu’il nomme.",
+    "common_wrong_answers": [],
+    "id": "java-m4-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Le carnet de la tontine",
+    "instruction_fr": "Écris une classe Membre avec private String nom et private int total (0 au départ), un constructeur Membre(String nom), void cotiser(int montant) qui lève IllegalArgumentException(\"montant invalide\") si montant <= 0, int getTotal() et toString() qui renvoie nom : total FCFA. main lit un nom puis des montants jusqu’à fin : chaque ligne invalide (texte ou montant <= 0) affiche Refusé : ligne. Affiche enfin le membre.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String nom = sc.nextLine();\n    }\n}\n\n// Écris la classe Membre ici",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        Membre m = new Membre(sc.nextLine());\n        String ligne = sc.nextLine();\n        while (!ligne.equals(\"fin\")) {\n            try {\n                m.cotiser(Integer.parseInt(ligne.trim()));\n            } catch (IllegalArgumentException e) {\n                System.out.println(\"Refusé : \" + ligne);\n            }\n            ligne = sc.nextLine();\n        }\n        System.out.println(m);\n    }\n}\n\nclass Membre {\n    private String nom;\n    private int total;\n\n    Membre(String nom) {\n        this.nom = nom;\n    }\n\n    void cotiser(int montant) {\n        if (montant <= 0) {\n            throw new IllegalArgumentException(\"montant invalide\");\n        }\n        total += montant;\n    }\n\n    int getTotal() {\n        return total;\n    }\n\n    @Override\n    public String toString() {\n        return nom + \" : \" + total + \" FCFA\";\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Afi",
+          "1000",
+          "-500",
+          "mille",
+          "2000",
+          "fin"
+        ],
+        "expected_output": "Refusé : -500\nRefusé : mille\nAfi : 3000 FCFA",
+        "expressions": [
+          {
+            "expr": "new Membre(\"Kodjo\")",
+            "expected": "Kodjo : 0 FCFA"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "Esi",
+          "fin"
+        ],
+        "expected_output": "Esi : 0 FCFA",
+        "expressions": [
+          {
+            "expr": "new Membre(\"Ama\").getTotal()",
+            "expected": "0"
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "Yao",
+          "0",
+          "500",
+          "fin"
+        ],
+        "expected_output": "Refusé : 0\nYao : 500 FCFA"
+      }
+    ],
+    "hints": [
+      "NumberFormatException est une sorte d’IllegalArgumentException : un seul catch suffit pour les deux refus.",
+      "cotiser vérifie avant d’ajouter.",
+      "println(m) appelle toString."
+    ],
+    "explanation_fr": "Les règles de la tontine vivent dans Membre ; main se contente de lire et de signaler les refus.",
+    "common_wrong_answers": [],
+    "id": "java-m4-02-e4"
+  }
+]

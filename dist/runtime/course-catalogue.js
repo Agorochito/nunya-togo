@@ -17,6 +17,7 @@ const TECHNOLOGIES={
   sql:{label:'SQL',mark:'SQL',aliases:'sql sqlite donnees base requete'},
   bash:{label:'Terminal et Linux',mark:'>_',aliases:'terminal linux bash shell ligne de commande console fichiers scripts'},
   cpp:{label:'C++',mark:'C++',aliases:'c++ cpp c plus plus programmation compilee systeme'},
+  java:{label:'Java',mark:'Jv',aliases:'java jdk objet objets classes programmation compilee android logiciel entreprise backend'},
   php:{label:'PHP',mark:'php',aliases:'php programmation serveur web back-end backend script'},
   git:{label:'Git',mark:'Git',aliases:'git versions branches historique'}
 };
@@ -82,7 +83,7 @@ function renderOrientation(api,courses){
 
 const DOMAINS=[
   {key:'web',title:'Web : sites et applications',text:'Créer des pages, les mettre en forme et les rendre interactives, du premier HTML à React.',technologies:['html','css','javascript','dom','react','http']},
-  {key:'langages',title:'Langages de programmation',text:'Programmer des scripts, des logiciels et des serveurs avec un langage généraliste.',technologies:['python','php','cpp']},
+  {key:'langages',title:'Langages de programmation',text:'Programmer des scripts, des logiciels et des serveurs avec un langage généraliste.',technologies:['python','php','cpp','java']},
   {key:'donnees',title:'Données',text:'Interroger, organiser et analyser des informations avec une base de données.',technologies:['sql']},
   {key:'outils',title:'Outils et systèmes',text:'Le terminal, Linux et les outils que tout développeur et tout analyste en sécurité utilisent chaque jour.',technologies:['bash']}
 ];

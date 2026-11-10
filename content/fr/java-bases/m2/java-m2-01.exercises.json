@@ -1,0 +1,204 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Admis ou non",
+    "instruction_fr": "Lis une note entière. Affiche Admis si elle vaut au moins 10, sinon Ajourné.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int note = Integer.parseInt(sc.nextLine());\n        if (note > 10) {\n            System.out.println(\"Admis\");\n        }\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int note = Integer.parseInt(sc.nextLine());\n        if (note >= 10) {\n            System.out.println(\"Admis\");\n        } else {\n            System.out.println(\"Ajourné\");\n        }\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "14"
+        ],
+        "expected_output": "Admis"
+      },
+      {
+        "inputs": [
+          "7"
+        ],
+        "expected_output": "Ajourné"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "10"
+        ],
+        "expected_output": "Admis"
+      },
+      {
+        "inputs": [
+          "9"
+        ],
+        "expected_output": "Ajourné"
+      }
+    ],
+    "hints": [
+      "10 doit donner Admis : quel opérateur inclut la limite ?",
+      "Il manque le cas contraire.",
+      "Utilise >= puis ajoute un bloc else."
+    ],
+    "explanation_fr": "Les valeurs limites, comme 10, révèlent souvent un mauvais opérateur.",
+    "common_wrong_answers": [],
+    "id": "java-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Tarif du taxi-moto",
+    "instruction_fr": "Lis une distance en km (entier). Affiche Tarif : 200 FCFA jusqu’à 3 km inclus, Tarif : 400 FCFA jusqu’à 8 km inclus, et Tarif : 700 FCFA au-delà. Une distance négative affiche Distance invalide.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int km = Integer.parseInt(sc.nextLine());\n        // Choisis le bon tarif\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int km = Integer.parseInt(sc.nextLine());\n        if (km < 0) {\n            System.out.println(\"Distance invalide\");\n        } else if (km <= 3) {\n            System.out.println(\"Tarif : 200 FCFA\");\n        } else if (km <= 8) {\n            System.out.println(\"Tarif : 400 FCFA\");\n        } else {\n            System.out.println(\"Tarif : 700 FCFA\");\n        }\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2"
+        ],
+        "expected_output": "Tarif : 200 FCFA"
+      },
+      {
+        "inputs": [
+          "6"
+        ],
+        "expected_output": "Tarif : 400 FCFA"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "Tarif : 200 FCFA"
+      },
+      {
+        "inputs": [
+          "8"
+        ],
+        "expected_output": "Tarif : 400 FCFA"
+      },
+      {
+        "inputs": [
+          "9"
+        ],
+        "expected_output": "Tarif : 700 FCFA"
+      },
+      {
+        "inputs": [
+          "-1"
+        ],
+        "expected_output": "Distance invalide"
+      }
+    ],
+    "hints": [
+      "Commence par le cas invalide.",
+      "Enchaîne les seuils du plus petit au plus grand avec else if.",
+      "Le dernier else couvre tout le reste."
+    ],
+    "explanation_fr": "Chaque else if n’est testé que si les cas précédents étaient faux.",
+    "common_wrong_answers": [],
+    "id": "java-m2-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Mot de passe du club",
+    "instruction_fr": "Le programme lit un code et doit afficher Accès autorisé si le code est nunya2026, sinon Accès refusé. Il compare mal les textes. Corrige-le.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String code = sc.nextLine();\n        if (code == \"nunya2026\") {\n            System.out.println(\"Accès autorisé\");\n        } else {\n            System.out.println(\"Accès refusé\");\n        }\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String code = sc.nextLine();\n        if (code.equals(\"nunya2026\")) {\n            System.out.println(\"Accès autorisé\");\n        } else {\n            System.out.println(\"Accès refusé\");\n        }\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "nunya2026"
+        ],
+        "expected_output": "Accès autorisé"
+      },
+      {
+        "inputs": [
+          "1234"
+        ],
+        "expected_output": "Accès refusé"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "NUNYA2026"
+        ],
+        "expected_output": "Accès refusé"
+      },
+      {
+        "inputs": [
+          "nunya2026"
+        ],
+        "expected_output": "Accès autorisé"
+      }
+    ],
+    "hints": [
+      "Le bon code est refusé : la comparaison ne regarde pas le contenu.",
+      "== compare des objets String, pas leur texte.",
+      "Utilise code.equals(\"nunya2026\")."
+    ],
+    "explanation_fr": "equals compare le contenu ; == ne fonctionne pas de façon fiable avec les textes lus au clavier.",
+    "common_wrong_answers": [],
+    "id": "java-m2-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Mention au bulletin",
+    "instruction_fr": "Lis une note entière. Si elle n’est pas entre 0 et 20, affiche Note invalide. Sinon affiche Très bien (16 et plus), Bien (14 et plus), Assez bien (12 et plus), Passable (10 et plus) ou Insuffisant.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int note = Integer.parseInt(sc.nextLine());\n        if (note >= 10) {\n            System.out.println(\"Passable\");\n        } else if (note >= 16) {\n            System.out.println(\"Très bien\");\n        }\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int note = Integer.parseInt(sc.nextLine());\n        if (note < 0 || note > 20) {\n            System.out.println(\"Note invalide\");\n        } else if (note >= 16) {\n            System.out.println(\"Très bien\");\n        } else if (note >= 14) {\n            System.out.println(\"Bien\");\n        } else if (note >= 12) {\n            System.out.println(\"Assez bien\");\n        } else if (note >= 10) {\n            System.out.println(\"Passable\");\n        } else {\n            System.out.println(\"Insuffisant\");\n        }\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "17"
+        ],
+        "expected_output": "Très bien"
+      },
+      {
+        "inputs": [
+          "11"
+        ],
+        "expected_output": "Passable"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "14"
+        ],
+        "expected_output": "Bien"
+      },
+      {
+        "inputs": [
+          "13"
+        ],
+        "expected_output": "Assez bien"
+      },
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "Insuffisant"
+      },
+      {
+        "inputs": [
+          "21"
+        ],
+        "expected_output": "Note invalide"
+      },
+      {
+        "inputs": [
+          "-2"
+        ],
+        "expected_output": "Note invalide"
+      }
+    ],
+    "hints": [
+      "Vérifie d’abord la validité avec ||.",
+      "Teste ensuite du seuil le plus haut au plus bas.",
+      "Termine par un else pour Insuffisant."
+    ],
+    "explanation_fr": "L’ordre des tests décide de la mention : le plus exigeant d’abord.",
+    "common_wrong_answers": [],
+    "id": "java-m2-01-e4"
+  }
+]

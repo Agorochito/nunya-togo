@@ -1,3 +1,11 @@
+# Vérifications 5.14.0 — 10 novembre 2026
+
+- Java dans le contrôle de compilation, compilé par OpenJDK 21 dans un conteneur `eclipse-temurin:21-jdk` sans réseau, au format de Wandbox : 24 exemples et 131 cas de référence ; 48 solutions acceptées et 48 codes de départ refusés. GitHub Actions exécute le même contrôle avec Temurin 21 natif.
+- Interface Java : 12 leçons, 48 exercices et 36 questions résolus à 360 puis 1440 px, une requête par vérification (48) plus une erreur de compilation volontaire expliquée avec sa ligne, cours relu à froid hors ligne et exécution hors ligne expliquée, zéro violation axe (`JAVA_BASES_UI_RESULTS.json`). Interfaces C++ et Terminal revérifiées avec le Worker partagé.
+- Service réel : le projet final (`java-m4-03-e4`, quatre cas) accepté par OpenJDK 21 sur wandbox.org en une requête, en 48,3 s puis 18,9 s ; un programme minimal prend 8 à 12 s. Le délai d’attente Java passe à 90 s.
+- 222 tests unitaires, dont l’enveloppe Java ; ESLint et TypeScript réussis. Catalogue (15 programmes, 16 raccourcis), parcours, rendu des 263 leçons, ancien pack enregistré et migration depuis 5.13.0 réussis. Le rendu global a dépassé son délai une fois, lancé juste après d’autres tests, puis réussi seul. Bundle principal : 147 936 octets gzip, sous 150 000.
+- Docker Desktop s’était arrêté pendant la session : le simulateur local réessaie désormais `docker info` une fois avant de conclure qu’il n’y a pas de JDK.
+
 # Vérifications 5.13.0 — 9 novembre 2026
 
 - Terminal dans le contrôle de compilation, exécuté dans un conteneur Debian sans réseau (Bash 5.2, GNU coreutils), au format de Wandbox : 24 exemples et 105 cas de référence ; 48 solutions acceptées et 48 scripts de départ refusés. GitHub Actions exécute le même contrôle avec Bash natif.

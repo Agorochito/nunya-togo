@@ -95,3 +95,6 @@ Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités origin
 
 Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide des manuels officiels GNU Bash, Coreutils, grep et findutils, cités dans chaque leçon ; aucun texte n’en est repris. Les journaux de connexion et les fichiers des exercices sont fictifs. Exécution : service Wandbox (Bash 5.2). Coloration : mode `shell` de `@codemirror/legacy-modes` (MIT).
 
+## Java : premiers programmes — 10 novembre 2026
+
+Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la documentation officielle Java (tutoriels dev.java et API Java SE 21 d’Oracle), citée dans chaque leçon ; aucun texte n’en est repris. Les noms, prix et stocks sont fictifs. Exécution : service Wandbox (OpenJDK 21). Coloration : mode `clike` (Java) de `@codemirror/legacy-modes` (MIT), déjà installé.

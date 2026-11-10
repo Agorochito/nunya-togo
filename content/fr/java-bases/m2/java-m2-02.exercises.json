@@ -1,0 +1,177 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Compte à rebours",
+    "instruction_fr": "Lis un entier n et affiche les nombres de n jusqu’à 1, un par ligne, puis Partez !",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine());\n        while (n >= 1) {\n            System.out.println(n);\n        }\n        System.out.println(\"Partez !\");\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine());\n        while (n >= 1) {\n            System.out.println(n);\n            n--;\n        }\n        System.out.println(\"Partez !\");\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "3\n2\n1\nPartez !"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "1\nPartez !"
+      },
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "Partez !"
+      }
+    ],
+    "hints": [
+      "Le programme ne s’arrête jamais : la condition reste vraie.",
+      "n doit diminuer à chaque tour.",
+      "Ajoute n--; dans le bloc."
+    ],
+    "explanation_fr": "Sans évolution de n, la boucle tourne jusqu’à l’arrêt forcé.",
+    "common_wrong_answers": [],
+    "id": "java-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Menu de la cantine",
+    "instruction_fr": "Lis un numéro de jour (1 à 5) et affiche le plat avec un switch : 1 Riz sauce arachide, 2 Pâte et gombo, 3 Haricots et gari, 4 Akoumé, 5 Spaghetti. Tout autre numéro affiche Pas de service.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int jour = Integer.parseInt(sc.nextLine());\n        // Utilise un switch\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int jour = Integer.parseInt(sc.nextLine());\n        String plat = switch (jour) {\n            case 1 -> \"Riz sauce arachide\";\n            case 2 -> \"Pâte et gombo\";\n            case 3 -> \"Haricots et gari\";\n            case 4 -> \"Akoumé\";\n            case 5 -> \"Spaghetti\";\n            default -> \"Pas de service\";\n        };\n        System.out.println(plat);\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2"
+        ],
+        "expected_output": "Pâte et gombo"
+      },
+      {
+        "inputs": [
+          "5"
+        ],
+        "expected_output": "Spaghetti"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "Riz sauce arachide"
+      },
+      {
+        "inputs": [
+          "4"
+        ],
+        "expected_output": "Akoumé"
+      },
+      {
+        "inputs": [
+          "6"
+        ],
+        "expected_output": "Pas de service"
+      },
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "Haricots et gari"
+      }
+    ],
+    "hints": [
+      "Un cas par jour, avec case n -> …",
+      "default couvre les autres valeurs.",
+      "Range le résultat du switch dans un String puis affiche-le."
+    ],
+    "explanation_fr": "Un switch qui produit une valeur évite de répéter System.out.println dans chaque cas.",
+    "common_wrong_answers": [],
+    "id": "java-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Somme jusqu’à zéro",
+    "instruction_fr": "Le programme lit des nombres jusqu’à 0 et affiche Somme : s. Il oublie toujours le premier nombre. Corrige l’ordre des instructions dans la boucle.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int somme = 0;\n        int n = Integer.parseInt(sc.nextLine());\n        while (n != 0) {\n            n = Integer.parseInt(sc.nextLine());\n            somme += n;\n        }\n        System.out.println(\"Somme : \" + somme);\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int somme = 0;\n        int n = Integer.parseInt(sc.nextLine());\n        while (n != 0) {\n            somme += n;\n            n = Integer.parseInt(sc.nextLine());\n        }\n        System.out.println(\"Somme : \" + somme);\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "10",
+          "20",
+          "30",
+          "0"
+        ],
+        "expected_output": "Somme : 60"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "0"
+        ],
+        "expected_output": "Somme : 0"
+      },
+      {
+        "inputs": [
+          "5",
+          "0"
+        ],
+        "expected_output": "Somme : 5"
+      }
+    ],
+    "hints": [
+      "Le premier nombre lu n’est jamais ajouté.",
+      "Dans la boucle, la lecture se fait avant l’ajout.",
+      "Ajoute d’abord n à somme, puis relis n."
+    ],
+    "explanation_fr": "Traiter la valeur courante, puis lire la suivante : c’est le schéma de la boucle sentinelle.",
+    "common_wrong_answers": [],
+    "id": "java-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Caisse du marché",
+    "instruction_fr": "Lis des prix (entiers) jusqu’au mot fin. Affiche ensuite Articles : a, Total : t FCFA, puis Remise : oui si le total dépasse 5000 (strictement), sinon Remise : non.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String ligne = sc.nextLine();\n        // Boucle jusqu’à fin, puis affiche le résumé\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int articles = 0;\n        int total = 0;\n        String ligne = sc.nextLine();\n        while (!ligne.equals(\"fin\")) {\n            total += Integer.parseInt(ligne);\n            articles++;\n            ligne = sc.nextLine();\n        }\n        System.out.println(\"Articles : \" + articles);\n        System.out.println(\"Total : \" + total + \" FCFA\");\n        System.out.println(\"Remise : \" + (total > 5000 ? \"oui\" : \"non\"));\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2000",
+          "1500",
+          "2500",
+          "fin"
+        ],
+        "expected_output": "Articles : 3\nTotal : 6000 FCFA\nRemise : oui"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "fin"
+        ],
+        "expected_output": "Articles : 0\nTotal : 0 FCFA\nRemise : non"
+      },
+      {
+        "inputs": [
+          "2500",
+          "2500",
+          "fin"
+        ],
+        "expected_output": "Articles : 2\nTotal : 5000 FCFA\nRemise : non"
+      }
+    ],
+    "hints": [
+      "Deux compteurs : le nombre d’articles et le total.",
+      "Compare le texte lu avec equals(\"fin\").",
+      "Après la boucle, un if décide de la remise."
+    ],
+    "explanation_fr": "La boucle sentinelle accepte zéro, un ou plusieurs articles sans changement.",
+    "common_wrong_answers": [],
+    "id": "java-m2-02-e4"
+  }
+]

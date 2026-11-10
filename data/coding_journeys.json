@@ -30,13 +30,14 @@
   {
     "id": "backend",
     "title_fr": "Développeur·se back-end",
-    "summary_fr": "Ce qui se passe derrière un site : la logique, les données et les échanges, en Python et en PHP.",
-    "jobs_fr": "Développeur·se back-end, développeur·se PHP ou Python, développeur·se d’API.",
+    "summary_fr": "Ce qui se passe derrière un site : la logique, les données et les échanges, en Python, en PHP et en Java.",
+    "jobs_fr": "Développeur·se back-end, développeur·se PHP, Python ou Java, développeur·se d’API.",
     "course_ids": [
       "python-bases",
       "python-intermediaire",
       "sql-bases",
       "php-bases",
+      "java-bases",
       "http-bases",
       "bash-bases",
       "git-bases"
@@ -51,7 +52,7 @@
         "summary_fr": "Empaqueter une application et la mettre en ligne."
       }
     ],
-    "outcome_fr": "Comprendre les données et les échanges d’un service, en Python comme en PHP, et travailler au terminal ; les objets PHP et le déploiement suivront."
+    "outcome_fr": "Comprendre les données et les échanges d’un service, en Python, en PHP et en Java, et travailler au terminal ; les objets PHP et le déploiement suivront."
   },
   {
     "id": "fullstack",
@@ -84,12 +85,13 @@
   {
     "id": "logiciel",
     "title_fr": "Ingénieur·e logiciel",
-    "summary_fr": "Des bases solides pour tout type de logiciel : un langage simple, un langage compilé, les données et la collaboration.",
+    "summary_fr": "Des bases solides pour tout type de logiciel : un langage simple, deux langages compilés, les données et la collaboration.",
     "jobs_fr": "Ingénieur·e logiciel, développeur·se d’applications, développeur·se systèmes.",
     "course_ids": [
       "python-bases",
       "python-intermediaire",
       "cpp-bases",
+      "java-bases",
       "sql-bases",
       "bash-bases",
       "git-bases"
@@ -100,15 +102,11 @@
         "summary_fr": "Tris, recherche, piles, files, graphes et complexité."
       },
       {
-        "title_fr": "Java : premiers programmes",
-        "summary_fr": "Classes, types et méthodes avec un vrai compilateur Java."
-      },
-      {
         "title_fr": "Qualité logicielle",
         "summary_fr": "Tests, lisibilité et revue de code."
       }
     ],
-    "outcome_fr": "Programmer avec confiance dans deux langages et gérer ses versions ; algorithmes, Java et qualité logicielle suivront."
+    "outcome_fr": "Programmer avec confiance en Python, C++ et Java, travailler au terminal et gérer ses versions ; algorithmes et qualité logicielle suivront."
   },
   {
     "id": "data",

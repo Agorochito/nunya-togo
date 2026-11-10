@@ -1,0 +1,110 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Déclarer trois variables",
+    "instruction_fr": "Déclare String produit = \"Gari\", int prix = 300 et boolean disponible = true, puis affiche : Gari : 300 FCFA",
+    "starter_code": "public class Main {\n    public static void main(String[] args) {\n        String produit = \"Gari\";\n        // Déclare prix et disponible, puis affiche\n    }\n}",
+    "solution": "public class Main {\n    public static void main(String[] args) {\n        String produit = \"Gari\";\n        int prix = 300;\n        boolean disponible = true;\n        System.out.println(produit + \" : \" + prix + \" FCFA\");\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Gari : 300 FCFA"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Gari : 300 FCFA"
+      }
+    ],
+    "hints": [
+      "Chaque déclaration commence par le type.",
+      "Assemble l’affichage avec +.",
+      "System.out.println(produit + \" : \" + prix + \" FCFA\");"
+    ],
+    "explanation_fr": "Les espaces autour des deux-points font partie du texte affiché.",
+    "common_wrong_answers": [],
+    "id": "java-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Fiche d’un membre",
+    "instruction_fr": "Déclare String nom = \"Kossi\", int age = 16, double taille = 1.75 et char classe = 'C'. Affiche : Kossi, 16 ans, 1.75 m, classe C",
+    "starter_code": "public class Main {\n    public static void main(String[] args) {\n        // Déclare les quatre variables\n    }\n}",
+    "solution": "public class Main {\n    public static void main(String[] args) {\n        String nom = \"Kossi\";\n        int age = 16;\n        double taille = 1.75;\n        char classe = 'C';\n        System.out.println(nom + \", \" + age + \" ans, \" + taille + \" m, classe \" + classe);\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Kossi, 16 ans, 1.75 m, classe C"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Kossi, 16 ans, 1.75 m, classe C"
+      }
+    ],
+    "hints": [
+      "Quatre déclarations, une ligne affichée.",
+      "Le caractère s’écrit entre apostrophes.",
+      "Enchaîne textes et variables avec +."
+    ],
+    "explanation_fr": "Le double 1.75 s’affiche avec ses deux décimales.",
+    "common_wrong_answers": [],
+    "id": "java-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer des déclarations",
+    "instruction_fr": "Le programme range un texte dans un int, répète un type lors d’une réaffectation et modifie une constante. Corrige-le pour afficher Stock : 8 puis Seuil : 5 : stock vaut d’abord 10, puis 8 ; SEUIL reste à 5.",
+    "starter_code": "public class Main {\n    public static void main(String[] args) {\n        final int SEUIL = 5;\n        int stock = \"10\";\n        int stock = 8;\n        SEUIL = 6;\n        System.out.println(\"Stock : \" + stock);\n        System.out.println(\"Seuil : \" + SEUIL);\n    }\n}",
+    "solution": "public class Main {\n    public static void main(String[] args) {\n        final int SEUIL = 5;\n        int stock = 10;\n        stock = 8;\n        System.out.println(\"Stock : \" + stock);\n        System.out.println(\"Seuil : \" + SEUIL);\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Stock : 8\nSeuil : 5"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Stock : 8\nSeuil : 5"
+      }
+    ],
+    "hints": [
+      "Lis le premier message : un texte ne va pas dans un int.",
+      "Une réaffectation ne répète pas le type.",
+      "Supprime la ligne qui modifie la constante."
+    ],
+    "explanation_fr": "Trois erreurs de compilation, chacune liée à une règle des types.",
+    "common_wrong_answers": [],
+    "id": "java-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Étiquette de produit",
+    "instruction_fr": "Déclare final double TAUX = 0.18, String article = \"Savon\", int prix = 250 et boolean enPromo = false. Affiche trois lignes : Article : Savon, Prix : 250 FCFA, Promo : false",
+    "starter_code": "public class Main {\n    public static void main(String[] args) {\n        final double TAUX = 0.18;\n        // Déclare les autres variables et affiche l’étiquette\n    }\n}",
+    "solution": "public class Main {\n    public static void main(String[] args) {\n        final double TAUX = 0.18;\n        String article = \"Savon\";\n        int prix = 250;\n        boolean enPromo = false;\n        System.out.println(\"Article : \" + article);\n        System.out.println(\"Prix : \" + prix + \" FCFA\");\n        System.out.println(\"Promo : \" + enPromo);\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Article : Savon\nPrix : 250 FCFA\nPromo : false"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Article : Savon\nPrix : 250 FCFA\nPromo : false"
+      }
+    ],
+    "hints": [
+      "Trois variables à déclarer, trois lignes à afficher.",
+      "Un boolean s’affiche true ou false.",
+      "System.out.println(\"Promo : \" + enPromo);"
+    ],
+    "explanation_fr": "La constante TAUX sera utile pour calculer une taxe dans la leçon suivante.",
+    "common_wrong_answers": [],
+    "id": "java-m1-02-e4"
+  }
+]

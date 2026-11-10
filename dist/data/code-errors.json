@@ -82,5 +82,57 @@
   "TimeoutError": [
     "Le script a dépassé le temps autorisé.",
     "Vérifie qu’une boucle s’arrête et qu’aucune commande n’attend une saisie absente."
+  ],
+  "ArithmeticException": [
+    "Java a refusé un calcul impossible, le plus souvent une division entière par zéro.",
+    "Vérifie le diviseur avant de diviser, par exemple avec if (b != 0)."
+  ],
+  "ArrayIndexOutOfBoundsException": [
+    "Le programme lit ou écrit une case qui n’existe pas dans le tableau.",
+    "Les indices vont de 0 à t.length - 1 : vérifie la condition de ta boucle (< plutôt que <=)."
+  ],
+  "StringIndexOutOfBoundsException": [
+    "Le programme demande une position qui n’existe pas dans le texte.",
+    "Les positions vont de 0 à texte.length() - 1 ; vérifie charAt et substring."
+  ],
+  "IndexOutOfBoundsException": [
+    "Le programme demande un élément qui n’existe pas dans la liste.",
+    "Les indices d’une ArrayList vont de 0 à liste.size() - 1."
+  ],
+  "NullPointerException": [
+    "Le programme utilise un objet qui n’existe pas (null).",
+    "Cherche un objet jamais créé avec new, un attribut jamais rempli ou une recherche qui a renvoyé null."
+  ],
+  "NumberFormatException": [
+    "Un texte n’a pas pu être converti en nombre.",
+    "Vérifie la saisie, retire les espaces avec trim() ou intercepte l’erreur avec try et catch."
+  ],
+  "InputMismatchException": [
+    "La saisie ne correspond pas au type attendu par le Scanner.",
+    "Lis la ligne entière avec nextLine(), puis convertis-la avec Integer.parseInt."
+  ],
+  "NoSuchElementException": [
+    "Le programme lit plus de saisies qu’il n’en reçoit.",
+    "Compte les lectures : chaque nextLine() consomme une ligne de saisie."
+  ],
+  "StackOverflowError": [
+    "Trop d’appels de méthodes imbriqués : une méthode s’appelle sans fin.",
+    "Vérifie le cas d’arrêt de ta méthode récursive."
+  ],
+  "IllegalArgumentException": [
+    "Une méthode a refusé un argument invalide.",
+    "Lis le message de l’exception : il indique la règle qui n’est pas respectée."
+  ],
+  "IllegalStateException": [
+    "Une opération a été demandée au mauvais moment.",
+    "Vérifie l’ordre des appels et l’état de l’objet."
+  ],
+  "ClassCastException": [
+    "Le programme a converti un objet vers un type incompatible.",
+    "Vérifie le type réel de l’objet avant la conversion."
+  ],
+  "OutOfMemoryError": [
+    "Le programme a utilisé trop de mémoire.",
+    "Cherche une liste qui grandit sans fin dans une boucle."
   ]
 }

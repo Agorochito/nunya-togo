@@ -1,0 +1,186 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Initiales",
+    "instruction_fr": "static String initiales(String prenom, String nom) doit renvoyer les deux initiales en majuscules suivies d’un point : afi et mensah donnent A.M. La version actuelle prend la mauvaise lettre et oublie les majuscules.",
+    "starter_code": "public class Main {\n    static String initiales(String prenom, String nom) {\n        return prenom.substring(1, 2) + \".\" + nom.substring(1, 2) + \".\";\n    }\n\n    public static void main(String[] args) {\n        System.out.println(initiales(\"afi\", \"mensah\"));\n    }\n}",
+    "solution": "public class Main {\n    static String initiales(String prenom, String nom) {\n        return (prenom.substring(0, 1) + \".\" + nom.substring(0, 1) + \".\").toUpperCase();\n    }\n\n    public static void main(String[] args) {\n        System.out.println(initiales(\"afi\", \"mensah\"));\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "A.M.",
+        "expressions": [
+          {
+            "expr": "Main.initiales(\"kofi\", \"agbo\")",
+            "expected": "K.A."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "A.M.",
+        "expressions": [
+          {
+            "expr": "Main.initiales(\"Esi\", \"dzifa\")",
+            "expected": "E.D."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La première lettre est à la position 0.",
+      "substring(0, 1) extrait un seul caractère.",
+      "Termine par .toUpperCase() sur le texte assemblé."
+    ],
+    "explanation_fr": "toUpperCase renvoie un nouveau texte : on l’applique au résultat assemblé.",
+    "common_wrong_answers": [],
+    "id": "java-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Compter les voyelles",
+    "instruction_fr": "Écris static int voyelles(String mot) qui compte les lettres a, e, i, o, u, en majuscule ou en minuscule. main lit un mot et affiche Voyelles : v.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    // Écris voyelles ici\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String mot = sc.nextLine();\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    static int voyelles(String mot) {\n        String bas = mot.toLowerCase();\n        int compte = 0;\n        for (int i = 0; i < bas.length(); i++) {\n            if (\"aeiou\".indexOf(bas.charAt(i)) >= 0) {\n                compte++;\n            }\n        }\n        return compte;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String mot = sc.nextLine();\n        System.out.println(\"Voyelles : \" + voyelles(mot));\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Atakpame"
+        ],
+        "expected_output": "Voyelles : 4",
+        "expressions": [
+          {
+            "expr": "Main.voyelles(\"Kara\")",
+            "expected": "2"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "xyz"
+        ],
+        "expected_output": "Voyelles : 0",
+        "expressions": [
+          {
+            "expr": "Main.voyelles(\"OUI\")",
+            "expected": "3"
+          },
+          {
+            "expr": "Main.voyelles(\"\")",
+            "expected": "0"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Mets d’abord le mot en minuscules.",
+      "Parcours avec charAt et une boucle sur length().",
+      "\"aeiou\".indexOf(c) >= 0 indique si c est une voyelle."
+    ],
+    "explanation_fr": "indexOf sur un petit texte de référence évite cinq comparaisons.",
+    "common_wrong_answers": [],
+    "id": "java-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Liste de courses",
+    "instruction_fr": "Le programme lit des articles jusqu’à fin et affiche la liste numérotée, puis Total : n articles. Il utilise une ArrayList comme un tableau et ne compile pas. Corrige-le.",
+    "starter_code": "import java.util.ArrayList;\nimport java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        ArrayList<String> liste = new ArrayList<>();\n        String ligne = sc.nextLine();\n        while (!ligne.equals(\"fin\")) {\n            liste.add(ligne);\n            ligne = sc.nextLine();\n        }\n        for (int i = 0; i < liste.length; i++) {\n            System.out.println((i + 1) + \". \" + liste[i]);\n        }\n        System.out.println(\"Total : \" + liste.length + \" articles\");\n    }\n}",
+    "solution": "import java.util.ArrayList;\nimport java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        ArrayList<String> liste = new ArrayList<>();\n        String ligne = sc.nextLine();\n        while (!ligne.equals(\"fin\")) {\n            liste.add(ligne);\n            ligne = sc.nextLine();\n        }\n        for (int i = 0; i < liste.size(); i++) {\n            System.out.println((i + 1) + \". \" + liste.get(i));\n        }\n        System.out.println(\"Total : \" + liste.size() + \" articles\");\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "riz",
+          "tomates",
+          "fin"
+        ],
+        "expected_output": "1. riz\n2. tomates\nTotal : 2 articles"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "fin"
+        ],
+        "expected_output": "Total : 0 articles"
+      },
+      {
+        "inputs": [
+          "sel",
+          "fin"
+        ],
+        "expected_output": "1. sel\nTotal : 1 articles"
+      }
+    ],
+    "hints": [
+      "Une ArrayList n’a ni length ni crochets.",
+      "La taille se lit avec size().",
+      "Un élément se lit avec get(i)."
+    ],
+    "explanation_fr": "Tableau et liste se parcourent pareil, mais avec des outils différents.",
+    "common_wrong_answers": [],
+    "id": "java-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Résultats de l’interrogation",
+    "instruction_fr": "Lis des lignes nom,note jusqu’à fin (espaces possibles autour de la virgule). Écris static int noteDe(String ligne) et static String nomDe(String ligne). Range dans une ArrayList les noms des élèves qui ont au moins 10, puis affiche Admis : n sur total, et chaque nom admis sur sa ligne.",
+    "starter_code": "import java.util.ArrayList;\nimport java.util.Scanner;\n\npublic class Main {\n    static int noteDe(String ligne) {\n        return 0;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String ligne = sc.nextLine();\n    }\n}",
+    "solution": "import java.util.ArrayList;\nimport java.util.Scanner;\n\npublic class Main {\n    static int noteDe(String ligne) {\n        return Integer.parseInt(ligne.split(\",\")[1].trim());\n    }\n\n    static String nomDe(String ligne) {\n        return ligne.split(\",\")[0].trim();\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        ArrayList<String> admis = new ArrayList<>();\n        int total = 0;\n        String ligne = sc.nextLine();\n        while (!ligne.equals(\"fin\")) {\n            total++;\n            if (noteDe(ligne) >= 10) {\n                admis.add(nomDe(ligne));\n            }\n            ligne = sc.nextLine();\n        }\n        System.out.println(\"Admis : \" + admis.size() + \" sur \" + total);\n        for (String nom : admis) {\n            System.out.println(nom);\n        }\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Afi,14",
+          "Yao, 8",
+          "Kossi , 10",
+          "fin"
+        ],
+        "expected_output": "Admis : 2 sur 3\nAfi\nKossi",
+        "expressions": [
+          {
+            "expr": "Main.noteDe(\"Ama, 17\")",
+            "expected": "17"
+          },
+          {
+            "expr": "Main.nomDe(\" Ama ,17\")",
+            "expected": "Ama"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "fin"
+        ],
+        "expected_output": "Admis : 0 sur 0",
+        "expressions": [
+          {
+            "expr": "Main.noteDe(\"Edem,0\")",
+            "expected": "0"
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "Esi,20",
+          "Kodjo,9",
+          "fin"
+        ],
+        "expected_output": "Admis : 1 sur 2\nEsi"
+      }
+    ],
+    "hints": [
+      "split(\",\") sépare le nom et la note.",
+      "trim retire les espaces autour de chaque morceau.",
+      "Ajoute le nom à la liste quand la note vaut au moins 10."
+    ],
+    "explanation_fr": "Découper, nettoyer, convertir : le même trio sert à lire n’importe quel fichier simple.",
+    "common_wrong_answers": [],
+    "id": "java-m3-03-e4"
+  }
+]

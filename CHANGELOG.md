@@ -1,5 +1,12 @@
 # Historique
 
+## 5.14.0 — 10 novembre 2026
+
+- Nouveau cours : **Java : premiers programmes**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux en français : `System.out.println`, types et `final`, calculs et division entière, saisies avec `Scanner` et `Integer.parseInt`, `if`/`else` et `equals`, `switch` en flèche, `while`, `for`, méthodes et surcharge, tableaux, `String` et `ArrayList`, classes et constructeurs, encapsulation, exceptions avec `try`/`catch`, et projet de gestion d’une boutique de quartier (stock, ventes refusées, rapport).
+- Java 21 (OpenJDK) compilé sur Wandbox par le Worker en ligne partagé, en une requête par vérification. Les erreurs du compilateur gardent la ligne de l’élève ; les exceptions (division par zéro, indice hors du tableau, `null`, conversion impossible…) sont expliquées en français avec leur ligne, et chaque cas est arrêté au-delà de 5 secondes sans bloquer les autres explications. Les méthodes et les objets de l’élève sont vérifiés directement, par exemple `new Champ(5, 8).surface()`.
+- Le cours remplace l’étape « Java — en préparation » du parcours ingénieur·e logiciel et rejoint le parcours back-end. Il apparaît dans le domaine « Langages de programmation » du catalogue.
+- La page « Tes données, en clair » cite aussi Java parmi les ateliers en ligne. Explications ajoutées pour 13 exceptions Java.
+
 ## 5.13.0 — 9 novembre 2026
 
 - Nouveau cours : **Terminal et Linux : les bases**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux en français : commandes et arguments, dossiers et chemins, `mkdir`/`cp`/`mv`/`rm`, `cat`/`head`/`tail`/`wc`, `grep`, tubes avec `sort`/`uniq`/`cut`, redirections, variables et `read`, `if`, boucles, droits avec `chmod`, et projet d’analyse d’un journal de connexions qui signale les adresses suspectes.

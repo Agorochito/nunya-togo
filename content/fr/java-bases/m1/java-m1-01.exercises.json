@@ -1,0 +1,110 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Afficher deux lignes",
+    "instruction_fr": "Corrige le programme pour afficher Bonjour Afi puis, sur la ligne suivante, Bienvenue au club.",
+    "starter_code": "public class Main {\n    public static void main(String[] args) {\n        System.out.print(\"Bonjour Afi\");\n        System.out.print(\"Bienvenue au club\");\n    }\n}",
+    "solution": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Bonjour Afi\");\n        System.out.println(\"Bienvenue au club\");\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bonjour Afi\nBienvenue au club"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Bonjour Afi\nBienvenue au club"
+      }
+    ],
+    "hints": [
+      "Les deux textes sont collés à l’affichage.",
+      "print ne passe pas à la ligne.",
+      "Remplace print par println."
+    ],
+    "explanation_fr": "println ajoute le passage à la ligne après le texte.",
+    "common_wrong_answers": [],
+    "id": "java-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Affiche du marché",
+    "instruction_fr": "Affiche trois lignes : Marché de Sokodé, Tomates : 500 FCFA le tas, puis Ignames : 1000 FCFA.",
+    "starter_code": "public class Main {\n    public static void main(String[] args) {\n        // Écris ici les trois lignes\n    }\n}",
+    "solution": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Marché de Sokodé\");\n        System.out.println(\"Tomates : 500 FCFA le tas\");\n        System.out.println(\"Ignames : 1000 FCFA\");\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Marché de Sokodé\nTomates : 500 FCFA le tas\nIgnames : 1000 FCFA"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Marché de Sokodé\nTomates : 500 FCFA le tas\nIgnames : 1000 FCFA"
+      }
+    ],
+    "hints": [
+      "Une ligne affichée correspond à un println.",
+      "Recopie les textes exactement, espaces compris.",
+      "Trois instructions System.out.println suffisent."
+    ],
+    "explanation_fr": "L’affichage est comparé caractère par caractère.",
+    "common_wrong_answers": [],
+    "id": "java-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un programme",
+    "instruction_fr": "Ce programme ne compile pas : une majuscule oubliée, un nom de méthode mal écrit et un point-virgule manquant. Corrige-le pour afficher Club de code puis Salle 2.",
+    "starter_code": "public class Main {\n    public static void main(String[] args) {\n        system.out.println(\"Club de code\")\n        System.out.printn(\"Salle 2\");\n    }\n}",
+    "solution": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Club de code\");\n        System.out.println(\"Salle 2\");\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Club de code\nSalle 2"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Club de code\nSalle 2"
+      }
+    ],
+    "hints": [
+      "Lis le premier message du compilateur et sa ligne.",
+      "System commence par une majuscule ; la méthode s’appelle println.",
+      "Termine la première instruction par ;."
+    ],
+    "explanation_fr": "Une seule faute suffit à empêcher la compilation de tout le programme.",
+    "common_wrong_answers": [],
+    "id": "java-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Carte de visite du club",
+    "instruction_fr": "Affiche quatre lignes : Club Nunya, Lieu : Atakpamé, Jour : mercredi et Entrée libre. Construis la deuxième ligne avec un print(\"Lieu : \") suivi d’un println(\"Atakpamé\").",
+    "starter_code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Club Nunya\");\n    }\n}",
+    "solution": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Club Nunya\");\n        System.out.print(\"Lieu : \");\n        System.out.println(\"Atakpamé\");\n        System.out.println(\"Jour : mercredi\");\n        System.out.println(\"Entrée libre\");\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Club Nunya\nLieu : Atakpamé\nJour : mercredi\nEntrée libre"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Club Nunya\nLieu : Atakpamé\nJour : mercredi\nEntrée libre"
+      }
+    ],
+    "hints": [
+      "Quatre lignes affichées.",
+      "print reste sur la ligne, println la termine.",
+      "System.out.print(\"Lieu : \"); puis System.out.println(\"Atakpamé\");"
+    ],
+    "explanation_fr": "print et println se combinent pour construire une ligne en plusieurs morceaux.",
+    "common_wrong_answers": [],
+    "id": "java-m1-01-e4"
+  }
+]

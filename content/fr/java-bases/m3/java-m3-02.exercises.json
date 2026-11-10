@@ -1,0 +1,187 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Somme d’un tableau",
+    "instruction_fr": "La méthode static int somme(int[] t) sort du tableau. Corrige sa boucle ; main affiche la somme de {4, 8, 15}.",
+    "starter_code": "public class Main {\n    static int somme(int[] t) {\n        int total = 0;\n        for (int i = 0; i <= t.length; i++) {\n            total += t[i];\n        }\n        return total;\n    }\n\n    public static void main(String[] args) {\n        int[] valeurs = {4, 8, 15};\n        System.out.println(somme(valeurs));\n    }\n}",
+    "solution": "public class Main {\n    static int somme(int[] t) {\n        int total = 0;\n        for (int i = 0; i < t.length; i++) {\n            total += t[i];\n        }\n        return total;\n    }\n\n    public static void main(String[] args) {\n        int[] valeurs = {4, 8, 15};\n        System.out.println(somme(valeurs));\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "27",
+        "expressions": [
+          {
+            "expr": "Main.somme(new int[]{1, 2, 3})",
+            "expected": "6"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "27",
+        "expressions": [
+          {
+            "expr": "Main.somme(new int[]{})",
+            "expected": "0"
+          },
+          {
+            "expr": "Main.somme(new int[]{-5, 5, 10})",
+            "expected": "10"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’exception indique un indice hors du tableau.",
+      "Le dernier indice valide est t.length - 1.",
+      "Remplace <= par <."
+    ],
+    "explanation_fr": "i < t.length parcourt exactement toutes les cases.",
+    "common_wrong_answers": [],
+    "id": "java-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Ventes de la semaine",
+    "instruction_fr": "Écris static int maximum(int[] t) et static int joursAuDessus(int[] t, int seuil), qui compte les cases strictement supérieures au seuil. main affiche Record : m puis Bons jours : j pour les ventes {120, 340, 90, 410, 200} et le seuil 150.",
+    "starter_code": "public class Main {\n    // Écris maximum et joursAuDessus\n\n    public static void main(String[] args) {\n        int[] ventes = {120, 340, 90, 410, 200};\n        // Affiche le record et les bons jours\n    }\n}",
+    "solution": "public class Main {\n    static int maximum(int[] t) {\n        int max = t[0];\n        for (int v : t) {\n            if (v > max) {\n                max = v;\n            }\n        }\n        return max;\n    }\n\n    static int joursAuDessus(int[] t, int seuil) {\n        int compte = 0;\n        for (int v : t) {\n            if (v > seuil) {\n                compte++;\n            }\n        }\n        return compte;\n    }\n\n    public static void main(String[] args) {\n        int[] ventes = {120, 340, 90, 410, 200};\n        System.out.println(\"Record : \" + maximum(ventes));\n        System.out.println(\"Bons jours : \" + joursAuDessus(ventes, 150));\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Record : 410\nBons jours : 3",
+        "expressions": [
+          {
+            "expr": "Main.maximum(new int[]{3, 9, 2})",
+            "expected": "9"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Record : 410\nBons jours : 3",
+        "expressions": [
+          {
+            "expr": "Main.maximum(new int[]{-4, -2, -9})",
+            "expected": "-2"
+          },
+          {
+            "expr": "Main.joursAuDessus(new int[]{5, 6, 7}, 6)",
+            "expected": "1"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le maximum part de t[0], pas de 0.",
+      "joursAuDessus compte avec un compteur.",
+      "Une boucle for-each suffit pour lire."
+    ],
+    "explanation_fr": "Partir de t[0] garde un maximum juste même avec des nombres négatifs.",
+    "common_wrong_answers": [],
+    "id": "java-m3-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Moyenne de la classe",
+    "instruction_fr": "static double moyenne(int[] t) renvoie une moyenne fausse : elle ignore la première note et perd les décimales. Corrige-la ; main affiche la moyenne de {12, 15} avec String.format(\"%.2f\", …).",
+    "starter_code": "public class Main {\n    static double moyenne(int[] t) {\n        int total = 0;\n        for (int i = 1; i < t.length; i++) {\n            total += t[i];\n        }\n        return total / t.length;\n    }\n\n    public static void main(String[] args) {\n        int[] notes = {12, 15};\n        System.out.println(String.format(\"%.2f\", moyenne(notes)));\n    }\n}",
+    "solution": "public class Main {\n    static double moyenne(int[] t) {\n        int total = 0;\n        for (int i = 0; i < t.length; i++) {\n            total += t[i];\n        }\n        return (double) total / t.length;\n    }\n\n    public static void main(String[] args) {\n        int[] notes = {12, 15};\n        System.out.println(String.format(\"%.2f\", moyenne(notes)));\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "13.50",
+        "expressions": [
+          {
+            "expr": "Main.moyenne(new int[]{10, 11})",
+            "expected": "10.5"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "13.50",
+        "expressions": [
+          {
+            "expr": "Main.moyenne(new int[]{7})",
+            "expected": "7.0"
+          },
+          {
+            "expr": "Main.moyenne(new int[]{1, 2, 2})",
+            "expected": "1.6666666666666667"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La boucle commence à 1 : la case 0 est oubliée.",
+      "total / t.length divise deux int.",
+      "Commence à 0 et convertis : (double) total / t.length."
+    ],
+    "explanation_fr": "Deux erreurs classiques : un indice de départ et une division entière.",
+    "common_wrong_answers": [],
+    "id": "java-m3-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Relevé de températures",
+    "instruction_fr": "Lis un nombre de jours n puis n températures entières. Range-les dans un tableau, puis affiche Max : x, Min : y, Moyenne : m (une décimale avec String.format) et Jours chauds : c (au moins 35). Écris static int minimum(int[] t).",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine());\n        // Crée le tableau, remplis-le, puis calcule\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    static int minimum(int[] t) {\n        int min = t[0];\n        for (int v : t) {\n            if (v < min) {\n                min = v;\n            }\n        }\n        return min;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine());\n        int[] temp = new int[n];\n        for (int i = 0; i < n; i++) {\n            temp[i] = Integer.parseInt(sc.nextLine());\n        }\n        int max = temp[0];\n        int total = 0;\n        int chauds = 0;\n        for (int v : temp) {\n            if (v > max) max = v;\n            total += v;\n            if (v >= 35) chauds++;\n        }\n        System.out.println(\"Max : \" + max);\n        System.out.println(\"Min : \" + minimum(temp));\n        System.out.println(\"Moyenne : \" + String.format(\"%.1f\", (double) total / n));\n        System.out.println(\"Jours chauds : \" + chauds);\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "4",
+          "31",
+          "37",
+          "29",
+          "36"
+        ],
+        "expected_output": "Max : 37\nMin : 29\nMoyenne : 33.3\nJours chauds : 2",
+        "expressions": [
+          {
+            "expr": "Main.minimum(new int[]{3, -2, 5})",
+            "expected": "-2"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1",
+          "30"
+        ],
+        "expected_output": "Max : 30\nMin : 30\nMoyenne : 30.0\nJours chauds : 0",
+        "expressions": [
+          {
+            "expr": "Main.minimum(new int[]{8})",
+            "expected": "8"
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "2",
+          "22",
+          "35"
+        ],
+        "expected_output": "Max : 35\nMin : 22\nMoyenne : 28.5\nJours chauds : 1"
+      }
+    ],
+    "hints": [
+      "Lis n, crée new int[n], puis remplis avec une boucle.",
+      "Une seule boucle peut calculer max, total et jours chauds.",
+      "minimum suit le même schéma que maximum avec <."
+    ],
+    "explanation_fr": "Ranger d’abord, calculer ensuite : le tableau permet plusieurs passages sur les mêmes données.",
+    "common_wrong_answers": [],
+    "id": "java-m3-02-e4"
+  }
+]

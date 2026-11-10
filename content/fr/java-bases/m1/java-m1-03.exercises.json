@@ -1,0 +1,158 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Partager une facture",
+    "instruction_fr": "Lis un montant total puis un nombre de personnes (deux int) et affiche la part de chacun avec ses décimales : pour 7000 et 4, affiche Part : 1750.0",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int total = Integer.parseInt(sc.nextLine());\n        int personnes = Integer.parseInt(sc.nextLine());\n        System.out.println(\"Part : \" + total / personnes);\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int total = Integer.parseInt(sc.nextLine());\n        int personnes = Integer.parseInt(sc.nextLine());\n        System.out.println(\"Part : \" + (double) total / personnes);\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "7000",
+          "4"
+        ],
+        "expected_output": "Part : 1750.0"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "7000",
+          "3"
+        ],
+        "expected_output": "Part : 2333.3333333333335"
+      },
+      {
+        "inputs": [
+          "5",
+          "2"
+        ],
+        "expected_output": "Part : 2.5"
+      }
+    ],
+    "hints": [
+      "Avec deux int, la division perd les décimales.",
+      "Convertis le total en double avant de diviser.",
+      "(double) total / personnes"
+    ],
+    "explanation_fr": "Le cast porte sur total, puis la division se fait entre un double et un int.",
+    "common_wrong_answers": [],
+    "id": "java-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Pair ou reste",
+    "instruction_fr": "Lis un nombre entier n et affiche deux lignes : Reste par 2 : r puis Moitié : m, où r = n % 2 et m = n / 2 (division entière). Pour 17 : Reste par 2 : 1 puis Moitié : 8.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine());\n        // Affiche le reste et la moitié\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine());\n        System.out.println(\"Reste par 2 : \" + n % 2);\n        System.out.println(\"Moitié : \" + n / 2);\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "17"
+        ],
+        "expected_output": "Reste par 2 : 1\nMoitié : 8"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "40"
+        ],
+        "expected_output": "Reste par 2 : 0\nMoitié : 20"
+      },
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "Reste par 2 : 1\nMoitié : 0"
+      }
+    ],
+    "hints": [
+      "% donne le reste, / entre int la partie entière.",
+      "% et / passent avant + : pas besoin de parenthèses.",
+      "System.out.println(\"Moitié : \" + n / 2);"
+    ],
+    "explanation_fr": "Un nombre est pair quand son reste par 2 vaut 0.",
+    "common_wrong_answers": [],
+    "id": "java-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Calcul d’un panier",
+    "instruction_fr": "Le programme lit un prix puis une quantité et doit afficher Total : prix × quantité. Il affiche un texte collé au lieu du produit, et un autre calcul additionne mal. Corrige-le : pour 250 et 4, il doit afficher Total : 1000 puis Avec livraison : 1500 (livraison de 500).",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String prix = sc.nextLine();\n        String quantite = sc.nextLine();\n        System.out.println(\"Total : \" + prix + quantite);\n        System.out.println(\"Avec livraison : \" + prix + quantite + 500);\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int prix = Integer.parseInt(sc.nextLine());\n        int quantite = Integer.parseInt(sc.nextLine());\n        System.out.println(\"Total : \" + prix * quantite);\n        System.out.println(\"Avec livraison : \" + (prix * quantite + 500));\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "250",
+          "4"
+        ],
+        "expected_output": "Total : 1000\nAvec livraison : 1500"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "100",
+          "3"
+        ],
+        "expected_output": "Total : 300\nAvec livraison : 800"
+      }
+    ],
+    "hints": [
+      "Les saisies sont des String : + les colle.",
+      "Convertis chaque saisie avec Integer.parseInt.",
+      "Mets le calcul de la livraison entre parenthèses."
+    ],
+    "explanation_fr": "Convertir les saisies, puis protéger le calcul avec des parenthèses.",
+    "common_wrong_answers": [],
+    "id": "java-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Moyenne de trois notes",
+    "instruction_fr": "Lis un prénom puis trois notes entières. Affiche Prénom : moyenne m sur 20, où m est la moyenne en double. Pour Ama, 12, 15, 16 : Ama : moyenne 14.333333333333334 sur 20. Affiche ensuite Meilleure note : x avec Math.max.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String prenom = sc.nextLine();\n        // Lis les trois notes, calcule la moyenne et la meilleure note\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String prenom = sc.nextLine();\n        int a = Integer.parseInt(sc.nextLine());\n        int b = Integer.parseInt(sc.nextLine());\n        int c = Integer.parseInt(sc.nextLine());\n        double moyenne = (a + b + c) / 3.0;\n        System.out.println(prenom + \" : moyenne \" + moyenne + \" sur 20\");\n        System.out.println(\"Meilleure note : \" + Math.max(a, Math.max(b, c)));\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Ama",
+          "12",
+          "15",
+          "16"
+        ],
+        "expected_output": "Ama : moyenne 14.333333333333334 sur 20\nMeilleure note : 16"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "Kofi",
+          "8",
+          "14",
+          "8"
+        ],
+        "expected_output": "Kofi : moyenne 10.0 sur 20\nMeilleure note : 14"
+      },
+      {
+        "inputs": [
+          "Esi",
+          "18",
+          "9",
+          "13"
+        ],
+        "expected_output": "Esi : moyenne 13.333333333333334 sur 20\nMeilleure note : 18"
+      }
+    ],
+    "hints": [
+      "Divise par 3.0 pour garder les décimales.",
+      "Math.max compare deux valeurs : imbrique deux appels pour trois.",
+      "Math.max(a, Math.max(b, c))"
+    ],
+    "explanation_fr": "Diviser par 3.0 transforme la somme en double avant la division.",
+    "common_wrong_answers": [],
+    "id": "java-m1-03-e4"
+  }
+]

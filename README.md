@@ -8,7 +8,7 @@ Apprendre en français, à son rythme, même hors connexion : coder depuis zéro
 
 ## État du projet
 
-Pilote en cours ; version 5.13. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
+Pilote en cours ; version 5.14. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
 
 ## Ce que propose Nunya
 
@@ -21,6 +21,7 @@ Pilote en cours ; version 5.13. Tous les contenus sont des **brouillons** rédig
    - *CSS intermédiaire* (6 modules, 18 leçons, 72 exercices) : cascade, Flexbox et grilles robustes, interfaces adaptatives, états accessibles et tableau de club ;
    - *PHP : les bases* (4 modules, 12 leçons, 48 exercices) avec un vrai interpréteur PHP 8.3 sur l’appareil : variables, conditions, boucles, tableaux, fonctions et caisse de boutique ;
    - *C++ : les fondamentaux* (4 modules, 12 leçons, 48 exercices), compilé en ligne par GCC 13 sur Wandbox : types, boucles, fonctions, vecteurs, textes, références, structures et bulletin de classe ;
+   - *Java : premiers programmes* (4 modules, 12 leçons, 48 exercices), compilé en ligne par OpenJDK 21 sur Wandbox : types, conditions, boucles, méthodes, tableaux, textes et listes, classes, encapsulation, exceptions et gestion d’une boutique ;
    - *Terminal et Linux : les bases* (4 modules, 12 leçons, 48 exercices), dans un vrai Linux en ligne : fichiers, grep, tubes, redirections, scripts Bash, droits d’accès et analyse d’un journal de connexions ;
    - Git/GitHub (12 leçons, 48 activités, dont 32 ateliers Git locaux) ;
    - SQL (18 leçons, 72 exercices) avec SQLite réel et tableaux de résultats ;
@@ -43,7 +44,7 @@ Pilote en cours ; version 5.13. Tous les contenus sont des **brouillons** rédig
 
 La progression, le profil et les notes restent **sur l’appareil** (localStorage et IndexedDB), sans compte. Ils peuvent être exportés et restaurés.
 
-Deux fonctions utilisent un service en ligne. Les ateliers C++ et Terminal envoient le programme ou les commandes, les saisies de test et les fichiers fictifs de l’exercice au service Wandbox (Japon), sans pseudo ni progression. Nunya Aide utilise un serveur :
+Deux fonctions utilisent un service en ligne. Les ateliers C++, Java et Terminal envoient le programme ou les commandes, les saisies de test et les fichiers fictifs de l’exercice au service Wandbox (Japon), sans pseudo ni progression. Nunya Aide utilise un serveur :
 - une session anonyme Supabase (Union européenne) ;
 - un modèle à poids ouverts *gpt-oss* hébergé par Groq (États-Unis) ;
 - aucune question n’est enregistrée par Nunya.

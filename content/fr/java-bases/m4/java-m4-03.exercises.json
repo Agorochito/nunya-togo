@@ -1,0 +1,207 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une ligne, un article",
+    "instruction_fr": "Écris static Article lireArticle(String ligne) qui découpe nom;prix;stock (espaces possibles) et renvoie un nouvel Article. main affiche l’article lu sur la première ligne de saisie.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    static Article lireArticle(String ligne) {\n        return null;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        System.out.println(lireArticle(sc.nextLine()));\n    }\n}\n\nclass Article {\n    private String nom;\n    private int prix;\n    private int stock;\n\n    Article(String nom, int prix, int stock) {\n        this.nom = nom;\n        this.prix = prix;\n        this.stock = stock;\n    }\n\n    String getNom() {\n        return nom;\n    }\n\n    int getStock() {\n        return stock;\n    }\n\n    int valeurStock() {\n        return prix * stock;\n    }\n\n    boolean vendre(int quantite) {\n        if (quantite <= 0 || quantite > stock) {\n            return false;\n        }\n        stock -= quantite;\n        return true;\n    }\n\n    @Override\n    public String toString() {\n        return nom + \" : \" + stock + \" en stock, \" + prix + \" FCFA\";\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    static Article lireArticle(String ligne) {\n        String[] p = ligne.split(\";\");\n        return new Article(p[0].trim(), Integer.parseInt(p[1].trim()), Integer.parseInt(p[2].trim()));\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        System.out.println(lireArticle(sc.nextLine()));\n    }\n}\n\nclass Article {\n    private String nom;\n    private int prix;\n    private int stock;\n\n    Article(String nom, int prix, int stock) {\n        this.nom = nom;\n        this.prix = prix;\n        this.stock = stock;\n    }\n\n    String getNom() {\n        return nom;\n    }\n\n    int getStock() {\n        return stock;\n    }\n\n    int valeurStock() {\n        return prix * stock;\n    }\n\n    boolean vendre(int quantite) {\n        if (quantite <= 0 || quantite > stock) {\n            return false;\n        }\n        stock -= quantite;\n        return true;\n    }\n\n    @Override\n    public String toString() {\n        return nom + \" : \" + stock + \" en stock, \" + prix + \" FCFA\";\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Savon;250;12"
+        ],
+        "expected_output": "Savon : 12 en stock, 250 FCFA",
+        "expressions": [
+          {
+            "expr": "Main.lireArticle(\"Riz;500;10\").valeurStock()",
+            "expected": "5000"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          " Huile ; 1200 ; 4 "
+        ],
+        "expected_output": "Huile : 4 en stock, 1200 FCFA",
+        "expressions": [
+          {
+            "expr": "Main.lireArticle(\"Sel ; 100 ; 3\").getNom()",
+            "expected": "Sel"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "split(\";\") renvoie un tableau de trois morceaux.",
+      "trim chaque morceau avant de le convertir.",
+      "return new Article(p[0].trim(), Integer.parseInt(p[1].trim()), Integer.parseInt(p[2].trim()));"
+    ],
+    "explanation_fr": "La lecture d’une ligne devient une brique réutilisable et testable.",
+    "common_wrong_answers": [],
+    "id": "java-m4-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Valeur du stock",
+    "instruction_fr": "Écris static int valeurTotale(ArrayList<Article> liste) qui additionne valeurStock() de chaque article, et static int aCommander(ArrayList<Article> liste, int seuil) qui compte les articles dont le stock est strictement inférieur au seuil. main lit des lignes nom;prix;stock jusqu’à fin et affiche Valeur : v FCFA puis À commander : c (seuil 5).",
+    "starter_code": "import java.util.ArrayList;\nimport java.util.Scanner;\n\npublic class Main {\n    static Article lireArticle(String ligne) {\n        String[] p = ligne.split(\";\");\n        return new Article(p[0].trim(), Integer.parseInt(p[1].trim()), Integer.parseInt(p[2].trim()));\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        ArrayList<Article> boutique = new ArrayList<>();\n        // Lis les articles puis affiche le résumé\n    }\n}\n\nclass Article {\n    private String nom;\n    private int prix;\n    private int stock;\n\n    Article(String nom, int prix, int stock) {\n        this.nom = nom;\n        this.prix = prix;\n        this.stock = stock;\n    }\n\n    String getNom() {\n        return nom;\n    }\n\n    int getStock() {\n        return stock;\n    }\n\n    int valeurStock() {\n        return prix * stock;\n    }\n\n    boolean vendre(int quantite) {\n        if (quantite <= 0 || quantite > stock) {\n            return false;\n        }\n        stock -= quantite;\n        return true;\n    }\n\n    @Override\n    public String toString() {\n        return nom + \" : \" + stock + \" en stock, \" + prix + \" FCFA\";\n    }\n}",
+    "solution": "import java.util.ArrayList;\nimport java.util.Scanner;\n\npublic class Main {\n    static Article lireArticle(String ligne) {\n        String[] p = ligne.split(\";\");\n        return new Article(p[0].trim(), Integer.parseInt(p[1].trim()), Integer.parseInt(p[2].trim()));\n    }\n\n    static int valeurTotale(ArrayList<Article> liste) {\n        int total = 0;\n        for (Article a : liste) {\n            total += a.valeurStock();\n        }\n        return total;\n    }\n\n    static int aCommander(ArrayList<Article> liste, int seuil) {\n        int compte = 0;\n        for (Article a : liste) {\n            if (a.getStock() < seuil) {\n                compte++;\n            }\n        }\n        return compte;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        ArrayList<Article> boutique = new ArrayList<>();\n        String ligne = sc.nextLine();\n        while (!ligne.equals(\"fin\")) {\n            boutique.add(lireArticle(ligne));\n            ligne = sc.nextLine();\n        }\n        System.out.println(\"Valeur : \" + valeurTotale(boutique) + \" FCFA\");\n        System.out.println(\"À commander : \" + aCommander(boutique, 5));\n    }\n}\n\nclass Article {\n    private String nom;\n    private int prix;\n    private int stock;\n\n    Article(String nom, int prix, int stock) {\n        this.nom = nom;\n        this.prix = prix;\n        this.stock = stock;\n    }\n\n    String getNom() {\n        return nom;\n    }\n\n    int getStock() {\n        return stock;\n    }\n\n    int valeurStock() {\n        return prix * stock;\n    }\n\n    boolean vendre(int quantite) {\n        if (quantite <= 0 || quantite > stock) {\n            return false;\n        }\n        stock -= quantite;\n        return true;\n    }\n\n    @Override\n    public String toString() {\n        return nom + \" : \" + stock + \" en stock, \" + prix + \" FCFA\";\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Riz;500;10",
+          "Huile;1200;4",
+          "Sel;100;8",
+          "fin"
+        ],
+        "expected_output": "Valeur : 10600 FCFA\nÀ commander : 1",
+        "expressions": [
+          {
+            "expr": "Main.valeurTotale(new java.util.ArrayList<>(java.util.List.of(new Article(\"Riz\", 500, 10), new Article(\"Gari\", 300, 5))))",
+            "expected": "6500"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "fin"
+        ],
+        "expected_output": "Valeur : 0 FCFA\nÀ commander : 0",
+        "expressions": [
+          {
+            "expr": "Main.aCommander(new java.util.ArrayList<>(java.util.List.of(new Article(\"Riz\", 500, 10), new Article(\"Gari\", 300, 5))), 10)",
+            "expected": "1"
+          }
+        ]
+      },
+      {
+        "inputs": [
+          "Savon;300;2",
+          "fin"
+        ],
+        "expected_output": "Valeur : 600 FCFA\nÀ commander : 1"
+      }
+    ],
+    "hints": [
+      "Deux parcours de la liste avec for-each.",
+      "valeurTotale additionne a.valeurStock().",
+      "aCommander compte les stocks sous le seuil avec <."
+    ],
+    "explanation_fr": "Les méthodes de rapport ne modifient rien : elles lisent la liste et calculent.",
+    "common_wrong_answers": [],
+    "id": "java-m4-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La recherche qui abandonne",
+    "instruction_fr": "static Article chercher(ArrayList<Article> liste, String nom) ne trouve que le premier article et compare mal les noms. Corrige-la pour qu’elle trouve un article quelle que soit sa position, sans tenir compte des majuscules. main lit un nom et affiche l’article trouvé ou Introuvable.",
+    "starter_code": "import java.util.ArrayList;\nimport java.util.Scanner;\n\npublic class Main {\n    static Article chercher(ArrayList<Article> liste, String nom) {\n        for (Article a : liste) {\n            if (a.getNom() == nom) {\n                return a;\n            } else {\n                return null;\n            }\n        }\n        return null;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        ArrayList<Article> boutique = new ArrayList<>();\n        boutique.add(new Article(\"Riz\", 500, 10));\n        boutique.add(new Article(\"Gari\", 300, 5));\n        Article a = chercher(boutique, sc.nextLine());\n        System.out.println(a == null ? \"Introuvable\" : a.toString());\n    }\n}\n\nclass Article {\n    private String nom;\n    private int prix;\n    private int stock;\n\n    Article(String nom, int prix, int stock) {\n        this.nom = nom;\n        this.prix = prix;\n        this.stock = stock;\n    }\n\n    String getNom() {\n        return nom;\n    }\n\n    int getStock() {\n        return stock;\n    }\n\n    int valeurStock() {\n        return prix * stock;\n    }\n\n    boolean vendre(int quantite) {\n        if (quantite <= 0 || quantite > stock) {\n            return false;\n        }\n        stock -= quantite;\n        return true;\n    }\n\n    @Override\n    public String toString() {\n        return nom + \" : \" + stock + \" en stock, \" + prix + \" FCFA\";\n    }\n}",
+    "solution": "import java.util.ArrayList;\nimport java.util.Scanner;\n\npublic class Main {\n    static Article chercher(ArrayList<Article> liste, String nom) {\n        for (Article a : liste) {\n            if (a.getNom().equalsIgnoreCase(nom)) {\n                return a;\n            }\n        }\n        return null;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        ArrayList<Article> boutique = new ArrayList<>();\n        boutique.add(new Article(\"Riz\", 500, 10));\n        boutique.add(new Article(\"Gari\", 300, 5));\n        Article a = chercher(boutique, sc.nextLine());\n        System.out.println(a == null ? \"Introuvable\" : a.toString());\n    }\n}\n\nclass Article {\n    private String nom;\n    private int prix;\n    private int stock;\n\n    Article(String nom, int prix, int stock) {\n        this.nom = nom;\n        this.prix = prix;\n        this.stock = stock;\n    }\n\n    String getNom() {\n        return nom;\n    }\n\n    int getStock() {\n        return stock;\n    }\n\n    int valeurStock() {\n        return prix * stock;\n    }\n\n    boolean vendre(int quantite) {\n        if (quantite <= 0 || quantite > stock) {\n            return false;\n        }\n        stock -= quantite;\n        return true;\n    }\n\n    @Override\n    public String toString() {\n        return nom + \" : \" + stock + \" en stock, \" + prix + \" FCFA\";\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "gari"
+        ],
+        "expected_output": "Gari : 5 en stock, 300 FCFA",
+        "expressions": [
+          {
+            "expr": "Main.chercher(new java.util.ArrayList<>(java.util.List.of(new Article(\"Riz\", 500, 10), new Article(\"Gari\", 300, 5))), \"Gari\").getNom()",
+            "expected": "Gari"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "Riz"
+        ],
+        "expected_output": "Riz : 10 en stock, 500 FCFA"
+      },
+      {
+        "inputs": [
+          "sel"
+        ],
+        "expected_output": "Introuvable",
+        "expressions": [
+          {
+            "expr": "Main.chercher(new java.util.ArrayList<>(java.util.List.of(new Article(\"Riz\", 500, 10), new Article(\"Gari\", 300, 5))), \"Mil\") == null",
+            "expected": "true"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le else renvoie null dès le premier article différent.",
+      "Le return null ne doit venir qu’après la boucle.",
+      "Compare avec a.getNom().equalsIgnoreCase(nom)."
+    ],
+    "explanation_fr": "Une recherche ne conclut « absent » qu’après avoir tout parcouru.",
+    "common_wrong_answers": [],
+    "id": "java-m4-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "La journée de la boutique",
+    "instruction_fr": "Lis des articles nom;prix;stock jusqu’à ventes, puis des ventes nom;quantite jusqu’à fin. Pour chaque vente : Inconnu : nom si l’article n’existe pas, Refusé : ligne si vendre échoue ou si la quantité n’est pas un nombre, sinon rien. Affiche ensuite chaque article (toString), puis Valeur : v FCFA et À commander : les noms dont le stock est inférieur à 5, séparés par une virgule et un espace (ou aucun).",
+    "starter_code": "import java.util.ArrayList;\nimport java.util.Scanner;\n\npublic class Main {\n    static Article lireArticle(String ligne) {\n        String[] p = ligne.split(\";\");\n        return new Article(p[0].trim(), Integer.parseInt(p[1].trim()), Integer.parseInt(p[2].trim()));\n    }\n\n    static Article chercher(ArrayList<Article> liste, String nom) {\n        for (Article a : liste) {\n            if (a.getNom().equalsIgnoreCase(nom)) {\n                return a;\n            }\n        }\n        return null;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        ArrayList<Article> boutique = new ArrayList<>();\n        // Phase 1 : articles jusqu’à ventes\n        // Phase 2 : ventes jusqu’à fin\n        // Rapport\n    }\n}\n\nclass Article {\n    private String nom;\n    private int prix;\n    private int stock;\n\n    Article(String nom, int prix, int stock) {\n        this.nom = nom;\n        this.prix = prix;\n        this.stock = stock;\n    }\n\n    String getNom() {\n        return nom;\n    }\n\n    int getStock() {\n        return stock;\n    }\n\n    int valeurStock() {\n        return prix * stock;\n    }\n\n    boolean vendre(int quantite) {\n        if (quantite <= 0 || quantite > stock) {\n            return false;\n        }\n        stock -= quantite;\n        return true;\n    }\n\n    @Override\n    public String toString() {\n        return nom + \" : \" + stock + \" en stock, \" + prix + \" FCFA\";\n    }\n}",
+    "solution": "import java.util.ArrayList;\nimport java.util.Scanner;\n\npublic class Main {\n    static Article lireArticle(String ligne) {\n        String[] p = ligne.split(\";\");\n        return new Article(p[0].trim(), Integer.parseInt(p[1].trim()), Integer.parseInt(p[2].trim()));\n    }\n\n    static Article chercher(ArrayList<Article> liste, String nom) {\n        for (Article a : liste) {\n            if (a.getNom().equalsIgnoreCase(nom)) {\n                return a;\n            }\n        }\n        return null;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        ArrayList<Article> boutique = new ArrayList<>();\n        String ligne = sc.nextLine();\n        while (!ligne.equals(\"ventes\")) {\n            boutique.add(lireArticle(ligne));\n            ligne = sc.nextLine();\n        }\n        ligne = sc.nextLine();\n        while (!ligne.equals(\"fin\")) {\n            String[] p = ligne.split(\";\");\n            Article a = chercher(boutique, p[0].trim());\n            if (a == null) {\n                System.out.println(\"Inconnu : \" + p[0].trim());\n            } else {\n                try {\n                    if (!a.vendre(Integer.parseInt(p[1].trim()))) {\n                        System.out.println(\"Refusé : \" + ligne);\n                    }\n                } catch (NumberFormatException e) {\n                    System.out.println(\"Refusé : \" + ligne);\n                }\n            }\n            ligne = sc.nextLine();\n        }\n        int valeur = 0;\n        ArrayList<String> bas = new ArrayList<>();\n        for (Article a : boutique) {\n            System.out.println(a);\n            valeur += a.valeurStock();\n            if (a.getStock() < 5) {\n                bas.add(a.getNom());\n            }\n        }\n        System.out.println(\"Valeur : \" + valeur + \" FCFA\");\n        System.out.println(\"À commander : \" + (bas.isEmpty() ? \"aucun\" : String.join(\", \", bas)));\n    }\n}\n\nclass Article {\n    private String nom;\n    private int prix;\n    private int stock;\n\n    Article(String nom, int prix, int stock) {\n        this.nom = nom;\n        this.prix = prix;\n        this.stock = stock;\n    }\n\n    String getNom() {\n        return nom;\n    }\n\n    int getStock() {\n        return stock;\n    }\n\n    int valeurStock() {\n        return prix * stock;\n    }\n\n    boolean vendre(int quantite) {\n        if (quantite <= 0 || quantite > stock) {\n            return false;\n        }\n        stock -= quantite;\n        return true;\n    }\n\n    @Override\n    public String toString() {\n        return nom + \" : \" + stock + \" en stock, \" + prix + \" FCFA\";\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "Riz;500;10",
+          "Huile;1200;4",
+          "ventes",
+          "riz;4",
+          "Huile;9",
+          "Sel;2",
+          "Riz;deux",
+          "fin"
+        ],
+        "expected_output": "Refusé : Huile;9\nInconnu : Sel\nRefusé : Riz;deux\nRiz : 6 en stock, 500 FCFA\nHuile : 4 en stock, 1200 FCFA\nValeur : 7800 FCFA\nÀ commander : Huile"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "Gari;300;5",
+          "Savon;250;3",
+          "ventes",
+          "gari;3",
+          "savon;2",
+          "fin"
+        ],
+        "expected_output": "Gari : 2 en stock, 300 FCFA\nSavon : 1 en stock, 250 FCFA\nValeur : 850 FCFA\nÀ commander : Gari, Savon"
+      },
+      {
+        "inputs": [
+          "Riz;500;10",
+          "ventes",
+          "fin"
+        ],
+        "expected_output": "Riz : 10 en stock, 500 FCFA\nValeur : 5000 FCFA\nÀ commander : aucun"
+      },
+      {
+        "inputs": [
+          "Riz;500;10",
+          "ventes",
+          "Riz;0",
+          "fin"
+        ],
+        "expected_output": "Refusé : Riz;0\nRiz : 10 en stock, 500 FCFA\nValeur : 5000 FCFA\nÀ commander : aucun"
+      }
+    ],
+    "hints": [
+      "Deux boucles sentinelles : la première s’arrête à ventes, la seconde à fin.",
+      "chercher puis vendre ; un try entoure la conversion de la quantité.",
+      "String.join(\", \", liste) assemble les noms à commander."
+    ],
+    "explanation_fr": "Chaque pièce a été testée seule ; le programme complet ne fait que les assembler dans le bon ordre.",
+    "common_wrong_answers": [],
+    "id": "java-m4-03-e4"
+  }
+]

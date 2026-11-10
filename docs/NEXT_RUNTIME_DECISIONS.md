@@ -57,3 +57,7 @@ Le propriétaire a accepté le 9 novembre 2026 que les langages compilés s’ex
 
 Bash 5.2 sur Wandbox, avec les commandes GNU usuelles (vérifiées : ls, mkdir, cp, mv, rm, cat, head, tail, wc, sort, uniq, grep, cut, tr, find, chmod, stat, sed, awk, timeout). Chaque cas reçoit un dossier neuf, ses fichiers et leurs droits de départ ; `LC_ALL=C` rend les tris identiques sur Wandbox et en local. Les tests locaux utilisent Bash natif sous Linux, sinon un conteneur `debian:bookworm-slim` sans réseau (Docker). awk diffère entre Debian (mawk) et d’autres systèmes : le cours ne l’utilise pas.
 
+### Java — 5.14.0
+
+OpenJDK 21 sur Wandbox (`openjdk-jdk-21+35`). Le service compile `javac prog.java` puis lance la classe qui déclare `main` : le `main` de l’élève est renommé `nunyaMain` à la même position, `public` est retiré des types de premier niveau (un fichier `prog.java` ne peut pas contenir `public class Main`), et une classe de vérification ajoutée après le code garde les numéros de ligne de l’élève. Chaque cas s’exécute dans un fil avec sa propre entrée, une limite de 5 secondes et l’interception des exceptions ; la sortie est forcée en UTF-8 et la locale en `ROOT`, car la JVM de Wandbox écrit en ASCII. Mesures du 10 novembre 2026 : « Bonjour » en 8 à 12 s, projet final (quatre cas) entre 19 et 48 s ; le Worker attend donc 90 s pour Java au lieu de 45. Tests locaux : `javac` natif en CI (`actions/setup-java`, Temurin 21), sinon l’image `eclipse-temurin:21-jdk` sans réseau.
+

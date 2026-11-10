@@ -1,0 +1,64 @@
+{
+  "id": "java-bases",
+  "title_fr": "Java : premiers programmes",
+  "language": "java",
+  "runtime": "java",
+  "level": "debutant",
+  "summary_fr": "Apprends le langage des applications Android, des banques et des logiciels d’entreprise : types, conditions, boucles, méthodes, tableaux, textes et listes, puis tes propres classes, jusqu’à la gestion d’une boutique de quartier.",
+  "prerequisite_courses": [],
+  "prerequisites": [
+    "Aucun prérequis en programmation : le cours part de zéro.",
+    "Une connexion est nécessaire pour exécuter le code, compilé en ligne ; les leçons restent lisibles hors ligne."
+  ],
+  "outcomes": [
+    "Écrire, compiler et corriger un programme Java complet.",
+    "Décider et répéter avec if, switch, while et for.",
+    "Découper un programme en méthodes et manipuler tableaux, String et ArrayList.",
+    "Créer ses propres classes, protéger leurs données et traiter les exceptions."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Premiers programmes",
+      "outcome_fr": "Compiler, afficher, déclarer des variables, calculer et lire des saisies.",
+      "lesson_ids": [
+        "java-m1-01",
+        "java-m1-02",
+        "java-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Décider et répéter",
+      "outcome_fr": "Choisir avec if et switch, répéter avec while et for.",
+      "lesson_ids": [
+        "java-m2-01",
+        "java-m2-02",
+        "java-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Méthodes et collections",
+      "outcome_fr": "Écrire des méthodes et manipuler tableaux, textes et listes.",
+      "lesson_ids": [
+        "java-m3-01",
+        "java-m3-02",
+        "java-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Objets et projet",
+      "outcome_fr": "Créer des classes, les protéger, traiter les exceptions et livrer la gestion d’une boutique.",
+      "lesson_ids": [
+        "java-m4-01",
+        "java-m4-02",
+        "java-m4-03"
+      ]
+    }
+  ],
+  "next_courses": [],
+  "status": "brouillon",
+  "reviewer": null
+}

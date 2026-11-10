@@ -352,9 +352,12 @@
       "family": "JAVA",
       "level": "debutant",
       "target_title": "Java — premiers programmes",
-      "status": "a_construire",
-      "evidence": [],
-      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+      "status": "premier-cours-redige-a-relire",
+      "evidence": [
+        "content/fr/java-bases/",
+        "docs/JAVA_BASES_UI_RESULTS.json"
+      ],
+      "next_action": "Relecture pédagogique humaine ; rédiger le niveau intermédiaire (héritage, interfaces, collections, fichiers et tests)."
     },
     {
       "id": "java-intermediaire",
@@ -836,8 +839,8 @@
     "Objets connectés et robotique",
     "Blockchain"
   ],
-  "updated_for_release": "5.13.0",
-  "updated_at": "2026-11-09",
+  "updated_for_release": "5.14.0",
+  "updated_at": "2026-11-10",
   "additional_implemented": [
     {
       "id": "git-bases",

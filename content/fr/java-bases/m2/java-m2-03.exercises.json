@@ -1,0 +1,147 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Table de multiplication",
+    "instruction_fr": "Lis un entier n et affiche sa table de 1 à 10, une ligne par calcul : n x k = résultat.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine());\n        for (int k = 1; k < 10; k++) {\n            System.out.println(n + \" x \" + k + \" = \" + n * k);\n        }\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine());\n        for (int k = 1; k <= 10; k++) {\n            System.out.println(n + \" x \" + k + \" = \" + n * k);\n        }\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "7"
+        ],
+        "expected_output": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35\n7 x 6 = 42\n7 x 7 = 49\n7 x 8 = 56\n7 x 9 = 63\n7 x 10 = 70"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "3"
+        ],
+        "expected_output": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15\n3 x 6 = 18\n3 x 7 = 21\n3 x 8 = 24\n3 x 9 = 27\n3 x 10 = 30"
+      }
+    ],
+    "hints": [
+      "Compte les lignes affichées.",
+      "La ligne avec 10 manque.",
+      "Remplace < 10 par <= 10."
+    ],
+    "explanation_fr": "La condition <= 10 inclut le dernier tour.",
+    "common_wrong_answers": [],
+    "id": "java-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Somme des pairs",
+    "instruction_fr": "Lis un entier n et affiche la somme des nombres pairs de 1 à n, puis combien il y en a : Somme : s puis Pairs : c.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine());\n        // Parcours de 1 à n\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine());\n        int somme = 0;\n        int compte = 0;\n        for (int i = 1; i <= n; i++) {\n            if (i % 2 == 0) {\n                somme += i;\n                compte++;\n            }\n        }\n        System.out.println(\"Somme : \" + somme);\n        System.out.println(\"Pairs : \" + compte);\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "10"
+        ],
+        "expected_output": "Somme : 30\nPairs : 5"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1"
+        ],
+        "expected_output": "Somme : 0\nPairs : 0"
+      },
+      {
+        "inputs": [
+          "13"
+        ],
+        "expected_output": "Somme : 42\nPairs : 6"
+      }
+    ],
+    "hints": [
+      "Un accumulateur et un compteur, déclarés avant la boucle.",
+      "Un nombre est pair si i % 2 == 0.",
+      "Ajoute i à la somme et augmente le compteur dans le if."
+    ],
+    "explanation_fr": "Accumuler et compter suivent le même schéma : départ à 0, mise à jour dans la boucle.",
+    "common_wrong_answers": [],
+    "id": "java-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Premier multiple de 7",
+    "instruction_fr": "Le programme lit un entier n et doit afficher le premier multiple de 7 entre n et n + 20, puis s’arrêter ; s’il n’y en a pas, rien ne s’affiche. Il affiche tous les multiples et sa boucle a une erreur d’un tour. Corrige-le.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine());\n        for (int i = n; i < n + 20; i++) {\n            if (i % 7 == 0) {\n                System.out.println(\"Premier multiple : \" + i);\n            }\n        }\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine());\n        for (int i = n; i <= n + 20; i++) {\n            if (i % 7 == 0) {\n                System.out.println(\"Premier multiple : \" + i);\n                break;\n            }\n        }\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "10"
+        ],
+        "expected_output": "Premier multiple : 14"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "7"
+        ],
+        "expected_output": "Premier multiple : 7"
+      },
+      {
+        "inputs": [
+          "15"
+        ],
+        "expected_output": "Premier multiple : 21"
+      }
+    ],
+    "hints": [
+      "Plusieurs lignes s’affichent : la boucle continue après avoir trouvé.",
+      "break quitte la boucle.",
+      "La borne n + 20 doit être incluse : utilise <=."
+    ],
+    "explanation_fr": "break arrête la recherche dès le premier résultat.",
+    "common_wrong_answers": [],
+    "id": "java-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Plan de la salle",
+    "instruction_fr": "Lis un nombre de rangées r puis de places par rangée p. Affiche une ligne par rangée : R1 : 1 2 3 … avec les numéros de places séparés par un espace, sans espace final. Termine par Total : r × p places.",
+    "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int r = Integer.parseInt(sc.nextLine());\n        int p = Integer.parseInt(sc.nextLine());\n        // Deux boucles imbriquées\n    }\n}",
+    "solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int r = Integer.parseInt(sc.nextLine());\n        int p = Integer.parseInt(sc.nextLine());\n        for (int i = 1; i <= r; i++) {\n            System.out.print(\"R\" + i + \" :\");\n            for (int j = 1; j <= p; j++) {\n                System.out.print(\" \" + j);\n            }\n            System.out.println();\n        }\n        System.out.println(\"Total : \" + r * p + \" places\");\n    }\n}",
+    "visible_tests": [
+      {
+        "inputs": [
+          "2",
+          "3"
+        ],
+        "expected_output": "R1 : 1 2 3\nR2 : 1 2 3\nTotal : 6 places"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [
+          "1",
+          "1"
+        ],
+        "expected_output": "R1 : 1\nTotal : 1 places"
+      },
+      {
+        "inputs": [
+          "3",
+          "4"
+        ],
+        "expected_output": "R1 : 1 2 3 4\nR2 : 1 2 3 4\nR3 : 1 2 3 4\nTotal : 12 places"
+      }
+    ],
+    "hints": [
+      "La boucle extérieure parcourt les rangées.",
+      "Affiche \" \" + j : l’espace vient avant chaque numéro, après les deux-points.",
+      "println() termine chaque rangée."
+    ],
+    "explanation_fr": "La boucle intérieure refait tous ses tours pour chaque rangée.",
+    "common_wrong_answers": [],
+    "id": "java-m2-03-e4"
+  }
+]
