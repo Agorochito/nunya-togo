@@ -1,5 +1,11 @@
 # Historique
 
+## 5.17.0 — 10 novembre 2026
+
+- Nouveau cours : **SQL intermédiaire : analyser les données d’une boutique**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, sur le vrai SQLite hors ligne : CASE et agrégation conditionnelle, fonctions de texte et de dates, UNION/INTERSECT/EXCEPT, sous-requêtes scalaires et corrélées, WITH et requêtes récursives (chaîne de parrainage, calendrier), ROW_NUMBER/RANK/DENSE_RANK, cumuls et moyennes glissantes, LAG/LEAD, vues et index (dont unique), UPSERT, déclencheurs qui tiennent le stock à jour et refusent une vente impossible, puis tableau de bord complet.
+- Deux nouvelles bases fictives, `boutique` et `boutique-variation` (produits, clients avec parrainage, ventes datées), à côté des bases du cours débutant. Les bases initiales déclarent désormais leur propre schéma, et le contrôle de construction SQL vérifie tous les cours SQL.
+- Le cours rejoint les parcours analyste de données (il remplace l’étape « SQL intermédiaire — en préparation ») et back-end.
+
 ## 5.16.0 — 10 novembre 2026
 
 - Nouveau cours : **Réseaux informatiques : comprendre et diagnostiquer**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, en Python hors ligne avec le module ipaddress et des relevés fictifs : adresses IPv4 privées et publiques, masques et notation CIDR, plan d’adressage d’une école en sous-réseaux, couches TCP/IP et encapsulation (MTU, TTL), ports et protocoles, DNS et alias, ping (perte, latence, gigue), traceroute, vérification de configurations et conflits d’adresses, règles de pare-feu à première correspondance, Wi-Fi sécurisé et matrice de flux entre zones, puis diagnostic complet du réseau d’un collège.

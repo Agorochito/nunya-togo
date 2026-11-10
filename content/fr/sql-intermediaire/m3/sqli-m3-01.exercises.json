@@ -1,0 +1,134 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Podium des prix",
+    "instruction_fr": "Affiche nom, prix et rang (RANK par prix décroissant) de tous les produits, triés par rang puis nom. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT nom, prix, ROW_NUMBER() OVER (ORDER BY prix) AS rang FROM produits ORDER BY rang, nom;",
+    "solution": "SELECT nom, prix, RANK() OVER (ORDER BY prix DESC) AS rang FROM produits ORDER BY rang, nom;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT nom, prix, RANK() OVER (ORDER BY prix DESC) AS rang FROM produits ORDER BY rang, nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT nom, prix, RANK() OVER (ORDER BY prix DESC) AS rang FROM produits ORDER BY rang, nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Le produit le moins cher est premier.",
+      "Le classement doit aller du plus cher au moins cher.",
+      "RANK() OVER (ORDER BY prix DESC)"
+    ],
+    "explanation_fr": "Le ORDER BY de la fenêtre décide du classement ; celui de la fin décide de l’affichage.",
+    "common_wrong_answers": [],
+    "id": "sqli-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Rang dans la catégorie",
+    "instruction_fr": "Affiche categorie, nom, stock et rang_stock : le rang par stock décroissant à l’intérieur de chaque catégorie (DENSE_RANK). Tri par categorie puis rang_stock puis nom. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT categorie, nom, stock, DENSE_RANK() OVER (ORDER BY stock DESC) AS rang_stock FROM produits ORDER BY categorie, rang_stock, nom;",
+    "solution": "SELECT categorie, nom, stock,\n       DENSE_RANK() OVER (PARTITION BY categorie ORDER BY stock DESC) AS rang_stock\nFROM produits\nORDER BY categorie, rang_stock, nom;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT categorie, nom, stock, DENSE_RANK() OVER (PARTITION BY categorie ORDER BY stock DESC) AS rang_stock FROM produits ORDER BY categorie, rang_stock, nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT categorie, nom, stock, DENSE_RANK() OVER (PARTITION BY categorie ORDER BY stock DESC) AS rang_stock FROM produits ORDER BY categorie, rang_stock, nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Le classement est commun à toute la boutique.",
+      "Il doit recommencer dans chaque catégorie.",
+      "Ajoute PARTITION BY categorie dans OVER."
+    ],
+    "explanation_fr": "PARTITION BY transforme un classement global en classements par groupe.",
+    "common_wrong_answers": [],
+    "id": "sqli-m3-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Fenêtre dans WHERE",
+    "instruction_fr": "La requête doit afficher categorie, nom et prix du produit le moins cher de chaque catégorie (à égalité, le premier par nom). Elle filtre le rang dans WHERE, ce que SQLite refuse. Utilise une étape WITH. Tri par categorie. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT categorie, nom, prix FROM produits\nWHERE ROW_NUMBER() OVER (PARTITION BY categorie ORDER BY prix, nom) = 1\nORDER BY categorie;",
+    "solution": "WITH classes AS (\n  SELECT categorie, nom, prix,\n         ROW_NUMBER() OVER (PARTITION BY categorie ORDER BY prix, nom) AS rang\n  FROM produits\n)\nSELECT categorie, nom, prix FROM classes WHERE rang = 1 ORDER BY categorie;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "WITH classes AS (SELECT categorie, nom, prix, ROW_NUMBER() OVER (PARTITION BY categorie ORDER BY prix, nom) AS rang FROM produits) SELECT categorie, nom, prix FROM classes WHERE rang = 1 ORDER BY categorie;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "WITH classes AS (SELECT categorie, nom, prix, ROW_NUMBER() OVER (PARTITION BY categorie ORDER BY prix, nom) AS rang FROM produits) SELECT categorie, nom, prix FROM classes WHERE rang = 1 ORDER BY categorie;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Lis le message : les fenêtres ne sont pas permises dans WHERE.",
+      "Calcule d’abord le rang dans une étape.",
+      "Filtre ensuite rang = 1 dans la requête finale."
+    ],
+    "explanation_fr": "Ce schéma « étape de rang, puis filtre » sert à chaque question « le premier de chaque groupe ».",
+    "common_wrong_answers": [],
+    "id": "sqli-m3-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Meilleurs clients",
+    "instruction_fr": "Avec une étape totaux (client_id, total dépensé, ventes anonymes exclues), affiche client_id, total et place (RANK par total décroissant) des clients classés dans les 3 premières places. Tri par place puis client_id. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT client_id, SUM(quantite) AS total FROM ventes GROUP BY client_id ORDER BY total DESC LIMIT 3;",
+    "solution": "WITH totaux AS (\n  SELECT v.client_id, SUM(v.quantite * p.prix) AS total\n  FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id\n  WHERE v.client_id IS NOT NULL\n  GROUP BY v.client_id\n),\nclasses AS (\n  SELECT client_id, total, RANK() OVER (ORDER BY total DESC) AS place FROM totaux\n)\nSELECT client_id, total, place FROM classes WHERE place <= 3 ORDER BY place, client_id;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "WITH totaux AS (SELECT v.client_id, SUM(v.quantite * p.prix) AS total FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id WHERE v.client_id IS NOT NULL GROUP BY v.client_id), classes AS (SELECT client_id, total, RANK() OVER (ORDER BY total DESC) AS place FROM totaux) SELECT client_id, total, place FROM classes WHERE place <= 3 ORDER BY place, client_id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "WITH totaux AS (SELECT v.client_id, SUM(v.quantite * p.prix) AS total FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id WHERE v.client_id IS NOT NULL GROUP BY v.client_id), classes AS (SELECT client_id, total, RANK() OVER (ORDER BY total DESC) AS place FROM totaux) SELECT client_id, total, place FROM classes WHERE place <= 3 ORDER BY place, client_id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Le total doit être un montant, pas une quantité.",
+      "LIMIT 3 couperait des ex aequo à la troisième place.",
+      "Classe avec RANK, puis garde place <= 3."
+    ],
+    "explanation_fr": "Avec RANK, un ex aequo à la troisième place n’est jamais écarté au hasard.",
+    "common_wrong_answers": [],
+    "id": "sqli-m3-01-e4"
+  }
+]

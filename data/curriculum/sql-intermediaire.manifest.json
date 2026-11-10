@@ -1,0 +1,67 @@
+{
+  "id": "sql-intermediaire",
+  "title_fr": "SQL intermédiaire : analyser les données d’une boutique",
+  "language": "sql",
+  "runtime": "sql",
+  "level": "intermediaire",
+  "summary_fr": "Passe des requêtes simples aux analyses : CASE, fonctions de texte et de dates, opérateurs ensemblistes, sous-requêtes corrélées, WITH et requêtes récursives, fonctions de fenêtre, vues, index, UPSERT et déclencheurs, jusqu’au tableau de bord d’une boutique. Vrai SQLite hors ligne.",
+  "prerequisite_courses": [
+    "sql-bases"
+  ],
+  "prerequisites": [
+    "Savoir filtrer, regrouper, joindre et modifier des tables avec SQL.",
+    "Le cours SQL débutant de Nunya fournit ces bases."
+  ],
+  "outcomes": [
+    "Écrire des requêtes expressives avec CASE, des fonctions et des opérateurs ensemblistes.",
+    "Découper une analyse en étapes avec WITH, y compris récursives.",
+    "Classer, cumuler et comparer avec les fonctions de fenêtre.",
+    "Structurer une base avec vues, index, UPSERT et déclencheurs.",
+    "Construire un tableau de bord fiable à partir de données de ventes."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Requêtes plus expressives",
+      "outcome_fr": "CASE, fonctions de texte et de dates, UNION, INTERSECT et EXCEPT.",
+      "lesson_ids": [
+        "sqli-m1-01",
+        "sqli-m1-02",
+        "sqli-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Sous-requêtes et étapes",
+      "outcome_fr": "Sous-requêtes corrélées, WITH et requêtes récursives.",
+      "lesson_ids": [
+        "sqli-m2-01",
+        "sqli-m2-02",
+        "sqli-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Fonctions de fenêtre",
+      "outcome_fr": "Rangs, cumuls, moyennes glissantes, LAG et LEAD.",
+      "lesson_ids": [
+        "sqli-m3-01",
+        "sqli-m3-02",
+        "sqli-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Structurer et fiabiliser",
+      "outcome_fr": "Vues, index, UPSERT, déclencheurs et tableau de bord.",
+      "lesson_ids": [
+        "sqli-m4-01",
+        "sqli-m4-02",
+        "sqli-m4-03"
+      ]
+    }
+  ],
+  "next_courses": [],
+  "status": "brouillon",
+  "reviewer": null
+}

@@ -1,0 +1,134 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Chiffre d’affaires par produit",
+    "instruction_fr": "Avec une étape lignes (produit_id, montant = quantite × prix), affiche produit_id et ca (somme des montants), triés par ca décroissant puis produit_id. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT produit_id, SUM(quantite) AS ca FROM ventes GROUP BY produit_id ORDER BY ca DESC, produit_id;",
+    "solution": "WITH lignes AS (\n  SELECT v.produit_id, v.quantite * p.prix AS montant\n  FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id\n)\nSELECT produit_id, SUM(montant) AS ca\nFROM lignes\nGROUP BY produit_id\nORDER BY ca DESC, produit_id;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "WITH lignes AS (SELECT v.produit_id, v.quantite * p.prix AS montant FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id) SELECT produit_id, SUM(montant) AS ca FROM lignes GROUP BY produit_id ORDER BY ca DESC, produit_id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "WITH lignes AS (SELECT v.produit_id, v.quantite * p.prix AS montant FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id) SELECT produit_id, SUM(montant) AS ca FROM lignes GROUP BY produit_id ORDER BY ca DESC, produit_id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "La somme des quantités n’est pas un chiffre d’affaires.",
+      "Il faut le prix de chaque produit : une jointure.",
+      "Place la jointure dans l’étape lignes."
+    ],
+    "explanation_fr": "Une étape nommée rend le calcul du montant réutilisable.",
+    "common_wrong_answers": [],
+    "id": "sqli-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Part de chaque catégorie",
+    "instruction_fr": "Avec une étape ca_cat (categorie, ca) puis une requête finale, affiche categorie, ca et part : le pourcentage du chiffre d’affaires total, arrondi à une décimale avec ROUND(100.0 * ca / total, 1). Tri par ca décroissant. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT p.categorie, SUM(v.quantite * p.prix) AS ca FROM ventes v JOIN produits p ON p.id = v.produit_id GROUP BY p.categorie ORDER BY ca DESC;",
+    "solution": "WITH ca_cat AS (\n  SELECT p.categorie, SUM(v.quantite * p.prix) AS ca\n  FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id\n  GROUP BY p.categorie\n)\nSELECT categorie, ca, ROUND(100.0 * ca / (SELECT SUM(ca) FROM ca_cat), 1) AS part\nFROM ca_cat\nORDER BY ca DESC;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "WITH ca_cat AS (SELECT p.categorie, SUM(v.quantite * p.prix) AS ca FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id GROUP BY p.categorie) SELECT categorie, ca, ROUND(100.0 * ca / (SELECT SUM(ca) FROM ca_cat), 1) AS part FROM ca_cat ORDER BY ca DESC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "WITH ca_cat AS (SELECT p.categorie, SUM(v.quantite * p.prix) AS ca FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id GROUP BY p.categorie) SELECT categorie, ca, ROUND(100.0 * ca / (SELECT SUM(ca) FROM ca_cat), 1) AS part FROM ca_cat ORDER BY ca DESC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "La colonne part manque.",
+      "Le total se calcule à partir de ca_cat elle-même.",
+      "100.0 force une division décimale."
+    ],
+    "explanation_fr": "La même étape sert au détail et au total.",
+    "common_wrong_answers": [],
+    "id": "sqli-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Étape qui masque une table",
+    "instruction_fr": "La requête doit afficher client_id et nb (nombre de ventes) des clients ayant au moins 2 ventes, triés par client_id. L’étape s’appelle ventes et masque la vraie table, ce qui crée une boucle. Renomme l’étape en par_client. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "WITH ventes AS (\n  SELECT client_id, COUNT(*) AS nb FROM ventes WHERE client_id IS NOT NULL GROUP BY client_id\n)\nSELECT client_id, nb FROM ventes WHERE nb >= 2 ORDER BY client_id;",
+    "solution": "WITH par_client AS (\n  SELECT client_id, COUNT(*) AS nb FROM ventes WHERE client_id IS NOT NULL GROUP BY client_id\n)\nSELECT client_id, nb FROM par_client WHERE nb >= 2 ORDER BY client_id;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "WITH par_client AS (SELECT client_id, COUNT(*) AS nb FROM ventes WHERE client_id IS NOT NULL GROUP BY client_id) SELECT client_id, nb FROM par_client WHERE nb >= 2 ORDER BY client_id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "WITH par_client AS (SELECT client_id, COUNT(*) AS nb FROM ventes WHERE client_id IS NOT NULL GROUP BY client_id) SELECT client_id, nb FROM par_client WHERE nb >= 2 ORDER BY client_id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Lis le message d’erreur de SQLite.",
+      "L’étape ventes fait référence à elle-même.",
+      "Choisis un autre nom, comme par_client."
+    ],
+    "explanation_fr": "Un nom d’étape distinct des tables évite les confusions et les erreurs.",
+    "common_wrong_answers": [],
+    "id": "sqli-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Meilleur client par quartier",
+    "instruction_fr": "Avec des étapes, affiche quartier, nom et total du client qui a dépensé le plus dans chaque quartier connu (quartier non NULL). En cas d’égalité, garde tous les ex aequo. Tri par quartier puis nom. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT c.quartier, c.nom FROM clients AS c WHERE c.quartier IS NOT NULL ORDER BY c.quartier, c.nom;",
+    "solution": "WITH totaux AS (\n  SELECT c.id, c.nom, c.quartier, SUM(v.quantite * p.prix) AS total\n  FROM clients AS c\n  JOIN ventes AS v ON v.client_id = c.id\n  JOIN produits AS p ON p.id = v.produit_id\n  WHERE c.quartier IS NOT NULL\n  GROUP BY c.id\n),\nmeilleurs AS (\n  SELECT quartier, MAX(total) AS meilleur FROM totaux GROUP BY quartier\n)\nSELECT t.quartier, t.nom, t.total\nFROM totaux AS t JOIN meilleurs AS m ON m.quartier = t.quartier AND m.meilleur = t.total\nORDER BY t.quartier, t.nom;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "WITH totaux AS (SELECT c.id, c.nom, c.quartier, SUM(v.quantite * p.prix) AS total FROM clients AS c JOIN ventes AS v ON v.client_id = c.id JOIN produits AS p ON p.id = v.produit_id WHERE c.quartier IS NOT NULL GROUP BY c.id), meilleurs AS (SELECT quartier, MAX(total) AS meilleur FROM totaux GROUP BY quartier) SELECT t.quartier, t.nom, t.total FROM totaux AS t JOIN meilleurs AS m ON m.quartier = t.quartier AND m.meilleur = t.total ORDER BY t.quartier, t.nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "WITH totaux AS (SELECT c.id, c.nom, c.quartier, SUM(v.quantite * p.prix) AS total FROM clients AS c JOIN ventes AS v ON v.client_id = c.id JOIN produits AS p ON p.id = v.produit_id WHERE c.quartier IS NOT NULL GROUP BY c.id), meilleurs AS (SELECT quartier, MAX(total) AS meilleur FROM totaux GROUP BY quartier) SELECT t.quartier, t.nom, t.total FROM totaux AS t JOIN meilleurs AS m ON m.quartier = t.quartier AND m.meilleur = t.total ORDER BY t.quartier, t.nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Commence par le total de chaque client.",
+      "Une deuxième étape trouve le maximum par quartier.",
+      "Joins les deux étapes sur le quartier et le montant."
+    ],
+    "explanation_fr": "Trois étapes lisibles remplacent une requête imbriquée difficile à relire.",
+    "common_wrong_answers": [],
+    "id": "sqli-m2-02-e4"
+  }
+]

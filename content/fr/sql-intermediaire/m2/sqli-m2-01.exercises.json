@@ -1,0 +1,134 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Plus chers que la moyenne de leur catégorie",
+    "instruction_fr": "Affiche nom, categorie et prix des produits plus chers que la moyenne des prix de leur propre catégorie. Tri par categorie puis nom. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT nom, categorie, prix FROM produits\nWHERE prix > (SELECT AVG(prix) FROM produits)\nORDER BY categorie, nom;",
+    "solution": "SELECT p.nom, p.categorie, p.prix FROM produits AS p\nWHERE p.prix > (SELECT AVG(p2.prix) FROM produits AS p2 WHERE p2.categorie = p.categorie)\nORDER BY p.categorie, p.nom;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT p.nom, p.categorie, p.prix FROM produits AS p WHERE p.prix > (SELECT AVG(p2.prix) FROM produits AS p2 WHERE p2.categorie = p.categorie) ORDER BY p.categorie, p.nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT p.nom, p.categorie, p.prix FROM produits AS p WHERE p.prix > (SELECT AVG(p2.prix) FROM produits AS p2 WHERE p2.categorie = p.categorie) ORDER BY p.categorie, p.nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "La moyenne est calculée sur toute la boutique.",
+      "Il faut la moyenne de la catégorie de la ligne.",
+      "Ajoute WHERE p2.categorie = p.categorie dans la sous-requête."
+    ],
+    "explanation_fr": "Deux alias distinguent le produit examiné des produits de sa catégorie.",
+    "common_wrong_answers": [],
+    "id": "sqli-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Nombre d’achats par client",
+    "instruction_fr": "Affiche nom et nb_achats (nombre de ventes de ce client, par une sous-requête corrélée) pour tous les clients, même sans achat, triés par nb_achats décroissant puis nom. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT nom, (SELECT COUNT(*) FROM ventes) AS nb_achats FROM clients ORDER BY nb_achats DESC, nom;",
+    "solution": "SELECT c.nom, (SELECT COUNT(*) FROM ventes AS v WHERE v.client_id = c.id) AS nb_achats\nFROM clients AS c\nORDER BY nb_achats DESC, c.nom;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT c.nom, (SELECT COUNT(*) FROM ventes AS v WHERE v.client_id = c.id) AS nb_achats FROM clients AS c ORDER BY nb_achats DESC, c.nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT c.nom, (SELECT COUNT(*) FROM ventes AS v WHERE v.client_id = c.id) AS nb_achats FROM clients AS c ORDER BY nb_achats DESC, c.nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Chaque client reçoit le nombre total de ventes.",
+      "La sous-requête doit compter les ventes du client de la ligne.",
+      "WHERE v.client_id = c.id"
+    ],
+    "explanation_fr": "COUNT renvoie 0 pour un client sans vente : il reste dans la liste.",
+    "common_wrong_answers": [],
+    "id": "sqli-m2-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Produit le plus cher",
+    "instruction_fr": "La requête doit afficher nom et prix du ou des produits au prix maximal. La sous-requête renvoie plusieurs lignes et SQLite n’en garde qu’une. Corrige-la avec un agrégat. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT nom, prix FROM produits WHERE prix = (SELECT prix FROM produits ORDER BY prix) ORDER BY nom;",
+    "solution": "SELECT nom, prix FROM produits WHERE prix = (SELECT MAX(prix) FROM produits) ORDER BY nom;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT nom, prix FROM produits WHERE prix = (SELECT MAX(prix) FROM produits) ORDER BY nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT nom, prix FROM produits WHERE prix = (SELECT MAX(prix) FROM produits) ORDER BY nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "La sous-requête renvoie tous les prix, triés du plus petit au plus grand.",
+      "Seule la première valeur est prise : la plus petite.",
+      "Utilise MAX(prix)."
+    ],
+    "explanation_fr": "Une sous-requête scalaire doit être conçue pour une seule valeur.",
+    "common_wrong_answers": [],
+    "id": "sqli-m2-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Clients en sommeil",
+    "instruction_fr": "Affiche nom et dernier_achat des clients dont le dernier achat est antérieur au 2026-10-05, ou qui n’ont jamais acheté (dernier_achat NULL). Utilise une sous-requête corrélée. Tri par nom. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT c.nom, (SELECT MAX(v.jour) FROM ventes AS v WHERE v.client_id = c.id) AS dernier_achat FROM clients AS c WHERE dernier_achat < '2026-10-05' ORDER BY c.nom;",
+    "solution": "SELECT c.nom, (SELECT MAX(v.jour) FROM ventes AS v WHERE v.client_id = c.id) AS dernier_achat\nFROM clients AS c\nWHERE dernier_achat < '2026-10-05' OR dernier_achat IS NULL\nORDER BY c.nom;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT c.nom, (SELECT MAX(v.jour) FROM ventes AS v WHERE v.client_id = c.id) AS dernier_achat FROM clients AS c WHERE dernier_achat < '2026-10-05' OR dernier_achat IS NULL ORDER BY c.nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT c.nom, (SELECT MAX(v.jour) FROM ventes AS v WHERE v.client_id = c.id) AS dernier_achat FROM clients AS c WHERE dernier_achat < '2026-10-05' OR dernier_achat IS NULL ORDER BY c.nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Esi, sans achat, n’apparaît pas.",
+      "NULL < une date est inconnu : la ligne disparaît.",
+      "Ajoute OR dernier_achat IS NULL."
+    ],
+    "explanation_fr": "Une relance commerciale vise aussi les clients qui n’ont jamais acheté.",
+    "common_wrong_answers": [],
+    "id": "sqli-m2-01-e4"
+  }
+]

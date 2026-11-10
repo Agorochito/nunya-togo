@@ -8,7 +8,7 @@ Apprendre en français, à son rythme, même hors connexion : coder depuis zéro
 
 ## État du projet
 
-Pilote en cours ; version 5.16. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
+Pilote en cours ; version 5.17. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
 
 ## Ce que propose Nunya
 
@@ -21,6 +21,7 @@ Pilote en cours ; version 5.16. Tous les contenus sont des **brouillons** rédig
    - *CSS intermédiaire* (6 modules, 18 leçons, 72 exercices) : cascade, Flexbox et grilles robustes, interfaces adaptatives, états accessibles et tableau de club ;
    - *PHP : les bases* (4 modules, 12 leçons, 48 exercices) avec un vrai interpréteur PHP 8.3 sur l’appareil : variables, conditions, boucles, tableaux, fonctions et caisse de boutique ;
    - *C++ : les fondamentaux* (4 modules, 12 leçons, 48 exercices), compilé en ligne par GCC 13 sur Wandbox : types, boucles, fonctions, vecteurs, textes, références, structures et bulletin de classe ;
+   - *SQL intermédiaire : analyser les données d’une boutique* (4 modules, 12 leçons, 48 exercices), vrai SQLite hors ligne : CASE, fonctions de texte et de dates, opérateurs ensemblistes, sous-requêtes corrélées, WITH et requêtes récursives, fonctions de fenêtre, vues, index, UPSERT, déclencheurs et tableau de bord ;
    - *Réseaux informatiques : comprendre et diagnostiquer* (4 modules, 12 leçons, 48 exercices), en Python hors ligne : adresses IP, masques et sous-réseaux, couches, ports, DNS, ping, traceroute, configurations, pare-feu, Wi-Fi et segmentation, puis diagnostic du réseau d’un collège ;
    - *Cybersécurité : défendre une petite organisation* (4 modules, 12 leçons, 48 exercices), en Python hors ligne : risques, mots de passe et hachage salé, hameçonnage, journaux de connexion, droits d’accès, validation des entrées, intégrité, sauvegardes 3-2-1, réponse aux incidents et audit complet ;
    - *Java : premiers programmes* (4 modules, 12 leçons, 48 exercices), compilé en ligne par OpenJDK 21 sur Wandbox : types, conditions, boucles, méthodes, tableaux, textes et listes, classes, encapsulation, exceptions et gestion d’une boutique ;

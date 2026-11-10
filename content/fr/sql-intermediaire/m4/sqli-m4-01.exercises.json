@@ -1,0 +1,200 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une vue des ventes",
+    "instruction_fr": "Crée la vue lignes_ventes (id, jour, nom du produit, montant = quantite × prix), puis affiche id, nom et montant des ventes de plus de 2000 FCFA depuis cette vue, triées par id. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT v.id, p.nom, v.quantite * p.prix AS montant FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id WHERE v.quantite * p.prix > 2000 ORDER BY v.id;",
+    "solution": "CREATE VIEW lignes_ventes AS\n  SELECT v.id, v.jour, p.nom, v.quantite * p.prix AS montant\n  FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id;\nSELECT id, nom, montant FROM lignes_ventes WHERE montant > 2000 ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "CREATE VIEW lignes_ventes AS   SELECT v.id, v.jour, p.nom, v.quantite * p.prix AS montant   FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id; SELECT id, nom, montant FROM lignes_ventes WHERE montant > 2000 ORDER BY id;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "SELECT id, jour, nom, montant FROM lignes_ventes;",
+            "error_includes": null,
+            "description_fr": "La vue lignes_ventes existe avec ses quatre colonnes."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "CREATE VIEW lignes_ventes AS   SELECT v.id, v.jour, p.nom, v.quantite * p.prix AS montant   FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id; SELECT id, nom, montant FROM lignes_ventes WHERE montant > 2000 ORDER BY id;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "SELECT id, jour, nom, montant FROM lignes_ventes;",
+            "error_includes": null,
+            "description_fr": "La vue lignes_ventes existe avec ses quatre colonnes."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le résultat est juste, mais aucune vue n’est créée.",
+      "Commence par CREATE VIEW lignes_ventes AS …",
+      "Interroge ensuite la vue."
+    ],
+    "explanation_fr": "La jointure écrite une fois dans la vue sert à toutes les analyses suivantes.",
+    "common_wrong_answers": [],
+    "id": "sqli-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Index pour les recherches par client",
+    "instruction_fr": "Crée un index nommé idx_ventes_client_jour sur ventes(client_id, jour). Le correcteur vérifie qu’il existe. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "CREATE INDEX idx_ventes_jour ON ventes(jour);",
+    "solution": "CREATE INDEX idx_ventes_client_jour ON ventes(client_id, jour);",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "CREATE INDEX idx_ventes_client_jour ON ventes(client_id, jour);",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "DROP INDEX idx_ventes_client_jour;",
+            "error_includes": null,
+            "description_fr": "L’index idx_ventes_client_jour existe."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "CREATE INDEX idx_ventes_client_jour ON ventes(client_id, jour);",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "DROP INDEX idx_ventes_client_jour;",
+            "error_includes": null,
+            "description_fr": "L’index idx_ventes_client_jour existe."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le nom de l’index et ses colonnes ne correspondent pas.",
+      "L’ordre des colonnes compte : client d’abord, puis jour.",
+      "CREATE INDEX idx_ventes_client_jour ON ventes(client_id, jour);"
+    ],
+    "explanation_fr": "Cet index aide à lister rapidement les achats d’un client par date.",
+    "common_wrong_answers": [],
+    "id": "sqli-m4-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Interdire les clients en double",
+    "instruction_fr": "Le script doit empêcher deux clients d’avoir le même nom. Il crée un index simple, qui accepte les doublons. Corrige-le en index unique nommé idx_clients_nom. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "CREATE INDEX idx_clients_nom ON clients(nom);",
+    "solution": "CREATE UNIQUE INDEX idx_clients_nom ON clients(nom);",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "CREATE UNIQUE INDEX idx_clients_nom ON clients(nom);",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "INSERT INTO clients(nom) SELECT nom FROM clients WHERE id = 1;",
+            "error_includes": "UNIQUE constraint failed",
+            "description_fr": "Un second client du même nom est refusé."
+          },
+          {
+            "sql": "INSERT INTO clients(nom) VALUES('Nouveau client');",
+            "error_includes": null,
+            "description_fr": "Un nom nouveau est accepté."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "CREATE UNIQUE INDEX idx_clients_nom ON clients(nom);",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "INSERT INTO clients(nom) SELECT nom FROM clients WHERE id = 1;",
+            "error_includes": "UNIQUE constraint failed",
+            "description_fr": "Un second client du même nom est refusé."
+          },
+          {
+            "sql": "INSERT INTO clients(nom) VALUES('Nouveau client');",
+            "error_includes": null,
+            "description_fr": "Un nom nouveau est accepté."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un doublon est encore accepté.",
+      "Un index simple accélère mais n’interdit rien.",
+      "Utilise CREATE UNIQUE INDEX."
+    ],
+    "explanation_fr": "L’index unique transforme une habitude en règle vérifiée par la base.",
+    "common_wrong_answers": [],
+    "id": "sqli-m4-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Tableau des produits",
+    "instruction_fr": "Crée une vue tableau_produits (nom, categorie, stock, ca) où ca est le chiffre d’affaires du produit, 0 s’il n’a jamais été vendu (LEFT JOIN et coalesce). Puis affiche depuis la vue nom, stock et ca des produits dont le stock est inférieur à 20, triés par ca décroissant puis nom. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT nom, stock, 0 AS ca FROM produits WHERE stock < 20 ORDER BY ca DESC, nom;",
+    "solution": "CREATE VIEW tableau_produits AS\n  SELECT p.nom, p.categorie, p.stock, coalesce(SUM(v.quantite * p.prix), 0) AS ca\n  FROM produits AS p LEFT JOIN ventes AS v ON v.produit_id = p.id\n  GROUP BY p.id;\nSELECT nom, stock, ca FROM tableau_produits WHERE stock < 20 ORDER BY ca DESC, nom;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "CREATE VIEW tableau_produits AS SELECT p.nom, p.categorie, p.stock, coalesce(SUM(v.quantite * p.prix), 0) AS ca FROM produits AS p LEFT JOIN ventes AS v ON v.produit_id = p.id GROUP BY p.id; SELECT nom, stock, ca FROM tableau_produits WHERE stock < 20 ORDER BY ca DESC, nom;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "SELECT nom, categorie, stock, ca FROM tableau_produits;",
+            "error_includes": null,
+            "description_fr": "La vue tableau_produits existe avec ses quatre colonnes."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "CREATE VIEW tableau_produits AS SELECT p.nom, p.categorie, p.stock, coalesce(SUM(v.quantite * p.prix), 0) AS ca FROM produits AS p LEFT JOIN ventes AS v ON v.produit_id = p.id GROUP BY p.id; SELECT nom, stock, ca FROM tableau_produits WHERE stock < 20 ORDER BY ca DESC, nom;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "SELECT nom, categorie, stock, ca FROM tableau_produits;",
+            "error_includes": null,
+            "description_fr": "La vue tableau_produits existe avec ses quatre colonnes."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Aucune vue n’est créée et le chiffre d’affaires vaut toujours 0.",
+      "LEFT JOIN garde les produits jamais vendus.",
+      "coalesce(SUM(…), 0) remplace NULL par 0."
+    ],
+    "explanation_fr": "La vue devient la base du tableau de bord du gérant.",
+    "common_wrong_answers": [],
+    "id": "sqli-m4-01-e4"
+  }
+]

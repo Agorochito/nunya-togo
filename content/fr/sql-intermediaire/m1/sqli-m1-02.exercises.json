@@ -1,0 +1,134 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Fiche client lisible",
+    "instruction_fr": "Affiche une colonne fiche : le nom du client, un tiret entouré d’espaces, puis son quartier, ou 'quartier inconnu' s’il est absent. Trie par id. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT nom || ' - ' || quartier AS fiche FROM clients ORDER BY id;",
+    "solution": "SELECT nom || ' - ' || coalesce(quartier, 'quartier inconnu') AS fiche FROM clients ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT nom || ' - ' || coalesce(quartier, 'quartier inconnu') AS fiche FROM clients ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT nom || ' - ' || coalesce(quartier, 'quartier inconnu') AS fiche FROM clients ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "La fiche de Yao est NULL.",
+      "Coller NULL fait disparaître tout le texte.",
+      "coalesce(quartier, 'quartier inconnu')"
+    ],
+    "explanation_fr": "coalesce protège toute concaténation qui touche une colonne facultative.",
+    "common_wrong_answers": [],
+    "id": "sqli-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Ventes par jour de semaine",
+    "instruction_fr": "Affiche jour_semaine (strftime('%w', jour)) et nb_ventes (nombre de ventes), groupés par jour de semaine et triés par jour_semaine. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT jour AS jour_semaine, COUNT(*) AS nb_ventes FROM ventes GROUP BY jour ORDER BY jour;",
+    "solution": "SELECT strftime('%w', jour) AS jour_semaine, COUNT(*) AS nb_ventes\nFROM ventes\nGROUP BY jour_semaine\nORDER BY jour_semaine;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT strftime('%w', jour) AS jour_semaine, COUNT(*) AS nb_ventes FROM ventes GROUP BY jour_semaine ORDER BY jour_semaine;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT strftime('%w', jour) AS jour_semaine, COUNT(*) AS nb_ventes FROM ventes GROUP BY jour_semaine ORDER BY jour_semaine;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Regrouper par jour donne un groupe par date.",
+      "strftime('%w', jour) donne le jour de la semaine.",
+      "Regroupe et trie par cet alias."
+    ],
+    "explanation_fr": "0 désigne le dimanche : la boutique repère ainsi ses jours forts.",
+    "common_wrong_answers": [],
+    "id": "sqli-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Ventes de la première semaine",
+    "instruction_fr": "La requête doit afficher id et jour des ventes du 1er au 7 octobre 2026 inclus, triées par id. Elle compare un texte JJ/MM inventé et ne trouve rien. Corrige-la avec le format ISO et BETWEEN. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT id, jour FROM ventes WHERE jour BETWEEN '01/10/2026' AND '07/10/2026' ORDER BY id;",
+    "solution": "SELECT id, jour FROM ventes WHERE jour BETWEEN '2026-10-01' AND '2026-10-07' ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT id, jour FROM ventes WHERE jour BETWEEN '2026-10-01' AND '2026-10-07' ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT id, jour FROM ventes WHERE jour BETWEEN '2026-10-01' AND '2026-10-07' ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Les jours sont stockés en AAAA-MM-JJ.",
+      "Les bornes doivent avoir le même format.",
+      "BETWEEN '2026-10-01' AND '2026-10-07'"
+    ],
+    "explanation_fr": "Le format ISO rend les comparaisons de dates aussi simples que celles de textes.",
+    "common_wrong_answers": [],
+    "id": "sqli-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Délai depuis la dernière vente",
+    "instruction_fr": "Pour chaque produit vendu, affiche nom et jours_sans_vente : le nombre entier de jours entre sa dernière vente et le 2026-10-15 (CAST de julianday('2026-10-15') - julianday(MAX(jour)) en INTEGER). Joins ventes et produits, regroupe par produit, trie par jours_sans_vente décroissant puis nom. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT p.nom, MAX(v.jour) AS jours_sans_vente FROM ventes v JOIN produits p ON p.id = v.produit_id GROUP BY p.id ORDER BY p.nom;",
+    "solution": "SELECT p.nom,\n       CAST(julianday('2026-10-15') - julianday(MAX(v.jour)) AS INTEGER) AS jours_sans_vente\nFROM ventes AS v\nJOIN produits AS p ON p.id = v.produit_id\nGROUP BY p.id\nORDER BY jours_sans_vente DESC, p.nom;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT p.nom, CAST(julianday('2026-10-15') - julianday(MAX(v.jour)) AS INTEGER) AS jours_sans_vente FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id GROUP BY p.id ORDER BY jours_sans_vente DESC, p.nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT p.nom, CAST(julianday('2026-10-15') - julianday(MAX(v.jour)) AS INTEGER) AS jours_sans_vente FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id GROUP BY p.id ORDER BY jours_sans_vente DESC, p.nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "MAX(jour) donne la dernière vente de chaque produit.",
+      "julianday transforme les dates en nombres de jours.",
+      "CAST(… AS INTEGER) donne un nombre entier."
+    ],
+    "explanation_fr": "Un produit qui ne se vend plus depuis longtemps immobilise de l’argent : la boutique peut réduire sa commande.",
+    "common_wrong_answers": [],
+    "id": "sqli-m1-02-e4"
+  }
+]

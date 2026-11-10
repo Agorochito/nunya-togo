@@ -1,0 +1,196 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Réception de marchandise",
+    "instruction_fr": "En une seule instruction INSERT, reçois 20 sacs de riz (id 1, 'Riz 1 kg', 'épicerie', 600) et 100 boîtes d’allumettes (id 8, 'Allumettes', 'épicerie', 50) : un produit existant voit son stock augmenter, un nouveau est créé. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "INSERT OR REPLACE INTO produits(id, nom, categorie, prix, stock)\nVALUES (1, 'Riz 1 kg', 'épicerie', 600, 20), (8, 'Allumettes', 'épicerie', 50, 100);",
+    "solution": "INSERT INTO produits(id, nom, categorie, prix, stock)\nVALUES (1, 'Riz 1 kg', 'épicerie', 600, 20), (8, 'Allumettes', 'épicerie', 50, 100)\nON CONFLICT(id) DO UPDATE SET stock = stock + excluded.stock;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "INSERT INTO produits(id, nom, categorie, prix, stock) VALUES (1, 'Riz 1 kg', 'épicerie', 600, 20), (8, 'Allumettes', 'épicerie', 50, 100) ON CONFLICT(id) DO UPDATE SET stock = stock + excluded.stock;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "INSERT INTO produits(id, nom, categorie, prix, stock) VALUES (1, 'Riz 1 kg', 'épicerie', 600, 20), (8, 'Allumettes', 'épicerie', 50, 100) ON CONFLICT(id) DO UPDATE SET stock = stock + excluded.stock;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Le stock du riz devient 20 au lieu d’augmenter.",
+      "INSERT OR REPLACE écrase l’ancienne ligne.",
+      "Utilise ON CONFLICT(id) DO UPDATE SET stock = stock + excluded.stock."
+    ],
+    "explanation_fr": "L’UPSERT additionne ; le remplacement efface.",
+    "common_wrong_answers": [],
+    "id": "sqli-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Stock mis à jour automatiquement",
+    "instruction_fr": "Crée le déclencheur maj_stock qui retire NEW.quantite du stock du produit après chaque insertion dans ventes, puis enregistre une vente (client 1, produit 3, quantité 4, jour '2026-10-12') et affiche id et stock du produit 3. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "INSERT INTO ventes(client_id, produit_id, quantite, jour) VALUES (1, 3, 4, '2026-10-12');\nSELECT id, stock FROM produits WHERE id = 3;",
+    "solution": "CREATE TRIGGER maj_stock AFTER INSERT ON ventes\nBEGIN\n  UPDATE produits SET stock = stock - NEW.quantite WHERE id = NEW.produit_id;\nEND;\nINSERT INTO ventes(client_id, produit_id, quantite, jour) VALUES (1, 3, 4, '2026-10-12');\nSELECT id, stock FROM produits WHERE id = 3;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "CREATE TRIGGER maj_stock AFTER INSERT ON ventes BEGIN   UPDATE produits SET stock = stock - NEW.quantite WHERE id = NEW.produit_id; END; INSERT INTO ventes(client_id, produit_id, quantite, jour) VALUES (1, 3, 4, '2026-10-12'); SELECT id, stock FROM produits WHERE id = 3;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "DROP TRIGGER maj_stock;",
+            "error_includes": null,
+            "description_fr": "Le déclencheur maj_stock existe."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "CREATE TRIGGER maj_stock AFTER INSERT ON ventes BEGIN   UPDATE produits SET stock = stock - NEW.quantite WHERE id = NEW.produit_id; END; INSERT INTO ventes(client_id, produit_id, quantite, jour) VALUES (1, 3, 4, '2026-10-12'); SELECT id, stock FROM produits WHERE id = 3;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "DROP TRIGGER maj_stock;",
+            "error_includes": null,
+            "description_fr": "Le déclencheur maj_stock existe."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La vente est enregistrée mais le stock ne bouge pas.",
+      "Il faut un déclencheur AFTER INSERT ON ventes.",
+      "Son corps : UPDATE produits SET stock = stock - NEW.quantite WHERE id = NEW.produit_id;"
+    ],
+    "explanation_fr": "Plus aucune vente ne peut oublier de mettre le stock à jour.",
+    "common_wrong_answers": [],
+    "id": "sqli-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Refus des ventes impossibles",
+    "instruction_fr": "Le déclencheur bloquer_rupture doit refuser une vente dont la quantité dépasse le stock, avec le message 'stock insuffisant'. Sa condition est inversée et bloque les ventes possibles. Corrige-la. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "CREATE TRIGGER bloquer_rupture BEFORE INSERT ON ventes\nWHEN (SELECT stock FROM produits WHERE id = NEW.produit_id) > NEW.quantite\nBEGIN\n  SELECT RAISE(ABORT, 'stock insuffisant');\nEND;\n",
+    "solution": "CREATE TRIGGER bloquer_rupture BEFORE INSERT ON ventes\nWHEN (SELECT stock FROM produits WHERE id = NEW.produit_id) < NEW.quantite\nBEGIN\n  SELECT RAISE(ABORT, 'stock insuffisant');\nEND;\n",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "CREATE TRIGGER bloquer_rupture BEFORE INSERT ON ventes WHEN (SELECT stock FROM produits WHERE id = NEW.produit_id) < NEW.quantite BEGIN   SELECT RAISE(ABORT, 'stock insuffisant'); END; ",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "INSERT INTO ventes(client_id, produit_id, quantite, jour) VALUES (1, 1, 1000, '2026-10-12');",
+            "error_includes": "stock insuffisant",
+            "description_fr": "Une vente plus grande que le stock est refusée."
+          },
+          {
+            "sql": "INSERT INTO ventes(client_id, produit_id, quantite, jour) VALUES (1, 1, 1, '2026-10-12');",
+            "error_includes": null,
+            "description_fr": "Une petite vente est acceptée."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "CREATE TRIGGER bloquer_rupture BEFORE INSERT ON ventes WHEN (SELECT stock FROM produits WHERE id = NEW.produit_id) < NEW.quantite BEGIN   SELECT RAISE(ABORT, 'stock insuffisant'); END; ",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "INSERT INTO ventes(client_id, produit_id, quantite, jour) VALUES (1, 1, 1000, '2026-10-12');",
+            "error_includes": "stock insuffisant",
+            "description_fr": "Une vente plus grande que le stock est refusée."
+          },
+          {
+            "sql": "INSERT INTO ventes(client_id, produit_id, quantite, jour) VALUES (1, 1, 1, '2026-10-12');",
+            "error_includes": null,
+            "description_fr": "Une petite vente est acceptée."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une vente d’un seul sac de riz est refusée.",
+      "Le refus doit avoir lieu quand le stock est plus petit que la quantité.",
+      "Remplace > par <."
+    ],
+    "explanation_fr": "Une condition inversée bloque l’activité normale : on teste toujours le cas qui doit passer.",
+    "common_wrong_answers": [],
+    "id": "sqli-m4-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Caisse fiable",
+    "instruction_fr": "Crée les deux déclencheurs bloquer_rupture et maj_stock, puis enregistre une vente de 5 savons (client 2, produit 3, '2026-10-12') et affiche id, nom et stock de tous les produits, triés par id. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "INSERT INTO ventes(client_id, produit_id, quantite, jour) VALUES (2, 3, 5, '2026-10-12');\nSELECT id, nom, stock FROM produits ORDER BY id;",
+    "solution": "CREATE TRIGGER bloquer_rupture BEFORE INSERT ON ventes\nWHEN (SELECT stock FROM produits WHERE id = NEW.produit_id) < NEW.quantite\nBEGIN\n  SELECT RAISE(ABORT, 'stock insuffisant');\nEND;\nCREATE TRIGGER maj_stock AFTER INSERT ON ventes\nBEGIN\n  UPDATE produits SET stock = stock - NEW.quantite WHERE id = NEW.produit_id;\nEND;\nINSERT INTO ventes(client_id, produit_id, quantite, jour) VALUES (2, 3, 5, '2026-10-12');\nSELECT id, nom, stock FROM produits ORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "CREATE TRIGGER bloquer_rupture BEFORE INSERT ON ventes WHEN (SELECT stock FROM produits WHERE id = NEW.produit_id) < NEW.quantite BEGIN   SELECT RAISE(ABORT, 'stock insuffisant'); END; CREATE TRIGGER maj_stock AFTER INSERT ON ventes BEGIN   UPDATE produits SET stock = stock - NEW.quantite WHERE id = NEW.produit_id; END; INSERT INTO ventes(client_id, produit_id, quantite, jour) VALUES (2, 3, 5, '2026-10-12'); SELECT id, nom, stock FROM produits ORDER BY id;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "INSERT INTO ventes(client_id, produit_id, quantite, jour) VALUES (1, 4, 1000, '2026-10-12');",
+            "error_includes": "stock insuffisant",
+            "description_fr": "Une vente impossible est refusée."
+          },
+          {
+            "sql": "DROP TRIGGER maj_stock;",
+            "error_includes": null,
+            "description_fr": "Le déclencheur maj_stock existe."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "CREATE TRIGGER bloquer_rupture BEFORE INSERT ON ventes WHEN (SELECT stock FROM produits WHERE id = NEW.produit_id) < NEW.quantite BEGIN   SELECT RAISE(ABORT, 'stock insuffisant'); END; CREATE TRIGGER maj_stock AFTER INSERT ON ventes BEGIN   UPDATE produits SET stock = stock - NEW.quantite WHERE id = NEW.produit_id; END; INSERT INTO ventes(client_id, produit_id, quantite, jour) VALUES (2, 3, 5, '2026-10-12'); SELECT id, nom, stock FROM produits ORDER BY id;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "INSERT INTO ventes(client_id, produit_id, quantite, jour) VALUES (1, 4, 1000, '2026-10-12');",
+            "error_includes": "stock insuffisant",
+            "description_fr": "Une vente impossible est refusée."
+          },
+          {
+            "sql": "DROP TRIGGER maj_stock;",
+            "error_includes": null,
+            "description_fr": "Le déclencheur maj_stock existe."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Il manque les deux déclencheurs.",
+      "bloquer_rupture refuse, maj_stock retire du stock.",
+      "Crée-les avant d’insérer la vente."
+    ],
+    "explanation_fr": "La base garantit désormais un stock juste, quelle que soit l’application qui enregistre les ventes.",
+    "common_wrong_answers": [],
+    "id": "sqli-m4-02-e4"
+  }
+]

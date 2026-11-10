@@ -36,6 +36,7 @@
       "python-bases",
       "python-intermediaire",
       "sql-bases",
+      "sql-intermediaire",
       "php-bases",
       "java-bases",
       "http-bases",
@@ -117,6 +118,7 @@
       "python-bases",
       "sql-bases",
       "python-intermediaire",
+      "sql-intermediaire",
       "git-bases"
     ],
     "planned_fr": [
@@ -127,13 +129,9 @@
       {
         "title_fr": "Statistiques avec Python",
         "summary_fr": "Moyennes, dispersion, échantillons et graphiques."
-      },
-      {
-        "title_fr": "SQL intermédiaire",
-        "summary_fr": "Jointures avancées, regroupements et indicateurs."
       }
     ],
-    "outcome_fr": "Préparer un bilan à partir de données fictives et conserver ses versions ; statistiques et visualisation suivront."
+    "outcome_fr": "Préparer un bilan et un tableau de bord à partir de données fictives, en Python et en SQL avancé, et conserver ses versions ; statistiques et visualisation suivront."
   },
   {
     "id": "cyber",

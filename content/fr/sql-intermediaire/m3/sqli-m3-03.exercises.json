@@ -1,0 +1,134 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Évolution des quantités",
+    "instruction_fr": "Avec une étape qte_jour (jour, qte), affiche jour, qte et veille (la qte de la ligne précédente, 0 pour la première avec LAG(qte, 1, 0)). Tri par jour. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "WITH qte_jour AS (SELECT jour, SUM(quantite) AS qte FROM ventes GROUP BY jour)\nSELECT jour, qte, LEAD(qte, 1, 0) OVER (ORDER BY jour) AS veille FROM qte_jour ORDER BY jour;",
+    "solution": "WITH qte_jour AS (SELECT jour, SUM(quantite) AS qte FROM ventes GROUP BY jour)\nSELECT jour, qte, LAG(qte, 1, 0) OVER (ORDER BY jour) AS veille FROM qte_jour ORDER BY jour;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "WITH qte_jour AS (SELECT jour, SUM(quantite) AS qte FROM ventes GROUP BY jour) SELECT jour, qte, LAG(qte, 1, 0) OVER (ORDER BY jour) AS veille FROM qte_jour ORDER BY jour;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "WITH qte_jour AS (SELECT jour, SUM(quantite) AS qte FROM ventes GROUP BY jour) SELECT jour, qte, LAG(qte, 1, 0) OVER (ORDER BY jour) AS veille FROM qte_jour ORDER BY jour;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "La valeur affichée est celle du lendemain.",
+      "LEAD regarde en avant.",
+      "Utilise LAG."
+    ],
+    "explanation_fr": "LAG et LEAD sont symétriques : un mot change le sens du temps.",
+    "common_wrong_answers": [],
+    "id": "sqli-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Jours entre deux achats",
+    "instruction_fr": "Affiche client_id, jour et delai : le nombre entier de jours depuis l’achat précédent du même client (CAST de julianday(jour) - julianday(LAG(jour) …) en INTEGER, NULL pour le premier achat). Exclus les ventes anonymes. Tri par client_id, jour, id. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT client_id, jour, NULL AS delai FROM ventes WHERE client_id IS NOT NULL ORDER BY client_id, jour, id;",
+    "solution": "SELECT client_id, jour,\n       CAST(julianday(jour) - julianday(LAG(jour) OVER (PARTITION BY client_id ORDER BY jour, id)) AS INTEGER) AS delai\nFROM ventes\nWHERE client_id IS NOT NULL\nORDER BY client_id, jour, id;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT client_id, jour, CAST(julianday(jour) - julianday(LAG(jour) OVER (PARTITION BY client_id ORDER BY jour, id)) AS INTEGER) AS delai FROM ventes WHERE client_id IS NOT NULL ORDER BY client_id, jour, id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT client_id, jour, CAST(julianday(jour) - julianday(LAG(jour) OVER (PARTITION BY client_id ORDER BY jour, id)) AS INTEGER) AS delai FROM ventes WHERE client_id IS NOT NULL ORDER BY client_id, jour, id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "La date précédente vient de LAG, par client.",
+      "julianday transforme les deux dates en nombres.",
+      "CAST du NULL reste NULL pour le premier achat."
+    ],
+    "explanation_fr": "Un délai qui s’allonge signale un client qui s’éloigne.",
+    "common_wrong_answers": [],
+    "id": "sqli-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Comparer le même client",
+    "instruction_fr": "La requête doit afficher client_id, jour et precedent (date de l’achat précédent du même client). Elle compare les achats de tous les clients entre eux. Corrige la fenêtre. Ventes anonymes exclues, tri par client_id, jour, id. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT client_id, jour, LAG(jour) OVER (ORDER BY jour, id) AS precedent\nFROM ventes WHERE client_id IS NOT NULL\nORDER BY client_id, jour, id;",
+    "solution": "SELECT client_id, jour, LAG(jour) OVER (PARTITION BY client_id ORDER BY jour, id) AS precedent\nFROM ventes WHERE client_id IS NOT NULL\nORDER BY client_id, jour, id;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT client_id, jour, LAG(jour) OVER (PARTITION BY client_id ORDER BY jour, id) AS precedent FROM ventes WHERE client_id IS NOT NULL ORDER BY client_id, jour, id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT client_id, jour, LAG(jour) OVER (PARTITION BY client_id ORDER BY jour, id) AS precedent FROM ventes WHERE client_id IS NOT NULL ORDER BY client_id, jour, id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Le premier achat d’un client reçoit la date d’un autre client.",
+      "La fenêtre doit être découpée par client.",
+      "Ajoute PARTITION BY client_id."
+    ],
+    "explanation_fr": "Sans partition, la comparaison mélange des histoires différentes.",
+    "common_wrong_answers": [],
+    "id": "sqli-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Jours en baisse",
+    "instruction_fr": "Avec une étape par_jour (jour, ca) puis une étape evolution (jour, ca, ecart = ca - LAG(ca)), affiche jour, ca et ecart des seuls jours où le chiffre d’affaires baisse par rapport à la ligne précédente. Tri par jour. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "WITH par_jour AS (\n  SELECT v.jour, SUM(v.quantite * p.prix) AS ca\n  FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id\n  GROUP BY v.jour\n)\nSELECT jour, ca, ca - LAG(ca) OVER (ORDER BY jour) AS ecart FROM par_jour ORDER BY jour;",
+    "solution": "WITH par_jour AS (\n  SELECT v.jour, SUM(v.quantite * p.prix) AS ca\n  FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id\n  GROUP BY v.jour\n),\nevolution AS (\n  SELECT jour, ca, ca - LAG(ca) OVER (ORDER BY jour) AS ecart FROM par_jour\n)\nSELECT jour, ca, ecart FROM evolution WHERE ecart < 0 ORDER BY jour;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "WITH par_jour AS (   SELECT v.jour, SUM(v.quantite * p.prix) AS ca   FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id   GROUP BY v.jour ), evolution AS (SELECT jour, ca, ca - LAG(ca) OVER (ORDER BY jour) AS ecart FROM par_jour) SELECT jour, ca, ecart FROM evolution WHERE ecart < 0 ORDER BY jour;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "WITH par_jour AS (   SELECT v.jour, SUM(v.quantite * p.prix) AS ca   FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id   GROUP BY v.jour ), evolution AS (SELECT jour, ca, ca - LAG(ca) OVER (ORDER BY jour) AS ecart FROM par_jour) SELECT jour, ca, ecart FROM evolution WHERE ecart < 0 ORDER BY jour;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Tous les jours sont affichés.",
+      "Le filtre sur l’écart doit venir après le calcul de la fenêtre.",
+      "Une deuxième étape, puis WHERE ecart < 0."
+    ],
+    "explanation_fr": "Repérer les jours en baisse permet d’en chercher la cause : météo, rupture, fête.",
+    "common_wrong_answers": [],
+    "id": "sqli-m3-03-e4"
+  }
+]

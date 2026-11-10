@@ -1,3 +1,8 @@
+# Vérifications 5.17.0 — 10 novembre 2026
+
+- SQL intermédiaire : 24 exemples, 48 solutions acceptées et 48 codes de départ et scripts vides refusés dans le vrai SQLite 3.54 (sql.js), dans le contrôle de construction désormais commun à tous les cours SQL ; résultats d’exemples recalculés et comparés. Interface (`SQL_INTERMEDIAIRE_UI_RESULTS.json`) : 12 leçons, 48 exercices et 36 questions à 360 et 1440 px, base initiale affichée, lecture hors ligne, zéro violation axe. Le cours SQL débutant reste vérifié sur ses bases d’origine.
+- 222 tests unitaires et contrôles de contenu réussis ; 42 tests navigateur réussis. Huit d’entre eux ont dépassé leurs délais lors d’une première passe menée pendant un autre calcul lourd sur la même machine, puis ont réussi relancés seuls (découverte, Git, HTTP, SQL, DOM, React, Python intermédiaire, HTML intermédiaire).
+
 # Vérifications 5.16.0 — 10 novembre 2026
 
 - Réseaux : 24 exemples, 48 solutions et 48 codes de départ vérifiés dans le vrai Pyodide 3.14 du site (120 contrôles, tous les départs refusés) ; contrôle Python de la construction réussi (1 262 cas, Python 3.9). Interface (`RESEAUX_BASES_UI_RESULTS.json`) : 12 leçons, 48 exercices et 36 questions à 360 et 1440 px, lecture hors ligne à froid, zéro violation axe.

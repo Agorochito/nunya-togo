@@ -1,0 +1,134 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Ruptures par catégorie",
+    "instruction_fr": "Affiche categorie, produits (nombre de produits) et ruptures (nombre de produits au stock nul, avec SUM(CASE …)). Tri par categorie. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT categorie, COUNT(*) AS produits, COUNT(stock) AS ruptures FROM produits GROUP BY categorie ORDER BY categorie;",
+    "solution": "SELECT categorie, COUNT(*) AS produits, SUM(CASE WHEN stock = 0 THEN 1 ELSE 0 END) AS ruptures\nFROM produits\nGROUP BY categorie\nORDER BY categorie;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT categorie, COUNT(*) AS produits, SUM(CASE WHEN stock = 0 THEN 1 ELSE 0 END) AS ruptures FROM produits GROUP BY categorie ORDER BY categorie;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT categorie, COUNT(*) AS produits, SUM(CASE WHEN stock = 0 THEN 1 ELSE 0 END) AS ruptures FROM produits GROUP BY categorie ORDER BY categorie;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "COUNT(stock) compte tous les produits, car aucun stock n’est NULL.",
+      "Il faut compter seulement les stocks nuls.",
+      "SUM(CASE WHEN stock = 0 THEN 1 ELSE 0 END)"
+    ],
+    "explanation_fr": "L’agrégation conditionnelle du premier module reste l’outil de base des tableaux de bord.",
+    "common_wrong_answers": [],
+    "id": "sqli-m4-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Meilleur produit de chaque catégorie",
+    "instruction_fr": "Avec une étape ca_prod (categorie, nom, ca par produit vendu) puis une étape classes (ROW_NUMBER par catégorie, ca décroissant puis nom), affiche categorie, nom et ca du meilleur produit de chaque catégorie. Tri par categorie. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT p.categorie, p.nom, SUM(v.quantite * p.prix) AS ca FROM ventes v JOIN produits p ON p.id = v.produit_id GROUP BY p.id ORDER BY p.categorie;",
+    "solution": "WITH ca_prod AS (\n  SELECT p.categorie, p.nom, SUM(v.quantite * p.prix) AS ca\n  FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id\n  GROUP BY p.id\n),\nclasses AS (\n  SELECT categorie, nom, ca, ROW_NUMBER() OVER (PARTITION BY categorie ORDER BY ca DESC, nom) AS rang FROM ca_prod\n)\nSELECT categorie, nom, ca FROM classes WHERE rang = 1 ORDER BY categorie;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "WITH ca_prod AS (SELECT p.categorie, p.nom, SUM(v.quantite * p.prix) AS ca FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id GROUP BY p.id), classes AS (SELECT categorie, nom, ca, ROW_NUMBER() OVER (PARTITION BY categorie ORDER BY ca DESC, nom) AS rang FROM ca_prod) SELECT categorie, nom, ca FROM classes WHERE rang = 1 ORDER BY categorie;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "WITH ca_prod AS (SELECT p.categorie, p.nom, SUM(v.quantite * p.prix) AS ca FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id GROUP BY p.id), classes AS (SELECT categorie, nom, ca, ROW_NUMBER() OVER (PARTITION BY categorie ORDER BY ca DESC, nom) AS rang FROM ca_prod) SELECT categorie, nom, ca FROM classes WHERE rang = 1 ORDER BY categorie;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Tous les produits sont affichés.",
+      "Classe les produits dans leur catégorie.",
+      "Garde rang = 1 dans la requête finale."
+    ],
+    "explanation_fr": "Le schéma « étape de rang, puis filtre » revient dans presque toutes les analyses.",
+    "common_wrong_answers": [],
+    "id": "sqli-m4-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Part de chaque catégorie",
+    "instruction_fr": "La requête doit afficher categorie, ca et part (pourcentage du total arrondi à une décimale), triés par ca décroissant. Elle divise par SUM(ca) sans fenêtre et ne renvoie qu’une ligne. Corrige-la. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "WITH ca_cat AS (\n  SELECT p.categorie, SUM(v.quantite * p.prix) AS ca\n  FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id\n  GROUP BY p.categorie\n)\nSELECT categorie, ca, ROUND(100.0 * ca / SUM(ca), 1) AS part FROM ca_cat ORDER BY ca DESC;",
+    "solution": "WITH ca_cat AS (\n  SELECT p.categorie, SUM(v.quantite * p.prix) AS ca\n  FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id\n  GROUP BY p.categorie\n)\nSELECT categorie, ca, ROUND(100.0 * ca / SUM(ca) OVER (), 1) AS part FROM ca_cat ORDER BY ca DESC;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "WITH ca_cat AS (   SELECT p.categorie, SUM(v.quantite * p.prix) AS ca   FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id   GROUP BY p.categorie ) SELECT categorie, ca, ROUND(100.0 * ca / SUM(ca) OVER (), 1) AS part FROM ca_cat ORDER BY ca DESC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "WITH ca_cat AS (   SELECT p.categorie, SUM(v.quantite * p.prix) AS ca   FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id   GROUP BY p.categorie ) SELECT categorie, ca, ROUND(100.0 * ca / SUM(ca) OVER (), 1) AS part FROM ca_cat ORDER BY ca DESC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Une seule ligne sort au lieu d’une par catégorie.",
+      "SUM sans OVER fusionne toutes les lignes.",
+      "Écris SUM(ca) OVER ()."
+    ],
+    "explanation_fr": "OVER () garde le détail tout en donnant accès au total.",
+    "common_wrong_answers": [],
+    "id": "sqli-m4-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Tableau de bord complet",
+    "instruction_fr": "Affiche pour chaque catégorie qui a des ventes : categorie, ca, part (pourcentage arrondi à une décimale), meilleur_produit (nom du produit au plus fort ca de la catégorie, départagé par nom) et ruptures (nombre de produits de la catégorie au stock nul). Tri par ca décroissant. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "WITH ca_cat AS (\n  SELECT p.categorie, SUM(v.quantite * p.prix) AS ca\n  FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id\n  GROUP BY p.categorie\n)\nSELECT categorie, ca FROM ca_cat ORDER BY ca DESC;",
+    "solution": "WITH ca_prod AS (\n  SELECT p.categorie, p.nom, SUM(v.quantite * p.prix) AS ca\n  FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id\n  GROUP BY p.id\n),\nca_cat AS (\n  SELECT categorie, SUM(ca) AS ca FROM ca_prod GROUP BY categorie\n),\nmeilleurs AS (\n  SELECT categorie, nom, ROW_NUMBER() OVER (PARTITION BY categorie ORDER BY ca DESC, nom) AS rang FROM ca_prod\n),\nruptures AS (\n  SELECT categorie, SUM(CASE WHEN stock = 0 THEN 1 ELSE 0 END) AS ruptures FROM produits GROUP BY categorie\n)\nSELECT c.categorie, c.ca,\n       ROUND(100.0 * c.ca / SUM(c.ca) OVER (), 1) AS part,\n       m.nom AS meilleur_produit,\n       r.ruptures\nFROM ca_cat AS c\nJOIN meilleurs AS m ON m.categorie = c.categorie AND m.rang = 1\nJOIN ruptures AS r ON r.categorie = c.categorie\nORDER BY c.ca DESC;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "WITH ca_prod AS (SELECT p.categorie, p.nom, SUM(v.quantite * p.prix) AS ca FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id GROUP BY p.id), ca_cat AS (SELECT categorie, SUM(ca) AS ca FROM ca_prod GROUP BY categorie), meilleurs AS (SELECT categorie, nom, ROW_NUMBER() OVER (PARTITION BY categorie ORDER BY ca DESC, nom) AS rang FROM ca_prod), ruptures AS (SELECT categorie, SUM(CASE WHEN stock = 0 THEN 1 ELSE 0 END) AS ruptures FROM produits GROUP BY categorie) SELECT c.categorie, c.ca, ROUND(100.0 * c.ca / SUM(c.ca) OVER (), 1) AS part, m.nom AS meilleur_produit, r.ruptures FROM ca_cat AS c JOIN meilleurs AS m ON m.categorie = c.categorie AND m.rang = 1 JOIN ruptures AS r ON r.categorie = c.categorie ORDER BY c.ca DESC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "WITH ca_prod AS (SELECT p.categorie, p.nom, SUM(v.quantite * p.prix) AS ca FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id GROUP BY p.id), ca_cat AS (SELECT categorie, SUM(ca) AS ca FROM ca_prod GROUP BY categorie), meilleurs AS (SELECT categorie, nom, ROW_NUMBER() OVER (PARTITION BY categorie ORDER BY ca DESC, nom) AS rang FROM ca_prod), ruptures AS (SELECT categorie, SUM(CASE WHEN stock = 0 THEN 1 ELSE 0 END) AS ruptures FROM produits GROUP BY categorie) SELECT c.categorie, c.ca, ROUND(100.0 * c.ca / SUM(c.ca) OVER (), 1) AS part, m.nom AS meilleur_produit, r.ruptures FROM ca_cat AS c JOIN meilleurs AS m ON m.categorie = c.categorie AND m.rang = 1 JOIN ruptures AS r ON r.categorie = c.categorie ORDER BY c.ca DESC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Quatre étapes : par produit, par catégorie, meilleurs, ruptures.",
+      "La part utilise SUM(c.ca) OVER () dans la requête finale.",
+      "Joins les étapes sur la catégorie, avec rang = 1 pour le meilleur."
+    ],
+    "explanation_fr": "Une seule requête, lisible étape par étape, donne à la gérante tout ce qu’il lui faut pour décider de ses commandes.",
+    "common_wrong_answers": [],
+    "id": "sqli-m4-03-e4"
+  }
+]

@@ -5887,6 +5887,296 @@
       "content_revision": "b9445768703b",
       "exercise_count": 72,
       "quiz_count": 54
+    },
+    {
+      "id": "sql-intermediaire",
+      "title_fr": "SQL intermédiaire : analyser les données d’une boutique",
+      "language": "sql",
+      "runtime": "sql",
+      "level": "intermediaire",
+      "summary_fr": "Passe des requêtes simples aux analyses : CASE, fonctions de texte et de dates, opérateurs ensemblistes, sous-requêtes corrélées, WITH et requêtes récursives, fonctions de fenêtre, vues, index, UPSERT et déclencheurs, jusqu’au tableau de bord d’une boutique. Vrai SQLite hors ligne.",
+      "prerequisite_courses": [
+        "sql-bases"
+      ],
+      "prerequisites": [
+        "Savoir filtrer, regrouper, joindre et modifier des tables avec SQL.",
+        "Le cours SQL débutant de Nunya fournit ces bases."
+      ],
+      "outcomes": [
+        "Écrire des requêtes expressives avec CASE, des fonctions et des opérateurs ensemblistes.",
+        "Découper une analyse en étapes avec WITH, y compris récursives.",
+        "Classer, cumuler et comparer avec les fonctions de fenêtre.",
+        "Structurer une base avec vues, index, UPSERT et déclencheurs.",
+        "Construire un tableau de bord fiable à partir de données de ventes."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Requêtes plus expressives",
+          "outcome_fr": "CASE, fonctions de texte et de dates, UNION, INTERSECT et EXCEPT.",
+          "lesson_ids": [
+            "sqli-m1-01",
+            "sqli-m1-02",
+            "sqli-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Sous-requêtes et étapes",
+          "outcome_fr": "Sous-requêtes corrélées, WITH et requêtes récursives.",
+          "lesson_ids": [
+            "sqli-m2-01",
+            "sqli-m2-02",
+            "sqli-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Fonctions de fenêtre",
+          "outcome_fr": "Rangs, cumuls, moyennes glissantes, LAG et LEAD.",
+          "lesson_ids": [
+            "sqli-m3-01",
+            "sqli-m3-02",
+            "sqli-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Structurer et fiabiliser",
+          "outcome_fr": "Vues, index, UPSERT, déclencheurs et tableau de bord.",
+          "lesson_ids": [
+            "sqli-m4-01",
+            "sqli-m4-02",
+            "sqli-m4-03"
+          ]
+        }
+      ],
+      "next_courses": [],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "sqli-m1-01",
+          "title_fr": "Décider dans une requête avec CASE",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "sql-m6-03"
+          ],
+          "tags": [
+            "sql",
+            "sqlite",
+            "intermédiaire",
+            "CASE",
+            "agrégation conditionnelle",
+            "alias",
+            "ELSE"
+          ]
+        },
+        {
+          "id": "sqli-m1-02",
+          "title_fr": "Transformer textes et dates",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "sqli-m1-01"
+          ],
+          "tags": [
+            "sql",
+            "sqlite",
+            "intermédiaire",
+            "fonction",
+            "||",
+            "format ISO",
+            "julianday"
+          ]
+        },
+        {
+          "id": "sqli-m1-03",
+          "title_fr": "Combiner des résultats : UNION, INTERSECT, EXCEPT",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "sqli-m1-02"
+          ],
+          "tags": [
+            "sql",
+            "sqlite",
+            "intermédiaire",
+            "UNION",
+            "UNION ALL",
+            "INTERSECT",
+            "EXCEPT"
+          ]
+        },
+        {
+          "id": "sqli-m2-01",
+          "title_fr": "Sous-requêtes scalaires et corrélées",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "sqli-m1-03"
+          ],
+          "tags": [
+            "sql",
+            "sqlite",
+            "intermédiaire",
+            "sous-requête scalaire",
+            "sous-requête corrélée",
+            "corrélation",
+            "alias de table"
+          ]
+        },
+        {
+          "id": "sqli-m2-02",
+          "title_fr": "Écrire en étapes avec WITH",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "sqli-m2-01"
+          ],
+          "tags": [
+            "sql",
+            "sqlite",
+            "intermédiaire",
+            "CTE",
+            "étape",
+            "chiffre d’affaires",
+            "requête finale"
+          ]
+        },
+        {
+          "id": "sqli-m2-03",
+          "title_fr": "Requêtes récursives : chaînes et calendriers",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "sqli-m2-02"
+          ],
+          "tags": [
+            "sql",
+            "sqlite",
+            "intermédiaire",
+            "CTE récursive",
+            "partie de départ",
+            "condition d’arrêt",
+            "parrainage"
+          ]
+        },
+        {
+          "id": "sqli-m3-01",
+          "title_fr": "Classer avec les fonctions de fenêtre",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "sqli-m2-03"
+          ],
+          "tags": [
+            "sql",
+            "sqlite",
+            "intermédiaire",
+            "fonction de fenêtre",
+            "PARTITION BY",
+            "RANK",
+            "ROW_NUMBER"
+          ]
+        },
+        {
+          "id": "sqli-m3-02",
+          "title_fr": "Cumuls et moyennes glissantes",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "sqli-m3-01"
+          ],
+          "tags": [
+            "sql",
+            "sqlite",
+            "intermédiaire",
+            "cumul",
+            "moyenne glissante",
+            "cadre",
+            "OVER ()"
+          ]
+        },
+        {
+          "id": "sqli-m3-03",
+          "title_fr": "Comparer à la ligne précédente avec LAG et LEAD",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "sqli-m3-02"
+          ],
+          "tags": [
+            "sql",
+            "sqlite",
+            "intermédiaire",
+            "LAG",
+            "LEAD",
+            "écart",
+            "fidélité"
+          ]
+        },
+        {
+          "id": "sqli-m4-01",
+          "title_fr": "Vues et index",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "sqli-m3-03"
+          ],
+          "tags": [
+            "sql",
+            "sqlite",
+            "intermédiaire",
+            "vue",
+            "index",
+            "index unique",
+            "plan d’exécution"
+          ]
+        },
+        {
+          "id": "sqli-m4-02",
+          "title_fr": "UPSERT et déclencheurs",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "sqli-m4-01"
+          ],
+          "tags": [
+            "sql",
+            "sqlite",
+            "intermédiaire",
+            "UPSERT",
+            "excluded",
+            "déclencheur",
+            "RAISE"
+          ]
+        },
+        {
+          "id": "sqli-m4-03",
+          "title_fr": "Projet : le tableau de bord de la boutique",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "sqli-m4-02"
+          ],
+          "tags": [
+            "sql",
+            "sqlite",
+            "intermédiaire",
+            "tableau de bord",
+            "indicateur",
+            "part",
+            "cas limite"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "8fe0c818b12e",
+      "exercise_count": 48,
+      "quiz_count": 36
     }
   ],
   "plans": [

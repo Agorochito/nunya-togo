@@ -1,0 +1,134 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Remonter la chaîne de Mina",
+    "instruction_fr": "Affiche niveau et nom de la chaîne de parrainage qui part de la cliente d’id 3 (niveau 0) et remonte jusqu’à l’origine. Tri par niveau. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "WITH RECURSIVE chaine(id, nom, parrain_id, niveau) AS (\n  SELECT id, nom, parrain_id, 0 FROM clients WHERE id = 3\n)\nSELECT niveau, nom FROM chaine ORDER BY niveau;",
+    "solution": "WITH RECURSIVE chaine(id, nom, parrain_id, niveau) AS (\n  SELECT id, nom, parrain_id, 0 FROM clients WHERE id = 3\n  UNION ALL\n  SELECT c.id, c.nom, c.parrain_id, chaine.niveau + 1\n  FROM clients AS c JOIN chaine ON c.id = chaine.parrain_id\n)\nSELECT niveau, nom FROM chaine ORDER BY niveau;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "WITH RECURSIVE chaine(id, nom, parrain_id, niveau) AS (SELECT id, nom, parrain_id, 0 FROM clients WHERE id = 3 UNION ALL SELECT c.id, c.nom, c.parrain_id, chaine.niveau + 1 FROM clients AS c JOIN chaine ON c.id = chaine.parrain_id) SELECT niveau, nom FROM chaine ORDER BY niveau;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "WITH RECURSIVE chaine(id, nom, parrain_id, niveau) AS (SELECT id, nom, parrain_id, 0 FROM clients WHERE id = 3 UNION ALL SELECT c.id, c.nom, c.parrain_id, chaine.niveau + 1 FROM clients AS c JOIN chaine ON c.id = chaine.parrain_id) SELECT niveau, nom FROM chaine ORDER BY niveau;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Seule la partie de départ est écrite.",
+      "Ajoute UNION ALL et une partie qui trouve le parrain.",
+      "Joins clients sur c.id = chaine.parrain_id et augmente niveau."
+    ],
+    "explanation_fr": "La récursion s’arrête seule quand le parrain est NULL.",
+    "common_wrong_answers": [],
+    "id": "sqli-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Calendrier de la semaine",
+    "instruction_fr": "Avec une CTE récursive calendrier(jour) du 2026-10-01 au 2026-10-07 inclus, affiche jour et qte (somme des quantités vendues ce jour-là, 0 s’il n’y a rien, avec coalesce). Tri par jour. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT jour, SUM(quantite) AS qte FROM ventes WHERE jour <= '2026-10-07' GROUP BY jour ORDER BY jour;",
+    "solution": "WITH RECURSIVE calendrier(jour) AS (\n  SELECT '2026-10-01'\n  UNION ALL\n  SELECT date(jour, '+1 day') FROM calendrier WHERE jour < '2026-10-07'\n)\nSELECT c.jour, coalesce(SUM(v.quantite), 0) AS qte\nFROM calendrier AS c LEFT JOIN ventes AS v ON v.jour = c.jour\nGROUP BY c.jour\nORDER BY c.jour;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "WITH RECURSIVE calendrier(jour) AS (SELECT '2026-10-01' UNION ALL SELECT date(jour, '+1 day') FROM calendrier WHERE jour < '2026-10-07') SELECT c.jour, coalesce(SUM(v.quantite), 0) AS qte FROM calendrier AS c LEFT JOIN ventes AS v ON v.jour = c.jour GROUP BY c.jour ORDER BY c.jour;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "WITH RECURSIVE calendrier(jour) AS (SELECT '2026-10-01' UNION ALL SELECT date(jour, '+1 day') FROM calendrier WHERE jour < '2026-10-07') SELECT c.jour, coalesce(SUM(v.quantite), 0) AS qte FROM calendrier AS c LEFT JOIN ventes AS v ON v.jour = c.jour GROUP BY c.jour ORDER BY c.jour;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Les jours sans vente manquent.",
+      "Génère tous les jours, puis LEFT JOIN avec ventes.",
+      "coalesce(SUM(v.quantite), 0) remplace NULL par 0."
+    ],
+    "explanation_fr": "Un graphique de ventes honnête montre aussi les jours vides.",
+    "common_wrong_answers": [],
+    "id": "sqli-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Récursion sans fin",
+    "instruction_fr": "La requête doit générer les nombres de 1 à 5 dans une colonne n. Sa condition d’arrêt laisse passer un tour de trop. Corrige-la. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "WITH RECURSIVE suite(n) AS (\n  SELECT 1\n  UNION ALL\n  SELECT n + 1 FROM suite WHERE n <= 5\n)\nSELECT n FROM suite;",
+    "solution": "WITH RECURSIVE suite(n) AS (\n  SELECT 1\n  UNION ALL\n  SELECT n + 1 FROM suite WHERE n < 5\n)\nSELECT n FROM suite;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "WITH RECURSIVE suite(n) AS (SELECT 1 UNION ALL SELECT n + 1 FROM suite WHERE n < 5) SELECT n FROM suite;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "WITH RECURSIVE suite(n) AS (SELECT 1 UNION ALL SELECT n + 1 FROM suite WHERE n < 5) SELECT n FROM suite;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "La suite va jusqu’à 6.",
+      "Quand n vaut 5, la partie récursive ne doit plus produire de ligne.",
+      "Remplace n <= 5 par n < 5."
+    ],
+    "explanation_fr": "La condition d’arrêt appartient à la partie récursive, pas au résultat final.",
+    "common_wrong_answers": [],
+    "id": "sqli-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Arbre des filleuls d’Afi",
+    "instruction_fr": "Affiche niveau et nom de tous les clients recommandés directement ou indirectement par le client d’id 1 (Afi lui-même au niveau 0). Descends la chaîne : filleul.parrain_id = arbre.id. Tri par niveau puis nom. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT 0 AS niveau, nom FROM clients WHERE id = 1 UNION ALL SELECT 1, nom FROM clients WHERE parrain_id = 1 ORDER BY niveau, nom;",
+    "solution": "WITH RECURSIVE arbre(id, nom, niveau) AS (\n  SELECT id, nom, 0 FROM clients WHERE id = 1\n  UNION ALL\n  SELECT c.id, c.nom, arbre.niveau + 1\n  FROM clients AS c JOIN arbre ON c.parrain_id = arbre.id\n  WHERE arbre.niveau < 20\n)\nSELECT niveau, nom FROM arbre ORDER BY niveau, nom;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "WITH RECURSIVE arbre(id, nom, niveau) AS (SELECT id, nom, 0 FROM clients WHERE id = 1 UNION ALL SELECT c.id, c.nom, arbre.niveau + 1 FROM clients AS c JOIN arbre ON c.parrain_id = arbre.id WHERE arbre.niveau < 20) SELECT niveau, nom FROM arbre ORDER BY niveau, nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "WITH RECURSIVE arbre(id, nom, niveau) AS (SELECT id, nom, 0 FROM clients WHERE id = 1 UNION ALL SELECT c.id, c.nom, arbre.niveau + 1 FROM clients AS c JOIN arbre ON c.parrain_id = arbre.id WHERE arbre.niveau < 20) SELECT niveau, nom FROM arbre ORDER BY niveau, nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Deux niveaux écrits à la main ne suffisent pas si la chaîne s’allonge.",
+      "Descendre : le parrain du filleul est le client trouvé.",
+      "Ajoute une limite de profondeur par prudence."
+    ],
+    "explanation_fr": "La même requête fonctionne quelle que soit la profondeur réelle de l’arbre.",
+    "common_wrong_answers": [],
+    "id": "sqli-m2-03-e4"
+  }
+]

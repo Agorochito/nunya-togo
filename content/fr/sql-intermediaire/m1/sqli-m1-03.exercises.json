@@ -1,0 +1,134 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Produits jamais vendus",
+    "instruction_fr": "Affiche le nom des produits jamais vendus : filtre avec WHERE id IN (SELECT id FROM produits EXCEPT SELECT produit_id FROM ventes). Colonne nom, tri par nom. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT nom FROM produits ORDER BY nom;",
+    "solution": "SELECT nom FROM produits\nWHERE id IN (SELECT id FROM produits EXCEPT SELECT produit_id FROM ventes)\nORDER BY nom;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT nom FROM produits WHERE id IN (SELECT id FROM produits EXCEPT SELECT produit_id FROM ventes) ORDER BY nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT nom FROM produits WHERE id IN (SELECT id FROM produits EXCEPT SELECT produit_id FROM ventes) ORDER BY nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Tous les produits sont affichés.",
+      "EXCEPT retire les identifiants vendus.",
+      "Filtre avec WHERE id IN (… EXCEPT …)."
+    ],
+    "explanation_fr": "EXCEPT exprime directement « tous sauf ceux-là ».",
+    "common_wrong_answers": [],
+    "id": "sqli-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Clients polyvalents",
+    "instruction_fr": "Affiche l’id des clients qui ont acheté à la fois un produit d’épicerie et un produit de papeterie, avec INTERSECT. Colonne client_id, tri par client_id. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT v.client_id FROM ventes v JOIN produits p ON p.id = v.produit_id WHERE p.categorie = 'épicerie' ORDER BY v.client_id;",
+    "solution": "SELECT v.client_id FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id WHERE p.categorie = 'épicerie' AND v.client_id IS NOT NULL\nINTERSECT\nSELECT v.client_id FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id WHERE p.categorie = 'papeterie'\nORDER BY client_id;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT v.client_id FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id WHERE p.categorie = 'épicerie' AND v.client_id IS NOT NULL INTERSECT SELECT v.client_id FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id WHERE p.categorie = 'papeterie' ORDER BY client_id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT v.client_id FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id WHERE p.categorie = 'épicerie' AND v.client_id IS NOT NULL INTERSECT SELECT v.client_id FROM ventes AS v JOIN produits AS p ON p.id = v.produit_id WHERE p.categorie = 'papeterie' ORDER BY client_id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Une seule catégorie est interrogée.",
+      "Écris une requête par catégorie.",
+      "Relie-les avec INTERSECT et trie à la fin."
+    ],
+    "explanation_fr": "INTERSECT répond à « les deux à la fois » sans jointure compliquée.",
+    "common_wrong_answers": [],
+    "id": "sqli-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Journal des deux caisses",
+    "instruction_fr": "Le journal doit réunir les quantités de la caisse 1 (ventes de id 1 à 5) et de la caisse 2 (id 6 à 10) en gardant chaque ligne, triées par quantite. UNION fait disparaître des lignes identiques. Corrige-le. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT quantite FROM ventes WHERE id <= 5\nUNION\nSELECT quantite FROM ventes WHERE id > 5\nORDER BY quantite;",
+    "solution": "SELECT quantite FROM ventes WHERE id <= 5\nUNION ALL\nSELECT quantite FROM ventes WHERE id > 5\nORDER BY quantite;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT quantite FROM ventes WHERE id <= 5 UNION ALL SELECT quantite FROM ventes WHERE id > 5 ORDER BY quantite;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT quantite FROM ventes WHERE id <= 5 UNION ALL SELECT quantite FROM ventes WHERE id > 5 ORDER BY quantite;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Plusieurs ventes ont la même quantité.",
+      "UNION retire ces doublons.",
+      "Utilise UNION ALL."
+    ],
+    "explanation_fr": "Dans un journal, deux lignes identiques sont deux événements distincts.",
+    "common_wrong_answers": [],
+    "id": "sqli-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Liste de diffusion",
+    "instruction_fr": "Affiche une liste nom, source : les clients du quartier Bè avec la source 'quartier', puis les clients parrains (ceux dont l’id apparaît dans parrain_id) avec la source 'parrain', réunis avec UNION, triés par nom puis source. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT nom, 'quartier' AS source FROM clients WHERE quartier = 'Bè' ORDER BY nom;",
+    "solution": "SELECT nom, 'quartier' AS source FROM clients WHERE quartier = 'Bè'\nUNION\nSELECT nom, 'parrain' FROM clients WHERE id IN (SELECT parrain_id FROM clients)\nORDER BY nom, source;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT nom, 'quartier' AS source FROM clients WHERE quartier = 'Bè' UNION SELECT nom, 'parrain' FROM clients WHERE id IN (SELECT parrain_id FROM clients) ORDER BY nom, source;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT nom, 'quartier' AS source FROM clients WHERE quartier = 'Bè' UNION SELECT nom, 'parrain' FROM clients WHERE id IN (SELECT parrain_id FROM clients) ORDER BY nom, source;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Les parrains manquent.",
+      "Ajoute une seconde requête avec la même structure.",
+      "Le nom de la colonne source vient de la première requête."
+    ],
+    "explanation_fr": "Une même personne peut apparaître deux fois avec deux sources différentes : ce ne sont pas des doublons.",
+    "common_wrong_answers": [],
+    "id": "sqli-m1-03-e4"
+  }
+]

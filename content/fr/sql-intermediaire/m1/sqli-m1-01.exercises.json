@@ -1,0 +1,134 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Étiquette de prix",
+    "instruction_fr": "Affiche nom et une colonne gamme : 'économique' si prix < 300, 'moyen' si prix < 1000, sinon 'premium'. Trie par id. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT nom,\n  CASE WHEN prix < 1000 THEN 'moyen'\n       WHEN prix < 300 THEN 'économique'\n       ELSE 'premium' END AS gamme\nFROM produits\nORDER BY id;",
+    "solution": "SELECT nom,\n  CASE WHEN prix < 300 THEN 'économique'\n       WHEN prix < 1000 THEN 'moyen'\n       ELSE 'premium' END AS gamme\nFROM produits\nORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT nom, CASE WHEN prix < 300 THEN 'économique' WHEN prix < 1000 THEN 'moyen' ELSE 'premium' END AS gamme FROM produits ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT nom, CASE WHEN prix < 300 THEN 'économique' WHEN prix < 1000 THEN 'moyen' ELSE 'premium' END AS gamme FROM produits ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Un stylo à 100 FCFA est classé moyen.",
+      "La condition prix < 1000 attrape aussi les petits prix.",
+      "Place le test prix < 300 en premier."
+    ],
+    "explanation_fr": "L’ordre des WHEN décide de l’étiquette.",
+    "common_wrong_answers": [],
+    "id": "sqli-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Compteurs par catégorie",
+    "instruction_fr": "Affiche en une ligne trois colonnes : epicerie, hygiene et papeterie, chacune comptant les produits de sa catégorie ('épicerie', 'hygiène', 'papeterie') avec SUM(CASE …). Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT COUNT(*) AS epicerie FROM produits;",
+    "solution": "SELECT\n  SUM(CASE WHEN categorie = 'épicerie' THEN 1 ELSE 0 END) AS epicerie,\n  SUM(CASE WHEN categorie = 'hygiène' THEN 1 ELSE 0 END) AS hygiene,\n  SUM(CASE WHEN categorie = 'papeterie' THEN 1 ELSE 0 END) AS papeterie\nFROM produits;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT SUM(CASE WHEN categorie = 'épicerie' THEN 1 ELSE 0 END) AS epicerie, SUM(CASE WHEN categorie = 'hygiène' THEN 1 ELSE 0 END) AS hygiene, SUM(CASE WHEN categorie = 'papeterie' THEN 1 ELSE 0 END) AS papeterie FROM produits;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT SUM(CASE WHEN categorie = 'épicerie' THEN 1 ELSE 0 END) AS epicerie, SUM(CASE WHEN categorie = 'hygiène' THEN 1 ELSE 0 END) AS hygiene, SUM(CASE WHEN categorie = 'papeterie' THEN 1 ELSE 0 END) AS papeterie FROM produits;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Un CASE par colonne.",
+      "THEN 1 ELSE 0, puis SUM.",
+      "Les alias sont epicerie, hygiene et papeterie."
+    ],
+    "explanation_fr": "Une seule lecture de la table produit tout le tableau de synthèse.",
+    "common_wrong_answers": [],
+    "id": "sqli-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Ruptures oubliées",
+    "instruction_fr": "La requête doit afficher nom et etat ('rupture' si stock = 0, 'à commander' si stock < 15, sinon 'ok'), triés par id. Elle teste dans le mauvais ordre et oublie le ELSE. Corrige-la. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT nom,\n  CASE WHEN stock < 15 THEN 'à commander'\n       WHEN stock = 0 THEN 'rupture' END AS etat\nFROM produits\nORDER BY id;",
+    "solution": "SELECT nom,\n  CASE WHEN stock = 0 THEN 'rupture'\n       WHEN stock < 15 THEN 'à commander'\n       ELSE 'ok' END AS etat\nFROM produits\nORDER BY id;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT nom, CASE WHEN stock = 0 THEN 'rupture' WHEN stock < 15 THEN 'à commander' ELSE 'ok' END AS etat FROM produits ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT nom, CASE WHEN stock = 0 THEN 'rupture' WHEN stock < 15 THEN 'à commander' ELSE 'ok' END AS etat FROM produits ORDER BY id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Le sucre en rupture apparaît « à commander ».",
+      "Les produits bien fournis reçoivent NULL.",
+      "Teste stock = 0 d’abord et ajoute ELSE 'ok'."
+    ],
+    "explanation_fr": "Deux erreurs classiques de CASE dans une seule requête.",
+    "common_wrong_answers": [],
+    "id": "sqli-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Tri métier",
+    "instruction_fr": "Affiche nom, categorie et prix, triés d’abord par catégorie dans l’ordre métier épicerie, hygiène, papeterie (avec un CASE dans ORDER BY qui renvoie 1, 2, 3), puis par prix décroissant. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "SELECT nom, categorie, prix FROM produits ORDER BY categorie, prix DESC;",
+    "solution": "SELECT nom, categorie, prix\nFROM produits\nORDER BY CASE categorie WHEN 'épicerie' THEN 1 WHEN 'hygiène' THEN 2 ELSE 3 END,\n         prix DESC;",
+    "visible_tests": [
+      {
+        "fixture": "boutique",
+        "reference_sql": "SELECT nom, categorie, prix FROM produits ORDER BY CASE categorie WHEN 'épicerie' THEN 1 WHEN 'hygiène' THEN 2 ELSE 3 END, prix DESC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "boutique-variation",
+        "reference_sql": "SELECT nom, categorie, prix FROM produits ORDER BY CASE categorie WHEN 'épicerie' THEN 1 WHEN 'hygiène' THEN 2 ELSE 3 END, prix DESC;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "En ordre alphabétique, é est classé après les lettres sans accent : épicerie passe en dernier.",
+      "CASE dans ORDER BY donne un rang métier.",
+      "Ajoute prix DESC comme second critère."
+    ],
+    "explanation_fr": "Un ordre métier ne dépend pas de l’alphabet : il se décrit explicitement.",
+    "common_wrong_answers": [],
+    "id": "sqli-m1-01-e4"
+  }
+]

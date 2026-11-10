@@ -28,7 +28,17 @@ Fixture `variation` :
 - ateliers : (1,'Python',0,1200),(2,'Jardin',3,700),(3,'Web',6,1200),(4,'Dessin',0,0),(5,'Lecture',2,300)
 - inscriptions : (1,2,2,'confirmee'),(2,1,1,'attente'),(3,3,2,'confirmee'),(4,2,3,'attente'),(5,5,3,'confirmee'),(6,6,2,'attente')
 
-Fixture `vide` : même schéma, zéro ligne. Fixture `vierge` : aucune table. Ces quatre fixtures sont préparées par le moteur, jamais par un faux interpréteur. Les explications/exemples utilisent `club`, sauf indication explicite `fixture:'vierge'` ou `'vide'` dans les métadonnées de l’exemple. Si utile ajouter un champ `expected_result` à un exemple pour afficher son tableau prévu ; sinon `expected_output` décrit précisément le résultat humainement.
+Fixture `vide` : même schéma, zéro ligne.
+
+Fixtures `boutique` et `boutique-variation` (cours `sql-intermediaire`, 5.17.0) : schéma distinct, clés étrangères activées.
+
+```
+CREATE TABLE produits(id INTEGER PRIMARY KEY,nom TEXT NOT NULL,categorie TEXT NOT NULL,prix INTEGER NOT NULL CHECK(prix>0),stock INTEGER NOT NULL CHECK(stock>=0));
+CREATE TABLE clients(id INTEGER PRIMARY KEY,nom TEXT NOT NULL,quartier TEXT,parrain_id INTEGER REFERENCES clients(id));
+CREATE TABLE ventes(id INTEGER PRIMARY KEY,client_id INTEGER REFERENCES clients(id),produit_id INTEGER NOT NULL REFERENCES produits(id),quantite INTEGER NOT NULL CHECK(quantite>0),jour TEXT NOT NULL);
+```
+
+Les données exactes sont dans `lib/sql/fixtures.mjs` ; chaque base déclare son schéma, et `preview` comme `createFixture` les traitent toutes de la même façon. Fixture `vierge` : aucune table. Ces quatre fixtures sont préparées par le moteur, jamais par un faux interpréteur. Les explications/exemples utilisent `club`, sauf indication explicite `fixture:'vierge'` ou `'vide'` dans les métadonnées de l’exemple. Si utile ajouter un champ `expected_result` à un exemple pour afficher son tableau prévu ; sinon `expected_output` décrit précisément le résultat humainement.
 
 ## Exercices et tests
 
