@@ -1,0 +1,334 @@
+[
+  {
+    "title_fr": "Un head précis pour un annuaire",
+    "instruction_fr": "Produis un document français complet. Dans head, un seul title « Annuaire — Club Rivage », meta charset=UTF-8, et meta name=description content=« Associations et horaires fictifs du Club Rivage, à consulter localement. ». Ajoute meta viewport content=« width=device-width, initial-scale=1 ». Dans le corps, garde h1 Club Rivage et main#contenu. Aucun script, lien externe ou redirection.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Page</title>\n  <meta name=\"description\" content=\"Description\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<a id=\"evitement\" href=\"#contenu\">Aller au contenu</a>\n<header><h1>Club Rivage</h1></header>\n<nav id=\"rubriques\" aria-label=\"Rubriques de la page\">\n  <a id=\"lien-associations\" href=\"#associations\">Associations fictives</a>\n  <a id=\"lien-horaires\" href=\"#horaires\">Horaires de démonstration</a>\n</nav>\n<main id=\"contenu\" tabindex=\"-1\">\n  <section id=\"associations\" aria-labelledby=\"titre-associations\">\n    <h2 id=\"titre-associations\">Associations fictives</h2>\n    <p>Deux associations inventées pour apprendre.</p>\n  </section>\n  <section id=\"horaires\" aria-labelledby=\"titre-horaires\">\n    <h2 id=\"titre-horaires\">Horaires de démonstration</h2>\n    <p>Aucune participation réelle n’est enregistrée.</p>\n  </section>\n</main>\n<footer><p>Document pédagogique local.</p></footer>\n</body>\n</html>",
+    "solution": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Annuaire — Club Rivage</title>\n  <meta name=\"description\" content=\"Associations et horaires fictifs du Club Rivage, à consulter localement.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<a id=\"evitement\" href=\"#contenu\">Aller au contenu</a>\n<header><h1>Club Rivage</h1></header>\n<nav id=\"rubriques\" aria-label=\"Rubriques de la page\">\n  <a id=\"lien-associations\" href=\"#associations\">Associations fictives</a>\n  <a id=\"lien-horaires\" href=\"#horaires\">Horaires de démonstration</a>\n</nav>\n<main id=\"contenu\" tabindex=\"-1\">\n  <section id=\"associations\" aria-labelledby=\"titre-associations\">\n    <h2 id=\"titre-associations\">Associations fictives</h2>\n    <p>Deux associations inventées pour apprendre.</p>\n  </section>\n  <section id=\"horaires\" aria-labelledby=\"titre-horaires\">\n    <h2 id=\"titre-horaires\">Horaires de démonstration</h2>\n    <p>Aucune participation réelle n’est enregistrée.</p>\n  </section>\n</main>\n<footer><p>Document pédagogique local.</p></footer>\n</body>\n</html>",
+    "visible_tests": [
+      {
+        "description_fr": "Nom et résumé du document",
+        "checks": [
+          {
+            "selector": "head > title",
+            "count": 1,
+            "textIncludes": "Annuaire — Club Rivage"
+          },
+          {
+            "selector": "meta[charset]",
+            "count": 1,
+            "attributes": {
+              "charset": "UTF-8"
+            }
+          },
+          {
+            "selector": "meta[name=\"description\"]",
+            "count": 1,
+            "attributes": {
+              "content": "Associations et horaires fictifs du Club Rivage, à consulter localement."
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Paramètres et structure conservés",
+        "checks": [
+          {
+            "selector": "meta[name=\"viewport\"]",
+            "count": 1,
+            "attributes": {
+              "content": "width=device-width, initial-scale=1"
+            }
+          },
+          {
+            "selector": "html",
+            "attributes": {
+              "lang": "fr"
+            }
+          },
+          {
+            "selector": "body h1",
+            "textIncludes": "Club Rivage"
+          },
+          {
+            "selector": "main#contenu",
+            "count": 1
+          },
+          {
+            "selector": "meta[http-equiv=\"refresh\"]",
+            "exists": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le nom du document et son résumé sont deux informations distinctes.",
+      "Le résumé doit correspondre à la limite fictive de cette page.",
+      "Place title et meta description dans head avec les valeurs exactes annoncées."
+    ],
+    "explanation_fr": "Les assertions visent les métadonnées réellement présentes ; elles ne promettent aucun résultat de référencement.",
+    "common_wrong_answers": [],
+    "id": "htmi-m4-02-e1",
+    "kind": "guided"
+  },
+  {
+    "title_fr": "Deux liens et deux destinations explicites",
+    "instruction_fr": "Dans le document, nav#rubriques aria-label=« Rubriques de la page » contient #lien-associations vers #associations, texte « Associations fictives », et #lien-horaires vers #horaires, texte « Horaires de démonstration ». Chaque section cible possède un h2 et aria-labelledby vers son id titre-associations ou titre-horaires. Garde le lien initial #evitement vers main#contenu tabindex=-1. Toutes les cibles sont uniques.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Annuaire — Club Rivage</title>\n  <meta name=\"description\" content=\"Associations et horaires fictifs du Club Rivage, à consulter localement.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<a id=\"evitement\" href=\"#contenu\">Aller au contenu</a>\n<header><h1>Club Rivage</h1></header>\n<nav id=\"rubriques\" aria-label=\"Rubriques de la page\">\n  <a id=\"lien-associations\" href=\"#associations\">Associations fictives</a>\n  <a id=\"lien-horaires\" href=\"#horaire\">Horaires de démonstration</a>\n</nav>\n<main id=\"contenu\" tabindex=\"-1\">\n  <section id=\"associations\" aria-labelledby=\"titre-associations\">\n    <h2 id=\"titre-associations\">Associations fictives</h2>\n    <p>Deux associations inventées pour apprendre.</p>\n  </section>\n  <section id=\"horaires\" aria-labelledby=\"titre-horaires\">\n    <h2 id=\"titre-horaires\">Horaires de démonstration</h2>\n    <p>Aucune participation réelle n’est enregistrée.</p>\n  </section>\n</main>\n<footer><p>Document pédagogique local.</p></footer>\n</body>\n</html>",
+    "solution": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Annuaire — Club Rivage</title>\n  <meta name=\"description\" content=\"Associations et horaires fictifs du Club Rivage, à consulter localement.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<a id=\"evitement\" href=\"#contenu\">Aller au contenu</a>\n<header><h1>Club Rivage</h1></header>\n<nav id=\"rubriques\" aria-label=\"Rubriques de la page\">\n  <a id=\"lien-associations\" href=\"#associations\">Associations fictives</a>\n  <a id=\"lien-horaires\" href=\"#horaires\">Horaires de démonstration</a>\n</nav>\n<main id=\"contenu\" tabindex=\"-1\">\n  <section id=\"associations\" aria-labelledby=\"titre-associations\">\n    <h2 id=\"titre-associations\">Associations fictives</h2>\n    <p>Deux associations inventées pour apprendre.</p>\n  </section>\n  <section id=\"horaires\" aria-labelledby=\"titre-horaires\">\n    <h2 id=\"titre-horaires\">Horaires de démonstration</h2>\n    <p>Aucune participation réelle n’est enregistrée.</p>\n  </section>\n</main>\n<footer><p>Document pédagogique local.</p></footer>\n</body>\n</html>",
+    "visible_tests": [
+      {
+        "description_fr": "Références locales exactes",
+        "checks": [
+          {
+            "selector": "#evitement",
+            "attributes": {
+              "href": "#contenu"
+            }
+          },
+          {
+            "selector": "main#contenu",
+            "count": 1,
+            "attributes": {
+              "tabindex": "-1"
+            }
+          },
+          {
+            "selector": "#lien-associations",
+            "attributes": {
+              "href": "#associations"
+            }
+          },
+          {
+            "selector": "#lien-horaires",
+            "attributes": {
+              "href": "#horaires"
+            }
+          },
+          {
+            "selector": "#associations",
+            "count": 1
+          },
+          {
+            "selector": "#horaires",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Noms de régions et titres reliés",
+        "checks": [
+          {
+            "selector": "#rubriques",
+            "attributes": {
+              "aria-label": "Rubriques de la page"
+            }
+          },
+          {
+            "selector": "#associations",
+            "attributes": {
+              "aria-labelledby": "titre-associations"
+            }
+          },
+          {
+            "selector": "#horaires",
+            "attributes": {
+              "aria-labelledby": "titre-horaires"
+            }
+          },
+          {
+            "selector": "#titre-associations",
+            "count": 1,
+            "textIncludes": "Associations fictives"
+          },
+          {
+            "selector": "#titre-horaires",
+            "count": 1,
+            "textIncludes": "Horaires de démonstration"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un fragment n’est pas corrigé automatiquement lorsqu’il manque une lettre.",
+      "Le href et l’id doivent désigner exactement la même valeur.",
+      "Utilise href=\"#horaires\" pour rejoindre section#horaires."
+    ],
+    "explanation_fr": "Le contrôle vérifie la référence et sa cible, pas seulement un lien bleu présent à l’écran.",
+    "common_wrong_answers": [],
+    "id": "htmi-m4-02-e2",
+    "kind": "practice"
+  },
+  {
+    "title_fr": "Réparer largeur imposée et cible dupliquée",
+    "instruction_fr": "Répare le document fourni : viewport exactement « width=device-width, initial-scale=1 », sans user-scalable=no ; une section#associations et une section#horaires, chacune unique. Les liens conservent ces deux fragments. Garde title, description, h2 et associations aria-labelledby déjà corrects ; ne masque pas une section pour contourner le doublon.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Annuaire — Club Rivage</title>\n  <meta name=\"description\" content=\"Associations et horaires fictifs du Club Rivage, à consulter localement.\">\n  <meta name=\"viewport\" content=\"width=360, initial-scale=1, user-scalable=no\">\n</head>\n<body>\n<a id=\"evitement\" href=\"#contenu\">Aller au contenu</a>\n<header><h1>Club Rivage</h1></header>\n<nav id=\"rubriques\" aria-label=\"Rubriques de la page\">\n  <a id=\"lien-associations\" href=\"#associations\">Associations fictives</a>\n  <a id=\"lien-horaires\" href=\"#horaires\">Horaires de démonstration</a>\n</nav>\n<main id=\"contenu\" tabindex=\"-1\">\n  <section id=\"associations\" aria-labelledby=\"titre-associations\">\n    <h2 id=\"titre-associations\">Associations fictives</h2>\n    <p>Deux associations inventées pour apprendre.</p>\n  </section>\n  <section id=\"associations\" aria-labelledby=\"titre-horaires\">\n    <h2 id=\"titre-horaires\">Horaires de démonstration</h2>\n    <p>Aucune participation réelle n’est enregistrée.</p>\n  </section>\n</main>\n<footer><p>Document pédagogique local.</p></footer>\n</body>\n</html>",
+    "solution": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Annuaire — Club Rivage</title>\n  <meta name=\"description\" content=\"Associations et horaires fictifs du Club Rivage, à consulter localement.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<a id=\"evitement\" href=\"#contenu\">Aller au contenu</a>\n<header><h1>Club Rivage</h1></header>\n<nav id=\"rubriques\" aria-label=\"Rubriques de la page\">\n  <a id=\"lien-associations\" href=\"#associations\">Associations fictives</a>\n  <a id=\"lien-horaires\" href=\"#horaires\">Horaires de démonstration</a>\n</nav>\n<main id=\"contenu\" tabindex=\"-1\">\n  <section id=\"associations\" aria-labelledby=\"titre-associations\">\n    <h2 id=\"titre-associations\">Associations fictives</h2>\n    <p>Deux associations inventées pour apprendre.</p>\n  </section>\n  <section id=\"horaires\" aria-labelledby=\"titre-horaires\">\n    <h2 id=\"titre-horaires\">Horaires de démonstration</h2>\n    <p>Aucune participation réelle n’est enregistrée.</p>\n  </section>\n</main>\n<footer><p>Document pédagogique local.</p></footer>\n</body>\n</html>",
+    "visible_tests": [
+      {
+        "description_fr": "Viewport souple et identifiants uniques",
+        "checks": [
+          {
+            "selector": "meta[name=\"viewport\"]",
+            "count": 1,
+            "attributes": {
+              "content": "width=device-width, initial-scale=1"
+            }
+          },
+          {
+            "selector": "#associations",
+            "count": 1
+          },
+          {
+            "selector": "#horaires",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Le contenu et ses liens restent présents",
+        "checks": [
+          {
+            "selector": "#lien-horaires",
+            "attributes": {
+              "href": "#horaires"
+            }
+          },
+          {
+            "selector": "#horaires h2",
+            "textIncludes": "Horaires de démonstration"
+          },
+          {
+            "selector": "#associations h2",
+            "textIncludes": "Associations fictives"
+          },
+          {
+            "selector": "head title",
+            "textIncludes": "Annuaire — Club Rivage"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les deux erreurs portent sur des contrats différents du document.",
+      "La largeur ne doit pas être fixée à un modèle d’écran, et chaque cible garde son propre id.",
+      "Restaure le viewport device-width et rends l’id horaires à la seconde section."
+    ],
+    "explanation_fr": "Le débogage ne se résout pas en cachant le contenu : les deux destinations doivent rester vérifiables.",
+    "common_wrong_answers": [],
+    "id": "htmi-m4-02-e3",
+    "kind": "debug"
+  },
+  {
+    "title_fr": "Assembler un document autonome et orientable",
+    "instruction_fr": "Assemble le document Annuaire — Club Rivage avec charset UTF-8, description exacte de l’activité1 et viewport device-width/initial-scale=1. Racine lang=fr dir=ltr ; lien #evitement vers main#contenu tabindex=-1 ; nav#rubriques nommée Rubriques de la page, liens et sections de l’activité2 avec leurs h2 reliés. Footer : « Document pédagogique local. ». Les textes annoncent des associations fictives et aucune participation réelle enregistrée.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Annuaire — Club Rivage</title>\n  <meta name=\"description\" content=\"Associations et horaires fictifs du Club Rivage, à consulter localement.\">\n\n</head>\n<body>\n<a id=\"evitement\" href=\"#contenu\">Aller au contenu</a>\n<header><h1>Club Rivage</h1></header>\n<nav id=\"rubriques\" aria-label=\"Rubriques de la page\">\n  <a id=\"lien-associations\" href=\"#associations\">Associations fictives</a>\n  <a id=\"lien-horaires\" href=\"#horaires\">Horaires de démonstration</a>\n</nav>\n<main id=\"contenu\">\n  <section id=\"associations\" aria-labelledby=\"titre-associations\">\n    <h2 id=\"titre-associations\">Associations fictives</h2>\n    <p>Deux associations inventées pour apprendre.</p>\n  </section>\n  <section id=\"horaires\" aria-labelledby=\"titre-horaires\">\n    <h2 id=\"titre-horaires\">Horaires de démonstration</h2>\n    <p>Aucune participation réelle n’est enregistrée.</p>\n  </section>\n</main>\n<footer><p>Document pédagogique local.</p></footer>\n</body>\n</html>",
+    "solution": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Annuaire — Club Rivage</title>\n  <meta name=\"description\" content=\"Associations et horaires fictifs du Club Rivage, à consulter localement.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<a id=\"evitement\" href=\"#contenu\">Aller au contenu</a>\n<header><h1>Club Rivage</h1></header>\n<nav id=\"rubriques\" aria-label=\"Rubriques de la page\">\n  <a id=\"lien-associations\" href=\"#associations\">Associations fictives</a>\n  <a id=\"lien-horaires\" href=\"#horaires\">Horaires de démonstration</a>\n</nav>\n<main id=\"contenu\" tabindex=\"-1\">\n  <section id=\"associations\" aria-labelledby=\"titre-associations\">\n    <h2 id=\"titre-associations\">Associations fictives</h2>\n    <p>Deux associations inventées pour apprendre.</p>\n  </section>\n  <section id=\"horaires\" aria-labelledby=\"titre-horaires\">\n    <h2 id=\"titre-horaires\">Horaires de démonstration</h2>\n    <p>Aucune participation réelle n’est enregistrée.</p>\n  </section>\n</main>\n<footer><p>Document pédagogique local.</p></footer>\n</body>\n</html>",
+    "visible_tests": [
+      {
+        "description_fr": "Métadonnées et accès au contenu",
+        "checks": [
+          {
+            "selector": "head > title",
+            "count": 1,
+            "textIncludes": "Annuaire — Club Rivage"
+          },
+          {
+            "selector": "meta[charset]",
+            "count": 1,
+            "attributes": {
+              "charset": "UTF-8"
+            }
+          },
+          {
+            "selector": "meta[name=\"description\"]",
+            "count": 1,
+            "attributes": {
+              "content": "Associations et horaires fictifs du Club Rivage, à consulter localement."
+            }
+          },
+          {
+            "selector": "meta[name=\"viewport\"]",
+            "count": 1,
+            "attributes": {
+              "content": "width=device-width, initial-scale=1"
+            }
+          },
+          {
+            "selector": "#contenu",
+            "attributes": {
+              "tabindex": "-1"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Le document reste complet et focalisable",
+        "checks": [
+          {
+            "selector": "#evitement",
+            "attributes": {
+              "href": "#contenu"
+            }
+          },
+          {
+            "selector": "main#contenu",
+            "count": 1,
+            "attributes": {
+              "tabindex": "-1"
+            }
+          },
+          {
+            "selector": "#lien-associations",
+            "attributes": {
+              "href": "#associations"
+            }
+          },
+          {
+            "selector": "#lien-horaires",
+            "attributes": {
+              "href": "#horaires"
+            }
+          },
+          {
+            "selector": "#associations",
+            "count": 1
+          },
+          {
+            "selector": "#horaires",
+            "count": 1
+          },
+          {
+            "selector": "#contenu:focus",
+            "count": 1
+          },
+          {
+            "selector": "footer",
+            "textIncludes": "Document pédagogique local."
+          },
+          {
+            "selector": "#horaires",
+            "textIncludes": "Aucune participation réelle"
+          }
+        ],
+        "focus_selector": "#contenu"
+      }
+    ],
+    "hints": [
+      "Le document doit posséder des repères dans head et dans body.",
+      "La cible de l’évitement doit aussi pouvoir recevoir le focus ciblé.",
+      "Ajoute le viewport annoncé et tabindex=-1 à main#contenu, sans ajouter de serveur."
+    ],
+    "explanation_fr": "Le mini-projet réunit identification du document et orientation locale. La revue humaine doit encore juger la clarté des libellés et l’usage hors de l’aperçu neutralisé.",
+    "common_wrong_answers": [],
+    "id": "htmi-m4-02-e4",
+    "kind": "project"
+  }
+]

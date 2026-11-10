@@ -1,0 +1,304 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Rattacher chaque bloc à sa zone",
+    "instruction_fr": "Le plan est déjà écrit sur .page (pistes 96px et minmax(0, 1fr), gap 12px). Rattache .entete, .menu, .contenu et .pied à leur zone avec grid-area. Ne modifie ni le plan ni le HTML.",
+    "starter_code": "body { margin: 0; }\n.page {\n  display: grid;\n  grid-template-columns: 96px minmax(0, 1fr);\n  grid-template-areas:\n    \"entete entete\"\n    \"menu contenu\"\n    \"pied pied\";\n  gap: 12px;\n}",
+    "solution": "body { margin: 0; }\n.page {\n  display: grid;\n  grid-template-columns: 96px minmax(0, 1fr);\n  grid-template-areas:\n    \"entete entete\"\n    \"menu contenu\"\n    \"pied pied\";\n  gap: 12px;\n}\n.entete { grid-area: entete; }\n.menu { grid-area: menu; }\n.contenu { grid-area: contenu; }\n.pied { grid-area: pied; }",
+    "visible_tests": [
+      {
+        "description_fr": "Chaque bloc dans sa zone à 360px",
+        "checks": [
+          {
+            "selector": "#entete",
+            "style": {
+              "width": "360px"
+            }
+          },
+          {
+            "selector": "#menu",
+            "style": {
+              "width": "96px"
+            }
+          },
+          {
+            "selector": "#contenu",
+            "style": {
+              "width": "252px"
+            }
+          },
+          {
+            "selector": "#pied",
+            "style": {
+              "width": "360px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Même plan à 720px",
+        "checks": [
+          {
+            "selector": "#entete",
+            "style": {
+              "width": "720px"
+            }
+          },
+          {
+            "selector": "#contenu",
+            "style": {
+              "width": "612px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Sans grid-area, chaque bloc prend la première case libre.",
+      "Le nom s’écrit sans guillemets et doit correspondre au plan.",
+      "Ajoute .entete { grid-area: entete; } puis fais de même pour menu, contenu et pied."
+    ],
+    "explanation_fr": "Le plan décrit les zones ; grid-area dit quel élément occupe chacune.",
+    "common_wrong_answers": [],
+    "fixture_html": "<div class=\"page\" id=\"page\"><header class=\"entete\" id=\"entete\">Club fictif</header><nav class=\"menu\" id=\"menu\" aria-label=\"Sections\">Sections</nav><main class=\"contenu\" id=\"contenu\">Programme de démonstration</main><footer class=\"pied\" id=\"pied\">Données fictives</footer></div>",
+    "id": "cssi-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Étendre une annonce et un atelier",
+    "instruction_fr": "Sur .semaine : display grid, trois pistes repeat(3, minmax(0, 1fr)), gap 12px. Les paragraphes gardent margin 0. Étends .annonce de la première à la dernière ligne et .large sur deux pistes avec span. Body reste sans marge.",
+    "starter_code": "body { margin: 0; }\n.semaine {\n  display: grid;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  gap: 12px;\n}\n.semaine p { margin: 0; }\n.annonce { grid-column: 1; }\n.large { grid-column: 2; }",
+    "solution": "body { margin: 0; }\n.semaine {\n  display: grid;\n  grid-template-columns: repeat(3, minmax(0, 1fr));\n  gap: 12px;\n}\n.semaine p { margin: 0; }\n.annonce { grid-column: 1 / -1; }\n.large { grid-column: span 2; }",
+    "visible_tests": [
+      {
+        "description_fr": "Annonce et atelier étendus à 360px",
+        "checks": [
+          {
+            "selector": "#annonce",
+            "style": {
+              "width": "360px"
+            }
+          },
+          {
+            "selector": "#large",
+            "style": {
+              "width": "236px"
+            }
+          },
+          {
+            "selector": "#court",
+            "style": {
+              "width": "112px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Proportions conservées à 720px",
+        "checks": [
+          {
+            "selector": "#annonce",
+            "style": {
+              "width": "720px"
+            }
+          },
+          {
+            "selector": "#large",
+            "style": {
+              "width": "476px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Une piste mesure 112px à 360px.",
+      "L’annonce doit atteindre la dernière ligne, notée -1.",
+      "Écris grid-column: 1 / -1 pour .annonce et grid-column: span 2 pour .large."
+    ],
+    "explanation_fr": "Les deux écritures s’adaptent à la largeur sans valeur en pixels.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"semaine\" id=\"semaine\"><p class=\"annonce\" id=\"annonce\">Programme fictif</p><p class=\"large\" id=\"large\">Atelier long</p><p id=\"court\">Pause</p><p>Lecture</p><p>Jardin</p><p>Échecs</p></main>",
+    "id": "cssi-m3-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un plan refusé",
+    "instruction_fr": "Le plan n’est pas appliqué : une rangée compte trois mots et le pied porte un nom inconnu. Corrige la dernière rangée en \"pied pied\" et rattache .pied à la zone pied. Garde les pistes 104px et minmax(0, 1fr) et gap 8px.",
+    "starter_code": "body { margin: 0; }\n.page {\n  display: grid;\n  grid-template-columns: 104px minmax(0, 1fr);\n  grid-template-areas:\n    \"entete entete\"\n    \"menu contenu\"\n    \"pied contenu pied\";\n  gap: 8px;\n}\n.entete { grid-area: entete; }\n.menu { grid-area: menu; }\n.contenu { grid-area: contenu; }\n.pied { grid-area: pieds; }",
+    "solution": "body { margin: 0; }\n.page {\n  display: grid;\n  grid-template-columns: 104px minmax(0, 1fr);\n  grid-template-areas:\n    \"entete entete\"\n    \"menu contenu\"\n    \"pied pied\";\n  gap: 8px;\n}\n.entete { grid-area: entete; }\n.menu { grid-area: menu; }\n.contenu { grid-area: contenu; }\n.pied { grid-area: pied; }",
+    "visible_tests": [
+      {
+        "description_fr": "Plan valide à 360px",
+        "checks": [
+          {
+            "selector": "#entete",
+            "style": {
+              "width": "360px"
+            }
+          },
+          {
+            "selector": "#menu",
+            "style": {
+              "width": "104px"
+            }
+          },
+          {
+            "selector": "#contenu",
+            "style": {
+              "width": "248px"
+            }
+          },
+          {
+            "selector": "#pied",
+            "style": {
+              "width": "360px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Plan valide à 720px",
+        "checks": [
+          {
+            "selector": "#contenu",
+            "style": {
+              "width": "608px"
+            }
+          },
+          {
+            "selector": "#pied",
+            "style": {
+              "width": "720px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Compte les mots de chaque rangée du plan.",
+      "Une seule rangée invalide annule toute la déclaration.",
+      "Écris \"pied pied\" et .pied { grid-area: pied; }."
+    ],
+    "explanation_fr": "Un plan rectangulaire et des noms exacts suffisent ; aucun message n’aurait signalé l’erreur.",
+    "common_wrong_answers": [],
+    "fixture_html": "<div class=\"page\" id=\"page\"><header class=\"entete\" id=\"entete\">Club fictif</header><nav class=\"menu\" id=\"menu\" aria-label=\"Sections\">Sections</nav><main class=\"contenu\" id=\"contenu\">Programme de démonstration</main><footer class=\"pied\" id=\"pied\">Données fictives</footer></div>",
+    "id": "cssi-m3-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Composer le tableau d’affichage",
+    "instruction_fr": "Sur .affichage : display grid, pistes 88px repeat(2, minmax(0, 1fr)), gap 8px et le plan \"titre titre titre\" / \"menu fiche fiche\" / \"menu note aide\". Rattache .titre, .menu, .fiche, .note et .aide à leur zone. Les titres et paragraphes gardent margin 0.",
+    "starter_code": "body { margin: 0; }\n.affichage {\n  display: grid;\n  grid-template-columns: 88px repeat(2, minmax(0, 1fr));\n  gap: 8px;\n}\n.affichage h1, .affichage p { margin: 0; }",
+    "solution": "body { margin: 0; }\n.affichage {\n  display: grid;\n  grid-template-columns: 88px repeat(2, minmax(0, 1fr));\n  grid-template-areas:\n    \"titre titre titre\"\n    \"menu fiche fiche\"\n    \"menu note aide\";\n  gap: 8px;\n}\n.affichage h1, .affichage p { margin: 0; }\n.titre { grid-area: titre; }\n.menu { grid-area: menu; }\n.fiche { grid-area: fiche; }\n.note { grid-area: note; }\n.aide { grid-area: aide; }",
+    "visible_tests": [
+      {
+        "description_fr": "Tableau à 360px",
+        "checks": [
+          {
+            "selector": "#titre",
+            "style": {
+              "width": "360px"
+            }
+          },
+          {
+            "selector": "#menu",
+            "style": {
+              "width": "88px"
+            }
+          },
+          {
+            "selector": "#fiche",
+            "style": {
+              "width": "264px"
+            }
+          },
+          {
+            "selector": "#note",
+            "style": {
+              "width": "128px"
+            }
+          },
+          {
+            "selector": "#aide",
+            "style": {
+              "width": "128px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Tableau à 720px",
+        "checks": [
+          {
+            "selector": "#fiche",
+            "style": {
+              "width": "624px"
+            }
+          },
+          {
+            "selector": "#note",
+            "style": {
+              "width": "308px"
+            }
+          },
+          {
+            "selector": "#menu",
+            "style": {
+              "width": "88px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Trois colonnes : chaque rangée du plan compte trois mots.",
+      "Le menu occupe la première colonne sur deux rangées.",
+      "Écris les trois chaînes du plan puis une règle grid-area par bloc."
+    ],
+    "explanation_fr": "Le plan se lit comme un schéma ; le HTML garde son ordre logique : titre, menu, fiche, note, aide.",
+    "common_wrong_answers": [],
+    "fixture_html": "<div class=\"affichage\" id=\"affichage\"><h1 class=\"titre\" id=\"titre\">Tableau du club fictif</h1><nav class=\"menu\" id=\"menu\" aria-label=\"Rubriques\">Rubriques</nav><section class=\"fiche\" id=\"fiche\">Séance de lecture</section><p class=\"note\" id=\"note\">Note fictive</p><p class=\"aide\" id=\"aide\">Aide locale</p></div>",
+    "id": "cssi-m3-02-e4"
+  }
+]

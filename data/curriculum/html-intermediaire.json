@@ -1,0 +1,255 @@
+{
+  "id": "html-intermediaire",
+  "title_fr": "HTML : documents et formulaires accessibles",
+  "language": "html",
+  "runtime": "html",
+  "level": "intermediaire",
+  "summary_fr": "Consolide la structure des pages, les formulaires, les tableaux et la localisation. Construis un annuaire associatif complet, lisible et sans collecte réelle.",
+  "prerequisite_courses": [
+    "html-bases"
+  ],
+  "prerequisites": [
+    "Avoir suivi le socle HTML et savoir lire ses exemples et ses règles.",
+    "Le programme reste consultable librement ; ses prérequis servent de repères."
+  ],
+  "outcomes": [
+    "Relier des régions et des titres pour naviguer dans un document.",
+    "Guider les saisies et relier aides, groupes et erreurs.",
+    "Rendre explicites les relations dans les tableaux et les images.",
+    "Assembler et relire un annuaire associatif localisé."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Structure accessible",
+      "outcome_fr": "Relier des régions et des titres pour naviguer dans un document.",
+      "lesson_ids": [
+        "htmi-m1-01",
+        "htmi-m1-02",
+        "htmi-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Formulaires robustes",
+      "outcome_fr": "Guider les saisies et relier aides, groupes et erreurs.",
+      "lesson_ids": [
+        "htmi-m2-01",
+        "htmi-m2-02",
+        "htmi-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Documents et données",
+      "outcome_fr": "Rendre explicites les relations dans les tableaux et les images.",
+      "lesson_ids": [
+        "htmi-m3-01",
+        "htmi-m3-02",
+        "htmi-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Documents complets",
+      "outcome_fr": "Assembler et relire un annuaire associatif localisé.",
+      "lesson_ids": [
+        "htmi-m4-01",
+        "htmi-m4-02",
+        "htmi-m4-03"
+      ]
+    }
+  ],
+  "status": "brouillon",
+  "reviewer": null,
+  "later_modules": [],
+  "lessons": [
+    {
+      "id": "htmi-m1-01",
+      "title_fr": "Nommer les régions et préparer un lien d’évitement",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "html-m4-03"
+      ],
+      "tags": [
+        "html",
+        "intermédiaire",
+        "région",
+        "nom accessible",
+        "lien d’évitement",
+        "cible de focus"
+      ]
+    },
+    {
+      "id": "htmi-m1-02",
+      "title_fr": "Choisir article ou section et construire un plan de titres",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "htmi-m1-01"
+      ],
+      "tags": [
+        "html",
+        "intermédiaire",
+        "article",
+        "section",
+        "rang de titre",
+        "plan de titres"
+      ]
+    },
+    {
+      "id": "htmi-m1-03",
+      "title_fr": "Donner du sens aux dates, abréviations et liens",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "htmi-m1-02"
+      ],
+      "tags": [
+        "html",
+        "intermédiaire",
+        "time",
+        "datetime",
+        "abbr",
+        "intitulé explicite"
+      ]
+    },
+    {
+      "id": "htmi-m2-01",
+      "title_fr": "Nommer les groupes de contrôles",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "htmi-m1-03"
+      ],
+      "tags": [
+        "html",
+        "m2",
+        "intermédiaire"
+      ]
+    },
+    {
+      "id": "htmi-m2-02",
+      "title_fr": "Choisir les attributs selon la donnée",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "htmi-m2-01"
+      ],
+      "tags": [
+        "html",
+        "m2",
+        "intermédiaire"
+      ]
+    },
+    {
+      "id": "htmi-m2-03",
+      "title_fr": "Relier aides et erreurs sans simuler une validation",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "htmi-m2-02"
+      ],
+      "tags": [
+        "html",
+        "m2",
+        "intermédiaire"
+      ]
+    },
+    {
+      "id": "htmi-m3-01",
+      "title_fr": "Donner un titre et des en-têtes aux tableaux",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "htmi-m2-03"
+      ],
+      "tags": [
+        "html",
+        "m3",
+        "intermédiaire"
+      ]
+    },
+    {
+      "id": "htmi-m3-02",
+      "title_fr": "Relier une cellule à plusieurs en-têtes",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "htmi-m3-01"
+      ],
+      "tags": [
+        "html",
+        "m3",
+        "intermédiaire"
+      ]
+    },
+    {
+      "id": "htmi-m3-03",
+      "title_fr": "Préparer des images utiles et autonomes",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "htmi-m3-02"
+      ],
+      "tags": [
+        "html",
+        "m3",
+        "intermédiaire"
+      ]
+    },
+    {
+      "id": "htmi-m4-01",
+      "title_fr": "Distinguer langue, direction et isolation des noms",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "htmi-m3-03"
+      ],
+      "tags": [
+        "html",
+        "intermédiaire",
+        "lang",
+        "dir",
+        "isolation bidirectionnelle"
+      ]
+    },
+    {
+      "id": "htmi-m4-02",
+      "title_fr": "Décrire le document et relier une navigation locale",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "htmi-m4-01"
+      ],
+      "tags": [
+        "html",
+        "intermédiaire",
+        "métadonnée",
+        "fragment",
+        "viewport"
+      ]
+    },
+    {
+      "id": "htmi-m4-03",
+      "title_fr": "Projet : un annuaire associatif complet à relire",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "htmi-m4-02"
+      ],
+      "tags": [
+        "html",
+        "intermédiaire",
+        "livraison intégrée",
+        "headers",
+        "état statique"
+      ]
+    }
+  ],
+  "estimated_minutes": 240,
+  "content_revision": "d3a1051397b7",
+  "exercise_count": 48,
+  "quiz_count": 36
+}

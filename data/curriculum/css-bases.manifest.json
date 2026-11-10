@@ -3,9 +3,9 @@
   "title_fr": "CSS : premières interfaces",
   "language": "css",
   "level": "debutant",
-  "summary_fr": "Présenter une page HTML, organiser ses espaces et adapter une interface avec une feuille de style vérifiable. Les niveaux intermédiaire et avancé restent en préparation.",
+  "summary_fr": "Présenter une page HTML, organiser ses espaces et adapter une interface avec une feuille de style vérifiable. La suite intermédiaire approfondit ces bases ; le niveau avancé reste en préparation.",
   "prerequisites": [
-    "html-bases"
+    "Savoir structurer une page HTML avec des titres, des régions et des liens."
   ],
   "outcomes": [
     "Livrer une feuille de style adaptable pour une page associative.",
@@ -54,5 +54,11 @@
     }
   ],
   "status": "brouillon",
-  "reviewer": null
+  "reviewer": null,
+  "next_courses": [
+    "css-intermediaire"
+  ],
+  "prerequisite_courses": [
+    "html-bases"
+  ]
 }

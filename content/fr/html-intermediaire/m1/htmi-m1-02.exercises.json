@@ -1,0 +1,244 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Regrouper deux fiches sœurs",
+    "instruction_fr": "Crée main avec h1 « Programme du samedi », puis section#ateliers nommée par h2#titre-ateliers « Ateliers ». Elle contient article#lecture/h3 « Lecture »/p « Découvrir un conte. » et article#jardin/h3 « Jardin »/p « Observer des plantes. ».",
+    "starter_code": "<main><h1>Programme du samedi</h1><div id=\"ateliers\"><p>Ateliers</p><p>Lecture : Découvrir un conte.</p><p>Jardin : Observer des plantes.</p></div></main>",
+    "solution": "<main>\n  <h1>Programme du samedi</h1>\n  <section id=\"ateliers\" aria-labelledby=\"titre-ateliers\">\n    <h2 id=\"titre-ateliers\">Ateliers</h2>\n    <article id=\"lecture\"><h3>Lecture</h3><p>Découvrir un conte.</p></article>\n    <article id=\"jardin\"><h3>Jardin</h3><p>Observer des plantes.</p></article>\n  </section>\n</main>",
+    "visible_tests": [
+      {
+        "description_fr": "Regroupement et titres",
+        "checks": [
+          {
+            "selector": "section#ateliers",
+            "attributes": {
+              "aria-labelledby": "titre-ateliers"
+            }
+          },
+          {
+            "selector": "#ateliers > h2#titre-ateliers",
+            "textIncludes": "Ateliers"
+          },
+          {
+            "selector": "#ateliers > article",
+            "count": 2
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Fiches autonomes de même niveau",
+        "checks": [
+          {
+            "selector": "article#lecture > h3",
+            "textIncludes": "Lecture"
+          },
+          {
+            "selector": "#lecture > p",
+            "textIncludes": "Découvrir un conte."
+          },
+          {
+            "selector": "article#jardin > h3",
+            "textIncludes": "Jardin"
+          },
+          {
+            "selector": "#jardin > p",
+            "textIncludes": "Observer des plantes."
+          },
+          {
+            "selector": "main > h1",
+            "textIncludes": "Programme du samedi"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La rubrique représente un thème ; chaque fiche possède son propre sujet.",
+      "Place h2 sur la rubrique et h3 sur ses articles.",
+      "Relie aria-labelledby à l’id du titre de la section."
+    ],
+    "explanation_fr": "Deux fiches sœurs partagent un niveau de titre sous leur rubrique.",
+    "common_wrong_answers": [],
+    "id": "htmi-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Donner une structure interne à une annonce",
+    "instruction_fr": "Crée main/h1 « Bulletin du club », puis article#annonce. Il contient header/h2 « Une rencontre autour des livres », un paragraphe de présentation, section#preparation/h3 « Préparation »/p « Choisir un conte. », puis footer/p « Équipe fictive de lecture. ».",
+    "starter_code": "<main><h1>Bulletin du club</h1><article id=\"annonce\"><h2>Une rencontre autour des livres</h2><p>Le club prépare une rencontre fictive.</p><p>Préparation : Choisir un conte.</p></article></main>",
+    "solution": "<main>\n  <h1>Bulletin du club</h1>\n  <article id=\"annonce\">\n    <header><h2>Une rencontre autour des livres</h2></header>\n    <p>Le club prépare une rencontre fictive.</p>\n    <section id=\"preparation\">\n      <h3>Préparation</h3>\n      <p>Choisir un conte.</p>\n    </section>\n    <footer><p>Équipe fictive de lecture.</p></footer>\n  </article>\n</main>",
+    "visible_tests": [
+      {
+        "description_fr": "Introduction et sous-partie",
+        "checks": [
+          {
+            "selector": "article#annonce > header > h2",
+            "textIncludes": "Une rencontre autour des livres"
+          },
+          {
+            "selector": "#annonce > section#preparation > h3",
+            "textIncludes": "Préparation"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Relations internes conservées",
+        "checks": [
+          {
+            "selector": "main > h1",
+            "textIncludes": "Bulletin du club"
+          },
+          {
+            "selector": "#preparation > p",
+            "textIncludes": "Choisir un conte."
+          },
+          {
+            "selector": "#annonce > footer > p",
+            "textIncludes": "Équipe fictive de lecture."
+          },
+          {
+            "selector": "main > article",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’annonce reste l’ensemble autonome.",
+      "La préparation est une partie de cette annonce, donc son titre descend d’un rang.",
+      "Utilise header et footer à l’intérieur de l’article, avec la section entre eux."
+    ],
+    "explanation_fr": "Les éléments d’introduction et de conclusion décrivent l’article, pas toute la page.",
+    "common_wrong_answers": [],
+    "id": "htmi-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer les niveaux sans changer les textes",
+    "instruction_fr": "Répare les rangs : h1 « Activités du club » pour la page ; h2 « Programme » dans section#programme ; h3 « Dessin » dans article#fiche, lui-même enfant de la section. Préserve « Créer une affiche fictive. ». Il reste un seul h1 et aucun h4.",
+    "starter_code": "<main><h1>Activités du club</h1><section id=\"programme\"><h4>Programme</h4><article id=\"fiche\"><h1>Dessin</h1><p>Créer une affiche fictive.</p></article></section></main>",
+    "solution": "<main>\n  <h1>Activités du club</h1>\n  <section id=\"programme\">\n    <h2>Programme</h2>\n    <article id=\"fiche\"><h3>Dessin</h3><p>Créer une affiche fictive.</p></article>\n  </section>\n</main>",
+    "visible_tests": [
+      {
+        "description_fr": "Rangs correspondant aux dépendances",
+        "checks": [
+          {
+            "selector": "main > h1",
+            "textIncludes": "Activités du club"
+          },
+          {
+            "selector": "#programme > h2",
+            "textIncludes": "Programme"
+          },
+          {
+            "selector": "#fiche > h3",
+            "textIncludes": "Dessin"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Anciennes incohérences retirées",
+        "checks": [
+          {
+            "selector": "h1",
+            "count": 1
+          },
+          {
+            "selector": "h4",
+            "exists": false
+          },
+          {
+            "selector": "#programme > article#fiche",
+            "exists": true
+          },
+          {
+            "selector": "#fiche p",
+            "textIncludes": "Créer une affiche fictive."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un titre d’article n’est pas automatiquement ramené au bon niveau.",
+      "La rubrique dépend de la page et la fiche dépend de la rubrique.",
+      "Remplace les deux mauvais rangs tout en gardant l’emboîtement."
+    ],
+    "explanation_fr": "La correction du plan n’exige aucun changement de contenu ni de style.",
+    "common_wrong_answers": [],
+    "id": "htmi-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Décrire un programme à trois profondeurs",
+    "instruction_fr": "Crée main/h1 « Programme de découverte », section#activites/h2 « Activités », puis deux articles #fiche-lecture/h3 « Lecture »/p « Partager un conte. » et #fiche-jardin/h3 « Jardin »/p « Observer les semis. ». Dans la fiche Lecture, ajoute section#materiel-lecture avec h4 « Matériel pour la lecture » et p « Livre et cahier. ».",
+    "starter_code": "<main><h1>Programme de découverte</h1><section id=\"activites\"><h2>Activités</h2></section></main>",
+    "solution": "<main>\n  <h1>Programme de découverte</h1>\n  <section id=\"activites\">\n    <h2>Activités</h2>\n    <article id=\"fiche-lecture\">\n      <h3>Lecture</h3>\n      <p>Partager un conte.</p>\n      <section id=\"materiel-lecture\"><h4>Matériel pour la lecture</h4><p>Livre et cahier.</p></section>\n    </article>\n    <article id=\"fiche-jardin\"><h3>Jardin</h3><p>Observer les semis.</p></article>\n  </section>\n</main>",
+    "visible_tests": [
+      {
+        "description_fr": "Deux fiches dans une même rubrique",
+        "checks": [
+          {
+            "selector": "main > h1",
+            "textIncludes": "Programme de découverte"
+          },
+          {
+            "selector": "section#activites > h2",
+            "textIncludes": "Activités"
+          },
+          {
+            "selector": "#activites > article",
+            "count": 2
+          },
+          {
+            "selector": "#fiche-lecture > h3",
+            "textIncludes": "Lecture"
+          },
+          {
+            "selector": "#fiche-jardin > h3",
+            "textIncludes": "Jardin"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Sous-partie rattachée à la bonne fiche",
+        "checks": [
+          {
+            "selector": "#fiche-lecture > section#materiel-lecture > h4",
+            "textIncludes": "Matériel pour la lecture"
+          },
+          {
+            "selector": "#materiel-lecture > p",
+            "textIncludes": "Livre et cahier."
+          },
+          {
+            "selector": "#fiche-lecture > p",
+            "textIncludes": "Partager un conte."
+          },
+          {
+            "selector": "#fiche-jardin > p",
+            "textIncludes": "Observer les semis."
+          },
+          {
+            "selector": "h1",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le matériel concerne seulement la lecture.",
+      "La section interne descend sous le h3 de cette fiche.",
+      "Écris d’abord le squelette des titres h1/h2/h3/h4, puis les paragraphes correspondants."
+    ],
+    "explanation_fr": "Le projet exprime une dépendance supplémentaire sans transformer le matériel en atelier frère.",
+    "common_wrong_answers": [],
+    "id": "htmi-m1-02-e4"
+  }
+]

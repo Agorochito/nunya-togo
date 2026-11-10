@@ -1,0 +1,426 @@
+[
+  {
+    "title_fr": "Étape 1 : régions et contacts localisés",
+    "instruction_fr": "Construis le document Annuaire associatif — Club Rivage, français ltr, avec métadonnées UTF-8, description « Deux clubs fictifs à Lomé, avec repères de navigation et préparation locale sans envoi. », viewport device-width/initial-scale=1. Reproduis les régions et titres : #annuaire relié à #titre-annuaire, #preparation à #titre-preparation, deux articles #rivage/#lecture avec h3. Liens #vers-annuaire/#vers-preparation vers ces cibles ; #evitement vers main#contenu tabindex=-1. Contact arabe #contact-ar dans bdi dir=auto lang=ar ; devise anglaise dans span lang=en. Footer annonce aucune collecte.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Annuaire associatif — Club Rivage</title>\n  <meta name=\"description\" content=\"Deux clubs fictifs à Lomé, avec repères de navigation et préparation locale sans envoi.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<a id=\"evitement\" href=\"#contenu\">Aller au contenu</a>\n<header><h1 id=\"titre-page\">Annuaire associatif fictif</h1><p>Deux clubs inventés à Lomé.</p></header>\n<nav aria-label=\"Rubriques de l’annuaire\">\n  <a id=\"vers-annuaire\" href=\"#annuaire\">Clubs et rencontres</a>\n  <a id=\"vers-preparation\" href=\"#preparation\">Préparer un contact fictif</a>\n</nav>\n<main id=\"contenu\" tabindex=\"-1\">\n  <section id=\"annuaire\" aria-labelledby=\"titre-annuaire\">\n    <h2 id=\"titre-annuaire\">Clubs et rencontres</h2>\n    <article id=\"rivage\"><h3>Club Rivage</h3><p>Contact inventé : <bdi dir=\"auto\">Afi</bdi>.</p><p>Devise invitée : <span lang=\"en\">Learning together</span>.</p></article>\n    <article id=\"lecture\"><h3>Club Lecture</h3><p>Contact inventé : <bdi id=\"contact-ar\" dir=\"ltr\">أمل</bdi>.</p></article>\n\n  </section>\n  <section id=\"preparation\" aria-label=\"Autre\">\n    <h2 id=\"titre-preparation\">Préparer un contact fictif</h2>\n    <p id=\"etat-demo\">État d’erreur statique fourni pour la revue ; aucun contrôle programmé.</p>\n\n  </section>\n</main>\n<footer><p id=\"limite\">Annuaire inventé : aucune collecte et aucune inscription réelle.</p></footer>\n</body>\n</html>",
+    "solution": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Annuaire associatif — Club Rivage</title>\n  <meta name=\"description\" content=\"Deux clubs fictifs à Lomé, avec repères de navigation et préparation locale sans envoi.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<a id=\"evitement\" href=\"#contenu\">Aller au contenu</a>\n<header><h1 id=\"titre-page\">Annuaire associatif fictif</h1><p>Deux clubs inventés à Lomé.</p></header>\n<nav aria-label=\"Rubriques de l’annuaire\">\n  <a id=\"vers-annuaire\" href=\"#annuaire\">Clubs et rencontres</a>\n  <a id=\"vers-preparation\" href=\"#preparation\">Préparer un contact fictif</a>\n</nav>\n<main id=\"contenu\" tabindex=\"-1\">\n  <section id=\"annuaire\" aria-labelledby=\"titre-annuaire\">\n    <h2 id=\"titre-annuaire\">Clubs et rencontres</h2>\n    <article id=\"rivage\"><h3>Club Rivage</h3><p>Contact inventé : <bdi dir=\"auto\">Afi</bdi>.</p><p>Devise invitée : <span lang=\"en\">Learning together</span>.</p></article>\n    <article id=\"lecture\"><h3>Club Lecture</h3><p>Contact inventé : <bdi id=\"contact-ar\" dir=\"auto\" lang=\"ar\">أمل</bdi>.</p></article>\n\n  </section>\n  <section id=\"preparation\" aria-labelledby=\"titre-preparation\">\n    <h2 id=\"titre-preparation\">Préparer un contact fictif</h2>\n    <p id=\"etat-demo\">État d’erreur statique fourni pour la revue ; aucun contrôle programmé.</p>\n\n  </section>\n</main>\n<footer><p id=\"limite\">Annuaire inventé : aucune collecte et aucune inscription réelle.</p></footer>\n</body>\n</html>",
+    "visible_tests": [
+      {
+        "description_fr": "Régions, identité et localisation",
+        "checks": [
+          {
+            "selector": "html",
+            "attributes": {
+              "lang": "fr",
+              "dir": "ltr"
+            }
+          },
+          {
+            "selector": "head title",
+            "textIncludes": "Annuaire associatif — Club Rivage"
+          },
+          {
+            "selector": "#evitement",
+            "attributes": {
+              "href": "#contenu"
+            }
+          },
+          {
+            "selector": "main#contenu",
+            "count": 1,
+            "attributes": {
+              "tabindex": "-1"
+            }
+          },
+          {
+            "selector": "#annuaire",
+            "attributes": {
+              "aria-labelledby": "titre-annuaire"
+            }
+          },
+          {
+            "selector": "#preparation",
+            "attributes": {
+              "aria-labelledby": "titre-preparation"
+            }
+          },
+          {
+            "selector": "#contact-ar",
+            "attributes": {
+              "dir": "auto",
+              "lang": "ar"
+            },
+            "textIncludes": "أمل"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Navigation et plan conservés",
+        "checks": [
+          {
+            "selector": "#vers-annuaire",
+            "attributes": {
+              "href": "#annuaire"
+            }
+          },
+          {
+            "selector": "#vers-preparation",
+            "attributes": {
+              "href": "#preparation"
+            }
+          },
+          {
+            "selector": "#annuaire article > h3",
+            "count": 2
+          },
+          {
+            "selector": "span[lang=\"en\"]",
+            "textIncludes": "Learning together"
+          },
+          {
+            "selector": "#limite",
+            "textIncludes": "aucune collecte"
+          },
+          {
+            "selector": "nav",
+            "attributes": {
+              "aria-label": "Rubriques de l’annuaire"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les régions doivent référencer les titres qui les nomment.",
+      "Le contact arabe est isolé, pas forcé en ltr.",
+      "Restaure aria-labelledby=titre-preparation et dir=auto avec lang=ar sur le bdi."
+    ],
+    "explanation_fr": "La première étape construit les repères avant les détails de formulaire ou de tableau.",
+    "common_wrong_answers": [],
+    "id": "htmi-m4-03-e1",
+    "kind": "guided"
+  },
+  {
+    "title_fr": "Étape 2 : un état de formulaire honnête",
+    "instruction_fr": "Produis un document autonome contenant form#demande aria-labelledby=titre-formulaire ; fieldset/legend#titre-formulaire « Préparer un contact fictif ». #courriel : label obligatoire, name=courriel, type=email, autocomplete=email, inputmode=email, required, value=adresse-incomplete, aria-invalid=true, aria-describedby=« aide-mail erreur-mail ». #aide-mail annonce données fictives et aucun envoi ; #erreur-mail annonce explicitement une erreur statique. Select#association name=association required avec option initiale value vide selected et options rivage/lecture. #bouton-demo type=button : « Aucun envoi — démonstration ». Aucun traitement programmé.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Préparer un contact — Club Rivage</title>\n  <meta name=\"description\" content=\"Annuaire fictif du club, sans collecte de données.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<main><h1>Préparation fictive</h1>\n<form id=\"demande\" aria-labelledby=\"titre-formulaire\">\n  <fieldset>\n    <legend id=\"titre-formulaire\">Préparer un contact fictif</legend>\n    <p id=\"aide-mail\">Données fictives uniquement ; aucun message n’est envoyé.</p>\n    <label for=\"courriel\">Adresse fictive, obligatoire</label>\n    <input id=\"courriel\" name=\"courriel\" type=\"email\" autocomplete=\"email\" inputmode=\"email\" required value=\"adresse-incomplete\" aria-invalid=\"true\" aria-describedby=\"aide-mail\">\n    <p id=\"erreur-mail\">Exemple d’erreur statique : écris une adresse au format nom@example.test.</p>\n    <label for=\"association\">Association fictive, obligatoire</label>\n    <select id=\"association\" name=\"association\" required>\n      <option value=\"\" selected>Choisir une association</option>\n      <option value=\"rivage\">Club Rivage</option>\n      <option value=\"lecture\">Club Lecture</option>\n    </select>\n    <button id=\"bouton-demo\" type=\"submit\">Aucun envoi — démonstration</button>\n  </fieldset>\n</form>\n</main>\n</body>\n</html>",
+    "solution": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Préparer un contact — Club Rivage</title>\n  <meta name=\"description\" content=\"Annuaire fictif du club, sans collecte de données.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<main><h1>Préparation fictive</h1>\n<form id=\"demande\" aria-labelledby=\"titre-formulaire\">\n  <fieldset>\n    <legend id=\"titre-formulaire\">Préparer un contact fictif</legend>\n    <p id=\"aide-mail\">Données fictives uniquement ; aucun message n’est envoyé.</p>\n    <label for=\"courriel\">Adresse fictive, obligatoire</label>\n    <input id=\"courriel\" name=\"courriel\" type=\"email\" autocomplete=\"email\" inputmode=\"email\" required value=\"adresse-incomplete\" aria-invalid=\"true\" aria-describedby=\"aide-mail erreur-mail\">\n    <p id=\"erreur-mail\">Exemple d’erreur statique : écris une adresse au format nom@example.test.</p>\n    <label for=\"association\">Association fictive, obligatoire</label>\n    <select id=\"association\" name=\"association\" required>\n      <option value=\"\" selected>Choisir une association</option>\n      <option value=\"rivage\">Club Rivage</option>\n      <option value=\"lecture\">Club Lecture</option>\n    </select>\n    <button id=\"bouton-demo\" type=\"button\">Aucun envoi — démonstration</button>\n  </fieldset>\n</form>\n</main>\n</body>\n</html>",
+    "visible_tests": [
+      {
+        "description_fr": "Erreur reliée et limite de l’action",
+        "checks": [
+          {
+            "selector": "#demande fieldset > legend",
+            "textIncludes": "Préparer un contact fictif"
+          },
+          {
+            "selector": "label[for=\"courriel\"]",
+            "textIncludes": "obligatoire"
+          },
+          {
+            "selector": "#courriel",
+            "attributes": {
+              "name": "courriel",
+              "type": "email",
+              "autocomplete": "email",
+              "inputmode": "email",
+              "required": "",
+              "aria-describedby": "aide-mail erreur-mail",
+              "aria-invalid": "true"
+            }
+          },
+          {
+            "selector": "#erreur-mail",
+            "textIncludes": "statique"
+          },
+          {
+            "selector": "#bouton-demo",
+            "attributes": {
+              "type": "button"
+            },
+            "textIncludes": "Aucun envoi"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Groupe, choix vide et données fictives",
+        "checks": [
+          {
+            "selector": "#demande",
+            "attributes": {
+              "aria-labelledby": "titre-formulaire"
+            }
+          },
+          {
+            "selector": "#association",
+            "attributes": {
+              "name": "association",
+              "required": ""
+            }
+          },
+          {
+            "selector": "#association option[value=\"\"]",
+            "attributes": {
+              "selected": ""
+            }
+          },
+          {
+            "selector": "#association option",
+            "count": 3
+          },
+          {
+            "selector": "#aide-mail",
+            "textIncludes": "aucun message"
+          },
+          {
+            "selector": "label[for=\"association\"]",
+            "textIncludes": "obligatoire"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La description doit conserver l’aide et ajouter l’erreur.",
+      "Un bouton submit ne représente pas la commande sans envoi demandée.",
+      "Rétablis aria-describedby=\"aide-mail erreur-mail\" et type=button pour #bouton-demo."
+    ],
+    "explanation_fr": "Les contrôles décrivent un exemple d’erreur fourni ; ils ne prouvent aucune validation dynamique ni collecte réelle.",
+    "common_wrong_answers": [],
+    "id": "htmi-m4-03-e2",
+    "kind": "practice"
+  },
+  {
+    "title_fr": "Étape 3 : relier les deux axes des données",
+    "instruction_fr": "Document autonome avec table#horaires : caption « Rencontres fictives à Lomé », colonnes Association/Jour/Lieu avec th#col-association/#col-jour/#col-lieu scope=col. Deux lignes, th#asso-rivage et #asso-lecture scope=row. Chaque td possède headers=« ID_LIGNE ID_COLONNE ». Dates time datetime=2026-11-14 et 2026-11-21, textes14/21 novembre2026 ; lieux Lomé — salle A/B. Conserver ces associations, pas une simple grille visuelle.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Rencontres — Club Rivage</title>\n  <meta name=\"description\" content=\"Annuaire fictif du club, sans collecte de données.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<main><h1>Rencontres fictives</h1>\n<table id=\"horaires\">\n  <caption>Rencontres fictives à Lomé</caption>\n  <thead><tr>\n    <th id=\"col-association\" scope=\"col\">Association</th>\n    <th id=\"col-jour\" scope=\"col\">Jour</th>\n    <th id=\"col-lieu\" scope=\"col\">Lieu</th>\n  </tr></thead>\n  <tbody>\n    <tr><th id=\"asso-rivage\" scope=\"col\">Club Rivage</th><td headers=\"asso-rivage col-jour\"><time datetime=\"2026-11-14\">14 novembre 2026</time></td><td headers=\"asso-rivage col-lieu\">Lomé — salle A</td></tr>\n    <tr><th id=\"asso-lecture\" scope=\"row\">Club Lecture</th><td headers=\"asso-lecture col-jour\"><time datetime=\"2026-11-21\">21 novembre 2026</time></td><td headers=\"col-jour\">Lomé — salle B</td></tr>\n  </tbody>\n</table>\n</main>\n</body>\n</html>",
+    "solution": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Rencontres — Club Rivage</title>\n  <meta name=\"description\" content=\"Annuaire fictif du club, sans collecte de données.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<main><h1>Rencontres fictives</h1>\n<table id=\"horaires\">\n  <caption>Rencontres fictives à Lomé</caption>\n  <thead><tr>\n    <th id=\"col-association\" scope=\"col\">Association</th>\n    <th id=\"col-jour\" scope=\"col\">Jour</th>\n    <th id=\"col-lieu\" scope=\"col\">Lieu</th>\n  </tr></thead>\n  <tbody>\n    <tr><th id=\"asso-rivage\" scope=\"row\">Club Rivage</th><td headers=\"asso-rivage col-jour\"><time datetime=\"2026-11-14\">14 novembre 2026</time></td><td headers=\"asso-rivage col-lieu\">Lomé — salle A</td></tr>\n    <tr><th id=\"asso-lecture\" scope=\"row\">Club Lecture</th><td headers=\"asso-lecture col-jour\"><time datetime=\"2026-11-21\">21 novembre 2026</time></td><td headers=\"asso-lecture col-lieu\">Lomé — salle B</td></tr>\n  </tbody>\n</table>\n</main>\n</body>\n</html>",
+    "visible_tests": [
+      {
+        "description_fr": "Sujet, axes et cellule localisée",
+        "checks": [
+          {
+            "selector": "#horaires > caption",
+            "textIncludes": "Rencontres fictives à Lomé"
+          },
+          {
+            "selector": "#horaires thead th[scope=\"col\"]",
+            "count": 3
+          },
+          {
+            "selector": "#horaires tbody th[scope=\"row\"]",
+            "count": 2
+          },
+          {
+            "selector": "td[headers=\"asso-rivage col-jour\"] time",
+            "attributes": {
+              "datetime": "2026-11-14"
+            }
+          },
+          {
+            "selector": "td[headers=\"asso-lecture col-lieu\"]",
+            "textIncludes": "Lomé — salle B"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Toutes les associations restent explicites",
+        "checks": [
+          {
+            "selector": "#asso-rivage",
+            "attributes": {
+              "scope": "row"
+            }
+          },
+          {
+            "selector": "td[headers=\"asso-rivage col-lieu\"]",
+            "textIncludes": "Lomé — salle A"
+          },
+          {
+            "selector": "td[headers=\"asso-lecture col-jour\"] time",
+            "attributes": {
+              "datetime": "2026-11-21"
+            }
+          },
+          {
+            "selector": "#col-association",
+            "attributes": {
+              "scope": "col"
+            }
+          },
+          {
+            "selector": "#horaires tbody tr",
+            "count": 2
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Chaque cellule de lieu doit citer le club de sa ligne et la colonne Lieu.",
+      "Le nom du club en début de ligne est un en-tête de ligne.",
+      "Donne scope=row à #asso-rivage et headers=\"asso-lecture col-lieu\" au lieu de la seconde ligne."
+    ],
+    "explanation_fr": "Le débogage vérifie les relations de données au-delà des bordures ou de la position visible.",
+    "common_wrong_answers": [],
+    "id": "htmi-m4-03-e3",
+    "kind": "debug"
+  },
+  {
+    "title_fr": "Livraison : annuaire associatif intégré",
+    "instruction_fr": "Assembler dans un document autonome tous les critères des étapes1–3 : document et navigation, articles/contacts localisés, tableau dans section#annuaire, formulaire dans section#preparation. Garder h1/h2/h3, régions nommées, cibles uniques, langue et direction, métadonnées, labels et en-têtes. p#etat-demo annonce « État d’erreur statique fourni pour la revue ; aucun contrôle programmé. ». Footer#limite annonce aucune collecte ni inscription réelle. Expliquer trois choix de structure selon la grille ; aucun serveur ou fichier absent.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Annuaire associatif — Club Rivage</title>\n  <meta name=\"description\" content=\"Deux clubs fictifs à Lomé, avec repères de navigation et préparation locale sans envoi.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<a id=\"evitement\" href=\"#contenu\">Aller au contenu</a>\n<header><h1 id=\"titre-page\">Annuaire associatif fictif</h1><p>Deux clubs inventés à Lomé.</p></header>\n<nav aria-label=\"Rubriques de l’annuaire\">\n  <a id=\"vers-annuaire\" href=\"#annuaire\">Clubs et rencontres</a>\n  <a id=\"vers-preparation\" href=\"#preparation\">Préparer un contact fictif</a>\n</nav>\n<main id=\"contenu\" tabindex=\"-1\">\n  <section id=\"annuaire\" aria-labelledby=\"titre-annuaire\">\n    <h2 id=\"titre-annuaire\">Clubs et rencontres</h2>\n    <article id=\"rivage\"><h3>Club Rivage</h3><p>Contact inventé : <bdi dir=\"auto\">Afi</bdi>.</p><p>Devise invitée : <span lang=\"en\">Learning together</span>.</p></article>\n    <article id=\"lecture\"><h3>Club Lecture</h3><p>Contact inventé : <bdi id=\"contact-ar\" dir=\"auto\" lang=\"ar\">أمل</bdi>.</p></article>\n<p>Tableau à compléter.</p>\n  </section>\n  <section id=\"preparation\" aria-labelledby=\"titre-preparation\">\n    <h2 id=\"titre-preparation\">Préparer un contact fictif</h2>\n    <p id=\"etat-demo\">État d’erreur statique fourni pour la revue ; aucun contrôle programmé.</p>\n<p>Formulaire à compléter.</p>\n  </section>\n</main>\n<footer><p id=\"limite\">Annuaire inventé : aucune collecte et aucune inscription réelle.</p></footer>\n</body>\n</html>",
+    "solution": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Annuaire associatif — Club Rivage</title>\n  <meta name=\"description\" content=\"Deux clubs fictifs à Lomé, avec repères de navigation et préparation locale sans envoi.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<a id=\"evitement\" href=\"#contenu\">Aller au contenu</a>\n<header><h1 id=\"titre-page\">Annuaire associatif fictif</h1><p>Deux clubs inventés à Lomé.</p></header>\n<nav aria-label=\"Rubriques de l’annuaire\">\n  <a id=\"vers-annuaire\" href=\"#annuaire\">Clubs et rencontres</a>\n  <a id=\"vers-preparation\" href=\"#preparation\">Préparer un contact fictif</a>\n</nav>\n<main id=\"contenu\" tabindex=\"-1\">\n  <section id=\"annuaire\" aria-labelledby=\"titre-annuaire\">\n    <h2 id=\"titre-annuaire\">Clubs et rencontres</h2>\n    <article id=\"rivage\"><h3>Club Rivage</h3><p>Contact inventé : <bdi dir=\"auto\">Afi</bdi>.</p><p>Devise invitée : <span lang=\"en\">Learning together</span>.</p></article>\n    <article id=\"lecture\"><h3>Club Lecture</h3><p>Contact inventé : <bdi id=\"contact-ar\" dir=\"auto\" lang=\"ar\">أمل</bdi>.</p></article>\n\n<table id=\"horaires\">\n  <caption>Rencontres fictives à Lomé</caption>\n  <thead><tr>\n    <th id=\"col-association\" scope=\"col\">Association</th>\n    <th id=\"col-jour\" scope=\"col\">Jour</th>\n    <th id=\"col-lieu\" scope=\"col\">Lieu</th>\n  </tr></thead>\n  <tbody>\n    <tr><th id=\"asso-rivage\" scope=\"row\">Club Rivage</th><td headers=\"asso-rivage col-jour\"><time datetime=\"2026-11-14\">14 novembre 2026</time></td><td headers=\"asso-rivage col-lieu\">Lomé — salle A</td></tr>\n    <tr><th id=\"asso-lecture\" scope=\"row\">Club Lecture</th><td headers=\"asso-lecture col-jour\"><time datetime=\"2026-11-21\">21 novembre 2026</time></td><td headers=\"asso-lecture col-lieu\">Lomé — salle B</td></tr>\n  </tbody>\n</table>\n\n  </section>\n  <section id=\"preparation\" aria-labelledby=\"titre-preparation\">\n    <h2 id=\"titre-preparation\">Préparer un contact fictif</h2>\n    <p id=\"etat-demo\">État d’erreur statique fourni pour la revue ; aucun contrôle programmé.</p>\n\n<form id=\"demande\" aria-labelledby=\"titre-formulaire\">\n  <fieldset>\n    <legend id=\"titre-formulaire\">Préparer un contact fictif</legend>\n    <p id=\"aide-mail\">Données fictives uniquement ; aucun message n’est envoyé.</p>\n    <label for=\"courriel\">Adresse fictive, obligatoire</label>\n    <input id=\"courriel\" name=\"courriel\" type=\"email\" autocomplete=\"email\" inputmode=\"email\" required value=\"adresse-incomplete\" aria-invalid=\"true\" aria-describedby=\"aide-mail erreur-mail\">\n    <p id=\"erreur-mail\">Exemple d’erreur statique : écris une adresse au format nom@example.test.</p>\n    <label for=\"association\">Association fictive, obligatoire</label>\n    <select id=\"association\" name=\"association\" required>\n      <option value=\"\" selected>Choisir une association</option>\n      <option value=\"rivage\">Club Rivage</option>\n      <option value=\"lecture\">Club Lecture</option>\n    </select>\n    <button id=\"bouton-demo\" type=\"button\">Aucun envoi — démonstration</button>\n  </fieldset>\n</form>\n\n  </section>\n</main>\n<footer><p id=\"limite\">Annuaire inventé : aucune collecte et aucune inscription réelle.</p></footer>\n</body>\n</html>",
+    "visible_tests": [
+      {
+        "description_fr": "Les parties du document sont réellement réunies",
+        "checks": [
+          {
+            "selector": "html",
+            "attributes": {
+              "lang": "fr",
+              "dir": "ltr"
+            }
+          },
+          {
+            "selector": "head title",
+            "textIncludes": "Annuaire associatif — Club Rivage"
+          },
+          {
+            "selector": "#evitement",
+            "attributes": {
+              "href": "#contenu"
+            }
+          },
+          {
+            "selector": "main#contenu",
+            "count": 1,
+            "attributes": {
+              "tabindex": "-1"
+            }
+          },
+          {
+            "selector": "#annuaire",
+            "attributes": {
+              "aria-labelledby": "titre-annuaire"
+            }
+          },
+          {
+            "selector": "#preparation",
+            "attributes": {
+              "aria-labelledby": "titre-preparation"
+            }
+          },
+          {
+            "selector": "#contact-ar",
+            "attributes": {
+              "dir": "auto",
+              "lang": "ar"
+            },
+            "textIncludes": "أمل"
+          },
+          {
+            "selector": "#demande fieldset > legend",
+            "textIncludes": "Préparer un contact fictif"
+          },
+          {
+            "selector": "label[for=\"courriel\"]",
+            "textIncludes": "obligatoire"
+          },
+          {
+            "selector": "#courriel",
+            "attributes": {
+              "name": "courriel",
+              "type": "email",
+              "autocomplete": "email",
+              "inputmode": "email",
+              "required": "",
+              "aria-describedby": "aide-mail erreur-mail",
+              "aria-invalid": "true"
+            }
+          },
+          {
+            "selector": "#erreur-mail",
+            "textIncludes": "statique"
+          },
+          {
+            "selector": "#bouton-demo",
+            "attributes": {
+              "type": "button"
+            },
+            "textIncludes": "Aucun envoi"
+          },
+          {
+            "selector": "#horaires > caption",
+            "textIncludes": "Rencontres fictives à Lomé"
+          },
+          {
+            "selector": "#horaires thead th[scope=\"col\"]",
+            "count": 3
+          },
+          {
+            "selector": "#horaires tbody th[scope=\"row\"]",
+            "count": 2
+          },
+          {
+            "selector": "td[headers=\"asso-rivage col-jour\"] time",
+            "attributes": {
+              "datetime": "2026-11-14"
+            }
+          },
+          {
+            "selector": "td[headers=\"asso-lecture col-lieu\"]",
+            "textIncludes": "Lomé — salle B"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Relations finales et accès au contenu",
+        "checks": [
+          {
+            "selector": "#annuaire > table#horaires",
+            "count": 1
+          },
+          {
+            "selector": "#preparation > form#demande",
+            "count": 1
+          },
+          {
+            "selector": "#etat-demo",
+            "textIncludes": "aucun contrôle programmé"
+          },
+          {
+            "selector": "#limite",
+            "textIncludes": "aucune inscription réelle"
+          },
+          {
+            "selector": "main#contenu:focus",
+            "count": 1
+          },
+          {
+            "selector": "meta[name=\"viewport\"]",
+            "attributes": {
+              "content": "width=device-width, initial-scale=1"
+            }
+          }
+        ],
+        "focus_selector": "#contenu"
+      }
+    ],
+    "hints": [
+      "Chaque partie est fournie dans le même document, sans import externe.",
+      "Le tableau appartient à l’annuaire et le formulaire à la préparation fictive.",
+      "Insère les deux structures complètes dans leurs sections, en conservant les ids et les relations."
+    ],
+    "explanation_fr": "La dernière activité remobilise le parcours entier. Les tests attestent les critères inspectés ; le plan, les libellés et l’expérience d’assistance demandent aussi la revue expliquée.",
+    "common_wrong_answers": [],
+    "id": "htmi-m4-03-e4",
+    "kind": "project"
+  }
+]

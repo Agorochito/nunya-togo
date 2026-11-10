@@ -36,7 +36,8 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
    all_ids.add(row['id'])
    prose=markdown.split('## Explication pas à pas\n',1)[1].split('## Exemple guidé',1)[0]
    row['body_fr']=[part.strip() for part in prose.strip().split('\n\n') if part.strip()]
-   codes=re.findall(r'```(?:python|html|css|javascript|jsx|js|sql|bash)\n(.*?)\n```',markdown,re.S)
+   fences={'python':'python','html':'html','css':'css','javascript':'javascript|jsx|js','sql':'sql'}[language]
+   codes=re.findall(r'```(?:'+fences+r')\n(.*?)\n```',markdown,re.S)
    if len(codes)!=len(row['examples']):raise ValueError(f'{path}: each example requires its code block')
    for example,code in zip(row['examples'],codes):example['code']=code
    if row['id'] in chapter_end:row['chapter_end']=chapter_end[row['id']]
@@ -57,7 +58,7 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
  course['content_revision']=hashlib.sha256(json.dumps(revision,ensure_ascii=False,sort_keys=True).encode()).hexdigest()[:12]
  course['exercise_count']=sum(len(row['exercises']) for row in lessons);course['quiz_count']=sum(len(row['quiz']) for row in lessons)
  write(data/(course['id']+'.json'),course,True);write(out/(course['id']+'.json'),dict(course=course,lessons=lessons));courses.append(course)
- search.append(dict(kind='Cours',title=course['title_fr'],route='#/apprendre/'+course['id'],breadcrumb='Apprendre à coder › '+course['title_fr'],terms=language+' programmation debutant zero '+course['summary_fr']+' '+' '.join(m['title_fr'] for m in course['modules'])))
+ search.append(dict(kind='Cours',title=course['title_fr'],route='#/apprendre/'+course['id'],breadcrumb='Apprendre à coder › '+course['title_fr'],terms=language+' programmation '+{'debutant':'debutant débutant zéro','intermediaire':'intermediaire intermédiaire','avance':'avance avancé'}.get(course['level'],course['level'])+' '+course['summary_fr']+' '+' '.join(m['title_fr'] for m in course['modules'])))
 legacy=[]
 for path in sorted((r/'content/fr').glob('*.json')):
  course=json.loads(path.read_text());legacy.append(dict(id=course['id'],title_fr=course['title'],status='aperçu',lesson_count=len(course['lessons']),source_file=str(path.relative_to(r))))

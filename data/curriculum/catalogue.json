@@ -939,9 +939,9 @@
       "title_fr": "CSS : premières interfaces",
       "language": "css",
       "level": "debutant",
-      "summary_fr": "Présenter une page HTML, organiser ses espaces et adapter une interface avec une feuille de style vérifiable. Les niveaux intermédiaire et avancé restent en préparation.",
+      "summary_fr": "Présenter une page HTML, organiser ses espaces et adapter une interface avec une feuille de style vérifiable. La suite intermédiaire approfondit ces bases ; le niveau avancé reste en préparation.",
       "prerequisites": [
-        "html-bases"
+        "Savoir structurer une page HTML avec des titres, des régions et des liens."
       ],
       "outcomes": [
         "Livrer une feuille de style adaptable pour une page associative.",
@@ -991,6 +991,12 @@
       ],
       "status": "brouillon",
       "reviewer": null,
+      "next_courses": [
+        "css-intermediaire"
+      ],
+      "prerequisite_courses": [
+        "html-bases"
+      ],
       "runtime": "css",
       "later_modules": [],
       "lessons": [
@@ -1162,16 +1168,414 @@
         }
       ],
       "estimated_minutes": 240,
-      "content_revision": "bb7f9d180457",
+      "content_revision": "bd237a24b544",
       "exercise_count": 48,
       "quiz_count": 36
+    },
+    {
+      "id": "css-intermediaire",
+      "title_fr": "CSS : interfaces robustes et adaptatives",
+      "language": "css",
+      "runtime": "css",
+      "level": "intermediaire",
+      "summary_fr": "Maîtrise la cascade, les dimensions et les dispositions Flexbox/Grid. Adapte une interface aux petits écrans, aux contenus longs et aux états accessibles.",
+      "prerequisite_courses": [
+        "css-bases",
+        "html-bases"
+      ],
+      "prerequisites": [
+        "Avoir suivi le socle CSS et savoir lire ses exemples et ses règles.",
+        "Le programme reste consultable librement ; ses prérequis servent de repères."
+      ],
+      "outcomes": [
+        "Prévoir la cascade et choisir des propriétés adaptées au sens de lecture.",
+        "Répartir l’espace sans casser les contenus longs.",
+        "Composer des grilles et des zones de page réutilisables.",
+        "Adapter les composants et la typographie à plusieurs largeurs.",
+        "Préserver des états compréhensibles au clavier et dans plusieurs thèmes.",
+        "Livrer et relire un tableau de club adaptable."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Cascade maîtrisée",
+          "outcome_fr": "Prévoir la cascade et choisir des propriétés adaptées au sens de lecture.",
+          "lesson_ids": [
+            "cssi-m1-01",
+            "cssi-m1-02",
+            "cssi-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Flexbox robuste",
+          "outcome_fr": "Répartir l’espace sans casser les contenus longs.",
+          "lesson_ids": [
+            "cssi-m2-01",
+            "cssi-m2-02",
+            "cssi-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Grilles composables",
+          "outcome_fr": "Composer des grilles et des zones de page réutilisables.",
+          "lesson_ids": [
+            "cssi-m3-01",
+            "cssi-m3-02",
+            "cssi-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Interfaces adaptatives",
+          "outcome_fr": "Adapter les composants et la typographie à plusieurs largeurs.",
+          "lesson_ids": [
+            "cssi-m4-01",
+            "cssi-m4-02",
+            "cssi-m4-03"
+          ]
+        },
+        {
+          "id": "m5",
+          "title_fr": "États accessibles",
+          "outcome_fr": "Préserver des états compréhensibles au clavier et dans plusieurs thèmes.",
+          "lesson_ids": [
+            "cssi-m5-01",
+            "cssi-m5-02",
+            "cssi-m5-03"
+          ]
+        },
+        {
+          "id": "m6",
+          "title_fr": "Projet : tableau de club",
+          "outcome_fr": "Livrer et relire un tableau de club adaptable.",
+          "lesson_ids": [
+            "cssi-m6-01",
+            "cssi-m6-02",
+            "cssi-m6-03"
+          ]
+        }
+      ],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "cssi-m1-01",
+          "title_fr": "Définir des variables locales et choisir leur repli",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "css-m4-03"
+          ],
+          "tags": [
+            "css",
+            "intermédiaire",
+            "propriété personnalisée",
+            "var",
+            "portée locale",
+            "repli"
+          ]
+        },
+        {
+          "id": "cssi-m1-02",
+          "title_fr": "Réduire la spécificité sans élargir les effets",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "cssi-m1-01"
+          ],
+          "tags": [
+            "css",
+            "intermédiaire",
+            "spécificité",
+            "where",
+            "is",
+            "variante"
+          ]
+        },
+        {
+          "id": "cssi-m1-03",
+          "title_fr": "Suivre le sens de lecture avec les propriétés logiques",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "cssi-m1-02"
+          ],
+          "tags": [
+            "css",
+            "intermédiaire",
+            "axe inline",
+            "axe block",
+            "propriété logique",
+            "RTL"
+          ]
+        },
+        {
+          "id": "cssi-m2-01",
+          "title_fr": "Choisir une base flexible et autoriser le retour à la ligne",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "cssi-m1-03"
+          ],
+          "tags": [
+            "css",
+            "intermédiaire",
+            "flex-basis",
+            "flex-grow",
+            "flex-shrink",
+            "wrap"
+          ]
+        },
+        {
+          "id": "cssi-m2-02",
+          "title_fr": "Laisser un contenu long rétrécir sans le perdre",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "cssi-m2-01"
+          ],
+          "tags": [
+            "css",
+            "intermédiaire",
+            "minimum automatique",
+            "coupure",
+            "troncature",
+            "niveau imbriqué"
+          ]
+        },
+        {
+          "id": "cssi-m2-03",
+          "title_fr": "Composer plusieurs axes sans désordonner le parcours",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "cssi-m2-02"
+          ],
+          "tags": [
+            "css",
+            "intermédiaire",
+            "axe principal",
+            "axe transversal",
+            "alignement de groupe",
+            "ordre documentaire"
+          ]
+        },
+        {
+          "id": "cssi-m3-01",
+          "title_fr": "Construire des pistes qui s’adaptent avec minmax()",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "cssi-m2-03"
+          ],
+          "tags": [
+            "css",
+            "intermédiaire",
+            "piste",
+            "minmax()",
+            "auto-fit",
+            "minimum automatique"
+          ]
+        },
+        {
+          "id": "cssi-m3-02",
+          "title_fr": "Nommer les zones d’une page et placer ses blocs",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "cssi-m3-01"
+          ],
+          "tags": [
+            "css",
+            "intermédiaire",
+            "zone nommée",
+            "grid-area",
+            "ligne de grille",
+            "span"
+          ]
+        },
+        {
+          "id": "cssi-m3-03",
+          "title_fr": "Imbriquer des grilles avec des espacements cohérents",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "cssi-m3-02"
+          ],
+          "tags": [
+            "css",
+            "intermédiaire",
+            "grille imbriquée",
+            "gouttière",
+            "propriété personnalisée",
+            "subgrid"
+          ]
+        },
+        {
+          "id": "cssi-m4-01",
+          "title_fr": "Adapter une disposition avec des media queries",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "cssi-m3-03"
+          ],
+          "tags": [
+            "css",
+            "intermédiaire",
+            "media query",
+            "point de rupture",
+            "mobile d’abord",
+            "zone d’affichage"
+          ]
+        },
+        {
+          "id": "cssi-m4-02",
+          "title_fr": "Régler une typographie fluide et une ligne lisible",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "cssi-m4-01"
+          ],
+          "tags": [
+            "css",
+            "intermédiaire",
+            "rem",
+            "clamp()",
+            "interligne",
+            "longueur de ligne"
+          ]
+        },
+        {
+          "id": "cssi-m4-03",
+          "title_fr": "Garder des images fluides et des cadres stables",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "cssi-m4-02"
+          ],
+          "tags": [
+            "css",
+            "intermédiaire",
+            "image fluide",
+            "aspect-ratio",
+            "object-fit",
+            "débordement"
+          ]
+        },
+        {
+          "id": "cssi-m5-01",
+          "title_fr": "Rendre le focus visible sans perturber son parcours",
+          "module": "m5",
+          "minutes": 20,
+          "prerequisites": [
+            "cssi-m4-03"
+          ],
+          "tags": [
+            "css",
+            "intermédiaire",
+            "outline",
+            "focus-within",
+            "focus-visible"
+          ]
+        },
+        {
+          "id": "cssi-m5-02",
+          "title_fr": "Distinguer les états sans dépendre seulement de la couleur",
+          "module": "m5",
+          "minutes": 20,
+          "prerequisites": [
+            "cssi-m5-01"
+          ],
+          "tags": [
+            "css",
+            "intermédiaire",
+            "pseudo-classe d’état",
+            "état natif",
+            "repère complémentaire"
+          ]
+        },
+        {
+          "id": "cssi-m5-03",
+          "title_fr": "Définir des thèmes locaux avec des rôles de couleur",
+          "module": "m5",
+          "minutes": 20,
+          "prerequisites": [
+            "cssi-m5-02"
+          ],
+          "tags": [
+            "css",
+            "intermédiaire",
+            "token de thème",
+            "portée locale",
+            "contraste"
+          ]
+        },
+        {
+          "id": "cssi-m6-01",
+          "title_fr": "Poser les fondations : valeurs partagées et composants",
+          "module": "m6",
+          "minutes": 20,
+          "prerequisites": [
+            "cssi-m5-03"
+          ],
+          "tags": [
+            "css",
+            "intermédiaire",
+            "décision partagée",
+            "composant",
+            "variante",
+            "spécificité"
+          ]
+        },
+        {
+          "id": "cssi-m6-02",
+          "title_fr": "Rendre la navigation et les cartes adaptatives",
+          "module": "m6",
+          "minutes": 20,
+          "prerequisites": [
+            "cssi-m6-01"
+          ],
+          "tags": [
+            "css",
+            "intermédiaire",
+            "passage à la ligne",
+            "zone d’appui",
+            "grille automatique",
+            "minimum nul"
+          ]
+        },
+        {
+          "id": "cssi-m6-03",
+          "title_fr": "Livrer le tableau : états accessibles et revue finale",
+          "module": "m6",
+          "minutes": 20,
+          "prerequisites": [
+            "cssi-m6-02"
+          ],
+          "tags": [
+            "css",
+            "intermédiaire",
+            "aria-current",
+            "indicateur de focus",
+            "état indisponible",
+            "thème local"
+          ]
+        }
+      ],
+      "estimated_minutes": 360,
+      "content_revision": "548255a6523f",
+      "exercise_count": 72,
+      "quiz_count": 54
     },
     {
       "id": "html-bases",
       "title_fr": "HTML : premières pages accessibles",
       "language": "html",
       "level": "debutant",
-      "summary_fr": "Construire une page associative structurée avec un formulaire local, sans serveur ni collecte réelle. Les niveaux intermédiaire et avancé restent en préparation.",
+      "summary_fr": "Construire une page associative structurée avec un formulaire local, sans serveur ni collecte réelle. La suite intermédiaire approfondit ces bases ; le niveau avancé reste en préparation.",
       "prerequisites": [],
       "outcomes": [
         "Assembler une page associative avec navigation et formulaire.",
@@ -1221,6 +1625,9 @@
       ],
       "status": "brouillon",
       "reviewer": null,
+      "next_courses": [
+        "html-intermediaire"
+      ],
       "runtime": "html",
       "later_modules": [],
       "lessons": [
@@ -1392,7 +1799,262 @@
         }
       ],
       "estimated_minutes": 240,
-      "content_revision": "5d23b0ec7649",
+      "content_revision": "96641fc311b9",
+      "exercise_count": 48,
+      "quiz_count": 36
+    },
+    {
+      "id": "html-intermediaire",
+      "title_fr": "HTML : documents et formulaires accessibles",
+      "language": "html",
+      "runtime": "html",
+      "level": "intermediaire",
+      "summary_fr": "Consolide la structure des pages, les formulaires, les tableaux et la localisation. Construis un annuaire associatif complet, lisible et sans collecte réelle.",
+      "prerequisite_courses": [
+        "html-bases"
+      ],
+      "prerequisites": [
+        "Avoir suivi le socle HTML et savoir lire ses exemples et ses règles.",
+        "Le programme reste consultable librement ; ses prérequis servent de repères."
+      ],
+      "outcomes": [
+        "Relier des régions et des titres pour naviguer dans un document.",
+        "Guider les saisies et relier aides, groupes et erreurs.",
+        "Rendre explicites les relations dans les tableaux et les images.",
+        "Assembler et relire un annuaire associatif localisé."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Structure accessible",
+          "outcome_fr": "Relier des régions et des titres pour naviguer dans un document.",
+          "lesson_ids": [
+            "htmi-m1-01",
+            "htmi-m1-02",
+            "htmi-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Formulaires robustes",
+          "outcome_fr": "Guider les saisies et relier aides, groupes et erreurs.",
+          "lesson_ids": [
+            "htmi-m2-01",
+            "htmi-m2-02",
+            "htmi-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Documents et données",
+          "outcome_fr": "Rendre explicites les relations dans les tableaux et les images.",
+          "lesson_ids": [
+            "htmi-m3-01",
+            "htmi-m3-02",
+            "htmi-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Documents complets",
+          "outcome_fr": "Assembler et relire un annuaire associatif localisé.",
+          "lesson_ids": [
+            "htmi-m4-01",
+            "htmi-m4-02",
+            "htmi-m4-03"
+          ]
+        }
+      ],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "htmi-m1-01",
+          "title_fr": "Nommer les régions et préparer un lien d’évitement",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "html-m4-03"
+          ],
+          "tags": [
+            "html",
+            "intermédiaire",
+            "région",
+            "nom accessible",
+            "lien d’évitement",
+            "cible de focus"
+          ]
+        },
+        {
+          "id": "htmi-m1-02",
+          "title_fr": "Choisir article ou section et construire un plan de titres",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "htmi-m1-01"
+          ],
+          "tags": [
+            "html",
+            "intermédiaire",
+            "article",
+            "section",
+            "rang de titre",
+            "plan de titres"
+          ]
+        },
+        {
+          "id": "htmi-m1-03",
+          "title_fr": "Donner du sens aux dates, abréviations et liens",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "htmi-m1-02"
+          ],
+          "tags": [
+            "html",
+            "intermédiaire",
+            "time",
+            "datetime",
+            "abbr",
+            "intitulé explicite"
+          ]
+        },
+        {
+          "id": "htmi-m2-01",
+          "title_fr": "Nommer les groupes de contrôles",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "htmi-m1-03"
+          ],
+          "tags": [
+            "html",
+            "m2",
+            "intermédiaire"
+          ]
+        },
+        {
+          "id": "htmi-m2-02",
+          "title_fr": "Choisir les attributs selon la donnée",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "htmi-m2-01"
+          ],
+          "tags": [
+            "html",
+            "m2",
+            "intermédiaire"
+          ]
+        },
+        {
+          "id": "htmi-m2-03",
+          "title_fr": "Relier aides et erreurs sans simuler une validation",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "htmi-m2-02"
+          ],
+          "tags": [
+            "html",
+            "m2",
+            "intermédiaire"
+          ]
+        },
+        {
+          "id": "htmi-m3-01",
+          "title_fr": "Donner un titre et des en-têtes aux tableaux",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "htmi-m2-03"
+          ],
+          "tags": [
+            "html",
+            "m3",
+            "intermédiaire"
+          ]
+        },
+        {
+          "id": "htmi-m3-02",
+          "title_fr": "Relier une cellule à plusieurs en-têtes",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "htmi-m3-01"
+          ],
+          "tags": [
+            "html",
+            "m3",
+            "intermédiaire"
+          ]
+        },
+        {
+          "id": "htmi-m3-03",
+          "title_fr": "Préparer des images utiles et autonomes",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "htmi-m3-02"
+          ],
+          "tags": [
+            "html",
+            "m3",
+            "intermédiaire"
+          ]
+        },
+        {
+          "id": "htmi-m4-01",
+          "title_fr": "Distinguer langue, direction et isolation des noms",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "htmi-m3-03"
+          ],
+          "tags": [
+            "html",
+            "intermédiaire",
+            "lang",
+            "dir",
+            "isolation bidirectionnelle"
+          ]
+        },
+        {
+          "id": "htmi-m4-02",
+          "title_fr": "Décrire le document et relier une navigation locale",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "htmi-m4-01"
+          ],
+          "tags": [
+            "html",
+            "intermédiaire",
+            "métadonnée",
+            "fragment",
+            "viewport"
+          ]
+        },
+        {
+          "id": "htmi-m4-03",
+          "title_fr": "Projet : un annuaire associatif complet à relire",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "htmi-m4-02"
+          ],
+          "tags": [
+            "html",
+            "intermédiaire",
+            "livraison intégrée",
+            "headers",
+            "état statique"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "d3a1051397b7",
       "exercise_count": 48,
       "quiz_count": 36
     },

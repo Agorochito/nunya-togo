@@ -1,0 +1,297 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Laisser la navigation passer à la ligne",
+    "instruction_fr": "Sur .nav : display flex, flex-wrap wrap, gap 8px, margin 0, padding 0, list-style none et overflow visible. Sur .nav a : display block et padding 12px 16px. Ne réduis pas le texte.",
+    "starter_code": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.nav {\n  display: flex;\n  flex-wrap: nowrap;\n  overflow: hidden;\n  gap: 8px;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n.nav a {\n  display: block;\n  padding: 2px;\n}",
+    "solution": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.nav {\n  display: flex;\n  flex-wrap: wrap;\n  overflow: visible;\n  gap: 8px;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n.nav a {\n  display: block;\n  padding: 12px 16px;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Navigation utilisable à 360px",
+        "checks": [
+          {
+            "selector": "#nav",
+            "style": {
+              "flex-wrap": "wrap",
+              "overflow-x": "visible",
+              "row-gap": "8px"
+            }
+          },
+          {
+            "selector": "#lien",
+            "style": {
+              "display": "block",
+              "padding-top": "12px",
+              "padding-left": "16px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Mêmes règles à 720px",
+        "checks": [
+          {
+            "selector": "#nav",
+            "style": {
+              "display": "flex",
+              "flex-wrap": "wrap"
+            }
+          },
+          {
+            "selector": "#lien",
+            "style": {
+              "padding-bottom": "12px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Le masquage cache les liens qui dépassent.",
+      "La rangée doit pouvoir occuper deux lignes.",
+      "Écris flex-wrap: wrap, overflow: visible et padding: 12px 16px sur les liens."
+    ],
+    "explanation_fr": "Tous les liens restent visibles et faciles à toucher.",
+    "common_wrong_answers": [],
+    "fixture_html": "<nav aria-label=\"Rubriques du club\"><ul class=\"nav\" id=\"nav\"><li><a id=\"lien\" href=\"#ateliers\">Ateliers</a></li><li><a href=\"#calendrier\">Calendrier</a></li><li><a href=\"#membres\">Membres</a></li></ul></nav><main><h2 id=\"ateliers\">Ateliers</h2><h2 id=\"calendrier\">Calendrier</h2><h2 id=\"membres\">Membres</h2></main>",
+    "id": "cssi-m6-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Créer la grille des ateliers",
+    "instruction_fr": "Sur .tableau : --espace: 16px et padding var(--espace). Sur .cartes : display grid, repeat(auto-fit, minmax(150px, 1fr)) et gap var(--espace). Sur .carte : min-width 0 et overflow-wrap anywhere.",
+    "starter_code": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.tableau {\n  --espace: 16px;\n  padding: var(--espace);\n}\n.cartes {\n  display: grid;\n  grid-template-columns: 150px 150px 150px;\n  gap: 4px;\n}",
+    "solution": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.tableau {\n  --espace: 16px;\n  padding: var(--espace);\n}\n.cartes {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));\n  gap: var(--espace);\n}\n.carte {\n  min-width: 0;\n  overflow-wrap: anywhere;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Deux colonnes à 360px",
+        "checks": [
+          {
+            "selector": "#cartes",
+            "style": {
+              "grid-template-columns": "156px 156px",
+              "column-gap": "16px"
+            }
+          },
+          {
+            "selector": "#carte",
+            "style": {
+              "min-width": "0px",
+              "overflow-wrap": "anywhere"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Quatre colonnes à 720px",
+        "checks": [
+          {
+            "selector": "#cartes",
+            "style": {
+              "grid-template-columns": "160px 160px 160px 160px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Trois pistes fixes dépassent à 360px.",
+      "Le navigateur peut calculer le nombre de colonnes.",
+      "Écris repeat(auto-fit, minmax(150px, 1fr)) et gap: var(--espace)."
+    ],
+    "explanation_fr": "La grille s’adapte sans media query et sa gouttière suit la décision du projet.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"tableau\" id=\"tableau\"><div class=\"cartes\" id=\"cartes\"><article class=\"carte\" id=\"carte\">Lecture</article><article class=\"carte\">Jardin</article><article class=\"carte\">Échecs</article><article class=\"carte\">Chorale</article></div></main>",
+    "id": "cssi-m6-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Empêcher un titre long de déformer la grille",
+    "instruction_fr": "Un titre sans espace élargit sa colonne. Sur .cartes : remplace repeat(2, 1fr) par repeat(2, minmax(0, 1fr)). Sur .carte : min-width 0. Sur .carte h2 : margin 0 et overflow-wrap anywhere. Garde le padding du tableau et la gouttière.",
+    "starter_code": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.tableau {\n  --espace: 16px;\n  padding: var(--espace);\n}\n.cartes {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  gap: var(--espace);\n}\n.carte h2 {\n  margin: 0;\n  overflow-wrap: normal;\n}",
+    "solution": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.tableau {\n  --espace: 16px;\n  padding: var(--espace);\n}\n.cartes {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  gap: var(--espace);\n}\n.carte { min-width: 0; }\n.carte h2 {\n  margin: 0;\n  overflow-wrap: anywhere;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Colonnes égales à 360px",
+        "checks": [
+          {
+            "selector": "#cartes",
+            "style": {
+              "grid-template-columns": "156px 156px"
+            }
+          },
+          {
+            "selector": "#titre",
+            "style": {
+              "width": "156px",
+              "overflow-wrap": "anywhere"
+            },
+            "textIncludes": "AtelierDeLectureEtDeJardinagePartage"
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Colonnes égales à 720px",
+        "checks": [
+          {
+            "selector": "#cartes",
+            "style": {
+              "grid-template-columns": "336px 336px"
+            }
+          },
+          {
+            "selector": "#carte",
+            "style": {
+              "min-width": "0px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Mesure la première colonne : elle dépasse sa part.",
+      "1fr garde un minimum automatique lié au mot le plus long.",
+      "Utilise minmax(0, 1fr), min-width: 0 et overflow-wrap: anywhere."
+    ],
+    "explanation_fr": "La piste respecte sa part et le titre se coupe sans perdre de lettres.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"tableau\" id=\"tableau\"><div class=\"cartes\" id=\"cartes\"><article class=\"carte\" id=\"carte\"><h2 id=\"titre\">AtelierDeLectureEtDeJardinagePartage</h2><p>Mardi</p></article><article class=\"carte\"><h2>Jardin</h2><p>Jeudi</p></article></div></main>",
+    "id": "cssi-m6-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Adapter tout le tableau",
+    "instruction_fr": "Sur .tableau : --espace: 16px, display grid, gap et padding var(--espace). Sur .entete h1 : margin 0, font-size clamp(1.5rem, 1rem + 2.5vw, 2.5rem), line-height 1.2. Navigation : .nav en flex avec wrap, gap 8px, sans marge, padding ni puces ; liens en bloc avec padding 12px 16px. Cartes : repeat(auto-fit, minmax(150px, 1fr)), gap var(--espace), min-width 0 et overflow-wrap anywhere. À partir de 600px : .entete en display flex, justify-content space-between, align-items center.",
+    "starter_code": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.tableau {\n  --espace: 16px;\n  padding: var(--espace);\n}\n.entete h1 { margin: 0; }",
+    "solution": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.tableau {\n  --espace: 16px;\n  display: grid;\n  gap: var(--espace);\n  padding: var(--espace);\n}\n.entete h1 {\n  margin: 0;\n  font-size: clamp(1.5rem, 1rem + 2.5vw, 2.5rem);\n  line-height: 1.2;\n}\n.nav {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 8px;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n.nav a {\n  display: block;\n  padding: 12px 16px;\n}\n.cartes {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));\n  gap: var(--espace);\n}\n.carte {\n  min-width: 0;\n  overflow-wrap: anywhere;\n}\n@media (min-width: 600px) {\n  .entete {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n  }\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Tableau empilé à 360px",
+        "checks": [
+          {
+            "selector": "#entete",
+            "style": {
+              "display": "block"
+            }
+          },
+          {
+            "selector": "#titre",
+            "style": {
+              "font-size": "25px"
+            }
+          },
+          {
+            "selector": "#nav",
+            "style": {
+              "display": "flex",
+              "flex-wrap": "wrap"
+            }
+          },
+          {
+            "selector": "#cartes",
+            "style": {
+              "grid-template-columns": "156px 156px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      {
+        "description_fr": "Tableau élargi à 720px",
+        "checks": [
+          {
+            "selector": "#entete",
+            "style": {
+              "display": "flex",
+              "justify-content": "space-between"
+            }
+          },
+          {
+            "selector": "#titre",
+            "style": {
+              "font-size": "34px"
+            }
+          },
+          {
+            "selector": "#cartes",
+            "style": {
+              "grid-template-columns": "160px 160px 160px 160px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Liens confortables et tableau en grille",
+        "checks": [
+          {
+            "selector": "#lien",
+            "style": {
+              "display": "block",
+              "padding-top": "12px",
+              "padding-left": "16px"
+            }
+          },
+          {
+            "selector": "#tableau",
+            "style": {
+              "display": "grid",
+              "row-gap": "16px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Traite les composants un par un : titre, navigation, cartes.",
+      "Une seule condition est nécessaire, pour l’en-tête.",
+      "Écris la base complète, puis @media (min-width: 600px) { .entete { display: flex; … } }."
+    ],
+    "explanation_fr": "Trois composants s’adaptent seuls ; la media query ne porte qu’une décision.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"tableau\" id=\"tableau\"><header class=\"entete\" id=\"entete\"><h1 id=\"titre\">Club fictif</h1><nav aria-label=\"Rubriques du club\"><ul class=\"nav\" id=\"nav\"><li><a id=\"lien\" href=\"#ateliers\">Ateliers</a></li><li><a href=\"#notes\">Notes</a></li></ul></nav></header><div class=\"cartes\" id=\"cartes\"><article class=\"carte\"><h2 id=\"ateliers\">Lecture</h2></article><article class=\"carte\"><h2>Jardin</h2></article><article class=\"carte\"><h2>Échecs</h2></article><article class=\"carte\"><h2 id=\"notes\">Notes</h2></article></div></main>",
+    "id": "cssi-m6-02-e4"
+  }
+]

@@ -1,0 +1,398 @@
+{
+  "id": "css-intermediaire",
+  "title_fr": "CSS : interfaces robustes et adaptatives",
+  "language": "css",
+  "runtime": "css",
+  "level": "intermediaire",
+  "summary_fr": "Maîtrise la cascade, les dimensions et les dispositions Flexbox/Grid. Adapte une interface aux petits écrans, aux contenus longs et aux états accessibles.",
+  "prerequisite_courses": [
+    "css-bases",
+    "html-bases"
+  ],
+  "prerequisites": [
+    "Avoir suivi le socle CSS et savoir lire ses exemples et ses règles.",
+    "Le programme reste consultable librement ; ses prérequis servent de repères."
+  ],
+  "outcomes": [
+    "Prévoir la cascade et choisir des propriétés adaptées au sens de lecture.",
+    "Répartir l’espace sans casser les contenus longs.",
+    "Composer des grilles et des zones de page réutilisables.",
+    "Adapter les composants et la typographie à plusieurs largeurs.",
+    "Préserver des états compréhensibles au clavier et dans plusieurs thèmes.",
+    "Livrer et relire un tableau de club adaptable."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Cascade maîtrisée",
+      "outcome_fr": "Prévoir la cascade et choisir des propriétés adaptées au sens de lecture.",
+      "lesson_ids": [
+        "cssi-m1-01",
+        "cssi-m1-02",
+        "cssi-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Flexbox robuste",
+      "outcome_fr": "Répartir l’espace sans casser les contenus longs.",
+      "lesson_ids": [
+        "cssi-m2-01",
+        "cssi-m2-02",
+        "cssi-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Grilles composables",
+      "outcome_fr": "Composer des grilles et des zones de page réutilisables.",
+      "lesson_ids": [
+        "cssi-m3-01",
+        "cssi-m3-02",
+        "cssi-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Interfaces adaptatives",
+      "outcome_fr": "Adapter les composants et la typographie à plusieurs largeurs.",
+      "lesson_ids": [
+        "cssi-m4-01",
+        "cssi-m4-02",
+        "cssi-m4-03"
+      ]
+    },
+    {
+      "id": "m5",
+      "title_fr": "États accessibles",
+      "outcome_fr": "Préserver des états compréhensibles au clavier et dans plusieurs thèmes.",
+      "lesson_ids": [
+        "cssi-m5-01",
+        "cssi-m5-02",
+        "cssi-m5-03"
+      ]
+    },
+    {
+      "id": "m6",
+      "title_fr": "Projet : tableau de club",
+      "outcome_fr": "Livrer et relire un tableau de club adaptable.",
+      "lesson_ids": [
+        "cssi-m6-01",
+        "cssi-m6-02",
+        "cssi-m6-03"
+      ]
+    }
+  ],
+  "status": "brouillon",
+  "reviewer": null,
+  "later_modules": [],
+  "lessons": [
+    {
+      "id": "cssi-m1-01",
+      "title_fr": "Définir des variables locales et choisir leur repli",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "css-m4-03"
+      ],
+      "tags": [
+        "css",
+        "intermédiaire",
+        "propriété personnalisée",
+        "var",
+        "portée locale",
+        "repli"
+      ]
+    },
+    {
+      "id": "cssi-m1-02",
+      "title_fr": "Réduire la spécificité sans élargir les effets",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "cssi-m1-01"
+      ],
+      "tags": [
+        "css",
+        "intermédiaire",
+        "spécificité",
+        "where",
+        "is",
+        "variante"
+      ]
+    },
+    {
+      "id": "cssi-m1-03",
+      "title_fr": "Suivre le sens de lecture avec les propriétés logiques",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "cssi-m1-02"
+      ],
+      "tags": [
+        "css",
+        "intermédiaire",
+        "axe inline",
+        "axe block",
+        "propriété logique",
+        "RTL"
+      ]
+    },
+    {
+      "id": "cssi-m2-01",
+      "title_fr": "Choisir une base flexible et autoriser le retour à la ligne",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "cssi-m1-03"
+      ],
+      "tags": [
+        "css",
+        "intermédiaire",
+        "flex-basis",
+        "flex-grow",
+        "flex-shrink",
+        "wrap"
+      ]
+    },
+    {
+      "id": "cssi-m2-02",
+      "title_fr": "Laisser un contenu long rétrécir sans le perdre",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "cssi-m2-01"
+      ],
+      "tags": [
+        "css",
+        "intermédiaire",
+        "minimum automatique",
+        "coupure",
+        "troncature",
+        "niveau imbriqué"
+      ]
+    },
+    {
+      "id": "cssi-m2-03",
+      "title_fr": "Composer plusieurs axes sans désordonner le parcours",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "cssi-m2-02"
+      ],
+      "tags": [
+        "css",
+        "intermédiaire",
+        "axe principal",
+        "axe transversal",
+        "alignement de groupe",
+        "ordre documentaire"
+      ]
+    },
+    {
+      "id": "cssi-m3-01",
+      "title_fr": "Construire des pistes qui s’adaptent avec minmax()",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "cssi-m2-03"
+      ],
+      "tags": [
+        "css",
+        "intermédiaire",
+        "piste",
+        "minmax()",
+        "auto-fit",
+        "minimum automatique"
+      ]
+    },
+    {
+      "id": "cssi-m3-02",
+      "title_fr": "Nommer les zones d’une page et placer ses blocs",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "cssi-m3-01"
+      ],
+      "tags": [
+        "css",
+        "intermédiaire",
+        "zone nommée",
+        "grid-area",
+        "ligne de grille",
+        "span"
+      ]
+    },
+    {
+      "id": "cssi-m3-03",
+      "title_fr": "Imbriquer des grilles avec des espacements cohérents",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "cssi-m3-02"
+      ],
+      "tags": [
+        "css",
+        "intermédiaire",
+        "grille imbriquée",
+        "gouttière",
+        "propriété personnalisée",
+        "subgrid"
+      ]
+    },
+    {
+      "id": "cssi-m4-01",
+      "title_fr": "Adapter une disposition avec des media queries",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "cssi-m3-03"
+      ],
+      "tags": [
+        "css",
+        "intermédiaire",
+        "media query",
+        "point de rupture",
+        "mobile d’abord",
+        "zone d’affichage"
+      ]
+    },
+    {
+      "id": "cssi-m4-02",
+      "title_fr": "Régler une typographie fluide et une ligne lisible",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "cssi-m4-01"
+      ],
+      "tags": [
+        "css",
+        "intermédiaire",
+        "rem",
+        "clamp()",
+        "interligne",
+        "longueur de ligne"
+      ]
+    },
+    {
+      "id": "cssi-m4-03",
+      "title_fr": "Garder des images fluides et des cadres stables",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "cssi-m4-02"
+      ],
+      "tags": [
+        "css",
+        "intermédiaire",
+        "image fluide",
+        "aspect-ratio",
+        "object-fit",
+        "débordement"
+      ]
+    },
+    {
+      "id": "cssi-m5-01",
+      "title_fr": "Rendre le focus visible sans perturber son parcours",
+      "module": "m5",
+      "minutes": 20,
+      "prerequisites": [
+        "cssi-m4-03"
+      ],
+      "tags": [
+        "css",
+        "intermédiaire",
+        "outline",
+        "focus-within",
+        "focus-visible"
+      ]
+    },
+    {
+      "id": "cssi-m5-02",
+      "title_fr": "Distinguer les états sans dépendre seulement de la couleur",
+      "module": "m5",
+      "minutes": 20,
+      "prerequisites": [
+        "cssi-m5-01"
+      ],
+      "tags": [
+        "css",
+        "intermédiaire",
+        "pseudo-classe d’état",
+        "état natif",
+        "repère complémentaire"
+      ]
+    },
+    {
+      "id": "cssi-m5-03",
+      "title_fr": "Définir des thèmes locaux avec des rôles de couleur",
+      "module": "m5",
+      "minutes": 20,
+      "prerequisites": [
+        "cssi-m5-02"
+      ],
+      "tags": [
+        "css",
+        "intermédiaire",
+        "token de thème",
+        "portée locale",
+        "contraste"
+      ]
+    },
+    {
+      "id": "cssi-m6-01",
+      "title_fr": "Poser les fondations : valeurs partagées et composants",
+      "module": "m6",
+      "minutes": 20,
+      "prerequisites": [
+        "cssi-m5-03"
+      ],
+      "tags": [
+        "css",
+        "intermédiaire",
+        "décision partagée",
+        "composant",
+        "variante",
+        "spécificité"
+      ]
+    },
+    {
+      "id": "cssi-m6-02",
+      "title_fr": "Rendre la navigation et les cartes adaptatives",
+      "module": "m6",
+      "minutes": 20,
+      "prerequisites": [
+        "cssi-m6-01"
+      ],
+      "tags": [
+        "css",
+        "intermédiaire",
+        "passage à la ligne",
+        "zone d’appui",
+        "grille automatique",
+        "minimum nul"
+      ]
+    },
+    {
+      "id": "cssi-m6-03",
+      "title_fr": "Livrer le tableau : états accessibles et revue finale",
+      "module": "m6",
+      "minutes": 20,
+      "prerequisites": [
+        "cssi-m6-02"
+      ],
+      "tags": [
+        "css",
+        "intermédiaire",
+        "aria-current",
+        "indicateur de focus",
+        "état indisponible",
+        "thème local"
+      ]
+    }
+  ],
+  "estimated_minutes": 360,
+  "content_revision": "548255a6523f",
+  "exercise_count": 72,
+  "quiz_count": 54
+}

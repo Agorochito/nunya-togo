@@ -1,0 +1,263 @@
+[
+  {
+    "title_fr": "Déclarer la langue principale et une exception",
+    "instruction_fr": "Produis un document complet en français : html lang=fr et dir=ltr. Dans main#contenu, h1 « Les langues du club », p#explication indiquant le français, et span#slogan lang=en contenant « Learning together ». Le span appartient à une phrase française. Ne change pas la langue de toute la page pour ce slogan.",
+    "starter_code": "<!doctype html>\n<html lang=\"en\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Langues — Club Rivage</title>\n  <meta name=\"description\" content=\"Annuaire fictif du club, sans collecte de données.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<main id=\"contenu\">\n  <h1>Les langues du club</h1>\n  <p id=\"explication\">La page est rédigée en français.</p>\n  <p>Notre slogan invité : <span id=\"slogan\">Learning together</span>.</p>\n</main>\n</body>\n</html>",
+    "solution": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Langues — Club Rivage</title>\n  <meta name=\"description\" content=\"Annuaire fictif du club, sans collecte de données.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<main id=\"contenu\">\n  <h1>Les langues du club</h1>\n  <p id=\"explication\">La page est rédigée en français.</p>\n  <p>Notre slogan invité : <span id=\"slogan\" lang=\"en\">Learning together</span>.</p>\n</main>\n</body>\n</html>",
+    "visible_tests": [
+      {
+        "description_fr": "Langues annoncées aux bons niveaux",
+        "checks": [
+          {
+            "selector": "html",
+            "attributes": {
+              "lang": "fr",
+              "dir": "ltr"
+            }
+          },
+          {
+            "selector": "#slogan",
+            "attributes": {
+              "lang": "en"
+            },
+            "textIncludes": "Learning together"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "La structure française demeure",
+        "checks": [
+          {
+            "selector": "main#contenu",
+            "count": 1
+          },
+          {
+            "selector": "#explication",
+            "textIncludes": "français"
+          },
+          {
+            "selector": "#contenu h1",
+            "textIncludes": "Les langues du club"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Sépare langue du document et langue d’une expression.",
+      "Le slogan est le seul fragment anglais demandé.",
+      "Place lang=fr sur html et lang=en sur span#slogan."
+    ],
+    "explanation_fr": "Le contrôle ne se limite pas à un texte visible : il inspecte aussi les attributs qui décrivent les langues.",
+    "common_wrong_answers": [],
+    "id": "htmi-m4-01-e1",
+    "kind": "guided"
+  },
+  {
+    "title_fr": "Limiter une section de droite à gauche",
+    "instruction_fr": "Document français ltr. Crée section#invitation lang=ar dir=rtl, reliée au h2#titre-ar par aria-labelledby ; ce titre contient « أهلاً وسهلاً », p#message-ar « مرحباً ». Hors de cette section, p#texte-fr reste français. Dans p#reference, bdi#code dir=ltr contient CLUB-12. Préserve ces frontières et le h1.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Directions — Club Rivage</title>\n  <meta name=\"description\" content=\"Annuaire fictif du club, sans collecte de données.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<main id=\"contenu\">\n  <h1>Deux sens de lecture</h1>\n  <p id=\"texte-fr\">Présentation du club fictif.</p>\n  <section id=\"invitation\" lang=\"ar\" dir=\"ltr\" aria-labelledby=\"titre-ar\">\n    <h2 id=\"titre-ar\">أهلاً وسهلاً</h2>\n    <p id=\"message-ar\">مرحباً</p>\n  </section>\n  <p id=\"reference\">Référence : <bdi id=\"code\" dir=\"ltr\">CLUB-12</bdi></p>\n</main>\n</body>\n</html>",
+    "solution": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Directions — Club Rivage</title>\n  <meta name=\"description\" content=\"Annuaire fictif du club, sans collecte de données.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<main id=\"contenu\">\n  <h1>Deux sens de lecture</h1>\n  <p id=\"texte-fr\">Présentation du club fictif.</p>\n  <section id=\"invitation\" lang=\"ar\" dir=\"rtl\" aria-labelledby=\"titre-ar\">\n    <h2 id=\"titre-ar\">أهلاً وسهلاً</h2>\n    <p id=\"message-ar\">مرحباً</p>\n  </section>\n  <p id=\"reference\">Référence : <bdi id=\"code\" dir=\"ltr\">CLUB-12</bdi></p>\n</main>\n</body>\n</html>",
+    "visible_tests": [
+      {
+        "description_fr": "La direction locale est réellement calculée",
+        "checks": [
+          {
+            "selector": "html",
+            "attributes": {
+              "dir": "ltr",
+              "lang": "fr"
+            }
+          },
+          {
+            "selector": "#invitation",
+            "attributes": {
+              "lang": "ar",
+              "dir": "rtl",
+              "aria-labelledby": "titre-ar"
+            },
+            "style": {
+              "direction": "rtl"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Titre et référence indépendante",
+        "checks": [
+          {
+            "selector": "#titre-ar",
+            "textIncludes": "أهلاً وسهلاً"
+          },
+          {
+            "selector": "#message-ar",
+            "textIncludes": "مرحباً"
+          },
+          {
+            "selector": "#code",
+            "attributes": {
+              "dir": "ltr"
+            },
+            "style": {
+              "direction": "ltr"
+            }
+          },
+          {
+            "selector": "#texte-fr",
+            "style": {
+              "direction": "ltr"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une langue arabe ne modifie pas automatiquement dir.",
+      "Le changement de sens doit concerner la section, pas html.",
+      "Donne dir=rtl à #invitation et garde le code en ltr."
+    ],
+    "explanation_fr": "La variante vérifie aussi le texte extérieur : une réparation trop large qui retourne toute la page ne respecte pas le contrat.",
+    "common_wrong_answers": [],
+    "id": "htmi-m4-01-e2",
+    "kind": "practice"
+  },
+  {
+    "title_fr": "Réparer un nom qui perturbe la phrase",
+    "instruction_fr": "Dans le document français ltr, p#fiche doit contenir « Contact : », puis bdi#nom lang=ar dir=auto avec أمل, puis « — 12 ateliers. ». Le tiret et le nombre restent hors de bdi. Retire bdo : aucune inversion forcée n’est demandée. Conserve p#note expliquant que la phrase reste française.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Noms — Club Rivage</title>\n  <meta name=\"description\" content=\"Annuaire fictif du club, sans collecte de données.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<main id=\"contenu\">\n  <h1>Contacts fictifs</h1>\n  <p id=\"fiche\">Contact : <bdo id=\"nom\" dir=\"rtl\" lang=\"ar\">أمل</bdo> — 12 ateliers.</p>\n  <p id=\"note\">Le nom est isolé ; la phrase reste en français.</p>\n</main>\n</body>\n</html>",
+    "solution": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Noms — Club Rivage</title>\n  <meta name=\"description\" content=\"Annuaire fictif du club, sans collecte de données.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<main id=\"contenu\">\n  <h1>Contacts fictifs</h1>\n  <p id=\"fiche\">Contact : <bdi id=\"nom\" dir=\"auto\" lang=\"ar\">أمل</bdi> — 12 ateliers.</p>\n  <p id=\"note\">Le nom est isolé ; la phrase reste en français.</p>\n</main>\n</body>\n</html>",
+    "visible_tests": [
+      {
+        "description_fr": "Un fragment isolé, pas inversé",
+        "checks": [
+          {
+            "selector": "bdi#nom",
+            "attributes": {
+              "dir": "auto",
+              "lang": "ar"
+            },
+            "textIncludes": "أمل"
+          },
+          {
+            "selector": "bdo",
+            "exists": false
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Le contexte n’est pas inclus dans le nom",
+        "checks": [
+          {
+            "selector": "#fiche",
+            "textIncludes": "12 ateliers"
+          },
+          {
+            "selector": "#nom",
+            "style": {
+              "unicode-bidi": "isolate"
+            }
+          },
+          {
+            "selector": "#note",
+            "textIncludes": "français"
+          },
+          {
+            "selector": "html",
+            "attributes": {
+              "lang": "fr",
+              "dir": "ltr"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’annuaire n’exige aucune inversion des caractères du nom.",
+      "Le bon élément isole sa direction du reste de la phrase.",
+      "Remplace bdo par bdi, avec dir=auto, autour du nom seul."
+    ],
+    "explanation_fr": "Le débogage porte sur la fonction sémantique de l’élément, pas sur un espacement qui masquerait le défaut.",
+    "common_wrong_answers": [],
+    "id": "htmi-m4-01-e3",
+    "kind": "debug"
+  },
+  {
+    "title_fr": "Trois contacts, une structure multilingue",
+    "instruction_fr": "Produis le document « Annuaire multilingue — Club Rivage », français ltr, avec main#contenu et h1 « Annuaire fictif multilingue ». ul#contacts contient trois li : #fiche-afi (Afi, 2 ateliers), #fiche-amal (أمل, 12 ateliers), #fiche-ecole (Élo, 0 atelier). Chaque nom seul est dans bdi dir=auto ; le nom arabe porte aussi lang=ar. span#partenaire lang=en contient Library club. p#limite annonce des contacts inventés sans envoi.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Annuaire multilingue — Club Rivage</title>\n  <meta name=\"description\" content=\"Annuaire fictif du club, sans collecte de données.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<main id=\"contenu\">\n  <h1>Annuaire fictif multilingue</h1>\n  <p id=\"limite\">Contacts inventés, sans envoi de message.</p>\n  <ul id=\"contacts\">\n    <li id=\"fiche-afi\">Contact : <bdi dir=\"auto\">Afi</bdi> — 2 ateliers.</li>\n    <li id=\"fiche-amal\">Contact : أمل — 12 ateliers.</li>\n    <li id=\"fiche-ecole\">Contact : <bdi dir=\"auto\">Élo</bdi> — 0 atelier.</li>\n  </ul>\n  <p>Partenaire fictif : <span id=\"partenaire\" lang=\"en\">Library club</span>.</p>\n</main>\n</body>\n</html>",
+    "solution": "<!doctype html>\n<html lang=\"fr\" dir=\"ltr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Annuaire multilingue — Club Rivage</title>\n  <meta name=\"description\" content=\"Annuaire fictif du club, sans collecte de données.\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n</head>\n<body>\n<main id=\"contenu\">\n  <h1>Annuaire fictif multilingue</h1>\n  <p id=\"limite\">Contacts inventés, sans envoi de message.</p>\n  <ul id=\"contacts\">\n    <li id=\"fiche-afi\">Contact : <bdi dir=\"auto\">Afi</bdi> — 2 ateliers.</li>\n    <li id=\"fiche-amal\">Contact : <bdi dir=\"auto\" lang=\"ar\">أمل</bdi> — 12 ateliers.</li>\n    <li id=\"fiche-ecole\">Contact : <bdi dir=\"auto\">Élo</bdi> — 0 atelier.</li>\n  </ul>\n  <p>Partenaire fictif : <span id=\"partenaire\" lang=\"en\">Library club</span>.</p>\n</main>\n</body>\n</html>",
+    "visible_tests": [
+      {
+        "description_fr": "Tous les noms sont isolés",
+        "checks": [
+          {
+            "selector": "#contacts > li",
+            "count": 3
+          },
+          {
+            "selector": "#contacts bdi[dir=\"auto\"]",
+            "count": 3
+          },
+          {
+            "selector": "#fiche-amal bdi",
+            "attributes": {
+              "lang": "ar"
+            },
+            "textIncludes": "أمل"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Contexte, compteurs et exception anglaise",
+        "checks": [
+          {
+            "selector": "#fiche-afi",
+            "textIncludes": "2 ateliers"
+          },
+          {
+            "selector": "#fiche-amal",
+            "textIncludes": "12 ateliers"
+          },
+          {
+            "selector": "#fiche-ecole",
+            "textIncludes": "0 atelier"
+          },
+          {
+            "selector": "#partenaire",
+            "attributes": {
+              "lang": "en"
+            },
+            "textIncludes": "Library club"
+          },
+          {
+            "selector": "#limite",
+            "textIncludes": "sans envoi"
+          },
+          {
+            "selector": "html",
+            "attributes": {
+              "lang": "fr",
+              "dir": "ltr"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les nombres et tirets font partie des phrases, pas des noms.",
+      "Chaque nom inséré possède la même frontière d’isolation.",
+      "Entoure aussi أمل avec bdi dir=auto lang=ar sans inclure son compteur."
+    ],
+    "explanation_fr": "Le mini-projet généralise l’isolation à plusieurs fiches sans imposer une direction globale à leurs phrases.",
+    "common_wrong_answers": [],
+    "id": "htmi-m4-01-e4",
+    "kind": "project"
+  }
+]

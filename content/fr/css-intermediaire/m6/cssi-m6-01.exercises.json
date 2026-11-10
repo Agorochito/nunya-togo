@@ -1,0 +1,265 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Déclarer les décisions du tableau",
+    "instruction_fr": "Sur .tableau, déclare --espace: 12px, --surface: #ffffff, --texte: #172a3a et --ligne: #475569, puis utilise-les pour color, background-color et padding. Sur .carte : border 1px solid var(--ligne), border-radius 8px et padding var(--espace).",
+    "starter_code": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.tableau {\n  color: #000000;\n  background-color: #ffffff;\n  padding: 20px;\n}\n.carte {\n  border: 1px solid #cccccc;\n  border-radius: 8px;\n  padding: 8px;\n}",
+    "solution": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.tableau {\n  --espace: 12px;\n  --surface: #ffffff;\n  --texte: #172a3a;\n  --ligne: #475569;\n  color: var(--texte);\n  background-color: var(--surface);\n  padding: var(--espace);\n}\n.carte {\n  border: 1px solid var(--ligne);\n  border-radius: 8px;\n  padding: var(--espace);\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Décisions lues par les deux règles",
+        "checks": [
+          {
+            "selector": "#tableau",
+            "style": {
+              "--espace": "12px",
+              "color": "#172a3a",
+              "background-color": "#ffffff",
+              "padding-left": "12px"
+            }
+          },
+          {
+            "selector": "#carte",
+            "style": {
+              "border-top-color": "#475569",
+              "padding-top": "12px",
+              "border-top-left-radius": "8px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Mêmes valeurs à 360px",
+        "checks": [
+          {
+            "selector": "#carte",
+            "style": {
+              "padding-left": "12px",
+              "border-top-width": "1px",
+              "width": "310px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Quatre valeurs sont écrites directement dans les règles.",
+      "Déclare-les sur .tableau avec des noms de rôle.",
+      "Remplace chaque valeur par var(--texte), var(--surface), var(--espace) ou var(--ligne)."
+    ],
+    "explanation_fr": "Le padding du tableau et celui de la carte dépendent maintenant de la même ligne.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"tableau\" id=\"tableau\"><h1>Tableau du club fictif</h1><article class=\"carte\" id=\"carte\"><h2>Lecture</h2><p>Mardi, salle 2.</p></article></main>",
+    "id": "cssi-m6-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Écrire un bouton et sa variante",
+    "instruction_fr": "Sur .bouton : déclare --bouton-fond: #164e63 et --bouton-texte: #ffffff ; padding 8px 16px, border 2px solid #164e63, border-radius 6px, font inherit, color et background-color lus dans ces propriétés. .bouton.secondaire redéfinit seulement --bouton-fond: #ffffff et --bouton-texte: #164e63.",
+    "starter_code": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.bouton {\n  --bouton-fond: #164e63;\n  --bouton-texte: #ffffff;\n  padding: 8px 16px;\n  border: 2px solid #164e63;\n  border-radius: 6px;\n  font: inherit;\n  color: var(--bouton-texte);\n  background-color: var(--bouton-fond);\n}\n.secondaire {\n  padding: 4px;\n  border: none;\n}",
+    "solution": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.bouton {\n  --bouton-fond: #164e63;\n  --bouton-texte: #ffffff;\n  padding: 8px 16px;\n  border: 2px solid #164e63;\n  border-radius: 6px;\n  font: inherit;\n  color: var(--bouton-texte);\n  background-color: var(--bouton-fond);\n}\n.bouton.secondaire {\n  --bouton-fond: #ffffff;\n  --bouton-texte: #164e63;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Bouton principal et variante",
+        "checks": [
+          {
+            "selector": "#principal",
+            "style": {
+              "color": "#ffffff",
+              "background-color": "#164e63",
+              "padding-left": "16px",
+              "border-top-width": "2px"
+            }
+          },
+          {
+            "selector": "#secondaire",
+            "style": {
+              "color": "#164e63",
+              "background-color": "#ffffff",
+              "padding-left": "16px",
+              "border-top-color": "#164e63",
+              "border-top-width": "2px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Forme commune conservée",
+        "checks": [
+          {
+            "selector": "#secondaire",
+            "style": {
+              "border-top-left-radius": "6px",
+              "padding-top": "8px",
+              "border-top-style": "solid"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La variante actuelle modifie la forme mais pas les couleurs.",
+      "Elle ne doit toucher qu’aux deux propriétés locales.",
+      "Écris .bouton.secondaire { --bouton-fond: #ffffff; --bouton-texte: #164e63; }."
+    ],
+    "explanation_fr": "Les deux boutons partagent padding, bordure et arrondi ; seules deux propriétés changent.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><p><button class=\"bouton\" id=\"principal\" type=\"button\">Voir le programme</button> <button class=\"bouton secondaire\" id=\"secondaire\" type=\"button\">Plus tard</button></p></main>",
+    "id": "cssi-m6-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Faire fonctionner la variante compacte",
+    "instruction_fr": "La carte compacte garde un padding de 16px : un sélecteur d’identifiant impose une valeur fixe. Remplace cette règle par .carte { border: 1px solid #475569; padding: var(--espace); }. Garde .carte.compacte { --espace: 8px; } et les règles du tableau.",
+    "starter_code": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.tableau {\n  --espace: 16px;\n  display: grid;\n  gap: var(--espace);\n  padding: var(--espace);\n}\n#tableau .carte {\n  border: 1px solid #475569;\n  padding: 16px;\n}\n.carte.compacte { --espace: 8px; }",
+    "solution": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.tableau {\n  --espace: 16px;\n  display: grid;\n  gap: var(--espace);\n  padding: var(--espace);\n}\n.carte {\n  border: 1px solid #475569;\n  padding: var(--espace);\n}\n.carte.compacte { --espace: 8px; }",
+    "visible_tests": [
+      {
+        "description_fr": "Deux densités de carte",
+        "checks": [
+          {
+            "selector": "#normale",
+            "style": {
+              "padding-top": "16px",
+              "border-top-color": "#475569"
+            }
+          },
+          {
+            "selector": "#compacte",
+            "style": {
+              "padding-top": "8px",
+              "padding-left": "8px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Tableau inchangé",
+        "checks": [
+          {
+            "selector": "#tableau",
+            "style": {
+              "--espace": "16px",
+              "row-gap": "16px",
+              "padding-left": "16px"
+            }
+          },
+          {
+            "selector": "#compacte",
+            "style": {
+              "--espace": "8px"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La variante redéfinit --espace, mais qui lit cette propriété ?",
+      "La règle des cartes écrit 16px directement, avec un identifiant.",
+      "Écris .carte { padding: var(--espace); } avec une seule classe."
+    ],
+    "explanation_fr": "La carte lit maintenant la propriété que sa variante redéfinit.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"tableau\" id=\"tableau\"><article class=\"carte\" id=\"normale\"><h2>Lecture</h2><p>Mardi</p></article><article class=\"carte compacte\" id=\"compacte\"><h2>Jardin</h2><p>Jeudi</p></article></main>",
+    "id": "cssi-m6-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Assembler les fondations du tableau",
+    "instruction_fr": "Sur .tableau : --espace: 16px, --surface: #f8fafc, --texte: #172a3a, --ligne: #475569, --accent: #164e63 ; display grid, gap et padding var(--espace), color var(--texte), background-color var(--surface). Sur .entete : display flex, flex-wrap wrap, justify-content space-between, align-items center, gap var(--espace). Sur .entete h1 : margin 0. Sur .carte : border 1px solid var(--ligne), border-radius 8px, padding var(--espace), background-color #ffffff. Sur .badge : padding 2px 8px, border 1px solid var(--accent), border-radius 4px, color var(--accent).",
+    "starter_code": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.tableau { padding: 16px; }\n.entete h1 { margin: 0; }",
+    "solution": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.tableau {\n  --espace: 16px;\n  --surface: #f8fafc;\n  --texte: #172a3a;\n  --ligne: #475569;\n  --accent: #164e63;\n  display: grid;\n  gap: var(--espace);\n  padding: var(--espace);\n  color: var(--texte);\n  background-color: var(--surface);\n}\n.entete {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  align-items: center;\n  gap: var(--espace);\n}\n.entete h1 { margin: 0; }\n.carte {\n  border: 1px solid var(--ligne);\n  border-radius: 8px;\n  padding: var(--espace);\n  background-color: #ffffff;\n}\n.badge {\n  padding: 2px 8px;\n  border: 1px solid var(--accent);\n  border-radius: 4px;\n  color: var(--accent);\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Conteneur et en-tête",
+        "checks": [
+          {
+            "selector": "#tableau",
+            "style": {
+              "--espace": "16px",
+              "display": "grid",
+              "row-gap": "16px",
+              "padding-left": "16px",
+              "color": "#172a3a",
+              "background-color": "#f8fafc"
+            }
+          },
+          {
+            "selector": "#entete",
+            "style": {
+              "display": "flex",
+              "flex-wrap": "wrap",
+              "justify-content": "space-between",
+              "column-gap": "16px"
+            }
+          }
+        ]
+      },
+      {
+        "description_fr": "Carte et badge",
+        "checks": [
+          {
+            "selector": "#carte",
+            "style": {
+              "border-top-color": "#475569",
+              "border-top-left-radius": "8px",
+              "padding-top": "16px",
+              "background-color": "#ffffff"
+            }
+          },
+          {
+            "selector": "#badge",
+            "style": {
+              "border-top-left-radius": "4px",
+              "color": "#164e63",
+              "border-top-color": "#164e63",
+              "padding-left": "8px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Largeur utile à 360px",
+        "checks": [
+          {
+            "selector": "#carte",
+            "style": {
+              "width": "294px"
+            }
+          },
+          {
+            "selector": "#entete",
+            "style": {
+              "width": "328px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Commence par les cinq décisions du conteneur.",
+      "Chaque composant ne lit que des propriétés, jamais une valeur recopiée.",
+      "Écris les règles dans l’ordre : .tableau, .entete, .carte, .badge."
+    ],
+    "explanation_fr": "Ces fondations serviront telles quelles dans les deux leçons suivantes.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"tableau\" id=\"tableau\"><header class=\"entete\" id=\"entete\"><h1>Tableau du club fictif</h1><span class=\"badge\" id=\"badge\">3 ateliers</span></header><article class=\"carte\" id=\"carte\"><h2>Lecture</h2><p>Mardi, salle 2.</p></article></main>",
+    "id": "cssi-m6-01-e4"
+  }
+]

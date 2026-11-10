@@ -8,7 +8,7 @@ Apprendre en français, à son rythme, même hors connexion : coder depuis zéro
 
 ## État du projet
 
-Pilote en cours ; version 5.8. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
+Pilote en cours ; version 5.9. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
 
 ## Ce que propose Nunya
 
@@ -17,6 +17,8 @@ Pilote en cours ; version 5.8. Tous les contenus sont des **brouillons** rédig�
   - *Python : les bases* (12 modules, 53 leçons, 212 exercices) ;
   - *Python intermédiaire* (6 modules, 18 leçons, 72 exercices) : collections, exceptions, objets, JSON/CSV et projet ;
    - HTML et CSS (12 leçons, 48 exercices chacun), JavaScript (24 leçons, 96 exercices), HTTP/API (12 leçons, 48 exercices) ;
+   - *HTML intermédiaire* (4 modules, 12 leçons, 48 exercices) : structure accessible, formulaires, tableaux, localisation et annuaire associatif ;
+   - *CSS intermédiaire* (6 modules, 18 leçons, 72 exercices) : cascade, Flexbox et grilles robustes, interfaces adaptatives, états accessibles et tableau de club ;
    - Git/GitHub (12 leçons, 48 activités, dont 32 ateliers Git locaux) ;
    - SQL (18 leçons, 72 exercices) avec SQLite réel et tableaux de résultats ;
    - JavaScript DOM (18 leçons, 72 exercices) : événements, formulaires et interfaces ;

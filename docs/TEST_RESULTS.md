@@ -1,3 +1,15 @@
+# Vérifications 5.9.0 — 9 novembre 2026
+
+- 202 tests unitaires réussis ; TypeScript, ESLint, compilation, schémas, prérequis de leçons et de cours, liens internes et budget JavaScript réussis. Bundle principal : 147 404 octets gzip, sous 150 000.
+- HTML/CSS dans un vrai navigateur : 60 exemples, 216 solutions acceptées et 216 codes de départ refusés pour les quatre programmes (`WEB_EXERCISE_RESULTS.json`). Les 30 nouvelles leçons représentent 60 exemples, 120 solutions et 120 codes de départ.
+- Interface HTML intermédiaire : 12 leçons, 48 exercices et 36 questions résolus à 360 puis 1440 px. CSS intermédiaire : 18 leçons, 72 exercices et 54 questions aux deux tailles. Exercice suivant dans la même leçon, rechargement, leçon suivante, reprise à froid hors ligne, aucune erreur JavaScript, aucun débordement et zéro violation axe sur les vues testées (`HTML_INTERMEDIAIRE_UI_RESULTS.json`, `CSS_INTERMEDIAIRE_UI_RESULTS.json`).
+- Catalogue : 11 programmes et 12 raccourcis, filtres technologie et niveau, saisie conservée, catalogue hors ligne (`COURSE_CATALOGUE_RESULTS.json`). Les 215 leçons ont été rendues (`GLOBAL_CURRICULUM_UI_RESULTS.json`).
+- Parcours et fiches de lecture revérifiés avec 11 programmes (`JOURNEYS_READING_RESULTS.json`).
+- Migration réelle depuis 5.8.0 (`ae5f349e`) : 9→11 cours sans second rechargement, SQL ouvert, brouillon et position conservés (`RELEASE_UPGRADE_ae5f349e_RESULTS.json`). Migration depuis `2df60ddf` et ancien pack téléchargé (`SAVED_COURSE_UPGRADE_RESULTS.json`) également revérifiés.
+- Non réexécutés pour ce lot : les moteurs Git, HTTP, SQL, DOM, React et Python intermédiaire dans le navigateur, dont le code n’a pas changé. La CI les relance à chaque envoi.
+
+Les contrôles lisent des valeurs calculées précises ; ils ne certifient pas l’accessibilité et ne remplacent ni une relecture pédagogique humaine ni un essai sur les téléphones des élèves. Les tailles en rem supposent le réglage par défaut de 16 px du navigateur.
+
 # Vérifications 5.8.0 — 7 novembre 2026
 
 - 202 tests unitaires réussis ; TypeScript, ESLint, compilation, schémas, prérequis, liens internes et budget JavaScript réussis. Bundle principal avec garde de démarrage : 147 656 octets gzip, sous 150 000.

@@ -33,11 +33,11 @@
 .nunya-catalogue-section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:22px}
 .nunya-catalogue-section-head h2{font-size:clamp(23px,2.4vw,30px);line-height:1.25;letter-spacing:-.035em;margin-top:8px}
 .nunya-catalogue-count{font-size:12px;color:var(--muted);white-space:nowrap;padding-bottom:3px}
-.nunya-catalogue-filters{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(180px,.8fr) auto;align-items:end;gap:14px;padding:20px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}
+.nunya-catalogue-filters{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(150px,.8fr) minmax(130px,.65fr);align-items:end;gap:14px;padding:20px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}
 .nunya-catalogue-filters label{display:block;font-size:12px;font-weight:700;color:var(--ink);margin-bottom:7px}
 .nunya-catalogue-filters :is(input,select){display:block;width:100%;min-width:0;height:46px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--ink);font-size:14px}
 .nunya-catalogue-filters input::placeholder{color:var(--muted);opacity:1}
-.nunya-catalogue-filter-actions{display:flex;gap:8px;align-items:center}
+.nunya-catalogue-filter-actions{grid-column:1/-1;display:flex;gap:8px;align-items:center}
 .nunya-catalogue-clear{border:1px solid var(--border);background:var(--surface);color:var(--ink);min-height:46px;border-radius:8px;padding:10px 14px;font-size:13px;font-weight:650}
 .nunya-catalogue-clear:hover{background:var(--accent-soft);border-color:var(--accent-text)}
 .nunya-catalogue .nunya-catalogue-filter-hint{grid-column:1/-1;font-size:12px;color:var(--muted);line-height:1.6}

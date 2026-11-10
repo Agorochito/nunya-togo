@@ -1,0 +1,250 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Dimensionner un plan informatif",
+    "instruction_fr": "Crée img#plan avec cette source SVG embarquée : data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlNGYxZTgiLz48cmVjdCB4PSI0MCIgeT0iNzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iOTAiIGZpbGw9IiMyODYzNGQiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSI4MCIgcj0iNDUiIGZpbGw9IiNiMjZiMjgiLz48cGF0aCBkPSJNMjIwIDE3MEwyODAgMTEwTDM0MCAxNzBaIiBmaWxsPSIjMjg2MzRkIi8+PC9zdmc+ . Donne width=\"400\", height=\"200\" et alt=\"Potager à gauche, espace de rencontre circulaire à droite\". L’image transmet cette information, elle n’est pas décorative. Aucun fichier externe n’est disponible.",
+    "starter_code": "<img id=\"plan\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlNGYxZTgiLz48cmVjdCB4PSI0MCIgeT0iNzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iOTAiIGZpbGw9IiMyODYzNGQiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSI4MCIgcj0iNDUiIGZpbGw9IiNiMjZiMjgiLz48cGF0aCBkPSJNMjIwIDE3MEwyODAgMTEwTDM0MCAxNzBaIiBmaWxsPSIjMjg2MzRkIi8+PC9zdmc+\">\n",
+    "solution": "<img id=\"plan\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlNGYxZTgiLz48cmVjdCB4PSI0MCIgeT0iNzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iOTAiIGZpbGw9IiMyODYzNGQiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSI4MCIgcj0iNDUiIGZpbGw9IiNiMjZiMjgiLz48cGF0aCBkPSJNMjIwIDE3MEwyODAgMTEwTDM0MCAxNzBaIiBmaWxsPSIjMjg2MzRkIi8+PC9zdmc+\" width=\"400\" height=\"200\" alt=\"Potager à gauche, espace de rencontre circulaire à droite\">\n",
+    "visible_tests": [
+      {
+        "description_fr": "Dimensions et alternative",
+        "checks": [
+          {
+            "selector": "#plan",
+            "attributes": {
+              "width": "400",
+              "height": "200",
+              "alt": "Potager à gauche, espace de rencontre circulaire à droite"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Une source autonome et un identifiant unique",
+        "checks": [
+          {
+            "selector": "img#plan[src^=\"data:image/svg+xml;base64,\"]",
+            "count": 1
+          },
+          {
+            "selector": "#plan",
+            "attributes": {
+              "aria-hidden": null
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "Les dimensions des attributs HTML sont des nombres sans px.",
+      "L’alternative décrit la relation utile plutôt que le nom du fichier.",
+      "<img id=\"plan\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlNGYxZTgiLz48cmVjdCB4PSI0MCIgeT0iNzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iOTAiIGZpbGw9IiMyODYzNGQiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSI4MCIgcj0iNDUiIGZpbGw9IiNiMjZiMjgiLz48cGF0aCBkPSJNMjIwIDE3MEwyODAgMTEwTDM0MCAxNzBaIiBmaWxsPSIjMjg2MzRkIi8+PC9zdmc+\" width=\"400\" height=\"200\" alt=\"Potager à gauche, espace de rencontre circulaire à droite\">"
+    ],
+    "explanation_fr": "Le visuel possède une alternative informative et un espace de référence cohérent avec sa source.",
+    "common_wrong_answers": [],
+    "id": "htmi-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Ajouter une légende de contexte",
+    "instruction_fr": "Construis figure#schema contenant img#plan, source data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlNGYxZTgiLz48cmVjdCB4PSI0MCIgeT0iNzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iOTAiIGZpbGw9IiMyODYzNGQiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSI4MCIgcj0iNDUiIGZpbGw9IiNiMjZiMjgiLz48cGF0aCBkPSJNMjIwIDE3MEwyODAgMTEwTDM0MCAxNzBaIiBmaWxsPSIjMjg2MzRkIi8+PC9zdmc+ , width=\"400\", height=\"200\", alt=\"Potager à gauche, espace de rencontre circulaire à droite\". Ajoute figcaption « Plan simplifié et fictif du jardin du club. ». La légende et l’alternative doivent toutes deux exister : leurs rôles sont distincts.",
+    "starter_code": "<img id=\"plan\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlNGYxZTgiLz48cmVjdCB4PSI0MCIgeT0iNzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iOTAiIGZpbGw9IiMyODYzNGQiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSI4MCIgcj0iNDUiIGZpbGw9IiNiMjZiMjgiLz48cGF0aCBkPSJNMjIwIDE3MEwyODAgMTEwTDM0MCAxNzBaIiBmaWxsPSIjMjg2MzRkIi8+PC9zdmc+\" width=\"400\" height=\"200\" alt=\"Potager à gauche, espace de rencontre circulaire à droite\">\n",
+    "solution": "<figure id=\"schema\">\n  <img id=\"plan\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlNGYxZTgiLz48cmVjdCB4PSI0MCIgeT0iNzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iOTAiIGZpbGw9IiMyODYzNGQiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSI4MCIgcj0iNDUiIGZpbGw9IiNiMjZiMjgiLz48cGF0aCBkPSJNMjIwIDE3MEwyODAgMTEwTDM0MCAxNzBaIiBmaWxsPSIjMjg2MzRkIi8+PC9zdmc+\" width=\"400\" height=\"200\" alt=\"Potager à gauche, espace de rencontre circulaire à droite\">\n  <figcaption>Plan simplifié et fictif du jardin du club.</figcaption>\n</figure>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Le dessin et sa légende forment une figure",
+        "checks": [
+          {
+            "selector": "#schema > img#plan",
+            "attributes": {
+              "width": "400",
+              "height": "200",
+              "alt": "Potager à gauche, espace de rencontre circulaire à droite"
+            }
+          },
+          {
+            "selector": "#schema > figcaption",
+            "textIncludes": "Plan simplifié et fictif du jardin du club."
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Le plan est embarqué et unique",
+        "checks": [
+          {
+            "selector": "img#plan[src^=\"data:image/svg+xml;base64,\"]",
+            "count": 1
+          },
+          {
+            "selector": "#schema",
+            "count": 1
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "figure rassemble le document visuel et son contexte.",
+      "Garde alt sur img, puis donne le contexte dans figcaption.",
+      "<figure id=\"schema\">\n  <img id=\"plan\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlNGYxZTgiLz48cmVjdCB4PSI0MCIgeT0iNzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iOTAiIGZpbGw9IiMyODYzNGQiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSI4MCIgcj0iNDUiIGZpbGw9IiNiMjZiMjgiLz48cGF0aCBkPSJNMjIwIDE3MEwyODAgMTEwTDM0MCAxNzBaIiBmaWxsPSIjMjg2MzRkIi8+PC9zdmc+\" width=\"400\" height=\"200\" alt=\"Potager à gauche, espace de rencontre circulaire à droite\">\n  <figcaption>Plan simplifié et fictif du jardin du club.</figcaption>\n</figure>"
+    ],
+    "explanation_fr": "Le lecteur retrouve à la fois le message porté par l’image et la limite de précision du document.",
+    "common_wrong_answers": [],
+    "id": "htmi-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Ne pas différer le visuel principal",
+    "instruction_fr": "Répare l’image principale #plan avec source data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlNGYxZTgiLz48cmVjdCB4PSI0MCIgeT0iNzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iOTAiIGZpbGw9IiMyODYzNGQiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSI4MCIgcj0iNDUiIGZpbGw9IiNiMjZiMjgiLz48cGF0aCBkPSJNMjIwIDE3MEwyODAgMTEwTDM0MCAxNzBaIiBmaWxsPSIjMjg2MzRkIi8+PC9zdmc+ : elle doit garder width=\"400\", height=\"200\", alt=\"Potager à gauche, espace de rencontre circulaire à droite\" et loading=\"eager\". Supprime aria-hidden=\"true\", qui masquerait cette information. La correction exprime une stratégie prioritaire ; elle ne mesure pas un téléchargement réseau.",
+    "starter_code": "<img id=\"plan\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlNGYxZTgiLz48cmVjdCB4PSI0MCIgeT0iNzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iOTAiIGZpbGw9IiMyODYzNGQiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSI4MCIgcj0iNDUiIGZpbGw9IiNiMjZiMjgiLz48cGF0aCBkPSJNMjIwIDE3MEwyODAgMTEwTDM0MCAxNzBaIiBmaWxsPSIjMjg2MzRkIi8+PC9zdmc+\" width=\"400\" height=\"200\" alt=\"\" loading=\"lazy\" aria-hidden=\"true\">\n",
+    "solution": "<img id=\"plan\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlNGYxZTgiLz48cmVjdCB4PSI0MCIgeT0iNzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iOTAiIGZpbGw9IiMyODYzNGQiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSI4MCIgcj0iNDUiIGZpbGw9IiNiMjZiMjgiLz48cGF0aCBkPSJNMjIwIDE3MEwyODAgMTEwTDM0MCAxNzBaIiBmaWxsPSIjMjg2MzRkIi8+PC9zdmc+\" width=\"400\" height=\"200\" loading=\"eager\" alt=\"Potager à gauche, espace de rencontre circulaire à droite\">\n",
+    "visible_tests": [
+      {
+        "description_fr": "Une information principale disponible dans la structure",
+        "checks": [
+          {
+            "selector": "#plan",
+            "attributes": {
+              "loading": "eager",
+              "aria-hidden": null,
+              "alt": "Potager à gauche, espace de rencontre circulaire à droite"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "La source et les proportions sont conservées",
+        "checks": [
+          {
+            "selector": "img#plan[src^=\"data:image/svg+xml;base64,\"]",
+            "count": 1,
+            "attributes": {
+              "width": "400",
+              "height": "200"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "Un visuel principal n’est pas une décoration à masquer.",
+      "Rends son alternative et demande eager au lieu de lazy.",
+      "<img id=\"plan\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlNGYxZTgiLz48cmVjdCB4PSI0MCIgeT0iNzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iOTAiIGZpbGw9IiMyODYzNGQiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSI4MCIgcj0iNDUiIGZpbGw9IiNiMjZiMjgiLz48cGF0aCBkPSJNMjIwIDE3MEwyODAgMTEwTDM0MCAxNzBaIiBmaWxsPSIjMjg2MzRkIi8+PC9zdmc+\" width=\"400\" height=\"200\" loading=\"eager\" alt=\"Potager à gauche, espace de rencontre circulaire à droite\">"
+    ],
+    "explanation_fr": "La stratégie déclarée correspond au rôle principal sans confondre priorisation et garantie de performance.",
+    "common_wrong_answers": [],
+    "id": "htmi-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Deux documents visuels hiérarchisés",
+    "instruction_fr": "Crée main avec h1 « Documents visuels fictifs ». Dans figure#principal, place img#plan, source data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlNGYxZTgiLz48cmVjdCB4PSI0MCIgeT0iNzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iOTAiIGZpbGw9IiMyODYzNGQiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSI4MCIgcj0iNDUiIGZpbGw9IiNiMjZiMjgiLz48cGF0aCBkPSJNMjIwIDE3MEwyODAgMTEwTDM0MCAxNzBaIiBmaWxsPSIjMjg2MzRkIi8+PC9zdmc+ , width=\"400\", height=\"200\", loading=\"eager\", alt=\"Potager à gauche, espace de rencontre circulaire à droite\", et figcaption « Plan simplifié et fictif du jardin du club. ». Ajoute une section h2 « Document complémentaire » avec figure#complement contenant img#detail, même source et dimensions, loading=\"lazy\", alt=\"Rectangle vert à gauche et cercle ocre à droite sur un fond clair\", et figcaption « Illustration géométrique complémentaire, sans valeur de mesure. ». Ne dépends d’aucun média distant.",
+    "starter_code": "<main><h1>Documents visuels fictifs</h1></main>\n",
+    "solution": "<main>\n  <h1>Documents visuels fictifs</h1>\n  <figure id=\"principal\">\n    <img id=\"plan\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlNGYxZTgiLz48cmVjdCB4PSI0MCIgeT0iNzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iOTAiIGZpbGw9IiMyODYzNGQiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSI4MCIgcj0iNDUiIGZpbGw9IiNiMjZiMjgiLz48cGF0aCBkPSJNMjIwIDE3MEwyODAgMTEwTDM0MCAxNzBaIiBmaWxsPSIjMjg2MzRkIi8+PC9zdmc+\" width=\"400\" height=\"200\" loading=\"eager\" alt=\"Potager à gauche, espace de rencontre circulaire à droite\">\n    <figcaption>Plan simplifié et fictif du jardin du club.</figcaption>\n  </figure>\n  <section>\n    <h2>Document complémentaire</h2>\n    <figure id=\"complement\">\n      <img id=\"detail\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlNGYxZTgiLz48cmVjdCB4PSI0MCIgeT0iNzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iOTAiIGZpbGw9IiMyODYzNGQiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSI4MCIgcj0iNDUiIGZpbGw9IiNiMjZiMjgiLz48cGF0aCBkPSJNMjIwIDE3MEwyODAgMTEwTDM0MCAxNzBaIiBmaWxsPSIjMjg2MzRkIi8+PC9zdmc+\" width=\"400\" height=\"200\" loading=\"lazy\" alt=\"Rectangle vert à gauche et cercle ocre à droite sur un fond clair\">\n      <figcaption>Illustration géométrique complémentaire, sans valeur de mesure.</figcaption>\n    </figure>\n  </section>\n</main>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Deux rôles et stratégies explicites",
+        "checks": [
+          {
+            "selector": "#principal > img#plan",
+            "attributes": {
+              "loading": "eager",
+              "alt": "Potager à gauche, espace de rencontre circulaire à droite",
+              "width": "400",
+              "height": "200"
+            }
+          },
+          {
+            "selector": "#complement > img#detail",
+            "attributes": {
+              "loading": "lazy",
+              "alt": "Rectangle vert à gauche et cercle ocre à droite sur un fond clair",
+              "width": "400",
+              "height": "200"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Contexte et autonomie des médias",
+        "checks": [
+          {
+            "selector": "main > h1",
+            "textIncludes": "Documents visuels fictifs"
+          },
+          {
+            "selector": "section > h2",
+            "textIncludes": "Document complémentaire"
+          },
+          {
+            "selector": "#principal > figcaption",
+            "textIncludes": "fictif"
+          },
+          {
+            "selector": "#complement > figcaption",
+            "textIncludes": "sans valeur de mesure"
+          },
+          {
+            "selector": "img[src^=\"data:image/svg+xml;base64,\"]",
+            "count": 2
+          },
+          {
+            "selector": "#plan",
+            "count": 1
+          },
+          {
+            "selector": "#detail",
+            "count": 1
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "Décide quel document doit être prioritaire avant d’attribuer loading.",
+      "Chaque figure conserve son alt et sa légende ; la deuxième n’est pas devenue décorative parce qu’elle est différée.",
+      "<main>\n  <h1>Documents visuels fictifs</h1>\n  <figure id=\"principal\">\n    <img id=\"plan\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlNGYxZTgiLz48cmVjdCB4PSI0MCIgeT0iNzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iOTAiIGZpbGw9IiMyODYzNGQiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSI4MCIgcj0iNDUiIGZpbGw9IiNiMjZiMjgiLz48cGF0aCBkPSJNMjIwIDE3MEwyODAgMTEwTDM0MCAxNzBaIiBmaWxsPSIjMjg2MzRkIi8+PC9zdmc+\" width=\"400\" height=\"200\" loading=\"eager\" alt=\"Potager à gauche, espace de rencontre circulaire à droite\">\n    <figcaption>Plan simplifié et fictif du jardin du club.</figcaption>\n  </figure>\n  <section>\n    <h2>Document complémentaire</h2>\n    <figure id=\"complement\">\n      <img id=\"detail\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgNDAwIDIwMCI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNlNGYxZTgiLz48cmVjdCB4PSI0MCIgeT0iNzAiIHdpZHRoPSIxMzAiIGhlaWdodD0iOTAiIGZpbGw9IiMyODYzNGQiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSI4MCIgcj0iNDUiIGZpbGw9IiNiMjZiMjgiLz48cGF0aCBkPSJNMjIwIDE3MEwyODAgMTEwTDM0MCAxNzBaIiBmaWxsPSIjMjg2MzRkIi8+PC9zdmc+\" width=\"400\" height=\"200\" loading=\"lazy\" alt=\"Rectangle vert à gauche et cercle ocre à droite sur un fond clair\">\n      <figcaption>Illustration géométrique complémentaire, sans valeur de mesure.</figcaption>\n    </figure>\n  </section>\n</main>"
+    ],
+    "explanation_fr": "Le projet distingue priorité, information alternative et contexte sans annoncer une ressource ou un service externe.",
+    "common_wrong_answers": [],
+    "id": "htmi-m3-03-e4"
+  }
+]

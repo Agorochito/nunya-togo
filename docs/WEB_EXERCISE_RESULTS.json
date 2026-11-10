@@ -1,5 +1,12 @@
 {
-  "solutions": 96,
-  "starters": 96,
-  "failures": []
+  "examples": 60,
+  "solutions": 216,
+  "starters": 216,
+  "failures": [],
+  "courses": [
+    "css-bases",
+    "css-intermediaire",
+    "html-bases",
+    "html-intermediaire"
+  ]
 }

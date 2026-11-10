@@ -1,0 +1,238 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Partager un accent dans chaque carte",
+    "instruction_fr": "Pour .carte, définis --accent:navy. Utilise var(--accent) pour color et une bordure de 2px solid. La fixture fournit teal en style sur #b : ce réglage doit agir sur sa couleur et sa bordure ; ses titres héritent de color.",
+    "starter_code": ".carte {\n  --accent: navy;\n  color: navy;\n  border: 2px solid navy;\n}",
+    "solution": ".carte {\n  --accent: navy;\n  color: var(--accent);\n  border: 2px solid var(--accent);\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Défaut du composant",
+        "checks": [
+          {
+            "selector": "#a",
+            "style": {
+              "color": "navy",
+              "border-top-width": "2px",
+              "border-top-style": "solid",
+              "border-top-color": "navy"
+            }
+          },
+          {
+            "selector": "#titre-a",
+            "style": {
+              "color": "navy"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Surcharge locale réellement utilisée",
+        "checks": [
+          {
+            "selector": "#b",
+            "style": {
+              "color": "teal",
+              "border-top-color": "teal"
+            }
+          },
+          {
+            "selector": "#titre-b",
+            "style": {
+              "color": "teal"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Déclarer la variable ne modifie pas encore les propriétés réelles.",
+      "Lis la même variable dans color et border.",
+      "Remplace les deux couleurs répétées par var(--accent)."
+    ],
+    "explanation_fr": "Le cas teal révèle une couleur fixe qui ignorerait le réglage local.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><article class=\"carte\" id=\"a\"><h2 id=\"titre-a\">Lecture</h2></article><article class=\"carte\" id=\"b\" style=\"--accent:teal\"><h2 id=\"titre-b\">Jardin</h2></article></main>",
+    "id": "cssi-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Prévoir un fond de repli",
+    "instruction_fr": "Donne à .pastille color:navy, padding:8px et background-color:var(--fond, khaki). Ne déclare pas --fond sur les pastilles : les valeurs locales ou héritées de la fixture doivent rester utilisables.",
+    "starter_code": ".pastille {\n  color: navy;\n  padding: 8px;\n  background-color: khaki;\n}",
+    "solution": ".pastille {\n  color: navy;\n  background-color: var(--fond, khaki);\n  padding: 8px;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Repli en absence de réglage",
+        "checks": [
+          {
+            "selector": "#sans",
+            "style": {
+              "background-color": "khaki",
+              "color": "navy",
+              "padding-left": "8px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Valeur locale et valeur héritée",
+        "checks": [
+          {
+            "selector": "#locale",
+            "style": {
+              "background-color": "lightcyan"
+            }
+          },
+          {
+            "selector": "#heritee",
+            "style": {
+              "background-color": "lavender"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le composant doit accepter la variable existante au lieu de la remplacer.",
+      "Le repli vient en seconde position dans var.",
+      "Utilise var(--fond, khaki) seulement sur background-color."
+    ],
+    "explanation_fr": "Une même déclaration couvre absence, héritage et surcharge locale.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><p class=\"pastille\" id=\"sans\">Sans réglage</p><p class=\"pastille\" id=\"locale\" style=\"--fond:lightcyan\">Réglage local</p><section style=\"--fond:lavender\"><p class=\"pastille\" id=\"heritee\">Réglage hérité</p></section></main>",
+    "id": "cssi-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer le nom d’un espacement",
+    "instruction_fr": "Le nom de variable lu est erroné. .panneau définit --espace:12px ; son padding et le margin-top de .detail doivent utiliser var(--espace). #dense fournit --espace:4px et doit conserver ce réglage. Ne remplace pas les effets par deux nombres fixes.",
+    "starter_code": ".panneau {\n  --espace: 12px;\n  padding: var(--espacement, 0px);\n}\n.detail {\n  margin-top: var(--espacement, 0px);\n}",
+    "solution": ".panneau {\n  --espace: 12px;\n  padding: var(--espace);\n}\n.detail {\n  margin-top: var(--espace);\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Réglage normal utilisé",
+        "checks": [
+          {
+            "selector": "#normal",
+            "style": {
+              "padding-top": "12px",
+              "padding-left": "12px"
+            }
+          },
+          {
+            "selector": "#detail-normal",
+            "style": {
+              "margin-top": "12px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Réglage dense hérité par son détail",
+        "checks": [
+          {
+            "selector": "#dense",
+            "style": {
+              "padding-top": "4px",
+              "padding-left": "4px"
+            }
+          },
+          {
+            "selector": "#detail-dense",
+            "style": {
+              "margin-top": "4px"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Compare le nom déclaré et celui lu, caractère par caractère.",
+      "La propriété --espace est héritée par le détail.",
+      "Corrige les deux usages vers var(--espace) sans écraser le style local."
+    ],
+    "explanation_fr": "La réparation suit la source du réglage et non un résultat visuel isolé.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><section class=\"panneau\" id=\"normal\"><p class=\"detail\" id=\"detail-normal\">Préparation</p></section><section class=\"panneau\" id=\"dense\" style=\"--espace:4px\"><p class=\"detail\" id=\"detail-dense\">Résumé</p></section></main>",
+    "id": "cssi-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Accepter un thème de groupe et une variante",
+    "instruction_fr": "Écris .fiche avec color:var(--accent,navy), padding:var(--espace,16px), border:2px solid var(--accent,navy). Ne définis pas ces variables sur .fiche : #groupe reçoit teal/12px de sa section, #speciale fournit maroon/8px, et #sans utilise les replis. Préserve la couleur noire de #exterieur.",
+    "starter_code": ".fiche {\n  --accent: navy;\n  --espace: 16px;\n  color: var(--accent);\n  padding: var(--espace);\n  border: 2px solid var(--accent);\n}",
+    "solution": ".fiche {\n  color: var(--accent, navy);\n  padding: var(--espace, 16px);\n  border: 2px solid var(--accent, navy);\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Replis d’une fiche autonome",
+        "checks": [
+          {
+            "selector": "#sans",
+            "style": {
+              "color": "navy",
+              "padding-top": "16px",
+              "border-top-color": "navy"
+            }
+          },
+          {
+            "selector": "#exterieur",
+            "style": {
+              "color": "black"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Contexte de groupe puis variante",
+        "checks": [
+          {
+            "selector": "#groupe",
+            "style": {
+              "color": "teal",
+              "padding-left": "12px",
+              "border-top-color": "teal"
+            }
+          },
+          {
+            "selector": "#speciale",
+            "style": {
+              "color": "maroon",
+              "padding-left": "8px",
+              "border-top-color": "maroon"
+            }
+          },
+          {
+            "selector": "#titre-groupe",
+            "style": {
+              "color": "teal"
+            }
+          },
+          {
+            "selector": "#titre-speciale",
+            "style": {
+              "color": "maroon"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une déclaration sur chaque fiche masquerait la variable héritée du groupe.",
+      "Laisse les variables disponibles dans le contexte et précise seulement les replis dans var.",
+      "Applique les trois effets uniquement au composant .fiche."
+    ],
+    "explanation_fr": "Le composant reste réutilisable sans imposer son thème à tous ses voisins.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main style=\"color:black\"><article class=\"fiche\" id=\"sans\"><h2 id=\"titre-sans\">Lecture</h2></article><section style=\"--accent:teal;--espace:12px\"><article class=\"fiche\" id=\"groupe\"><h2 id=\"titre-groupe\">Jardin</h2></article><article class=\"fiche\" id=\"speciale\" style=\"--accent:maroon;--espace:8px\"><h2 id=\"titre-speciale\">Chant</h2></article></section><p id=\"exterieur\">Texte hors composant</p></main>",
+    "id": "cssi-m1-01-e4"
+  }
+]

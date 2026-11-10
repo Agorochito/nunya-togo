@@ -1,0 +1,279 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Encadrer la taille d’un titre",
+    "instruction_fr": "Sur .titre, remplace la taille fixe par clamp(1.25rem, 0.75rem + 2.5vw, 2.25rem). Garde line-height 1.2 et margin 0. Les contrôles supposent 1rem = 16px.",
+    "starter_code": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.titre {\n  font-size: 30px;\n  line-height: 1.2;\n  margin: 0;\n}",
+    "solution": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.titre {\n  font-size: clamp(1.25rem, 0.75rem + 2.5vw, 2.25rem);\n  line-height: 1.2;\n  margin: 0;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Titre à 360px",
+        "checks": [
+          {
+            "selector": "#titre",
+            "style": {
+              "font-size": "21px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      {
+        "description_fr": "Titre à 720px",
+        "checks": [
+          {
+            "selector": "#titre",
+            "style": {
+              "font-size": "30px",
+              "line-height": "36px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Maximum atteint à 1200px",
+        "checks": [
+          {
+            "selector": "#titre",
+            "style": {
+              "font-size": "36px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 1200,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "30px convient à 720px mais pas à 360px.",
+      "La valeur préférée additionne une part fixe en rem et une part en vw.",
+      "Écris font-size: clamp(1.25rem, 0.75rem + 2.5vw, 2.25rem)."
+    ],
+    "explanation_fr": "Trois largeurs montrent la variation et la borne maximale.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><h1 class=\"titre\" id=\"titre\">Programme du club fictif</h1><p>Informations de démonstration.</p></main>",
+    "id": "cssi-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Construire un bloc de lecture",
+    "instruction_fr": "Sur .lecture : max-width 30rem, margin-inline auto et padding-inline 1rem, sans largeur fixe. Sur .lecture p : font-size 1.125rem, line-height 1.5 et margin-block 0 1rem. Les contrôles supposent 1rem = 16px.",
+    "starter_code": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.lecture {\n  width: 480px;\n  margin-left: 104px;\n}\n.lecture p {\n  font-size: 18px;\n  line-height: 20px;\n  margin-block: 0 1rem;\n}",
+    "solution": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.lecture {\n  max-width: 30rem;\n  margin-inline: auto;\n  padding-inline: 1rem;\n}\n.lecture p {\n  font-size: 1.125rem;\n  line-height: 1.5;\n  margin-block: 0 1rem;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Bloc étroit à 360px",
+        "checks": [
+          {
+            "selector": "#lecture",
+            "style": {
+              "width": "328px",
+              "margin-left": "0px",
+              "padding-left": "16px"
+            }
+          },
+          {
+            "selector": "#texte",
+            "style": {
+              "font-size": "18px",
+              "line-height": "27px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Bloc limité et centré à 720px",
+        "checks": [
+          {
+            "selector": "#lecture",
+            "style": {
+              "max-width": "480px",
+              "width": "480px",
+              "margin-left": "104px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Une largeur fixe déborde sur un petit écran.",
+      "max-width limite sans empêcher de rétrécir ; auto centre le bloc.",
+      "Utilise max-width: 30rem, margin-inline: auto, padding-inline: 1rem et line-height: 1.5."
+    ],
+    "explanation_fr": "Le même bloc convient aux deux largeurs sans media query.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"lecture\" id=\"lecture\"><p id=\"texte\">Le club se réunit chaque mardi pour une lecture à voix haute, puis chaque jeudi pour entretenir un petit jardin partagé. Ces informations sont fictives.</p></main>",
+    "id": "cssi-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer un titre réglé en vw",
+    "instruction_fr": "Le titre est trop petit sur téléphone et ses lignes se chevauchent sur grand écran. Remplace font-size par clamp(1.5rem, 1rem + 2.5vw, 2.5rem) et l’interligne fixe par line-height 1.2. Garde margin 0.",
+    "starter_code": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.titre {\n  font-size: 5vw;\n  line-height: 24px;\n  margin: 0;\n}",
+    "solution": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.titre {\n  font-size: clamp(1.5rem, 1rem + 2.5vw, 2.5rem);\n  line-height: 1.2;\n  margin: 0;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Titre lisible à 360px",
+        "checks": [
+          {
+            "selector": "#titre",
+            "style": {
+              "font-size": "25px",
+              "line-height": "30px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Titre borné à 1200px",
+        "checks": [
+          {
+            "selector": "#titre",
+            "style": {
+              "font-size": "40px",
+              "line-height": "48px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 1200,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "À 360px, 5vw ne valent que 18px.",
+      "L’interligne de 24px reste fixe quand le texte grandit.",
+      "Encadre la taille avec clamp() et écris line-height: 1.2."
+    ],
+    "explanation_fr": "La taille est bornée et l’interligne suit maintenant le texte.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><h1 class=\"titre\" id=\"titre\">Programme du club fictif</h1><p>Informations de démonstration.</p></main>",
+    "id": "cssi-m4-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Composer une fiche lisible",
+    "instruction_fr": "Sur .fiche : max-width 36rem, margin-inline auto, padding-inline 1rem. Sur .titre : font-size clamp(1.75rem, 1.25rem + 2.5vw, 2.75rem), line-height 1.2, margin 0 0 0.5rem. Sur .chapo : font-size 1.125rem et margin 0 0 1rem. Sur .texte : line-height 1.5 et margin 0.",
+    "starter_code": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.fiche { width: 576px; }\n.titre { font-size: 38px; line-height: 40px; margin: 0 0 0.5rem; }\n.chapo { font-size: 18px; margin: 0 0 1rem; }\n.texte { line-height: 16px; margin: 0; }",
+    "solution": "body { margin: 0; font: 1rem/1.5 sans-serif; }\n.fiche {\n  max-width: 36rem;\n  margin-inline: auto;\n  padding-inline: 1rem;\n}\n.titre {\n  font-size: clamp(1.75rem, 1.25rem + 2.5vw, 2.75rem);\n  line-height: 1.2;\n  margin: 0 0 0.5rem;\n}\n.chapo {\n  font-size: 1.125rem;\n  margin: 0 0 1rem;\n}\n.texte {\n  line-height: 1.5;\n  margin: 0;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Fiche à 360px",
+        "checks": [
+          {
+            "selector": "#fiche",
+            "style": {
+              "width": "328px",
+              "padding-left": "16px"
+            }
+          },
+          {
+            "selector": "#titre",
+            "style": {
+              "font-size": "29px"
+            }
+          },
+          {
+            "selector": "#chapo",
+            "style": {
+              "font-size": "18px"
+            }
+          },
+          {
+            "selector": "#texte",
+            "style": {
+              "line-height": "24px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      {
+        "description_fr": "Fiche à 720px",
+        "checks": [
+          {
+            "selector": "#fiche",
+            "style": {
+              "width": "576px",
+              "margin-left": "56px"
+            }
+          },
+          {
+            "selector": "#titre",
+            "style": {
+              "font-size": "38px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Bornes à 1200px",
+        "checks": [
+          {
+            "selector": "#titre",
+            "style": {
+              "font-size": "44px"
+            }
+          },
+          {
+            "selector": "#fiche",
+            "style": {
+              "max-width": "576px",
+              "margin-left": "296px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 1200,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Trois décisions : unité, variation, longueur de ligne.",
+      "Le bloc se limite avec max-width ; le titre avec clamp().",
+      "Remplace chaque valeur en px par son équivalent en rem et l’interligne par un nombre sans unité."
+    ],
+    "explanation_fr": "La fiche reste lisible de 360px à 1200px sans aucune condition.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"fiche\" id=\"fiche\"><h1 class=\"titre\" id=\"titre\">Programme du club fictif</h1><p class=\"chapo\" id=\"chapo\">Deux rendez-vous par semaine.</p><p class=\"texte\" id=\"texte\">Le club se réunit chaque mardi pour une lecture à voix haute, puis chaque jeudi pour entretenir un petit jardin partagé. Ces informations sont fictives.</p></main>",
+    "id": "cssi-m4-02-e4"
+  }
+]

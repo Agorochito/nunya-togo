@@ -1,0 +1,248 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Laisser la grille choisir le nombre de colonnes",
+    "instruction_fr": "Garde body sans marge. Sur .cartes : display grid, gap 20px et des colonnes repeat(auto-fit, minmax(150px, 1fr)) à la place des deux colonnes fixes. Ne fixe aucune largeur sur les cartes.",
+    "starter_code": "body { margin: 0; }\n.cartes {\n  display: grid;\n  grid-template-columns: repeat(2, 150px);\n  gap: 20px;\n}",
+    "solution": "body { margin: 0; }\n.cartes {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));\n  gap: 20px;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Deux colonnes partagées à 360px",
+        "checks": [
+          {
+            "selector": "#cartes",
+            "style": {
+              "grid-template-columns": "170px 170px",
+              "column-gap": "20px"
+            }
+          },
+          {
+            "selector": ".carte",
+            "style": {
+              "width": "170px"
+            },
+            "count": 6
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Quatre colonnes à 720px",
+        "checks": [
+          {
+            "selector": "#cartes",
+            "style": {
+              "grid-template-columns": "165px 165px 165px 165px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Deux pistes de 150px laissent de l’espace inutilisé à 360px.",
+      "Le minimum reste 150px ; le maximum doit partager l’espace libre.",
+      "Écris repeat(auto-fit, minmax(150px, 1fr))."
+    ],
+    "explanation_fr": "Les deux largeurs prouvent que le nombre de colonnes est calculé, pas écrit à la main.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"cartes\" id=\"cartes\"><article class=\"carte\">Lecture</article><article class=\"carte\">Jardin</article><article class=\"carte\">Échecs</article><article class=\"carte\">Chorale</article><article class=\"carte\">Théâtre</article><article class=\"carte\">Couture</article></main>",
+    "id": "cssi-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Donner l’espace restant à une référence",
+    "instruction_fr": "Sur .fiche : display grid, gap 12px, une première piste de 72px puis une piste minmax(0, 1fr). Garde overflow-wrap: break-word sur .reference et body sans marge. Le texte doit rester complet.",
+    "starter_code": "body { margin: 0; }\n.fiche {\n  display: grid;\n  grid-template-columns: 72px 1fr;\n  gap: 12px;\n}\n.reference { overflow-wrap: break-word; }",
+    "solution": "body { margin: 0; }\n.fiche {\n  display: grid;\n  grid-template-columns: 72px minmax(0, 1fr);\n  gap: 12px;\n}\n.reference { overflow-wrap: break-word; }",
+    "visible_tests": [
+      {
+        "description_fr": "Référence contenue à 360px",
+        "checks": [
+          {
+            "selector": "#fiche",
+            "style": {
+              "grid-template-columns": "72px 276px"
+            }
+          },
+          {
+            "selector": "#reference",
+            "style": {
+              "width": "276px"
+            },
+            "textIncludes": "ReferenceDePreparationDuClubSansEspacePourObserverLeDebordement"
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Espace restant à 720px",
+        "checks": [
+          {
+            "selector": "#reference",
+            "style": {
+              "width": "636px",
+              "overflow-wrap": "break-word"
+            },
+            "textIncludes": "ReferenceDePreparationDuClubSansEspacePourObserverLeDebordement"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Observe la largeur de la référence : elle dépasse l’écran.",
+      "1fr garde un minimum automatique lié au mot le plus long.",
+      "Remplace 1fr par minmax(0, 1fr)."
+    ],
+    "explanation_fr": "La piste respecte l’espace restant ; la coupure du texte se fait ensuite à l’intérieur.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"fiche\" id=\"fiche\"><span class=\"repere\">Réf.</span><p class=\"reference\" id=\"reference\">ReferenceDePreparationDuClubSansEspacePourObserverLeDebordement</p></main>",
+    "id": "cssi-m3-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Corriger un minimum trop large",
+    "instruction_fr": "La grille déborde sur un téléphone. Garde repeat(auto-fit, …) et gap 16px, mais ramène le minimum des pistes à 240px. Supprime aussi le minimum imposé aux cartes avec min-width: 0. Body reste sans marge.",
+    "starter_code": "body { margin: 0; }\n.cartes {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));\n  gap: 16px;\n}\n.carte { min-width: 400px; }",
+    "solution": "body { margin: 0; }\n.cartes {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n  gap: 16px;\n}\n.carte { min-width: 0; }",
+    "visible_tests": [
+      {
+        "description_fr": "Une colonne sans débordement à 360px",
+        "checks": [
+          {
+            "selector": "#cartes",
+            "style": {
+              "grid-template-columns": "360px"
+            }
+          },
+          {
+            "selector": "#premiere",
+            "style": {
+              "width": "360px",
+              "min-width": "0px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Deux colonnes à 720px",
+        "checks": [
+          {
+            "selector": "#cartes",
+            "style": {
+              "grid-template-columns": "352px 352px"
+            }
+          },
+          {
+            "selector": "#premiere",
+            "style": {
+              "width": "352px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Compare le minimum de la piste avec la largeur de l’écran.",
+      "Deux endroits imposent 400px : la piste et la carte.",
+      "Utilise minmax(240px, 1fr) et min-width: 0 sur .carte."
+    ],
+    "explanation_fr": "Un minimum doit rester inférieur au plus petit espace visé, sur la piste comme sur l’élément.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"cartes\" id=\"cartes\"><article class=\"carte\" id=\"premiere\">Lecture du mardi</article><article class=\"carte\">Jardin du jeudi</article></main>",
+    "id": "cssi-m3-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Assembler le tableau des ateliers",
+    "instruction_fr": "Sur .page : padding 16px. Sur .ateliers : display grid, gap 8px et repeat(auto-fit, minmax(140px, 1fr)). Sur .atelier : margin 0. Sur .resume : display grid, gap 8px, pistes 80px et minmax(0, 1fr). Sur .note : margin 0 et overflow-wrap: break-word. Body reste sans marge.",
+    "starter_code": "body { margin: 0; }\n.page { padding: 16px; }\n.ateliers { display: block; }\n.atelier { margin: 0; }\n.resume { display: block; }\n.note { margin: 0; }",
+    "solution": "body { margin: 0; }\n.page { padding: 16px; }\n.ateliers {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));\n  gap: 8px;\n}\n.atelier { margin: 0; }\n.resume {\n  display: grid;\n  grid-template-columns: 80px minmax(0, 1fr);\n  gap: 8px;\n}\n.note {\n  margin: 0;\n  overflow-wrap: break-word;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Ateliers et note à 360px",
+        "checks": [
+          {
+            "selector": "#ateliers",
+            "style": {
+              "display": "grid",
+              "grid-template-columns": "160px 160px",
+              "row-gap": "8px"
+            }
+          },
+          {
+            "selector": "#note",
+            "style": {
+              "width": "240px",
+              "overflow-wrap": "break-word"
+            },
+            "textIncludes": "ReferenceDePreparationDuClubSansEspacePourObserverLeDebordement"
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Même feuille à 720px",
+        "checks": [
+          {
+            "selector": "#ateliers",
+            "style": {
+              "grid-template-columns": "166px 166px 166px 166px"
+            }
+          },
+          {
+            "selector": "#note",
+            "style": {
+              "width": "600px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Le padding de la page réduit l’espace disponible à 328px.",
+      "Les ateliers demandent un minimum de 140px ; la note doit pouvoir rétrécir.",
+      "Combine repeat(auto-fit, minmax(140px, 1fr)) pour les ateliers et 80px minmax(0, 1fr) pour le résumé."
+    ],
+    "explanation_fr": "Le même fichier sert deux besoins : un minimum protégé pour les cartes, un minimum nul pour le texte.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"page\"><h1>Ateliers du club fictif</h1><div class=\"ateliers\" id=\"ateliers\"><p class=\"atelier\">Lecture</p><p class=\"atelier\">Jardin</p><p class=\"atelier\">Échecs</p><p class=\"atelier\">Chorale</p><p class=\"atelier\">Théâtre</p></div><div class=\"resume\"><span class=\"repere\">Note</span><p class=\"note\" id=\"note\">ReferenceDePreparationDuClubSansEspacePourObserverLeDebordement</p></div></main>",
+    "id": "cssi-m3-01-e4"
+  }
+]

@@ -1,5 +1,14 @@
 # Historique
 
+## 5.9.0 — 9 novembre 2026
+
+- HTML intermédiaire : quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux en français. Régions et titres, formulaires reliés à leurs aides et erreurs, tableaux à en-têtes multiples, images, langue et projet d’annuaire associatif.
+- CSS intermédiaire : six modules, 18 leçons, 72 exercices, 54 questions et 36 exemples originaux. Cascade et propriétés logiques, Flexbox robuste, grilles avec minmax() et zones nommées, media queries, typographie fluide, images, états accessibles, thème sombre local et projet de tableau de club.
+- Chaque exemple et chaque solution des deux programmes est rendu dans un vrai navigateur ; les contrôles lisent les styles calculés à 360 et 720 px, et un vrai focus pour les états. Les codes de départ sont refusés.
+- Catalogue : filtre par niveau, recherche par niveau, saisie conservée lors d’une actualisation et prérequis plus courts. Le parcours front-end enchaîne maintenant les socles et les deux suites intermédiaires ; les socles HTML et CSS annoncent leur suite.
+- Correction d’un contrôle de focus qui supposait à tort une largeur de contour nulle, et du test d’interface qui comptait les leçons terminées du mauvais programme.
+- Les contenus restent des brouillons à relire (`reviewer: null`). Aucun cours vide ni moteur fictif ajouté.
+
 ## 5.8.0 — 7 novembre 2026
 
 - Python intermédiaire : six modules, 18 leçons détaillées, 72 exercices, 54 questions et 36 exemples originaux en français. Collections, fonctions, exceptions, objets, JSON/CSV, tests et projet de club. Relecture pédagogique encore nécessaire.

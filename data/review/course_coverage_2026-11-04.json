@@ -171,9 +171,13 @@
       "family": "HTML",
       "level": "intermediaire",
       "target_title": "HTML — formulaires et contenus accessibles",
-      "status": "a_construire",
-      "evidence": [],
-      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+      "status": "premiere_serie_redigee_a_relire",
+      "evidence": [
+        "content/fr/html-intermediaire/",
+        "docs/WEB_EXERCISE_RESULTS.json",
+        "docs/HTML_INTERMEDIAIRE_UI_RESULTS.json"
+      ],
+      "next_action": "Relecture pédagogique humaine et essais sur téléphones ; le niveau avancé reste à construire."
     },
     {
       "id": "html-avance",
@@ -202,9 +206,13 @@
       "family": "CSS",
       "level": "intermediaire",
       "target_title": "CSS — interfaces adaptatives",
-      "status": "a_construire",
-      "evidence": [],
-      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+      "status": "premiere_serie_redigee_a_relire",
+      "evidence": [
+        "content/fr/css-intermediaire/",
+        "docs/WEB_EXERCISE_RESULTS.json",
+        "docs/CSS_INTERMEDIAIRE_UI_RESULTS.json"
+      ],
+      "next_action": "Relecture pédagogique humaine et essais sur téléphones ; le niveau avancé reste à construire."
     },
     {
       "id": "css-avance",
@@ -818,8 +826,8 @@
     "Objets connectés et robotique",
     "Blockchain"
   ],
-  "updated_for_release": "5.8.0",
-  "updated_at": "2026-11-06",
+  "updated_for_release": "5.9.0",
+  "updated_at": "2026-11-09",
   "additional_implemented": [
     {
       "id": "git-bases",

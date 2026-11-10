@@ -1,0 +1,323 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Aligner deux groupes dans une barre",
+    "instruction_fr": "Écris .barre display:flex, align-items:center, justify-content:space-between et gap16px. Retire la marge de .titre. .actions reçoit display:flex, align-items:center et gap8px. Conserve le HTML et l’ordre Préparer/Examiner.",
+    "starter_code": ".barre { display: flex; align-items: stretch; gap: 16px; }\n.actions { display: block; }",
+    "solution": ".barre {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 16px;\n}\n.titre { margin: 0; }\n.actions {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Alignements de la barre",
+        "checks": [
+          {
+            "selector": ".barre",
+            "style": {
+              "display": "flex",
+              "align-items": "center",
+              "justify-content": "space-between",
+              "column-gap": "16px"
+            }
+          },
+          {
+            "selector": ".titre",
+            "style": {
+              "margin-top": "0px",
+              "margin-bottom": "0px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Groupe de boutons indépendant",
+        "checks": [
+          {
+            "selector": ".actions",
+            "style": {
+              "display": "flex",
+              "align-items": "center",
+              "column-gap": "8px"
+            }
+          },
+          {
+            "selector": ".actions > button:first-child",
+            "attributes": {
+              "id": "preparer"
+            },
+            "style": {
+              "order": "0"
+            }
+          },
+          {
+            "selector": ".actions > button:last-child",
+            "attributes": {
+              "id": "examiner"
+            },
+            "style": {
+              "order": "0"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le groupe d’actions est un enfant de la barre ; ses boutons ont un autre parent.",
+      "Chaque parent reçoit ses propres règles flex.",
+      "Centre transversalement les deux conteneurs et répartis seulement les groupes de la barre."
+    ],
+    "explanation_fr": "La composition évite de traiter tous les éléments comme une seule rangée.",
+    "common_wrong_answers": [],
+    "fixture_html": "<header class=\"barre\"><h2 class=\"titre\">Programme</h2><div class=\"actions\"><button id=\"preparer\" type=\"button\">Préparer</button><button id=\"examiner\" type=\"button\">Examiner</button></div></header>",
+    "id": "cssi-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Combiner une colonne d’informations et une rangée d’actions",
+    "instruction_fr": "Écris .carte flex/column/gap12px. .informations : flex/column/align-items:flex-start/gap4px. .actions : flex/row/align-items:center/justify-content:flex-end/gap8px. Garde Retour puis Continuer et aucun order personnalisé.",
+    "starter_code": ".carte { display: flex; flex-direction: row; }\n.informations { display: block; }\n.actions { display: flex; flex-direction: column; }",
+    "solution": ".carte { display: flex; flex-direction: column; gap: 12px; }\n.informations {\n  display: flex;\n  flex-direction: column;\n  align-items: flex-start;\n  gap: 4px;\n}\n.actions {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: flex-end;\n  gap: 8px;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Axes de la carte et du texte",
+        "checks": [
+          {
+            "selector": ".carte",
+            "style": {
+              "display": "flex",
+              "flex-direction": "column",
+              "row-gap": "12px"
+            }
+          },
+          {
+            "selector": ".informations",
+            "style": {
+              "display": "flex",
+              "flex-direction": "column",
+              "align-items": "flex-start",
+              "row-gap": "4px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Actions sur leur propre axe",
+        "checks": [
+          {
+            "selector": ".actions",
+            "style": {
+              "flex-direction": "row",
+              "align-items": "center",
+              "justify-content": "flex-end",
+              "column-gap": "8px"
+            }
+          },
+          {
+            "selector": ".actions > button:first-child",
+            "attributes": {
+              "id": "retour"
+            },
+            "style": {
+              "order": "0"
+            }
+          },
+          {
+            "selector": ".actions > button:last-child",
+            "attributes": {
+              "id": "suite"
+            },
+            "style": {
+              "order": "0"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "La colonne principale empile des groupes, pas chaque bouton isolément.",
+      "La rangée intérieure garde un axe différent de celui de la carte.",
+      "Écris les règles par niveau de parent au lieu de déplacer les enfants avec des marges."
+    ],
+    "explanation_fr": "Le composant possède plusieurs axes sans modifier la séquence de lecture.",
+    "common_wrong_answers": [],
+    "fixture_html": "<article class=\"carte\"><div class=\"informations\"><h2>Lecture</h2><p>Rencontre fictive.</p></div><div class=\"actions\"><button id=\"retour\" type=\"button\">Retour</button><button id=\"suite\" type=\"button\">Continuer</button></div></article>",
+    "id": "cssi-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Restaurer un ordre visuel cohérent",
+    "instruction_fr": "Répare .parcours : display:flex, flex-direction:row, align-items:center, gap8px. Remets order:0 sur #retour et #suite. Le HTML contient déjà Retour puis Continuer : ne change ni leurs textes ni leurs positions dans le document.",
+    "starter_code": ".parcours { display: flex; flex-direction: row-reverse; align-items: center; gap: 8px; }\n#retour { order: 2; }\n#suite { order: 1; }",
+    "solution": ".parcours {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  gap: 8px;\n}\n#retour, #suite {\n  order: 0;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Aucune inversion de l’axe",
+        "checks": [
+          {
+            "selector": ".parcours",
+            "style": {
+              "display": "flex",
+              "flex-direction": "row",
+              "align-items": "center",
+              "column-gap": "8px"
+            }
+          },
+          {
+            "selector": "#retour",
+            "style": {
+              "order": "0"
+            }
+          },
+          {
+            "selector": "#suite",
+            "style": {
+              "order": "0"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Ordre documentaire explicite",
+        "checks": [
+          {
+            "selector": ".parcours > button:first-child",
+            "attributes": {
+              "id": "retour"
+            },
+            "textIncludes": "Retour"
+          },
+          {
+            "selector": ".parcours > button:last-child",
+            "attributes": {
+              "id": "suite"
+            },
+            "textIncludes": "Continuer"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une inversion graphique ne change pas le parcours fondé sur le document.",
+      "Les deux valeurs order doivent redevenir égales.",
+      "Utilise row et order:0, puis examine la séquence Retour/Continuer au clavier."
+    ],
+    "explanation_fr": "Le correctif retire deux sources différentes de réorganisation graphique.",
+    "common_wrong_answers": [],
+    "fixture_html": "<nav class=\"parcours\" aria-label=\"Parcours de préparation\"><button id=\"retour\" type=\"button\">Retour</button><button id=\"suite\" type=\"button\">Continuer</button></nav>",
+    "id": "cssi-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Composer une fiche et ses commandes",
+    "instruction_fr": "Écris .fiche flex/column/align-items:stretch/gap16px. .entete flex/row/align-items:flex-start/justify-content:space-between/gap12px. .details flex/column/align-items:flex-start/gap4px. .actions flex/row/wrap/align-items:center/justify-content:flex-end/gap8px. #retour et #suite restent order:0. Conserve tous les textes et la séquence du HTML.",
+    "starter_code": ".fiche { display: flex; flex-direction: row; }\n.entete { display: block; }\n.details { display: block; }\n.actions { display: flex; flex-direction: row-reverse; }\n#suite { order: -1; }",
+    "solution": ".fiche {\n  display: flex;\n  flex-direction: column;\n  align-items: stretch;\n  gap: 16px;\n}\n.entete {\n  display: flex;\n  flex-direction: row;\n  align-items: flex-start;\n  justify-content: space-between;\n  gap: 12px;\n}\n.details {\n  display: flex;\n  flex-direction: column;\n  align-items: flex-start;\n  gap: 4px;\n}\n.actions {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  align-items: center;\n  justify-content: flex-end;\n  gap: 8px;\n}\n#retour, #suite { order: 0; }",
+    "visible_tests": [
+      {
+        "description_fr": "Organisation principale et entête",
+        "checks": [
+          {
+            "selector": ".fiche",
+            "style": {
+              "display": "flex",
+              "flex-direction": "column",
+              "align-items": "stretch",
+              "row-gap": "16px"
+            }
+          },
+          {
+            "selector": ".entete",
+            "style": {
+              "display": "flex",
+              "flex-direction": "row",
+              "align-items": "flex-start",
+              "justify-content": "space-between",
+              "column-gap": "12px"
+            }
+          },
+          {
+            "selector": ".details",
+            "style": {
+              "display": "flex",
+              "flex-direction": "column",
+              "align-items": "flex-start",
+              "row-gap": "4px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Commandes regroupées sans inversion à petite largeur",
+        "checks": [
+          {
+            "selector": ".actions",
+            "style": {
+              "display": "flex",
+              "flex-direction": "row",
+              "flex-wrap": "wrap",
+              "align-items": "center",
+              "justify-content": "flex-end",
+              "column-gap": "8px",
+              "row-gap": "8px"
+            }
+          },
+          {
+            "selector": "#retour",
+            "style": {
+              "order": "0"
+            }
+          },
+          {
+            "selector": "#suite",
+            "style": {
+              "order": "0"
+            }
+          },
+          {
+            "selector": ".actions > button:first-child",
+            "attributes": {
+              "id": "retour"
+            }
+          },
+          {
+            "selector": ".actions > button:last-child",
+            "attributes": {
+              "id": "suite"
+            }
+          },
+          {
+            "selector": "#titre",
+            "textIncludes": "Lecture partagée"
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Liste les quatre conteneurs et l’axe de chacun avant de coder.",
+      "Les informations et actions ont des alignements propres, indépendants de ceux de la fiche.",
+      "Ajoute wrap seulement au groupe d’actions et retire toute réorganisation des boutons."
+    ],
+    "explanation_fr": "Le mini-projet rassemble des décisions d’axes, de groupes et de séquence sans dépendre de mesures de hauteur fragiles.",
+    "common_wrong_answers": [],
+    "fixture_html": "<article class=\"fiche\"><header class=\"entete\"><div class=\"details\"><h2 id=\"titre\">Lecture partagée</h2><p>Rencontre fictive du club.</p></div><span class=\"etat\">À préparer</span></header><p class=\"description\">Choisir un conte et un cahier.</p><div class=\"actions\"><button id=\"retour\" type=\"button\">Retour</button><button id=\"suite\" type=\"button\">Continuer</button></div></article>",
+    "id": "cssi-m2-03-e4"
+  }
+]

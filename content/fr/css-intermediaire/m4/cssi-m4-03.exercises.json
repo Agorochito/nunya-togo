@@ -1,0 +1,260 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Rendre une illustration fluide",
+    "instruction_fr": "Garde .carte avec padding 30px. Sur .carte img : display block, max-width 100% et height auto, sans largeur fixe. Body reste sans marge et le HTML n’est pas modifié.",
+    "starter_code": "body { margin: 0; }\n.carte { padding: 30px; }\n.carte img {\n  display: block;\n  width: 800px;\n}",
+    "solution": "body { margin: 0; }\n.carte { padding: 30px; }\n.carte img {\n  display: block;\n  max-width: 100%;\n  height: auto;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Image contenue à 360px",
+        "checks": [
+          {
+            "selector": "#photo",
+            "style": {
+              "width": "300px",
+              "height": "225px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Proportions gardées à 720px",
+        "checks": [
+          {
+            "selector": "#photo",
+            "style": {
+              "width": "660px",
+              "height": "495px",
+              "display": "block"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "L’intérieur de la carte mesure 300px à 360px.",
+      "Il faut une limite, pas une taille imposée.",
+      "Écris max-width: 100% et height: auto à la place de width."
+    ],
+    "explanation_fr": "Le rapport 4:3 est conservé aux deux largeurs : 300 × 225 puis 660 × 495.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"carte\" id=\"carte\"><img id=\"photo\" alt=\"Schéma du jardin du club\" width=\"800\" height=\"600\" src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'%3E%3Crect width='4' height='3' fill='%23164e63'/%3E%3C/svg%3E\"><p>Plan fictif du jardin partagé.</p></main>",
+    "id": "cssi-m4-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Créer des vignettes régulières",
+    "instruction_fr": "Sur .galerie : display grid, deux pistes repeat(2, minmax(0, 1fr)), gap 16px. Sur .vignette : display block, width 100%, aspect-ratio 4 / 3 et object-fit cover, sans hauteur fixe. Body reste sans marge.",
+    "starter_code": "body { margin: 0; }\n.galerie {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  gap: 16px;\n}\n.vignette {\n  display: block;\n  width: 100%;\n  height: 80px;\n  object-fit: fill;\n}",
+    "solution": "body { margin: 0; }\n.galerie {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  gap: 16px;\n}\n.vignette {\n  display: block;\n  width: 100%;\n  aspect-ratio: 4 / 3;\n  object-fit: cover;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Vignettes 4:3 à 360px",
+        "checks": [
+          {
+            "selector": "#v1",
+            "style": {
+              "width": "172px",
+              "height": "129px",
+              "object-fit": "cover"
+            }
+          },
+          {
+            "selector": "#v2",
+            "style": {
+              "width": "172px",
+              "height": "129px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Vignettes 4:3 à 720px",
+        "checks": [
+          {
+            "selector": "#v1",
+            "style": {
+              "width": "352px",
+              "height": "264px",
+              "aspect-ratio": "4 / 3"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Une hauteur fixe de 80px ne suit pas la largeur.",
+      "Le cadre se définit par un rapport, pas par deux tailles.",
+      "Remplace height par aspect-ratio: 4 / 3 et fill par cover."
+    ],
+    "explanation_fr": "Le cadre garde son rapport à toutes les largeurs ; l’image est recadrée, jamais étirée.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"galerie\" id=\"galerie\"><img class=\"vignette\" id=\"v1\" alt=\"Jardin du club\" src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect width='16' height='9' fill='%23164e63'/%3E%3C/svg%3E\"><img class=\"vignette\" id=\"v2\" alt=\"Salle de lecture\" src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect width='16' height='9' fill='%23164e63'/%3E%3C/svg%3E\"></main>",
+    "id": "cssi-m4-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Corriger l’image plutôt que masquer la carte",
+    "instruction_fr": "La carte cache son débordement et l’image est déformée. Sur .carte : garde padding 20px et rétablis overflow visible. Sur .carte img : display block, max-width 100% et height auto, sans largeur ni hauteur fixes.",
+    "starter_code": "body { margin: 0; }\n.carte {\n  padding: 20px;\n  overflow: hidden;\n}\n.carte img {\n  width: 600px;\n  height: 200px;\n}",
+    "solution": "body { margin: 0; }\n.carte {\n  padding: 20px;\n  overflow: visible;\n}\n.carte img {\n  display: block;\n  max-width: 100%;\n  height: auto;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Défaut traité à sa source à 360px",
+        "checks": [
+          {
+            "selector": "#carte",
+            "style": {
+              "overflow-x": "visible"
+            }
+          },
+          {
+            "selector": "#photo",
+            "style": {
+              "width": "320px",
+              "height": "160px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Taille propre respectée à 720px",
+        "checks": [
+          {
+            "selector": "#photo",
+            "style": {
+              "width": "600px",
+              "height": "300px"
+            }
+          },
+          {
+            "selector": "#carte",
+            "style": {
+              "overflow-x": "visible"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Le masquage coupe l’image sans la corriger.",
+      "L’image mesure 600 × 300 : son rapport est 2:1.",
+      "Retire les tailles fixes, ajoute max-width: 100% et height: auto, puis rétablis overflow: visible."
+    ],
+    "explanation_fr": "À 720px, l’image garde sa taille propre : max-width limite sans agrandir.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"carte\" id=\"carte\"><img id=\"photo\" alt=\"Schéma du jardin du club\" width=\"600\" height=\"300\" src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 1'%3E%3Crect width='2' height='1' fill='%23164e63'/%3E%3C/svg%3E\"><p>Plan fictif du jardin partagé.</p></main>",
+    "id": "cssi-m4-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Monter la galerie du club",
+    "instruction_fr": "Sur .galerie : padding 12px. Sur .bandeau : display block, max-width 100%, height auto. Sur .vignettes : display grid, deux pistes repeat(2, minmax(0, 1fr)), gap 12px, margin-top 12px. Sur figure : margin 0. Sur .vignette : display block, width 100%, aspect-ratio 3 / 2, object-fit cover. Sur figcaption : overflow-wrap anywhere.",
+    "starter_code": "body { margin: 0; }\n.galerie { padding: 12px; }\n.bandeau { width: 672px; height: 168px; }\n.vignettes { margin-top: 12px; }\nfigure { margin: 0; }\n.vignette { width: 200px; height: 100px; }",
+    "solution": "body { margin: 0; }\n.galerie { padding: 12px; }\n.bandeau {\n  display: block;\n  max-width: 100%;\n  height: auto;\n}\n.vignettes {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  gap: 12px;\n  margin-top: 12px;\n}\nfigure { margin: 0; }\n.vignette {\n  display: block;\n  width: 100%;\n  aspect-ratio: 3 / 2;\n  object-fit: cover;\n}\nfigcaption { overflow-wrap: anywhere; }",
+    "visible_tests": [
+      {
+        "description_fr": "Galerie à 360px",
+        "checks": [
+          {
+            "selector": "#bandeau",
+            "style": {
+              "width": "336px",
+              "height": "84px"
+            }
+          },
+          {
+            "selector": "#vignettes",
+            "style": {
+              "grid-template-columns": "162px 162px"
+            }
+          },
+          {
+            "selector": "#v1",
+            "style": {
+              "width": "162px",
+              "height": "108px",
+              "object-fit": "cover"
+            }
+          },
+          {
+            "selector": "#legende",
+            "style": {
+              "overflow-wrap": "anywhere"
+            },
+            "textIncludes": "JardinPartageDuClubFictifSansEspace"
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Galerie à 720px",
+        "checks": [
+          {
+            "selector": "#bandeau",
+            "style": {
+              "width": "672px",
+              "height": "168px"
+            }
+          },
+          {
+            "selector": "#v1",
+            "style": {
+              "width": "342px",
+              "height": "228px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Deux besoins : un bandeau fluide et des vignettes au cadre régulier.",
+      "Le bandeau utilise la règle fluide ; les vignettes un rapport et un recadrage.",
+      "Combine max-width / height: auto pour .bandeau et width: 100% / aspect-ratio / object-fit pour .vignette."
+    ],
+    "explanation_fr": "Chaque image reçoit la règle adaptée à son rôle ; les légendes longues se coupent sans élargir la grille.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"galerie\" id=\"galerie\"><img class=\"bandeau\" id=\"bandeau\" alt=\"Bandeau du club fictif\" width=\"672\" height=\"168\" src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 1'%3E%3Crect width='4' height='1' fill='%23164e63'/%3E%3C/svg%3E\"><div class=\"vignettes\" id=\"vignettes\"><figure><img class=\"vignette\" id=\"v1\" alt=\"Jardin du club\" src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect width='16' height='9' fill='%23164e63'/%3E%3C/svg%3E\"><figcaption id=\"legende\">JardinPartageDuClubFictifSansEspace</figcaption></figure><figure><img class=\"vignette\" alt=\"Salle de lecture\" src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3Crect width='16' height='9' fill='%23164e63'/%3E%3C/svg%3E\"><figcaption>Salle de lecture</figcaption></figure></div></main>",
+    "id": "cssi-m4-03-e4"
+  }
+]

@@ -1,0 +1,290 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Nommer une grille de places",
+    "instruction_fr": "Crée table#places avec caption « Places fictives des ateliers ». Dans thead, une ligne contient th scope=\"col\" « Atelier » puis « Places ». Dans tbody, deux lignes de td contiennent Semis/8 puis Compost/4. Cette première activité demande seulement des en-têtes de colonnes.",
+    "starter_code": "<table id=\"places\"><tr><td>Atelier</td><td>Places</td></tr><tr><td>Semis</td><td>8</td></tr><tr><td>Compost</td><td>4</td></tr></table>\n",
+    "solution": "<table id=\"places\">\n  <caption>Places fictives des ateliers</caption>\n  <thead>\n    <tr><th scope=\"col\">Atelier</th><th scope=\"col\">Places</th></tr>\n  </thead>\n  <tbody>\n    <tr><td>Semis</td><td>8</td></tr>\n    <tr><td>Compost</td><td>4</td></tr>\n  </tbody>\n</table>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Sujet et en-têtes",
+        "checks": [
+          {
+            "selector": "#places > caption",
+            "textIncludes": "Places fictives des ateliers"
+          },
+          {
+            "selector": "#places thead th[scope=\"col\"]",
+            "count": 2
+          },
+          {
+            "selector": "#places thead th:nth-child(1)",
+            "textIncludes": "Atelier"
+          },
+          {
+            "selector": "#places thead th:nth-child(2)",
+            "textIncludes": "Places"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Données organisées",
+        "checks": [
+          {
+            "selector": "#places tbody tr",
+            "count": 2
+          },
+          {
+            "selector": "#places tbody tr:nth-child(1) td:nth-child(1)",
+            "textIncludes": "Semis"
+          },
+          {
+            "selector": "#places tbody tr:nth-child(1) td:nth-child(2)",
+            "textIncludes": "8"
+          },
+          {
+            "selector": "#places tbody tr:nth-child(2) td:nth-child(1)",
+            "textIncludes": "Compost"
+          },
+          {
+            "selector": "#places tbody tr:nth-child(2) td:nth-child(2)",
+            "textIncludes": "4"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "Sépare le sujet, les intitulés et les données.",
+      "caption est directement dans table ; thead contient les th et tbody les lignes de données.",
+      "<table id=\"places\">\n  <caption>Places fictives des ateliers</caption>\n  <thead>\n    <tr><th scope=\"col\">Atelier</th><th scope=\"col\">Places</th></tr>\n  </thead>\n  <tbody>\n    <tr><td>Semis</td><td>8</td></tr>\n    <tr><td>Compost</td><td>4</td></tr>\n  </tbody>\n</table>"
+    ],
+    "explanation_fr": "La structure permet d’identifier le sujet et ce que chaque colonne mesure.",
+    "common_wrong_answers": [],
+    "id": "htmi-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Ajouter l’axe des ateliers",
+    "instruction_fr": "Construis table#places avec caption « Places fictives des ateliers », colonnes Atelier et Places dans des th scope=\"col\" de thead. Dans tbody, fais de Semis et Compost des th scope=\"row\" ; leurs td associés contiennent respectivement 8 et 4. Garde deux lignes de données.",
+    "starter_code": "<table id=\"places\">\n  <caption>Places fictives des ateliers</caption>\n  <thead>\n    <tr><th scope=\"col\">Atelier</th><th scope=\"col\">Places</th></tr>\n  </thead>\n  <tbody>\n    <tr><td>Semis</td><td>8</td></tr>\n    <tr><td>Compost</td><td>4</td></tr>\n  </tbody>\n</table>\n",
+    "solution": "<table id=\"places\">\n  <caption>Places fictives des ateliers</caption>\n  <thead>\n    <tr><th scope=\"col\">Atelier</th><th scope=\"col\">Places</th></tr>\n  </thead>\n  <tbody>\n    <tr><th scope=\"row\">Semis</th><td>8</td></tr>\n    <tr><th scope=\"row\">Compost</th><td>4</td></tr>\n  </tbody>\n</table>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Des en-têtes de ligne réels",
+        "checks": [
+          {
+            "selector": "#places tbody th[scope=\"row\"]",
+            "count": 2
+          },
+          {
+            "selector": "#places tbody tr:nth-child(1) th",
+            "textIncludes": "Semis"
+          },
+          {
+            "selector": "#places tbody tr:nth-child(2) th",
+            "textIncludes": "Compost"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Les axes restent cohérents",
+        "checks": [
+          {
+            "selector": "#places > caption",
+            "textIncludes": "Places fictives"
+          },
+          {
+            "selector": "#places thead th[scope=\"col\"]",
+            "count": 2
+          },
+          {
+            "selector": "#places tbody tr:nth-child(1) td",
+            "textIncludes": "8"
+          },
+          {
+            "selector": "#places tbody tr:nth-child(2) td",
+            "textIncludes": "4"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "Le nom d’un atelier sert à interpréter toutes les valeurs de sa ligne.",
+      "Remplace seulement les cellules de noms par th et précise scope=\"row\".",
+      "<table id=\"places\">\n  <caption>Places fictives des ateliers</caption>\n  <thead>\n    <tr><th scope=\"col\">Atelier</th><th scope=\"col\">Places</th></tr>\n  </thead>\n  <tbody>\n    <tr><th scope=\"row\">Semis</th><td>8</td></tr>\n    <tr><th scope=\"row\">Compost</th><td>4</td></tr>\n  </tbody>\n</table>"
+    ],
+    "explanation_fr": "Chaque mesure peut être lue avec son intitulé de colonne et son atelier.",
+    "common_wrong_answers": [],
+    "id": "htmi-m3-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le gras ne fait pas un en-tête",
+    "instruction_fr": "Répare table#places : caption « Places fictives des ateliers », thead avec th scope=\"col\" « Atelier » et « Places », puis tbody avec th scope=\"row\" Semis/Compost et td 8/4. Supprime les b utilisés pour simuler des en-têtes ; ils ne portent pas cette relation.",
+    "starter_code": "<table id=\"places\"><thead><tr><td><b>Atelier</b></td><td><b>Places</b></td></tr></thead><tbody><tr><td><b>Semis</b></td><td>8</td></tr><tr><td><b>Compost</b></td><td>4</td></tr></tbody></table>\n",
+    "solution": "<table id=\"places\">\n  <caption>Places fictives des ateliers</caption>\n  <thead>\n    <tr><th scope=\"col\">Atelier</th><th scope=\"col\">Places</th></tr>\n  </thead>\n  <tbody>\n    <tr><th scope=\"row\">Semis</th><td>8</td></tr>\n    <tr><th scope=\"row\">Compost</th><td>4</td></tr>\n  </tbody>\n</table>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Rôles sémantiques réparés",
+        "checks": [
+          {
+            "selector": "#places thead th[scope=\"col\"]",
+            "count": 2
+          },
+          {
+            "selector": "#places tbody th[scope=\"row\"]",
+            "count": 2
+          },
+          {
+            "selector": "#places > caption",
+            "textIncludes": "Places fictives des ateliers"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "La présentation ne remplace plus les relations",
+        "checks": [
+          {
+            "selector": "#places b",
+            "exists": false
+          },
+          {
+            "selector": "#places tbody tr:nth-child(1) td",
+            "textIncludes": "8"
+          },
+          {
+            "selector": "#places tbody tr:nth-child(2) td",
+            "textIncludes": "4"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "thead organise les lignes mais ne transforme pas td en th.",
+      "Choisis les cellules par leur rôle, puis ajoute le scope correspondant à leur axe.",
+      "<table id=\"places\">\n  <caption>Places fictives des ateliers</caption>\n  <thead>\n    <tr><th scope=\"col\">Atelier</th><th scope=\"col\">Places</th></tr>\n  </thead>\n  <tbody>\n    <tr><th scope=\"row\">Semis</th><td>8</td></tr>\n    <tr><th scope=\"row\">Compost</th><td>4</td></tr>\n  </tbody>\n</table>"
+    ],
+    "explanation_fr": "Le document ne repose plus sur une apparence visuelle pour nommer ses données.",
+    "common_wrong_answers": [],
+    "id": "htmi-m3-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Un programme tabulaire relisible",
+    "instruction_fr": "Crée main avec h1 « Programme du club » et un texte annonçant des disponibilités fictives. Ajoute table#programme, caption « Ateliers fictifs du week-end », thead avec trois th scope=\"col\" : Atelier, Jour, Places. Dans tbody, deux lignes : th scope=\"row\" Semis puis td Samedi et 8 ; th scope=\"row\" Compost puis td Dimanche et 4. Ne transforme pas ces données en tableau de mise en page.",
+    "starter_code": "<main><h1>Programme du club</h1><table id=\"programme\"></table></main>\n",
+    "solution": "<main>\n  <h1>Programme du club</h1>\n  <p>Les disponibilités suivantes sont fictives.</p>\n  <table id=\"programme\">\n    <caption>Ateliers fictifs du week-end</caption>\n    <thead>\n      <tr><th scope=\"col\">Atelier</th><th scope=\"col\">Jour</th><th scope=\"col\">Places</th></tr>\n    </thead>\n    <tbody>\n      <tr><th scope=\"row\">Semis</th><td>Samedi</td><td>8</td></tr>\n      <tr><th scope=\"row\">Compost</th><td>Dimanche</td><td>4</td></tr>\n    </tbody>\n  </table>\n</main>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Programme et axes",
+        "checks": [
+          {
+            "selector": "main > h1",
+            "textIncludes": "Programme du club"
+          },
+          {
+            "selector": "#programme > caption",
+            "textIncludes": "Ateliers fictifs du week-end"
+          },
+          {
+            "selector": "#programme thead th[scope=\"col\"]",
+            "count": 3
+          },
+          {
+            "selector": "#programme tbody th[scope=\"row\"]",
+            "count": 2
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Lecture des deux lignes",
+        "checks": [
+          {
+            "selector": "main > p",
+            "textIncludes": "fictives"
+          },
+          {
+            "selector": "#programme thead th:nth-child(2)",
+            "textIncludes": "Jour"
+          },
+          {
+            "selector": "#programme thead th:nth-child(3)",
+            "textIncludes": "Places"
+          },
+          {
+            "selector": "#programme tbody tr:nth-child(1) th",
+            "textIncludes": "Semis"
+          },
+          {
+            "selector": "#programme tbody tr:nth-child(1) td:nth-child(2)",
+            "textIncludes": "Samedi"
+          },
+          {
+            "selector": "#programme tbody tr:nth-child(1) td:nth-child(3)",
+            "textIncludes": "8"
+          },
+          {
+            "selector": "#programme tbody tr:nth-child(2) th",
+            "textIncludes": "Compost"
+          },
+          {
+            "selector": "#programme tbody tr:nth-child(2) td:nth-child(2)",
+            "textIncludes": "Dimanche"
+          },
+          {
+            "selector": "#programme tbody tr:nth-child(2) td:nth-child(3)",
+            "textIncludes": "4"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "Chaque ligne représente un atelier ; chaque colonne garde le même sens.",
+      "Commence par caption et les trois intitulés, puis relis chaque donnée avec ses deux axes.",
+      "<main>\n  <h1>Programme du club</h1>\n  <p>Les disponibilités suivantes sont fictives.</p>\n  <table id=\"programme\">\n    <caption>Ateliers fictifs du week-end</caption>\n    <thead>\n      <tr><th scope=\"col\">Atelier</th><th scope=\"col\">Jour</th><th scope=\"col\">Places</th></tr>\n    </thead>\n    <tbody>\n      <tr><th scope=\"row\">Semis</th><td>Samedi</td><td>8</td></tr>\n      <tr><th scope=\"row\">Compost</th><td>Dimanche</td><td>4</td></tr>\n    </tbody>\n  </table>\n</main>"
+    ],
+    "explanation_fr": "La grille compare les ateliers de manière cohérente et annonce clairement son périmètre fictif.",
+    "common_wrong_answers": [],
+    "id": "htmi-m3-01-e4"
+  }
+]

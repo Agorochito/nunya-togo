@@ -1,0 +1,365 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Construire un choix exclusif",
+    "instruction_fr": "Crée un formulaire avec fieldset#atelier dont le premier enfant est legend « Choisir un atelier ». Ajoute deux radios #semis et #compost, avec name=\"atelier\" et value respectivement \"semis\" et \"compost\". Associe les labels « Semis » et « Compost » par for. Ajoute un bouton type=\"button\" et un texte indiquant que l’exemple est fictif.",
+    "starter_code": "<form><p>Semis ou compost</p><input id=\"semis\"><input id=\"compost\"></form>\n",
+    "solution": "<form>\n  <fieldset id=\"atelier\">\n    <legend>Choisir un atelier</legend>\n    <label for=\"semis\">Semis</label>\n    <input id=\"semis\" type=\"radio\" name=\"atelier\" value=\"semis\">\n    <label for=\"compost\">Compost</label>\n    <input id=\"compost\" type=\"radio\" name=\"atelier\" value=\"compost\">\n  </fieldset>\n  <p>Exemple fictif, sans inscription.</p>\n  <button type=\"button\">Voir la démonstration</button>\n</form>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Question et type de choix",
+        "checks": [
+          {
+            "selector": "#atelier > legend:first-child",
+            "textIncludes": "Choisir un atelier"
+          },
+          {
+            "selector": "#atelier input[type=\"radio\"][name=\"atelier\"]",
+            "count": 2
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Réponses distinctes et libellés",
+        "checks": [
+          {
+            "selector": "#semis",
+            "count": 1,
+            "attributes": {
+              "value": "semis"
+            }
+          },
+          {
+            "selector": "#compost",
+            "count": 1,
+            "attributes": {
+              "value": "compost"
+            }
+          },
+          {
+            "selector": "label[for=\"semis\"]",
+            "textIncludes": "Semis"
+          },
+          {
+            "selector": "label[for=\"compost\"]",
+            "textIncludes": "Compost"
+          },
+          {
+            "selector": "button",
+            "attributes": {
+              "type": "button"
+            }
+          },
+          {
+            "selector": "form p",
+            "textIncludes": "fictif"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "La légende donne la question commune, pas une troisième réponse.",
+      "Conserve un name identique pour les radios et des id uniques pour les labels.",
+      "<form>\n  <fieldset id=\"atelier\">\n    <legend>Choisir un atelier</legend>\n    <label for=\"semis\">Semis</label>\n    <input id=\"semis\" type=\"radio\" name=\"atelier\" value=\"semis\">\n    <label for=\"compost\">Compost</label>\n    <input id=\"compost\" type=\"radio\" name=\"atelier\" value=\"compost\">\n  </fieldset>\n  <p>Exemple fictif, sans inscription.</p>\n  <button type=\"button\">Voir la démonstration</button>\n</form>"
+    ],
+    "explanation_fr": "Les contrôles décrivent une seule question exclusive sans dépendre de leur disposition visuelle.",
+    "common_wrong_answers": [],
+    "id": "htmi-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Autoriser plusieurs équipements",
+    "instruction_fr": "Dans fieldset#materiel d’un formulaire, place d’abord legend « Matériel à prévoir ». Ajoute exactement deux cases à cocher #gants et #arrosoir, toutes deux name=\"materiel\", avec value=\"gants\" et value=\"arrosoir\". Chacune reçoit son label explicite « Gants » ou « Arrosoir ». Aucun bouton d’envoi n’est demandé.",
+    "starter_code": "<form><fieldset id=\"materiel\"><legend>Matériel à prévoir</legend><input id=\"gants\" type=\"radio\"><input id=\"arrosoir\" type=\"radio\"></fieldset></form>\n",
+    "solution": "<form>\n  <fieldset id=\"materiel\">\n    <legend>Matériel à prévoir</legend>\n    <label for=\"gants\">Gants</label>\n    <input id=\"gants\" type=\"checkbox\" name=\"materiel\" value=\"gants\">\n    <label for=\"arrosoir\">Arrosoir</label>\n    <input id=\"arrosoir\" type=\"checkbox\" name=\"materiel\" value=\"arrosoir\">\n  </fieldset>\n</form>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Plusieurs réponses sont possibles",
+        "checks": [
+          {
+            "selector": "#materiel > legend:first-child",
+            "textIncludes": "Matériel à prévoir"
+          },
+          {
+            "selector": "#materiel input[type=\"checkbox\"][name=\"materiel\"]",
+            "count": 2
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Les deux équipements sont identifiables",
+        "checks": [
+          {
+            "selector": "#gants",
+            "attributes": {
+              "value": "gants"
+            }
+          },
+          {
+            "selector": "#arrosoir",
+            "attributes": {
+              "value": "arrosoir"
+            }
+          },
+          {
+            "selector": "label[for=\"gants\"]",
+            "textIncludes": "Gants"
+          },
+          {
+            "selector": "label[for=\"arrosoir\"]",
+            "textIncludes": "Arrosoir"
+          },
+          {
+            "selector": "#materiel input[type=\"radio\"]",
+            "exists": false
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "Une case à cocher ne désélectionne pas automatiquement les autres.",
+      "Le name commun exprime le sujet ; les value distinguent les équipements.",
+      "<form>\n  <fieldset id=\"materiel\">\n    <legend>Matériel à prévoir</legend>\n    <label for=\"gants\">Gants</label>\n    <input id=\"gants\" type=\"checkbox\" name=\"materiel\" value=\"gants\">\n    <label for=\"arrosoir\">Arrosoir</label>\n    <input id=\"arrosoir\" type=\"checkbox\" name=\"materiel\" value=\"arrosoir\">\n  </fieldset>\n</form>"
+    ],
+    "explanation_fr": "Le groupe apporte le contexte, tandis que checkbox conserve des réponses indépendantes.",
+    "common_wrong_answers": [],
+    "id": "htmi-m2-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Séparer deux questions",
+    "instruction_fr": "Répare le formulaire en créant exactement deux fieldsets : #jour, première legend « Jour préféré », et #niveau, première legend « Expérience au jardin ». Les radios #samedi/#dimanche partagent seulement name=\"jour\" et les valeurs correspondantes ; #decouverte/#pratique partagent seulement name=\"niveau\" et value=\"decouverte\"/\"pratique\". Chaque radio reçoit un label for explicite « Samedi », « Dimanche », « Découverte » ou « Déjà pratiqué ».",
+    "starter_code": "<form><legend>Jour et expérience</legend><input id=\"samedi\" type=\"radio\" name=\"choix\"><input id=\"dimanche\" type=\"radio\" name=\"choix\"><input id=\"decouverte\" type=\"radio\" name=\"choix\"><input id=\"pratique\" type=\"radio\" name=\"choix\"></form>\n",
+    "solution": "<form>\n  <fieldset id=\"jour\">\n    <legend>Jour préféré</legend>\n    <label for=\"samedi\">Samedi</label>\n    <input id=\"samedi\" type=\"radio\" name=\"jour\" value=\"samedi\">\n    <label for=\"dimanche\">Dimanche</label>\n    <input id=\"dimanche\" type=\"radio\" name=\"jour\" value=\"dimanche\">\n  </fieldset>\n  <fieldset id=\"niveau\">\n    <legend>Expérience au jardin</legend>\n    <label for=\"decouverte\">Découverte</label>\n    <input id=\"decouverte\" type=\"radio\" name=\"niveau\" value=\"decouverte\">\n    <label for=\"pratique\">Déjà pratiqué</label>\n    <input id=\"pratique\" type=\"radio\" name=\"niveau\" value=\"pratique\">\n  </fieldset>\n</form>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Deux groupes réellement séparés",
+        "checks": [
+          {
+            "selector": "form fieldset",
+            "count": 2
+          },
+          {
+            "selector": "#jour > legend:first-child",
+            "textIncludes": "Jour préféré"
+          },
+          {
+            "selector": "#niveau > legend:first-child",
+            "textIncludes": "Expérience au jardin"
+          },
+          {
+            "selector": "#jour input[type=\"radio\"][name=\"jour\"]",
+            "count": 2
+          },
+          {
+            "selector": "#niveau input[type=\"radio\"][name=\"niveau\"]",
+            "count": 2
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Quatre associations sans mélange de groupe",
+        "checks": [
+          {
+            "selector": "#samedi",
+            "count": 1,
+            "attributes": {
+              "value": "samedi"
+            }
+          },
+          {
+            "selector": "#dimanche",
+            "count": 1,
+            "attributes": {
+              "value": "dimanche"
+            }
+          },
+          {
+            "selector": "#decouverte",
+            "count": 1,
+            "attributes": {
+              "value": "decouverte"
+            }
+          },
+          {
+            "selector": "#pratique",
+            "count": 1,
+            "attributes": {
+              "value": "pratique"
+            }
+          },
+          {
+            "selector": "label[for=\"samedi\"]",
+            "exists": true
+          },
+          {
+            "selector": "label[for=\"dimanche\"]",
+            "exists": true
+          },
+          {
+            "selector": "label[for=\"decouverte\"]",
+            "exists": true
+          },
+          {
+            "selector": "label[for=\"pratique\"]",
+            "exists": true
+          },
+          {
+            "selector": "input[name=\"choix\"]",
+            "exists": false
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "Le même name rend les quatre radios mutuellement exclusives.",
+      "Attribue un nom par question, puis garde des identifiants uniques pour les quatre réponses.",
+      "<form>\n  <fieldset id=\"jour\">\n    <legend>Jour préféré</legend>\n    <label for=\"samedi\">Samedi</label>\n    <input id=\"samedi\" type=\"radio\" name=\"jour\" value=\"samedi\">\n    <label for=\"dimanche\">Dimanche</label>\n    <input id=\"dimanche\" type=\"radio\" name=\"jour\" value=\"dimanche\">\n  </fieldset>\n  <fieldset id=\"niveau\">\n    <legend>Expérience au jardin</legend>\n    <label for=\"decouverte\">Découverte</label>\n    <input id=\"decouverte\" type=\"radio\" name=\"niveau\" value=\"decouverte\">\n    <label for=\"pratique\">Déjà pratiqué</label>\n    <input id=\"pratique\" type=\"radio\" name=\"niveau\" value=\"pratique\">\n  </fieldset>\n</form>"
+    ],
+    "explanation_fr": "Une relation HTML incorrecte peut modifier la sélection elle-même ; corriger uniquement la bordure ne réparerait pas le groupe.",
+    "common_wrong_answers": [],
+    "id": "htmi-m2-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Préparer une visite sans envoi",
+    "instruction_fr": "Construis main avec h1 « Préparer une visite fictive » et un formulaire. Dans fieldset#activite, première legend « Activité souhaitée », ajoute les radios #jardin/#cuisine name=\"activite\", value=\"jardin\"/\"cuisine\", avec labels. Dans fieldset#besoins, première legend « Équipements utiles », ajoute les checkboxes #tablier/#bottes name=\"besoins\" et leurs valeurs homonymes, avec labels. Termine par « Aucune demande réelle n’est envoyée. » et un bouton type=\"button\" « Examiner les choix ».",
+    "starter_code": "<main><h1>Préparer une visite fictive</h1><form></form></main>\n",
+    "solution": "<main>\n  <h1>Préparer une visite fictive</h1>\n  <form>\n    <fieldset id=\"activite\">\n      <legend>Activité souhaitée</legend>\n      <label for=\"jardin\">Jardin</label>\n      <input id=\"jardin\" type=\"radio\" name=\"activite\" value=\"jardin\">\n      <label for=\"cuisine\">Cuisine</label>\n      <input id=\"cuisine\" type=\"radio\" name=\"activite\" value=\"cuisine\">\n    </fieldset>\n    <fieldset id=\"besoins\">\n      <legend>Équipements utiles</legend>\n      <label for=\"tablier\">Tablier</label>\n      <input id=\"tablier\" type=\"checkbox\" name=\"besoins\" value=\"tablier\">\n      <label for=\"bottes\">Bottes</label>\n      <input id=\"bottes\" type=\"checkbox\" name=\"besoins\" value=\"bottes\">\n    </fieldset>\n    <p>Aucune demande réelle n’est envoyée.</p>\n    <button type=\"button\">Examiner les choix</button>\n  </form>\n</main>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Deux questions de nature différente",
+        "checks": [
+          {
+            "selector": "main > h1",
+            "textIncludes": "Préparer une visite fictive"
+          },
+          {
+            "selector": "#activite > legend:first-child",
+            "textIncludes": "Activité souhaitée"
+          },
+          {
+            "selector": "#activite input[type=\"radio\"][name=\"activite\"]",
+            "count": 2
+          },
+          {
+            "selector": "#besoins > legend:first-child",
+            "textIncludes": "Équipements utiles"
+          },
+          {
+            "selector": "#besoins input[type=\"checkbox\"][name=\"besoins\"]",
+            "count": 2
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Chaque réponse possède son label et sa valeur",
+        "checks": [
+          {
+            "selector": "#jardin",
+            "count": 1,
+            "attributes": {
+              "value": "jardin"
+            }
+          },
+          {
+            "selector": "#cuisine",
+            "count": 1,
+            "attributes": {
+              "value": "cuisine"
+            }
+          },
+          {
+            "selector": "#tablier",
+            "count": 1,
+            "attributes": {
+              "value": "tablier"
+            }
+          },
+          {
+            "selector": "#bottes",
+            "count": 1,
+            "attributes": {
+              "value": "bottes"
+            }
+          },
+          {
+            "selector": "label[for=\"jardin\"]",
+            "exists": true
+          },
+          {
+            "selector": "label[for=\"cuisine\"]",
+            "exists": true
+          },
+          {
+            "selector": "label[for=\"tablier\"]",
+            "exists": true
+          },
+          {
+            "selector": "label[for=\"bottes\"]",
+            "exists": true
+          },
+          {
+            "selector": "form p",
+            "textIncludes": "Aucune demande réelle"
+          },
+          {
+            "selector": "form button",
+            "attributes": {
+              "type": "button"
+            },
+            "textIncludes": "Examiner les choix"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "Identifie la question exclusive et la question à réponses multiples avant les balises.",
+      "Crée un fieldset par question ; associe ensuite chaque label à son input.",
+      "<main>\n  <h1>Préparer une visite fictive</h1>\n  <form>\n    <fieldset id=\"activite\">\n      <legend>Activité souhaitée</legend>\n      <label for=\"jardin\">Jardin</label>\n      <input id=\"jardin\" type=\"radio\" name=\"activite\" value=\"jardin\">\n      <label for=\"cuisine\">Cuisine</label>\n      <input id=\"cuisine\" type=\"radio\" name=\"activite\" value=\"cuisine\">\n    </fieldset>\n    <fieldset id=\"besoins\">\n      <legend>Équipements utiles</legend>\n      <label for=\"tablier\">Tablier</label>\n      <input id=\"tablier\" type=\"checkbox\" name=\"besoins\" value=\"tablier\">\n      <label for=\"bottes\">Bottes</label>\n      <input id=\"bottes\" type=\"checkbox\" name=\"besoins\" value=\"bottes\">\n    </fieldset>\n    <p>Aucune demande réelle n’est envoyée.</p>\n    <button type=\"button\">Examiner les choix</button>\n  </form>\n</main>"
+    ],
+    "explanation_fr": "Ce petit formulaire explique ses groupes et sa limite de démonstration, sans annoncer un service d’inscription inexistant.",
+    "common_wrong_answers": [],
+    "id": "htmi-m2-01-e4"
+  }
+]

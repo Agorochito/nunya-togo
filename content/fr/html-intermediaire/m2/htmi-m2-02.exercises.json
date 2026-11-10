@@ -1,0 +1,286 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Décrire une adresse électronique",
+    "instruction_fr": "Crée un formulaire avec label « Adresse électronique » for=\"courriel\" et input#courriel. Donne au champ name=\"courriel\", type=\"email\" et autocomplete=\"email\". Le libellé doit être visible dans le document ; un placeholder seul ne convient pas.",
+    "starter_code": "<form><input id=\"courriel\" placeholder=\"Adresse électronique\"></form>\n",
+    "solution": "<form>\n  <label for=\"courriel\">Adresse électronique</label>\n  <input id=\"courriel\" name=\"courriel\" type=\"email\" autocomplete=\"email\">\n</form>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Type et donnée attendue",
+        "checks": [
+          {
+            "selector": "#courriel",
+            "attributes": {
+              "type": "email",
+              "name": "courriel",
+              "autocomplete": "email"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Libellé et identifiant unique",
+        "checks": [
+          {
+            "selector": "#courriel",
+            "count": 1
+          },
+          {
+            "selector": "label[for=\"courriel\"]",
+            "textIncludes": "Adresse électronique"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "Nomme le contrôle avec label et la donnée avec name.",
+      "Le type et le jeton autocomplete sont tous deux email pour cette information.",
+      "<form>\n  <label for=\"courriel\">Adresse électronique</label>\n  <input id=\"courriel\" name=\"courriel\" type=\"email\" autocomplete=\"email\">\n</form>"
+    ],
+    "explanation_fr": "Le champ reste identifiable avant et pendant la saisie, avec un contrat de donnée explicite.",
+    "common_wrong_answers": [],
+    "id": "htmi-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Deux claviers, deux rôles",
+    "instruction_fr": "Crée un formulaire avec #telephone, label « Téléphone », name=\"telephone\", type=\"tel\", autocomplete=\"tel\", inputmode=\"tel\". Ajoute #code-postal avec label « Code postal français », name=\"code_postal\", type=\"text\", autocomplete=\"postal-code\", inputmode=\"numeric\", maxlength=\"5\" et pattern=\"[0-9]{5}\". Associe chaque label par for ; aucune soumission n’est attendue.",
+    "starter_code": "<form><input id=\"telephone\" type=\"number\"><input id=\"code-postal\" type=\"number\"></form>\n",
+    "solution": "<form>\n  <label for=\"telephone\">Téléphone</label>\n  <input id=\"telephone\" name=\"telephone\" type=\"tel\" autocomplete=\"tel\" inputmode=\"tel\">\n  <label for=\"code-postal\">Code postal français</label>\n  <input id=\"code-postal\" name=\"code_postal\" type=\"text\" autocomplete=\"postal-code\" inputmode=\"numeric\" maxlength=\"5\" pattern=\"[0-9]{5}\">\n</form>\n",
+    "visible_tests": [
+      {
+        "description_fr": "La nature des deux données",
+        "checks": [
+          {
+            "selector": "#telephone",
+            "attributes": {
+              "type": "tel",
+              "name": "telephone",
+              "autocomplete": "tel",
+              "inputmode": "tel"
+            }
+          },
+          {
+            "selector": "#code-postal",
+            "attributes": {
+              "type": "text",
+              "inputmode": "numeric",
+              "autocomplete": "postal-code"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Règle locale et libellés",
+        "checks": [
+          {
+            "selector": "#code-postal",
+            "attributes": {
+              "name": "code_postal",
+              "maxlength": "5",
+              "pattern": "[0-9]{5}"
+            }
+          },
+          {
+            "selector": "label[for=\"telephone\"]",
+            "textIncludes": "Téléphone"
+          },
+          {
+            "selector": "label[for=\"code-postal\"]",
+            "textIncludes": "Code postal français"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "Un code postal est un identifiant textuel, pas une quantité.",
+      "Le clavier suggéré et le motif de validité sont deux attributs différents.",
+      "<form>\n  <label for=\"telephone\">Téléphone</label>\n  <input id=\"telephone\" name=\"telephone\" type=\"tel\" autocomplete=\"tel\" inputmode=\"tel\">\n  <label for=\"code-postal\">Code postal français</label>\n  <input id=\"code-postal\" name=\"code_postal\" type=\"text\" autocomplete=\"postal-code\" inputmode=\"numeric\" maxlength=\"5\" pattern=\"[0-9]{5}\">\n</form>"
+    ],
+    "explanation_fr": "Les attributs facilitent la saisie sans supprimer les préfixes ou les zéros qui appartiennent à l’information.",
+    "common_wrong_answers": [],
+    "id": "htmi-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Un nom complet réellement nommé",
+    "instruction_fr": "Répare le champ du formulaire : crée label for=\"nom\" contenant « Nom complet » et un unique input#nom avec name=\"nom\", type=\"text\", autocomplete=\"name\". Supprime aria-label, dont le texte « Valeur » contredirait le label visible. Ne remplace pas le nom complet par un type numérique.",
+    "starter_code": "<form><span>Nom complet</span><input id=\"nom\" type=\"number\" aria-label=\"Valeur\"></form>\n",
+    "solution": "<form>\n  <label for=\"nom\">Nom complet</label>\n  <input id=\"nom\" name=\"nom\" type=\"text\" autocomplete=\"name\">\n</form>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Un champ textuel au rôle annoncé",
+        "checks": [
+          {
+            "selector": "#nom",
+            "attributes": {
+              "name": "nom",
+              "type": "text",
+              "autocomplete": "name",
+              "aria-label": null
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Une relation explicite",
+        "checks": [
+          {
+            "selector": "#nom",
+            "count": 1
+          },
+          {
+            "selector": "label[for=\"nom\"]",
+            "textIncludes": "Nom complet"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "Un texte près du champ n’est pas forcément son libellé associé.",
+      "Relie for à id et conserve un nom accessible cohérent avec le texte visible.",
+      "<form>\n  <label for=\"nom\">Nom complet</label>\n  <input id=\"nom\" name=\"nom\" type=\"text\" autocomplete=\"name\">\n</form>"
+    ],
+    "explanation_fr": "Le contrôle conserve son identité, le nom de sa donnée et un nom compréhensible par les lecteurs.",
+    "common_wrong_answers": [],
+    "id": "htmi-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Une fiche de coordonnées fictives",
+    "instruction_fr": "Crée main avec h1 « Coordonnées de démonstration » et un formulaire : #nom (label « Nom complet », name=\"nom\", type=\"text\", autocomplete=\"name\"), #courriel (label « Adresse électronique », name=\"courriel\", type=\"email\", autocomplete=\"email\") et #code-postal (label « Code postal français », name=\"code_postal\", type=\"text\", autocomplete=\"postal-code\", inputmode=\"numeric\", maxlength=\"5\", pattern=\"[0-9]{5}\"). Relie les labels par for. Ajoute « Ces coordonnées fictives ne sont pas envoyées. » et un bouton type=\"button\" « Examiner la fiche ».",
+    "starter_code": "<main><h1>Coordonnées de démonstration</h1><form></form></main>\n",
+    "solution": "<main>\n  <h1>Coordonnées de démonstration</h1>\n  <form>\n    <label for=\"nom\">Nom complet</label>\n    <input id=\"nom\" name=\"nom\" type=\"text\" autocomplete=\"name\">\n    <label for=\"courriel\">Adresse électronique</label>\n    <input id=\"courriel\" name=\"courriel\" type=\"email\" autocomplete=\"email\">\n    <label for=\"code-postal\">Code postal français</label>\n    <input id=\"code-postal\" name=\"code_postal\" type=\"text\" autocomplete=\"postal-code\" inputmode=\"numeric\" maxlength=\"5\" pattern=\"[0-9]{5}\">\n    <p>Ces coordonnées fictives ne sont pas envoyées.</p>\n    <button type=\"button\">Examiner la fiche</button>\n  </form>\n</main>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Trois données correctement typées",
+        "checks": [
+          {
+            "selector": "main h1",
+            "textIncludes": "Coordonnées de démonstration"
+          },
+          {
+            "selector": "#nom",
+            "attributes": {
+              "type": "text",
+              "name": "nom",
+              "autocomplete": "name"
+            }
+          },
+          {
+            "selector": "#courriel",
+            "attributes": {
+              "type": "email",
+              "name": "courriel",
+              "autocomplete": "email"
+            }
+          },
+          {
+            "selector": "#code-postal",
+            "attributes": {
+              "type": "text",
+              "name": "code_postal",
+              "inputmode": "numeric",
+              "autocomplete": "postal-code"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Libellés, borne locale et limite de la démonstration",
+        "checks": [
+          {
+            "selector": "#nom",
+            "count": 1
+          },
+          {
+            "selector": "#courriel",
+            "count": 1
+          },
+          {
+            "selector": "#code-postal",
+            "count": 1
+          },
+          {
+            "selector": "label[for=\"nom\"]",
+            "exists": true
+          },
+          {
+            "selector": "label[for=\"courriel\"]",
+            "exists": true
+          },
+          {
+            "selector": "label[for=\"code-postal\"]",
+            "exists": true
+          },
+          {
+            "selector": "#code-postal",
+            "attributes": {
+              "maxlength": "5",
+              "pattern": "[0-9]{5}"
+            }
+          },
+          {
+            "selector": "form p",
+            "textIncludes": "ne sont pas envoyées"
+          },
+          {
+            "selector": "button",
+            "attributes": {
+              "type": "button"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "Choisis les attributs d’après chaque donnée, puis vérifie les labels.",
+      "Ne partage pas les id ; le code postal reste textuel avec une indication de clavier.",
+      "<main>\n  <h1>Coordonnées de démonstration</h1>\n  <form>\n    <label for=\"nom\">Nom complet</label>\n    <input id=\"nom\" name=\"nom\" type=\"text\" autocomplete=\"name\">\n    <label for=\"courriel\">Adresse électronique</label>\n    <input id=\"courriel\" name=\"courriel\" type=\"email\" autocomplete=\"email\">\n    <label for=\"code-postal\">Code postal français</label>\n    <input id=\"code-postal\" name=\"code_postal\" type=\"text\" autocomplete=\"postal-code\" inputmode=\"numeric\" maxlength=\"5\" pattern=\"[0-9]{5}\">\n    <p>Ces coordonnées fictives ne sont pas envoyées.</p>\n    <button type=\"button\">Examiner la fiche</button>\n  </form>\n</main>"
+    ],
+    "explanation_fr": "La fiche associe aide à la saisie, noms de données et périmètre honnête de démonstration.",
+    "common_wrong_answers": [],
+    "id": "htmi-m2-02-e4"
+  }
+]

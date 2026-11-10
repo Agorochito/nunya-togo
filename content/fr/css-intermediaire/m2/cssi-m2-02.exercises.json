@@ -1,0 +1,288 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Réparer une référence insécable",
+    "instruction_fr": "Garde body sans marge, .ligne flex/gap16px, .repere flex:0 0 64px et .texte flex:1 1 0px. Sur .texte, remplace le minimum automatique par min-width:0 et autorise overflow-wrap:anywhere. Ne masque ni ne remplace le texte.",
+    "starter_code": "body { margin: 0; }\n.ligne { display: flex; gap: 16px; }\n.repere { flex: 0 0 64px; }\n.texte { flex: 1 1 0px; min-width: auto; overflow-wrap: normal; }",
+    "solution": "body { margin: 0; }\n.ligne { display: flex; gap: 16px; }\n.repere { flex: 0 0 64px; }\n.texte {\n  flex: 1 1 0px;\n  min-width: 0;\n  overflow-wrap: anywhere;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Référence dans la place restante",
+        "checks": [
+          {
+            "selector": "#texte",
+            "style": {
+              "min-width": "0px",
+              "overflow-wrap": "anywhere",
+              "width": "280px"
+            },
+            "textIncludes": "ReferenceDePreparationDuClubSansEspacePourObserverLeDebordement"
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Élargissement réel sans largeur figée",
+        "checks": [
+          {
+            "selector": "#texte",
+            "style": {
+              "width": "640px",
+              "overflow-wrap": "anywhere"
+            },
+            "textIncludes": "ReferenceDePreparationDuClubSansEspacePourObserverLeDebordement"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Le facteur shrink ne supprime pas le minimum automatique.",
+      "La boîte et le texte demandent chacun une règle.",
+      "Utilise min-width:0 sur l’enfant flexible et overflow-wrap:anywhere pour la chaîne."
+    ],
+    "explanation_fr": "Le contrôle à deux largeurs évite de remplacer la disposition par une largeur finale fixe.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"ligne\"><span class=\"repere\">Club</span><p class=\"texte\" id=\"texte\">ReferenceDePreparationDuClubSansEspacePourObserverLeDebordement</p></main>",
+    "id": "cssi-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Tronquer seulement un libellé secondaire",
+    "instruction_fr": "Conserve body sans marge, .ligne flex/gap8px, .action border-box/flex:0 0 88px. .libelle reçoit flex:1 1 0px, min-width:0, white-space:nowrap, overflow:hidden et text-overflow:ellipsis. Le bouton reste entier et le texte complet du libellé reste dans le HTML.",
+    "starter_code": "body { margin: 0; }\n.ligne { display: flex; gap: 8px; }\n.action { box-sizing: border-box; flex: 0 0 88px; }\n.libelle { flex: 1 1 0px; text-overflow: ellipsis; }",
+    "solution": "body { margin: 0; }\n.ligne { display: flex; gap: 8px; }\n.action { box-sizing: border-box; flex: 0 0 88px; }\n.libelle {\n  flex: 1 1 0px;\n  min-width: 0;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Les conditions de l’ellipse sont réunies",
+        "checks": [
+          {
+            "selector": "#libelle",
+            "style": {
+              "min-width": "0px",
+              "white-space": "nowrap",
+              "overflow-x": "hidden",
+              "text-overflow": "ellipsis",
+              "width": "264px"
+            },
+            "textIncludes": "ReferenceDePreparationDuClubSansEspacePourObserverLeDebordement"
+          },
+          {
+            "selector": ".action",
+            "style": {
+              "width": "88px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "La limite suit la largeur disponible",
+        "checks": [
+          {
+            "selector": "#libelle",
+            "style": {
+              "width": "624px",
+              "white-space": "nowrap",
+              "text-overflow": "ellipsis"
+            },
+            "textIncludes": "ReferenceDePreparationDuClubSansEspacePourObserverLeDebordementReferenceDePreparationDuClubSansEspacePourObserverLeDebordement"
+          },
+          {
+            "selector": ".action",
+            "style": {
+              "width": "88px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "text-overflow n’impose pas seul la ligne unique ni une boîte réductible.",
+      "Ajoute les règles au libellé, pas à toute la rangée.",
+      "Réunis min-width:0, nowrap, hidden et ellipsis sans changer la chaîne HTML."
+    ],
+    "explanation_fr": "La troncature reste une décision locale pour un texte secondaire.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"ligne\"><p class=\"libelle\" id=\"libelle\">ReferenceDePreparationDuClubSansEspacePourObserverLeDebordementReferenceDePreparationDuClubSansEspacePourObserverLeDebordement</p><button class=\"action\" type=\"button\">Examiner</button></main>",
+    "id": "cssi-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Corriger la taille au lieu de cacher toute la rangée",
+    "instruction_fr": "Le conteneur cache le défaut avec overflow:hidden. Rétablis overflow:visible sur .ligne. Sur .texte, utilise flex:1 1 0px, min-width:0 et overflow-wrap:anywhere. Garde le repère fixe64px, le gap16px et body sans marge. Le texte complet doit rester présent.",
+    "starter_code": "body { margin: 0; }\n.ligne { display: flex; gap: 16px; overflow: hidden; }\n.repere { flex: 0 0 64px; }\n.texte { flex: 1 1 0px; min-width: auto; overflow-wrap: normal; }",
+    "solution": "body { margin: 0; }\n.ligne {\n  display: flex;\n  gap: 16px;\n  overflow: visible;\n}\n.repere { flex: 0 0 64px; }\n.texte {\n  flex: 1 1 0px;\n  min-width: 0;\n  overflow-wrap: anywhere;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Défaut traité à sa source",
+        "checks": [
+          {
+            "selector": ".ligne",
+            "style": {
+              "overflow-x": "visible",
+              "overflow-y": "visible"
+            }
+          },
+          {
+            "selector": "#texte",
+            "style": {
+              "width": "280px",
+              "min-width": "0px",
+              "overflow-wrap": "anywhere"
+            },
+            "textIncludes": "ReferenceDePreparationDuClubSansEspacePourObserverLeDebordement"
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Aucune largeur finale imposée",
+        "checks": [
+          {
+            "selector": "#texte",
+            "style": {
+              "width": "640px"
+            },
+            "textIncludes": "ReferenceDePreparationDuClubSansEspacePourObserverLeDebordement"
+          },
+          {
+            "selector": ".ligne",
+            "style": {
+              "overflow-x": "visible"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Cacher le conteneur coupe les effets sans forcément régler la boîte.",
+      "Le minimum à modifier appartient au texte flexible.",
+      "Restaure visible sur la rangée puis combine minimum nul et coupure du texte."
+    ],
+    "explanation_fr": "Le résultat ne dépend plus d’un masquage global susceptible de couper d’autres informations.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"ligne\"><span class=\"repere\">Club</span><p class=\"texte\" id=\"texte\">ReferenceDePreparationDuClubSansEspacePourObserverLeDebordement</p></main>",
+    "id": "cssi-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Traiter deux rangées imbriquées",
+    "instruction_fr": "Body sans marge. .fiche flex/gap16px ; .vignette flex:0 0 64px ; .contenu flex:1 1 0px/min-width:0. .entete flex/align-items:center/gap8px ; .titre flex:1 1 0px/min-width:0/margin:0/overflow-wrap:anywhere ; .badge flex:0 0 40px. .description reçoit overflow-wrap:anywhere. Garde les textes entiers et aucune largeur finale fixe.",
+    "starter_code": "body { margin: 0; }\n.fiche { display: flex; gap: 16px; }\n.vignette { flex: 0 0 64px; }\n.contenu { flex: 1 1 0px; }\n.entete { display: flex; gap: 8px; }\n.titre { flex: 1 1 0px; margin: 0; }\n.badge { flex: 0 0 40px; }",
+    "solution": "body { margin: 0; }\n.fiche { display: flex; gap: 16px; }\n.vignette { flex: 0 0 64px; }\n.contenu { flex: 1 1 0px; min-width: 0; }\n.entete { display: flex; align-items: center; gap: 8px; }\n.titre {\n  flex: 1 1 0px;\n  min-width: 0;\n  margin: 0;\n  overflow-wrap: anywhere;\n}\n.badge { flex: 0 0 40px; }\n.description { overflow-wrap: anywhere; }",
+    "visible_tests": [
+      {
+        "description_fr": "Les deux enfants flexibles sont réductibles",
+        "checks": [
+          {
+            "selector": "#contenu",
+            "style": {
+              "min-width": "0px",
+              "width": "280px"
+            }
+          },
+          {
+            "selector": ".entete",
+            "style": {
+              "display": "flex",
+              "align-items": "center",
+              "column-gap": "8px"
+            }
+          },
+          {
+            "selector": "#titre",
+            "style": {
+              "min-width": "0px",
+              "width": "232px",
+              "overflow-wrap": "anywhere"
+            },
+            "textIncludes": "ReferenceDePreparationDuClubSansEspacePourObserverLeDebordement"
+          },
+          {
+            "selector": "#description",
+            "style": {
+              "overflow-wrap": "anywhere"
+            },
+            "textIncludes": "ReferenceDePreparationDuClubSansEspacePourObserverLeDebordement"
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Les deux niveaux se recalculent à 720px",
+        "checks": [
+          {
+            "selector": "#contenu",
+            "style": {
+              "width": "640px"
+            }
+          },
+          {
+            "selector": "#titre",
+            "style": {
+              "width": "592px",
+              "margin-left": "0px"
+            }
+          },
+          {
+            "selector": ".badge",
+            "style": {
+              "width": "40px"
+            }
+          },
+          {
+            "selector": ".vignette",
+            "style": {
+              "width": "64px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Dessine la rangée vignette/contenu puis la rangée titre/badge.",
+      "Chaque rangée possède son propre enfant flexible à minimum nul.",
+      "Applique min-width:0 aux deux niveaux et la coupure aux deux textes longs."
+    ],
+    "explanation_fr": "La correction imbriquée protège le titre et la description sans cacher les autres éléments.",
+    "common_wrong_answers": [],
+    "fixture_html": "<article class=\"fiche\"><span class=\"vignette\">Club</span><div class=\"contenu\" id=\"contenu\"><header class=\"entete\"><h2 class=\"titre\" id=\"titre\">ReferenceDePreparationDuClubSansEspacePourObserverLeDebordement</h2><span class=\"badge\">Info</span></header><p class=\"description\" id=\"description\">ReferenceDePreparationDuClubSansEspacePourObserverLeDebordementReferenceDePreparationDuClubSansEspacePourObserverLeDebordement</p></div></article>",
+    "id": "cssi-m2-02-e4"
+  }
+]

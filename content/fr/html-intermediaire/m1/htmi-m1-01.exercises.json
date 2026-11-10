@@ -1,0 +1,315 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Relier le raccourci au contenu",
+    "instruction_fr": "Crée un premier lien a#evitement « Aller au contenu principal » vers #contenu. Il précède nav nommé Principale, puis un seul main#contenu avec tabindex=-1, h1 « Programme du club » et p#programme « Lecture le samedi. ». Le nav relie #programme avec le texte Programme.",
+    "starter_code": "<a id=\"evitement\" href=\"#principal\">Aller au contenu</a>\n<nav><a href=\"#programme\">Programme</a></nav>\n<main id=\"contenu\"><h1>Programme du club</h1><p id=\"programme\">Lecture le samedi.</p></main>",
+    "solution": "<a id=\"evitement\" href=\"#contenu\">Aller au contenu principal</a>\n<nav aria-label=\"Principale\"><a href=\"#programme\">Programme</a></nav>\n<main id=\"contenu\" tabindex=\"-1\">\n  <h1>Programme du club</h1>\n  <p id=\"programme\">Lecture le samedi.</p>\n</main>",
+    "visible_tests": [
+      {
+        "description_fr": "Destination annoncée et présente",
+        "checks": [
+          {
+            "selector": "#evitement",
+            "attributes": {
+              "href": "#contenu"
+            },
+            "textIncludes": "Aller au contenu principal"
+          },
+          {
+            "selector": "main#contenu",
+            "attributes": {
+              "tabindex": "-1"
+            }
+          },
+          {
+            "selector": "nav",
+            "attributes": {
+              "aria-label": "Principale"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Un seul contenu et raccourci initial",
+        "checks": [
+          {
+            "selector": "main",
+            "count": 1
+          },
+          {
+            "selector": "body > a:first-child",
+            "attributes": {
+              "id": "evitement"
+            }
+          },
+          {
+            "selector": "main > h1",
+            "textIncludes": "Programme du club"
+          },
+          {
+            "selector": "nav a",
+            "attributes": {
+              "href": "#programme"
+            }
+          },
+          {
+            "selector": "main #programme",
+            "textIncludes": "Lecture le samedi."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La valeur après # doit être l’id exact de la cible.",
+      "Le lien vient avant les blocs répétés ; la cible reçoit tabindex=-1.",
+      "Nomme le nav et vérifie séparément le lien initial et le main."
+    ],
+    "explanation_fr": "La structure rend le trajet explicite, mais l’activation réelle du lien reste une vérification d’usage.",
+    "common_wrong_answers": [],
+    "id": "htmi-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Distinguer deux navigations",
+    "instruction_fr": "Crée nav#principale nommé Principale dans header, avec lien Programme vers #programme. main#programme contient h1 « Préparer les ateliers ». Ajoute aside#aide nommé par h2#titre-aide « Ressources utiles » avec aria-labelledby. Il contient nav#ressources nommé Ressources, lien « Matériel fictif » vers #materiel, et p#materiel « Cahiers et crayons. ».",
+    "starter_code": "<header><nav id=\"principale\"><a href=\"#programme\">Programme</a></nav></header>\n<main id=\"programme\"><h1>Préparer les ateliers</h1></main>\n<aside id=\"aide\"><h2 id=\"titre-aide\">Ressources utiles</h2><nav id=\"ressources\"><a href=\"#materiel\">Matériel fictif</a></nav><p id=\"materiel\">Cahiers et crayons.</p></aside>",
+    "solution": "<header>\n  <nav id=\"principale\" aria-label=\"Principale\">\n    <a href=\"#programme\">Programme</a>\n  </nav>\n</header>\n<main id=\"programme\"><h1>Préparer les ateliers</h1></main>\n<aside id=\"aide\" aria-labelledby=\"titre-aide\">\n  <h2 id=\"titre-aide\">Ressources utiles</h2>\n  <nav id=\"ressources\" aria-label=\"Ressources\">\n    <a href=\"#materiel\">Matériel fictif</a>\n  </nav>\n  <p id=\"materiel\">Cahiers et crayons.</p>\n</aside>",
+    "visible_tests": [
+      {
+        "description_fr": "Noms correspondant aux usages",
+        "checks": [
+          {
+            "selector": "nav#principale",
+            "attributes": {
+              "aria-label": "Principale"
+            }
+          },
+          {
+            "selector": "nav#ressources",
+            "attributes": {
+              "aria-label": "Ressources"
+            }
+          },
+          {
+            "selector": "aside#aide",
+            "attributes": {
+              "aria-labelledby": "titre-aide"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Titres et destinations reliés",
+        "checks": [
+          {
+            "selector": "nav",
+            "count": 2
+          },
+          {
+            "selector": "aside > h2#titre-aide",
+            "textIncludes": "Ressources utiles"
+          },
+          {
+            "selector": "#principale a",
+            "attributes": {
+              "href": "#programme"
+            }
+          },
+          {
+            "selector": "#ressources a",
+            "attributes": {
+              "href": "#materiel"
+            }
+          },
+          {
+            "selector": "aside #materiel",
+            "textIncludes": "Cahiers et crayons."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les deux groupes de liens ne servent pas la même tâche.",
+      "Le nom de l’aside provient du titre, ceux des nav sont directs.",
+      "Utilise aria-labelledby pour la référence et aria-label pour les deux textes courts."
+    ],
+    "explanation_fr": "Les repères ont des noms distincts sans ajouter des rôles redondants.",
+    "common_wrong_answers": [],
+    "id": "htmi-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Retirer une seconde région principale",
+    "instruction_fr": "Répare cette page : garde un seul main#contenu nommé par h1#titre-page « Ateliers de quartier ». Les conseils deviennent aside#conseils nommé par h2#titre-conseils « Conseils de préparation ». Retire le rôle main des conseils et conserve leurs paragraphes.",
+    "starter_code": "<main id=\"contenu\"><h1 id=\"titre-page\">Ateliers de quartier</h1><p>Deux activités fictives.</p></main>\n<div id=\"conseils\" role=\"main\"><h2 id=\"titre-conseils\">Conseils de préparation</h2><p>Lire la liste du matériel.</p></div>",
+    "solution": "<main id=\"contenu\" aria-labelledby=\"titre-page\">\n  <h1 id=\"titre-page\">Ateliers de quartier</h1>\n  <p>Deux activités fictives.</p>\n</main>\n<aside id=\"conseils\" aria-labelledby=\"titre-conseils\">\n  <h2 id=\"titre-conseils\">Conseils de préparation</h2>\n  <p>Lire la liste du matériel.</p>\n</aside>",
+    "visible_tests": [
+      {
+        "description_fr": "Rôles natifs distincts",
+        "checks": [
+          {
+            "selector": "main",
+            "count": 1
+          },
+          {
+            "selector": "aside#conseils",
+            "attributes": {
+              "aria-labelledby": "titre-conseils",
+              "role": null
+            }
+          },
+          {
+            "selector": "main#contenu",
+            "attributes": {
+              "aria-labelledby": "titre-page"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Informations préservées",
+        "checks": [
+          {
+            "selector": "[role=\"main\"]",
+            "exists": false
+          },
+          {
+            "selector": "main > h1#titre-page",
+            "textIncludes": "Ateliers de quartier"
+          },
+          {
+            "selector": "aside > h2#titre-conseils",
+            "textIncludes": "Conseils de préparation"
+          },
+          {
+            "selector": "aside p",
+            "textIncludes": "Lire la liste du matériel."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les conseils complètent le sujet principal.",
+      "L’élément aside porte déjà son sens ; aucun rôle main n’y est utile.",
+      "Remplace la boîte des conseils, puis relie chaque région à son titre."
+    ],
+    "explanation_fr": "Réparer le plan ne demande pas de supprimer les informations complémentaires.",
+    "common_wrong_answers": [],
+    "id": "htmi-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Préparer les repères d’une page de club",
+    "instruction_fr": "Crée la page fictive du club Horizon : premier lien #evitement vers #contenu, texte « Aller au contenu principal » ; header avec son nom ; nav#principale nommé Principale avec Ateliers/#ateliers et Horaires/#horaires ; un main#contenu tabindex=-1 nommé par h1#titre-page « Rencontres du club Horizon ». Ajoute sections #ateliers/h2 Ateliers et #horaires/h2 Horaires. Après main, aside#aide nommé par h2#titre-aide « Préparer sa venue », nav#secondaire nommé Préparation avec Matériel/#materiel et p#materiel. Footer annonce « Aucun service réel n’est connecté. ».",
+    "starter_code": "<header><p>Club Horizon — page fictive</p></header>\n<main id=\"contenu\"><h1 id=\"titre-page\">Rencontres du club Horizon</h1></main>",
+    "solution": "<a id=\"evitement\" href=\"#contenu\">Aller au contenu principal</a>\n<header><p>Club Horizon — page fictive</p></header>\n<nav id=\"principale\" aria-label=\"Principale\">\n  <a href=\"#ateliers\">Ateliers</a>\n  <a href=\"#horaires\">Horaires</a>\n</nav>\n<main id=\"contenu\" tabindex=\"-1\" aria-labelledby=\"titre-page\">\n  <h1 id=\"titre-page\">Rencontres du club Horizon</h1>\n  <section id=\"ateliers\"><h2>Ateliers</h2><p>Lecture et dessin.</p></section>\n  <section id=\"horaires\"><h2>Horaires</h2><p>Samedi matin.</p></section>\n</main>\n<aside id=\"aide\" aria-labelledby=\"titre-aide\">\n  <h2 id=\"titre-aide\">Préparer sa venue</h2>\n  <nav id=\"secondaire\" aria-label=\"Préparation\">\n    <a href=\"#materiel\">Matériel</a>\n  </nav>\n  <p id=\"materiel\">Utiliser des objets de démonstration.</p>\n</aside>\n<footer><p>Aucun service réel n’est connecté.</p></footer>",
+    "visible_tests": [
+      {
+        "description_fr": "Trajet principal",
+        "checks": [
+          {
+            "selector": "body > a:first-child",
+            "attributes": {
+              "id": "evitement",
+              "href": "#contenu"
+            },
+            "textIncludes": "Aller au contenu principal"
+          },
+          {
+            "selector": "#principale",
+            "attributes": {
+              "aria-label": "Principale"
+            }
+          },
+          {
+            "selector": "main#contenu",
+            "attributes": {
+              "tabindex": "-1",
+              "aria-labelledby": "titre-page"
+            }
+          },
+          {
+            "selector": "main h1#titre-page",
+            "textIncludes": "Rencontres du club Horizon"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Régions complémentaires et cibles",
+        "checks": [
+          {
+            "selector": "main",
+            "count": 1
+          },
+          {
+            "selector": "nav",
+            "count": 2
+          },
+          {
+            "selector": "#principale a[href=\"#ateliers\"]",
+            "exists": true
+          },
+          {
+            "selector": "#principale a[href=\"#horaires\"]",
+            "exists": true
+          },
+          {
+            "selector": "main section#ateliers > h2",
+            "textIncludes": "Ateliers"
+          },
+          {
+            "selector": "main section#horaires > h2",
+            "textIncludes": "Horaires"
+          },
+          {
+            "selector": "aside#aide",
+            "attributes": {
+              "aria-labelledby": "titre-aide"
+            }
+          },
+          {
+            "selector": "#aide > h2#titre-aide",
+            "textIncludes": "Préparer sa venue"
+          },
+          {
+            "selector": "#secondaire",
+            "attributes": {
+              "aria-label": "Préparation"
+            }
+          },
+          {
+            "selector": "#secondaire a",
+            "attributes": {
+              "href": "#materiel"
+            }
+          },
+          {
+            "selector": "#aide #materiel",
+            "exists": true
+          },
+          {
+            "selector": "footer p",
+            "textIncludes": "Aucun service réel n’est connecté."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Liste d’abord les destinations et les noms attendus.",
+      "Un seul main regroupe les deux rubriques ; l’aide reste complémentaire.",
+      "Contrôle chaque href et aria-labelledby contre l’id réel correspondant."
+    ],
+    "explanation_fr": "Le projet relie les repères entre eux et rend leurs usages explicables.",
+    "common_wrong_answers": [],
+    "id": "htmi-m1-01-e4"
+  }
+]

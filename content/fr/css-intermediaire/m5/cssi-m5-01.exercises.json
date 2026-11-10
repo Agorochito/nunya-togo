@@ -1,0 +1,264 @@
+[
+  {
+    "title_fr": "Un indicateur conditionnel sur le lien",
+    "instruction_fr": "Sur #programme : couleur#164e63 et soulignement au repos, aucun outline au repos. Sur #programme:focus : outline3px solid #9a3412 et outline-offset3px. Le test focalise réellement le lien. Ne mets pas le contour en permanence et ne change pas le HTML fourni.",
+    "starter_code": "body { font: 16px/1.5 sans-serif; }\n#programme { color: #164e63; text-decoration: underline; outline: none; }\n#programme:hover { outline: 3px solid #9a3412; outline-offset: 3px; }",
+    "solution": "body { font: 16px/1.5 sans-serif; }\n#programme { color: #164e63; text-decoration: underline; outline: none; }\n#programme:focus { outline: 3px solid #9a3412; outline-offset: 3px; }",
+    "visible_tests": [
+      {
+        "description_fr": "Un vrai focus reçoit le contour",
+        "checks": [
+          {
+            "selector": "#programme:focus",
+            "style": {
+              "outline-style": "solid",
+              "outline-width": "3px",
+              "outline-color": "#9a3412",
+              "outline-offset": "3px"
+            }
+          },
+          {
+            "selector": "#programme",
+            "style": {
+              "text-decoration-line": "underline"
+            }
+          }
+        ],
+        "focus_selector": "#programme"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Le repos demeure distinct",
+        "checks": [
+          {
+            "selector": "#programme",
+            "style": {
+              "outline-style": "none",
+              "text-decoration-line": "underline"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le survol n’est pas le focus.",
+      "Le correcteur appelle focus sur le lien, sans simuler la souris.",
+      "Place le contour dans #programme:focus, pas :hover."
+    ],
+    "explanation_fr": "Les deux cas distinguent l’état focalisé de la présentation de repos.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><h1>Commandes du club fictif</h1><a id=\"programme\" class=\"action\" href=\"#suite\">Lire le programme</a><button id=\"ajouter\" class=\"action\" type=\"button\">Ajouter à l’essai</button><div class=\"groupe\"><label for=\"note\">Note fictive</label><input id=\"note\" class=\"champ\" type=\"text\"><label for=\"autre\">Autre note fictive</label><input id=\"autre\" class=\"champ\" type=\"text\"></div><p id=\"suite\">Programme de démonstration, sans envoi.</p></main>",
+    "id": "cssi-m5-01-e1",
+    "kind": "guided"
+  },
+  {
+    "title_fr": "Repérer le champ et son groupe",
+    "instruction_fr": "Donne à .groupe une bordure2px solid #64748b et padding16px. Chaque .champ est display:block, sans outline au repos ; au focus outline3px solid #9a3412, offset2px. Lorsque n’importe quel descendant est focalisé, .groupe:focus-within reçoit border-color#164e63. Le groupe ne reçoit aucun tabindex ajouté.",
+    "starter_code": "body { font: 16px/1.5 sans-serif; }\n.groupe { border: 2px solid #64748b; padding: 16px; }\n.champ { display: block; margin-block: 8px 16px; outline: none; }\n.groupe:focus { border-color: #164e63; }\n.champ:focus { outline: 3px solid #9a3412; outline-offset: 2px; }",
+    "solution": "body { font: 16px/1.5 sans-serif; }\n.groupe { border: 2px solid #64748b; padding: 16px; }\n.champ { display: block; margin-block: 8px 16px; outline: none; }\n.groupe:focus-within { border-color: #164e63; }\n.champ:focus { outline: 3px solid #9a3412; outline-offset: 2px; }",
+    "visible_tests": [
+      {
+        "description_fr": "Le premier champ active le contexte",
+        "checks": [
+          {
+            "selector": "#note:focus",
+            "style": {
+              "outline-style": "solid",
+              "outline-width": "3px",
+              "outline-color": "#9a3412",
+              "outline-offset": "2px"
+            }
+          },
+          {
+            "selector": ".groupe:focus-within",
+            "style": {
+              "border-top-width": "2px",
+              "border-top-color": "#164e63",
+              "padding-top": "16px"
+            }
+          }
+        ],
+        "focus_selector": "#note"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Le second champ utilise la même règle",
+        "checks": [
+          {
+            "selector": "#autre:focus",
+            "style": {
+              "outline-style": "solid",
+              "outline-width": "3px",
+              "outline-color": "#9a3412",
+              "outline-offset": "2px"
+            }
+          },
+          {
+            "selector": ".groupe:focus-within",
+            "style": {
+              "border-top-color": "#164e63"
+            }
+          }
+        ],
+        "focus_selector": "#autre"
+      },
+      {
+        "description_fr": "Le groupe au repos garde sa bordure",
+        "checks": [
+          {
+            "selector": ".groupe",
+            "style": {
+              "border-top-color": "#64748b"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le groupe contient le focus, mais ne le reçoit pas lui-même.",
+      "La pseudo-classe nécessaire suit aussi ses descendants.",
+      "Utilise .groupe:focus-within pour la bordure contextuelle."
+    ],
+    "explanation_fr": "L’indicateur du groupe complète celui du champ ; il ne déplace pas le focus ni ne le rend ambigu.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><h1>Commandes du club fictif</h1><a id=\"programme\" class=\"action\" href=\"#suite\">Lire le programme</a><button id=\"ajouter\" class=\"action\" type=\"button\">Ajouter à l’essai</button><div class=\"groupe\"><label for=\"note\">Note fictive</label><input id=\"note\" class=\"champ\" type=\"text\"><label for=\"autre\">Autre note fictive</label><input id=\"autre\" class=\"champ\" type=\"text\"></div><p id=\"suite\">Programme de démonstration, sans envoi.</p></main>",
+    "id": "cssi-m5-01-e2",
+    "kind": "practice"
+  },
+  {
+    "title_fr": "Retirer une suppression globale contradictoire",
+    "instruction_fr": "Donne à .action couleur#164e63, fond white, bordure1px solid #164e63, padding8px12px et aucun outline au repos. Les liens .action restent soulignés. Au focus, liens et boutons ont outline3px solid #9a3412, offset3px. Répare la règle globale !important qui efface ce contour ; ne la compense pas par une nouvelle suppression.",
+    "starter_code": "body { font: 16px/1.5 sans-serif; }\n.action { color: #164e63; background: white; border: 1px solid #164e63; padding: 8px 12px; outline: none; }\na.action { text-decoration: underline; }\n.action:focus { outline: 3px solid #9a3412; outline-offset: 3px; }\n*:focus { outline: none !important; }",
+    "solution": "body { font: 16px/1.5 sans-serif; }\n.action { color: #164e63; background: white; border: 1px solid #164e63; padding: 8px 12px; outline: none; }\na.action { text-decoration: underline; }\n.action:focus { outline: 3px solid #9a3412; outline-offset: 3px; }",
+    "visible_tests": [
+      {
+        "description_fr": "Le bouton conserve le contour partagé",
+        "checks": [
+          {
+            "selector": "#ajouter:focus",
+            "style": {
+              "outline-style": "solid",
+              "outline-width": "3px",
+              "outline-color": "#9a3412",
+              "outline-offset": "3px"
+            }
+          }
+        ],
+        "focus_selector": "#ajouter"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Le lien partage la même règle",
+        "checks": [
+          {
+            "selector": "#programme:focus",
+            "style": {
+              "outline-style": "solid",
+              "outline-width": "3px",
+              "outline-color": "#9a3412",
+              "outline-offset": "3px"
+            }
+          },
+          {
+            "selector": "#programme",
+            "style": {
+              "text-decoration-line": "underline",
+              "border-top-width": "1px"
+            }
+          }
+        ],
+        "focus_selector": "#programme"
+      }
+    ],
+    "hints": [
+      "Le style local est correct mais une autre règle gagne la cascade.",
+      "La suppression globale !important touche aussi les deux contrôles.",
+      "Retire *:focus {outline:none!important} et garde la règle commune .action:focus."
+    ],
+    "explanation_fr": "Le débogage corrige l’origine de la contradiction au lieu d’empiler des exceptions.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><h1>Commandes du club fictif</h1><a id=\"programme\" class=\"action\" href=\"#suite\">Lire le programme</a><button id=\"ajouter\" class=\"action\" type=\"button\">Ajouter à l’essai</button><div class=\"groupe\"><label for=\"note\">Note fictive</label><input id=\"note\" class=\"champ\" type=\"text\"><label for=\"autre\">Autre note fictive</label><input id=\"autre\" class=\"champ\" type=\"text\"></div><p id=\"suite\">Programme de démonstration, sans envoi.</p></main>",
+    "id": "cssi-m5-01-e3",
+    "kind": "debug"
+  },
+  {
+    "title_fr": "Un petit ensemble de commandes cohérent",
+    "instruction_fr": "Assemble les critères des activités2/3 : deux .action lisibles, lien souligné, contour3px brun offset3 au focus ; champs block avec contour3px brun offset2 ; groupe bordure2px grise/padding16 devenant #164e63 sur focus-within. Le repos ne possède pas de contour. Conserve l’ordre et les labels du HTML fourni, sans parent qui coupe les outlines.",
+    "starter_code": "body { font: 16px/1.5 sans-serif; }\n.action { color: #164e63; background: white; border: 1px solid #164e63; padding: 8px 12px; outline: none; }\na.action { text-decoration: underline; }\n.action:focus { outline: 3px solid #9a3412; outline-offset: 3px; }\n.groupe { border: 2px solid #64748b; padding: 16px; }\n.champ { display: block; margin-block: 8px 16px; outline: none; }\n.groupe:focus-within { border-color: #164e63; }",
+    "solution": "body { font: 16px/1.5 sans-serif; }\n.action { color: #164e63; background: white; border: 1px solid #164e63; padding: 8px 12px; outline: none; }\na.action { text-decoration: underline; }\n.action:focus { outline: 3px solid #9a3412; outline-offset: 3px; }\n.groupe { border: 2px solid #64748b; padding: 16px; }\n.champ { display: block; margin-block: 8px 16px; outline: none; }\n.groupe:focus-within { border-color: #164e63; }\n.champ:focus { outline: 3px solid #9a3412; outline-offset: 2px; }",
+    "visible_tests": [
+      {
+        "description_fr": "Commande de navigation focalisée",
+        "checks": [
+          {
+            "selector": "#programme:focus",
+            "style": {
+              "outline-style": "solid",
+              "outline-width": "3px",
+              "outline-color": "#9a3412",
+              "outline-offset": "3px"
+            }
+          },
+          {
+            "selector": ".groupe",
+            "style": {
+              "border-top-color": "#64748b"
+            }
+          }
+        ],
+        "focus_selector": "#programme"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "La saisie est aussi repérable",
+        "checks": [
+          {
+            "selector": "#autre:focus",
+            "style": {
+              "outline-style": "solid",
+              "outline-width": "3px",
+              "outline-color": "#9a3412",
+              "outline-offset": "2px"
+            }
+          },
+          {
+            "selector": ".groupe:focus-within",
+            "style": {
+              "border-top-color": "#164e63"
+            }
+          }
+        ],
+        "focus_selector": "#autre"
+      },
+      {
+        "description_fr": "Le bouton reste cohérent",
+        "checks": [
+          {
+            "selector": "#ajouter:focus",
+            "style": {
+              "outline-style": "solid",
+              "outline-width": "3px",
+              "outline-color": "#9a3412",
+              "outline-offset": "3px"
+            }
+          }
+        ],
+        "focus_selector": "#ajouter"
+      }
+    ],
+    "hints": [
+      "Le système partagé doit couvrir aussi les saisies.",
+      "Le contexte de groupe ne remplace pas l’indicateur du champ.",
+      "Garde une règle .champ:focus en plus de .action:focus et de :focus-within."
+    ],
+    "explanation_fr": "Le mini-projet remobilise cascade, composants et indicateurs à plusieurs niveaux. Un parcours humain vérifie encore leur visibilité dans l’ensemble de la page.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><h1>Commandes du club fictif</h1><a id=\"programme\" class=\"action\" href=\"#suite\">Lire le programme</a><button id=\"ajouter\" class=\"action\" type=\"button\">Ajouter à l’essai</button><div class=\"groupe\"><label for=\"note\">Note fictive</label><input id=\"note\" class=\"champ\" type=\"text\"><label for=\"autre\">Autre note fictive</label><input id=\"autre\" class=\"champ\" type=\"text\"></div><p id=\"suite\">Programme de démonstration, sans envoi.</p></main>",
+    "id": "cssi-m5-01-e4",
+    "kind": "project"
+  }
+]

@@ -1,0 +1,299 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Passer d’une à deux colonnes",
+    "instruction_fr": "Écris la base sans condition : .cartes en grille d’une piste minmax(0, 1fr), gap 12px. À partir de 600px, demande deux pistes repeat(2, minmax(0, 1fr)) dans @media (min-width: 600px). Body reste sans marge.",
+    "starter_code": "body { margin: 0; }\n.cartes {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  gap: 12px;\n}",
+    "solution": "body { margin: 0; }\n.cartes {\n  display: grid;\n  grid-template-columns: minmax(0, 1fr);\n  gap: 12px;\n}\n@media (min-width: 600px) {\n  .cartes { grid-template-columns: repeat(2, minmax(0, 1fr)); }\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Une colonne à 360px",
+        "checks": [
+          {
+            "selector": "#cartes",
+            "style": {
+              "grid-template-columns": "360px",
+              "row-gap": "12px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      {
+        "description_fr": "Deux colonnes à 720px",
+        "checks": [
+          {
+            "selector": "#cartes",
+            "style": {
+              "grid-template-columns": "354px 354px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Une colonne juste sous le point de rupture",
+        "checks": [
+          {
+            "selector": "#cartes",
+            "style": {
+              "grid-template-columns": "560px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 560,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Les deux colonnes s’appliquent partout : rien ne dépend de la largeur.",
+      "La base doit décrire une seule piste.",
+      "Garde une piste dans .cartes et place les deux pistes dans @media (min-width: 600px)."
+    ],
+    "explanation_fr": "Les deux contrôles visibles prouvent l’adaptation ; le troisième vérifie le point de rupture.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"cartes\" id=\"cartes\"><article class=\"carte\">Lecture</article><article class=\"carte\">Jardin</article><article class=\"carte\">Échecs</article><article class=\"carte\">Chorale</article></main>",
+    "id": "cssi-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Faire pivoter une barre de liens",
+    "instruction_fr": "Sur .barre : display flex, flex-direction column, gap 8px, margin 0, padding 0 et list-style none. À partir de 640px : flex-direction row et gap 24px. Body reste sans marge.",
+    "starter_code": "body { margin: 0; }\n.barre {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}",
+    "solution": "body { margin: 0; }\n.barre {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n@media (min-width: 640px) {\n  .barre {\n    flex-direction: row;\n    gap: 24px;\n  }\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Liens empilés à 360px",
+        "checks": [
+          {
+            "selector": "#barre",
+            "style": {
+              "display": "flex",
+              "flex-direction": "column",
+              "row-gap": "8px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      {
+        "description_fr": "Liens en ligne à 720px",
+        "checks": [
+          {
+            "selector": "#barre",
+            "style": {
+              "flex-direction": "row",
+              "column-gap": "24px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Toujours empilés à 600px",
+        "checks": [
+          {
+            "selector": "#barre",
+            "style": {
+              "flex-direction": "column",
+              "row-gap": "8px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 600,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "La base est déjà correcte pour un téléphone.",
+      "Seules deux déclarations changent sur un écran large.",
+      "Ajoute @media (min-width: 640px) { .barre { flex-direction: row; gap: 24px; } }."
+    ],
+    "explanation_fr": "Le bloc conditionnel ne répète pas la base : il ne contient que ce qui change.",
+    "common_wrong_answers": [],
+    "fixture_html": "<nav aria-label=\"Rubriques\"><ul class=\"barre\" id=\"barre\"><li><a href=\"#lecture\">Lecture</a></li><li><a href=\"#jardin\">Jardin</a></li><li><a href=\"#echecs\">Échecs</a></li></ul></nav><p id=\"lecture\">Lecture</p><p id=\"jardin\">Jardin</p><p id=\"echecs\">Échecs</p>",
+    "id": "cssi-m4-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Remettre la base et la condition dans l’ordre",
+    "instruction_fr": "Les deux colonnes n’apparaissent jamais. La condition n’a pas d’unité et la règle de base est écrite après le bloc. Écris la base d’abord (une piste, gap 16px), puis @media (min-width: 600px) avec deux pistes.",
+    "starter_code": "body { margin: 0; }\n@media (min-width: 600) {\n  .cartes { grid-template-columns: repeat(2, minmax(0, 1fr)); }\n}\n.cartes {\n  display: grid;\n  grid-template-columns: minmax(0, 1fr);\n  gap: 16px;\n}",
+    "solution": "body { margin: 0; }\n.cartes {\n  display: grid;\n  grid-template-columns: minmax(0, 1fr);\n  gap: 16px;\n}\n@media (min-width: 600px) {\n  .cartes { grid-template-columns: repeat(2, minmax(0, 1fr)); }\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Une colonne à 360px",
+        "checks": [
+          {
+            "selector": "#cartes",
+            "style": {
+              "grid-template-columns": "360px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      {
+        "description_fr": "Deux colonnes à 720px",
+        "checks": [
+          {
+            "selector": "#cartes",
+            "style": {
+              "grid-template-columns": "352px 352px",
+              "column-gap": "16px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Deux colonnes dès 600px",
+        "checks": [
+          {
+            "selector": "#cartes",
+            "style": {
+              "grid-template-columns": "292px 292px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 600,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Deux défauts se cumulent : la condition et l’ordre.",
+      "Une longueur sans unité rend la media query invalide.",
+      "Écris 600px, puis déplace le bloc @media après la règle de base."
+    ],
+    "explanation_fr": "Une media query valide ne suffit pas : à spécificité égale, l’ordre décide.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"cartes\" id=\"cartes\"><article class=\"carte\">Lecture</article><article class=\"carte\">Jardin</article><article class=\"carte\">Échecs</article><article class=\"carte\">Chorale</article></main>",
+    "id": "cssi-m4-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Adapter une page complète",
+    "instruction_fr": "Base : .page en grille d’une piste minmax(0, 1fr) avec gap 16px ; .cartes en grille d’une piste minmax(0, 1fr) avec gap 16px. À partir de 600px : .page reçoit les pistes 180px et minmax(0, 1fr), .cartes deux pistes repeat(2, minmax(0, 1fr)). Une seule media query suffit.",
+    "starter_code": "body { margin: 0; }\n.page { display: block; }\n.cartes { display: block; }",
+    "solution": "body { margin: 0; }\n.page {\n  display: grid;\n  grid-template-columns: minmax(0, 1fr);\n  gap: 16px;\n}\n.cartes {\n  display: grid;\n  grid-template-columns: minmax(0, 1fr);\n  gap: 16px;\n}\n@media (min-width: 600px) {\n  .page { grid-template-columns: 180px minmax(0, 1fr); }\n  .cartes { grid-template-columns: repeat(2, minmax(0, 1fr)); }\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Page empilée à 360px",
+        "checks": [
+          {
+            "selector": "#page",
+            "style": {
+              "display": "grid",
+              "row-gap": "16px"
+            }
+          },
+          {
+            "selector": "#menu",
+            "style": {
+              "width": "360px"
+            }
+          },
+          {
+            "selector": "#cartes",
+            "style": {
+              "grid-template-columns": "360px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      {
+        "description_fr": "Page en deux zones à 720px",
+        "checks": [
+          {
+            "selector": "#menu",
+            "style": {
+              "width": "180px"
+            }
+          },
+          {
+            "selector": "#contenu",
+            "style": {
+              "width": "524px"
+            }
+          },
+          {
+            "selector": "#cartes",
+            "style": {
+              "grid-template-columns": "254px 254px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Toujours empilée à 560px",
+        "checks": [
+          {
+            "selector": "#menu",
+            "style": {
+              "width": "560px"
+            }
+          },
+          {
+            "selector": "#cartes",
+            "style": {
+              "grid-template-columns": "560px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 560,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Commence par la version empilée, sans condition.",
+      "Les deux améliorations partagent le même point de rupture.",
+      "Regroupe les règles de .page et de .cartes dans un seul bloc @media (min-width: 600px)."
+    ],
+    "explanation_fr": "La base reste lisible seule ; un bloc unique réunit tout ce qui change sur un écran large.",
+    "common_wrong_answers": [],
+    "fixture_html": "<div class=\"page\" id=\"page\"><nav class=\"menu\" id=\"menu\" aria-label=\"Rubriques\">Rubriques</nav><main class=\"contenu\" id=\"contenu\"><div class=\"cartes\" id=\"cartes\"><article class=\"carte\">Lecture</article><article class=\"carte\">Jardin</article></div></main></div>",
+    "id": "cssi-m4-01-e4"
+  }
+]

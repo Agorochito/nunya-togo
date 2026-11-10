@@ -1,0 +1,88 @@
+{
+  "id": "css-intermediaire",
+  "title_fr": "CSS : interfaces robustes et adaptatives",
+  "language": "css",
+  "runtime": "css",
+  "level": "intermediaire",
+  "summary_fr": "Maîtrise la cascade, les dimensions et les dispositions Flexbox/Grid. Adapte une interface aux petits écrans, aux contenus longs et aux états accessibles.",
+  "prerequisite_courses": [
+    "css-bases",
+    "html-bases"
+  ],
+  "prerequisites": [
+    "Avoir suivi le socle CSS et savoir lire ses exemples et ses règles.",
+    "Le programme reste consultable librement ; ses prérequis servent de repères."
+  ],
+  "outcomes": [
+    "Prévoir la cascade et choisir des propriétés adaptées au sens de lecture.",
+    "Répartir l’espace sans casser les contenus longs.",
+    "Composer des grilles et des zones de page réutilisables.",
+    "Adapter les composants et la typographie à plusieurs largeurs.",
+    "Préserver des états compréhensibles au clavier et dans plusieurs thèmes.",
+    "Livrer et relire un tableau de club adaptable."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Cascade maîtrisée",
+      "outcome_fr": "Prévoir la cascade et choisir des propriétés adaptées au sens de lecture.",
+      "lesson_ids": [
+        "cssi-m1-01",
+        "cssi-m1-02",
+        "cssi-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Flexbox robuste",
+      "outcome_fr": "Répartir l’espace sans casser les contenus longs.",
+      "lesson_ids": [
+        "cssi-m2-01",
+        "cssi-m2-02",
+        "cssi-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Grilles composables",
+      "outcome_fr": "Composer des grilles et des zones de page réutilisables.",
+      "lesson_ids": [
+        "cssi-m3-01",
+        "cssi-m3-02",
+        "cssi-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Interfaces adaptatives",
+      "outcome_fr": "Adapter les composants et la typographie à plusieurs largeurs.",
+      "lesson_ids": [
+        "cssi-m4-01",
+        "cssi-m4-02",
+        "cssi-m4-03"
+      ]
+    },
+    {
+      "id": "m5",
+      "title_fr": "États accessibles",
+      "outcome_fr": "Préserver des états compréhensibles au clavier et dans plusieurs thèmes.",
+      "lesson_ids": [
+        "cssi-m5-01",
+        "cssi-m5-02",
+        "cssi-m5-03"
+      ]
+    },
+    {
+      "id": "m6",
+      "title_fr": "Projet : tableau de club",
+      "outcome_fr": "Livrer et relire un tableau de club adaptable.",
+      "lesson_ids": [
+        "cssi-m6-01",
+        "cssi-m6-02",
+        "cssi-m6-03"
+      ]
+    }
+  ],
+  "status": "brouillon",
+  "reviewer": null
+}

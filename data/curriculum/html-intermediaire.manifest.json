@@ -1,0 +1,65 @@
+{
+  "id": "html-intermediaire",
+  "title_fr": "HTML : documents et formulaires accessibles",
+  "language": "html",
+  "runtime": "html",
+  "level": "intermediaire",
+  "summary_fr": "Consolide la structure des pages, les formulaires, les tableaux et la localisation. Construis un annuaire associatif complet, lisible et sans collecte réelle.",
+  "prerequisite_courses": [
+    "html-bases"
+  ],
+  "prerequisites": [
+    "Avoir suivi le socle HTML et savoir lire ses exemples et ses règles.",
+    "Le programme reste consultable librement ; ses prérequis servent de repères."
+  ],
+  "outcomes": [
+    "Relier des régions et des titres pour naviguer dans un document.",
+    "Guider les saisies et relier aides, groupes et erreurs.",
+    "Rendre explicites les relations dans les tableaux et les images.",
+    "Assembler et relire un annuaire associatif localisé."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Structure accessible",
+      "outcome_fr": "Relier des régions et des titres pour naviguer dans un document.",
+      "lesson_ids": [
+        "htmi-m1-01",
+        "htmi-m1-02",
+        "htmi-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Formulaires robustes",
+      "outcome_fr": "Guider les saisies et relier aides, groupes et erreurs.",
+      "lesson_ids": [
+        "htmi-m2-01",
+        "htmi-m2-02",
+        "htmi-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Documents et données",
+      "outcome_fr": "Rendre explicites les relations dans les tableaux et les images.",
+      "lesson_ids": [
+        "htmi-m3-01",
+        "htmi-m3-02",
+        "htmi-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Documents complets",
+      "outcome_fr": "Assembler et relire un annuaire associatif localisé.",
+      "lesson_ids": [
+        "htmi-m4-01",
+        "htmi-m4-02",
+        "htmi-m4-03"
+      ]
+    }
+  ],
+  "status": "brouillon",
+  "reviewer": null
+}

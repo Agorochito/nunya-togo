@@ -1,0 +1,227 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Écrire une base facile à remplacer",
+    "instruction_fr": "Conserve .message.important {color:maroon}. Écris ensuite la base :where(.message) avec color:navy et background-color:lavender. Les deux messages reçoivent le fond, mais seul le message normal reçoit la couleur navy. Aucun !important.",
+    "starter_code": ".message.important {\n  color: maroon;\n}\n#normal, #important {\n  color: navy;\n  background-color: lavender;\n}",
+    "solution": ".message.important {\n  color: maroon;\n}\n:where(.message) {\n  color: navy;\n  background-color: lavender;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Base du message normal",
+        "checks": [
+          {
+            "selector": "#normal",
+            "style": {
+              "color": "navy",
+              "background-color": "lavender"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Variante préservée malgré la base suivante",
+        "checks": [
+          {
+            "selector": "#important",
+            "style": {
+              "color": "maroon",
+              "background-color": "lavender"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La base ne doit pas imposer une spécificité supérieure à la variante.",
+      "Regroupe avec :where, qui ne contribue aucun poids.",
+      "Conserve la règle de variante et remplace la règle à identifiants par :where(.message)."
+    ],
+    "explanation_fr": "Le résultat explique une priorité sans augmenter le poids des variantes.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><p class=\"message\" id=\"normal\">Information</p><p class=\"message important\" id=\"important\">Priorité locale</p></main>",
+    "id": "cssi-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Regrouper deux familles avec is",
+    "instruction_fr": "Écris une règle :is(.action, .lien) donnant color:navy, background-color:white, padding:8px et border:2px solid navy. Le bouton et le lien reçoivent les mêmes réglages visuels sans modifier leur HTML ni la couleur noire de #hors.",
+    "starter_code": ".action {\n  color: navy;\n  background-color: white;\n  padding: 8px;\n  border: 2px solid navy;\n}",
+    "solution": ":is(.action, .lien) {\n  color: navy;\n  background-color: white;\n  padding: 8px;\n  border: 2px solid navy;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Bouton ciblé",
+        "checks": [
+          {
+            "selector": "#bouton",
+            "style": {
+              "color": "navy",
+              "background-color": "white",
+              "padding-top": "8px",
+              "border-top-width": "2px",
+              "border-top-style": "solid"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Lien également ciblé sans effet global",
+        "checks": [
+          {
+            "selector": "#lien",
+            "style": {
+              "color": "navy",
+              "background-color": "white",
+              "padding-left": "8px",
+              "border-top-color": "navy"
+            }
+          },
+          {
+            "selector": "#hors",
+            "style": {
+              "color": "black"
+            }
+          },
+          {
+            "selector": "a#lien",
+            "attributes": {
+              "href": "#destination"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La règle actuelle ne sélectionne qu’une seule des deux familles.",
+      "La liste dans :is contient les deux classes.",
+      "Conserve les propriétés et remplace le sélecteur par :is(.action, .lien)."
+    ],
+    "explanation_fr": "L’unification concerne la présentation, pas le type ni le comportement des éléments.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><button class=\"action\" id=\"bouton\" type=\"button\">Préparer</button><a class=\"lien\" id=\"lien\" href=\"#destination\">Lire la fiche</a><p id=\"destination\">Fiche fictive</p><span id=\"hors\" style=\"color:black\">Hors groupe</span></main>",
+    "id": "cssi-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Retirer le poids inattendu d’une alternative",
+    "instruction_fr": "La base :is(.carte,#urgence) .titre empêche .carte .titre de gagner. Remplace uniquement :is par :where dans la base. Garde les deux règles et leurs couleurs : les deux titres doivent devenir teal. Ne change pas les identifiants et n’utilise pas !important.",
+    "starter_code": ":is(.carte, #urgence) .titre {\n  color: navy;\n}\n.carte .titre {\n  color: teal;\n}",
+    "solution": ":where(.carte, #urgence) .titre {\n  color: navy;\n}\n.carte .titre {\n  color: teal;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Titre de carte sans identifiant urgent",
+        "checks": [
+          {
+            "selector": "#normal",
+            "style": {
+              "color": "teal"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Même résultat sur la variante portant un id",
+        "checks": [
+          {
+            "selector": "#urgent",
+            "style": {
+              "color": "teal"
+            }
+          },
+          {
+            "selector": "article#urgence",
+            "attributes": {
+              "id": "urgence"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La liste de :is utilise le poids de son argument le plus spécifique.",
+      "Le groupe doit être une base à poids nul pour laisser la règle de deux classes agir.",
+      "Change le groupe vers :where et conserve la classe .titre à l’extérieur."
+    ],
+    "explanation_fr": "La classe extérieure compte encore, mais les arguments de :where ne renforcent plus la base.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><article class=\"carte\"><h2 class=\"titre\" id=\"normal\">Lecture</h2></article><article class=\"carte\" id=\"urgence\"><h2 class=\"titre\" id=\"urgent\">Jardin</h2></article></main>",
+    "id": "cssi-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Composer base, variante et contrôles hérités",
+    "instruction_fr": "Écris :where(.carte) avec color:navy et border:2px solid navy ; .carte.alerte remplace color et border-color par maroon. :is(.action,.lien) reçoit color:inherit, background-color:white et padding:8px. Les enfants suivent leur carte ; #hors reste noir. Aucun !important ni sélecteur par id dans la feuille.",
+    "starter_code": ".carte {\n  color: navy;\n  border: 2px solid navy;\n}\n:is(.action, .lien) {\n  color: navy;\n  background-color: white;\n  padding: 8px;\n}",
+    "solution": ":where(.carte) {\n  color: navy;\n  border: 2px solid navy;\n}\n.carte.alerte {\n  color: maroon;\n  border-color: maroon;\n}\n:is(.action, .lien) {\n  color: inherit;\n  background-color: white;\n  padding: 8px;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Composant standard et portée locale",
+        "checks": [
+          {
+            "selector": "#standard",
+            "style": {
+              "color": "navy",
+              "border-top-color": "navy"
+            }
+          },
+          {
+            "selector": "#lien-standard",
+            "style": {
+              "color": "navy",
+              "padding-left": "8px",
+              "background-color": "white"
+            }
+          },
+          {
+            "selector": "#hors",
+            "style": {
+              "color": "black"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Variante propagée aux enfants",
+        "checks": [
+          {
+            "selector": "#alerte",
+            "style": {
+              "color": "maroon",
+              "border-top-color": "maroon"
+            }
+          },
+          {
+            "selector": "#titre-alerte",
+            "style": {
+              "color": "maroon"
+            }
+          },
+          {
+            "selector": "#bouton-alerte",
+            "style": {
+              "color": "maroon",
+              "padding-top": "8px",
+              "background-color": "white"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le composant fournit la couleur, les contrôles peuvent l’hériter.",
+      "La variante possède une spécificité supérieure à la base légère.",
+      "Sépare les trois responsabilités dans trois règles lisibles."
+    ],
+    "explanation_fr": "La variante change une décision commune sans réécrire les couleurs de tous ses enfants.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main style=\"color:black\"><article class=\"carte\" id=\"standard\"><h2 id=\"titre-standard\">Lecture</h2><a class=\"lien\" id=\"lien-standard\" href=\"#details\">Détails</a></article><article class=\"carte alerte\" id=\"alerte\"><h2 id=\"titre-alerte\">Changement fictif</h2><button class=\"action\" id=\"bouton-alerte\" type=\"button\">Examiner</button></article><p id=\"details\">Détails fictifs.</p><p id=\"hors\">Texte extérieur</p></main>",
+    "id": "cssi-m1-02-e4"
+  }
+]

@@ -1,0 +1,332 @@
+---
+{
+  "id": "cssi-m4-01",
+  "title_fr": "Adapter une disposition avec des media queries",
+  "course": "css-intermediaire",
+  "module": "m4",
+  "order": 10,
+  "minutes": 20,
+  "prerequisites": [
+    "cssi-m3-03"
+  ],
+  "outcomes": [
+    "Écrire une feuille « mobile d’abord » et l’enrichir avec @media (min-width).",
+    "Choisir un point de rupture d’après le contenu et prouver l’adaptation à deux largeurs."
+  ],
+  "idea_fr": "Une media query n’est pas une seconde feuille de style : c’est une condition qui ajoute quelques règles à une base déjà utilisable.",
+  "analogy_fr": "Une recette de base convient à deux personnes ; une note précise seulement ce qui change quand on cuisine pour dix.",
+  "examples": [
+    {
+      "code": "body { margin: 0; }\n.cartes {\n  display: grid;\n  grid-template-columns: minmax(0, 1fr);\n  gap: 16px;\n}\n@media (min-width: 600px) {\n  .cartes { grid-template-columns: repeat(2, minmax(0, 1fr)); }\n}",
+      "expected_output": "À 360px, la condition est fausse : la grille garde une colonne de 360px.",
+      "inputs": [],
+      "trace_fr": [
+        "La règle de base crée une seule piste.",
+        "La fenêtre mesure 360px : (min-width: 600px) est fausse.",
+        "Le bloc @media est ignoré.",
+        "La piste unique occupe toute la largeur : 360px."
+      ],
+      "browser_test": {
+        "description_fr": "Base à une colonne",
+        "checks": [
+          {
+            "selector": "#cartes",
+            "style": {
+              "display": "grid",
+              "grid-template-columns": "360px",
+              "row-gap": "16px"
+            }
+          },
+          {
+            "selector": ".carte",
+            "style": {
+              "width": "360px"
+            },
+            "count": 4
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      },
+      "fixture_html": "<main class=\"cartes\" id=\"cartes\"><article class=\"carte\">Lecture</article><article class=\"carte\">Jardin</article><article class=\"carte\">Échecs</article><article class=\"carte\">Chorale</article></main>"
+    },
+    {
+      "code": "body { margin: 0; }\n.page {\n  display: grid;\n  grid-template-columns: minmax(0, 1fr);\n  gap: 16px;\n}\n.menu {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n@media (min-width: 600px) {\n  .page { grid-template-columns: 200px minmax(0, 1fr); }\n}",
+      "expected_output": "À 720px, la condition est vraie : le menu occupe une piste de 200px et le contenu les 504px restants.",
+      "inputs": [],
+      "trace_fr": [
+        "La fenêtre mesure 720px : (min-width: 600px) est vraie.",
+        "La règle du bloc remplace la piste unique par deux pistes.",
+        "Le menu reçoit 200px.",
+        "Le contenu reçoit 720 − 200 − 16 = 504px."
+      ],
+      "browser_test": {
+        "description_fr": "Page enrichie à 720px",
+        "checks": [
+          {
+            "selector": "#page",
+            "style": {
+              "grid-template-columns": "200px 504px"
+            }
+          },
+          {
+            "selector": "#contenu",
+            "style": {
+              "width": "504px"
+            }
+          },
+          {
+            "selector": "#menu",
+            "style": {
+              "display": "flex",
+              "flex-direction": "column"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      },
+      "fixture_html": "<div class=\"page\" id=\"page\"><nav aria-label=\"Rubriques\"><ul class=\"menu\" id=\"menu\"><li><a href=\"#lecture\">Lecture</a></li><li><a href=\"#jardin\">Jardin</a></li></ul></nav><main id=\"contenu\"><h1>Club fictif</h1><p id=\"lecture\">Lecture du mardi.</p><p id=\"jardin\">Jardin du jeudi.</p></main></div>"
+    }
+  ],
+  "common_mistakes": [
+    {
+      "error": "Écrire d’abord la version large, puis la « défaire » pour le téléphone",
+      "why_fr": "La base devient lourde et chaque correction risque un oubli.",
+      "fix_fr": "Pars de la disposition simple et ajoute les améliorations avec min-width."
+    },
+    {
+      "error": "Placer la règle de base après le bloc @media",
+      "why_fr": "À spécificité égale, la dernière règle écrite l’emporte.",
+      "fix_fr": "Écris la base d’abord, puis les conditions par largeur croissante."
+    },
+    {
+      "error": "Oublier l’unité dans la condition",
+      "why_fr": "La media query est invalide et son bloc ignoré.",
+      "fix_fr": "Écris toujours une longueur complète, par exemple 600px."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Que signifie « mobile d’abord » ?",
+      "options": [
+        "Interdire les écrans larges.",
+        "Écrire la disposition simple sans condition, puis l’enrichir avec min-width.",
+        "Écrire une feuille par modèle de téléphone.",
+        "Placer toutes les règles dans des media queries."
+      ],
+      "answer": 1,
+      "explanation": "La base fonctionne partout ; les conditions ajoutent des améliorations.",
+      "id": "cssi-m4-01-q1"
+    },
+    {
+      "question": "Une règle de base est écrite après un bloc @media qui cible le même sélecteur et la même propriété. Que se passe-t-il à 720px ?",
+      "options": [
+        "Le bloc @media gagne car il est plus spécifique.",
+        "Le navigateur affiche une erreur.",
+        "La règle de base l’emporte car elle est écrite en dernier.",
+        "Les deux valeurs sont additionnées."
+      ],
+      "answer": 2,
+      "explanation": "Une media query n’ajoute aucune spécificité : l’ordre décide.",
+      "id": "cssi-m4-01-q2"
+    },
+    {
+      "question": "Comment choisir un point de rupture ?",
+      "options": [
+        "En observant la largeur où le contenu devient inconfortable.",
+        "En reprenant la largeur du téléphone le plus vendu.",
+        "En utilisant toujours 1000px.",
+        "En ajoutant une condition tous les 50px."
+      ],
+      "answer": 0,
+      "explanation": "Le contenu indique le point de rupture, pas un appareil particulier.",
+      "id": "cssi-m4-01-q3"
+    }
+  ],
+  "glossary": [
+    {
+      "term": "media query",
+      "definition": "Condition qui applique un groupe de règles selon une caractéristique comme la largeur."
+    },
+    {
+      "term": "point de rupture",
+      "definition": "Largeur à partir de laquelle une disposition change."
+    },
+    {
+      "term": "mobile d’abord",
+      "definition": "Méthode qui part de la disposition simple et l’enrichit pour les écrans larges."
+    },
+    {
+      "term": "zone d’affichage",
+      "definition": "Surface de la fenêtre dans laquelle la page est rendue."
+    }
+  ],
+  "recap_fr": [
+    "Écrire une feuille « mobile d’abord » et l’enrichir avec @media (min-width).",
+    "Choisir un point de rupture d’après le contenu et prouver l’adaptation à deux largeurs.",
+    "Expliquer le choix réalisé et compléter les contrôles par une revue de l’usage."
+  ],
+  "tags": [
+    "css",
+    "intermédiaire",
+    "media query",
+    "point de rupture",
+    "mobile d’abord",
+    "zone d’affichage"
+  ],
+  "status": "brouillon",
+  "reviewer": null,
+  "last_reviewed": null,
+  "language": "css",
+  "runtime": "css",
+  "level": "intermediaire",
+  "technical_checked_on": "2026-11-09",
+  "environment_fr": "Feuille CSS réelle appliquée à la fixture HTML fournie dans une iframe isolée. Les contrôles lisent les styles calculés du navigateur aux dimensions annoncées. Aucun script, média distant, police distante, requête réseau ni envoi de formulaire. Les textes et structures sont fictifs.",
+  "references": [
+    {
+      "title": "MDN — @media",
+      "url": "https://developer.mozilla.org/fr/docs/Web/CSS/Reference/At-rules/@media"
+    },
+    {
+      "title": "MDN — Utiliser les media queries",
+      "url": "https://developer.mozilla.org/fr/docs/Web/CSS/Guides/Media_queries/Using"
+    },
+    {
+      "title": "WAI — Redistribution du contenu",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html"
+    },
+    {
+      "title": "W3C — Media Queries",
+      "url": "https://www.w3.org/TR/mediaqueries-5/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "MDN — @media",
+      "url": "https://developer.mozilla.org/fr/docs/Web/CSS/Reference/At-rules/@media",
+      "scope": "Référence technique primaire ; texte, exemples et exercices originaux Nunya.",
+      "last_checked": "2026-11-09"
+    },
+    {
+      "title": "MDN — Utiliser les media queries",
+      "url": "https://developer.mozilla.org/fr/docs/Web/CSS/Guides/Media_queries/Using",
+      "scope": "Référence technique primaire ; texte, exemples et exercices originaux Nunya.",
+      "last_checked": "2026-11-09"
+    },
+    {
+      "title": "WAI — Redistribution du contenu",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
+      "scope": "Référence technique primaire ; texte, exemples et exercices originaux Nunya.",
+      "last_checked": "2026-11-09"
+    },
+    {
+      "title": "W3C — Media Queries",
+      "url": "https://www.w3.org/TR/mediaqueries-5/",
+      "scope": "Référence technique primaire ; texte, exemples et exercices originaux Nunya.",
+      "last_checked": "2026-11-09"
+    }
+  ],
+  "technical_scope_fr": "Sous-ensemble intermédiaire des standards cités ; mécanismes consultés le 9 novembre 2026. Les contrôles locaux ne constituent pas une certification d’accessibilité."
+}
+---
+
+
+## Explication pas à pas
+
+Les grilles du module précédent s’adaptent seules tant qu’il s’agit de répéter des cartes. Certaines décisions ne se déduisent pourtant pas de l’espace libre : placer le menu à côté du contenu ou au-dessus, passer d’une à deux colonnes de texte, espacer davantage une barre de liens. Une media query exprime ce genre de décision : elle applique un groupe de règles seulement quand une condition est vraie, par exemple quand la zone d’affichage atteint une certaine largeur.
+
+La syntaxe tient en une ligne : @media (min-width: 600px) { … }. Les règles placées entre les accolades s’ajoutent aux autres dès que la largeur de la fenêtre atteint 600px. La condition doit comporter une unité : (min-width: 600) est invalide et le bloc entier est ignoré, sans message d’erreur.
+
+L’approche « mobile d’abord » consiste à écrire d’abord, hors de toute condition, la disposition la plus simple : une seule colonne, des éléments empilés. Cette base fonctionne partout, y compris sur un petit téléphone et une connexion lente. Les media queries ajoutent ensuite des améliorations pour les écrans plus larges. Dans le premier exemple, la grille possède une colonne ; à partir de 600px, une seule déclaration en demande deux. À 360px, la piste mesure 360px ; à 720px, deux pistes de 352px se partagent l’espace.
+
+Une media query n’augmente pas la spécificité. La règle écrite dans le bloc et la règle de base ont exactement le même poids : en cas d’égalité, la dernière écrite l’emporte. Si tu places la règle de base après le bloc @media, elle écrase l’amélioration à toutes les largeurs. L’ordre fait donc partie de la méthode : la base d’abord, les conditions ensuite, de la plus petite largeur à la plus grande. Le débogage de cette leçon corrige une feuille écrite dans le mauvais ordre.
+
+Où placer le point de rupture ? Pas sur la largeur d’un modèle de téléphone précis : il en existe des centaines, et de nouveaux apparaissent chaque année. Élargis lentement la fenêtre et repère le moment où la disposition devient inconfortable : lignes trop longues, grand vide, cartes étirées. C’est le contenu qui indique le point de rupture. Garde aussi leur nombre réduit : chaque condition supplémentaire est un cas de plus à vérifier.
+
+Le second exemple applique la même logique à une page. Le menu et le contenu sont empilés par défaut ; à partir de 600px, la page devient une grille dont la première piste réserve 200px au menu. Le HTML ne change pas : le menu précède le contenu dans le document comme à l’écran.
+
+Une adaptation ne se constate pas à une seule largeur. Les exercices proposent toujours deux contrôles, à 360px et à 720px : une feuille qui affiche deux colonnes partout réussit le second et échoue au premier. Complète ces mesures en redimensionnant toi-même la fenêtre autour du point de rupture, là où les défauts apparaissent le plus souvent.
+
+## Exemple guidé 1
+
+```css
+body { margin: 0; }
+.cartes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+@media (min-width: 600px) {
+  .cartes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+```
+
+HTML de cet exemple :
+
+```html
+<main class="cartes" id="cartes"><article class="carte">Lecture</article><article class="carte">Jardin</article><article class="carte">Échecs</article><article class="carte">Chorale</article></main>
+```
+
+Résultat attendu : À 360px, la condition est fausse : la grille garde une colonne de 360px.
+
+Trace :
+
+- La règle de base crée une seule piste.
+- La fenêtre mesure 360px : (min-width: 600px) est fausse.
+- Le bloc @media est ignoré.
+- La piste unique occupe toute la largeur : 360px.
+
+## Exemple guidé 2
+
+```css
+body { margin: 0; }
+.page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 600px) {
+  .page { grid-template-columns: 200px minmax(0, 1fr); }
+}
+```
+
+HTML de cet exemple :
+
+```html
+<div class="page" id="page"><nav aria-label="Rubriques"><ul class="menu" id="menu"><li><a href="#lecture">Lecture</a></li><li><a href="#jardin">Jardin</a></li></ul></nav><main id="contenu"><h1>Club fictif</h1><p id="lecture">Lecture du mardi.</p><p id="jardin">Jardin du jeudi.</p></main></div>
+```
+
+Résultat attendu : À 720px, la condition est vraie : le menu occupe une piste de 200px et le contenu les 504px restants.
+
+Trace :
+
+- La fenêtre mesure 720px : (min-width: 600px) est vraie.
+- La règle du bloc remplace la piste unique par deux pistes.
+- Le menu reçoit 200px.
+- Le contenu reçoit 720 − 200 − 16 = 504px.
+
+## Vérifier et expliquer
+
+Vérifie chaque exercice aux deux largeurs, puis redimensionne la fenêtre autour du point de rupture. La page doit rester utilisable juste avant et juste après.
+
+## Références techniques
+
+Explications et activités originales Nunya. Mécanismes vérifiés dans les sources primaires suivantes :
+
+- [MDN — @media](https://developer.mozilla.org/fr/docs/Web/CSS/Reference/At-rules/@media)
+- [MDN — Utiliser les media queries](https://developer.mozilla.org/fr/docs/Web/CSS/Guides/Media_queries/Using)
+- [WAI — Redistribution du contenu](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html)
+- [W3C — Media Queries](https://www.w3.org/TR/mediaqueries-5/)

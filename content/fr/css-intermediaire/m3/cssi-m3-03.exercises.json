@@ -1,0 +1,292 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Relier les espacements à une seule valeur",
+    "instruction_fr": "Sur .tableau, déclare --espace: 12px et utilise var(--espace) pour gap et padding. Sur .carte, la gouttière vaut calc(var(--espace) / 2). Garde les pistes existantes, body sans marge et .texte sans marge.",
+    "starter_code": "body { margin: 0; }\n.tableau {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  gap: 16px;\n  padding: 16px;\n}\n.carte {\n  display: grid;\n  grid-template-columns: 48px minmax(0, 1fr);\n  gap: 10px;\n}\n.texte { margin: 0; }",
+    "solution": "body { margin: 0; }\n.tableau {\n  --espace: 12px;\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  gap: var(--espace);\n  padding: var(--espace);\n}\n.carte {\n  display: grid;\n  grid-template-columns: 48px minmax(0, 1fr);\n  gap: calc(var(--espace) / 2);\n}\n.texte { margin: 0; }",
+    "visible_tests": [
+      {
+        "description_fr": "Espacements dérivés à 360px",
+        "checks": [
+          {
+            "selector": "#tableau",
+            "style": {
+              "column-gap": "12px",
+              "padding-left": "12px"
+            }
+          },
+          {
+            "selector": "#carte",
+            "style": {
+              "width": "162px",
+              "column-gap": "6px"
+            }
+          },
+          {
+            "selector": "#texte",
+            "style": {
+              "width": "108px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Mêmes proportions à 720px",
+        "checks": [
+          {
+            "selector": "#carte",
+            "style": {
+              "width": "342px",
+              "column-gap": "6px"
+            }
+          },
+          {
+            "selector": "#texte",
+            "style": {
+              "width": "288px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Trois valeurs différentes sont écrites à la main.",
+      "Déclare la propriété sur le tableau : les cartes en héritent.",
+      "Écris --espace: 12px, puis var(--espace) et calc(var(--espace) / 2)."
+    ],
+    "explanation_fr": "Une seule décision gouverne maintenant le padding et les deux gouttières.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"tableau\" id=\"tableau\"><article class=\"carte\" id=\"carte\"><span class=\"sigle\">Le</span><p class=\"texte\" id=\"texte\">Lecture du mardi</p></article><article class=\"carte\"><span class=\"sigle\">Ja</span><p class=\"texte\">Jardin du jeudi</p></article></main>",
+    "id": "cssi-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Organiser l’intérieur d’une carte",
+    "instruction_fr": "Sur .tableau : display grid et padding 16px. Sur .carte : display grid, pistes 64px et minmax(0, 1fr), gap 8px. Sur .details : display grid, deux pistes repeat(2, minmax(0, 1fr)), gap 8px. Sur .info : margin 0. Body reste sans marge.",
+    "starter_code": "body { margin: 0; }\n.tableau { display: grid; padding: 16px; }\n.carte { display: block; }\n.details { display: block; }\n.info { margin: 0; }",
+    "solution": "body { margin: 0; }\n.tableau { display: grid; padding: 16px; }\n.carte {\n  display: grid;\n  grid-template-columns: 64px minmax(0, 1fr);\n  gap: 8px;\n}\n.details {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  gap: 8px;\n}\n.info { margin: 0; }",
+    "visible_tests": [
+      {
+        "description_fr": "Trois niveaux à 360px",
+        "checks": [
+          {
+            "selector": "#carte",
+            "style": {
+              "display": "grid",
+              "width": "328px"
+            }
+          },
+          {
+            "selector": "#details",
+            "style": {
+              "display": "grid",
+              "width": "256px"
+            }
+          },
+          {
+            "selector": "#jour",
+            "style": {
+              "width": "124px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Trois niveaux à 720px",
+        "checks": [
+          {
+            "selector": "#details",
+            "style": {
+              "width": "616px"
+            }
+          },
+          {
+            "selector": "#jour",
+            "style": {
+              "width": "304px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "La carte reçoit 328px après le padding du tableau.",
+      "Les détails occupent la piste flexible de la carte : 328 − 64 − 8.",
+      "Déclare une grille sur .carte puis une seconde sur .details."
+    ],
+    "explanation_fr": "Chaque conteneur calcule ses pistes dans la largeur reçue du niveau supérieur.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"tableau\"><article class=\"carte\" id=\"carte\"><span class=\"sigle\">Le</span><div class=\"details\" id=\"details\"><p class=\"info\" id=\"jour\">Mardi</p><p class=\"info\">Salle 2</p></div></article></main>",
+    "id": "cssi-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Supprimer un espacement doublé",
+    "instruction_fr": "Les cartes sont trop étroites : une marge s’ajoute à la gouttière. Remplace margin: 16px par margin: 0 sur .carte. Garde --espace: 16px, les pistes et les gouttières dérivées.",
+    "starter_code": "body { margin: 0; }\n.tableau {\n  --espace: 16px;\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  gap: var(--espace);\n  padding: var(--espace);\n}\n.carte {\n  margin: 16px;\n  display: grid;\n  grid-template-columns: 48px minmax(0, 1fr);\n  gap: calc(var(--espace) / 2);\n}\n.texte { margin: 0; }",
+    "solution": "body { margin: 0; }\n.tableau {\n  --espace: 16px;\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  gap: var(--espace);\n  padding: var(--espace);\n}\n.carte {\n  margin: 0;\n  display: grid;\n  grid-template-columns: 48px minmax(0, 1fr);\n  gap: calc(var(--espace) / 2);\n}\n.texte { margin: 0; }",
+    "visible_tests": [
+      {
+        "description_fr": "Largeur utile retrouvée à 360px",
+        "checks": [
+          {
+            "selector": "#carte",
+            "style": {
+              "margin-left": "0px",
+              "width": "156px"
+            }
+          },
+          {
+            "selector": "#texte",
+            "style": {
+              "width": "100px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Largeur utile à 720px",
+        "checks": [
+          {
+            "selector": "#carte",
+            "style": {
+              "width": "336px"
+            }
+          },
+          {
+            "selector": "#texte",
+            "style": {
+              "width": "280px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Mesure la carte : elle devrait occuper toute sa piste de 156px.",
+      "Deux mécanismes créent de l’espace autour des cartes.",
+      "Retire la marge : gap et padding suffisent."
+    ],
+    "explanation_fr": "gap gère les intervalles et padding les bords ; la marge faisait double emploi.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"tableau\" id=\"tableau\"><article class=\"carte\" id=\"carte\"><span class=\"sigle\">Le</span><p class=\"texte\" id=\"texte\">Lecture du mardi</p></article><article class=\"carte\"><span class=\"sigle\">Ja</span><p class=\"texte\">Jardin du jeudi</p></article></main>",
+    "id": "cssi-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Livrer un tableau à deux densités",
+    "instruction_fr": "Sur .tableau : --espace: 16px, display grid, gap et padding égaux à var(--espace). Sur .tableau.dense : --espace: 8px seulement. Sur .rangee : display grid, deux pistes repeat(2, minmax(0, 1fr)), gap var(--espace). Sur .carte : display grid, pistes 40px et minmax(0, 1fr), gap calc(var(--espace) / 2). .texte garde margin 0.",
+    "starter_code": "body { margin: 0; }\n.tableau { padding: 16px; }\n.tableau.dense { padding: 8px; }\n.rangee { display: block; }\n.carte { display: block; }\n.texte { margin: 0; }",
+    "solution": "body { margin: 0; }\n.tableau {\n  --espace: 16px;\n  display: grid;\n  gap: var(--espace);\n  padding: var(--espace);\n}\n.tableau.dense { --espace: 8px; }\n.rangee {\n  display: grid;\n  grid-template-columns: repeat(2, minmax(0, 1fr));\n  gap: var(--espace);\n}\n.carte {\n  display: grid;\n  grid-template-columns: 40px minmax(0, 1fr);\n  gap: calc(var(--espace) / 2);\n}\n.texte { margin: 0; }",
+    "visible_tests": [
+      {
+        "description_fr": "Deux densités à 360px",
+        "checks": [
+          {
+            "selector": "#normal .rangee",
+            "style": {
+              "column-gap": "16px"
+            }
+          },
+          {
+            "selector": "#texte-normal",
+            "style": {
+              "width": "108px"
+            }
+          },
+          {
+            "selector": "#dense",
+            "style": {
+              "padding-left": "8px"
+            }
+          },
+          {
+            "selector": "#dense .rangee",
+            "style": {
+              "column-gap": "8px"
+            }
+          },
+          {
+            "selector": "#texte-dense",
+            "style": {
+              "width": "124px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Deux densités à 720px",
+        "checks": [
+          {
+            "selector": "#texte-normal",
+            "style": {
+              "width": "288px"
+            }
+          },
+          {
+            "selector": "#texte-dense",
+            "style": {
+              "width": "304px"
+            }
+          },
+          {
+            "selector": "#dense .carte",
+            "style": {
+              "column-gap": "4px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Trois niveaux : tableau, rangée, carte.",
+      "La variante dense ne doit contenir qu’une déclaration.",
+      "Fais lire var(--espace) aux trois niveaux, puis redéfinis --espace dans .tableau.dense."
+    ],
+    "explanation_fr": "La variante tient en une ligne parce que chaque niveau lit la même propriété.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><section class=\"tableau\" id=\"normal\"><div class=\"rangee\"><article class=\"carte\"><span class=\"sigle\">Le</span><p class=\"texte\" id=\"texte-normal\">Lecture</p></article><article class=\"carte\"><span class=\"sigle\">Ja</span><p class=\"texte\">Jardin</p></article></div></section><section class=\"tableau dense\" id=\"dense\"><div class=\"rangee\"><article class=\"carte\"><span class=\"sigle\">Le</span><p class=\"texte\" id=\"texte-dense\">Lecture</p></article><article class=\"carte\"><span class=\"sigle\">Ja</span><p class=\"texte\">Jardin</p></article></div></section></main>",
+    "id": "cssi-m3-03-e4"
+  }
+]

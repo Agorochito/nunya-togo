@@ -1,0 +1,308 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Partager une rangée entre deux cartes",
+    "instruction_fr": "Écris body{margin:0}. .ligne devient display:flex avec gap:16px. Chaque .carte reçoit box-sizing:border-box et flex:1 1 160px. N’ajoute pas de largeur, marge, bordure ni padding aux cartes : elles doivent partager réellement la largeur de la rangée.",
+    "starter_code": "body { margin: 0; }\n.ligne { display: flex; gap: 16px; }\n.carte { box-sizing: border-box; flex: 0 0 160px; }",
+    "solution": "body { margin: 0; }\n.ligne {\n  display: flex;\n  gap: 16px;\n}\n.carte {\n  box-sizing: border-box;\n  flex: 1 1 160px;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Surplus partagé à 360px",
+        "checks": [
+          {
+            "selector": ".ligne",
+            "style": {
+              "display": "flex",
+              "column-gap": "16px"
+            }
+          },
+          {
+            "selector": "#a",
+            "style": {
+              "flex-grow": "1",
+              "flex-shrink": "1",
+              "flex-basis": "160px",
+              "width": "172px"
+            }
+          },
+          {
+            "selector": "#b",
+            "style": {
+              "width": "172px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "La largeur reste calculée à 720px",
+        "checks": [
+          {
+            "selector": "#a",
+            "style": {
+              "width": "352px"
+            }
+          },
+          {
+            "selector": "#b",
+            "style": {
+              "width": "352px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Une base de 160px n’empêche pas de partager le surplus.",
+      "Le premier facteur doit autoriser la croissance.",
+      "Utilise les trois valeurs 1 1 160px sur chaque carte."
+    ],
+    "explanation_fr": "Les deux largeurs rejettent une taille finale écrite en dur pour un seul aperçu.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"ligne\"><article class=\"carte\" id=\"a\"><p>Lecture</p></article><article class=\"carte\" id=\"b\"><p>Jardin</p></article></main>",
+    "id": "cssi-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Laisser les commandes passer à la ligne",
+    "instruction_fr": "Retire la marge de body. .outils reçoit display:flex, flex-wrap:wrap et gap:8px. Les trois .outil ont border-box et flex:0 0 120px ; elles ne doivent ni grandir ni rétrécir. Conserve les boutons et leurs textes fournis.",
+    "starter_code": "body { margin: 0; }\n.outils { display: flex; flex-wrap: nowrap; gap: 8px; }\n.outil { box-sizing: border-box; flex: 1 1 120px; }",
+    "solution": "body { margin: 0; }\n.outils {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 8px;\n}\n.outil {\n  box-sizing: border-box;\n  flex: 0 0 120px;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Choix du retour plutôt que l’écrasement",
+        "checks": [
+          {
+            "selector": ".outils",
+            "style": {
+              "display": "flex",
+              "flex-wrap": "wrap",
+              "row-gap": "8px",
+              "column-gap": "8px"
+            }
+          },
+          {
+            "selector": "#a",
+            "style": {
+              "flex-grow": "0",
+              "flex-shrink": "0",
+              "flex-basis": "120px",
+              "width": "120px"
+            }
+          },
+          {
+            "selector": "#c",
+            "style": {
+              "width": "120px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Les bases restent lisibles avec plus de place",
+        "checks": [
+          {
+            "selector": "#b",
+            "style": {
+              "flex-grow": "0",
+              "flex-shrink": "0",
+              "width": "120px"
+            },
+            "textIncludes": "Préparer"
+          },
+          {
+            "selector": "#c",
+            "style": {
+              "width": "120px"
+            },
+            "textIncludes": "Examiner"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Le conteneur choisit si une nouvelle ligne est autorisée.",
+      "Les enfants choisissent s’ils acceptent croissance et réduction.",
+      "Combine wrap sur la barre et 0 0 120px sur les boutons."
+    ],
+    "explanation_fr": "Le composant conserve les libellés et n’invente pas une largeur différente pour chaque bouton.",
+    "common_wrong_answers": [],
+    "fixture_html": "<nav class=\"outils\" aria-label=\"Préparation\"><button class=\"outil\" id=\"a\" type=\"button\">Lire</button><button class=\"outil\" id=\"b\" type=\"button\">Préparer</button><button class=\"outil\" id=\"c\" type=\"button\">Examiner</button></nav>",
+    "id": "cssi-m2-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Autoriser une réduction cohérente",
+    "instruction_fr": "Deux bases de 240px débordent de la rangée étroite. Garde body sans marge, .ligne display:flex/gap16px et les cartes border-box. Corrige seulement leur flex pour conserver grow1 et basis240px tout en autorisant shrink1. Aucun retour à la ligne n’est demandé ici.",
+    "starter_code": "body { margin: 0; }\n.ligne { display: flex; gap: 16px; }\n.carte { box-sizing: border-box; flex: 1 0 240px; }",
+    "solution": "body { margin: 0; }\n.ligne {\n  display: flex;\n  gap: 16px;\n}\n.carte {\n  box-sizing: border-box;\n  flex: 1 1 240px;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Réduction lorsque les bases ne tiennent pas",
+        "checks": [
+          {
+            "selector": "#a",
+            "style": {
+              "flex-basis": "240px",
+              "flex-grow": "1",
+              "flex-shrink": "1",
+              "width": "172px"
+            }
+          },
+          {
+            "selector": "#b",
+            "style": {
+              "width": "172px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Croissance avec les mêmes bases",
+        "checks": [
+          {
+            "selector": "#a",
+            "style": {
+              "width": "352px"
+            }
+          },
+          {
+            "selector": "#b",
+            "style": {
+              "width": "352px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Le facteur central contrôle la réduction.",
+      "Ne remplace pas la base ni le facteur de croissance.",
+      "Passe flex de 1 0 240px à 1 1 240px."
+    ],
+    "explanation_fr": "La même règle peut réduire ou augmenter les cartes selon la place disponible.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"ligne\"><article class=\"carte\" id=\"a\"><p>Lecture</p></article><article class=\"carte\" id=\"b\"><p>Jardin</p></article></main>",
+    "id": "cssi-m2-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Composer un repère fixe et un contenu flexible",
+    "instruction_fr": "Retire la marge de body. .ensemble reçoit display:flex, wrap et gap16px. #repere : border-box/flex:0 0 96px ; #contenu : border-box/flex:1 1 240px. Sans autre largeur, padding, bordure ou marge, le contenu complète la rangée large et occupe sa propre ligne à 320px.",
+    "starter_code": "body { margin: 0; }\n.ensemble { display: flex; gap: 16px; }\n#repere { box-sizing: border-box; flex: 0 0 96px; }\n#contenu { box-sizing: border-box; flex: 1 1 240px; }",
+    "solution": "body { margin: 0; }\n.ensemble {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 16px;\n}\n#repere {\n  box-sizing: border-box;\n  flex: 0 0 96px;\n}\n#contenu {\n  box-sizing: border-box;\n  flex: 1 1 240px;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Composants sur une rangée large",
+        "checks": [
+          {
+            "selector": ".ensemble",
+            "style": {
+              "display": "flex",
+              "flex-wrap": "wrap",
+              "column-gap": "16px"
+            }
+          },
+          {
+            "selector": "#repere",
+            "style": {
+              "flex-basis": "96px",
+              "flex-grow": "0",
+              "flex-shrink": "0",
+              "width": "96px"
+            }
+          },
+          {
+            "selector": "#contenu",
+            "style": {
+              "flex-basis": "240px",
+              "flex-grow": "1",
+              "flex-shrink": "1",
+              "width": "608px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Nouvelle ligne à 320px",
+        "checks": [
+          {
+            "selector": "#repere",
+            "style": {
+              "width": "96px"
+            }
+          },
+          {
+            "selector": "#contenu",
+            "style": {
+              "width": "320px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 320,
+          "height": 800
+        }
+      },
+      {
+        "description_fr": "Une rangée reste possible à 360px",
+        "checks": [
+          {
+            "selector": "#contenu",
+            "style": {
+              "width": "248px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "À 320px, 96+16+240 dépasse la place disponible.",
+      "wrap autorise le contenu à changer de ligne avant de remplir celle-ci.",
+      "Garde les bases différentes et laisse seulement le contenu grandir."
+    ],
+    "explanation_fr": "Les trois contextes différencient une vraie répartition flexible d’une largeur ou d’un mode imposé partout.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main class=\"ensemble\"><aside id=\"repere\">Club</aside><section id=\"contenu\"><h1>Programme</h1><p>Lecture.</p></section></main>",
+    "id": "cssi-m2-01-e4"
+  }
+]

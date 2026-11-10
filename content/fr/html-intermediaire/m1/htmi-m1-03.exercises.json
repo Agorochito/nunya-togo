@@ -1,0 +1,246 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Rendre la date et l’heure concordantes",
+    "instruction_fr": "Dans p#annonce, écris « Rencontre le 5 décembre 2026 à 9 h 15, heure locale. ». Marque la date avec time#date datetime=\"2026-12-05\" et l’heure avec time#heure datetime=\"09:15\". Préserve le texte lisible.",
+    "starter_code": "<p id=\"annonce\">Rencontre le <span id=\"date\">5 décembre 2026</span> à <span id=\"heure\">9 h 15</span>, heure locale.</p>",
+    "solution": "<p id=\"annonce\">\n  Rencontre le <time id=\"date\" datetime=\"2026-12-05\">5 décembre 2026</time>\n  à <time id=\"heure\" datetime=\"09:15\">9 h 15</time>, heure locale.\n</p>",
+    "visible_tests": [
+      {
+        "description_fr": "Date exploitable",
+        "checks": [
+          {
+            "selector": "time#date",
+            "attributes": {
+              "datetime": "2026-12-05"
+            },
+            "textIncludes": "5 décembre 2026"
+          },
+          {
+            "selector": "time#heure",
+            "attributes": {
+              "datetime": "09:15"
+            },
+            "textIncludes": "9 h 15"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Contexte humain conservé",
+        "checks": [
+          {
+            "selector": "#annonce",
+            "textIncludes": "heure locale."
+          },
+          {
+            "selector": "#date",
+            "count": 1
+          },
+          {
+            "selector": "#heure",
+            "count": 1
+          },
+          {
+            "selector": "#annonce span",
+            "exists": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les deux expressions n’utilisent pas le même format datetime.",
+      "La date utilise année-mois-jour et l’heure utilise heures:minutes.",
+      "Remplace chaque span par time avec la valeur correspondant exactement au texte."
+    ],
+    "explanation_fr": "L’attribut complète la phrase ; il ne remplace ni son contexte ni ses mots.",
+    "common_wrong_answers": [],
+    "id": "htmi-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Développer un sigle dans le texte",
+    "instruction_fr": "Crée p#presentation avec le développement visible « Atelier de lecture et d’écriture », suivi de (abbr#sigle « ALE »). Donne à abbr le title exact du développement. Ajoute un second paragraphe contenant strong#consigne « Matériel fictif uniquement. ».",
+    "starter_code": "<p id=\"presentation\"><abbr id=\"sigle\">ALE</abbr></p>\n<p id=\"consigne\">Matériel fictif uniquement.</p>",
+    "solution": "<p id=\"presentation\">\n  Atelier de lecture et d’écriture\n  (<abbr id=\"sigle\" title=\"Atelier de lecture et d’écriture\">ALE</abbr>).\n</p>\n<p><strong id=\"consigne\">Matériel fictif uniquement.</strong></p>",
+    "visible_tests": [
+      {
+        "description_fr": "Développement disponible sans survol",
+        "checks": [
+          {
+            "selector": "#presentation",
+            "textIncludes": "Atelier de lecture et d’écriture"
+          },
+          {
+            "selector": "abbr#sigle",
+            "attributes": {
+              "title": "Atelier de lecture et d’écriture"
+            },
+            "textIncludes": "ALE"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Information importante marquée",
+        "checks": [
+          {
+            "selector": "p > strong#consigne",
+            "textIncludes": "Matériel fictif uniquement."
+          },
+          {
+            "selector": "abbr",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "title complète l’abréviation, mais ne remplace pas l’explication visible.",
+      "Le second texte indique une limite importante, donc strong convient.",
+      "Garde le sigle dans abbr et place son développement dans le paragraphe autour de lui."
+    ],
+    "explanation_fr": "La compréhension du sigle ne dépend plus d’un geste de survol.",
+    "common_wrong_answers": [],
+    "id": "htmi-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Remplacer un lien vague et une cible absente",
+    "instruction_fr": "Répare a#horaires-lien : son texte devient « Consulter les horaires de Lecture » et son href vise #horaires. Conserve section#horaires avec h2 « Horaires de Lecture » et p « Samedi à 10 heures. ». N’ajoute aucun lien distant.",
+    "starter_code": "<p><a id=\"horaires-lien\" href=\"#planning\">Cliquez ici</a></p>\n<section id=\"horaires\"><h2>Horaires de Lecture</h2><p>Samedi à 10 heures.</p></section>",
+    "solution": "<p><a id=\"horaires-lien\" href=\"#horaires\">Consulter les horaires de Lecture</a></p>\n<section id=\"horaires\"><h2>Horaires de Lecture</h2><p>Samedi à 10 heures.</p></section>",
+    "visible_tests": [
+      {
+        "description_fr": "Intitulé et cible réels",
+        "checks": [
+          {
+            "selector": "a#horaires-lien",
+            "attributes": {
+              "href": "#horaires"
+            },
+            "textIncludes": "Consulter les horaires de Lecture"
+          },
+          {
+            "selector": "section#horaires > h2",
+            "textIncludes": "Horaires de Lecture"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Destination complète et unique",
+        "checks": [
+          {
+            "selector": "#horaires",
+            "count": 1
+          },
+          {
+            "selector": "#horaires > p",
+            "textIncludes": "Samedi à 10 heures."
+          },
+          {
+            "selector": "a[href=\"#planning\"]",
+            "exists": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Deux défauts sont indépendants : texte vague et fragment inexistant.",
+      "L’id de la section fournit la valeur du fragment.",
+      "Écris l’objet de la consultation directement dans le texte du lien."
+    ],
+    "explanation_fr": "La description du lien et sa véritable destination répondent au même besoin.",
+    "common_wrong_answers": [],
+    "id": "htmi-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Rédiger une annonce sémantique complète",
+    "instruction_fr": "Crée article#rencontre avec h2 « Rencontre de lecture ». p#organisateur développe « Atelier de lecture et d’écriture » puis abbr ALE avec le même title. Ajoute time#date du 12 décembre 2026 (datetime 2026-12-12), time#heure de 15 h (datetime 15:00), mention « heure locale », strong#limite « Démonstration sans inscription réelle. », puis « Nous lirons » em#accent « ensemble » « un conte. ». Le lien #preparation-lien « Lire la préparation de la rencontre » vise section#preparation avec h3 « Préparation de la rencontre » et un paragraphe.",
+    "starter_code": "<article id=\"rencontre\"><h2>Rencontre de lecture</h2><p>Le 12 décembre 2026 à 15 h.</p></article>",
+    "solution": "<article id=\"rencontre\">\n  <h2>Rencontre de lecture</h2>\n  <p id=\"organisateur\">Atelier de lecture et d’écriture\n    (<abbr title=\"Atelier de lecture et d’écriture\">ALE</abbr>).</p>\n  <p>Le <time id=\"date\" datetime=\"2026-12-12\">12 décembre 2026</time>\n    à <time id=\"heure\" datetime=\"15:00\">15 h</time>, heure locale.</p>\n  <p><strong id=\"limite\">Démonstration sans inscription réelle.</strong></p>\n  <p>Nous lirons <em id=\"accent\">ensemble</em> un conte.</p>\n  <p><a id=\"preparation-lien\" href=\"#preparation\">Lire la préparation de la rencontre</a></p>\n  <section id=\"preparation\"><h3>Préparation de la rencontre</h3><p>Choisir un livre fictif.</p></section>\n</article>",
+    "visible_tests": [
+      {
+        "description_fr": "Représentations sémantiques",
+        "checks": [
+          {
+            "selector": "article#rencontre > h2",
+            "textIncludes": "Rencontre de lecture"
+          },
+          {
+            "selector": "#organisateur",
+            "textIncludes": "Atelier de lecture et d’écriture"
+          },
+          {
+            "selector": "#organisateur abbr",
+            "attributes": {
+              "title": "Atelier de lecture et d’écriture"
+            },
+            "textIncludes": "ALE"
+          },
+          {
+            "selector": "time#date",
+            "attributes": {
+              "datetime": "2026-12-12"
+            },
+            "textIncludes": "12 décembre 2026"
+          },
+          {
+            "selector": "time#heure",
+            "attributes": {
+              "datetime": "15:00"
+            },
+            "textIncludes": "15 h"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Sens des textes et relation locale",
+        "checks": [
+          {
+            "selector": "#rencontre",
+            "textIncludes": "heure locale"
+          },
+          {
+            "selector": "strong#limite",
+            "textIncludes": "Démonstration sans inscription réelle."
+          },
+          {
+            "selector": "em#accent",
+            "textIncludes": "ensemble"
+          },
+          {
+            "selector": "a#preparation-lien",
+            "attributes": {
+              "href": "#preparation"
+            },
+            "textIncludes": "Lire la préparation de la rencontre"
+          },
+          {
+            "selector": "section#preparation > h3",
+            "textIncludes": "Préparation de la rencontre"
+          },
+          {
+            "selector": "#preparation > p",
+            "exists": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Prépare séparément date/heure, sigle, importance et destination.",
+      "Les attributs doivent compléter les valeurs et textes visibles correspondants.",
+      "Rassemble les éléments dans l’article en gardant une section de préparation de niveau h3."
+    ],
+    "explanation_fr": "Le mini-projet fait correspondre sens humain et relations HTML sans inventer de fonctionnalité distante.",
+    "common_wrong_answers": [],
+    "id": "htmi-m1-03-e4"
+  }
+]

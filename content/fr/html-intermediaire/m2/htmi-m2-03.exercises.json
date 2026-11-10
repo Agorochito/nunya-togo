@@ -1,0 +1,293 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Relier une aide de format",
+    "instruction_fr": "Crée un label « Adresse électronique » for=\"courriel\" et input#courriel name=\"courriel\" type=\"email\" dans un formulaire. Ajoute p#courriel-aide contenant « Exemple de format : membre@example.test. ». Relie le champ à cette aide avec aria-describedby. Pour cet état neuf, ne mets aucun attribut aria-invalid.",
+    "starter_code": "<form><label for=\"courriel\">Adresse électronique</label><input id=\"courriel\" type=\"email\"><p>Exemple de format : membre@example.test.</p></form>\n",
+    "solution": "<form>\n  <label for=\"courriel\">Adresse électronique</label>\n  <input id=\"courriel\" name=\"courriel\" type=\"email\" aria-describedby=\"courriel-aide\">\n  <p id=\"courriel-aide\">Exemple de format : membre@example.test.</p>\n</form>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Une description référencée",
+        "checks": [
+          {
+            "selector": "#courriel[aria-describedby~=\"courriel-aide\"]",
+            "attributes": {
+              "type": "email",
+              "name": "courriel",
+              "aria-invalid": null
+            }
+          },
+          {
+            "selector": "#courriel-aide",
+            "textIncludes": "membre@example.test"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Des références non ambiguës",
+        "checks": [
+          {
+            "selector": "#courriel-aide",
+            "count": 1
+          },
+          {
+            "selector": "#courriel",
+            "count": 1
+          },
+          {
+            "selector": "label[for=\"courriel\"]",
+            "textIncludes": "Adresse électronique"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "Donne un id au texte d’aide avant de le référencer.",
+      "aria-describedby attend un identifiant sans # ; le label reste distinct.",
+      "<form>\n  <label for=\"courriel\">Adresse électronique</label>\n  <input id=\"courriel\" name=\"courriel\" type=\"email\" aria-describedby=\"courriel-aide\">\n  <p id=\"courriel-aide\">Exemple de format : membre@example.test.</p>\n</form>"
+    ],
+    "explanation_fr": "La description enrichit le contrôle sans remplacer son nom ni annoncer une erreur non évaluée.",
+    "common_wrong_answers": [],
+    "id": "htmi-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Montrer un refus déjà évalué",
+    "instruction_fr": "Crée un formulaire avec label « Adresse électronique » lié à input#courriel name=\"courriel\" type=\"email\" value=\"adresse-incomplete\". Cet état statique est invalide : aria-invalid=\"true\". Ajoute p#courriel-aide « Utilise le format nom@exemple.test. » et p#courriel-erreur « Erreur : ajoute un domaine après le signe @. ». Référence les deux ids dans aria-describedby, dans l’ordre de ton choix. Un bouton type=\"button\" peut accompagner l’état ; aucun script ni envoi.",
+    "starter_code": "<form><label for=\"courriel\">Adresse électronique</label><input id=\"courriel\" type=\"email\" value=\"adresse-incomplete\"><p id=\"courriel-erreur\">Erreur.</p></form>\n",
+    "solution": "<form>\n  <label for=\"courriel\">Adresse électronique</label>\n  <input id=\"courriel\" name=\"courriel\" type=\"email\" value=\"adresse-incomplete\" aria-describedby=\"courriel-aide courriel-erreur\" aria-invalid=\"true\">\n  <p id=\"courriel-aide\">Utilise le format nom@exemple.test.</p>\n  <p id=\"courriel-erreur\">Erreur : ajoute un domaine après le signe @.</p>\n  <button type=\"button\">Examiner l’état</button>\n</form>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Le refus est décrit par du texte relié",
+        "checks": [
+          {
+            "selector": "#courriel[aria-describedby~=\"courriel-aide\"][aria-describedby~=\"courriel-erreur\"]",
+            "attributes": {
+              "aria-invalid": "true",
+              "type": "email",
+              "name": "courriel",
+              "value": "adresse-incomplete"
+            }
+          },
+          {
+            "selector": "#courriel-erreur",
+            "textIncludes": "Erreur : ajoute un domaine après le signe @."
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Aide et nom du contrôle conservés",
+        "checks": [
+          {
+            "selector": "#courriel-aide",
+            "count": 1,
+            "textIncludes": "nom@exemple.test"
+          },
+          {
+            "selector": "#courriel-erreur",
+            "count": 1
+          },
+          {
+            "selector": "label[for=\"courriel\"]",
+            "textIncludes": "Adresse électronique"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "Un attribut d’état ne produit pas lui-même un message.",
+      "Conserve le label et référence les deux paragraphes par une liste d’ids.",
+      "<form>\n  <label for=\"courriel\">Adresse électronique</label>\n  <input id=\"courriel\" name=\"courriel\" type=\"email\" value=\"adresse-incomplete\" aria-describedby=\"courriel-aide courriel-erreur\" aria-invalid=\"true\">\n  <p id=\"courriel-aide\">Utilise le format nom@exemple.test.</p>\n  <p id=\"courriel-erreur\">Erreur : ajoute un domaine après le signe @.</p>\n  <button type=\"button\">Examiner l’état</button>\n</form>"
+    ],
+    "explanation_fr": "Le document montre un refus compréhensible sans prétendre le recalculer lors de la saisie.",
+    "common_wrong_answers": [],
+    "id": "htmi-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Réparer une description orpheline",
+    "instruction_fr": "Répare le formulaire de nom : label « Nom complet » for=\"nom\", input#nom name=\"nom\" type=\"text\" value=\"\". L’état statique est refusé : aria-invalid=\"true\". Le champ doit référencer p#nom-erreur, dont le texte est « Erreur : renseigne ton nom complet. ». Supprime la référence à message-absent ; aucun id de description ne doit manquer.",
+    "starter_code": "<form><label for=\"nom\">Nom complet</label><input id=\"nom\" type=\"text\" aria-invalid=\"false\" aria-describedby=\"message-absent\"><p id=\"nom-erreur\">Erreur : renseigne ton nom complet.</p></form>\n",
+    "solution": "<form>\n  <label for=\"nom\">Nom complet</label>\n  <input id=\"nom\" name=\"nom\" type=\"text\" value=\"\" aria-invalid=\"true\" aria-describedby=\"nom-erreur\">\n  <p id=\"nom-erreur\">Erreur : renseigne ton nom complet.</p>\n</form>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Le champ décrit réellement son refus",
+        "checks": [
+          {
+            "selector": "#nom[aria-describedby~=\"nom-erreur\"]",
+            "attributes": {
+              "aria-invalid": "true",
+              "name": "nom",
+              "type": "text",
+              "value": ""
+            }
+          },
+          {
+            "selector": "#nom-erreur",
+            "textIncludes": "Erreur : renseigne ton nom complet."
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Aucune référence cassée",
+        "checks": [
+          {
+            "selector": "#nom[aria-describedby~=\"message-absent\"]",
+            "exists": false
+          },
+          {
+            "selector": "#nom-erreur",
+            "count": 1
+          },
+          {
+            "selector": "label[for=\"nom\"]",
+            "textIncludes": "Nom complet"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "La présence du message ne suffit pas si le champ référence un autre id.",
+      "Fais correspondre l’état vrai et l’identifiant réel de l’erreur.",
+      "<form>\n  <label for=\"nom\">Nom complet</label>\n  <input id=\"nom\" name=\"nom\" type=\"text\" value=\"\" aria-invalid=\"true\" aria-describedby=\"nom-erreur\">\n  <p id=\"nom-erreur\">Erreur : renseigne ton nom complet.</p>\n</form>"
+    ],
+    "explanation_fr": "La cohérence entre valeur, état et texte relié compte davantage que la simple présence d’attributs ARIA.",
+    "common_wrong_answers": [],
+    "id": "htmi-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Une relecture avec deux états",
+    "instruction_fr": "Crée main avec h1 « Relecture fictive » et un texte annonçant un état statique sans validation automatique ni envoi. Ajoute un résumé #resume avec lien href=\"#courriel\" « Corriger l’adresse électronique ». Dans form, #nom est text, name=\"nom\", value=\"Awa\", label « Nom complet », sans aria-invalid et relié à #nom-aide « Nom affiché sur la fiche fictive. ». #courriel est email, name=\"courriel\", value=\"adresse-incomplete\", label « Adresse électronique », aria-invalid=\"true\", relié à #courriel-aide « Utilise le format nom@exemple.test. » et #courriel-erreur « Erreur : ajoute un domaine après le signe @. ». Relie les labels par for ; ajoute un bouton type=\"button\".",
+    "starter_code": "<main><h1>Relecture fictive</h1><form></form></main>\n",
+    "solution": "<main>\n  <h1>Relecture fictive</h1>\n  <p>État statique de démonstration, sans validation automatique ni envoi.</p>\n  <p id=\"resume\">Une erreur : <a href=\"#courriel\">Corriger l’adresse électronique</a>.</p>\n  <form>\n    <label for=\"nom\">Nom complet</label>\n    <input id=\"nom\" name=\"nom\" type=\"text\" value=\"Awa\" aria-describedby=\"nom-aide\">\n    <p id=\"nom-aide\">Nom affiché sur la fiche fictive.</p>\n    <label for=\"courriel\">Adresse électronique</label>\n    <input id=\"courriel\" name=\"courriel\" type=\"email\" value=\"adresse-incomplete\" aria-invalid=\"true\" aria-describedby=\"courriel-aide courriel-erreur\">\n    <p id=\"courriel-aide\">Utilise le format nom@exemple.test.</p>\n    <p id=\"courriel-erreur\">Erreur : ajoute un domaine après le signe @.</p>\n    <button type=\"button\">Examiner la relecture</button>\n  </form>\n</main>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Deux états distincts",
+        "checks": [
+          {
+            "selector": "#nom[aria-describedby~=\"nom-aide\"]",
+            "attributes": {
+              "type": "text",
+              "name": "nom",
+              "value": "Awa",
+              "aria-invalid": null
+            }
+          },
+          {
+            "selector": "#courriel[aria-describedby~=\"courriel-aide\"][aria-describedby~=\"courriel-erreur\"]",
+            "attributes": {
+              "type": "email",
+              "name": "courriel",
+              "value": "adresse-incomplete",
+              "aria-invalid": "true"
+            }
+          },
+          {
+            "selector": "#resume a[href=\"#courriel\"]",
+            "textIncludes": "Corriger l’adresse électronique"
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Messages, noms et démonstration",
+        "checks": [
+          {
+            "selector": "#nom",
+            "count": 1
+          },
+          {
+            "selector": "#courriel",
+            "count": 1
+          },
+          {
+            "selector": "#nom-aide",
+            "count": 1
+          },
+          {
+            "selector": "#courriel-aide",
+            "count": 1
+          },
+          {
+            "selector": "#courriel-erreur",
+            "count": 1
+          },
+          {
+            "selector": "#nom-aide",
+            "textIncludes": "Nom affiché"
+          },
+          {
+            "selector": "#courriel-erreur",
+            "textIncludes": "Erreur : ajoute un domaine"
+          },
+          {
+            "selector": "label[for=\"nom\"]",
+            "textIncludes": "Nom complet"
+          },
+          {
+            "selector": "label[for=\"courriel\"]",
+            "textIncludes": "Adresse électronique"
+          },
+          {
+            "selector": "main > p",
+            "textIncludes": "statique"
+          },
+          {
+            "selector": "button",
+            "attributes": {
+              "type": "button"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 600
+        }
+      }
+    ],
+    "hints": [
+      "Dessine les liens entre chaque contrôle et ses descriptions avant d’assembler le formulaire.",
+      "Le résumé vise l’id du champ ; describedby vise les ids des textes sans #.",
+      "<main>\n  <h1>Relecture fictive</h1>\n  <p>État statique de démonstration, sans validation automatique ni envoi.</p>\n  <p id=\"resume\">Une erreur : <a href=\"#courriel\">Corriger l’adresse électronique</a>.</p>\n  <form>\n    <label for=\"nom\">Nom complet</label>\n    <input id=\"nom\" name=\"nom\" type=\"text\" value=\"Awa\" aria-describedby=\"nom-aide\">\n    <p id=\"nom-aide\">Nom affiché sur la fiche fictive.</p>\n    <label for=\"courriel\">Adresse électronique</label>\n    <input id=\"courriel\" name=\"courriel\" type=\"email\" value=\"adresse-incomplete\" aria-invalid=\"true\" aria-describedby=\"courriel-aide courriel-erreur\">\n    <p id=\"courriel-aide\">Utilise le format nom@exemple.test.</p>\n    <p id=\"courriel-erreur\">Erreur : ajoute un domaine après le signe @.</p>\n    <button type=\"button\">Examiner la relecture</button>\n  </form>\n</main>"
+    ],
+    "explanation_fr": "Le projet combine un état neutre, un état refusé et une correction ciblée, avec des limites d’interaction explicites.",
+    "common_wrong_answers": [],
+    "id": "htmi-m2-03-e4"
+  }
+]

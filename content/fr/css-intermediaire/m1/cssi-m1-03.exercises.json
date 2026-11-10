@@ -1,0 +1,213 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Espacer le début et la fin",
+    "instruction_fr": "Pour .carte, fixe writing-mode:horizontal-tb, padding-inline-start:16px, padding-inline-end:4px et text-align:start. Préserve les directions HTML : le côté de 16px doit s’inverser entre #ltr et #rtl.",
+    "starter_code": ".carte {\n  padding-left: 16px;\n  padding-right: 4px;\n  text-align: left;\n}",
+    "solution": ".carte {\n  writing-mode: horizontal-tb;\n  padding-inline-start: 16px;\n  padding-inline-end: 4px;\n  text-align: start;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Espaces en LTR",
+        "checks": [
+          {
+            "selector": "#ltr",
+            "style": {
+              "padding-left": "16px",
+              "padding-right": "4px",
+              "text-align": "start",
+              "direction": "ltr"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Même intention en RTL",
+        "checks": [
+          {
+            "selector": "#rtl",
+            "style": {
+              "padding-left": "4px",
+              "padding-right": "16px",
+              "text-align": "start",
+              "direction": "rtl"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le besoin nomme le début de lecture, pas le bord gauche.",
+      "Les deux propriétés padding-inline-* suivent dir.",
+      "Remplace les côtés physiques et aligne avec start sans forcer direction."
+    ],
+    "explanation_fr": "La seconde direction révèle une solution qui aurait seulement conservé les valeurs physiques.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><article class=\"carte\" id=\"ltr\" dir=\"ltr\"><p>Carte en lecture de gauche à droite</p></article><article class=\"carte\" id=\"rtl\" dir=\"rtl\" lang=\"ar\"><p>بطاقة النادي</p></article></main>",
+    "id": "cssi-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Placer un repère au début de la note",
+    "instruction_fr": "Écris .note avec writing-mode:horizontal-tb, border:0 puis border-inline-start:4px solid navy. Ajoute margin-inline-start:0 et margin-inline-end:12px. Ne modifie pas les attributs dir des deux notes.",
+    "starter_code": ".note {\n  border-left: 4px solid navy;\n  margin-left: 0;\n  margin-right: 12px;\n}",
+    "solution": ".note {\n  writing-mode: horizontal-tb;\n  border: 0;\n  border-inline-start: 4px solid navy;\n  margin-inline-start: 0;\n  margin-inline-end: 12px;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Début et fin LTR",
+        "checks": [
+          {
+            "selector": "#ltr",
+            "style": {
+              "border-left-width": "4px",
+              "border-left-style": "solid",
+              "border-left-color": "navy",
+              "border-right-width": "0px",
+              "margin-right": "12px",
+              "margin-left": "0px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Début et fin RTL",
+        "checks": [
+          {
+            "selector": "#rtl",
+            "style": {
+              "border-right-width": "4px",
+              "border-right-style": "solid",
+              "border-right-color": "navy",
+              "border-left-width": "0px",
+              "margin-left": "12px",
+              "margin-right": "0px"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La bordure suit le début et la marge suit la fin.",
+      "Réinitialise les bordures avant de poser la bordure logique.",
+      "Les deux marges inline remplacent les deux marges physiques."
+    ],
+    "explanation_fr": "Le repère reste attaché au rôle de début, sans deux feuilles séparées.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><p class=\"note\" id=\"ltr\" dir=\"ltr\">Préparation</p><p class=\"note\" id=\"rtl\" dir=\"rtl\" lang=\"ar\">التحضير</p></main>",
+    "id": "cssi-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Retirer les côtés fixes d’une carte",
+    "instruction_fr": "La carte RTL a le même padding physique que LTR. Remplace padding-left/right par padding-inline-start:18px et padding-inline-end:6px ; garde writing-mode:horizontal-tb. Aucun direction forcé ni règle spéciale par id.",
+    "starter_code": ".carte {\n  writing-mode: horizontal-tb;\n  padding-left: 18px;\n  padding-right: 6px;\n}",
+    "solution": ".carte {\n  writing-mode: horizontal-tb;\n  padding-inline-start: 18px;\n  padding-inline-end: 6px;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Valeurs conservées pour le sens LTR",
+        "checks": [
+          {
+            "selector": "#ltr",
+            "style": {
+              "padding-left": "18px",
+              "padding-right": "6px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Intention réparée pour le sens RTL",
+        "checks": [
+          {
+            "selector": "#rtl",
+            "style": {
+              "padding-left": "6px",
+              "padding-right": "18px",
+              "direction": "rtl"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les valeurs sont bonnes, leurs noms décrivent le mauvais rôle.",
+      "Évite d’empiler une correction RTL sur une règle physique.",
+      "Remplace les deux propriétés par leurs versions de début et fin de ligne."
+    ],
+    "explanation_fr": "La correction devient réutilisable dans chaque direction au lieu de dépendre des ids de démonstration.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><article class=\"carte\" id=\"ltr\" dir=\"ltr\"><p>Carte en lecture de gauche à droite</p></article><article class=\"carte\" id=\"rtl\" dir=\"rtl\" lang=\"ar\"><p>بطاقة النادي</p></article></main>",
+    "id": "cssi-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Construire une fiche logique complète",
+    "instruction_fr": "Pour .fiche : writing-mode:horizontal-tb, box-sizing:border-box, inline-size:200px et max-inline-size:100%. Padding de début20px et fin8px ; border:0 puis border-inline-start:4px solid navy ; margin-block:0 16px ; text-align:start. Les deux fiches gardent leur dir et aucune règle par id ne remplace les côtés.",
+    "starter_code": ".fiche {\n  width: 200px;\n  padding-left: 20px;\n  padding-right: 8px;\n  border-left: 4px solid navy;\n}",
+    "solution": ".fiche {\n  writing-mode: horizontal-tb;\n  box-sizing: border-box;\n  inline-size: 200px;\n  max-inline-size: 100%;\n  padding-inline-start: 20px;\n  padding-inline-end: 8px;\n  border: 0;\n  border-inline-start: 4px solid navy;\n  margin-block: 0 16px;\n  text-align: start;\n}",
+    "visible_tests": [
+      {
+        "description_fr": "Structure de boîte LTR",
+        "checks": [
+          {
+            "selector": "#ltr",
+            "style": {
+              "box-sizing": "border-box",
+              "width": "200px",
+              "padding-left": "20px",
+              "padding-right": "8px",
+              "border-left-width": "4px",
+              "border-right-width": "0px",
+              "margin-top": "0px",
+              "margin-bottom": "16px",
+              "text-align": "start"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 800
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Mêmes rôles dans la fiche RTL",
+        "checks": [
+          {
+            "selector": "#rtl",
+            "style": {
+              "width": "200px",
+              "padding-left": "8px",
+              "padding-right": "20px",
+              "border-left-width": "0px",
+              "border-right-width": "4px",
+              "margin-top": "0px",
+              "margin-bottom": "16px",
+              "text-align": "start",
+              "direction": "rtl"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 720,
+          "height": 800
+        }
+      }
+    ],
+    "hints": [
+      "Sépare dimensions, espaces internes, repère et espaces entre fiches.",
+      "Les marges block gardent leur rôle haut/bas en écriture horizontale.",
+      "Utilise les propriétés logiques pour les décisions de début/fin et conserve border-box."
+    ],
+    "explanation_fr": "La fiche associe plusieurs rôles logiques sans changer l’ordre ou la direction du contenu.",
+    "common_wrong_answers": [],
+    "fixture_html": "<main><article class=\"fiche\" id=\"ltr\" dir=\"ltr\"><h2>Lecture</h2><p>Préparer un conte.</p></article><article class=\"fiche\" id=\"rtl\" dir=\"rtl\" lang=\"ar\"><h2>القراءة</h2><p>التحضير للنادي</p></article></main>",
+    "id": "cssi-m1-03-e4"
+  }
+]

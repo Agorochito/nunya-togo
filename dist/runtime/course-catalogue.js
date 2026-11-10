@@ -1,7 +1,8 @@
 import {renderJourneys} from './coding-journeys.mjs';
 const ROOT_ID='nunya-course-catalogue';
 const FORM_ID='nunya-course-filters';
-const filters={q:'',technology:'all'};
+const filters={q:'',technology:'all',level:'all'};
+const levelTitle=level=>({debutant:'Débutant',intermediaire:'Intermédiaire',avance:'Avancé'})[level]||level;
 let activeApi=null;
 let listening=false;
 
@@ -25,7 +26,7 @@ function technology(course){
 function writtenCourses(catalogue){return (catalogue.courses||[]).filter(c=>c?.id&&Array.isArray(c.lessons)&&c.lessons.length>0);}
 function searchText(course){
   const tech=technology(course);
-  return normalize([course.title_fr,course.summary_fr,course.language,tech.label,tech.aliases,...(course.outcomes||[]),...(course.lessons||[]).flatMap(l=>[l.title_fr,...(l.tags||[])])].join(' '));
+  return normalize([course.title_fr,course.summary_fr,course.language,course.level,levelTitle(course.level),({debutant:'beginner',intermediaire:'intermediate',avance:'advanced'})[course.level],tech.label,tech.aliases,...(course.outcomes||[]),...(course.lessons||[]).flatMap(l=>[l.title_fr,...(l.tags||[])])].join(' '));
 }
 function matches(text,q){return normalize(q).split(' ').filter(Boolean).every(word=>text.includes(word==='js'?'javascript':word));}
 function quantity(value,one,many=one+'s'){return `${value} ${value===1?one:many}`;}
@@ -47,7 +48,7 @@ function renderCard(api,course,state){
   const finished=done===course.lessons.length;
   const action=finished?'Revoir le cours':hasStarted?'Reprendre':'Commencer';
   const count=exerciseCount(course),heading='nunya-course-'+encodeURIComponent(course.id);
-  const prerequisite=(course.prerequisite_courses||[]).length?'Des bases sont conseillées':(course.prerequisites||[])[0]||'Consulte les prérequis dans le programme';
+  const prerequisite=(course.prerequisite_courses||[]).length?'Socle conseillé : '+course.prerequisite_courses.map(id=>{const c=api.catalogue().courses.find(c=>c.id===id);return c?technology(c).label+' · '+levelTitle(c.level).toLowerCase():id}).join(' · '):(course.prerequisites||[])[0]||'Aucune expérience du code requise';
   return `<article class="nunya-course-card" aria-labelledby="${esc(heading)}">
     <div class="nunya-course-top"><span class="nunya-course-mark" aria-hidden="true">${esc(tech.mark)}</span><div><span class="nunya-course-technology">${esc(tech.label)}</span><span class="nunya-course-level">${course.level==='intermediaire'?'Intermédiaire':course.level==='avance'?'Avancé':'Débutant'}</span></div>${hasStarted?`<span class="nunya-course-state">${finished?'À revoir librement':'En cours'}</span>`:''}</div>
     <h3 id="${esc(heading)}">${esc(course.title_fr)}</h3>
@@ -80,7 +81,9 @@ function markup(api,{roadmapOpen=false}={}){
   const {esc}=api,catalogue=api.catalogue()||{},state=api.state()||{},courses=writtenCourses(catalogue),plans=Array.isArray(catalogue.plans)?catalogue.plans:[];
   const technologies=[...new Map(courses.map(c=>{const tech=technology(c);return [tech.key,tech];})).values()].sort((a,b)=>a.label.localeCompare(b.label,'fr'));
   if(filters.technology!=='all'&&!technologies.some(t=>t.key===filters.technology))filters.technology='all';
-  const visible=courses.filter(c=>(filters.technology==='all'||technology(c).key===filters.technology)&&matches(searchText(c),filters.q));
+  const levels=[...new Set(courses.map(c=>c.level||'debutant'))];
+  if(filters.level!=='all'&&!levels.includes(filters.level))filters.level='all';
+  const visible=courses.filter(c=>(filters.level==='all'||(c.level||'debutant')===filters.level)&&(filters.technology==='all'||technology(c).key===filters.technology)&&matches(searchText(c),filters.q));
   const matchingPlans=filters.q.trim()?plans.filter(p=>matches(normalize([p.title_fr,p.summary_fr].join(' ')),filters.q)):[];
   const moduleCount=courses.reduce((sum,c)=>sum+(c.modules||[]).length,0);
   const allExerciseCounts=courses.map(exerciseCount),totalExercises=allExerciseCounts.every(n=>n!==null)?allExerciseCounts.reduce((sum,n)=>sum+n,0):null;
@@ -94,7 +97,7 @@ function markup(api,{roadmapOpen=false}={}){
     ${renderJourneys(api)}
     ${api.discovery?.()||''}
     <section class="nunya-catalogue-courses" aria-labelledby="nunya-courses-title"><div class="nunya-catalogue-section-head"><div><span class="nunya-catalogue-kicker">LE CATALOGUE</span><h2 id="nunya-courses-title">Trouve ta prochaine étape</h2></div><span class="nunya-catalogue-count">${quantity(courses.length,'cours disponible','cours disponibles')}</span></div>
-      <form id="${FORM_ID}" class="nunya-catalogue-filters" role="search" method="get"><div class="nunya-catalogue-search"><label for="nunya-course-query">Rechercher un cours ou une notion</label><input id="nunya-course-query" type="search" name="q" maxlength="200" value="${esc(filters.q)}" placeholder="Ex. : Python, formulaires, fonctions…" aria-describedby="nunya-course-search-hint"></div><div class="nunya-catalogue-select"><label for="nunya-course-technology">Technologie</label><select id="nunya-course-technology" name="technologie"><option value="all"${filters.technology==='all'?' selected':''}>Toutes les technologies</option>${technologies.map(t=>`<option value="${esc(t.key)}"${filters.technology===t.key?' selected':''}>${esc(t.label)}</option>`).join('')}</select></div><div class="nunya-catalogue-filter-actions"><button id="nunya-course-search-submit" type="submit" class="nunya-course-start">Rechercher</button><button id="nunya-course-filter-clear" type="submit" name="action" value="clear" class="nunya-catalogue-clear">Effacer</button></div><p id="nunya-course-search-hint" class="nunya-catalogue-filter-hint">La recherche porte sur les cours disponibles, leurs compétences et leurs leçons.</p></form>
+      <form id="${FORM_ID}" class="nunya-catalogue-filters" role="search" method="get"><div class="nunya-catalogue-search"><label for="nunya-course-query">Rechercher un cours ou une notion</label><input id="nunya-course-query" type="search" name="q" maxlength="200" value="${esc(filters.q)}" placeholder="Ex. : Python, formulaires, fonctions…" aria-describedby="nunya-course-search-hint"></div><div class="nunya-catalogue-select"><label for="nunya-course-technology">Technologie</label><select id="nunya-course-technology" name="technologie"><option value="all"${filters.technology==='all'?' selected':''}>Toutes les technologies</option>${technologies.map(t=>`<option value="${esc(t.key)}"${filters.technology===t.key?' selected':''}>${esc(t.label)}</option>`).join('')}</select></div><div class="nunya-catalogue-select"><label for="nunya-course-level">Niveau</label><select id="nunya-course-level" name="niveau"><option value="all"${filters.level==='all'?' selected':''}>Tous les niveaux</option>${levels.map(level=>`<option value="${esc(level)}"${filters.level===level?' selected':''}>${esc(levelTitle(level))}</option>`).join('')}</select></div><div class="nunya-catalogue-filter-actions"><button id="nunya-course-search-submit" type="submit" class="nunya-course-start">Rechercher</button><button id="nunya-course-filter-clear" type="submit" name="action" value="clear" class="nunya-catalogue-clear">Effacer</button></div><p id="nunya-course-search-hint" class="nunya-catalogue-filter-hint">La recherche porte sur les cours disponibles, leurs compétences et leurs leçons.</p></form>
       <p id="nunya-course-results-status" class="nunya-catalogue-results" role="status" aria-live="polite" aria-atomic="true">${esc(resultMessage)}</p>
       ${visible.length?`<div class="nunya-catalogue-grid">${visible.map(c=>renderCard(api,c,state)).join('')}</div>`:`<div class="nunya-catalogue-empty"><h3>Une autre piste ?</h3><p>Essaie un mot plus court ou choisis une autre technologie.${matchingPlans.length?' Cette notion figure aussi parmi les séries en préparation ci-dessous.':''}</p><button id="nunya-course-empty-clear" type="submit" form="${FORM_ID}" name="action" value="clear" class="nunya-course-start">Revoir tous les cours</button></div>`}
     </section>
@@ -111,8 +114,8 @@ function onFilterSubmit(event){
   event.preventDefault();
   const focused=document.activeElement,focusId=root.contains(focused)?focused.id:event.submitter?.id;
   const selection=focused?.id==='nunya-course-query'?[focused.selectionStart,focused.selectionEnd]:null;
-  if(event.submitter?.value==='clear'){filters.q='';filters.technology='all';}
-  else{filters.q=String(form.elements.namedItem('q')?.value||'').slice(0,200);filters.technology=String(form.elements.namedItem('technologie')?.value||'all');}
+  if(event.submitter?.value==='clear'){filters.q='';filters.technology='all';filters.level='all';}
+  else{filters.q=String(form.elements.namedItem('q')?.value||'').slice(0,200);filters.technology=String(form.elements.namedItem('technologie')?.value||'all');filters.level=String(form.elements.namedItem('niveau')?.value||'all');}
   const roadmapOpen=!!root.querySelector('#nunya-course-roadmap')?.open;
   root.outerHTML=markup(activeApi,{roadmapOpen});
   const replacement=document.getElementById(ROOT_ID),focusTarget=document.getElementById(focusId||'nunya-course-query');

@@ -1,6 +1,57 @@
 [
- {"id":"frontend","title_fr":"Développer des interfaces web","summary_fr":"De la première page aux composants React, avec versions et échanges HTTP.","course_ids":["html-bases","css-bases","javascript-bases","javascript-dom","git-bases","http-bases","react-bases"],"outcome_fr":"Construire et expliquer une interface interactive ; poursuivre ensuite les projets et les tests utilisateurs."},
- {"id":"data","title_fr":"Analyser des données","summary_fr":"Programmer en Python, interroger avec SQL et traiter des données structurées.","course_ids":["python-bases","sql-bases","python-intermediaire","git-bases"],"outcome_fr":"Préparer un bilan à partir de données fictives et conserver ses versions ; les statistiques avancées restent à approfondir."},
- {"id":"backend","title_fr":"Back-end : les fondations","summary_fr":"Fonctions, objets, données et contrats HTTP avant les applications serveur.","course_ids":["python-bases","python-intermediaire","sql-bases","http-bases","git-bases"],"outcome_fr":"Comprendre les données et les échanges d’un service. Node.js, Linux et Docker ne sont pas inclus dans ce socle."},
- {"id":"cyber","title_fr":"Cybersécurité : les prérequis techniques","summary_fr":"Comprendre le code, les échanges, les données et les versions avant d’étudier leur protection.","course_ids":["javascript-bases","http-bases","sql-bases","git-bases"],"outcome_fr":"Consolider les prérequis techniques ; ce parcours ne constitue pas une formation complète en cybersécurité.","discovery_route":"#/parcours/cybersecurite"}
+  {
+    "id": "frontend",
+    "title_fr": "Développer des interfaces web",
+    "summary_fr": "De la première page aux composants React, avec versions et échanges HTTP.",
+    "course_ids": [
+      "html-bases",
+      "css-bases",
+      "html-intermediaire",
+      "css-intermediaire",
+      "javascript-bases",
+      "javascript-dom",
+      "git-bases",
+      "http-bases",
+      "react-bases"
+    ],
+    "outcome_fr": "Construire et expliquer une interface interactive ; poursuivre ensuite les projets et les tests utilisateurs."
+  },
+  {
+    "id": "data",
+    "title_fr": "Analyser des données",
+    "summary_fr": "Programmer en Python, interroger avec SQL et traiter des données structurées.",
+    "course_ids": [
+      "python-bases",
+      "sql-bases",
+      "python-intermediaire",
+      "git-bases"
+    ],
+    "outcome_fr": "Préparer un bilan à partir de données fictives et conserver ses versions ; les statistiques avancées restent à approfondir."
+  },
+  {
+    "id": "backend",
+    "title_fr": "Back-end : les fondations",
+    "summary_fr": "Fonctions, objets, données et contrats HTTP avant les applications serveur.",
+    "course_ids": [
+      "python-bases",
+      "python-intermediaire",
+      "sql-bases",
+      "http-bases",
+      "git-bases"
+    ],
+    "outcome_fr": "Comprendre les données et les échanges d’un service. Node.js, Linux et Docker ne sont pas inclus dans ce socle."
+  },
+  {
+    "id": "cyber",
+    "title_fr": "Cybersécurité : les prérequis techniques",
+    "summary_fr": "Comprendre le code, les échanges, les données et les versions avant d’étudier leur protection.",
+    "course_ids": [
+      "javascript-bases",
+      "http-bases",
+      "sql-bases",
+      "git-bases"
+    ],
+    "outcome_fr": "Consolider les prérequis techniques ; ce parcours ne constitue pas une formation complète en cybersécurité.",
+    "discovery_route": "#/parcours/cybersecurite"
+  }
 ]
