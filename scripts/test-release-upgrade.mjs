@@ -7,7 +7,7 @@ const work='print("mon brouillon à garder")';await ctx.addInitScript(work=>{if(
 const p=await ctx.newPage();p.on('pageerror',e=>errors.push(e.message));
 try{
  await p.goto(base+'#/apprendre');await p.locator('#main a[href="#/apprendre/python-bases"]').first().waitFor();await p.evaluate(async()=>{await navigator.serviceWorker.ready;if(!navigator.serviceWorker.controller)await new Promise(r=>navigator.serviceWorker.addEventListener('controllerchange',r,{once:true}))});
- const oldCount=JSON.parse(execFileSync('git',['show',oldRef+':dist/data/curriculum/index.json'],{encoding:'utf8'})).courses.length;expect(oldCount).toBe(oldRef==='2df60ddf'?1:oldRef==='0c959e4b'?8:oldRef==='ae5f349e'?9:oldRef==='1bfe4d75'?11:oldRef==='50abf346'?12:6);modern=true;await p.reload();
+ const oldCount=JSON.parse(execFileSync('git',['show',oldRef+':dist/data/curriculum/index.json'],{encoding:'utf8'})).courses.length;expect(oldCount).toBe(oldRef==='2df60ddf'?1:oldRef==='0c959e4b'?8:oldRef==='ae5f349e'?9:oldRef==='1bfe4d75'?11:oldRef==='50abf346'?12:oldRef==='3c70f03d'?13:6);modern=true;await p.reload();
  await p.waitForFunction(async()=>{const keys=await caches.keys(),current='nunya-v'+document.documentElement.dataset.release;return keys.includes(current)&&!keys.some(k=>/^nunya-v[0-9]/.test(k)&&k!==current)});
  if(baseline){await p.waitForTimeout(500);const count=await p.locator('.nunya-course-card').count();console.log(JSON.stringify({oldCount,afterNewServiceWorker:count,expectedFreshCatalogue:13,errors}));expect(count).toBe(1);}
  else{

@@ -1,58 +1,171 @@
 [
   {
     "id": "frontend",
-    "title_fr": "Développer des interfaces web",
-    "summary_fr": "De la première page aux composants React, avec versions et échanges HTTP.",
+    "title_fr": "Développeur·se web front-end",
+    "summary_fr": "Construire les pages et les interfaces que les gens voient : HTML, CSS, JavaScript, le navigateur, puis React.",
+    "jobs_fr": "Intégrateur·rice web, développeur·se front-end, développeur·se React.",
     "course_ids": [
       "html-bases",
       "css-bases",
+      "javascript-bases",
       "html-intermediaire",
       "css-intermediaire",
-      "javascript-bases",
       "javascript-dom",
       "git-bases",
       "http-bases",
       "react-bases"
     ],
-    "outcome_fr": "Construire et expliquer une interface interactive ; poursuivre ensuite les projets et les tests utilisateurs."
-  },
-  {
-    "id": "data",
-    "title_fr": "Analyser des données",
-    "summary_fr": "Programmer en Python, interroger avec SQL et traiter des données structurées.",
-    "course_ids": [
-      "python-bases",
-      "sql-bases",
-      "python-intermediaire",
-      "git-bases"
+    "planned_fr": [
+      {
+        "title_fr": "TypeScript",
+        "summary_fr": "Ajouter des types au JavaScript pour des applications plus sûres."
+      },
+      {
+        "title_fr": "Projet web : mon portfolio",
+        "summary_fr": "Assembler et publier un site personnel complet."
+      }
     ],
-    "outcome_fr": "Préparer un bilan à partir de données fictives et conserver ses versions ; les statistiques avancées restent à approfondir."
+    "outcome_fr": "Construire et expliquer une interface web interactive et accessible ; poursuivre ensuite avec TypeScript et un projet publié."
   },
   {
     "id": "backend",
-    "title_fr": "Back-end : les fondations",
-    "summary_fr": "Fonctions, objets, données et contrats HTTP en Python et en PHP, avant les applications serveur.",
+    "title_fr": "Développeur·se back-end",
+    "summary_fr": "Ce qui se passe derrière un site : la logique, les données et les échanges, en Python et en PHP.",
+    "jobs_fr": "Développeur·se back-end, développeur·se PHP ou Python, développeur·se d’API.",
     "course_ids": [
       "python-bases",
       "python-intermediaire",
-      "php-bases",
       "sql-bases",
+      "php-bases",
       "http-bases",
       "git-bases"
     ],
-    "outcome_fr": "Comprendre les données et les échanges d’un service, en Python comme en PHP. Node.js, Linux et Docker ne sont pas inclus dans ce socle."
+    "planned_fr": [
+      {
+        "title_fr": "Terminal et Linux",
+        "summary_fr": "Se déplacer, gérer des fichiers et lancer des programmes en ligne de commande."
+      },
+      {
+        "title_fr": "PHP intermédiaire : objets et données",
+        "summary_fr": "Classes, exceptions, JSON et organisation d’un projet."
+      },
+      {
+        "title_fr": "Docker et déploiement",
+        "summary_fr": "Empaqueter une application et la mettre en ligne."
+      }
+    ],
+    "outcome_fr": "Comprendre les données et les échanges d’un service, en Python comme en PHP ; le terminal, les objets PHP et le déploiement suivront."
+  },
+  {
+    "id": "fullstack",
+    "title_fr": "Développeur·se full-stack",
+    "summary_fr": "La page, le serveur et la base de données : savoir construire une application web de bout en bout.",
+    "jobs_fr": "Développeur·se full-stack, développeur·se web en agence ou en freelance.",
+    "course_ids": [
+      "html-bases",
+      "css-bases",
+      "javascript-bases",
+      "javascript-dom",
+      "sql-bases",
+      "php-bases",
+      "http-bases",
+      "react-bases",
+      "git-bases"
+    ],
+    "planned_fr": [
+      {
+        "title_fr": "Node.js : le serveur en JavaScript",
+        "summary_fr": "Écrire un serveur et une API avec le même langage que la page."
+      },
+      {
+        "title_fr": "Projet complet",
+        "summary_fr": "Une application avec interface, serveur, base de données et mise en ligne."
+      }
+    ],
+    "outcome_fr": "Relier une interface, un serveur PHP et une base SQL ; Node.js et un projet complet publié suivront."
+  },
+  {
+    "id": "logiciel",
+    "title_fr": "Ingénieur·e logiciel",
+    "summary_fr": "Des bases solides pour tout type de logiciel : un langage simple, un langage compilé, les données et la collaboration.",
+    "jobs_fr": "Ingénieur·e logiciel, développeur·se d’applications, développeur·se systèmes.",
+    "course_ids": [
+      "python-bases",
+      "python-intermediaire",
+      "cpp-bases",
+      "sql-bases",
+      "git-bases"
+    ],
+    "planned_fr": [
+      {
+        "title_fr": "Algorithmes et structures de données",
+        "summary_fr": "Tris, recherche, piles, files, graphes et complexité."
+      },
+      {
+        "title_fr": "Java : premiers programmes",
+        "summary_fr": "Classes, types et méthodes avec un vrai compilateur Java."
+      },
+      {
+        "title_fr": "Qualité logicielle",
+        "summary_fr": "Tests, lisibilité et revue de code."
+      }
+    ],
+    "outcome_fr": "Programmer avec confiance dans deux langages et gérer ses versions ; algorithmes, Java et qualité logicielle suivront."
+  },
+  {
+    "id": "data",
+    "title_fr": "Analyste de données",
+    "summary_fr": "Transformer des chiffres en décisions : Python pour traiter, SQL pour interroger, Git pour garder ses versions.",
+    "jobs_fr": "Analyste de données, chargé·e de suivi-évaluation, assistant·e en statistiques.",
+    "course_ids": [
+      "python-bases",
+      "sql-bases",
+      "python-intermediaire",
+      "git-bases"
+    ],
+    "planned_fr": [
+      {
+        "title_fr": "Tableur pour l’analyse",
+        "summary_fr": "Formules, tableaux croisés et graphiques."
+      },
+      {
+        "title_fr": "Statistiques avec Python",
+        "summary_fr": "Moyennes, dispersion, échantillons et graphiques."
+      },
+      {
+        "title_fr": "SQL intermédiaire",
+        "summary_fr": "Jointures avancées, regroupements et indicateurs."
+      }
+    ],
+    "outcome_fr": "Préparer un bilan à partir de données fictives et conserver ses versions ; statistiques et visualisation suivront."
   },
   {
     "id": "cyber",
-    "title_fr": "Cybersécurité : les prérequis techniques",
-    "summary_fr": "Comprendre le code, les échanges, les données et les versions avant d’étudier leur protection.",
+    "title_fr": "Cybersécurité",
+    "summary_fr": "Comprendre le code, les échanges et les données pour savoir ensuite les protéger.",
+    "jobs_fr": "Analyste en sécurité (SOC), technicien·ne réseau et sécurité, auditeur·rice junior.",
     "course_ids": [
+      "python-bases",
       "javascript-bases",
       "http-bases",
       "sql-bases",
       "git-bases"
     ],
-    "outcome_fr": "Consolider les prérequis techniques ; ce parcours ne constitue pas une formation complète en cybersécurité.",
+    "planned_fr": [
+      {
+        "title_fr": "Terminal et Linux",
+        "summary_fr": "La ligne de commande, outil de base de toute investigation."
+      },
+      {
+        "title_fr": "Réseaux informatiques",
+        "summary_fr": "Adresses IP, ports, protocoles et outils de diagnostic."
+      },
+      {
+        "title_fr": "Cybersécurité : défendre une petite organisation",
+        "summary_fr": "Mots de passe, hameçonnage, journaux, droits d’accès et réponse à un incident."
+      }
+    ],
+    "outcome_fr": "Maîtriser les prérequis techniques ; ce parcours ne constitue pas encore une formation complète en cybersécurité.",
     "discovery_route": "#/parcours/cybersecurite"
   }
 ]

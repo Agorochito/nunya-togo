@@ -108,3 +108,17 @@
 .nunya-journey-timeline{list-style:none;padding:0;margin:24px 0}.nunya-journey-timeline li{display:flex;gap:16px;align-items:flex-start;border-bottom:1px solid var(--border);padding:16px 0}.nunya-journey-timeline p{margin:6px 0}.nunya-journey-step{flex:0 0 36px;display:grid;place-items:center;width:36px;height:36px;background:var(--accent-soft);color:var(--accent-text);border-radius:50%;font-weight:700}
 .nunya-journey-switch{padding:14px;background:var(--accent-soft);border-radius:10px}.nunya-journey-timeline a{color:var(--accent-text)}
 @media(max-width:640px){.nunya-journeys{padding:18px}.nunya-journey-grid{grid-template-columns:1fr}.nunya-journey-grid article{padding:18px}}
+.nunya-journey-jobs{font-size:14px;color:var(--text)}
+.nunya-journey-step-label{display:block;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.nunya-journey-badge{display:inline-block;padding:1px 8px;border:1px solid var(--border);border-radius:999px;text-transform:none;letter-spacing:0;color:var(--text);background:var(--surface)}
+.nunya-journey-timeline li.is-planned .nunya-journey-step{border-style:dashed;background:transparent}
+.nunya-journey-modules{margin:8px 0}
+.nunya-journey-modules summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:600}
+.nunya-journey-modules ol{margin:4px 0 8px;padding-left:20px;display:grid;gap:4px}
+.nunya-journey-modules ol li{display:list-item;border:0;padding:0}
+.nunya-journey-modules span{color:var(--muted);font-size:14px}
+.nunya-journey-beginner,.nunya-journey-planned-note{font-size:14px;color:var(--muted)}
+.nunya-catalogue-domain{margin-top:26px}
+.nunya-catalogue-domain>h3{font-size:20px;margin:0 0 4px}
+.nunya-catalogue-domain>p{color:var(--muted);margin:0 0 14px;font-size:15px}
+

@@ -1,5 +1,12 @@
 # Historique
 
+## 5.12.0 — 9 novembre 2026
+
+- Six **parcours métiers** au lieu de quatre : développeur·se web front-end, back-end, full-stack (nouveau), ingénieur·e logiciel (nouveau), analyste de données et cybersécurité. Chaque carte indique les métiers visés et le nombre d’étapes encore en préparation.
+- La fenêtre d’un parcours numérote les étapes, déplie les modules de chaque cours avec leur nombre de leçons, puis affiche les étapes à venir (Terminal et Linux, Docker, TypeScript, Java, algorithmes, réseaux…) avec la mention « En préparation ». Ces étapes ne comptent pas dans la progression et ne peuvent pas être commencées.
+- Un lien vers le niveau 0, Découverte du numérique, est proposé dans chaque parcours aux personnes qui débutent complètement.
+- Le catalogue range les cours par domaine (Web : sites et applications, Langages de programmation, Données) quand aucune recherche ni filtre n’est actif. Les identifiants des anciens parcours sont conservés : un objectif déjà choisi reste actif.
+
 ## 5.11.0 — 9 novembre 2026
 
 - Nouveau langage : **C++ : les fondamentaux**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux en français : compilation et affichage, types, saisies et division entière, `if`, `switch`, boucles et validation, fonctions, `std::vector`, `std::string`, références, `struct` et projet de bulletin de classe.

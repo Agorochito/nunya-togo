@@ -1,3 +1,8 @@
+# Vérifications 5.12.0 — 9 novembre 2026
+
+- Parcours et fiches (`JOURNEYS_READING_RESULTS.json`) : six parcours ; la fenêtre du parcours front-end compte ses 9 cours et ses 2 étapes en préparation ; confirmation, annulation, Échap, reprise du premier cours inachevé, sauvegarde et restauration de l’objectif, bilan local et fiches hors ligne réussis à 360 et 1440 px, zéro violation axe.
+- Catalogue groupé par domaine (`COURSE_CATALOGUE_RESULTS.json`) : 13 cours, 14 raccourcis, filtres, saisie conservée, catalogue hors ligne, zéro violation axe aux deux tailles.
+
 # Vérifications 5.11.0 — 9 novembre 2026
 
 - C++ compilé par g++ local au format de Wandbox, dans le contrôle de compilation : 24 exemples et 132 cas de référence ; 48 solutions acceptées et 48 codes de départ refusés.

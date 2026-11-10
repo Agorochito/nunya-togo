@@ -8,7 +8,7 @@ Apprendre en français, à son rythme, même hors connexion : coder depuis zéro
 
 ## État du projet
 
-Pilote en cours ; version 5.11. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
+Pilote en cours ; version 5.12. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
 
 ## Ce que propose Nunya
 
@@ -26,7 +26,8 @@ Pilote en cours ; version 5.11. Tous les contenus sont des **brouillons** rédig
    - JavaScript DOM (18 leçons, 72 exercices) : événements, formulaires et interfaces ;
    - React (18 leçons, 72 exercices) : composants, état, effets et projet interactif ;
   - le code s’exécute dans le navigateur, et l’élève a des indices gradués et des erreurs expliquées.
-- **Parcours entre technologies** : front-end, analyse de données, fondations back-end et prérequis cybersécurité. Changer d’objectif conserve les brouillons et les positions de chaque cours.
+- **Parcours métiers** : développeur·se web front-end, back-end, full-stack, ingénieur·e logiciel, analyste de données et cybersécurité. Chaque parcours indique les métiers visés, ordonne les cours disponibles, montre leurs modules et annonce les étapes encore en préparation. Changer d’objectif conserve les brouillons et les positions de chaque cours.
+- **Catalogue par domaine** : Web, langages de programmation et données, avec recherche et filtres.
 - **Fiches de lecture HTML** : une leçon ou un cours, téléchargeables et imprimables sans connexion ; l’exécution du code reste dans Nunya.
 - **Mes cours & examens** : révisions par classe et liens vers 492 documents officiels d’examen (CEPD, BEPC, BAC), consultés depuis leur source.
 - **Mon avenir** : 15 parcours dans 13 domaines, 43 fiches métiers, études à l’étranger et opportunités.
