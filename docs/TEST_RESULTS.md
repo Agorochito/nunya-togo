@@ -1,3 +1,9 @@
+# Vérifications 5.20.0 — 10 novembre 2026
+
+- Projet web : 24 exemples, 48 solutions et 48 codes de départ vérifiés dans le vrai vérificateur de rendu de Nunya (styles calculés, dont variables CSS, requêtes média à 360 et 1 000 px et focus clavier) : tous les exemples et solutions passent, tous les départs échouent. Le contrôle commun des cours HTML et CSS couvre désormais 84 exemples et 264 solutions et départs (un exercice CSS intermédiaire, mesuré avant la fin de la mise en page pendant une passe chargée, a réussi relancé seul). Interface (`PROJET_WEB_UI_RESULTS.json`) : 12 leçons, 48 exercices et 36 questions à 360 et 1440 px, lecture hors ligne à froid, zéro violation axe ; HTML intermédiaire revérifié avec le test d’interface désormais commun.
+- Liens de référence vérifiés en ligne ; une page MDN déplacée (requêtes média) a été remplacée par son équivalent français actuel.
+- ESLint, TypeScript, 222 tests unitaires, schémas, prérequis et liens réussis ; grille de contenu : 23 programmes, 359 leçons, 1 436 exercices. Catalogue (23 programmes, 24 raccourcis), domaines repliables, parcours, ancien pack enregistré et migration depuis 5.19.0 réussis. Bundle principal : 149 224 octets gzip, sous 150 000.
+
 # Vérifications 5.19.0 — 10 novembre 2026
 
 - Statistiques avec Python : 24 exemples, 48 solutions et 48 codes de départ vérifiés dans le vrai Pyodide 3.14 du site (120 contrôles, tous les départs refusés) et rejoués sous Python 3.9 (120 contrôles) ; les simulations aléatoires sont vérifiées par des propriétés stables (bornes, fréquence proche de la probabilité), pas par des tirages exacts. Contrôle Python de la construction réussi (131 leçons Python, 1 622 cas). Interface (`STATISTIQUES_PYTHON_UI_RESULTS.json`) : 12 leçons, 48 exercices et 36 questions à 360 et 1440 px, lecture hors ligne à froid, zéro violation axe.

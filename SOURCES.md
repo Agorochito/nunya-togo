@@ -115,6 +115,10 @@ Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités origin
 
 Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la documentation officielle de SQLite (SELECT, expressions, fonctions, dates, WITH, fonctions de fenêtre, vues, index, UPSERT, déclencheurs, EXPLAIN QUERY PLAN), citée dans chaque leçon ; aucun texte n’en est repris. Produits, clients, quartiers et ventes de la boutique sont fictifs.
 
+## Projet web : ma page personnelle — 10 novembre 2026
+
+Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la documentation MDN en français (structure de document, img, liens, bases du CSS, propriétés personnalisées, Flexbox, grilles, requêtes média, details, :focus-visible, validation des formulaires), des critères de contraste des WCAG 2.1 du W3C et de la documentation GitHub Pages. La personne et ses projets sont fictifs ; les adresses utilisent le domaine réservé example.com. Aucun texte, exercice ou corrigé n’est repris d’un autre site.
+
 ## Statistiques avec Python : décrire, relier, estimer — 10 novembre 2026
 
 Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la documentation officielle de Python (statistics, collections.Counter, random, csv) et du cours de statistiques et probabilités de Khan Academy en français pour les notions générales. La marge d’erreur 1/√n est l’approximation enseignée au lycée, présentée avec ses conditions. Toutes les données (notes, ventes, salaires, enquêtes) sont fictives. Aucun texte, exercice ou corrigé n’est repris d’un autre site.

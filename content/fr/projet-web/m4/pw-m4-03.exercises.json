@@ -1,0 +1,274 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "La structure finale",
+    "instruction_fr": "Complète la page : ajoute la balise viewport dans head et le pied de page « Page fictive réalisée dans Nunya, 2026. » après main.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    :root {\n      --fond: #fdfaf5;\n      --texte: #1d1d1f;\n      --accent: #1f5e46;\n    }\n    body {\n      margin: 0;\n      font-family: system-ui, sans-serif;\n      font-size: 18px;\n      background-color: var(--fond);\n      color: var(--texte);\n    }\n    header,\n    main,\n    footer {\n      max-width: 720px;\n      margin: 0 auto;\n      padding: 16px;\n    }\n    nav {\n      display: flex;\n      flex-direction: column;\n      gap: 8px;\n    }\n    h1,\n    h2 {\n      color: var(--accent);\n    }\n    img {\n      max-width: 100%;\n      height: auto;\n    }\n    .projets {\n      display: grid;\n      gap: 16px;\n    }\n    a:focus-visible {\n      outline: 3px solid var(--accent);\n    }\n    @media (min-width: 700px) {\n      nav {\n        flex-direction: row;\n      }\n      .projets {\n        grid-template-columns: 1fr 1fr;\n      }\n    }\n  </style>\n</head>\n<body>\n  <header>\n    <h1>Ama Mensah</h1>\n    <p>Élève en première, passionnée de code et de dessin.</p>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#apropos\">À propos</a>\n    <a href=\"#projets\">Projets</a>\n    <a href=\"#contact\">Contact</a>\n  </nav>\n  </header>\n  <main>\n    <section id=\"apropos\">\n      <h2>À propos</h2>\n      <img src=\"portrait-ama.jpg\" alt=\"Portrait d’Ama Mensah souriante\" width=\"160\" height=\"160\">\n      <p>J’apprends à programmer depuis un an.</p>\n    </section>\n    <section id=\"projets\">\n      <h2>Projets</h2>\n      <div class=\"projets\">\n        <article><h3>Quiz de révision</h3><p>Un quiz en Python.</p></article>\n        <article><h3>Site du club</h3><p>Une page HTML et CSS.</p></article>\n      </div>\n    </section>\n    <section id=\"contact\">\n      <h2>Contact</h2>\n      <details>\n        <summary>Comment me joindre ?</summary>\n        <p><a href=\"mailto:ama.mensah@example.com\">Écrire à Ama</a></p>\n      </details>\n    </section>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    :root {\n      --fond: #fdfaf5;\n      --texte: #1d1d1f;\n      --accent: #1f5e46;\n    }\n    body {\n      margin: 0;\n      font-family: system-ui, sans-serif;\n      font-size: 18px;\n      background-color: var(--fond);\n      color: var(--texte);\n    }\n    header,\n    main,\n    footer {\n      max-width: 720px;\n      margin: 0 auto;\n      padding: 16px;\n    }\n    nav {\n      display: flex;\n      flex-direction: column;\n      gap: 8px;\n    }\n    h1,\n    h2 {\n      color: var(--accent);\n    }\n    img {\n      max-width: 100%;\n      height: auto;\n    }\n    .projets {\n      display: grid;\n      gap: 16px;\n    }\n    a:focus-visible {\n      outline: 3px solid var(--accent);\n    }\n    @media (min-width: 700px) {\n      nav {\n        flex-direction: row;\n      }\n      .projets {\n        grid-template-columns: 1fr 1fr;\n      }\n    }\n  </style>\n</head>\n<body>\n  <header>\n    <h1>Ama Mensah</h1>\n    <p>Élève en première, passionnée de code et de dessin.</p>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#apropos\">À propos</a>\n    <a href=\"#projets\">Projets</a>\n    <a href=\"#contact\">Contact</a>\n  </nav>\n  </header>\n  <main>\n    <section id=\"apropos\">\n      <h2>À propos</h2>\n      <img src=\"portrait-ama.jpg\" alt=\"Portrait d’Ama Mensah souriante\" width=\"160\" height=\"160\">\n      <p>J’apprends à programmer depuis un an.</p>\n    </section>\n    <section id=\"projets\">\n      <h2>Projets</h2>\n      <div class=\"projets\">\n        <article><h3>Quiz de révision</h3><p>Un quiz en Python.</p></article>\n        <article><h3>Site du club</h3><p>Une page HTML et CSS.</p></article>\n      </div>\n    </section>\n    <section id=\"contact\">\n      <h2>Contact</h2>\n      <details>\n        <summary>Comment me joindre ?</summary>\n        <p><a href=\"mailto:ama.mensah@example.com\">Écrire à Ama</a></p>\n      </details>\n    </section>\n  </main>\n  <footer>\n    <p>Page fictive réalisée dans Nunya, 2026.</p>\n  </footer>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Viewport et pied de page",
+        "checks": [
+          {
+            "selector": "meta[name=\"viewport\"]",
+            "count": 1
+          },
+          {
+            "selector": "main + footer",
+            "textIncludes": "2026"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Structure intacte",
+        "checks": [
+          {
+            "selector": "h1",
+            "count": 1
+          },
+          {
+            "selector": "main > section",
+            "count": 3
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La balise viewport va dans head.",
+      "Le footer se place après main.",
+      "Il contient un paragraphe."
+    ],
+    "explanation_fr": "La structure est complète.",
+    "common_wrong_answers": [],
+    "id": "pw-m4-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Le style adaptatif final",
+    "instruction_fr": "Ajoute la requête média @media (min-width: 700px) qui passe la nav en ligne et .projets sur deux colonnes égales.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    :root {\n      --fond: #fdfaf5;\n      --texte: #1d1d1f;\n      --accent: #1f5e46;\n    }\n    body {\n      margin: 0;\n      font-family: system-ui, sans-serif;\n      font-size: 18px;\n      background-color: var(--fond);\n      color: var(--texte);\n    }\n    header,\n    main,\n    footer {\n      max-width: 720px;\n      margin: 0 auto;\n      padding: 16px;\n    }\n    nav {\n      display: flex;\n      flex-direction: column;\n      gap: 8px;\n    }\n    h1,\n    h2 {\n      color: var(--accent);\n    }\n    img {\n      max-width: 100%;\n      height: auto;\n    }\n    .projets {\n      display: grid;\n      gap: 16px;\n    }\n    a:focus-visible {\n      outline: 3px solid var(--accent);\n    }\n  </style>\n</head>\n<body>\n  <header>\n    <h1>Ama Mensah</h1>\n    <p>Élève en première, passionnée de code et de dessin.</p>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#apropos\">À propos</a>\n    <a href=\"#projets\">Projets</a>\n    <a href=\"#contact\">Contact</a>\n  </nav>\n  </header>\n  <main>\n    <section id=\"apropos\">\n      <h2>À propos</h2>\n      <img src=\"portrait-ama.jpg\" alt=\"Portrait d’Ama Mensah souriante\" width=\"160\" height=\"160\">\n      <p>J’apprends à programmer depuis un an.</p>\n    </section>\n    <section id=\"projets\">\n      <h2>Projets</h2>\n      <div class=\"projets\">\n        <article><h3>Quiz de révision</h3><p>Un quiz en Python.</p></article>\n        <article><h3>Site du club</h3><p>Une page HTML et CSS.</p></article>\n      </div>\n    </section>\n    <section id=\"contact\">\n      <h2>Contact</h2>\n      <details>\n        <summary>Comment me joindre ?</summary>\n        <p><a href=\"mailto:ama.mensah@example.com\">Écrire à Ama</a></p>\n      </details>\n    </section>\n  </main>\n  <footer>\n    <p>Page fictive réalisée dans Nunya, 2026.</p>\n  </footer>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    :root {\n      --fond: #fdfaf5;\n      --texte: #1d1d1f;\n      --accent: #1f5e46;\n    }\n    body {\n      margin: 0;\n      font-family: system-ui, sans-serif;\n      font-size: 18px;\n      background-color: var(--fond);\n      color: var(--texte);\n    }\n    header,\n    main,\n    footer {\n      max-width: 720px;\n      margin: 0 auto;\n      padding: 16px;\n    }\n    nav {\n      display: flex;\n      flex-direction: column;\n      gap: 8px;\n    }\n    h1,\n    h2 {\n      color: var(--accent);\n    }\n    img {\n      max-width: 100%;\n      height: auto;\n    }\n    .projets {\n      display: grid;\n      gap: 16px;\n    }\n    a:focus-visible {\n      outline: 3px solid var(--accent);\n    }\n    @media (min-width: 700px) {\n      nav {\n        flex-direction: row;\n      }\n      .projets {\n        grid-template-columns: 1fr 1fr;\n      }\n    }\n  </style>\n</head>\n<body>\n  <header>\n    <h1>Ama Mensah</h1>\n    <p>Élève en première, passionnée de code et de dessin.</p>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#apropos\">À propos</a>\n    <a href=\"#projets\">Projets</a>\n    <a href=\"#contact\">Contact</a>\n  </nav>\n  </header>\n  <main>\n    <section id=\"apropos\">\n      <h2>À propos</h2>\n      <img src=\"portrait-ama.jpg\" alt=\"Portrait d’Ama Mensah souriante\" width=\"160\" height=\"160\">\n      <p>J’apprends à programmer depuis un an.</p>\n    </section>\n    <section id=\"projets\">\n      <h2>Projets</h2>\n      <div class=\"projets\">\n        <article><h3>Quiz de révision</h3><p>Un quiz en Python.</p></article>\n        <article><h3>Site du club</h3><p>Une page HTML et CSS.</p></article>\n      </div>\n    </section>\n    <section id=\"contact\">\n      <h2>Contact</h2>\n      <details>\n        <summary>Comment me joindre ?</summary>\n        <p><a href=\"mailto:ama.mensah@example.com\">Écrire à Ama</a></p>\n      </details>\n    </section>\n  </main>\n  <footer>\n    <p>Page fictive réalisée dans Nunya, 2026.</p>\n  </footer>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Ordinateur",
+        "checks": [
+          {
+            "selector": "nav",
+            "style": {
+              "flex-direction": "row"
+            }
+          },
+          {
+            "selector": ".projets",
+            "style": {
+              "grid-template-columns": "352px 352px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 1000,
+          "height": 700
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Téléphone inchangé",
+        "checks": [
+          {
+            "selector": "nav",
+            "style": {
+              "flex-direction": "column"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 700
+        }
+      }
+    ],
+    "hints": [
+      "Le style de base reste celui du téléphone.",
+      "Deux règles dans la même requête.",
+      "flex-direction: row et grid-template-columns: 1fr 1fr."
+    ],
+    "explanation_fr": "Un seul point de rupture suffit pour toute la page.",
+    "common_wrong_answers": [],
+    "id": "pw-m4-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Trois défauts avant publication",
+    "instruction_fr": "La liste de contrôle révèle trois défauts : lang manquant sur html, image sans texte alternatif, et a:focus { outline: none }. Corrige-les (alt « Portrait d’Ama Mensah souriante », indicateur a:focus-visible de 3px solid).",
+    "starter_code": "<!doctype html>\n<html>\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    :root {\n      --fond: #fdfaf5;\n      --texte: #1d1d1f;\n      --accent: #1f5e46;\n    }\n    body {\n      margin: 0;\n      font-family: system-ui, sans-serif;\n      font-size: 18px;\n      background-color: var(--fond);\n      color: var(--texte);\n    }\n    header,\n    main,\n    footer {\n      max-width: 720px;\n      margin: 0 auto;\n      padding: 16px;\n    }\n    nav {\n      display: flex;\n      flex-direction: column;\n      gap: 8px;\n    }\n    h1,\n    h2 {\n      color: var(--accent);\n    }\n    img {\n      max-width: 100%;\n      height: auto;\n    }\n    .projets {\n      display: grid;\n      gap: 16px;\n    }\n    a:focus {\n      outline: none;\n    }\n    @media (min-width: 700px) {\n      nav {\n        flex-direction: row;\n      }\n      .projets {\n        grid-template-columns: 1fr 1fr;\n      }\n    }\n  </style>\n</head>\n<body>\n  <header>\n    <h1>Ama Mensah</h1>\n    <p>Élève en première, passionnée de code et de dessin.</p>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#apropos\">À propos</a>\n    <a href=\"#projets\">Projets</a>\n    <a href=\"#contact\">Contact</a>\n  </nav>\n  </header>\n  <main>\n    <section id=\"apropos\">\n      <h2>À propos</h2>\n      <img src=\"portrait-ama.jpg\" width=\"160\" height=\"160\">\n      <p>J’apprends à programmer depuis un an.</p>\n    </section>\n    <section id=\"projets\">\n      <h2>Projets</h2>\n      <div class=\"projets\">\n        <article><h3>Quiz de révision</h3><p>Un quiz en Python.</p></article>\n        <article><h3>Site du club</h3><p>Une page HTML et CSS.</p></article>\n      </div>\n    </section>\n    <section id=\"contact\">\n      <h2>Contact</h2>\n      <details>\n        <summary>Comment me joindre ?</summary>\n        <p><a href=\"mailto:ama.mensah@example.com\">Écrire à Ama</a></p>\n      </details>\n    </section>\n  </main>\n  <footer>\n    <p>Page fictive réalisée dans Nunya, 2026.</p>\n  </footer>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    :root {\n      --fond: #fdfaf5;\n      --texte: #1d1d1f;\n      --accent: #1f5e46;\n    }\n    body {\n      margin: 0;\n      font-family: system-ui, sans-serif;\n      font-size: 18px;\n      background-color: var(--fond);\n      color: var(--texte);\n    }\n    header,\n    main,\n    footer {\n      max-width: 720px;\n      margin: 0 auto;\n      padding: 16px;\n    }\n    nav {\n      display: flex;\n      flex-direction: column;\n      gap: 8px;\n    }\n    h1,\n    h2 {\n      color: var(--accent);\n    }\n    img {\n      max-width: 100%;\n      height: auto;\n    }\n    .projets {\n      display: grid;\n      gap: 16px;\n    }\n    a:focus-visible {\n      outline: 3px solid var(--accent);\n    }\n    @media (min-width: 700px) {\n      nav {\n        flex-direction: row;\n      }\n      .projets {\n        grid-template-columns: 1fr 1fr;\n      }\n    }\n  </style>\n</head>\n<body>\n  <header>\n    <h1>Ama Mensah</h1>\n    <p>Élève en première, passionnée de code et de dessin.</p>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#apropos\">À propos</a>\n    <a href=\"#projets\">Projets</a>\n    <a href=\"#contact\">Contact</a>\n  </nav>\n  </header>\n  <main>\n    <section id=\"apropos\">\n      <h2>À propos</h2>\n      <img src=\"portrait-ama.jpg\" alt=\"Portrait d’Ama Mensah souriante\" width=\"160\" height=\"160\">\n      <p>J’apprends à programmer depuis un an.</p>\n    </section>\n    <section id=\"projets\">\n      <h2>Projets</h2>\n      <div class=\"projets\">\n        <article><h3>Quiz de révision</h3><p>Un quiz en Python.</p></article>\n        <article><h3>Site du club</h3><p>Une page HTML et CSS.</p></article>\n      </div>\n    </section>\n    <section id=\"contact\">\n      <h2>Contact</h2>\n      <details>\n        <summary>Comment me joindre ?</summary>\n        <p><a href=\"mailto:ama.mensah@example.com\">Écrire à Ama</a></p>\n      </details>\n    </section>\n  </main>\n  <footer>\n    <p>Page fictive réalisée dans Nunya, 2026.</p>\n  </footer>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Langue et image",
+        "checks": [
+          {
+            "selector": "html",
+            "attributes": {
+              "lang": "fr"
+            }
+          },
+          {
+            "selector": "img",
+            "attributes": {
+              "alt": "Portrait d’Ama Mensah souriante"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Focus visible",
+        "checks": [
+          {
+            "selector": "nav a",
+            "style": {
+              "outline-style": "solid",
+              "outline-width": "3px"
+            }
+          }
+        ],
+        "focus_selector": "nav a"
+      }
+    ],
+    "hints": [
+      "Commence par la balise html.",
+      "Ajoute l’alt du portrait.",
+      "Remplace la règle a:focus par a:focus-visible avec un contour."
+    ],
+    "explanation_fr": "La liste de contrôle a attrapé trois défauts que l’œil ne voit pas.",
+    "common_wrong_answers": [],
+    "id": "pw-m4-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "La page personnelle complète",
+    "instruction_fr": "Écris la page entière d’Ama : langue fr, titre d’onglet, viewport ; header avec h1 et nav de trois ancres ; main avec les sections apropos (image décrite), projets (div.projets de deux articles) et contact (details avec lien mailto) ; footer. Style : variables, body 18px sans marge, header/main/footer limités à 720px, nav en colonne puis en ligne dès 700px, .projets en grille puis deux colonnes, images souples, focus visible.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <h1>Ama Mensah</h1>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    :root {\n      --fond: #fdfaf5;\n      --texte: #1d1d1f;\n      --accent: #1f5e46;\n    }\n    body {\n      margin: 0;\n      font-family: system-ui, sans-serif;\n      font-size: 18px;\n      background-color: var(--fond);\n      color: var(--texte);\n    }\n    header,\n    main,\n    footer {\n      max-width: 720px;\n      margin: 0 auto;\n      padding: 16px;\n    }\n    nav {\n      display: flex;\n      flex-direction: column;\n      gap: 8px;\n    }\n    h1,\n    h2 {\n      color: var(--accent);\n    }\n    img {\n      max-width: 100%;\n      height: auto;\n    }\n    .projets {\n      display: grid;\n      gap: 16px;\n    }\n    a:focus-visible {\n      outline: 3px solid var(--accent);\n    }\n    @media (min-width: 700px) {\n      nav {\n        flex-direction: row;\n      }\n      .projets {\n        grid-template-columns: 1fr 1fr;\n      }\n    }\n  </style>\n</head>\n<body>\n  <header>\n    <h1>Ama Mensah</h1>\n    <p>Élève en première, passionnée de code et de dessin.</p>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#apropos\">À propos</a>\n    <a href=\"#projets\">Projets</a>\n    <a href=\"#contact\">Contact</a>\n  </nav>\n  </header>\n  <main>\n    <section id=\"apropos\">\n      <h2>À propos</h2>\n      <img src=\"portrait-ama.jpg\" alt=\"Portrait d’Ama Mensah souriante\" width=\"160\" height=\"160\">\n      <p>J’apprends à programmer depuis un an.</p>\n    </section>\n    <section id=\"projets\">\n      <h2>Projets</h2>\n      <div class=\"projets\">\n        <article><h3>Quiz de révision</h3><p>Un quiz en Python.</p></article>\n        <article><h3>Site du club</h3><p>Une page HTML et CSS.</p></article>\n      </div>\n    </section>\n    <section id=\"contact\">\n      <h2>Contact</h2>\n      <details>\n        <summary>Comment me joindre ?</summary>\n        <p><a href=\"mailto:ama.mensah@example.com\">Écrire à Ama</a></p>\n      </details>\n    </section>\n  </main>\n  <footer>\n    <p>Page fictive réalisée dans Nunya, 2026.</p>\n  </footer>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Téléphone",
+        "checks": [
+          {
+            "selector": "html",
+            "attributes": {
+              "lang": "fr"
+            }
+          },
+          {
+            "selector": "title",
+            "textIncludes": "Ama Mensah"
+          },
+          {
+            "selector": "meta[name=\"viewport\"]",
+            "count": 1
+          },
+          {
+            "selector": "nav a",
+            "count": 3
+          },
+          {
+            "selector": "main > section",
+            "count": 3
+          },
+          {
+            "selector": "#apropos img[alt]:not([alt=\"\"])",
+            "count": 1
+          },
+          {
+            "selector": "#contact details a",
+            "attributes": {
+              "href": "mailto:ama.mensah@example.com"
+            }
+          },
+          {
+            "selector": "nav",
+            "style": {
+              "flex-direction": "column"
+            }
+          },
+          {
+            "selector": "body",
+            "style": {
+              "font-size": "18px",
+              "margin-top": "0px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 700
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Ordinateur",
+        "checks": [
+          {
+            "selector": "nav",
+            "style": {
+              "flex-direction": "row"
+            }
+          },
+          {
+            "selector": ".projets",
+            "style": {
+              "display": "grid",
+              "grid-template-columns": "352px 352px"
+            }
+          },
+          {
+            "selector": "main",
+            "style": {
+              "max-width": "720px"
+            }
+          },
+          {
+            "selector": "img",
+            "style": {
+              "max-width": "100%"
+            }
+          },
+          {
+            "selector": "footer",
+            "count": 1
+          }
+        ],
+        "viewport": {
+          "width": 1000,
+          "height": 700
+        }
+      },
+      {
+        "description_fr": "Clavier",
+        "checks": [
+          {
+            "selector": "nav a",
+            "style": {
+              "outline-style": "solid"
+            }
+          }
+        ],
+        "focus_selector": "nav a"
+      }
+    ],
+    "hints": [
+      "Reprends le squelette du module 1.",
+      "Ajoute la feuille de style par blocs : thème, colonne, navigation, grille.",
+      "Termine par la requête média et le focus."
+    ],
+    "explanation_fr": "Ta page est prête à être publiée : il ne reste qu’à remplacer Ama par toi.",
+    "common_wrong_answers": [],
+    "id": "pw-m4-03-e4"
+  }
+]

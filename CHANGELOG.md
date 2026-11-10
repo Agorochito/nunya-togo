@@ -1,5 +1,10 @@
 # Historique
 
+## 5.20.0 — 10 novembre 2026
+
+- Nouveau cours : **Projet web : ma page personnelle**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, dans le vrai moteur de rendu de Nunya : plan et squelette sémantique, présentation avec image décrite et listes, projets et liens sûrs, feuille de style avec variables CSS, contraste et typographie, cartes en grille, mobile d’abord et requêtes média vérifiées à 360 et 1 000 pixels, images et mots longs qui ne débordent pas, volets details, focus clavier visible, formulaire de contact accessible, liste de contrôle et publication sur GitHub Pages.
+- La série « Projet web : ma page personnelle — en préparation » et l’étape « Projet web : mon portfolio » du parcours front-end sont remplacées par ce cours.
+
 ## 5.19.0 — 10 novembre 2026
 
 - Nouveau cours : **Statistiques avec Python : décrire, relier, estimer**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, en Python hors ligne : moyenne, médiane et mode, étendue, variance et écart-type (population et échantillon), quartiles et valeurs aberrantes, effectifs et fréquences cumulées, classes et histogrammes, nettoyage d’un fichier CSV (virgule décimale, valeurs manquantes, doublons), covariance, corrélation et ses pièges, droite de régression et résidus, probabilités et simulation reproductible, marge d’erreur et intervalle de confiance, puis enquête complète d’un lycée.

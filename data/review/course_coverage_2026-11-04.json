@@ -845,7 +845,7 @@
     "Objets connectés et robotique",
     "Blockchain"
   ],
-  "updated_for_release": "5.19.0",
+  "updated_for_release": "5.20.0",
   "updated_at": "2026-11-10",
   "additional_implemented": [
     {
@@ -926,6 +926,19 @@
       "evidence": [
         "content/fr/statistiques-python/",
         "docs/STATISTIQUES_PYTHON_UI_RESULTS.json"
+      ]
+    },
+    {
+      "id": "projet-web",
+      "modules": 4,
+      "lessons": 12,
+      "activities": 48,
+      "quizzes": 36,
+      "status": "brouillon",
+      "scope": "Projet de page personnelle en HTML et CSS, vérifié dans un rendu réel à deux largeurs ; étape du parcours front-end.",
+      "evidence": [
+        "content/fr/projet-web/",
+        "docs/PROJET_WEB_UI_RESULTS.json"
       ]
     }
   ]

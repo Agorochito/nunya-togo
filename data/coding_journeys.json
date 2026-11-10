@@ -12,6 +12,7 @@
       "css-intermediaire",
       "javascript-dom",
       "git-bases",
+      "projet-web",
       "http-bases",
       "react-bases"
     ],
@@ -19,10 +20,6 @@
       {
         "title_fr": "TypeScript",
         "summary_fr": "Ajouter des types au JavaScript pour des applications plus sûres."
-      },
-      {
-        "title_fr": "Projet web : mon portfolio",
-        "summary_fr": "Assembler et publier un site personnel complet."
       }
     ],
     "outcome_fr": "Construire et expliquer une interface web interactive et accessible ; poursuivre ensuite avec TypeScript et un projet publié."

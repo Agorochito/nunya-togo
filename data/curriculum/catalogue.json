@@ -5101,6 +5101,302 @@
       "quiz_count": 36
     },
     {
+      "id": "projet-web",
+      "title_fr": "Projet web : ma page personnelle",
+      "language": "html",
+      "runtime": "html",
+      "technology": "projetweb",
+      "level": "debutant",
+      "replaces_plans": [
+        "web-projet"
+      ],
+      "summary_fr": "Construis pas à pas ta page personnelle, comme un vrai portfolio : plan et squelette sémantique, présentation, projets et liens, feuille de style avec variables, couleurs lisibles, cartes en grille, mobile d’abord avec requêtes média, images souples, volets dépliables, focus clavier, formulaire de contact accessible, puis vérification et publication. Chaque étape est contrôlée dans un vrai rendu, sur téléphone et sur ordinateur.",
+      "prerequisite_courses": [
+        "html-bases",
+        "css-bases"
+      ],
+      "prerequisites": [
+        "Connaître les balises HTML courantes et les bases du CSS.",
+        "Les cours HTML et CSS débutants de Nunya fournissent ces bases."
+      ],
+      "outcomes": [
+        "Planifier et structurer une page complète et accessible.",
+        "Donner une identité visuelle cohérente et lisible avec des variables CSS.",
+        "Adapter la page aux téléphones et aux grands écrans.",
+        "Ajouter des interactions sans script et un formulaire accessible.",
+        "Vérifier une page avec une liste de contrôle et savoir la publier."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Structurer sa page",
+          "outcome_fr": "Plan, squelette, présentation, projets, liens et contact.",
+          "lesson_ids": [
+            "pw-m1-01",
+            "pw-m1-02",
+            "pw-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Lui donner un style",
+          "outcome_fr": "Feuille de style, variables, typographie lisible et cartes.",
+          "lesson_ids": [
+            "pw-m2-01",
+            "pw-m2-02",
+            "pw-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "S’adapter à tous les écrans",
+          "outcome_fr": "Mobile d’abord, requêtes média, contenus souples et colonnes.",
+          "lesson_ids": [
+            "pw-m3-01",
+            "pw-m3-02",
+            "pw-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Interagir et publier",
+          "outcome_fr": "Volets, focus, formulaire de contact, vérification et publication.",
+          "lesson_ids": [
+            "pw-m4-01",
+            "pw-m4-02",
+            "pw-m4-03"
+          ]
+        }
+      ],
+      "next_courses": [],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "pw-m1-01",
+          "title_fr": "Du plan au squelette de la page",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "html-m4-03",
+            "css-m4-03"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "squelette",
+            "région",
+            "ancre",
+            "hiérarchie des titres"
+          ]
+        },
+        {
+          "id": "pw-m1-02",
+          "title_fr": "Se présenter : texte, image et listes",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m1-01"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "texte alternatif",
+            "image décorative",
+            "liste de définitions",
+            "donnée personnelle"
+          ]
+        },
+        {
+          "id": "pw-m1-03",
+          "title_fr": "Projets, liens et contact",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m1-02"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "article",
+            "lien externe",
+            "rel=\"noopener\"",
+            "mailto"
+          ]
+        },
+        {
+          "id": "pw-m2-01",
+          "title_fr": "Une feuille de style et des variables",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m1-03"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "feuille de style",
+            "propriété personnalisée",
+            ":root",
+            "max-width"
+          ]
+        },
+        {
+          "id": "pw-m2-02",
+          "title_fr": "Couleurs lisibles et typographie",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m2-01"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "contraste",
+            "WCAG",
+            "échelle typographique",
+            "line-height"
+          ]
+        },
+        {
+          "id": "pw-m2-03",
+          "title_fr": "Des cartes pour les projets",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m2-02"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "carte",
+            "grille CSS",
+            "gap",
+            "padding"
+          ]
+        },
+        {
+          "id": "pw-m3-01",
+          "title_fr": "Mobile d’abord et requêtes média",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m2-03"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "mobile d’abord",
+            "viewport",
+            "requête média",
+            "point de rupture"
+          ]
+        },
+        {
+          "id": "pw-m3-02",
+          "title_fr": "Images et contenus souples",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m3-01"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "défilement horizontal",
+            "max-width",
+            "overflow-wrap",
+            "overflow-x"
+          ]
+        },
+        {
+          "id": "pw-m3-03",
+          "title_fr": "Deux colonnes et contenus selon l’écran",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m3-02"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "fr",
+            "grid-template-columns",
+            "display: none",
+            "ordre de lecture"
+          ]
+        },
+        {
+          "id": "pw-m4-01",
+          "title_fr": "Interactions sans script : volets, ancres et focus",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m3-03"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "details",
+            ":focus-visible",
+            "scroll-behavior",
+            "prefers-reduced-motion"
+          ]
+        },
+        {
+          "id": "pw-m4-02",
+          "title_fr": "Un formulaire de contact accessible",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m4-01"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "label",
+            "required",
+            "autocomplete",
+            "action"
+          ]
+        },
+        {
+          "id": "pw-m4-03",
+          "title_fr": "Projet final : assembler, vérifier et publier",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m4-02"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "liste de contrôle",
+            "site statique",
+            "GitHub Pages",
+            "index.html"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "49790410b1a5",
+      "exercise_count": 48,
+      "quiz_count": 36
+    },
+    {
       "id": "python-intermediaire",
       "title_fr": "Python : construire des outils fiables",
       "language": "python",
@@ -7331,12 +7627,6 @@
     }
   ],
   "plans": [
-    {
-      "id": "web-projet",
-      "title_fr": "Projet web : ma page personnelle",
-      "summary_fr": "Réunir structure, style et interactions.",
-      "status": "bientôt"
-    },
     {
       "id": "nodejs",
       "title_fr": "Node.js : les bases du serveur",
