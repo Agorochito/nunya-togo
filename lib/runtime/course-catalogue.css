@@ -121,4 +121,12 @@
 .nunya-catalogue-domain{margin-top:26px}
 .nunya-catalogue-domain>h3{font-size:20px;margin:0 0 4px}
 .nunya-catalogue-domain>p{color:var(--muted);margin:0 0 14px;font-size:15px}
-
+/* Attestation de fin de cours et feuille d’impression */
+.nunya-cert-panel{margin:18px 0;border-left:4px solid var(--accent,#784c35)}
+.nunya-cert-panel h2{font-size:22px;margin:4px 0 8px}
+.nunya-cert-panel p{margin:0 0 12px}
+#modal #nunya-cert-name{display:block;width:100%;max-width:420px;margin:6px 0;padding:10px 12px;font:inherit;border:1px solid var(--line,#ccc);border-radius:10px;background:var(--surface,#fff);color:inherit}
+.nunya-cert-hint{font-size:14px;color:var(--muted)}
+.nunya-print-option{display:flex;gap:10px;align-items:flex-start;margin:12px 0}
+#nunya-print-sheet{display:none}
+@media print{#nunya-print-sheet,#nunya-print-sheet *{color:#111!important;background:transparent!important;text-shadow:none!important;box-shadow:none!important}#nunya-print-sheet a{color:#3b2a1f!important}body.nunya-printing>*{display:none!important}body.nunya-printing>#nunya-print-sheet{display:block!important;margin:0;padding:0;background:#fff;color:#111;font:11pt/1.55 system-ui,sans-serif}#nunya-print-sheet h1,#nunya-print-sheet h2{font-family:var(--font-heading,Georgia,serif)}#nunya-print-sheet h2,#nunya-print-sheet h3,#nunya-print-sheet h4{break-after:avoid}#nunya-print-sheet pre{white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid #bbb;border-radius:6px;padding:8px;break-inside:avoid;font-size:9.5pt}#nunya-print-sheet nav{display:none}#nunya-print-sheet table{border-collapse:collapse;width:100%}#nunya-print-sheet th,#nunya-print-sheet td{border:1px solid #999;padding:4px 8px;text-align:left}#nunya-print-sheet section{break-inside:auto;border-top:1px solid #ccc;margin-top:1.2em;padding-top:.6em}#nunya-print-sheet details{border:0;padding:0}#nunya-print-sheet .nunya-cert{text-align:center;border-bottom:2px solid #111;margin-bottom:1em}#nunya-print-sheet .nunya-cert-name{font-size:18pt;margin:.3em 0}}
