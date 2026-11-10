@@ -1,0 +1,326 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Tri par sélection",
+    "instruction_fr": "Écris tri_selection(liste) qui renvoie une NOUVELLE liste triée par ordre croissant, avec la méthode de sélection, sans modifier la liste reçue et sans utiliser sorted.",
+    "starter_code": "def tri_selection(liste):\n    liste.sort()\n    return liste\n",
+    "solution": "def tri_selection(liste):\n    resultat = list(liste)\n    for i in range(len(resultat)):\n        mini = i\n        for j in range(i + 1, len(resultat)):\n            if resultat[j] < resultat[mini]:\n                mini = j\n        resultat[i], resultat[mini] = resultat[mini], resultat[i]\n    return resultat\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tri_selection",
+            "args": [
+              [
+                15,
+                8,
+                12,
+                4
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              4,
+              8,
+              12,
+              15
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tri_selection",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "tri_selection",
+            "args": [
+              [
+                3,
+                1,
+                3,
+                2
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              1,
+              2,
+              3,
+              3
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La liste reçue est modifiée.",
+      "Commence par resultat = list(liste).",
+      "Pour chaque position, cherche l’indice du minimum restant, puis échange."
+    ],
+    "explanation_fr": "Le début de la liste est trié après chaque tour : c’est l’invariant du tri par sélection.",
+    "common_wrong_answers": [],
+    "id": "algo-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Tri par insertion",
+    "instruction_fr": "Écris tri_insertion(liste) qui renvoie une NOUVELLE liste triée, en glissant chaque élément vers la gauche jusqu’à sa place.",
+    "starter_code": "def tri_insertion(liste):\n    return list(liste)\n",
+    "solution": "def tri_insertion(liste):\n    resultat = list(liste)\n    for i in range(1, len(resultat)):\n        valeur = resultat[i]\n        j = i - 1\n        while j >= 0 and resultat[j] > valeur:\n            resultat[j + 1] = resultat[j]\n            j -= 1\n        resultat[j + 1] = valeur\n    return resultat\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tri_insertion",
+            "args": [
+              [
+                5,
+                2,
+                9,
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              1,
+              2,
+              5,
+              9
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tri_insertion",
+            "args": [
+              [
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              1
+            ]
+          },
+          {
+            "name": "tri_insertion",
+            "args": [
+              [
+                4,
+                3,
+                2,
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Chaque élément doit reculer tant que son voisin de gauche est plus grand.",
+      "Décale les plus grands d’une case vers la droite.",
+      "Pose la valeur dans la case libérée."
+    ],
+    "explanation_fr": "Sur une liste déjà triée, la boucle intérieure ne tourne jamais.",
+    "common_wrong_answers": [],
+    "id": "algo-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Tri à bulles incomplet",
+    "instruction_fr": "tri_bulles(liste) compare les voisins et les échange s’ils sont dans le mauvais ordre, en faisant plusieurs passages. Sa boucle intérieure s’arrête une case trop tôt. Corrige-la.",
+    "starter_code": "def tri_bulles(liste):\n    resultat = list(liste)\n    n = len(resultat)\n    for passage in range(n):\n        for j in range(n - passage - 2):\n            if resultat[j] > resultat[j + 1]:\n                resultat[j], resultat[j + 1] = resultat[j + 1], resultat[j]\n    return resultat\n",
+    "solution": "def tri_bulles(liste):\n    resultat = list(liste)\n    n = len(resultat)\n    for passage in range(n):\n        for j in range(n - passage - 1):\n            if resultat[j] > resultat[j + 1]:\n                resultat[j], resultat[j + 1] = resultat[j + 1], resultat[j]\n    return resultat\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tri_bulles",
+            "args": [
+              [
+                3,
+                2,
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              1,
+              2,
+              3
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tri_bulles",
+            "args": [
+              [
+                2,
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              1,
+              2
+            ]
+          },
+          {
+            "name": "tri_bulles",
+            "args": [
+              [
+                5,
+                1,
+                4,
+                2,
+                8
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              1,
+              2,
+              4,
+              5,
+              8
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les deux derniers éléments ne sont jamais comparés au premier passage.",
+      "Le dernier indice comparé est n - passage - 2.",
+      "La borne de range doit être n - passage - 1."
+    ],
+    "explanation_fr": "Une erreur d’une case sur une borne suffit à rendre un tri faux.",
+    "common_wrong_answers": [],
+    "id": "algo-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Classement de la classe",
+    "instruction_fr": "Écris classement(eleves) : eleves est une liste de [nom, note]. Renvoie la liste des noms triés par note décroissante, puis par nom à note égale, avec sorted et une clé.",
+    "starter_code": "def classement(eleves):\n    return [e[0] for e in sorted(eleves)]\n",
+    "solution": "def classement(eleves):\n    return [e[0] for e in sorted(eleves, key=lambda e: (-e[1], e[0]))]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "classement",
+            "args": [
+              [
+                [
+                  "Afi",
+                  14
+                ],
+                [
+                  "Kofi",
+                  9
+                ],
+                [
+                  "Esi",
+                  14
+                ],
+                [
+                  "Yao",
+                  17
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "Yao",
+              "Afi",
+              "Esi",
+              "Kofi"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "classement",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "classement",
+            "args": [
+              [
+                [
+                  "B",
+                  10
+                ],
+                [
+                  "A",
+                  10
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "A",
+              "B"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le tri par défaut classe par nom.",
+      "La clé doit mettre la note décroissante en premier.",
+      "key=lambda e: (-e[1], e[0])"
+    ],
+    "explanation_fr": "Une clé bien construite remplace des dizaines de lignes de tri maison.",
+    "common_wrong_answers": [],
+    "id": "algo-m1-03-e4"
+  }
+]

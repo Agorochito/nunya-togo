@@ -1,0 +1,296 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Compter les comparaisons",
+    "instruction_fr": "Écris comparaisons(liste, cible) qui renvoie le nombre de comparaisons faites par une recherche linéaire qui s’arrête dès qu’elle trouve la cible.",
+    "starter_code": "def comparaisons(liste, cible):\n    return len(liste)\n",
+    "solution": "def comparaisons(liste, cible):\n    compte = 0\n    for valeur in liste:\n        compte += 1\n        if valeur == cible:\n            break\n    return compte\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "comparaisons",
+            "args": [
+              [
+                12,
+                8,
+                15,
+                10
+              ],
+              15
+            ],
+            "unchanged_args": true,
+            "expected": 3
+          },
+          {
+            "name": "comparaisons",
+            "args": [
+              [
+                12,
+                8,
+                15,
+                10
+              ],
+              99
+            ],
+            "unchanged_args": true,
+            "expected": 4
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "comparaisons",
+            "args": [
+              [],
+              1
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "comparaisons",
+            "args": [
+              [
+                5,
+                5,
+                5
+              ],
+              5
+            ],
+            "unchanged_args": true,
+            "expected": 1
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La recherche s’arrête dès que la cible est trouvée.",
+      "Compte avant de comparer, à chaque tour.",
+      "break sort de la boucle."
+    ],
+    "explanation_fr": "Le meilleur cas coûte 1, le pire n : on retient le pire.",
+    "common_wrong_answers": [],
+    "id": "algo-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Doublons rapides",
+    "instruction_fr": "Écris a_doublon(liste) qui renvoie True si une valeur apparaît au moins deux fois, en un seul parcours grâce à un ensemble.",
+    "starter_code": "def a_doublon(liste):\n    for i in range(len(liste)):\n        for j in range(len(liste)):\n            if liste[i] == liste[j]:\n                return True\n    return False\n",
+    "solution": "def a_doublon(liste):\n    vus = set()\n    for valeur in liste:\n        if valeur in vus:\n            return True\n        vus.add(valeur)\n    return False\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "a_doublon",
+            "args": [
+              [
+                3,
+                7,
+                1,
+                7
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "a_doublon",
+            "args": [
+              [
+                3,
+                7,
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "a_doublon",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": false
+          },
+          {
+            "name": "a_doublon",
+            "args": [
+              [
+                "Afi",
+                "Kofi",
+                "Afi"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La double boucle compare chaque élément à lui-même : toujours True.",
+      "Un ensemble mémorise les valeurs déjà vues.",
+      "Teste valeur in vus avant de l’ajouter."
+    ],
+    "explanation_fr": "Un parcours avec un ensemble remplace n² comparaisons par n tests rapides.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "call:set"
+    ],
+    "id": "algo-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Reconnaître une croissance",
+    "instruction_fr": "croissance(avant, apres) reçoit le travail mesuré pour n et pour 2n, et doit renvoyer \"constante\" si le rapport apres/avant est inférieur à 1.5, \"linéaire\" s’il est inférieur à 3, sinon \"quadratique\". Les seuils sont dans le désordre. Corrige-la.",
+    "starter_code": "def croissance(avant, apres):\n    rapport = apres / avant\n    if rapport < 3:\n        return \"linéaire\"\n    if rapport < 1.5:\n        return \"constante\"\n    return \"quadratique\"\n",
+    "solution": "def croissance(avant, apres):\n    rapport = apres / avant\n    if rapport < 1.5:\n        return \"constante\"\n    if rapport < 3:\n        return \"linéaire\"\n    return \"quadratique\"\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "croissance",
+            "args": [
+              5,
+              5
+            ],
+            "unchanged_args": true,
+            "expected": "constante"
+          },
+          {
+            "name": "croissance",
+            "args": [
+              100,
+              400
+            ],
+            "unchanged_args": true,
+            "expected": "quadratique"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "croissance",
+            "args": [
+              100,
+              200
+            ],
+            "unchanged_args": true,
+            "expected": "linéaire"
+          },
+          {
+            "name": "croissance",
+            "args": [
+              7,
+              8
+            ],
+            "unchanged_args": true,
+            "expected": "constante"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un travail constant est classé linéaire.",
+      "Le seuil le plus petit doit être testé en premier.",
+      "Inverse l’ordre des deux premiers tests."
+    ],
+    "explanation_fr": "L’expérience du doublement transforme des mesures en diagnostic.",
+    "common_wrong_answers": [],
+    "id": "algo-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Tableau de croissances",
+    "instruction_fr": "Écris mesurer(n) qui renvoie {\"lineaire\": tours d’une boucle de n tours, \"quadratique\": tours de deux boucles imbriquées de n tours, \"logarithmique\": nombre de divisions entières par 2 pour passer de n à 1}. Compte réellement les tours avec des boucles.",
+    "starter_code": "def mesurer(n):\n    return {\"lineaire\": n, \"quadratique\": n, \"logarithmique\": n}\n",
+    "solution": "def mesurer(n):\n    lineaire = 0\n    for i in range(n):\n        lineaire += 1\n    quadratique = 0\n    for i in range(n):\n        for j in range(n):\n            quadratique += 1\n    logarithmique = 0\n    m = n\n    while m > 1:\n        m //= 2\n        logarithmique += 1\n    return {\"lineaire\": lineaire, \"quadratique\": quadratique, \"logarithmique\": logarithmique}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "mesurer",
+            "args": [
+              8
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "lineaire": 8,
+              "quadratique": 64,
+              "logarithmique": 3
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "mesurer",
+            "args": [
+              1
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "lineaire": 1,
+              "quadratique": 1,
+              "logarithmique": 0
+            }
+          },
+          {
+            "name": "mesurer",
+            "args": [
+              100
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "lineaire": 100,
+              "quadratique": 10000,
+              "logarithmique": 6
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Trois compteurs, trois façons de répéter.",
+      "Deux boucles imbriquées pour le quadratique.",
+      "Divise m par 2 tant qu’il dépasse 1."
+    ],
+    "explanation_fr": "Pour n = 100, la différence entre 6 et 10 000 opérations est déjà frappante.",
+    "common_wrong_answers": [],
+    "id": "algo-m1-01-e4"
+  }
+]

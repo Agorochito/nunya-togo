@@ -1,0 +1,305 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Prix TTC",
+    "instruction_fr": "Écris avecTva(array $prix): array qui renvoie les prix TTC arrondis à l’entier (taux 18 %) avec array_map.",
+    "starter_code": "<?php\nfunction avecTva(array $prix): array\n{\n    return $prix;\n}\n",
+    "solution": "<?php\nfunction avecTva(array $prix): array\n{\n    return array_map(fn($p) => (int) round($p * 1.18), $prix);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "avecTva",
+            "args": [
+              [
+                600,
+                1200
+              ]
+            ],
+            "expected": [
+              708,
+              1416
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "avecTva",
+            "args": [
+              []
+            ],
+            "expected": []
+          },
+          {
+            "name": "avecTva",
+            "args": [
+              [
+                250
+              ]
+            ],
+            "expected": [
+              295
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les prix sont renvoyés sans TVA.",
+      "array_map applique une fonction à chaque prix.",
+      "fn($p) => (int) round($p * 1.18)"
+    ],
+    "explanation_fr": "Une ligne remplace une boucle et un tableau de résultats.",
+    "common_wrong_answers": [],
+    "id": "phpi-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Produits disponibles",
+    "instruction_fr": "Écris disponibles(array $produits): array qui renvoie la liste des noms des produits dont le stock est positif, dans l’ordre d’origine, avec array_filter, array_map et array_values.",
+    "starter_code": "<?php\nfunction disponibles(array $produits): array\n{\n    return array_column($produits, \"nom\");\n}\n",
+    "solution": "<?php\nfunction disponibles(array $produits): array\n{\n    $enStock = array_filter($produits, fn($p) => $p[\"stock\"] > 0);\n    return array_values(array_map(fn($p) => $p[\"nom\"], $enStock));\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "disponibles",
+            "args": [
+              [
+                {
+                  "nom": "Riz",
+                  "prix": 600,
+                  "stock": 40
+                },
+                {
+                  "nom": "Huile",
+                  "prix": 1200,
+                  "stock": 0
+                },
+                {
+                  "nom": "Savon",
+                  "prix": 250,
+                  "stock": 60
+                }
+              ]
+            ],
+            "expected": [
+              "Riz",
+              "Savon"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "disponibles",
+            "args": [
+              [
+                {
+                  "nom": "Sel",
+                  "prix": 100,
+                  "stock": 0
+                }
+              ]
+            ],
+            "expected": []
+          },
+          {
+            "name": "disponibles",
+            "args": [
+              [
+                {
+                  "nom": "Huile",
+                  "prix": 1,
+                  "stock": 0
+                },
+                {
+                  "nom": "Sel",
+                  "prix": 100,
+                  "stock": 3
+                }
+              ]
+            ],
+            "expected": [
+              "Sel"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’huile en rupture est encore listée.",
+      "Filtre d’abord, puis extrais les noms.",
+      "array_values renumérote la liste."
+    ],
+    "explanation_fr": "Filtrer puis transformer : la chaîne se lit comme la consigne.",
+    "common_wrong_answers": [],
+    "id": "phpi-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Tri par prix",
+    "instruction_fr": "trierParPrix(array $produits): array doit renvoyer les noms triés par prix croissant, puis par nom à prix égal. La comparaison est inversée. Corrige-la.",
+    "starter_code": "<?php\nfunction trierParPrix(array $produits): array\n{\n    usort($produits, fn($a, $b) => ($b[\"prix\"] <=> $a[\"prix\"]) ?: strcmp($a[\"nom\"], $b[\"nom\"]));\n    return array_column($produits, \"nom\");\n}\n",
+    "solution": "<?php\nfunction trierParPrix(array $produits): array\n{\n    usort($produits, fn($a, $b) => ($a[\"prix\"] <=> $b[\"prix\"]) ?: strcmp($a[\"nom\"], $b[\"nom\"]));\n    return array_column($produits, \"nom\");\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "trierParPrix",
+            "args": [
+              [
+                {
+                  "nom": "Riz",
+                  "prix": 600,
+                  "stock": 40
+                },
+                {
+                  "nom": "Huile",
+                  "prix": 1200,
+                  "stock": 0
+                },
+                {
+                  "nom": "Savon",
+                  "prix": 250,
+                  "stock": 60
+                }
+              ]
+            ],
+            "expected": [
+              "Savon",
+              "Riz",
+              "Huile"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "trierParPrix",
+            "args": [
+              [
+                {
+                  "nom": "C",
+                  "prix": 5
+                },
+                {
+                  "nom": "B",
+                  "prix": 1
+                },
+                {
+                  "nom": "A",
+                  "prix": 1
+                }
+              ]
+            ],
+            "expected": [
+              "A",
+              "B",
+              "C"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le plus cher arrive en premier.",
+      "$b <=> $a trie en ordre décroissant.",
+      "Compare $a[\"prix\"] <=> $b[\"prix\"]."
+    ],
+    "explanation_fr": "L’ordre des deux opérandes de <=> décide du sens du tri.",
+    "common_wrong_answers": [],
+    "id": "phpi-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Bilan des ventes",
+    "instruction_fr": "Écris bilan(array $ventes): array : chaque vente est [\"produit\" => nom, \"quantite\" => q, \"prix\" => p]. Renvoie [\"nb\" => nombre de ventes, \"total\" => somme des q × p, \"meilleur\" => nom de la vente au plus gros montant, ou null s’il n’y a pas de vente]. Utilise array_reduce pour le total.",
+    "starter_code": "<?php\nfunction bilan(array $ventes): array\n{\n    return [\"nb\" => count($ventes), \"total\" => 0, \"meilleur\" => null];\n}\n",
+    "solution": "<?php\nfunction bilan(array $ventes): array\n{\n    $total = array_reduce($ventes, fn($s, $v) => $s + $v[\"quantite\"] * $v[\"prix\"], 0);\n    $meilleur = null;\n    $max = -1;\n    foreach ($ventes as $v) {\n        $montant = $v[\"quantite\"] * $v[\"prix\"];\n        if ($montant > $max) {\n            $max = $montant;\n            $meilleur = $v[\"produit\"];\n        }\n    }\n    return [\"nb\" => count($ventes), \"total\" => $total, \"meilleur\" => $meilleur];\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan",
+            "args": [
+              [
+                {
+                  "produit": "Riz",
+                  "quantite": 2,
+                  "prix": 600
+                },
+                {
+                  "produit": "Savon",
+                  "quantite": 5,
+                  "prix": 250
+                },
+                {
+                  "produit": "Huile",
+                  "quantite": 1,
+                  "prix": 1200
+                }
+              ]
+            ],
+            "expected": {
+              "nb": 3,
+              "total": 3650,
+              "meilleur": "Savon"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bilan",
+            "args": [
+              []
+            ],
+            "expected": {
+              "nb": 0,
+              "total": 0,
+              "meilleur": null
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le total reste à 0.",
+      "array_reduce accumule q × p en partant de 0.",
+      "Une boucle garde le nom du plus gros montant."
+    ],
+    "explanation_fr": "Les fonctions de tableau et une boucle simple se complètent : choisis le plus lisible.",
+    "common_wrong_answers": [],
+    "id": "phpi-m1-02-e4"
+  }
+]

@@ -3,6 +3,7 @@
     {
       "width": 360,
       "welcomePicker": true,
+      "sidebarToggle": false,
       "settingsCards": 7,
       "nuitForcesDark": true,
       "glassLiteToggle": true,
@@ -13,6 +14,7 @@
     {
       "width": 1440,
       "welcomePicker": true,
+      "sidebarToggle": true,
       "settingsCards": 7,
       "nuitForcesDark": true,
       "glassLiteToggle": true,

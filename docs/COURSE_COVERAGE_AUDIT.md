@@ -1,4 +1,4 @@
-# Couverture des cours — livraison 5.17.0, 10 novembre 2026
+# Couverture des cours — livraison 5.18.0, 10 novembre 2026
 
 Le prompt maître impose une réalisation par lots, avec une cible finale de 72 cours répartis sur trois niveaux et des séries complémentaires. Cette livraison ne termine pas cette cible. L’audit initial est conservé dans [BASELINE_COURSE_AUDIT_5.2.1.md](BASELINE_COURSE_AUDIT_5.2.1.md).
 
@@ -16,6 +16,9 @@ Le prompt maître impose une réalisation par lots, avec une cible finale de 72 
 | JavaScript : interfaces DOM | 6 | 18 | 72 | DOM natif, événements, formulaires, recherche/tri et projet ; contenu à relire. |
 | React : composants et application interactive | 6 | 18 | 72 | React/ReactDOM réels, JSX, état, formulaires, effets et service de démonstration simulé ; contenu à relire. |
 | HTML : documents et formulaires accessibles | 4 | 12 | 48 | Niveau intermédiaire : régions, formulaires reliés, tableaux, images, langue et annuaire ; vrai navigateur, contenu à relire. |
+| PHP intermédiaire : objets et données | 4 | 12 | 48 | Vrai PHP 8.3 hors ligne : typage, tableaux fonctionnels, objets, héritage, interfaces, exceptions, JSON, enums, validation et projet ; contenu à relire. |
+| Algorithmes et structures de données | 4 | 12 | 48 | Python hors ligne : complexité, dichotomie, tris, récursivité, piles, files, dictionnaires, ensembles, graphes, BFS, DFS, tri topologique et Dijkstra ; contenu à relire. |
+| Qualité logicielle : tester, déboguer, relire | 4 | 12 | 48 | Python hors ligne : assert, tests par mutation, cas limites, tests en tableau, traces, débogage, pièges, refactoring, doctests, TDD et revue de code ; contenu à relire. |
 | SQL intermédiaire : analyser les données d’une boutique | 4 | 12 | 48 | Vrai SQLite hors ligne, base fictive d’une boutique : CASE, fonctions, opérateurs ensemblistes, CTE récursives, fenêtres, vues, index, UPSERT, déclencheurs et tableau de bord ; contenu à relire. |
 | Réseaux informatiques : comprendre et diagnostiquer | 4 | 12 | 48 | Python hors ligne, relevés fictifs : adresses, CIDR, sous-réseaux, couches, ports, DNS, ping, traceroute, configurations, pare-feu, segmentation et diagnostic ; contenu à relire. |
 | Cybersécurité : défendre une petite organisation | 4 | 12 | 48 | Python hors ligne, données fictives : risques, mots de passe, hachage, hameçonnage, journaux, droits, entrées, intégrité, sauvegardes, incidents et audit ; contenu à relire. |
@@ -25,7 +28,7 @@ Le prompt maître impose une réalisation par lots, avec une cible finale de 72 
 | PHP : les bases de la programmation | 4 | 12 | 48 | Vrai PHP 8.3 hors ligne : variables, conditions, boucles, tableaux, fonctions et caisse de boutique ; contenu à relire. |
 | CSS : interfaces robustes et adaptatives | 6 | 18 | 72 | Niveau intermédiaire : cascade, Flexbox, grilles, media queries, typographie, états et thème ; styles calculés à deux largeurs, contenu à relire. |
 
-Dix-huit programmes principaux : 94 modules, 299 leçons, 1 196 exercices et 897 QCM. Git/GitHub et Découverte sont comptés séparément ci-dessous. DOM est une suite intermédiaire aux fondamentaux JavaScript ; ce cours ne prétend pas couvrir à lui seul tout le niveau intermédiaire.
+Vingt et un programmes principaux : 106 modules, 335 leçons, 1 340 exercices et 1 005 QCM. Git/GitHub et Découverte sont comptés séparément ci-dessous. DOM est une suite intermédiaire aux fondamentaux JavaScript ; ce cours ne prétend pas couvrir à lui seul tout le niveau intermédiaire.
 
 Les leçons possèdent chacune 300–700 mots d’explication, deux exemples commentés, quatre exercices, trois questions de compréhension, des erreurs fréquentes, un glossaire et un récapitulatif. Elles sont des brouillons originaux : aucun enseignant réviseur, partenariat ou certificat externe n’est inventé. Les 22 chapitres Python antérieurs, leurs identifiants et leurs questions de fin de chapitre restent conservés.
 

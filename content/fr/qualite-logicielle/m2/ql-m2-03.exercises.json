@@ -1,0 +1,297 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Panier partagé",
+    "instruction_fr": "ajouter(article, panier=[]) partage le même panier entre tous les clients. Corrige-la avec None par défaut.",
+    "starter_code": "def ajouter(article, panier=[]):\n    panier.append(article)\n    return panier\n\n\n# Vérification fournie : ne la modifie pas.\ndef deux_clients():\n    return [ajouter(\"riz\"), ajouter(\"savon\")]\n",
+    "solution": "def ajouter(article, panier=None):\n    if panier is None:\n        panier = []\n    panier.append(article)\n    return panier\n\n\n# Vérification fournie : ne la modifie pas.\ndef deux_clients():\n    return [ajouter(\"riz\"), ajouter(\"savon\")]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "deux_clients",
+            "args": [],
+            "unchanged_args": true,
+            "expected": [
+              [
+                "riz"
+              ],
+              [
+                "savon"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ajouter",
+            "args": [
+              "sel"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "sel"
+            ]
+          },
+          {
+            "name": "deux_clients",
+            "args": [],
+            "unchanged_args": true,
+            "expected": [
+              [
+                "riz"
+              ],
+              [
+                "savon"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le second client reçoit aussi le riz du premier.",
+      "La liste par défaut est créée une seule fois.",
+      "panier=None, puis if panier is None: panier = []."
+    ],
+    "explanation_fr": "Ce piège surprend même les développeurs expérimentés.",
+    "common_wrong_answers": [],
+    "id": "ql-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Comparer des montants",
+    "instruction_fr": "Écris meme_montant(a, b) qui renvoie True si deux montants flottants sont égaux à une infime différence près, avec math.isclose.",
+    "starter_code": "def meme_montant(a, b):\n    return a == b\n",
+    "solution": "import math\n\ndef meme_montant(a, b):\n    return math.isclose(a, b)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "meme_montant",
+            "args": [
+              0.30000000000000004,
+              0.3
+            ],
+            "unchanged_args": true,
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "meme_montant",
+            "args": [
+              1.0,
+              1.1
+            ],
+            "unchanged_args": true,
+            "expected": false
+          },
+          {
+            "name": "meme_montant",
+            "args": [
+              1500.0,
+              1500
+            ],
+            "unchanged_args": true,
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "0.1 + 0.2 == 0.3 est faux.",
+      "math.isclose tolère l’erreur de représentation.",
+      "import math puis return math.isclose(a, b)."
+    ],
+    "explanation_fr": "Pour l’argent, travailler en entiers évite totalement le problème.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:math"
+    ],
+    "id": "ql-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Retirer les notes insuffisantes",
+    "instruction_fr": "sans_echecs(notes) doit renvoyer une nouvelle liste sans les notes inférieures à 10. Elle supprime pendant le parcours et en saute certaines, en plus de modifier la liste reçue. Corrige-la.",
+    "starter_code": "def sans_echecs(notes):\n    for n in notes:\n        if n < 10:\n            notes.remove(n)\n    return notes\n",
+    "solution": "def sans_echecs(notes):\n    return [n for n in notes if n >= 10]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "sans_echecs",
+            "args": [
+              [
+                8,
+                9,
+                12,
+                7
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              12
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "sans_echecs",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "sans_echecs",
+            "args": [
+              [
+                15,
+                3,
+                4,
+                11
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              15,
+              11
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le 9 reste : il a été sauté.",
+      "remove décale les éléments pendant la boucle.",
+      "Construis une nouvelle liste par compréhension."
+    ],
+    "explanation_fr": "Construire une nouvelle liste évite le piège et laisse la liste d’origine intacte.",
+    "common_wrong_answers": [],
+    "id": "ql-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Réparer la caisse",
+    "instruction_fr": "caisse(articles, remises=[]) contient trois pièges : remises par défaut partagées, total flottant comparé avec ==, et suppression des articles gratuits pendant le parcours. Elle doit renvoyer [liste des articles payants, total arrondi à l’entier, True si le total vaut exactement le budget 1500 à une infime différence près]. Corrige-la sans modifier les arguments.",
+    "starter_code": "def caisse(articles, remises=[]):\n    for a in articles:\n        if a[1] == 0:\n            articles.remove(a)\n    total = sum(a[1] for a in articles) * 1.0\n    remises.append(total)\n    return [[a[0] for a in articles], round(total), total == 1500.0000000001]\n",
+    "solution": "import math\n\ndef caisse(articles, remises=None):\n    if remises is None:\n        remises = []\n    payants = [a for a in articles if a[1] != 0]\n    total = sum(a[1] for a in payants) * 1.0\n    remises.append(total)\n    return [[a[0] for a in payants], round(total), math.isclose(total, 1500)]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "caisse",
+            "args": [
+              [
+                [
+                  "riz",
+                  600
+                ],
+                [
+                  "sac",
+                  0
+                ],
+                [
+                  "cadeau",
+                  0
+                ],
+                [
+                  "huile",
+                  900
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                "riz",
+                "huile"
+              ],
+              1500,
+              true
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "caisse",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [],
+              0,
+              false
+            ]
+          },
+          {
+            "name": "caisse",
+            "args": [
+              [
+                [
+                  "savon",
+                  250
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                "savon"
+              ],
+              250,
+              false
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Deux articles gratuits consécutifs : le second est sauté.",
+      "Compare le total avec math.isclose.",
+      "Remplace la liste par défaut par None."
+    ],
+    "explanation_fr": "Trois pièges en dix lignes : les reconnaître devient un réflexe.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:math"
+    ],
+    "id": "ql-m2-03-e4"
+  }
+]

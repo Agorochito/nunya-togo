@@ -1,0 +1,238 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Total d’une commande JSON",
+    "instruction_fr": "Écris totalJson(string $json): int qui décode une liste de ventes {\"produit\", \"prix\", \"quantite\"} et renvoie la somme des prix × quantités.",
+    "starter_code": "<?php\nfunction totalJson(string $json): int\n{\n    $ventes = json_decode($json);\n    $total = 0;\n    foreach ($ventes as $v) {\n        $total += $v[\"prix\"] * $v[\"quantite\"];\n    }\n    return $total;\n}\n",
+    "solution": "<?php\nfunction totalJson(string $json): int\n{\n    $ventes = json_decode($json, true);\n    $total = 0;\n    foreach ($ventes as $v) {\n        $total += $v[\"prix\"] * $v[\"quantite\"];\n    }\n    return $total;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "totalJson",
+            "args": [
+              "[{\"produit\": \"Riz\", \"prix\": 600, \"quantite\": 2}, {\"produit\": \"Thé\", \"prix\": 400, \"quantite\": 3}, {\"produit\": \"Riz\", \"prix\": 600, \"quantite\": 1}]"
+            ],
+            "expected": 3000
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "totalJson",
+            "args": [
+              "[]"
+            ],
+            "expected": 0
+          },
+          {
+            "name": "totalJson",
+            "args": [
+              "[{\"produit\":\"Sel\",\"prix\":100,\"quantite\":5}]"
+            ],
+            "expected": 500
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : un objet stdClass ne se lit pas avec des crochets.",
+      "json_decode a besoin de son second argument.",
+      "json_decode($json, true)"
+    ],
+    "explanation_fr": "Avec true, toutes les données décodées sont des tableaux, comme dans le reste du cours.",
+    "common_wrong_answers": [],
+    "id": "phpi-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Exporter les produits disponibles",
+    "instruction_fr": "Écris exporter(array $produits): string qui renvoie le JSON de la liste des noms des produits au stock positif, accents conservés. Exemple : [\"Riz\",\"Thé\"].",
+    "starter_code": "<?php\nfunction exporter(array $produits): string\n{\n    return json_encode(array_column($produits, \"nom\"));\n}\n",
+    "solution": "<?php\nfunction exporter(array $produits): string\n{\n    $noms = array_values(array_map(fn($p) => $p[\"nom\"], array_filter($produits, fn($p) => $p[\"stock\"] > 0)));\n    return json_encode($noms, JSON_UNESCAPED_UNICODE);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter",
+            "args": [
+              [
+                {
+                  "nom": "Riz",
+                  "stock": 4
+                },
+                {
+                  "nom": "Café",
+                  "stock": 0
+                },
+                {
+                  "nom": "Thé",
+                  "stock": 2
+                }
+              ]
+            ],
+            "expected": "[\"Riz\",\"Thé\"]"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exporter",
+            "args": [
+              []
+            ],
+            "expected": "[]"
+          },
+          {
+            "name": "exporter",
+            "args": [
+              [
+                {
+                  "nom": "Riz",
+                  "stock": 0
+                },
+                {
+                  "nom": "Café",
+                  "stock": 1
+                }
+              ]
+            ],
+            "expected": "[\"Café\"]"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le café en rupture est exporté, et é devient un code.",
+      "Filtre, extrais les noms, puis array_values.",
+      "Encode avec JSON_UNESCAPED_UNICODE."
+    ],
+    "explanation_fr": "array_values garantit un tableau JSON, et l’option garde un JSON lisible.",
+    "common_wrong_answers": [],
+    "id": "phpi-m3-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Configuration invalide",
+    "instruction_fr": "lireConfig(string $json): array doit renvoyer le tableau décodé, ou [\"erreur\" => \"JSON invalide\"] si le texte n’est pas du JSON valide. Elle laisse json_decode renvoyer null, ce que le type de retour array refuse. Corrige-la avec JSON_THROW_ON_ERROR.",
+    "starter_code": "<?php\nfunction lireConfig(string $json): array\n{\n    return json_decode($json, true);\n}\n",
+    "solution": "<?php\nfunction lireConfig(string $json): array\n{\n    try {\n        return json_decode($json, true, 512, JSON_THROW_ON_ERROR);\n    } catch (JsonException $e) {\n        return [\"erreur\" => \"JSON invalide\"];\n    }\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lireConfig",
+            "args": [
+              "{\"tva\": 0.18"
+            ],
+            "expected": {
+              "erreur": "JSON invalide"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lireConfig",
+            "args": [
+              "{\"tva\": 0.18}"
+            ],
+            "expected": {
+              "tva": 0.18
+            }
+          },
+          {
+            "name": "lireConfig",
+            "args": [
+              ""
+            ],
+            "expected": {
+              "erreur": "JSON invalide"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : null n’est pas un array.",
+      "Demande une exception au lieu d’un null silencieux.",
+      "json_decode($json, true, 512, JSON_THROW_ON_ERROR) dans un try."
+    ],
+    "explanation_fr": "Une erreur visible et traitée vaut mieux qu’un null qui se propage.",
+    "common_wrong_answers": [],
+    "id": "phpi-m3-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Rapport JSON des ventes",
+    "instruction_fr": "Écris rapportJson(string $json): string : décode les ventes, puis renvoie le JSON (accents conservés) de [\"total\" => total général, \"par_produit\" => [produit => montant cumulé, dans l’ordre de première apparition]]. Pour un JSON invalide, renvoie le JSON de [\"erreur\" => \"JSON invalide\"].",
+    "starter_code": "<?php\nfunction rapportJson(string $json): string\n{\n    return json_encode([\"total\" => 0]);\n}\n",
+    "solution": "<?php\nfunction rapportJson(string $json): string\n{\n    try {\n        $ventes = json_decode($json, true, 512, JSON_THROW_ON_ERROR);\n    } catch (JsonException $e) {\n        return json_encode([\"erreur\" => \"JSON invalide\"], JSON_UNESCAPED_UNICODE);\n    }\n    $parProduit = [];\n    $total = 0;\n    foreach ($ventes as $v) {\n        $montant = $v[\"prix\"] * $v[\"quantite\"];\n        $parProduit[$v[\"produit\"]] = ($parProduit[$v[\"produit\"]] ?? 0) + $montant;\n        $total += $montant;\n    }\n    return json_encode([\"total\" => $total, \"par_produit\" => $parProduit], JSON_UNESCAPED_UNICODE);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rapportJson",
+            "args": [
+              "[{\"produit\": \"Riz\", \"prix\": 600, \"quantite\": 2}, {\"produit\": \"Thé\", \"prix\": 400, \"quantite\": 3}, {\"produit\": \"Riz\", \"prix\": 600, \"quantite\": 1}]"
+            ],
+            "expected": "{\"total\":3000,\"par_produit\":{\"Riz\":1800,\"Thé\":1200}}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rapportJson",
+            "args": [
+              "[{"
+            ],
+            "expected": "{\"erreur\":\"JSON invalide\"}"
+          },
+          {
+            "name": "rapportJson",
+            "args": [
+              "[]"
+            ],
+            "expected": "{\"total\":0,\"par_produit\":[]}"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Il manque le détail par produit.",
+      "?? 0 donne 0 au premier montant d’un produit.",
+      "Intercepte JsonException pour le JSON invalide."
+    ],
+    "explanation_fr": "Un tableau vide s’encode en [] : c’est la limite des tableaux PHP qui servent à la fois de listes et d’objets.",
+    "common_wrong_answers": [],
+    "id": "phpi-m3-02-e4"
+  }
+]

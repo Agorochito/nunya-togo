@@ -1,0 +1,228 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Montant lisible",
+    "instruction_fr": "Écris fcfa(int $montant): string qui renvoie le montant avec une espace entre les milliers, suivi de \" FCFA\".",
+    "starter_code": "<?php\nfunction fcfa(int $montant): string\n{\n    return $montant . \" FCFA\";\n}\n",
+    "solution": "<?php\nfunction fcfa(int $montant): string\n{\n    return number_format($montant, 0, \",\", \" \") . \" FCFA\";\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fcfa",
+            "args": [
+              1234567
+            ],
+            "expected": "1 234 567 FCFA"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fcfa",
+            "args": [
+              0
+            ],
+            "expected": "0 FCFA"
+          },
+          {
+            "name": "fcfa",
+            "args": [
+              999
+            ],
+            "expected": "999 FCFA"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le nombre n’a pas de séparateur.",
+      "number_format accepte le séparateur des milliers en quatrième argument.",
+      "number_format($montant, 0, \",\", \" \")"
+    ],
+    "explanation_fr": "Un montant lisible évite les erreurs de lecture à la caisse.",
+    "common_wrong_answers": [],
+    "id": "phpi-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Mention avec match",
+    "instruction_fr": "Écris mention(float $note): string avec match(true) : \"Très bien\" à partir de 16, \"Bien\" à partir de 14, \"Assez bien\" à partir de 12, \"Passable\" à partir de 10, sinon \"Insuffisant\".",
+    "starter_code": "<?php\nfunction mention(float $note): string\n{\n    return \"Passable\";\n}\n",
+    "solution": "<?php\nfunction mention(float $note): string\n{\n    return match (true) {\n        $note >= 16 => \"Très bien\",\n        $note >= 14 => \"Bien\",\n        $note >= 12 => \"Assez bien\",\n        $note >= 10 => \"Passable\",\n        default => \"Insuffisant\",\n    };\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "mention",
+            "args": [
+              17.5
+            ],
+            "expected": "Très bien"
+          },
+          {
+            "name": "mention",
+            "args": [
+              10
+            ],
+            "expected": "Passable"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "mention",
+            "args": [
+              14
+            ],
+            "expected": "Bien"
+          },
+          {
+            "name": "mention",
+            "args": [
+              13.9
+            ],
+            "expected": "Assez bien"
+          },
+          {
+            "name": "mention",
+            "args": [
+              9.99
+            ],
+            "expected": "Insuffisant"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une seule valeur est renvoyée pour toutes les notes.",
+      "match(true) teste des conditions dans l’ordre.",
+      "Termine par default."
+    ],
+    "explanation_fr": "match(true) remplace élégamment une chaîne de if pour des intervalles.",
+    "common_wrong_answers": [],
+    "id": "phpi-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Initiales",
+    "instruction_fr": "initiales(string $nom): string doit renvoyer les initiales en majuscules suivies d’un point : \"kossi mensah\" donne \"K.M.\". Elle prend la deuxième lettre de chaque mot et oublie le point. Corrige-la.",
+    "starter_code": "<?php\nfunction initiales(string $nom): string\n{\n    $lettres = array_map(fn($mot) => strtoupper($mot[1]), explode(\" \", $nom));\n    return implode(\"\", $lettres);\n}\n",
+    "solution": "<?php\nfunction initiales(string $nom): string\n{\n    $lettres = array_map(fn($mot) => strtoupper($mot[0]) . \".\", explode(\" \", $nom));\n    return implode(\"\", $lettres);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "initiales",
+            "args": [
+              "kossi mensah"
+            ],
+            "expected": "K.M."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "initiales",
+            "args": [
+              "afi"
+            ],
+            "expected": "A."
+          },
+          {
+            "name": "initiales",
+            "args": [
+              "yao kodjo agbo"
+            ],
+            "expected": "Y.K.A."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les indices de caractères commencent à 0.",
+      "Chaque initiale est suivie d’un point.",
+      "strtoupper($mot[0]) . \".\""
+    ],
+    "explanation_fr": "explode, array_map et implode s’enchaînent pour transformer un texte mot par mot.",
+    "common_wrong_answers": [],
+    "id": "phpi-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Ticket de caisse",
+    "instruction_fr": "Écris ticket(array $lignes): string : chaque ligne est [nom, quantité, prix]. Renvoie une ligne par article au format sprintf(\"%-8s x%-3d %6d\", nom, quantité, quantité × prix), puis une ligne sprintf(\"%-13s %6d\", \"TOTAL\", total), chaque ligne terminée par \"\\n\".",
+    "starter_code": "<?php\nfunction ticket(array $lignes): string\n{\n    return \"\";\n}\n",
+    "solution": "<?php\nfunction ticket(array $lignes): string\n{\n    $texte = \"\";\n    $total = 0;\n    foreach ($lignes as [$nom, $quantite, $prix]) {\n        $montant = $quantite * $prix;\n        $total += $montant;\n        $texte .= sprintf(\"%-8s x%-3d %6d\", $nom, $quantite, $montant) . \"\\n\";\n    }\n    return $texte . sprintf(\"%-13s %6d\", \"TOTAL\", $total) . \"\\n\";\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ticket",
+            "args": [
+              [
+                [
+                  "Riz",
+                  2,
+                  600
+                ],
+                [
+                  "Savon",
+                  5,
+                  250
+                ]
+              ]
+            ],
+            "expected": "Riz      x2     1200\nSavon    x5     1250\nTOTAL           2450\n"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ticket",
+            "args": [
+              []
+            ],
+            "expected": "TOTAL              0\n"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une ligne par article, puis la ligne du total.",
+      "Accumule le total pendant la boucle.",
+      "Chaque ligne se termine par \"\\n\"."
+    ],
+    "explanation_fr": "Les largeurs fixes alignent toutes les colonnes du ticket.",
+    "common_wrong_answers": [],
+    "id": "phpi-m1-03-e4"
+  }
+]

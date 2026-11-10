@@ -1,0 +1,539 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Degré des villes",
+    "instruction_fr": "Écris degres(graphe) qui renvoie un dictionnaire ville → nombre de voisines.",
+    "starter_code": "def degres(graphe):\n    return {ville: 1 for ville in graphe}\n",
+    "solution": "def degres(graphe):\n    return {ville: len(voisins) for ville, voisins in graphe.items()}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "degres",
+            "args": [
+              {
+                "Lomé": [
+                  "Tsévié",
+                  "Aného"
+                ],
+                "Tsévié": [
+                  "Lomé"
+                ],
+                "Aného": [
+                  "Lomé"
+                ]
+              }
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "Lomé": 2,
+              "Tsévié": 1,
+              "Aného": 1
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "degres",
+            "args": [
+              {}
+            ],
+            "unchanged_args": true,
+            "expected": {}
+          },
+          {
+            "name": "degres",
+            "args": [
+              {
+                "X": []
+              }
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "X": 0
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Chaque ville reçoit 1, quel que soit son nombre de voisines.",
+      "Le degré est la longueur de la liste des voisins.",
+      "Parcours graphe.items()."
+    ],
+    "explanation_fr": "Une ville de fort degré est un carrefour du réseau.",
+    "common_wrong_answers": [],
+    "id": "algo-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Étapes depuis une ville",
+    "instruction_fr": "Écris distances(graphe, depart) qui renvoie le dictionnaire ville → nombre minimal d’étapes depuis le départ, pour les villes atteignables, avec un parcours en largeur (deque, popleft).",
+    "starter_code": "def distances(graphe, depart):\n    return {depart: 0}\n",
+    "solution": "from collections import deque\n\ndef distances(graphe, depart):\n    dist = {depart: 0}\n    file = deque([depart])\n    while file:\n        ville = file.popleft()\n        for voisin in graphe[ville]:\n            if voisin not in dist:\n                dist[voisin] = dist[ville] + 1\n                file.append(voisin)\n    return dist\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "distances",
+            "args": [
+              {
+                "Lomé": [
+                  "Tsévié",
+                  "Aného",
+                  "Kpalimé"
+                ],
+                "Tsévié": [
+                  "Lomé",
+                  "Notsé",
+                  "Kpalimé"
+                ],
+                "Aného": [
+                  "Lomé"
+                ],
+                "Kpalimé": [
+                  "Lomé",
+                  "Tsévié",
+                  "Atakpamé"
+                ],
+                "Notsé": [
+                  "Tsévié",
+                  "Atakpamé"
+                ],
+                "Atakpamé": [
+                  "Notsé",
+                  "Kpalimé",
+                  "Sokodé"
+                ],
+                "Sokodé": [
+                  "Atakpamé",
+                  "Kara"
+                ],
+                "Kara": [
+                  "Sokodé",
+                  "Dapaong"
+                ],
+                "Dapaong": [
+                  "Kara"
+                ]
+              },
+              "Lomé"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "Lomé": 0,
+              "Tsévié": 1,
+              "Aného": 1,
+              "Kpalimé": 1,
+              "Notsé": 2,
+              "Atakpamé": 2,
+              "Sokodé": 3,
+              "Kara": 4,
+              "Dapaong": 5
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "distances",
+            "args": [
+              {
+                "A": [
+                  "B"
+                ],
+                "B": [
+                  "A"
+                ],
+                "C": [
+                  "D"
+                ],
+                "D": [
+                  "C"
+                ],
+                "E": []
+              },
+              "A"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "A": 0,
+              "B": 1
+            }
+          },
+          {
+            "name": "distances",
+            "args": [
+              {
+                "Lomé": [
+                  "Tsévié",
+                  "Aného",
+                  "Kpalimé"
+                ],
+                "Tsévié": [
+                  "Lomé",
+                  "Notsé",
+                  "Kpalimé"
+                ],
+                "Aného": [
+                  "Lomé"
+                ],
+                "Kpalimé": [
+                  "Lomé",
+                  "Tsévié",
+                  "Atakpamé"
+                ],
+                "Notsé": [
+                  "Tsévié",
+                  "Atakpamé"
+                ],
+                "Atakpamé": [
+                  "Notsé",
+                  "Kpalimé",
+                  "Sokodé"
+                ],
+                "Sokodé": [
+                  "Atakpamé",
+                  "Kara"
+                ],
+                "Kara": [
+                  "Sokodé",
+                  "Dapaong"
+                ],
+                "Dapaong": [
+                  "Kara"
+                ]
+              },
+              "Dapaong"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "Dapaong": 0,
+              "Kara": 1,
+              "Sokodé": 2,
+              "Atakpamé": 3,
+              "Notsé": 4,
+              "Kpalimé": 4,
+              "Tsévié": 5,
+              "Lomé": 5,
+              "Aného": 6
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une file contient les villes à explorer.",
+      "Une ville découverte reçoit la distance de sa ville d’origine plus 1.",
+      "Ne découvre jamais deux fois la même ville."
+    ],
+    "explanation_fr": "Les villes inaccessibles n’apparaissent pas : le parcours ne les atteint jamais.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:collections"
+    ],
+    "id": "algo-m4-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Une pile à la place de la file",
+    "instruction_fr": "Cette fonction doit donner le nombre minimal d’étapes, mais elle retire les villes avec pop() : elle explore en profondeur et donne parfois trop d’étapes. Corrige-la.",
+    "starter_code": "from collections import deque\n\ndef distances(graphe, depart):\n    dist = {depart: 0}\n    file = deque([depart])\n    while file:\n        ville = file.pop()\n        for voisin in graphe[ville]:\n            if voisin not in dist:\n                dist[voisin] = dist[ville] + 1\n                file.append(voisin)\n    return dist\n",
+    "solution": "from collections import deque\n\ndef distances(graphe, depart):\n    dist = {depart: 0}\n    file = deque([depart])\n    while file:\n        ville = file.popleft()\n        for voisin in graphe[ville]:\n            if voisin not in dist:\n                dist[voisin] = dist[ville] + 1\n                file.append(voisin)\n    return dist\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "distances",
+            "args": [
+              {
+                "A": [
+                  "B",
+                  "C"
+                ],
+                "B": [
+                  "A",
+                  "C"
+                ],
+                "C": [
+                  "A",
+                  "B",
+                  "D"
+                ],
+                "D": [
+                  "C"
+                ]
+              },
+              "A"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "A": 0,
+              "B": 1,
+              "C": 1,
+              "D": 2
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "distances",
+            "args": [
+              {
+                "Lomé": [
+                  "Tsévié",
+                  "Aného",
+                  "Kpalimé"
+                ],
+                "Tsévié": [
+                  "Lomé",
+                  "Notsé",
+                  "Kpalimé"
+                ],
+                "Aného": [
+                  "Lomé"
+                ],
+                "Kpalimé": [
+                  "Lomé",
+                  "Tsévié",
+                  "Atakpamé"
+                ],
+                "Notsé": [
+                  "Tsévié",
+                  "Atakpamé"
+                ],
+                "Atakpamé": [
+                  "Notsé",
+                  "Kpalimé",
+                  "Sokodé"
+                ],
+                "Sokodé": [
+                  "Atakpamé",
+                  "Kara"
+                ],
+                "Kara": [
+                  "Sokodé",
+                  "Dapaong"
+                ],
+                "Dapaong": [
+                  "Kara"
+                ]
+              },
+              "Lomé"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "Lomé": 0,
+              "Tsévié": 1,
+              "Aného": 1,
+              "Kpalimé": 1,
+              "Notsé": 2,
+              "Atakpamé": 2,
+              "Sokodé": 3,
+              "Kara": 4,
+              "Dapaong": 5
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le résultat dépend de l’ordre de retrait.",
+      "pop() retire la dernière ville ajoutée : c’est une pile.",
+      "Utilise popleft()."
+    ],
+    "explanation_fr": "Un seul mot transforme un parcours en largeur en parcours en profondeur.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:collections"
+    ],
+    "id": "algo-m4-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Itinéraire en car",
+    "instruction_fr": "Écris itineraire(graphe, depart, arrivee) qui renvoie la liste des villes du trajet avec le moins d’étapes, du départ à l’arrivée, en notant le parent de chaque ville découverte ; renvoie None si l’arrivée est inaccessible.",
+    "starter_code": "def itineraire(graphe, depart, arrivee):\n    return [depart, arrivee]\n",
+    "solution": "from collections import deque\n\ndef itineraire(graphe, depart, arrivee):\n    parent = {depart: None}\n    file = deque([depart])\n    while file:\n        ville = file.popleft()\n        for voisin in graphe[ville]:\n            if voisin not in parent:\n                parent[voisin] = ville\n                file.append(voisin)\n    if arrivee not in parent:\n        return None\n    chemin = []\n    ville = arrivee\n    while ville is not None:\n        chemin.append(ville)\n        ville = parent[ville]\n    return chemin[::-1]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "itineraire",
+            "args": [
+              {
+                "Lomé": [
+                  "Tsévié",
+                  "Aného",
+                  "Kpalimé"
+                ],
+                "Tsévié": [
+                  "Lomé",
+                  "Notsé",
+                  "Kpalimé"
+                ],
+                "Aného": [
+                  "Lomé"
+                ],
+                "Kpalimé": [
+                  "Lomé",
+                  "Tsévié",
+                  "Atakpamé"
+                ],
+                "Notsé": [
+                  "Tsévié",
+                  "Atakpamé"
+                ],
+                "Atakpamé": [
+                  "Notsé",
+                  "Kpalimé",
+                  "Sokodé"
+                ],
+                "Sokodé": [
+                  "Atakpamé",
+                  "Kara"
+                ],
+                "Kara": [
+                  "Sokodé",
+                  "Dapaong"
+                ],
+                "Dapaong": [
+                  "Kara"
+                ]
+              },
+              "Aného",
+              "Sokodé"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "Aného",
+              "Lomé",
+              "Kpalimé",
+              "Atakpamé",
+              "Sokodé"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "itineraire",
+            "args": [
+              {
+                "A": [
+                  "B"
+                ],
+                "B": [
+                  "A"
+                ],
+                "C": [
+                  "D"
+                ],
+                "D": [
+                  "C"
+                ],
+                "E": []
+              },
+              "A",
+              "C"
+            ],
+            "unchanged_args": true,
+            "expected": null
+          },
+          {
+            "name": "itineraire",
+            "args": [
+              {
+                "Lomé": [
+                  "Tsévié",
+                  "Aného",
+                  "Kpalimé"
+                ],
+                "Tsévié": [
+                  "Lomé",
+                  "Notsé",
+                  "Kpalimé"
+                ],
+                "Aného": [
+                  "Lomé"
+                ],
+                "Kpalimé": [
+                  "Lomé",
+                  "Tsévié",
+                  "Atakpamé"
+                ],
+                "Notsé": [
+                  "Tsévié",
+                  "Atakpamé"
+                ],
+                "Atakpamé": [
+                  "Notsé",
+                  "Kpalimé",
+                  "Sokodé"
+                ],
+                "Sokodé": [
+                  "Atakpamé",
+                  "Kara"
+                ],
+                "Kara": [
+                  "Sokodé",
+                  "Dapaong"
+                ],
+                "Dapaong": [
+                  "Kara"
+                ]
+              },
+              "Kara",
+              "Kara"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "Kara"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Deux villes non voisines ne forment pas un trajet.",
+      "Note pour chaque ville découverte la ville d’où l’on vient.",
+      "Remonte les parents depuis l’arrivée, puis inverse la liste."
+    ],
+    "explanation_fr": "C’est le principe des applications d’itinéraire, appliqué au nombre d’étapes.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:collections"
+    ],
+    "id": "algo-m4-01-e4"
+  }
+]

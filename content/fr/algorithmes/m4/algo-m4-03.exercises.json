@@ -1,0 +1,596 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Longueur d’un trajet",
+    "instruction_fr": "Écris longueur(graphe, chemin) qui renvoie la somme des kilomètres des routes successives du chemin (0 pour un chemin d’une seule ville).",
+    "starter_code": "def longueur(graphe, chemin):\n    return len(chemin)\n",
+    "solution": "def longueur(graphe, chemin):\n    total = 0\n    for i in range(len(chemin) - 1):\n        total += graphe[chemin[i]][chemin[i + 1]]\n    return total\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "longueur",
+            "args": [
+              {
+                "Lomé": {
+                  "Tsévié": 35,
+                  "Aného": 45,
+                  "Kpalimé": 120
+                },
+                "Tsévié": {
+                  "Lomé": 35,
+                  "Notsé": 60,
+                  "Kpalimé": 90
+                },
+                "Aného": {
+                  "Lomé": 45
+                },
+                "Kpalimé": {
+                  "Lomé": 120,
+                  "Tsévié": 90,
+                  "Atakpamé": 90
+                },
+                "Notsé": {
+                  "Tsévié": 60,
+                  "Atakpamé": 60
+                },
+                "Atakpamé": {
+                  "Notsé": 60,
+                  "Kpalimé": 90,
+                  "Sokodé": 170
+                },
+                "Sokodé": {
+                  "Atakpamé": 170,
+                  "Kara": 80
+                },
+                "Kara": {
+                  "Sokodé": 80,
+                  "Dapaong": 200
+                },
+                "Dapaong": {
+                  "Kara": 200
+                }
+              },
+              [
+                "Lomé",
+                "Tsévié",
+                "Notsé"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 95
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "longueur",
+            "args": [
+              {
+                "Lomé": {
+                  "Tsévié": 35,
+                  "Aného": 45,
+                  "Kpalimé": 120
+                },
+                "Tsévié": {
+                  "Lomé": 35,
+                  "Notsé": 60,
+                  "Kpalimé": 90
+                },
+                "Aného": {
+                  "Lomé": 45
+                },
+                "Kpalimé": {
+                  "Lomé": 120,
+                  "Tsévié": 90,
+                  "Atakpamé": 90
+                },
+                "Notsé": {
+                  "Tsévié": 60,
+                  "Atakpamé": 60
+                },
+                "Atakpamé": {
+                  "Notsé": 60,
+                  "Kpalimé": 90,
+                  "Sokodé": 170
+                },
+                "Sokodé": {
+                  "Atakpamé": 170,
+                  "Kara": 80
+                },
+                "Kara": {
+                  "Sokodé": 80,
+                  "Dapaong": 200
+                },
+                "Dapaong": {
+                  "Kara": 200
+                }
+              },
+              [
+                "Kara"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "longueur",
+            "args": [
+              {
+                "Lomé": {
+                  "Tsévié": 35,
+                  "Aného": 45,
+                  "Kpalimé": 120
+                },
+                "Tsévié": {
+                  "Lomé": 35,
+                  "Notsé": 60,
+                  "Kpalimé": 90
+                },
+                "Aného": {
+                  "Lomé": 45
+                },
+                "Kpalimé": {
+                  "Lomé": 120,
+                  "Tsévié": 90,
+                  "Atakpamé": 90
+                },
+                "Notsé": {
+                  "Tsévié": 60,
+                  "Atakpamé": 60
+                },
+                "Atakpamé": {
+                  "Notsé": 60,
+                  "Kpalimé": 90,
+                  "Sokodé": 170
+                },
+                "Sokodé": {
+                  "Atakpamé": 170,
+                  "Kara": 80
+                },
+                "Kara": {
+                  "Sokodé": 80,
+                  "Dapaong": 200
+                },
+                "Dapaong": {
+                  "Kara": 200
+                }
+              },
+              [
+                "Lomé",
+                "Kpalimé",
+                "Atakpamé"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 210
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le nombre de villes n’est pas une distance.",
+      "Additionne les routes entre villes consécutives.",
+      "graphe[a][b] donne la longueur de la route de a à b."
+    ],
+    "explanation_fr": "Ce calcul sert à vérifier n’importe quel itinéraire proposé.",
+    "common_wrong_answers": [],
+    "id": "algo-m4-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Distances depuis une ville",
+    "instruction_fr": "Écris dijkstra(graphe, depart) qui renvoie le dictionnaire ville → plus courte distance en kilomètres depuis le départ, avec heapq.",
+    "starter_code": "def dijkstra(graphe, depart):\n    return {depart: 0}\n",
+    "solution": "import heapq\n\ndef dijkstra(graphe, depart):\n    dist = {depart: 0}\n    tas = [(0, depart)]\n    while tas:\n        d, ville = heapq.heappop(tas)\n        if d > dist[ville]:\n            continue\n        for voisin, km in graphe[ville].items():\n            nouvelle = d + km\n            if voisin not in dist or nouvelle < dist[voisin]:\n                dist[voisin] = nouvelle\n                heapq.heappush(tas, (nouvelle, voisin))\n    return dist\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dijkstra",
+            "args": [
+              {
+                "Lomé": {
+                  "Tsévié": 35,
+                  "Aného": 45,
+                  "Kpalimé": 120
+                },
+                "Tsévié": {
+                  "Lomé": 35,
+                  "Notsé": 60,
+                  "Kpalimé": 90
+                },
+                "Aného": {
+                  "Lomé": 45
+                },
+                "Kpalimé": {
+                  "Lomé": 120,
+                  "Tsévié": 90,
+                  "Atakpamé": 90
+                },
+                "Notsé": {
+                  "Tsévié": 60,
+                  "Atakpamé": 60
+                },
+                "Atakpamé": {
+                  "Notsé": 60,
+                  "Kpalimé": 90,
+                  "Sokodé": 170
+                },
+                "Sokodé": {
+                  "Atakpamé": 170,
+                  "Kara": 80
+                },
+                "Kara": {
+                  "Sokodé": 80,
+                  "Dapaong": 200
+                },
+                "Dapaong": {
+                  "Kara": 200
+                }
+              },
+              "Lomé"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "Lomé": 0,
+              "Tsévié": 35,
+              "Aného": 45,
+              "Kpalimé": 120,
+              "Notsé": 95,
+              "Atakpamé": 155,
+              "Sokodé": 325,
+              "Kara": 405,
+              "Dapaong": 605
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dijkstra",
+            "args": [
+              {
+                "X": {}
+              },
+              "X"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "X": 0
+            }
+          },
+          {
+            "name": "dijkstra",
+            "args": [
+              {
+                "A": {
+                  "B": 10,
+                  "C": 3
+                },
+                "B": {
+                  "A": 10,
+                  "C": 4
+                },
+                "C": {
+                  "A": 3,
+                  "B": 4
+                }
+              },
+              "A"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "A": 0,
+              "C": 3,
+              "B": 7
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un tas de couples (distance, ville) donne la ville la plus proche.",
+      "Ignore un couple périmé.",
+      "Mets à jour une voisine si le passage par la ville courante est plus court."
+    ],
+    "explanation_fr": "Atakpamé est plus proche par Notsé (155 km) que par Kpalimé (210 km).",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:heapq"
+    ],
+    "id": "algo-m4-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Une file au lieu d’un tas",
+    "instruction_fr": "Cette version utilise une file simple : elle fixe la première distance trouvée, pas la plus courte. Corrige-la avec heapq.",
+    "starter_code": "from collections import deque\n\ndef dijkstra(graphe, depart):\n    dist = {depart: 0}\n    file = deque([depart])\n    while file:\n        ville = file.popleft()\n        for voisin, km in graphe[ville].items():\n            if voisin not in dist:\n                dist[voisin] = dist[ville] + km\n                file.append(voisin)\n    return dist\n",
+    "solution": "import heapq\n\ndef dijkstra(graphe, depart):\n    dist = {depart: 0}\n    tas = [(0, depart)]\n    while tas:\n        d, ville = heapq.heappop(tas)\n        if d > dist[ville]:\n            continue\n        for voisin, km in graphe[ville].items():\n            nouvelle = d + km\n            if voisin not in dist or nouvelle < dist[voisin]:\n                dist[voisin] = nouvelle\n                heapq.heappush(tas, (nouvelle, voisin))\n    return dist\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dijkstra",
+            "args": [
+              {
+                "A": {
+                  "B": 10,
+                  "C": 3
+                },
+                "B": {
+                  "A": 10,
+                  "C": 4
+                },
+                "C": {
+                  "A": 3,
+                  "B": 4
+                }
+              },
+              "A"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "A": 0,
+              "C": 3,
+              "B": 7
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dijkstra",
+            "args": [
+              {
+                "Lomé": {
+                  "Tsévié": 35,
+                  "Aného": 45,
+                  "Kpalimé": 120
+                },
+                "Tsévié": {
+                  "Lomé": 35,
+                  "Notsé": 60,
+                  "Kpalimé": 90
+                },
+                "Aného": {
+                  "Lomé": 45
+                },
+                "Kpalimé": {
+                  "Lomé": 120,
+                  "Tsévié": 90,
+                  "Atakpamé": 90
+                },
+                "Notsé": {
+                  "Tsévié": 60,
+                  "Atakpamé": 60
+                },
+                "Atakpamé": {
+                  "Notsé": 60,
+                  "Kpalimé": 90,
+                  "Sokodé": 170
+                },
+                "Sokodé": {
+                  "Atakpamé": 170,
+                  "Kara": 80
+                },
+                "Kara": {
+                  "Sokodé": 80,
+                  "Dapaong": 200
+                },
+                "Dapaong": {
+                  "Kara": 200
+                }
+              },
+              "Lomé"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "Lomé": 0,
+              "Tsévié": 35,
+              "Aného": 45,
+              "Kpalimé": 120,
+              "Notsé": 95,
+              "Atakpamé": 155,
+              "Sokodé": 325,
+              "Kara": 405,
+              "Dapaong": 605
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "B reçoit 10 km par la route directe, alors que A → C → B fait 7 km.",
+      "Il faut traiter les villes par distance croissante.",
+      "Utilise heapq et mets à jour une distance quand on trouve plus court."
+    ],
+    "explanation_fr": "C’est exactement la différence entre parcours en largeur et Dijkstra.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:heapq"
+    ],
+    "id": "algo-m4-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Itinéraire le plus court",
+    "instruction_fr": "Écris itineraire(graphe, depart, arrivee) qui renvoie [distance totale, liste des villes] du chemin le plus court en kilomètres, ou None si l’arrivée est inaccessible. Note le parent de chaque ville quand sa distance diminue.",
+    "starter_code": "def itineraire(graphe, depart, arrivee):\n    return [0, [depart, arrivee]]\n",
+    "solution": "import heapq\n\ndef itineraire(graphe, depart, arrivee):\n    dist = {depart: 0}\n    parent = {depart: None}\n    tas = [(0, depart)]\n    while tas:\n        d, ville = heapq.heappop(tas)\n        if d > dist[ville]:\n            continue\n        for voisin, km in graphe[ville].items():\n            nouvelle = d + km\n            if voisin not in dist or nouvelle < dist[voisin]:\n                dist[voisin] = nouvelle\n                parent[voisin] = ville\n                heapq.heappush(tas, (nouvelle, voisin))\n    if arrivee not in dist:\n        return None\n    chemin = []\n    ville = arrivee\n    while ville is not None:\n        chemin.append(ville)\n        ville = parent[ville]\n    return [dist[arrivee], chemin[::-1]]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "itineraire",
+            "args": [
+              {
+                "Lomé": {
+                  "Tsévié": 35,
+                  "Aného": 45,
+                  "Kpalimé": 120
+                },
+                "Tsévié": {
+                  "Lomé": 35,
+                  "Notsé": 60,
+                  "Kpalimé": 90
+                },
+                "Aného": {
+                  "Lomé": 45
+                },
+                "Kpalimé": {
+                  "Lomé": 120,
+                  "Tsévié": 90,
+                  "Atakpamé": 90
+                },
+                "Notsé": {
+                  "Tsévié": 60,
+                  "Atakpamé": 60
+                },
+                "Atakpamé": {
+                  "Notsé": 60,
+                  "Kpalimé": 90,
+                  "Sokodé": 170
+                },
+                "Sokodé": {
+                  "Atakpamé": 170,
+                  "Kara": 80
+                },
+                "Kara": {
+                  "Sokodé": 80,
+                  "Dapaong": 200
+                },
+                "Dapaong": {
+                  "Kara": 200
+                }
+              },
+              "Aného",
+              "Sokodé"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              370,
+              [
+                "Aného",
+                "Lomé",
+                "Tsévié",
+                "Notsé",
+                "Atakpamé",
+                "Sokodé"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "itineraire",
+            "args": [
+              {
+                "A": {},
+                "B": {}
+              },
+              "A",
+              "B"
+            ],
+            "unchanged_args": true,
+            "expected": null
+          },
+          {
+            "name": "itineraire",
+            "args": [
+              {
+                "Lomé": {
+                  "Tsévié": 35,
+                  "Aného": 45,
+                  "Kpalimé": 120
+                },
+                "Tsévié": {
+                  "Lomé": 35,
+                  "Notsé": 60,
+                  "Kpalimé": 90
+                },
+                "Aného": {
+                  "Lomé": 45
+                },
+                "Kpalimé": {
+                  "Lomé": 120,
+                  "Tsévié": 90,
+                  "Atakpamé": 90
+                },
+                "Notsé": {
+                  "Tsévié": 60,
+                  "Atakpamé": 60
+                },
+                "Atakpamé": {
+                  "Notsé": 60,
+                  "Kpalimé": 90,
+                  "Sokodé": 170
+                },
+                "Sokodé": {
+                  "Atakpamé": 170,
+                  "Kara": 80
+                },
+                "Kara": {
+                  "Sokodé": 80,
+                  "Dapaong": 200
+                },
+                "Dapaong": {
+                  "Kara": 200
+                }
+              },
+              "Kara",
+              "Kara"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              0,
+              [
+                "Kara"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le trajet direct n’existe pas : il faut un vrai chemin.",
+      "Combine Dijkstra et la mémoire des parents.",
+      "Remonte les parents depuis l’arrivée, puis inverse."
+    ],
+    "explanation_fr": "Le trajet le plus court passe par Tsévié et Notsé : une étape de plus que par Kpalimé, mais 40 km de moins.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:heapq"
+    ],
+    "id": "algo-m4-03-e4"
+  }
+]

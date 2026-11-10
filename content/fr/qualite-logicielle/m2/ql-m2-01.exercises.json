@@ -1,0 +1,227 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Moyenne sans division par zéro",
+    "instruction_fr": "moyenne(notes) plante sur une liste vide. Lis l’erreur, puis corrige la fonction pour renvoyer 0 dans ce cas.",
+    "starter_code": "def moyenne(notes):\n    return sum(notes) / len(notes)\n",
+    "solution": "def moyenne(notes):\n    if not notes:\n        return 0\n    return sum(notes) / len(notes)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moyenne",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "moyenne",
+            "args": [
+              [
+                12,
+                15
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 13.5
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moyenne",
+            "args": [
+              [
+                7
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 7.0
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : ZeroDivisionError.",
+      "len([]) vaut 0.",
+      "Traite la liste vide avant de diviser."
+    ],
+    "explanation_fr": "La trace indiquait la ligne et la cause : une liste vide.",
+    "common_wrong_answers": [],
+    "id": "ql-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Clé absente",
+    "instruction_fr": "prix(catalogue, produit) plante avec KeyError quand le produit n’existe pas. Corrige-la pour renvoyer None dans ce cas.",
+    "starter_code": "def prix(catalogue, produit):\n    return catalogue[produit]\n",
+    "solution": "def prix(catalogue, produit):\n    return catalogue.get(produit)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "prix",
+            "args": [
+              {
+                "riz": 600
+              },
+              "sucre"
+            ],
+            "unchanged_args": true,
+            "expected": null
+          },
+          {
+            "name": "prix",
+            "args": [
+              {
+                "riz": 600
+              },
+              "riz"
+            ],
+            "unchanged_args": true,
+            "expected": 600
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "prix",
+            "args": [
+              {},
+              "x"
+            ],
+            "unchanged_args": true,
+            "expected": null
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : KeyError: 'sucre'.",
+      "Un dictionnaire a une méthode qui accepte les clés absentes.",
+      "catalogue.get(produit)"
+    ],
+    "explanation_fr": "get renvoie None pour une clé absente au lieu de lever KeyError.",
+    "common_wrong_answers": [],
+    "id": "ql-m2-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le return oublié",
+    "instruction_fr": "etiquette(produit) plante avec AttributeError : la fonction nom_propre, qu’elle appelle, oublie de renvoyer son résultat. Trouve la cause en remontant la trace et corrige-la.",
+    "starter_code": "def nom_propre(texte):\n    texte.strip().capitalize()\n\n\ndef etiquette(produit):\n    return nom_propre(produit).upper()\n",
+    "solution": "def nom_propre(texte):\n    return texte.strip().capitalize()\n\n\ndef etiquette(produit):\n    return nom_propre(produit).upper()\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "etiquette",
+            "args": [
+              "  riz "
+            ],
+            "unchanged_args": true,
+            "expected": "RIZ"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "nom_propre",
+            "args": [
+              "  huile"
+            ],
+            "unchanged_args": true,
+            "expected": "Huile"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’erreur apparaît dans etiquette : None n’a pas de méthode upper.",
+      "Le None vient de nom_propre.",
+      "Ajoute return dans nom_propre."
+    ],
+    "explanation_fr": "Le symptôme est dans etiquette ; la cause, une ligne plus haut dans la chaîne d’appels.",
+    "common_wrong_answers": [],
+    "id": "ql-m2-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Bulletin robuste",
+    "instruction_fr": "bulletin(eleve) doit renvoyer \"Nom : moyenne\" (moyenne arrondie à une décimale, 0 sans note). Elle accumule trois erreurs : addition texte + nombre, clé \"note\" au lieu de \"notes\", et division par zéro. Corrige-les une à une en lisant chaque trace.",
+    "starter_code": "def bulletin(eleve):\n    notes = eleve[\"note\"]\n    return eleve[\"nom\"] + \" : \" + round(sum(notes) / len(notes), 1)\n",
+    "solution": "def bulletin(eleve):\n    notes = eleve[\"notes\"]\n    moyenne = round(sum(notes) / len(notes), 1) if notes else 0\n    return eleve[\"nom\"] + \" : \" + str(moyenne)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bulletin",
+            "args": [
+              {
+                "nom": "Afi",
+                "notes": [
+                  12,
+                  15
+                ]
+              }
+            ],
+            "unchanged_args": true,
+            "expected": "Afi : 13.5"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bulletin",
+            "args": [
+              {
+                "nom": "Yao",
+                "notes": []
+              }
+            ],
+            "unchanged_args": true,
+            "expected": "Yao : 0"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Première trace : KeyError: 'note'.",
+      "Deuxième : TypeError, texte plus nombre ; utilise str().",
+      "Troisième : division par zéro pour une liste vide."
+    ],
+    "explanation_fr": "Une erreur à la fois : chaque trace corrigée révèle la suivante.",
+    "common_wrong_answers": [],
+    "id": "ql-m2-01-e4"
+  }
+]

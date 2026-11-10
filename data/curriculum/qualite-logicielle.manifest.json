@@ -1,0 +1,68 @@
+{
+  "id": "qualite-logicielle",
+  "title_fr": "Qualité logicielle : tester, déboguer, relire",
+  "language": "python",
+  "runtime": "python",
+  "technology": "qualite",
+  "level": "intermediaire",
+  "summary_fr": "Écris du code fiable comme en entreprise : tests avec assert, cas limites, tests en tableau, lecture des traces d’erreur, débogage par hypothèses, pièges classiques de Python, noms clairs, refactoring, docstrings et doctests, développement piloté par les tests et revue de code. Tes tests sont éprouvés par des versions défectueuses du code. En Python, hors ligne.",
+  "prerequisite_courses": [
+    "python-bases"
+  ],
+  "prerequisites": [
+    "Savoir écrire des fonctions Python avec listes, dictionnaires, boucles et conditions.",
+    "Le cours Python débutant de Nunya fournit ces bases."
+  ],
+  "outcomes": [
+    "Écrire des tests qui détectent vraiment les erreurs, y compris aux frontières.",
+    "Lire une trace d’erreur et déboguer méthodiquement, par hypothèses et par dichotomie.",
+    "Éviter les pièges classiques de Python.",
+    "Rendre un code lisible : noms, petites fonctions, constantes, documentation vérifiée.",
+    "Pratiquer le développement piloté par les tests et la revue de code."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Tester son code",
+      "outcome_fr": "assert, tests par mutation, cas limites et tests en tableau.",
+      "lesson_ids": [
+        "ql-m1-01",
+        "ql-m1-02",
+        "ql-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Déboguer avec méthode",
+      "outcome_fr": "Traces d’erreur, hypothèses, dichotomie et pièges de Python.",
+      "lesson_ids": [
+        "ql-m2-01",
+        "ql-m2-02",
+        "ql-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Un code lisible",
+      "outcome_fr": "Noms, petites fonctions, constantes, docstrings et annotations.",
+      "lesson_ids": [
+        "ql-m3-01",
+        "ql-m3-02",
+        "ql-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Travailler comme une équipe",
+      "outcome_fr": "TDD, revue de code et projet de bulletin testé.",
+      "lesson_ids": [
+        "ql-m4-01",
+        "ql-m4-02",
+        "ql-m4-03"
+      ]
+    }
+  ],
+  "next_courses": [],
+  "status": "brouillon",
+  "reviewer": null
+}

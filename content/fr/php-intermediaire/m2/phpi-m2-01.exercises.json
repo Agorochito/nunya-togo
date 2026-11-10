@@ -1,0 +1,226 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "La classe Produit",
+    "instruction_fr": "Écris la classe Produit avec un constructeur promu (nom, prix, stock, publics et typés), une méthode valeurStock(): int (prix × stock) et une méthode etiquette(): string qui renvoie \"nom : prix FCFA\".",
+    "starter_code": "<?php\nclass Produit\n{\n    public function __construct(public string $nom, public int $prix, public int $stock)\n    {\n    }\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction verifier(string $nom, int $prix, int $stock): array\n{\n    $p = new Produit($nom, $prix, $stock);\n    return [$p->nom, $p->valeurStock(), $p->etiquette()];\n}\n",
+    "solution": "<?php\nclass Produit\n{\n    public function __construct(public string $nom, public int $prix, public int $stock)\n    {\n    }\n\n    public function valeurStock(): int\n    {\n        return $this->prix * $this->stock;\n    }\n\n    public function etiquette(): string\n    {\n        return $this->nom . \" : \" . $this->prix . \" FCFA\";\n    }\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction verifier(string $nom, int $prix, int $stock): array\n{\n    $p = new Produit($nom, $prix, $stock);\n    return [$p->nom, $p->valeurStock(), $p->etiquette()];\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              "Riz",
+              600,
+              40
+            ],
+            "expected": [
+              "Riz",
+              24000,
+              "Riz : 600 FCFA"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              "Sucre",
+              700,
+              0
+            ],
+            "expected": [
+              "Sucre",
+              0,
+              "Sucre : 700 FCFA"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "verifier appelle deux méthodes qui n’existent pas encore.",
+      "Une méthode lit les propriétés avec $this->.",
+      "valeurStock renvoie $this->prix * $this->stock."
+    ],
+    "explanation_fr": "La fonction fournie joue le rôle d’une autre partie du programme qui utilise ta classe.",
+    "common_wrong_answers": [],
+    "id": "phpi-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un compte de tontine",
+    "instruction_fr": "Écris la classe Membre avec un constructeur promu (public string $nom, public int $total = 0) et une méthode cotiser(int $montant): void qui ajoute le montant au total. La fonction verifier fournie crée un membre, cotise plusieurs fois et renvoie le total.",
+    "starter_code": "<?php\nclass Membre\n{\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction verifier(string $nom, array $montants): int\n{\n    $m = new Membre($nom);\n    foreach ($montants as $montant) {\n        $m->cotiser($montant);\n    }\n    return $m->total;\n}\n",
+    "solution": "<?php\nclass Membre\n{\n    public function __construct(public string $nom, public int $total = 0)\n    {\n    }\n\n    public function cotiser(int $montant): void\n    {\n        $this->total += $montant;\n    }\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction verifier(string $nom, array $montants): int\n{\n    $m = new Membre($nom);\n    foreach ($montants as $montant) {\n        $m->cotiser($montant);\n    }\n    return $m->total;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              "Afi",
+              [
+                1000,
+                2000
+              ]
+            ],
+            "expected": 3000
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              "Kofi",
+              []
+            ],
+            "expected": 0
+          },
+          {
+            "name": "verifier",
+            "args": [
+              "Esi",
+              [
+                500
+              ]
+            ],
+            "expected": 500
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La classe est vide.",
+      "Le total commence à 0 grâce à la valeur par défaut.",
+      "cotiser ajoute à $this->total."
+    ],
+    "explanation_fr": "L’objet garde son état d’un appel de méthode à l’autre.",
+    "common_wrong_answers": [],
+    "id": "phpi-m2-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Méthode sans $this",
+    "instruction_fr": "La méthode estEnRupture de Produit doit renvoyer true quand le stock vaut 0. Elle lit une variable $stock qui n’existe pas dans la méthode. Corrige-la.",
+    "starter_code": "<?php\nclass Produit\n{\n    public function __construct(public string $nom, public int $prix, public int $stock)\n    {\n    }\n\n    public function estEnRupture(): bool\n    {\n        return $stock === 0;\n    }\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction verifier(int $stock): bool\n{\n    return (new Produit(\"Test\", 100, $stock))->estEnRupture();\n}\n",
+    "solution": "<?php\nclass Produit\n{\n    public function __construct(public string $nom, public int $prix, public int $stock)\n    {\n    }\n\n    public function estEnRupture(): bool\n    {\n        return $this->stock === 0;\n    }\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction verifier(int $stock): bool\n{\n    return (new Produit(\"Test\", 100, $stock))->estEnRupture();\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              0
+            ],
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              12
+            ],
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’avertissement : variable non définie.",
+      "Dans une méthode, les propriétés se lisent avec $this->.",
+      "return $this->stock === 0;"
+    ],
+    "explanation_fr": "Sans $this, PHP cherche une variable locale, qui n’existe pas.",
+    "common_wrong_answers": [],
+    "id": "phpi-m2-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Panier d’achats",
+    "instruction_fr": "Écris la classe Panier avec une propriété publique array $lignes = [], une méthode ajouter(string $nom, int $prix, int $quantite): void qui ajoute [\"nom\" => …, \"prix\" => …, \"quantite\" => …] aux lignes, et une méthode total(): int. La fonction verifier fournie remplit un panier et renvoie [nombre de lignes, total].",
+    "starter_code": "<?php\nclass Panier\n{\n    public array $lignes = [];\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction verifier(array $achats): array\n{\n    $panier = new Panier();\n    foreach ($achats as [$nom, $prix, $quantite]) {\n        $panier->ajouter($nom, $prix, $quantite);\n    }\n    return [count($panier->lignes), $panier->total()];\n}\n",
+    "solution": "<?php\nclass Panier\n{\n    public array $lignes = [];\n\n    public function ajouter(string $nom, int $prix, int $quantite): void\n    {\n        $this->lignes[] = [\"nom\" => $nom, \"prix\" => $prix, \"quantite\" => $quantite];\n    }\n\n    public function total(): int\n    {\n        return array_reduce($this->lignes, fn($s, $l) => $s + $l[\"prix\"] * $l[\"quantite\"], 0);\n    }\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction verifier(array $achats): array\n{\n    $panier = new Panier();\n    foreach ($achats as [$nom, $prix, $quantite]) {\n        $panier->ajouter($nom, $prix, $quantite);\n    }\n    return [count($panier->lignes), $panier->total()];\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              [
+                [
+                  "Riz",
+                  600,
+                  2
+                ],
+                [
+                  "Savon",
+                  250,
+                  5
+                ]
+              ]
+            ],
+            "expected": [
+              2,
+              2450
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              []
+            ],
+            "expected": [
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Il manque les méthodes ajouter et total.",
+      "$this->lignes[] = … ajoute une ligne.",
+      "total peut réutiliser array_reduce."
+    ],
+    "explanation_fr": "Le panier encapsule ses lignes et le calcul de son total.",
+    "common_wrong_answers": [],
+    "id": "phpi-m2-01-e4"
+  }
+]

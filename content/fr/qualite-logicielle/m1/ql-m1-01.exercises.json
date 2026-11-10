@@ -1,0 +1,197 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Faire passer les tests",
+    "instruction_fr": "La fonction test_prix_ttc fournie décrit le comportement attendu. Corrige prix_ttc (TVA de 18 %, arrondie à l’entier) pour que le test passe.",
+    "starter_code": "def prix_ttc(prix_ht):\n    return prix_ht + 18\n\n\n# Test fourni : ne le modifie pas.\ndef test_prix_ttc():\n    assert prix_ttc(1000) == 1180\n    assert prix_ttc(0) == 0\n    assert prix_ttc(250) == 295\n",
+    "solution": "def prix_ttc(prix_ht):\n    return round(prix_ht * 1.18)\n\n\n# Test fourni : ne le modifie pas.\ndef test_prix_ttc():\n    assert prix_ttc(1000) == 1180\n    assert prix_ttc(0) == 0\n    assert prix_ttc(250) == 295\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "test_prix_ttc",
+            "args": [],
+            "unchanged_args": true,
+            "expected": null
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "prix_ttc",
+            "args": [
+              333
+            ],
+            "unchanged_args": true,
+            "expected": 393
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : AssertionError sur la première ligne.",
+      "18 % de 1000 font 180, pas 18.",
+      "return round(prix_ht * 1.18)"
+    ],
+    "explanation_fr": "Le test décrit l’objectif ; on corrige le code jusqu’à ce qu’il soit atteint.",
+    "common_wrong_answers": [],
+    "id": "ql-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un test qui détecte les erreurs",
+    "instruction_fr": "Écris test_moyenne() pour la fonction moyenne fournie (0 pour une liste vide). Ton test doit passer avec la vraie fonction et échouer avec chacun des trois mutants : une version qui renvoie toujours 0, une qui fait une division entière, une qui oublie la liste vide.",
+    "starter_code": "def moyenne(notes):\n    if not notes:\n        return 0\n    return sum(notes) / len(notes)\n\n\ndef test_moyenne():\n    assert moyenne([10, 10]) == 10\n\n\n# Vérification fournie : ne la modifie pas.\nMUTANTS = [\n    lambda notes: 0,\n    lambda notes: sum(notes) // len(notes) if notes else 0,\n    lambda notes: sum(notes) / len(notes),\n]\n\n\ndef evaluer_tests():\n    global moyenne\n    original = moyenne\n    test_moyenne()\n    resultats = []\n    for mutant in MUTANTS:\n        moyenne = mutant\n        try:\n            test_moyenne()\n            resultats.append(\"raté\")\n        except Exception:\n            resultats.append(\"détecté\")\n    moyenne = original\n    return resultats\n",
+    "solution": "def moyenne(notes):\n    if not notes:\n        return 0\n    return sum(notes) / len(notes)\n\n\ndef test_moyenne():\n    assert moyenne([10, 10]) == 10\n    assert moyenne([12, 15]) == 13.5\n    assert moyenne([]) == 0\n\n\n# Vérification fournie : ne la modifie pas.\nMUTANTS = [\n    lambda notes: 0,\n    lambda notes: sum(notes) // len(notes) if notes else 0,\n    lambda notes: sum(notes) / len(notes),\n]\n\n\ndef evaluer_tests():\n    global moyenne\n    original = moyenne\n    test_moyenne()\n    resultats = []\n    for mutant in MUTANTS:\n        moyenne = mutant\n        try:\n            test_moyenne()\n            resultats.append(\"raté\")\n        except Exception:\n            resultats.append(\"détecté\")\n    moyenne = original\n    return resultats\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "evaluer_tests",
+            "args": [],
+            "unchanged_args": true,
+            "expected": [
+              "détecté",
+              "détecté",
+              "détecté"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moyenne",
+            "args": [
+              [
+                1,
+                2
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 1.5
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Avec [10, 10], toutes les versions renvoient 10 sauf la première.",
+      "Une moyenne non entière démasque la division entière.",
+      "La liste vide démasque le troisième mutant."
+    ],
+    "explanation_fr": "Chaque valeur de test doit avoir une raison d’exister : démasquer une erreur possible.",
+    "common_wrong_answers": [],
+    "id": "ql-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Un test qui se trompe",
+    "instruction_fr": "Le test test_mention échoue alors que la fonction mention est juste : il attend une valeur fausse pour la note 10. Corrige le test, pas la fonction. Il doit aussi détecter les mutants fournis.",
+    "starter_code": "def mention(note):\n    if note >= 16:\n        return \"Très bien\"\n    if note >= 10:\n        return \"Admis\"\n    return \"Ajourné\"\n\n\ndef test_mention():\n    assert mention(17) == \"Très bien\"\n    assert mention(16) == \"Très bien\"\n    assert mention(10) == \"Ajourné\"\n    assert mention(9) == \"Ajourné\"\n\n\n# Vérification fournie : ne la modifie pas.\nMUTANTS = [\n    lambda n: \"Très bien\" if n > 16 else (\"Admis\" if n >= 10 else \"Ajourné\"),\n    lambda n: \"Très bien\" if n >= 16 else (\"Admis\" if n > 10 else \"Ajourné\"),\n    lambda n: \"Admis\" if n >= 10 else \"Ajourné\",\n]\n\n\ndef evaluer_tests():\n    global mention\n    original = mention\n    test_mention()\n    resultats = []\n    for mutant in MUTANTS:\n        mention = mutant\n        try:\n            test_mention()\n            resultats.append(\"raté\")\n        except Exception:\n            resultats.append(\"détecté\")\n    mention = original\n    return resultats\n",
+    "solution": "def mention(note):\n    if note >= 16:\n        return \"Très bien\"\n    if note >= 10:\n        return \"Admis\"\n    return \"Ajourné\"\n\n\ndef test_mention():\n    assert mention(17) == \"Très bien\"\n    assert mention(16) == \"Très bien\"\n    assert mention(10) == \"Admis\"\n    assert mention(9) == \"Ajourné\"\n\n\n# Vérification fournie : ne la modifie pas.\nMUTANTS = [\n    lambda n: \"Très bien\" if n > 16 else (\"Admis\" if n >= 10 else \"Ajourné\"),\n    lambda n: \"Très bien\" if n >= 16 else (\"Admis\" if n > 10 else \"Ajourné\"),\n    lambda n: \"Admis\" if n >= 10 else \"Ajourné\",\n]\n\n\ndef evaluer_tests():\n    global mention\n    original = mention\n    test_mention()\n    resultats = []\n    for mutant in MUTANTS:\n        mention = mutant\n        try:\n            test_mention()\n            resultats.append(\"raté\")\n        except Exception:\n            resultats.append(\"détecté\")\n    mention = original\n    return resultats\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "evaluer_tests",
+            "args": [],
+            "unchanged_args": true,
+            "expected": [
+              "détecté",
+              "détecté",
+              "détecté"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "mention",
+            "args": [
+              12
+            ],
+            "unchanged_args": true,
+            "expected": "Admis"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La fonction renvoie \"Admis\" pour 10, ce qui est le comportement voulu.",
+      "C’est l’attendu écrit dans le test qui est faux.",
+      "Remplace \"Ajourné\" par \"Admis\" pour la note 10."
+    ],
+    "explanation_fr": "Quand un test échoue, la faute peut être dans le test : on vérifie toujours l’attendu.",
+    "common_wrong_answers": [],
+    "id": "ql-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Tester le prix TTC",
+    "instruction_fr": "Écris test_prix_ttc() pour la fonction prix_ttc fournie. Il doit détecter trois mutants : une version sans TVA, une qui renvoie seulement la TVA, une qui tronque au lieu d’arrondir.",
+    "starter_code": "def prix_ttc(prix_ht):\n    return round(prix_ht * 1.18)\n\n\ndef test_prix_ttc():\n    pass\n\n\n# Vérification fournie : ne la modifie pas.\nMUTANTS = [\n    lambda p: p,\n    lambda p: round(p * 0.18),\n    lambda p: int(p * 1.18),\n]\n\n\ndef evaluer_tests():\n    global prix_ttc\n    original = prix_ttc\n    test_prix_ttc()\n    resultats = []\n    for mutant in MUTANTS:\n        prix_ttc = mutant\n        try:\n            test_prix_ttc()\n            resultats.append(\"raté\")\n        except Exception:\n            resultats.append(\"détecté\")\n    prix_ttc = original\n    return resultats\n",
+    "solution": "def prix_ttc(prix_ht):\n    return round(prix_ht * 1.18)\n\n\ndef test_prix_ttc():\n    assert prix_ttc(1000) == 1180\n    assert prix_ttc(0) == 0\n    assert prix_ttc(333) == 393\n\n\n# Vérification fournie : ne la modifie pas.\nMUTANTS = [\n    lambda p: p,\n    lambda p: round(p * 0.18),\n    lambda p: int(p * 1.18),\n]\n\n\ndef evaluer_tests():\n    global prix_ttc\n    original = prix_ttc\n    test_prix_ttc()\n    resultats = []\n    for mutant in MUTANTS:\n        prix_ttc = mutant\n        try:\n            test_prix_ttc()\n            resultats.append(\"raté\")\n        except Exception:\n            resultats.append(\"détecté\")\n    prix_ttc = original\n    return resultats\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "evaluer_tests",
+            "args": [],
+            "unchanged_args": true,
+            "expected": [
+              "détecté",
+              "détecté",
+              "détecté"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "prix_ttc",
+            "args": [
+              100
+            ],
+            "unchanged_args": true,
+            "expected": 118
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un test vide laisse survivre tous les mutants.",
+      "Un prix rond comme 1000 ne distingue pas arrondi et troncature.",
+      "333 × 1,18 = 392,94 : arrondi 393, tronqué 392."
+    ],
+    "explanation_fr": "Le bon cas de test est celui où les erreurs donnent un résultat différent.",
+    "common_wrong_answers": [],
+    "id": "ql-m1-01-e4"
+  }
+]

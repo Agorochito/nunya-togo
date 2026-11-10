@@ -1,6 +1,6 @@
 # Historique
 
-## 5.18.0 — 10 novembre 2026
+## 5.19.0 — 10 novembre 2026
 
 - **Attestation de fin de cours** : quand toutes les leçons d’un cours sont validées, la page du programme propose « Mon attestation Nunya ». L’élève tape le nom à afficher (non vérifié, jamais envoyé), puis imprime, enregistre en PDF ou télécharge un fichier HTML autonome. Le document est titré « Attestation Nunya — pas un diplôme » et liste les compétences et les modules du cours.
 - **Imprimer ou PDF depuis une leçon** : nouveau bouton à côté de la fiche de lecture, avec ou sans indices et corrigés. Ctrl+P sur une page de cours n’imprime plus une page blanche (la règle d’impression du CV ne s’applique plus qu’au CV) ; menus et éditeur sont masqués.
@@ -8,7 +8,19 @@
 - Prérequis de leçon venant d’un autre cours : le titre du cours et de la leçon s’affiche au lieu de l’identifiant brut (par ex. « css-m4-03 »). Le contrôle des prérequis refuse désormais un identifiant de cours écrit dans les prérequis en texte.
 - Titres en police serif déjà présente sur l’appareil (aucun téléchargement), distincte du texte courant.
 - Le choix de langue EN est conservé après rechargement ; menu et fil d’Ariane affichent « Learn to code » en anglais. Les parcours full-stack et ingénieur·e logiciel choisis ne sont plus oubliés au rechargement.
-- Cache `nunya-v5.18.0`.
+- Cache `nunya-v5.19.0`.
+
+## 5.18.0 — 10 novembre 2026
+
+- Nouveau cours : **PHP intermédiaire : objets et données**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, sur le vrai PHP 8.3 hors ligne : declare(strict_types=1), types nullables et arguments nommés, array_map/array_filter/array_reduce/usort et <=>, sprintf, number_format et match, classes avec constructeur promu, private et readonly, constantes et fabriques statiques, héritage, classes abstraites et interfaces, exceptions personnalisées et finally, JSON avec JSON_THROW_ON_ERROR, énumérations et transitions d’état, collections d’objets, validation avec filter_var et échappement avec htmlspecialchars, puis gestion des inscriptions d’une association.
+- L’atelier PHP accepte declare(strict_types=1) sur la ligne qui suit <?php, comme on l’écrit d’habitude (les numéros de ligne des erreurs restent exacts).
+- Le cours remplace l’étape « PHP intermédiaire — en préparation » du parcours back-end.
+- Nouveau cours : **Algorithmes et structures de données**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, en Python hors ligne : complexité, recherche dichotomique, tris simples, récursivité, tri fusion, tri rapide, piles, files, dictionnaires et ensembles, graphes, parcours en largeur et en profondeur, tri topologique et plus court chemin entre villes du Togo.
+- Nouveau cours : **Qualité logicielle : tester, déboguer, relire**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, en Python hors ligne : assert et tests en tableau, cas limites et classes d’équivalence, lecture des traces, débogage par hypothèses et par dichotomie, pièges classiques de Python, noms et petites fonctions, constantes, docstrings, doctests et annotations, développement piloté par les tests, revue de code et petit linter. Les tests écrits par l’élève sont éprouvés par des versions volontairement défectueuses du code (test par mutation).
+- Le parcours Ingénieur·e logiciel est complet : les deux étapes « en préparation » sont devenues ces deux cours.
+- Ambiance **Verre liquide** redessinée : plus aucune teinte verte. Le mode sombre passe sur un fond nuit traversé de bleu, violet, rose et ambre ; le mode clair devient un verre blanc dépoli à accent saphir. Panneaux plus flous et plus lumineux sur leurs bords ; tous les textes restent au-dessus de 4,5:1 sur chaque zone de couleur.
+- Sur ordinateur, la barre latérale se replie en un rail d’icônes (bouton en haut de la barre) ; les liens gardent leur nom accessible et une info-bulle, et le choix reste sur l’appareil.
+- Une réussite d’exercice est maintenant célébrée : le message de réussite apparaît avec une petite animation et le bouton « exercice suivant » s’illumine. Les animations respectent la préférence « réduire les animations ».
 
 ## 5.17.0 — 10 novembre 2026
 

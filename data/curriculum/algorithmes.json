@@ -1,0 +1,291 @@
+{
+  "id": "algorithmes",
+  "title_fr": "Algorithmes et structures de données",
+  "language": "python",
+  "runtime": "python",
+  "technology": "algo",
+  "level": "intermediaire",
+  "summary_fr": "Apprends à résoudre efficacement : complexité, recherche dichotomique, tris, récursivité, tri fusion et tri rapide, piles, files, dictionnaires et ensembles, graphes, parcours en largeur et en profondeur, jusqu’au plus court chemin entre villes du Togo. En Python, hors ligne.",
+  "prerequisite_courses": [
+    "python-bases"
+  ],
+  "prerequisites": [
+    "Savoir écrire des fonctions Python avec listes, dictionnaires, boucles et conditions.",
+    "Le cours Python débutant de Nunya fournit ces bases."
+  ],
+  "outcomes": [
+    "Estimer le coût d’un algorithme et comparer des croissances.",
+    "Rechercher et trier efficacement, y compris par récursivité.",
+    "Choisir entre pile, file, dictionnaire et ensemble selon le problème.",
+    "Parcourir des graphes et calculer des plus courts chemins.",
+    "Raisonner comme en entretien technique d’ingénieur logiciel."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Penser algorithme",
+      "outcome_fr": "Complexité, recherche dichotomique et tris simples.",
+      "lesson_ids": [
+        "algo-m1-01",
+        "algo-m1-02",
+        "algo-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Récursivité et tris efficaces",
+      "outcome_fr": "Récursivité, tri fusion, tri rapide et sélection.",
+      "lesson_ids": [
+        "algo-m2-01",
+        "algo-m2-02",
+        "algo-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Structures de données",
+      "outcome_fr": "Piles, files, dictionnaires et ensembles.",
+      "lesson_ids": [
+        "algo-m3-01",
+        "algo-m3-02",
+        "algo-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Graphes et chemins",
+      "outcome_fr": "Parcours en largeur et en profondeur, tri topologique et Dijkstra.",
+      "lesson_ids": [
+        "algo-m4-01",
+        "algo-m4-02",
+        "algo-m4-03"
+      ]
+    }
+  ],
+  "next_courses": [],
+  "status": "brouillon",
+  "reviewer": null,
+  "later_modules": [],
+  "lessons": [
+    {
+      "id": "algo-m1-01",
+      "title_fr": "Compter les opérations : la complexité",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m12-03"
+      ],
+      "tags": [
+        "algorithmes",
+        "python",
+        "structures de données",
+        "algorithme",
+        "complexité",
+        "O(n)",
+        "pire cas"
+      ]
+    },
+    {
+      "id": "algo-m1-02",
+      "title_fr": "Chercher vite : la recherche dichotomique",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "algo-m1-01"
+      ],
+      "tags": [
+        "algorithmes",
+        "python",
+        "structures de données",
+        "recherche linéaire",
+        "dichotomie",
+        "O(log n)",
+        "bisect"
+      ]
+    },
+    {
+      "id": "algo-m1-03",
+      "title_fr": "Trier : sélection, insertion et sorted",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "algo-m1-02"
+      ],
+      "tags": [
+        "algorithmes",
+        "python",
+        "structures de données",
+        "tri par sélection",
+        "tri par insertion",
+        "clé de tri",
+        "stabilité"
+      ]
+    },
+    {
+      "id": "algo-m2-01",
+      "title_fr": "Penser récursif",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "algo-m1-03"
+      ],
+      "tags": [
+        "algorithmes",
+        "python",
+        "structures de données",
+        "récursivité",
+        "cas de base",
+        "pile d’appels",
+        "RecursionError"
+      ]
+    },
+    {
+      "id": "algo-m2-02",
+      "title_fr": "Diviser pour régner : le tri fusion",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "algo-m2-01"
+      ],
+      "tags": [
+        "algorithmes",
+        "python",
+        "structures de données",
+        "diviser pour régner",
+        "fusion",
+        "O(n log n)",
+        "compromis temps-mémoire"
+      ]
+    },
+    {
+      "id": "algo-m2-03",
+      "title_fr": "Le tri rapide et la sélection",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "algo-m2-02"
+      ],
+      "tags": [
+        "algorithmes",
+        "python",
+        "structures de données",
+        "pivot",
+        "partition",
+        "tri rapide",
+        "quickselect"
+      ]
+    },
+    {
+      "id": "algo-m3-01",
+      "title_fr": "Les piles : dernier arrivé, premier servi",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "algo-m2-03"
+      ],
+      "tags": [
+        "algorithmes",
+        "python",
+        "structures de données",
+        "structure de données",
+        "pile",
+        "sommet",
+        "notation postfixée"
+      ]
+    },
+    {
+      "id": "algo-m3-02",
+      "title_fr": "Les files : premier arrivé, premier servi",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "algo-m3-01"
+      ],
+      "tags": [
+        "algorithmes",
+        "python",
+        "structures de données",
+        "file",
+        "deque",
+        "simulation",
+        "tourniquet"
+      ]
+    },
+    {
+      "id": "algo-m3-03",
+      "title_fr": "Dictionnaires et ensembles : trouver en un instant",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "algo-m3-02"
+      ],
+      "tags": [
+        "algorithmes",
+        "python",
+        "structures de données",
+        "hachage",
+        "clé immuable",
+        "Counter",
+        "complément"
+      ]
+    },
+    {
+      "id": "algo-m4-01",
+      "title_fr": "Graphes et parcours en largeur",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "algo-m3-03"
+      ],
+      "tags": [
+        "algorithmes",
+        "python",
+        "structures de données",
+        "graphe",
+        "liste d’adjacence",
+        "parcours en largeur",
+        "parent"
+      ]
+    },
+    {
+      "id": "algo-m4-02",
+      "title_fr": "Parcours en profondeur et ordre des cours",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "algo-m4-01"
+      ],
+      "tags": [
+        "algorithmes",
+        "python",
+        "structures de données",
+        "parcours en profondeur",
+        "composante connexe",
+        "graphe orienté",
+        "tri topologique"
+      ]
+    },
+    {
+      "id": "algo-m4-03",
+      "title_fr": "Projet : le plus court chemin entre villes",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "algo-m4-02"
+      ],
+      "tags": [
+        "algorithmes",
+        "python",
+        "structures de données",
+        "graphe pondéré",
+        "Dijkstra",
+        "tas",
+        "file de priorité"
+      ]
+    }
+  ],
+  "estimated_minutes": 240,
+  "content_revision": "e27db9d9cdd3",
+  "exercise_count": 48,
+  "quiz_count": 36
+}

@@ -1,0 +1,299 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Appliquer une remarque de revue",
+    "instruction_fr": "Remarque du relecteur : « bloquant : que se passe-t-il si notes est vide ? La fonction doit renvoyer None dans ce cas. » Applique-la.",
+    "starter_code": "def meilleure_note(notes):\n    meilleure = notes[0]\n    for n in notes:\n        if n > meilleure:\n            meilleure = n\n    return meilleure\n",
+    "solution": "def meilleure_note(notes):\n    if not notes:\n        return None\n    meilleure = notes[0]\n    for n in notes:\n        if n > meilleure:\n            meilleure = n\n    return meilleure\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "meilleure_note",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": null
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "meilleure_note",
+            "args": [
+              [
+                3,
+                18,
+                9
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 18
+          },
+          {
+            "name": "meilleure_note",
+            "args": [
+              [
+                -2
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": -2
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "notes[0] lève IndexError pour une liste vide.",
+      "Traite la liste vide au début.",
+      "if not notes: return None"
+    ],
+    "explanation_fr": "La remarque précise a mené directement à la correction.",
+    "common_wrong_answers": [],
+    "id": "ql-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un petit linter",
+    "instruction_fr": "Écris relire(lignes) : pour chaque ligne (numérotée à partir de 1), ajoute [numero, \"ligne trop longue\"] si elle dépasse 79 caractères, [numero, \"tabulation\"] si elle contient une tabulation, et [numero, \"utiliser is None\"] si elle contient == None ou != None. Dans cet ordre pour une même ligne.",
+    "starter_code": "def relire(lignes):\n    return []\n",
+    "solution": "def relire(lignes):\n    remarques = []\n    for numero, ligne in enumerate(lignes, 1):\n        if len(ligne) > 79:\n            remarques.append([numero, \"ligne trop longue\"])\n        if \"\\t\" in ligne:\n            remarques.append([numero, \"tabulation\"])\n        if \"== None\" in ligne or \"!= None\" in ligne:\n            remarques.append([numero, \"utiliser is None\"])\n    return remarques\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "relire",
+            "args": [
+              [
+                "def f(x):",
+                "\tif x == None:",
+                "        return 0"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                2,
+                "tabulation"
+              ],
+              [
+                2,
+                "utiliser is None"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "relire",
+            "args": [
+              [
+                "x = 1                                                                                "
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                1,
+                "ligne trop longue"
+              ]
+            ]
+          },
+          {
+            "name": "relire",
+            "args": [
+              [
+                "if a != None:"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                1,
+                "utiliser is None"
+              ]
+            ]
+          },
+          {
+            "name": "relire",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": []
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "enumerate(lignes, 1) numérote à partir de 1.",
+      "Teste les trois règles dans l’ordre demandé.",
+      "Une tabulation s’écrit \"\\t\"."
+    ],
+    "explanation_fr": "Les vrais linters suivent le même principe avec des centaines de règles.",
+    "common_wrong_answers": [],
+    "id": "ql-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Une entrée non contrôlée",
+    "instruction_fr": "Le relecteur signale : « quantite(\"dix\") fait planter tout le programme ; renvoie plutôt un message clair. » Modifie quantite(texte) pour lever ValueError avec le message \"quantité invalide : \" suivi du texte, si ce n’est pas un entier positif.",
+    "starter_code": "def quantite(texte):\n    return int(texte)\n",
+    "solution": "def quantite(texte):\n    texte = texte.strip()\n    if not texte.isdigit() or int(texte) == 0:\n        raise ValueError(\"quantité invalide : \" + texte)\n    return int(texte)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "quantite",
+            "args": [
+              "dix"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "quantité invalide : dix"
+          },
+          {
+            "name": "quantite",
+            "args": [
+              "3"
+            ],
+            "unchanged_args": true,
+            "expected": 3
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "quantite",
+            "args": [
+              "-2"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError",
+            "message_contains": "quantité invalide"
+          },
+          {
+            "name": "quantite",
+            "args": [
+              "0"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError"
+          },
+          {
+            "name": "quantite",
+            "args": [
+              " 12 "
+            ],
+            "unchanged_args": true,
+            "expected": 12
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "int(\"dix\") lève ValueError avec un message en anglais peu clair.",
+      "isdigit refuse les lettres et le signe moins.",
+      "Refuse aussi zéro."
+    ],
+    "explanation_fr": "Une entrée extérieure se contrôle toujours avant usage : c’est un point classique de revue.",
+    "common_wrong_answers": [],
+    "id": "ql-m4-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Linter des noms de fonctions",
+    "instruction_fr": "Écris noms_fautifs(lignes) qui renvoie [numero, nom] pour chaque ligne qui définit une fonction (elle commence par \"def \" après les espaces) dont le nom n’est pas en minuscules, selon la PEP 8. Le nom se trouve entre \"def \" et la parenthèse.",
+    "starter_code": "def noms_fautifs(lignes):\n    return []\n",
+    "solution": "def noms_fautifs(lignes):\n    fautifs = []\n    for numero, ligne in enumerate(lignes, 1):\n        texte = ligne.strip()\n        if texte.startswith(\"def \"):\n            nom = texte[4:].split(\"(\")[0].strip()\n            if nom != nom.lower():\n                fautifs.append([numero, nom])\n    return fautifs\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "noms_fautifs",
+            "args": [
+              [
+                "def calculerTotal(x):",
+                "    return x",
+                "def prix_ttc(p):"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                1,
+                "calculerTotal"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "noms_fautifs",
+            "args": [
+              [
+                "class A:",
+                "    def Afficher(self):",
+                "define = 3"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                2,
+                "Afficher"
+              ]
+            ]
+          },
+          {
+            "name": "noms_fautifs",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": []
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "strip() retire l’indentation des méthodes.",
+      "Le nom est avant la première parenthèse.",
+      "Compare nom et nom.lower()."
+    ],
+    "explanation_fr": "define = 3 ne commence pas par \"def \" suivi d’un espace : pas de fausse alerte.",
+    "common_wrong_answers": [],
+    "id": "ql-m4-02-e4"
+  }
+]

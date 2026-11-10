@@ -38,6 +38,7 @@
       "sql-bases",
       "sql-intermediaire",
       "php-bases",
+      "php-intermediaire",
       "java-bases",
       "http-bases",
       "bash-bases",
@@ -45,15 +46,11 @@
     ],
     "planned_fr": [
       {
-        "title_fr": "PHP intermédiaire : objets et données",
-        "summary_fr": "Classes, exceptions, JSON et organisation d’un projet."
-      },
-      {
         "title_fr": "Docker et déploiement",
         "summary_fr": "Empaqueter une application et la mettre en ligne."
       }
     ],
-    "outcome_fr": "Comprendre les données et les échanges d’un service, en Python, en PHP et en Java, et travailler au terminal ; les objets PHP et le déploiement suivront."
+    "outcome_fr": "Comprendre les données et les échanges d’un service, en Python, en PHP objet et en Java, avec SQL avancé, et travailler au terminal ; le déploiement suivra."
   },
   {
     "id": "fullstack",
@@ -91,23 +88,16 @@
     "course_ids": [
       "python-bases",
       "python-intermediaire",
+      "algorithmes",
       "cpp-bases",
       "java-bases",
       "sql-bases",
       "bash-bases",
-      "git-bases"
+      "git-bases",
+      "qualite-logicielle"
     ],
-    "planned_fr": [
-      {
-        "title_fr": "Algorithmes et structures de données",
-        "summary_fr": "Tris, recherche, piles, files, graphes et complexité."
-      },
-      {
-        "title_fr": "Qualité logicielle",
-        "summary_fr": "Tests, lisibilité et revue de code."
-      }
-    ],
-    "outcome_fr": "Programmer avec confiance en Python, C++ et Java, travailler au terminal et gérer ses versions ; algorithmes et qualité logicielle suivront."
+    "planned_fr": [],
+    "outcome_fr": "Programmer avec confiance en Python, C++ et Java, maîtriser les algorithmes et structures de données, écrire du code testé et relu, travailler au terminal et gérer ses versions."
   },
   {
     "id": "data",

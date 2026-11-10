@@ -1,0 +1,443 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Villes accessibles",
+    "instruction_fr": "Écris accessibles(graphe, depart) qui renvoie la liste triée des sommets atteignables depuis le départ, avec un parcours en profondeur récursif et un ensemble des sommets vus.",
+    "starter_code": "def accessibles(graphe, depart):\n    return sorted(graphe[depart])\n",
+    "solution": "def accessibles(graphe, depart):\n    vus = set()\n\n    def explorer(sommet):\n        vus.add(sommet)\n        for voisin in graphe[sommet]:\n            if voisin not in vus:\n                explorer(voisin)\n\n    explorer(depart)\n    return sorted(vus)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "accessibles",
+            "args": [
+              {
+                "A": [
+                  "B"
+                ],
+                "B": [
+                  "A"
+                ],
+                "C": [
+                  "D"
+                ],
+                "D": [
+                  "C"
+                ],
+                "E": []
+              },
+              "A"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "A",
+              "B"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "accessibles",
+            "args": [
+              {
+                "A": [
+                  "B"
+                ],
+                "B": [
+                  "A"
+                ],
+                "C": [
+                  "D"
+                ],
+                "D": [
+                  "C"
+                ],
+                "E": []
+              },
+              "E"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "E"
+            ]
+          },
+          {
+            "name": "accessibles",
+            "args": [
+              {
+                "Lomé": [
+                  "Tsévié",
+                  "Aného",
+                  "Kpalimé"
+                ],
+                "Tsévié": [
+                  "Lomé",
+                  "Notsé",
+                  "Kpalimé"
+                ],
+                "Aného": [
+                  "Lomé"
+                ],
+                "Kpalimé": [
+                  "Lomé",
+                  "Tsévié",
+                  "Atakpamé"
+                ],
+                "Notsé": [
+                  "Tsévié",
+                  "Atakpamé"
+                ],
+                "Atakpamé": [
+                  "Notsé",
+                  "Kpalimé",
+                  "Sokodé"
+                ],
+                "Sokodé": [
+                  "Atakpamé",
+                  "Kara"
+                ],
+                "Kara": [
+                  "Sokodé",
+                  "Dapaong"
+                ],
+                "Dapaong": [
+                  "Kara"
+                ]
+              },
+              "Aného"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "Aného",
+              "Atakpamé",
+              "Dapaong",
+              "Kara",
+              "Kpalimé",
+              "Lomé",
+              "Notsé",
+              "Sokodé",
+              "Tsévié"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les voisins directs ne suffisent pas : il faut aussi les voisins des voisins.",
+      "Une fonction intérieure explore récursivement.",
+      "Marque chaque sommet avant d’explorer ses voisins."
+    ],
+    "explanation_fr": "Le départ lui-même fait partie des sommets atteignables.",
+    "common_wrong_answers": [],
+    "id": "algo-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Compter les îles",
+    "instruction_fr": "Écris composantes(graphe) qui renvoie le nombre de composantes connexes d’un graphe non orienté.",
+    "starter_code": "def composantes(graphe):\n    return 1\n",
+    "solution": "def composantes(graphe):\n    vus = set()\n\n    def explorer(sommet):\n        vus.add(sommet)\n        for voisin in graphe[sommet]:\n            if voisin not in vus:\n                explorer(voisin)\n\n    nombre = 0\n    for sommet in graphe:\n        if sommet not in vus:\n            nombre += 1\n            explorer(sommet)\n    return nombre\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "composantes",
+            "args": [
+              {
+                "A": [
+                  "B"
+                ],
+                "B": [
+                  "A"
+                ],
+                "C": [
+                  "D"
+                ],
+                "D": [
+                  "C"
+                ],
+                "E": []
+              }
+            ],
+            "unchanged_args": true,
+            "expected": 3
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "composantes",
+            "args": [
+              {}
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "composantes",
+            "args": [
+              {
+                "Lomé": [
+                  "Tsévié",
+                  "Aného",
+                  "Kpalimé"
+                ],
+                "Tsévié": [
+                  "Lomé",
+                  "Notsé",
+                  "Kpalimé"
+                ],
+                "Aného": [
+                  "Lomé"
+                ],
+                "Kpalimé": [
+                  "Lomé",
+                  "Tsévié",
+                  "Atakpamé"
+                ],
+                "Notsé": [
+                  "Tsévié",
+                  "Atakpamé"
+                ],
+                "Atakpamé": [
+                  "Notsé",
+                  "Kpalimé",
+                  "Sokodé"
+                ],
+                "Sokodé": [
+                  "Atakpamé",
+                  "Kara"
+                ],
+                "Kara": [
+                  "Sokodé",
+                  "Dapaong"
+                ],
+                "Dapaong": [
+                  "Kara"
+                ]
+              }
+            ],
+            "unchanged_args": true,
+            "expected": 1
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un graphe peut contenir plusieurs îles.",
+      "Parcours tous les sommets.",
+      "Chaque sommet non vu lance une exploration et compte une composante."
+    ],
+    "explanation_fr": "Trois composantes : A-B, C-D et E, seul.",
+    "common_wrong_answers": [],
+    "id": "algo-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Exploration sans mémoire",
+    "instruction_fr": "Cette exploration ne vérifie pas si un voisin a déjà été vu, et le cycle Lomé-Tsévié-Lomé provoque une RecursionError. Corrige-la.",
+    "starter_code": "def accessibles(graphe, depart):\n    vus = set()\n\n    def explorer(sommet):\n        vus.add(sommet)\n        for voisin in graphe[sommet]:\n            explorer(voisin)\n\n    explorer(depart)\n    return sorted(vus)\n",
+    "solution": "def accessibles(graphe, depart):\n    vus = set()\n\n    def explorer(sommet):\n        vus.add(sommet)\n        for voisin in graphe[sommet]:\n            if voisin not in vus:\n                explorer(voisin)\n\n    explorer(depart)\n    return sorted(vus)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "accessibles",
+            "args": [
+              {
+                "Lomé": [
+                  "Tsévié"
+                ],
+                "Tsévié": [
+                  "Lomé"
+                ]
+              },
+              "Lomé"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "Lomé",
+              "Tsévié"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "accessibles",
+            "args": [
+              {
+                "Lomé": [
+                  "Tsévié",
+                  "Aného",
+                  "Kpalimé"
+                ],
+                "Tsévié": [
+                  "Lomé",
+                  "Notsé",
+                  "Kpalimé"
+                ],
+                "Aného": [
+                  "Lomé"
+                ],
+                "Kpalimé": [
+                  "Lomé",
+                  "Tsévié",
+                  "Atakpamé"
+                ],
+                "Notsé": [
+                  "Tsévié",
+                  "Atakpamé"
+                ],
+                "Atakpamé": [
+                  "Notsé",
+                  "Kpalimé",
+                  "Sokodé"
+                ],
+                "Sokodé": [
+                  "Atakpamé",
+                  "Kara"
+                ],
+                "Kara": [
+                  "Sokodé",
+                  "Dapaong"
+                ],
+                "Dapaong": [
+                  "Kara"
+                ]
+              },
+              "Kara"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "Aného",
+              "Atakpamé",
+              "Dapaong",
+              "Kara",
+              "Kpalimé",
+              "Lomé",
+              "Notsé",
+              "Sokodé",
+              "Tsévié"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : RecursionError.",
+      "Lomé appelle Tsévié, qui rappelle Lomé, sans fin.",
+      "Explore un voisin seulement s’il n’est pas dans vus."
+    ],
+    "explanation_fr": "Dans un graphe, la mémoire des sommets vus est ce qui garantit la fin du parcours.",
+    "common_wrong_answers": [],
+    "id": "algo-m4-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Ordre des cours",
+    "instruction_fr": "Écris ordre_cours(prerequis) : prerequis associe chaque cours à la liste de ses prérequis. Renvoie un ordre où chaque cours vient après ses prérequis, en choisissant à chaque étape le premier cours prêt par ordre alphabétique ; renvoie None s’il existe une dépendance circulaire.",
+    "starter_code": "def ordre_cours(prerequis):\n    return sorted(prerequis)\n",
+    "solution": "def ordre_cours(prerequis):\n    restants = {cours: len(p) for cours, p in prerequis.items()}\n    ordre = []\n    while len(ordre) < len(prerequis):\n        prets = sorted(c for c, n in restants.items() if n == 0 and c not in ordre)\n        if not prets:\n            return None\n        cours = prets[0]\n        ordre.append(cours)\n        for autre, p in prerequis.items():\n            if cours in p:\n                restants[autre] -= 1\n    return ordre\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ordre_cours",
+            "args": [
+              {
+                "python-bases": [],
+                "python-intermediaire": [
+                  "python-bases"
+                ],
+                "algorithmes": [
+                  "python-bases"
+                ],
+                "sql-bases": [],
+                "cyber-bases": [
+                  "python-bases",
+                  "reseaux-bases"
+                ],
+                "reseaux-bases": [
+                  "python-bases"
+                ]
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "python-bases",
+              "algorithmes",
+              "python-intermediaire",
+              "reseaux-bases",
+              "cyber-bases",
+              "sql-bases"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ordre_cours",
+            "args": [
+              {
+                "a": [
+                  "b"
+                ],
+                "b": [
+                  "a"
+                ]
+              }
+            ],
+            "unchanged_args": true,
+            "expected": null
+          },
+          {
+            "name": "ordre_cours",
+            "args": [
+              {}
+            ],
+            "unchanged_args": true,
+            "expected": []
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’ordre alphabétique place algorithmes avant python-bases, son prérequis.",
+      "Compte pour chaque cours les prérequis non encore placés.",
+      "Si aucun cours n’est prêt alors qu’il en reste, la dépendance est circulaire."
+    ],
+    "explanation_fr": "C’est ainsi qu’un parcours métier peut ordonner automatiquement ses cours.",
+    "common_wrong_answers": [],
+    "id": "algo-m4-02-e4"
+  }
+]

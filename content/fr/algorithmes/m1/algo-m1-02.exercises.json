@@ -1,0 +1,335 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Recherche linéaire",
+    "instruction_fr": "Écris recherche(liste, cible) qui renvoie l’indice de la première occurrence de la cible, ou -1 si elle est absente.",
+    "starter_code": "def recherche(liste, cible):\n    return liste.index(cible)\n",
+    "solution": "def recherche(liste, cible):\n    for i, valeur in enumerate(liste):\n        if valeur == cible:\n            return i\n    return -1\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "recherche",
+            "args": [
+              [
+                7,
+                3,
+                9,
+                3
+              ],
+              3
+            ],
+            "unchanged_args": true,
+            "expected": 1
+          },
+          {
+            "name": "recherche",
+            "args": [
+              [
+                7,
+                3,
+                9
+              ],
+              5
+            ],
+            "unchanged_args": true,
+            "expected": -1
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "recherche",
+            "args": [
+              [],
+              1
+            ],
+            "unchanged_args": true,
+            "expected": -1
+          },
+          {
+            "name": "recherche",
+            "args": [
+              [
+                "Kara",
+                "Lomé"
+              ],
+              "Lomé"
+            ],
+            "unchanged_args": true,
+            "expected": 1
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "index lève ValueError quand la cible est absente.",
+      "Parcours avec enumerate pour connaître l’indice.",
+      "Renvoie -1 après la boucle."
+    ],
+    "explanation_fr": "Un résultat -1 explicite vaut mieux qu’une erreur pour une absence normale.",
+    "common_wrong_answers": [],
+    "id": "algo-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Dichotomie",
+    "instruction_fr": "Écris dichotomie(liste, cible) pour une liste triée : renvoie l’indice de la cible ou -1, en divisant la zone de recherche par deux à chaque étape.",
+    "starter_code": "def dichotomie(liste, cible):\n    return -1\n",
+    "solution": "def dichotomie(liste, cible):\n    gauche, droite = 0, len(liste) - 1\n    while gauche <= droite:\n        milieu = (gauche + droite) // 2\n        if liste[milieu] == cible:\n            return milieu\n        if liste[milieu] < cible:\n            gauche = milieu + 1\n        else:\n            droite = milieu - 1\n    return -1\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dichotomie",
+            "args": [
+              [
+                4,
+                8,
+                10,
+                12,
+                15,
+                17,
+                19
+              ],
+              15
+            ],
+            "unchanged_args": true,
+            "expected": 4
+          },
+          {
+            "name": "dichotomie",
+            "args": [
+              [
+                4,
+                8,
+                10
+              ],
+              9
+            ],
+            "unchanged_args": true,
+            "expected": -1
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dichotomie",
+            "args": [
+              [],
+              3
+            ],
+            "unchanged_args": true,
+            "expected": -1
+          },
+          {
+            "name": "dichotomie",
+            "args": [
+              [
+                5
+              ],
+              5
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "dichotomie",
+            "args": [
+              [
+                1,
+                3,
+                5,
+                7,
+                9,
+                11
+              ],
+              11
+            ],
+            "unchanged_args": true,
+            "expected": 5
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Garde deux bornes, gauche et droite.",
+      "Compare au milieu et élimine une moitié.",
+      "Boucle tant que gauche <= droite."
+    ],
+    "explanation_fr": "Chaque tour divise la zone par deux : le nombre de tours est logarithmique.",
+    "common_wrong_answers": [],
+    "id": "algo-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La dernière case oubliée",
+    "instruction_fr": "Cette dichotomie ne trouve pas une cible située dans la dernière case examinée. Corrige sa condition de boucle.",
+    "starter_code": "def dichotomie(liste, cible):\n    gauche, droite = 0, len(liste) - 1\n    while gauche < droite:\n        milieu = (gauche + droite) // 2\n        if liste[milieu] == cible:\n            return milieu\n        if liste[milieu] < cible:\n            gauche = milieu + 1\n        else:\n            droite = milieu - 1\n    return -1\n",
+    "solution": "def dichotomie(liste, cible):\n    gauche, droite = 0, len(liste) - 1\n    while gauche <= droite:\n        milieu = (gauche + droite) // 2\n        if liste[milieu] == cible:\n            return milieu\n        if liste[milieu] < cible:\n            gauche = milieu + 1\n        else:\n            droite = milieu - 1\n    return -1\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dichotomie",
+            "args": [
+              [
+                5
+              ],
+              5
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "dichotomie",
+            "args": [
+              [
+                1,
+                3,
+                5,
+                7
+              ],
+              7
+            ],
+            "unchanged_args": true,
+            "expected": 3
+          },
+          {
+            "name": "dichotomie",
+            "args": [
+              [
+                1,
+                3,
+                5,
+                7
+              ],
+              4
+            ],
+            "unchanged_args": true,
+            "expected": -1
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Avec un seul élément, la boucle ne s’exécute pas.",
+      "Quand gauche == droite, il reste une case à examiner.",
+      "Remplace < par <=."
+    ],
+    "explanation_fr": "Les erreurs de dichotomie se cachent dans les cas limites.",
+    "common_wrong_answers": [],
+    "id": "algo-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Étapes et insertion",
+    "instruction_fr": "Écris etapes(n) qui renvoie le nombre maximal de comparaisons d’une dichotomie sur n éléments (nombre de fois qu’on peut diviser n par 2 en entier avant d’atteindre 0), et inserer(liste, valeur) qui renvoie une NOUVELLE liste triée contenant la valeur, avec bisect, sans modifier la liste reçue.",
+    "starter_code": "import bisect\n\ndef etapes(n):\n    return n\n\ndef inserer(liste, valeur):\n    bisect.insort(liste, valeur)\n    return liste\n",
+    "solution": "import bisect\n\ndef etapes(n):\n    compte = 0\n    while n > 0:\n        n //= 2\n        compte += 1\n    return compte\n\ndef inserer(liste, valeur):\n    copie = list(liste)\n    bisect.insort(copie, valeur)\n    return copie\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "etapes",
+            "args": [
+              7
+            ],
+            "unchanged_args": true,
+            "expected": 3
+          },
+          {
+            "name": "inserer",
+            "args": [
+              [
+                4,
+                8,
+                12
+              ],
+              10
+            ],
+            "unchanged_args": true,
+            "expected": [
+              4,
+              8,
+              10,
+              12
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "etapes",
+            "args": [
+              1000000
+            ],
+            "unchanged_args": true,
+            "expected": 20
+          },
+          {
+            "name": "etapes",
+            "args": [
+              0
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "inserer",
+            "args": [
+              [],
+              5
+            ],
+            "unchanged_args": true,
+            "expected": [
+              5
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "etapes compte des divisions, pas des éléments.",
+      "insort modifie la liste reçue : travaille sur une copie.",
+      "list(liste) crée la copie."
+    ],
+    "explanation_fr": "Vingt étapes pour un million : la dichotomie change d’échelle le problème.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:bisect"
+    ],
+    "id": "algo-m1-02-e4"
+  }
+]

@@ -1,0 +1,385 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Fusionner deux listes triées",
+    "instruction_fr": "Écris fusionner(a, b) qui renvoie une liste triée contenant tous les éléments de deux listes déjà triées, en comparant leurs premiers éléments restants.",
+    "starter_code": "def fusionner(a, b):\n    return a + b\n",
+    "solution": "def fusionner(a, b):\n    resultat = []\n    i = j = 0\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            resultat.append(a[i])\n            i += 1\n        else:\n            resultat.append(b[j])\n            j += 1\n    resultat += a[i:]\n    resultat += b[j:]\n    return resultat\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fusionner",
+            "args": [
+              [
+                2,
+                9,
+                14
+              ],
+              [
+                4,
+                5,
+                20,
+                21
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              2,
+              4,
+              5,
+              9,
+              14,
+              20,
+              21
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fusionner",
+            "args": [
+              [],
+              [
+                1,
+                2
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              1,
+              2
+            ]
+          },
+          {
+            "name": "fusionner",
+            "args": [
+              [
+                3,
+                3
+              ],
+              [
+                3
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              3,
+              3,
+              3
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Coller les listes ne les trie pas.",
+      "Avance un indice dans chaque liste.",
+      "Après la boucle, ajoute ce qui reste."
+    ],
+    "explanation_fr": "La fusion est linéaire : chaque élément est examiné une seule fois.",
+    "common_wrong_answers": [],
+    "id": "algo-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Tri fusion",
+    "instruction_fr": "Écris tri_fusion(liste) récursif avec ta fonction fusionner : une liste de 0 ou 1 élément est renvoyée telle quelle (en copie), sinon on trie les deux moitiés puis on les fusionne.",
+    "starter_code": "def fusionner(a, b):\n    resultat = []\n    i = j = 0\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            resultat.append(a[i])\n            i += 1\n        else:\n            resultat.append(b[j])\n            j += 1\n    resultat += a[i:]\n    resultat += b[j:]\n    return resultat\n\ndef tri_fusion(liste):\n    return fusionner(liste, [])\n",
+    "solution": "def fusionner(a, b):\n    resultat = []\n    i = j = 0\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            resultat.append(a[i])\n            i += 1\n        else:\n            resultat.append(b[j])\n            j += 1\n    resultat += a[i:]\n    resultat += b[j:]\n    return resultat\n\ndef tri_fusion(liste):\n    if len(liste) <= 1:\n        return list(liste)\n    milieu = len(liste) // 2\n    return fusionner(tri_fusion(liste[:milieu]), tri_fusion(liste[milieu:]))\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tri_fusion",
+            "args": [
+              [
+                38,
+                27,
+                43,
+                3,
+                9,
+                82,
+                10
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              3,
+              9,
+              10,
+              27,
+              38,
+              43,
+              82
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tri_fusion",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "tri_fusion",
+            "args": [
+              [
+                2,
+                1,
+                2,
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              1,
+              1,
+              2,
+              2
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Fusionner avec une liste vide ne trie rien.",
+      "Coupe au milieu avec liste[:milieu] et liste[milieu:].",
+      "Trie chaque moitié récursivement, puis fusionne."
+    ],
+    "explanation_fr": "Trois lignes suffisent une fois la fusion écrite.",
+    "common_wrong_answers": [],
+    "id": "algo-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Fusion incomplète",
+    "instruction_fr": "Cette fusion oublie les éléments restants d’une des deux listes. Corrige-la.",
+    "starter_code": "def fusionner(a, b):\n    resultat = []\n    i = j = 0\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            resultat.append(a[i])\n            i += 1\n        else:\n            resultat.append(b[j])\n            j += 1\n    resultat += a[i:]\n    return resultat\n",
+    "solution": "def fusionner(a, b):\n    resultat = []\n    i = j = 0\n    while i < len(a) and j < len(b):\n        if a[i] <= b[j]:\n            resultat.append(a[i])\n            i += 1\n        else:\n            resultat.append(b[j])\n            j += 1\n    resultat += a[i:]\n    resultat += b[j:]\n    return resultat\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fusionner",
+            "args": [
+              [
+                1,
+                2
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fusionner",
+            "args": [
+              [],
+              [
+                7
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              7
+            ]
+          },
+          {
+            "name": "fusionner",
+            "args": [
+              [
+                5,
+                6
+              ],
+              [
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              1,
+              5,
+              6
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Quand la première liste s’épuise, la fin de la seconde disparaît.",
+      "Il faut ajouter les restes des deux listes.",
+      "Ajoute resultat += b[j:]."
+    ],
+    "explanation_fr": "Les deux restes doivent être ajoutés : on ne sait pas laquelle s’épuisera la première.",
+    "common_wrong_answers": [],
+    "id": "algo-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Fusionner deux classements",
+    "instruction_fr": "Écris fusion_classements(a, b) : a et b sont des listes de [nom, note] déjà triées par note décroissante. Renvoie le classement commun trié par note décroissante, en gardant l’ordre de a avant celui de b pour les notes égales.",
+    "starter_code": "def fusion_classements(a, b):\n    return sorted(a + b)\n",
+    "solution": "def fusion_classements(a, b):\n    resultat = []\n    i = j = 0\n    while i < len(a) and j < len(b):\n        if a[i][1] >= b[j][1]:\n            resultat.append(a[i])\n            i += 1\n        else:\n            resultat.append(b[j])\n            j += 1\n    return resultat + a[i:] + b[j:]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fusion_classements",
+            "args": [
+              [
+                [
+                  "Yao",
+                  17
+                ],
+                [
+                  "Afi",
+                  14
+                ]
+              ],
+              [
+                [
+                  "Esi",
+                  16
+                ],
+                [
+                  "Kofi",
+                  14
+                ],
+                [
+                  "Ama",
+                  9
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                "Yao",
+                17
+              ],
+              [
+                "Esi",
+                16
+              ],
+              [
+                "Afi",
+                14
+              ],
+              [
+                "Kofi",
+                14
+              ],
+              [
+                "Ama",
+                9
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fusion_classements",
+            "args": [
+              [],
+              [
+                [
+                  "A",
+                  1
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                "A",
+                1
+              ]
+            ]
+          },
+          {
+            "name": "fusion_classements",
+            "args": [
+              [
+                [
+                  "B",
+                  5
+                ]
+              ],
+              [
+                [
+                  "A",
+                  5
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                "B",
+                5
+              ],
+              [
+                "A",
+                5
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Trier par défaut classe par nom.",
+      "Fusionne en comparant les notes, la plus grande d’abord.",
+      "À égalité, >= garde l’élève de a en premier."
+    ],
+    "explanation_fr": "Deux classes déjà classées se fusionnent en un seul passage, sans tout retrier.",
+    "common_wrong_answers": [],
+    "id": "algo-m2-02-e4"
+  }
+]

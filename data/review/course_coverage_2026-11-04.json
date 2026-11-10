@@ -617,9 +617,12 @@
       "family": "PHP",
       "level": "intermediaire",
       "target_title": "PHP — applications structurées",
-      "status": "a_construire",
-      "evidence": [],
-      "next_action": "Rédiger le programme, ses prérequis, ses activités et son projet ; vérifier le moteur nécessaire."
+      "status": "premier-cours-redige-a-relire",
+      "evidence": [
+        "content/fr/php-intermediaire/",
+        "docs/PHP_INTERMEDIAIRE_UI_RESULTS.json"
+      ],
+      "next_action": "Relecture pédagogique humaine ; le niveau avancé (architecture web, base de données, tests) reste à construire."
     },
     {
       "id": "php-avance",
@@ -842,7 +845,7 @@
     "Objets connectés et robotique",
     "Blockchain"
   ],
-  "updated_for_release": "5.17.0",
+  "updated_for_release": "5.18.0",
   "updated_at": "2026-11-10",
   "additional_implemented": [
     {
@@ -884,6 +887,32 @@
       "evidence": [
         "content/fr/reseaux-bases/",
         "docs/RESEAUX_BASES_UI_RESULTS.json"
+      ]
+    },
+    {
+      "id": "algorithmes",
+      "modules": 4,
+      "lessons": 12,
+      "activities": 48,
+      "quizzes": 36,
+      "status": "brouillon",
+      "scope": "Algorithmes et structures de données en Python hors ligne ; étape du parcours Ingénieur·e logiciel.",
+      "evidence": [
+        "content/fr/algorithmes/",
+        "docs/ALGORITHMES_UI_RESULTS.json"
+      ]
+    },
+    {
+      "id": "qualite-logicielle",
+      "modules": 4,
+      "lessons": 12,
+      "activities": 48,
+      "quizzes": 36,
+      "status": "brouillon",
+      "scope": "Tests, débogage, lisibilité, TDD et revue de code en Python hors ligne ; tests de l’élève éprouvés par mutants.",
+      "evidence": [
+        "content/fr/qualite-logicielle/",
+        "docs/QUALITE_LOGICIELLE_UI_RESULTS.json"
       ]
     }
   ]

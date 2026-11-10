@@ -1,0 +1,281 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Fréquence des mots",
+    "instruction_fr": "Écris frequences(texte) qui renvoie un dictionnaire mot → nombre d’apparitions, les mots étant séparés par des espaces et comptés en minuscules.",
+    "starter_code": "def frequences(texte):\n    return {mot: 1 for mot in texte.split()}\n",
+    "solution": "def frequences(texte):\n    compte = {}\n    for mot in texte.lower().split():\n        compte[mot] = compte.get(mot, 0) + 1\n    return compte\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "frequences",
+            "args": [
+              "Riz huile riz"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "riz": 2,
+              "huile": 1
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "frequences",
+            "args": [
+              ""
+            ],
+            "unchanged_args": true,
+            "expected": {}
+          },
+          {
+            "name": "frequences",
+            "args": [
+              "a A a"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "a": 3
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Chaque mot compte 1, même répété.",
+      "Augmente le compteur existant.",
+      "compte.get(mot, 0) + 1, après lower()."
+    ],
+    "explanation_fr": "Compter avec un dictionnaire est linéaire, quel que soit le nombre de mots différents.",
+    "common_wrong_answers": [],
+    "id": "algo-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Deux articles pour un budget",
+    "instruction_fr": "Écris deux_sommes(prix, budget) qui renvoie les indices [i, j] (i < j) de la première paire, dans l’ordre de lecture, dont la somme vaut le budget, ou None. Un seul parcours avec un dictionnaire.",
+    "starter_code": "def deux_sommes(prix, budget):\n    for i in range(len(prix)):\n        for j in range(len(prix)):\n            if prix[i] + prix[j] == budget:\n                return [i, j]\n    return None\n",
+    "solution": "def deux_sommes(prix, budget):\n    vus = {}\n    for i, p in enumerate(prix):\n        if budget - p in vus:\n            return [vus[budget - p], i]\n        vus[p] = i\n    return None\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "deux_sommes",
+            "args": [
+              [
+                1200,
+                300,
+                650,
+                900
+              ],
+              1550
+            ],
+            "unchanged_args": true,
+            "expected": [
+              2,
+              3
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "deux_sommes",
+            "args": [
+              [
+                500,
+                500
+              ],
+              1000
+            ],
+            "unchanged_args": true,
+            "expected": [
+              0,
+              1
+            ]
+          },
+          {
+            "name": "deux_sommes",
+            "args": [
+              [
+                500
+              ],
+              1000
+            ],
+            "unchanged_args": true,
+            "expected": null
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La double boucle peut associer un article à lui-même.",
+      "Pour chaque prix, cherche son complément parmi les prix déjà vus.",
+      "Mémorise le prix avec son indice après le test."
+    ],
+    "explanation_fr": "Mémoriser après le test empêche d’associer un article à lui-même.",
+    "common_wrong_answers": [],
+    "id": "algo-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Grouper les anagrammes",
+    "instruction_fr": "anagrammes(mots) doit renvoyer la liste des groupes de mots qui sont des anagrammes, dans l’ordre de première apparition. Elle utilise un ensemble comme clé, ce que Python refuse. Corrige la clé.",
+    "starter_code": "def anagrammes(mots):\n    groupes = {}\n    for mot in mots:\n        groupes.setdefault(set(mot), []).append(mot)\n    return list(groupes.values())\n",
+    "solution": "def anagrammes(mots):\n    groupes = {}\n    for mot in mots:\n        groupes.setdefault(\"\".join(sorted(mot)), []).append(mot)\n    return list(groupes.values())\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "anagrammes",
+            "args": [
+              [
+                "tissu",
+                "chien",
+                "suits",
+                "niche"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                "tissu",
+                "suits"
+              ],
+              [
+                "chien",
+                "niche"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "anagrammes",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "anagrammes",
+            "args": [
+              [
+                "ab",
+                "ba",
+                "aab"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                "ab",
+                "ba"
+              ],
+              [
+                "aab"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : unhashable type: 'set'.",
+      "Un ensemble ne peut pas être une clé, et il oublie les lettres répétées.",
+      "Utilise \"\".join(sorted(mot))."
+    ],
+    "explanation_fr": "Les lettres triées forment une clé commune à tout le groupe.",
+    "common_wrong_answers": [],
+    "id": "algo-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Premier article unique",
+    "instruction_fr": "Écris premier_unique(ventes) qui renvoie le premier article de la liste qui n’apparaît qu’une seule fois, ou None. Compte d’abord avec un dictionnaire ou Counter, puis reparcours la liste dans l’ordre.",
+    "starter_code": "def premier_unique(ventes):\n    return ventes[0] if ventes else None\n",
+    "solution": "from collections import Counter\n\ndef premier_unique(ventes):\n    compte = Counter(ventes)\n    for article in ventes:\n        if compte[article] == 1:\n            return article\n    return None\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "premier_unique",
+            "args": [
+              [
+                "riz",
+                "savon",
+                "riz",
+                "huile",
+                "savon"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "huile"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "premier_unique",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": null
+          },
+          {
+            "name": "premier_unique",
+            "args": [
+              [
+                "a",
+                "a"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": null
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le premier article n’est pas forcément unique.",
+      "Compte toutes les apparitions d’abord.",
+      "Reparcours la liste et renvoie le premier article compté une fois."
+    ],
+    "explanation_fr": "Deux passages linéaires battent une double boucle quadratique.",
+    "common_wrong_answers": [],
+    "id": "algo-m3-03-e4"
+  }
+]

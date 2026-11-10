@@ -40,7 +40,26 @@ try{
   }
   await seed(p,{ambiance:'verre',theme:'dark'});await p.goto(base+'#/profil');await p.reload();await p.locator('#apparence').scrollIntoViewIfNeeded();await p.screenshot({path:'docs/screenshots/ambiances-verre-'+width+'.png'});
   await seed(p,{ambiance:'nunya',theme:'light'});await p.goto(base+'#/profil');await p.reload();await p.locator('#apparence').scrollIntoViewIfNeeded();await p.screenshot({path:'docs/screenshots/ambiances-nunya-'+width+'.png'});
-  results.push({width,welcomePicker:true,settingsCards:checked.length,nuitForcesDark:true,glassLiteToggle:true,ownColour:true,axeAudits:audits.length,axeViolations:0});
+  // Desktop: the sidebar folds into an icon rail, keeps accessible names and tooltips, and remembers the choice.
+  let sidebarChecked=false;
+  if(width>=1440){
+   await seed(p,{ambiance:'nunya',theme:'light',sidebarMini:false});await p.goto(base+'#/apprendre');await p.reload();
+   const toggle=p.locator('#sidebar .sidebar-toggle');await expect(toggle).toHaveAttribute('aria-expanded','true');
+   const before=await p.locator('.workspace').evaluate(el=>parseFloat(getComputedStyle(el).marginLeft));
+   await toggle.click();await expect(p.locator('html')).toHaveAttribute('data-sidebar','mini');await expect(toggle).toHaveAttribute('aria-expanded','false');
+   await p.waitForTimeout(400);
+   const after=await p.locator('.workspace').evaluate(el=>parseFloat(getComputedStyle(el).marginLeft));
+   expect(after).toBeLessThan(before);expect(after).toBe(76);
+   expect(await p.locator('#sidebar .nav-item').first().getAttribute('title')).toBeTruthy();
+   expect((await saved(p)).sidebarMini).toBe(true);
+   await p.reload();await expect(p.locator('html')).toHaveAttribute('data-sidebar','mini');
+   const v=await audit(p);if(v.length)throw Error('barre réduite : '+v.join(' ; '));
+   expect(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth)).toBe(false);
+   await p.screenshot({path:'docs/screenshots/sidebar-reduite-1440.png'});
+   await p.locator('#sidebar .sidebar-toggle').click();await expect(p.locator('html')).toHaveAttribute('data-sidebar','full');
+   sidebarChecked=true;
+  }
+  results.push({width,welcomePicker:true,sidebarToggle:sidebarChecked,settingsCards:checked.length,nuitForcesDark:true,glassLiteToggle:true,ownColour:true,axeAudits:audits.length,axeViolations:0});
   await ctx.close();
  }
  if(errors.length)throw Error(errors.join(';'));

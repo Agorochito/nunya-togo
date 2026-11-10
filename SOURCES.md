@@ -114,3 +114,15 @@ Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités origin
 ## SQL intermédiaire : analyser les données d’une boutique — 10 novembre 2026
 
 Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la documentation officielle de SQLite (SELECT, expressions, fonctions, dates, WITH, fonctions de fenêtre, vues, index, UPSERT, déclencheurs, EXPLAIN QUERY PLAN), citée dans chaque leçon ; aucun texte n’en est repris. Produits, clients, quartiers et ventes de la boutique sont fictifs.
+
+## Algorithmes et structures de données — 10 novembre 2026
+
+Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la documentation officielle de Python (structures de données, guide du tri, collections.deque, heapq, bisect), de la page TimeComplexity du wiki Python pour les coûts des opérations et du cours d’algorithmique de Khan Academy en français pour les notions générales. Les distances entre villes du Togo sont des valeurs pédagogiques arrondies, présentées comme telles. Aucun texte, exercice ou corrigé n’est repris d’un autre site.
+
+## Qualité logicielle : tester, déboguer, relire — 10 novembre 2026
+
+Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la documentation officielle de Python (unittest, doctest, typing, math, tutoriel sur les erreurs, l’arithmétique flottante et les valeurs par défaut), de la PEP 8, de la PEP 257, de la documentation de pytest et de celle de git bisect. Le principe du test par mutation est décrit avec des mutants écrits pour Nunya ; les programmes à tester sont fictifs. Aucun texte, exercice ou corrigé n’est repris d’un autre site.
+
+## PHP intermédiaire : objets et données — 10 novembre 2026
+
+Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide du manuel PHP officiel (déclarations de types, arguments, fonctions fléchées, fonctions de tableaux, match, classes, visibilité, propriétés, héritage, interfaces, énumérations, Exception, JSON, filter_var, htmlspecialchars), cité dans chaque leçon ; aucun texte n’en est repris. Personnes, associations, courriels et montants sont fictifs.
