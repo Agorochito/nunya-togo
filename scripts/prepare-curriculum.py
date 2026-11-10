@@ -17,9 +17,9 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
   course['modules']=course['modules'][:4]+extension['modules'];course['later_modules']=[]
   course['summary_fr']='De ton premier programme aux collections, fonctions et projets : apprends, teste et construis en français.'
  language=course.get('language',course.get('runtime','python'))
- if language not in ['python','javascript','html','css','sql','php','cpp','bash','java']:raise ValueError('Unsupported offline runtime: '+language)
+ if language not in ['python','javascript','typescript','html','css','sql','php','cpp','bash','java']:raise ValueError('Unsupported offline runtime: '+language)
  runtime=course.get('runtime',language)
- if runtime not in ['python','javascript','html','css','http','sql','dom','react','php','cpp','bash','java','node'] or (runtime in ['http','node'] and language!='javascript'):raise ValueError('Unsupported runtime/language pair')
+ if runtime not in ['python','javascript','html','css','http','sql','dom','react','php','cpp','bash','java','node','typescript'] or (runtime in ['http','node'] and language!='javascript') or (runtime=='typescript')!=(language=='typescript'):raise ValueError('Unsupported runtime/language pair')
  if runtime in ['dom','react']:
   engine_files=['lib/dom/client.mjs','lib/dom/compile.mjs','lib/dom/frame.mjs','lib/dom/react-libs.mjs','package-lock.json']
   course['engine_revision']=hashlib.sha256(b''.join((r/f).read_bytes() for f in engine_files)).hexdigest()[:12]
@@ -36,7 +36,7 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
    all_ids.add(row['id'])
    prose=markdown.split('## Explication pas à pas\n',1)[1].split('## Exemple guidé',1)[0]
    row['body_fr']=[part.strip() for part in prose.strip().split('\n\n') if part.strip()]
-   fences={'python':'python','html':'html','css':'css','javascript':'javascript|jsx|js','sql':'sql','php':'php','cpp':'cpp','bash':'bash','java':'java'}[language]
+   fences={'python':'python','html':'html','css':'css','javascript':'javascript|jsx|js','typescript':'typescript|ts','sql':'sql','php':'php','cpp':'cpp','bash':'bash','java':'java'}[language]
    codes=re.findall(r'```(?:'+fences+r')\n(.*?)\n```',markdown,re.S)
    if len(codes)!=len(row['examples']):raise ValueError(f'{path}: each example requires its code block')
    for example,code in zip(row['examples'],codes):example['code']=code
@@ -44,6 +44,7 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
    row['exercises']=json.loads(path.with_suffix('.exercises.json').read_text())
    if runtime=='http':row.setdefault('environment_fr','API pédagogique locale : données fictives, pas de serveur distant ni d’écriture conservée. Les requêtes restent sur cet appareil. await est autorisé dans l’atelier.')
    if runtime=='bash':row.setdefault('environment_fr','Bash 5.2 dans un vrai système Linux en ligne, sur le service Wandbox (wandbox.org, Japon) : une connexion est nécessaire pour exécuter. Chaque essai démarre dans un dossier neuf avec ses fichiers de départ. Seuls tes commandes, les saisies et ces fichiers fictifs sont envoyés, sans nom ni compte.')
+   if runtime=='typescript':row.setdefault('environment_fr','TypeScript 5.6 compilé en mode strict puis exécuté par Node.js en ligne, sur le service Wandbox (wandbox.org, Japon) : une connexion est nécessaire pour exécuter. Une erreur de type empêche l’exécution, comme dans un vrai projet. Seul le code est envoyé, sans nom ni compte.')
    if runtime=='node':row.setdefault('environment_fr','Node.js 20 exécuté en ligne sur le service Wandbox (wandbox.org, Japon) : une connexion est nécessaire pour exécuter. Seul le code du programme est envoyé, sans nom ni compte. Les serveurs sont testés par l’atelier sur un port local temporaire. Les leçons, exemples et questions restent lisibles hors ligne.')
    if runtime=='java':row.setdefault('environment_fr','Java 21 (OpenJDK) compilé en ligne sur le service Wandbox (wandbox.org, Japon) : une connexion est nécessaire pour exécuter. Seul le code du programme et les saisies de test sont envoyés, sans nom ni compte. Les leçons, exemples et questions restent lisibles hors ligne.')
    if runtime=='cpp':row.setdefault('environment_fr','C++17 compilé en ligne par GCC 13 sur le service Wandbox (wandbox.org, Japon) : une connexion est nécessaire pour exécuter. Seul le code du programme et les saisies de test sont envoyés, sans nom ni compte. Les leçons, exemples et questions restent lisibles hors ligne.')

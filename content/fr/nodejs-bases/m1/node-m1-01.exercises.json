@@ -1,0 +1,157 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une première fonction",
+    "instruction_fr": "Écris bonjour(nom) qui renvoie « Bonjour NOM ! » avec un gabarit de chaîne.",
+    "starter_code": "function bonjour(nom) {\n  console.log(\"Bonjour\");\n}\n",
+    "solution": "function bonjour(nom) {\n  return `Bonjour ${nom} !`;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "bonjour(\"Afi\")",
+            "expected": "Bonjour Afi !"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "bonjour(\"Kossi\")",
+            "expected": "Bonjour Kossi !"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La fonction doit renvoyer, pas afficher.",
+      "Utilise des accents graves.",
+      "return `Bonjour ${nom} !`;"
+    ],
+    "explanation_fr": "Une fonction qui renvoie se teste avec n’importe quel nom.",
+    "common_wrong_answers": [],
+    "id": "node-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Le prix TTC",
+    "instruction_fr": "Écris prixTTC(prixHT) qui renvoie le prix avec 18 % de TVA, arrondi à l’entier.",
+    "starter_code": "function prixTTC(prixHT) {\n  return prixHT + 18;\n}\n",
+    "solution": "function prixTTC(prixHT) {\n  return Math.round(prixHT * 1.18);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "prixTTC(1000)",
+            "expected": "1180"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "prixTTC(333)",
+            "expected": "393"
+          },
+          {
+            "expr": "prixTTC(0)",
+            "expected": "0"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "18 % de 1000 font 180.",
+      "Multiplie par 1,18.",
+      "Math.round arrondit."
+    ],
+    "explanation_fr": "Même logique qu’en JavaScript dans le navigateur.",
+    "common_wrong_answers": [],
+    "id": "node-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le document qui n’existe pas",
+    "instruction_fr": "Ce programme, copié d’une page web, écrit dans document. Dans Node.js, il plante. Remplace cette ligne par un affichage console.log de « Serveur prêt ».",
+    "starter_code": "const message = \"Serveur prêt\";\ndocument.querySelector(\"#etat\").textContent = message;\n",
+    "solution": "const message = \"Serveur prêt\";\nconsole.log(message);\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Serveur prêt",
+        "expressions": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "Serveur prêt",
+        "expressions": [
+          {
+            "expr": "message",
+            "expected": "Serveur prêt"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : document is not defined.",
+      "Node.js n’a pas de page.",
+      "console.log(message);"
+    ],
+    "explanation_fr": "Le message d’erreur indique la ligne et le nom inconnu.",
+    "common_wrong_answers": [],
+    "id": "node-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Résumé de commande",
+    "instruction_fr": "Écris resume(articles) : articles est un tableau d’objets { nom, prix, quantite }. Renvoie « N articles, total T FCFA », où N est la somme des quantités et T le total.",
+    "starter_code": "function resume(articles) {\n  return \"\";\n}\n",
+    "solution": "function resume(articles) {\n  let quantite = 0;\n  let total = 0;\n  for (const a of articles) {\n    quantite += a.quantite;\n    total += a.prix * a.quantite;\n  }\n  return `${quantite} articles, total ${total} FCFA`;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "resume([{ nom: \"riz\", prix: 600, quantite: 2 }, { nom: \"huile\", prix: 1500, quantite: 1 }])",
+            "expected": "3 articles, total 2700 FCFA"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "resume([])",
+            "expected": "0 articles, total 0 FCFA"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Additionne les quantités.",
+      "Additionne prix × quantité.",
+      "Compose la phrase avec un gabarit."
+    ],
+    "explanation_fr": "Une fonction pure, sans affichage : facile à tester et à réutiliser dans un serveur.",
+    "common_wrong_answers": [],
+    "id": "node-m1-01-e4"
+  }
+]

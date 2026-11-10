@@ -4576,7 +4576,7 @@
         "react-bases",
         "http-bases"
       ],
-      "engine_revision": "42d813e139d4",
+      "engine_revision": "c501cc1cc3a0",
       "lessons": [
         {
           "id": "dom-m1-01",
@@ -4837,9 +4837,303 @@
         }
       ],
       "estimated_minutes": 360,
-      "content_revision": "64d7f8d4220b",
+      "content_revision": "d5bdb488fc80",
       "exercise_count": 72,
       "quiz_count": 54
+    },
+    {
+      "id": "nodejs-bases",
+      "title_fr": "Node.js : le serveur en JavaScript",
+      "language": "javascript",
+      "runtime": "node",
+      "technology": "node",
+      "level": "intermediaire",
+      "replaces_plans": [
+        "nodejs"
+      ],
+      "summary_fr": "Passe du navigateur au serveur avec le même langage : modules et JSON, boucle d’événements, promesses et async/await, fichiers, puis de vrais serveurs HTTP testés par l’atelier — routes, paramètres, API JSON avec validation, événements, sécurité des entrées et API de boutique complète. Node.js 20 en ligne.",
+      "prerequisite_courses": [
+        "javascript-bases"
+      ],
+      "prerequisites": [
+        "Maîtriser les fonctions, tableaux, objets et classes en JavaScript.",
+        "Le cours JavaScript de Nunya fournit ces bases ; le cours HTTP et API aide pour le module 3."
+      ],
+      "outcomes": [
+        "Organiser un programme Node.js en modules et manipuler du JSON.",
+        "Écrire du code asynchrone lisible avec les promesses et async/await.",
+        "Lire et écrire des fichiers sans bloquer le serveur.",
+        "Construire un serveur HTTP et une API JSON avec routes, validation et codes de statut.",
+        "Protéger un serveur : validation, échappement, chemins sûrs et secrets hors du code."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Node.js, modules et JSON",
+          "outcome_fr": "JavaScript hors du navigateur, modules et données JSON.",
+          "lesson_ids": [
+            "node-m1-01",
+            "node-m1-02",
+            "node-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "L’asynchrone",
+          "outcome_fr": "Boucle d’événements, promesses, async/await et fichiers.",
+          "lesson_ids": [
+            "node-m2-01",
+            "node-m2-02",
+            "node-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Serveurs HTTP",
+          "outcome_fr": "Premier serveur, routes et API JSON validée.",
+          "lesson_ids": [
+            "node-m3-01",
+            "node-m3-02",
+            "node-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Organiser et sécuriser",
+          "outcome_fr": "Événements, sécurité des entrées et API de boutique.",
+          "lesson_ids": [
+            "node-m4-01",
+            "node-m4-02",
+            "node-m4-03"
+          ]
+        }
+      ],
+      "next_courses": [],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "node-m1-01",
+          "title_fr": "Node.js : JavaScript hors du navigateur",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "js-m8-03"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "Node.js",
+            "V8",
+            "npm",
+            "gabarit de chaîne"
+          ]
+        },
+        {
+          "id": "node-m1-02",
+          "title_fr": "Modules : require et module.exports",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m1-01"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "module",
+            "require",
+            "module.exports",
+            "dépendance"
+          ]
+        },
+        {
+          "id": "node-m1-03",
+          "title_fr": "JSON : lire et écrire des données",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m1-02"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "JSON",
+            "JSON.parse",
+            "JSON.stringify",
+            "validation"
+          ]
+        },
+        {
+          "id": "node-m2-01",
+          "title_fr": "La boucle d’événements : rappels et minuteurs",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m1-03"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "boucle d’événements",
+            "rappel",
+            "synchrone",
+            "erreur d’abord"
+          ]
+        },
+        {
+          "id": "node-m2-02",
+          "title_fr": "Promesses et async/await",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m2-01"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "promesse",
+            "async",
+            "await",
+            "Promise.all"
+          ]
+        },
+        {
+          "id": "node-m2-03",
+          "title_fr": "Lire et écrire des fichiers",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m2-02"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "fs.promises",
+            "ENOENT",
+            "Buffer",
+            "dossier temporaire"
+          ]
+        },
+        {
+          "id": "node-m3-01",
+          "title_fr": "Un premier serveur HTTP",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m2-03"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "serveur HTTP",
+            "gestionnaire",
+            "code de statut",
+            "Content-Type"
+          ]
+        },
+        {
+          "id": "node-m3-02",
+          "title_fr": "Routes, méthodes et paramètres",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m3-01"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "route",
+            "routage",
+            "paramètre de requête",
+            "pathname"
+          ]
+        },
+        {
+          "id": "node-m3-03",
+          "title_fr": "Une API JSON qui reçoit des données",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m3-02"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "API",
+            "corps de requête",
+            "validation",
+            "201 Created"
+          ]
+        },
+        {
+          "id": "node-m4-01",
+          "title_fr": "Les événements : découpler son programme",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m3-03"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "EventEmitter",
+            "écouteur",
+            "emit",
+            "découplage"
+          ]
+        },
+        {
+          "id": "node-m4-02",
+          "title_fr": "Sécurité : ne jamais faire confiance aux entrées",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m4-01"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "XSS",
+            "échappement",
+            "traversée de chemin",
+            "variable d’environnement"
+          ]
+        },
+        {
+          "id": "node-m4-03",
+          "title_fr": "Projet : l’API d’une boutique",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m4-02"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "fonction pure",
+            "test de bout en bout",
+            "cadriciel",
+            "process.env.PORT"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "858b33765c43",
+      "exercise_count": 48,
+      "quiz_count": 36
     },
     {
       "id": "php-bases",
@@ -6438,7 +6732,7 @@
       "status": "brouillon",
       "reviewer": null,
       "depth_fr": "Socle progressif avec projets et tests locaux ; relecture pédagogique en cours. Les niveaux supérieurs restent à construire.",
-      "engine_revision": "42d813e139d4",
+      "engine_revision": "c501cc1cc3a0",
       "lessons": [
         {
           "id": "react-m1-01",
@@ -6698,7 +6992,7 @@
         }
       ],
       "estimated_minutes": 360,
-      "content_revision": "560f61445638",
+      "content_revision": "8451ad97d2ef",
       "exercise_count": 72,
       "quiz_count": 54
     },
@@ -7921,12 +8215,6 @@
     }
   ],
   "plans": [
-    {
-      "id": "nodejs",
-      "title_fr": "Node.js : les bases du serveur",
-      "summary_fr": "JavaScript côté serveur ; après JavaScript.",
-      "status": "bientôt"
-    },
     {
       "id": "typescript",
       "title_fr": "TypeScript : démarrer avec les types",

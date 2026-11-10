@@ -62,14 +62,11 @@
       "sql-bases",
       "php-bases",
       "http-bases",
+      "nodejs-bases",
       "react-bases",
       "git-bases"
     ],
     "planned_fr": [
-      {
-        "title_fr": "Node.js : le serveur en JavaScript",
-        "summary_fr": "Écrire un serveur et une API avec le même langage que la page."
-      },
       {
         "title_fr": "Projet complet",
         "summary_fr": "Une application avec interface, serveur, base de données et mise en ligne."

@@ -1,0 +1,194 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "La logique du panier",
+    "instruction_fr": "Écris totalPanier(articles) : lève « panier vide » si ce n’est pas un tableau non vide, « produit inconnu : NOM » pour un produit absent de PRODUITS, « quantité invalide » si la quantité n’est pas un entier ≥ 1, sinon renvoie le total.",
+    "starter_code": "const PRODUITS = { riz: 600, huile: 1500, sel: 150 };\n\nfunction totalPanier(articles) {\n  return articles.reduce((t, a) => t + a.prix * a.quantite, 0);\n}\n",
+    "solution": "const PRODUITS = { riz: 600, huile: 1500, sel: 150 };\n\nfunction totalPanier(articles) {\n  if (!Array.isArray(articles) || articles.length === 0) throw new Error(\"panier vide\");\n  let total = 0;\n  for (const a of articles) {\n    if (PRODUITS[a.produit] === undefined) throw new Error(\"produit inconnu : \" + a.produit);\n    if (!Number.isInteger(a.quantite) || a.quantite < 1) throw new Error(\"quantité invalide\");\n    total += PRODUITS[a.produit] * a.quantite;\n  }\n  return total;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "totalPanier([{ produit: \"riz\", quantite: 2 }, { produit: \"sel\", quantite: 1 }])",
+            "expected": "1350"
+          },
+          {
+            "expr": "(() => { try { totalPanier([{ produit: \"sucre\", quantite: 1 }]); return \"pas d’erreur\"; } catch (e) { return e.message; } })()",
+            "expected": "produit inconnu : sucre"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { try { totalPanier([]); return \"pas d’erreur\"; } catch (e) { return e.message; } })()",
+            "expected": "panier vide"
+          },
+          {
+            "expr": "(() => { try { totalPanier([{ produit: \"riz\", quantite: 0 }]); return \"pas d’erreur\"; } catch (e) { return e.message; } })()",
+            "expected": "quantité invalide"
+          },
+          {
+            "expr": "totalPanier([{ produit: \"riz\", quantite: 1, prix: 1 }])",
+            "expected": "600"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les prix viennent de PRODUITS, jamais de l’article.",
+      "Vérifie le panier, puis chaque article.",
+      "Lève des erreurs aux messages précis."
+    ],
+    "explanation_fr": "Le dernier test envoie un faux prix de 1 : il est ignoré.",
+    "common_wrong_answers": [],
+    "id": "node-m4-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "La route du catalogue",
+    "instruction_fr": "Écris le serveur : GET /produits renvoie PRODUITS en JSON (statut 200) ; une autre méthode sur /produits reçoit 405 ; tout autre chemin 404 {\"erreur\":\"introuvable\"}. envoyerJSON est fourni.",
+    "starter_code": "const http = require(\"http\");\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.writeHead(statut, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify(donnees));\n}\n\nconst PRODUITS = { riz: 600, huile: 1500, sel: 150 };\n\nconst serveur = http.createServer((req, res) => {\n  envoyerJSON(res, 200, PRODUITS);\n});\n",
+    "solution": "const http = require(\"http\");\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.writeHead(statut, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify(donnees));\n}\n\nconst PRODUITS = { riz: 600, huile: 1500, sel: 150 };\n\nconst serveur = http.createServer((req, res) => {\n  const { pathname } = new URL(req.url, \"http://localhost\");\n  if (pathname !== \"/produits\") return envoyerJSON(res, 404, { erreur: \"introuvable\" });\n  if (req.method !== \"GET\") return envoyerJSON(res, 405, { erreur: \"méthode non autorisée\" });\n  envoyerJSON(res, 200, PRODUITS);\n});\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/produits\")",
+            "expected": "{\"statut\":200,\"type\":\"application/json\",\"corps\":\"{\\\"riz\\\":600,\\\"huile\\\":1500,\\\"sel\\\":150}\"}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/produits\", { method: \"POST\" }).then(r => r.statut)",
+            "expected": "405"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/admin\").then(r => r.statut)",
+            "expected": "404"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Analyse le chemin avec URL.",
+      "Vérifie le chemin, puis la méthode.",
+      "Réponds avec envoyerJSON."
+    ],
+    "explanation_fr": "Même une route très simple refuse ce qu’elle ne prévoit pas.",
+    "common_wrong_answers": [],
+    "id": "node-m4-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La remise gratuite",
+    "instruction_fr": "La route /panier/total fait confiance au prix envoyé par le client : un panier avec \"prix\": 1 obtient un total ridicule. Corrige total(articles) pour utiliser uniquement les prix de PRODUITS.",
+    "starter_code": "const http = require(\"http\");\n\nfunction lireCorps(req) {\n  return new Promise((ok, ko) => {\n    let texte = \"\";\n    req.on(\"data\", morceau => { texte += morceau; });\n    req.on(\"end\", () => ok(texte));\n    req.on(\"error\", ko);\n  });\n}\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.writeHead(statut, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify(donnees));\n}\n\nconst PRODUITS = { riz: 600, huile: 1500, sel: 150 };\n\nfunction total(articles) {\n  return articles.reduce((t, a) => t + a.prix * a.quantite, 0);\n}\n\nconst serveur = http.createServer(async (req, res) => {\n  envoyerJSON(res, 200, { total: total(JSON.parse(await lireCorps(req))) });\n});\n",
+    "solution": "const http = require(\"http\");\n\nfunction lireCorps(req) {\n  return new Promise((ok, ko) => {\n    let texte = \"\";\n    req.on(\"data\", morceau => { texte += morceau; });\n    req.on(\"end\", () => ok(texte));\n    req.on(\"error\", ko);\n  });\n}\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.writeHead(statut, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify(donnees));\n}\n\nconst PRODUITS = { riz: 600, huile: 1500, sel: 150 };\n\nfunction total(articles) {\n  return articles.reduce((t, a) => t + PRODUITS[a.produit] * a.quantite, 0);\n}\n\nconst serveur = http.createServer(async (req, res) => {\n  envoyerJSON(res, 200, { total: total(JSON.parse(await lireCorps(req))) });\n});\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/panier/total\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\" }, body: \"[{\\\"produit\\\": \\\"huile\\\", \\\"quantite\\\": 2, \\\"prix\\\": 1}]\" }).then(r => r.corps)",
+            "expected": "{\"total\":3000}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "total([{ produit: \"riz\", quantite: 3 }])",
+            "expected": "1800"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le client ne doit pas choisir le prix.",
+      "Le serveur connaît ses propres prix.",
+      "Utilise PRODUITS[a.produit]."
+    ],
+    "explanation_fr": "Une faille de logique, pas de code : elle passe tous les tests qui n’essaient pas de tricher.",
+    "common_wrong_answers": [],
+    "id": "node-m4-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "L’API complète",
+    "instruction_fr": "Assemble l’API : GET /produits renvoie le catalogue ; POST /panier/total renvoie {\"total\": …} calculé par totalPanier, 400 {\"erreur\":\"JSON invalide\"} pour un corps mal formé, 400 avec le message de l’erreur pour un panier refusé ; mauvaise méthode : 405 ; autre chemin : 404. lireCorps, envoyerJSON et PRODUITS sont fournis.",
+    "starter_code": "const http = require(\"http\");\n\nfunction lireCorps(req) {\n  return new Promise((ok, ko) => {\n    let texte = \"\";\n    req.on(\"data\", morceau => { texte += morceau; });\n    req.on(\"end\", () => ok(texte));\n    req.on(\"error\", ko);\n  });\n}\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.writeHead(statut, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify(donnees));\n}\n\nconst PRODUITS = { riz: 600, huile: 1500, sel: 150 };\n\nfunction totalPanier(articles) {\n  return 0;\n}\n\nconst serveur = http.createServer(async (req, res) => {\n  envoyerJSON(res, 404, { erreur: \"introuvable\" });\n});\n",
+    "solution": "const http = require(\"http\");\n\nfunction lireCorps(req) {\n  return new Promise((ok, ko) => {\n    let texte = \"\";\n    req.on(\"data\", morceau => { texte += morceau; });\n    req.on(\"end\", () => ok(texte));\n    req.on(\"error\", ko);\n  });\n}\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.writeHead(statut, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify(donnees));\n}\n\nconst PRODUITS = { riz: 600, huile: 1500, sel: 150 };\n\nfunction totalPanier(articles) {\n  if (!Array.isArray(articles) || articles.length === 0) throw new Error(\"panier vide\");\n  let total = 0;\n  for (const a of articles) {\n    if (PRODUITS[a.produit] === undefined) throw new Error(\"produit inconnu : \" + a.produit);\n    if (!Number.isInteger(a.quantite) || a.quantite < 1) throw new Error(\"quantité invalide\");\n    total += PRODUITS[a.produit] * a.quantite;\n  }\n  return total;\n}\n\nconst serveur = http.createServer(async (req, res) => {\n  const { pathname } = new URL(req.url, \"http://localhost\");\n  if (pathname === \"/produits\") {\n    if (req.method !== \"GET\") return envoyerJSON(res, 405, { erreur: \"méthode non autorisée\" });\n    return envoyerJSON(res, 200, PRODUITS);\n  }\n  if (pathname === \"/panier/total\") {\n    if (req.method !== \"POST\") return envoyerJSON(res, 405, { erreur: \"méthode non autorisée\" });\n    try {\n      const total = totalPanier(JSON.parse(await lireCorps(req)));\n      return envoyerJSON(res, 200, { total });\n    } catch (erreur) {\n      return envoyerJSON(res, 400, { erreur: erreur instanceof SyntaxError ? \"JSON invalide\" : erreur.message });\n    }\n  }\n  envoyerJSON(res, 404, { erreur: \"introuvable\" });\n});\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/panier/total\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\" }, body: \"[{\\\"produit\\\": \\\"riz\\\", \\\"quantite\\\": 2}, {\\\"produit\\\": \\\"sel\\\", \\\"quantite\\\": 1}]\" })",
+            "expected": "{\"statut\":200,\"type\":\"application/json\",\"corps\":\"{\\\"total\\\":1350}\"}"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/produits\").then(r => r.statut)",
+            "expected": "200"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/panier/total\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\" }, body: \"[{\\\"produit\\\": \\\"sucre\\\", \\\"quantite\\\": 1}]\" })",
+            "expected": "{\"statut\":400,\"type\":\"application/json\",\"corps\":\"{\\\"erreur\\\":\\\"produit inconnu : sucre\\\"}\"}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/panier/total\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\" }, body: \"[{\" }).then(r => r.statut + r.corps)",
+            "expected": "400{\"erreur\":\"JSON invalide\"}"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/panier/total\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\" }, body: \"[]\" }).then(r => r.corps)",
+            "expected": "{\"erreur\":\"panier vide\"}"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/panier/total\").then(r => r.statut)",
+            "expected": "405"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/\").then(r => r.statut)",
+            "expected": "404"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Commence par totalPanier, testable seule.",
+      "Ajoute les deux routes avec leurs méthodes.",
+      "Attrape toutes les erreurs du POST au même endroit."
+    ],
+    "explanation_fr": "Tu as écrit un serveur complet, sans cadriciel : Express ne fera que t’éviter quelques lignes.",
+    "common_wrong_answers": [],
+    "id": "node-m4-03-e4"
+  }
+]

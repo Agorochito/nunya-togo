@@ -1,0 +1,166 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Lire un prix",
+    "instruction_fr": "Écris prixDe(texte) qui lit le texte JSON d’un produit et renvoie son prix.",
+    "starter_code": "function prixDe(texte) {\n  return texte.prix;\n}\n",
+    "solution": "function prixDe(texte) {\n  return JSON.parse(texte).prix;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "prixDe('{\"nom\":\"riz\",\"prix\":600}')",
+            "expected": "600"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "prixDe('{\"prix\":0}')",
+            "expected": "0"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le texte n’est pas encore un objet.",
+      "JSON.parse le transforme.",
+      "return JSON.parse(texte).prix;"
+    ],
+    "explanation_fr": "Un texte n’a pas de propriété prix : il faut d’abord le lire.",
+    "common_wrong_answers": [],
+    "id": "node-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Écrire du JSON",
+    "instruction_fr": "Écris versJSON(nom, prix) qui renvoie le texte JSON d’un objet { nom, prix }.",
+    "starter_code": "function versJSON(nom, prix) {\n  return \"{nom:\" + nom + \",prix:\" + prix + \"}\";\n}\n",
+    "solution": "function versJSON(nom, prix) {\n  return JSON.stringify({ nom, prix });\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "versJSON(\"riz\", 600)",
+            "expected": "{\"nom\":\"riz\",\"prix\":600}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "JSON.parse(versJSON(\"sel \\\"fin\\\"\", 150)).nom",
+            "expected": "sel \"fin\""
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Composer le texte à la main oublie les guillemets.",
+      "JSON.stringify gère tout.",
+      "Le second test contient des guillemets dans le nom."
+    ],
+    "explanation_fr": "Composer du JSON à la main finit toujours par casser sur un caractère spécial.",
+    "common_wrong_answers": [],
+    "id": "node-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le serveur qui plante",
+    "instruction_fr": "lireConfig(texte) plante quand le texte est invalide. Corrige-la pour renvoyer null dans ce cas.",
+    "starter_code": "function lireConfig(texte) {\n  return JSON.parse(texte);\n}\n",
+    "solution": "function lireConfig(texte) {\n  try {\n    return JSON.parse(texte);\n  } catch (erreur) {\n    return null;\n  }\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "lireConfig(\"{port:3000}\")",
+            "expected": "null"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "lireConfig('{\"port\":3000}').port",
+            "expected": "3000"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : SyntaxError.",
+      "Attrape-la avec try…catch.",
+      "Renvoie null dans le catch."
+    ],
+    "explanation_fr": "Une donnée abîmée ne doit jamais faire tomber le programme.",
+    "common_wrong_answers": [],
+    "id": "node-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Le total d’un panier",
+    "instruction_fr": "Écris totalPanier(texte) : le texte JSON doit être un tableau d’objets { prix, quantite }. Renvoie la somme des prix × quantités. Si le texte est invalide ou n’est pas un tableau, lève une erreur « panier invalide ».",
+    "starter_code": "function totalPanier(texte) {\n  const panier = JSON.parse(texte);\n  return panier.length;\n}\n",
+    "solution": "function totalPanier(texte) {\n  let panier;\n  try {\n    panier = JSON.parse(texte);\n  } catch (erreur) {\n    throw new Error(\"panier invalide\");\n  }\n  if (!Array.isArray(panier)) {\n    throw new Error(\"panier invalide\");\n  }\n  return panier.reduce((total, a) => total + a.prix * a.quantite, 0);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "totalPanier('[{\"prix\":600,\"quantite\":2},{\"prix\":1500,\"quantite\":1}]')",
+            "expected": "2700"
+          },
+          {
+            "expr": "(() => { try { totalPanier(\"pas du json\"); return \"pas d’erreur\"; } catch (e) { return e.message; } })()",
+            "expected": "panier invalide"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { try { totalPanier('{\"prix\":600}'); return \"pas d’erreur\"; } catch (e) { return e.message; } })()",
+            "expected": "panier invalide"
+          },
+          {
+            "expr": "totalPanier(\"[]\")",
+            "expected": "0"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Attrape l’erreur de JSON.parse.",
+      "Vérifie la forme avec Array.isArray.",
+      "reduce additionne prix × quantité."
+    ],
+    "explanation_fr": "Lire, vérifier, refuser clairement : le trio de tout serveur.",
+    "common_wrong_answers": [],
+    "id": "node-m1-03-e4"
+  }
+]

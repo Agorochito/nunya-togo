@@ -19,6 +19,7 @@ const TECHNOLOGIES={
   cpp:{label:'C++',mark:'C++',aliases:'c++ cpp c plus plus programmation compilee systeme'},
   java:{label:'Java',mark:'Jv',aliases:'java jdk objet objets classes programmation compilee android logiciel entreprise backend'},
   php:{label:'PHP',mark:'php',aliases:'php programmation serveur web back-end backend script'},
+  node:{label:'Node.js',mark:'⬢',aliases:'node nodejs serveur backend api http express npm asynchrone promesse async await fichiers'},
   ia:{label:'Intelligence artificielle',mark:'IA',aliases:'ia intelligence artificielle apprentissage automatique machine learning modele neurone perceptron voisins biais hallucination chatgpt assistant injection hameconnage deepfake'},
   projetweb:{label:'Projet web',mark:'◧',aliases:'projet web page personnelle portfolio site cv en ligne publier github pages responsive mobile formulaire contact'},
   stats:{label:'Statistiques',mark:'σ',aliases:'statistiques statistique moyenne mediane ecart type quartile correlation regression probabilites sondage echantillon donnees analyse'},
@@ -90,7 +91,7 @@ function renderOrientation(api,courses){
 
 const DOMAINS=[
   {key:'web',title:'Web : sites et applications',text:'Créer des pages, les mettre en forme et les rendre interactives, du premier HTML à React.',technologies:['html','css','javascript','dom','react','http','projetweb']},
-  {key:'langages',title:'Langages de programmation',text:'Programmer des scripts, des logiciels et des serveurs avec un langage généraliste.',technologies:['python','php','cpp','java','algo','qualite']},
+  {key:'langages',title:'Langages de programmation',text:'Programmer des scripts, des logiciels et des serveurs avec un langage généraliste.',technologies:['python','php','cpp','java','node','algo','qualite']},
   {key:'donnees',title:'Données',text:'Interroger, organiser et analyser des informations, avec une base de données, les statistiques ou l’intelligence artificielle.',technologies:['sql','stats','ia']},
   {key:'securite',title:'Cybersécurité',text:'Protéger les comptes, détecter les attaques et réagir aux incidents, sur des données fictives et dans un cadre légal.',technologies:['cyber']},
   {key:'outils',title:'Outils et systèmes',text:'Le terminal, Linux, les réseaux et les outils que tout développeur et tout analyste en sécurité utilisent chaque jour.',technologies:['bash','reseaux']}

@@ -1,0 +1,71 @@
+{
+  "id": "nodejs-bases",
+  "title_fr": "Node.js : le serveur en JavaScript",
+  "language": "javascript",
+  "runtime": "node",
+  "technology": "node",
+  "level": "intermediaire",
+  "replaces_plans": [
+    "nodejs"
+  ],
+  "summary_fr": "Passe du navigateur au serveur avec le même langage : modules et JSON, boucle d’événements, promesses et async/await, fichiers, puis de vrais serveurs HTTP testés par l’atelier — routes, paramètres, API JSON avec validation, événements, sécurité des entrées et API de boutique complète. Node.js 20 en ligne.",
+  "prerequisite_courses": [
+    "javascript-bases"
+  ],
+  "prerequisites": [
+    "Maîtriser les fonctions, tableaux, objets et classes en JavaScript.",
+    "Le cours JavaScript de Nunya fournit ces bases ; le cours HTTP et API aide pour le module 3."
+  ],
+  "outcomes": [
+    "Organiser un programme Node.js en modules et manipuler du JSON.",
+    "Écrire du code asynchrone lisible avec les promesses et async/await.",
+    "Lire et écrire des fichiers sans bloquer le serveur.",
+    "Construire un serveur HTTP et une API JSON avec routes, validation et codes de statut.",
+    "Protéger un serveur : validation, échappement, chemins sûrs et secrets hors du code."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Node.js, modules et JSON",
+      "outcome_fr": "JavaScript hors du navigateur, modules et données JSON.",
+      "lesson_ids": [
+        "node-m1-01",
+        "node-m1-02",
+        "node-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "L’asynchrone",
+      "outcome_fr": "Boucle d’événements, promesses, async/await et fichiers.",
+      "lesson_ids": [
+        "node-m2-01",
+        "node-m2-02",
+        "node-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Serveurs HTTP",
+      "outcome_fr": "Premier serveur, routes et API JSON validée.",
+      "lesson_ids": [
+        "node-m3-01",
+        "node-m3-02",
+        "node-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Organiser et sécuriser",
+      "outcome_fr": "Événements, sécurité des entrées et API de boutique.",
+      "lesson_ids": [
+        "node-m4-01",
+        "node-m4-02",
+        "node-m4-03"
+      ]
+    }
+  ],
+  "next_courses": [],
+  "status": "brouillon",
+  "reviewer": null
+}

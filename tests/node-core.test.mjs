@@ -14,6 +14,18 @@ describe('Node.js online workshop',()=>{
   expect(r.checks.map(c=>c.actual)).toEqual(['20','{"statut":200,"type":"application/json","corps":"{\\"chemin\\":\\"/salut\\"}"}']);
   expect(r.assertions_passed).toBe(true);
  });
+ it('waits for asynchronous output before moving to the checks',()=>{
+  const [r]=run('setTimeout(() => console.log("plus tard"), 200);\nconst http = require("http");\nconst s = http.createServer((q, res) => res.end("pong"));\nnunyaRequete(s, "/").then(x => console.log(x.statut, x.corps));',[{expressions:[{expr:'1',expected:'1'}]}]);
+  expect(r.output).toBe('200 pong\nplus tard\n');
+  expect(r.assertions_passed).toBe(true);
+ });
+ it('survives an error thrown inside an async request handler',()=>{
+  const code='const http = require("http");\nconst serveur = http.createServer(async (req, res) => { JSON.parse("x"); res.end("ok"); });\nconst un = () => 1;';
+  const res=run(code,[{expressions:[{expr:'nunyaRequete(serveur, "/").then(r => r.statut)',expected:'200'},{expr:'un()',expected:'1'}]},{expressions:[{expr:'un()',expected:'1'}]}]);
+  expect(res[0].checks[0].actual).toMatch(/^Erreur : Le programme a dépassé/);
+  expect(res[0].checks[1].passed).toBe(true);
+  expect(res[1].assertions_passed).toBe(true);
+ },20000);
  it('reports learner errors with their own line number, in French',()=>{
   const [r]=run('const a = 1;\nconsole.log(b);',[{expressions:[]}]);
   expect(r.error).toBe('ReferenceError');
@@ -23,7 +35,7 @@ describe('Node.js online workshop',()=>{
  });
  it('stops an endless loop and keeps later cases independent',()=>{
   const res=run('let n = 0;\nfunction boucle() { while (true) { n++; } }\nfunction un() { return 1; }',[{expressions:[{expr:'boucle()',expected:'x'}]},{expressions:[{expr:'un()',expected:'1'}]}]);
-  expect(res[0].checks[0].actual).toMatch(/^exception TimeoutError/);
+  expect(res[0].checks[0].actual).toMatch(/^Erreur : Le programme a dépassé 5 secondes/);
   expect(res[1].assertions_passed).toBe(true);
  },20000);
  it('refuses process.exit and empty programs, but not the words inside strings',()=>{

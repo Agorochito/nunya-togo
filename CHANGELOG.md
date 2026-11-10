@@ -1,5 +1,11 @@
 # Historique
 
+## 5.22.0 — 10 novembre 2026
+
+- Nouveau cours : **Node.js : le serveur en JavaScript**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, sur Node.js 20 en ligne (Wandbox) : modules et module.exports, JSON et validation, boucle d’événements et rappels erreur d’abord, promesses, async/await et Promise.allSettled, fichiers avec fs.promises, premier serveur HTTP, routes et paramètres avec URL, API JSON qui lit et valide un corps POST (201, 400, 404, 405), EventEmitter, échappement HTML, noms de fichiers sûrs, validation d’inscription et API de boutique complète. Les serveurs écrits par l’élève sont réellement démarrés et interrogés par l’atelier sur un port local temporaire.
+- Remplace la série « Node.js : les bases du serveur — en préparation » et l’étape Node.js prévue du parcours full-stack.
+- Atelier Node.js : les erreurs, y compris dans les vérifications, sont expliquées en français avec la ligne de l’élève ; une erreur dans un gestionnaire asynchrone n’interrompt plus les cas suivants.
+
 ## 5.21.0 — 10 novembre 2026
 
 - Nouveau cours : **Intelligence artificielle : comprendre, vérifier, se protéger**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, en Python hors ligne, sans aucun service d’IA en ligne : seuil appris, plus proches voisins, exactitude, précision et rappel, régression comparée à un modèle de référence, filtre d’arnaques par sac de mots, perceptron entraîné pas à pas, biais mesurés groupe par groupe, sur-apprentissage, mini-modèle de langage et hallucinations, masquage des données personnelles, arnaques à fausse voix et injection de consignes.
