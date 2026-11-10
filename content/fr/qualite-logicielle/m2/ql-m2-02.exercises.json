@@ -1,0 +1,383 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Le total qui écrase",
+    "instruction_fr": "total(ventes) renvoie seulement le montant de la dernière vente. Vérifie l’hypothèse avec un petit exemple, puis corrige la fonction.",
+    "starter_code": "def total(ventes):\n    somme = 0\n    for quantite, prix in ventes:\n        somme = quantite * prix\n    return somme\n",
+    "solution": "def total(ventes):\n    somme = 0\n    for quantite, prix in ventes:\n        somme += quantite * prix\n    return somme\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "total",
+            "args": [
+              [
+                [
+                  2,
+                  600
+                ],
+                [
+                  1,
+                  1200
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 2400
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "total",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "total",
+            "args": [
+              [
+                [
+                  5,
+                  250
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 1250
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Avec une seule vente, le résultat est juste.",
+      "L’accumulation remplace au lieu d’ajouter.",
+      "Remplace = par +=."
+    ],
+    "explanation_fr": "Le petit exemple a confirmé l’hypothèse en une ligne.",
+    "common_wrong_answers": [],
+    "id": "ql-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Trouver la version cassée",
+    "instruction_fr": "Écris premiere_cassee(versions) : versions est une liste de booléens (True tant que ça fonctionne, puis False à partir d’une version). Renvoie l’indice de la première version False par dichotomie, ou None si tout fonctionne.",
+    "starter_code": "def premiere_cassee(versions):\n    return versions.index(False)\n",
+    "solution": "def premiere_cassee(versions):\n    if not versions or versions[-1]:\n        return None\n    gauche, droite = 0, len(versions) - 1\n    while gauche < droite:\n        milieu = (gauche + droite) // 2\n        if versions[milieu]:\n            gauche = milieu + 1\n        else:\n            droite = milieu\n    return gauche\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "premiere_cassee",
+            "args": [
+              [
+                true,
+                true,
+                false,
+                false
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 2
+          },
+          {
+            "name": "premiere_cassee",
+            "args": [
+              [
+                true,
+                true
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": null
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "premiere_cassee",
+            "args": [
+              [
+                false
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "premiere_cassee",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": null
+          },
+          {
+            "name": "premiere_cassee",
+            "args": [
+              [
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                true,
+                false
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 99
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "index lève ValueError quand tout fonctionne.",
+      "Si la dernière version fonctionne, aucune n’est cassée.",
+      "Garde la frontière entre gauche et droite, sans exclure le milieu cassé."
+    ],
+    "explanation_fr": "C’est exactement ce que fait git bisect dans un historique de modifications.",
+    "common_wrong_answers": [],
+    "id": "ql-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La remise appliquée deux fois",
+    "instruction_fr": "prix_final(prix, remise_pct) doit appliquer la remise une seule fois, puis arrondir à l’entier. Le résultat est trop bas. Formule une hypothèse, vérifie-la et corrige.",
+    "starter_code": "def appliquer(prix, pct):\n    return prix - prix * pct / 100\n\n\ndef prix_final(prix, remise_pct):\n    reduit = appliquer(prix, remise_pct)\n    return round(appliquer(reduit, remise_pct))\n",
+    "solution": "def appliquer(prix, pct):\n    return prix - prix * pct / 100\n\n\ndef prix_final(prix, remise_pct):\n    reduit = appliquer(prix, remise_pct)\n    return round(reduit)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "prix_final",
+            "args": [
+              1000,
+              10
+            ],
+            "unchanged_args": true,
+            "expected": 900
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "prix_final",
+            "args": [
+              500,
+              0
+            ],
+            "unchanged_args": true,
+            "expected": 500
+          },
+          {
+            "name": "prix_final",
+            "args": [
+              1999,
+              50
+            ],
+            "unchanged_args": true,
+            "expected": 1000
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "1000 avec 10 % donne 810 : 1000 × 0,9 × 0,9.",
+      "appliquer est appelée deux fois.",
+      "Arrondis directement le prix réduit."
+    ],
+    "explanation_fr": "Calculer à la main le petit exemple a révélé la double application.",
+    "common_wrong_answers": [],
+    "id": "ql-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "La ligne coupable",
+    "instruction_fr": "Écris ligne_coupable(lignes) : lignes est une liste de textes \"nom;quantite\". Renvoie l’indice de la première ligne dont la quantité n’est pas un entier valide (int échoue), ou None. Écris ensuite test_ligne_coupable() qui doit détecter les mutants fournis.",
+    "starter_code": "def ligne_coupable(lignes):\n    return None\n\n\ndef test_ligne_coupable():\n    assert ligne_coupable([]) is None\n\n\n# Vérification fournie : ne la modifie pas.\nMUTANTS = [\n    lambda ls: None,\n    lambda ls: next((i for i, l in enumerate(ls) if not l.split(\";\")[1].isdigit()), None) if ls else None,\n    lambda ls: 0 if ls else None,\n]\n\n\ndef evaluer_tests():\n    global ligne_coupable\n    original = ligne_coupable\n    test_ligne_coupable()\n    resultats = []\n    for mutant in MUTANTS:\n        ligne_coupable = mutant\n        try:\n            test_ligne_coupable()\n            resultats.append(\"raté\")\n        except Exception:\n            resultats.append(\"détecté\")\n    ligne_coupable = original\n    return resultats\n",
+    "solution": "def ligne_coupable(lignes):\n    for i, ligne in enumerate(lignes):\n        try:\n            int(ligne.split(\";\")[1])\n        except (ValueError, IndexError):\n            return i\n    return None\n\n\ndef test_ligne_coupable():\n    assert ligne_coupable([]) is None\n    assert ligne_coupable([\"riz;2\", \"huile;1\"]) is None\n    assert ligne_coupable([\"riz;2\", \"huile;un\", \"sel;3\"]) == 1\n    assert ligne_coupable([\"riz;-2\"]) is None\n\n\n# Vérification fournie : ne la modifie pas.\nMUTANTS = [\n    lambda ls: None,\n    lambda ls: next((i for i, l in enumerate(ls) if not l.split(\";\")[1].isdigit()), None) if ls else None,\n    lambda ls: 0 if ls else None,\n]\n\n\ndef evaluer_tests():\n    global ligne_coupable\n    original = ligne_coupable\n    test_ligne_coupable()\n    resultats = []\n    for mutant in MUTANTS:\n        ligne_coupable = mutant\n        try:\n            test_ligne_coupable()\n            resultats.append(\"raté\")\n        except Exception:\n            resultats.append(\"détecté\")\n    ligne_coupable = original\n    return resultats\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "evaluer_tests",
+            "args": [],
+            "unchanged_args": true,
+            "expected": [
+              "détecté",
+              "détecté",
+              "détecté"
+            ]
+          },
+          {
+            "name": "ligne_coupable",
+            "args": [
+              [
+                "riz;2",
+                "huile;un"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 1
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ligne_coupable",
+            "args": [
+              [
+                "sel"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "ligne_coupable",
+            "args": [
+              [
+                "riz;-3"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": null
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Essaie int sur la quantité de chaque ligne dans un try.",
+      "Une ligne sans point-virgule lève IndexError.",
+      "Le test doit contenir une quantité négative valide : isdigit la refuserait à tort."
+    ],
+    "explanation_fr": "Le test de « -2 » démasque une solution trop stricte : int accepte les négatifs, isdigit non.",
+    "common_wrong_answers": [],
+    "id": "ql-m2-02-e4"
+  }
+]

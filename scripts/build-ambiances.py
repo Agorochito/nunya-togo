@@ -25,11 +25,11 @@ A = {
     'nuit': {
         'dark': ['#0c111b', '#151c2a', '#1c2537', '#eef2f9', '#a6b1c4', '#29344a', '#1d2a47', '#a9beff', '#eef2f9', '#8da9ff', '#0c111b', '#ffb65c', '#1b1206']},
     'verre': {
-        'light': ['#eef0ff', 'rgba(255,255,255,.62)', 'rgba(255,255,255,.48)', '#10142e', '#3e4466', 'rgba(16,20,46,.12)', 'rgba(255,255,255,.58)', '#3b3fc4', '#10142e', '#1f2470', '#ffffff', '#ff5fa8', '#1a0612'],
-        'dark': ['#0f1430', 'rgba(20,24,58,.46)', 'rgba(255,255,255,.08)', '#ffffff', 'rgba(255,255,255,.82)', 'rgba(255,255,255,.22)', 'rgba(255,255,255,.12)', '#9bf7e0', '#ffffff', '#ffffff', '#121735', '#7ef0d2', '#062a22']},
+        'light': ['#f2f3f8', 'rgba(255,255,255,.62)', 'rgba(255,255,255,.48)', '#0e1022', '#43475e', 'rgba(14,16,34,.12)', 'rgba(255,255,255,.58)', '#2f3fc0', '#0e1022', '#2f45d6', '#ffffff', '#6a4cf0', '#ffffff'],
+        'dark': ['#0b0d1a', 'rgba(22,25,48,.54)', 'rgba(255,255,255,.08)', '#ffffff', 'rgba(255,255,255,.82)', 'rgba(255,255,255,.22)', 'rgba(255,255,255,.12)', '#dfe5ff', '#ffffff', '#ffffff', '#0b0d1a', '#b8a6ff', '#140b33']},
 }
 # Opaque surfaces used by "Verre léger" and by browsers without backdrop-filter.
-GLASS_LITE = {'light': ('#ffffff', '#f1f2ff', '#f4f5ff'), 'dark': ('#1b2150', '#232a5e', '#20275a')}
+GLASS_LITE = {'light': ('#ffffff', '#f1f2f8', '#f5f5fa'), 'dark': ('#191c33', '#21253f', '#1e223b')}
 # Card previews in the picker always show the ambiance's own light look (Nuit and Verre: their dark look).
 PREVIEW = {k: (v.get('light') or v['dark']) if k != 'verre' else v['dark'] for k, v in A.items()}
 
@@ -59,8 +59,8 @@ def ratio(a, b):
 
 
 # Glass is judged over its base colour and over its brightest colour field at the opacity drawn (.75).
-GLASS_GROUNDS = {'dark': ['#0f1430', over('rgba(255,95,168,.75)', '#0f1430'), over('rgba(91,108,255,.75)', '#0f1430')],
-                 'light': ['#eef0ff', over('rgba(169,180,255,.75)', '#eef0ff'), over('rgba(255,224,166,.75)', '#eef0ff')]}
+GLASS_GROUNDS = {'dark': ['#0b0d1a'] + [over(f'rgba({c},.75)', '#0b0d1a') for c in ('79,107,255', '168,93,232', '226,85,127', '217,138,74')],
+                 'light': ['#f2f3f8'] + [over(f'rgba({c},.75)', '#f2f3f8') for c in ('184,196,255', '226,196,255', '255,196,220', '255,217,184')]}
 problems = []
 for name, modes in A.items():
     for mode, p in modes.items():
@@ -106,7 +106,7 @@ for name, modes in A.items():
 
 for name, p in PREVIEW.items():
     d = dict(zip(ROLES, p))
-    bg = ('linear-gradient(135deg,#3b47c9,#c2479a 60%,#16a88e)' if name == 'verre' else d['bg'])
+    bg = ('linear-gradient(135deg,#4f6bff,#c86bff 55%,#ff6f9f)' if name == 'verre' else d['bg'])
     card = 'rgba(255,255,255,.38)' if name == 'verre' else d['surface']
     out.append(f'.ambiance-preview[data-preview={name}]{{--p-bg:{bg};--p-card:{card};--p-line:{d["line"]};--p-btn:{d["accent"]};--p-dot:{d["accent2"]}}}')
 
@@ -146,13 +146,43 @@ html[data-ambiance=verre] body.personalized .toggle.on{background:var(--accent-2
 .accent-own{margin-top:8px}.accent-own summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}
 .accent-custom input[type=color]{width:52px;height:44px;padding:2px;border-radius:12px;border:1px solid var(--theme-line);background:transparent;cursor:pointer}
 
+/* Collapsible desktop sidebar: icon rail, labels kept for screen readers. */
+.sidebar-toggle{display:none}
+@media (min-width:701px){
+.sidebar{transition:width .25s ease,padding .25s ease}.workspace{transition:margin-left .25s ease}
+.sidebar-toggle{display:grid;place-items:center;position:absolute;top:14px;right:10px;width:32px;height:32px;border-radius:50%;border:1px solid var(--theme-line,#ddd);background:var(--theme-surface,#fff);color:var(--theme-ink,#222);cursor:pointer;z-index:2}
+.sidebar-toggle::before{content:"‹";font:700 18px/1 system-ui,sans-serif}
+html[data-sidebar=mini] .sidebar-toggle::before{content:"›"}
+html[data-sidebar=mini] .sidebar{width:76px!important;padding-left:12px!important;padding-right:12px!important;overflow-x:hidden}
+html[data-sidebar=mini] .workspace{margin-left:76px!important}
+html[data-sidebar=mini] .sidebar-toggle{position:static;margin:0 auto 12px}
+html[data-sidebar=mini] .sidebar :is(.brand-sub,.nav-label,.nav-pill,.sidebar-footer,.offline-note){display:none}
+html[data-sidebar=mini] .sidebar .brand{font-size:0;justify-content:center}
+html[data-sidebar=mini] .sidebar .brand .brand-mark{font-size:30px}
+html[data-sidebar=mini] .sidebar .nav-item{justify-content:center;padding-left:0;padding-right:0;font-size:0;gap:0}
+html[data-sidebar=mini] .sidebar .nav-item>:first-child{font-size:16px}
+html[data-sidebar=mini] .sidebar .nav-item>:not(:first-child){position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+html[data-sidebar=mini] .sidebar .nav-item{position:relative}
+html[data-sidebar=mini] .sidebar .nav-item>:is(.nav-pill,.tiny-dot){display:none}
+}
+@media (min-width:701px) and (prefers-reduced-motion:reduce){.sidebar,.workspace{transition:none}}
+
+/* Exercise success: a short celebration on the result, a glow (not a movement) on the next button. */
+@keyframes amb-pop{0%{transform:scale(.96);opacity:.4}60%{transform:scale(1.02);opacity:1}100%{transform:none}}
+@keyframes amb-burst{0%{opacity:.9;transform:scale(.3)}100%{opacity:0;transform:scale(1.6)}}
+@keyframes amb-glow{0%,100%{box-shadow:0 0 0 0 transparent}50%{box-shadow:0 0 0 6px var(--accent-soft,#e2efe6)}}
+.curr-feedback.curr-ok{position:relative;animation:amb-pop .5s cubic-bezier(.2,.8,.2,1);background:var(--accent-soft,#e2efe6);border-radius:14px;padding:12px 14px}
+.curr-feedback.curr-ok::before{content:"";position:absolute;inset:-10px;pointer-events:none;border-radius:20px;background:radial-gradient(circle at 12% 30%,var(--accent-2,#f08a4b) 0 4px,transparent 5px),radial-gradient(circle at 88% 20%,var(--accent,#1f5e46) 0 4px,transparent 5px),radial-gradient(circle at 70% 90%,var(--accent-2,#f08a4b) 0 3px,transparent 4px),radial-gradient(circle at 25% 85%,var(--accent,#1f5e46) 0 3px,transparent 4px),radial-gradient(circle at 50% 5%,var(--accent-2,#f08a4b) 0 3px,transparent 4px);animation:amb-burst .9s ease-out forwards}
+.curr-practice:has(.curr-ok) [data-curr=exercise-next]:not(:disabled){animation:amb-glow 1.6s ease-in-out 2}
+@media (prefers-reduced-motion:reduce){.curr-feedback.curr-ok,.curr-feedback.curr-ok::before,.curr-practice:has(.curr-ok) [data-curr=exercise-next]{animation:none}.curr-feedback.curr-ok::before{display:none}}
+
 /* Liquid glass: translucent panels over slow colour fields. */
-html[data-ambiance=verre]{background:#0f1430;--blob1:#5b6cff;--blob2:#ff5fa8;--blob3:#19c9a9;--blob4:#ffb547;--glass-modal:rgba(18,22,52,.9)}
-html[data-ambiance=verre]:not([data-mode=dark]){background:#eef0ff;--blob1:#a9b4ff;--blob2:#ffb3d6;--blob3:#9ff0de;--blob4:#ffe0a6;--glass-modal:rgba(255,255,255,.94)}
+html[data-ambiance=verre]{background:#0b0d1a;--blob1:#4f6bff;--blob2:#a85de8;--blob3:#e2557f;--blob4:#d98a4a;--glass-modal:rgba(20,22,42,.92)}
+html[data-ambiance=verre]:not([data-mode=dark]){background:#f2f3f8;--blob1:#b8c4ff;--blob2:#e2c4ff;--blob3:#ffc4dc;--blob4:#ffd9b8;--glass-modal:rgba(255,255,255,.94)}
 html[data-ambiance=verre] body.personalized,html[data-ambiance=verre] body.personalized :is(.workspace,#main){background:transparent!important}
 html[data-ambiance=verre] body.personalized::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;background:radial-gradient(closest-side at 22% 24%,var(--blob1),transparent),radial-gradient(closest-side at 80% 30%,var(--blob2),transparent),radial-gradient(closest-side at 40% 82%,var(--blob3),transparent),radial-gradient(closest-side at 86% 86%,var(--blob4),transparent);opacity:.75;animation:amb-drift 36s ease-in-out infinite alternate}
 @keyframes amb-drift{0%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(6%,4%,0) rotate(8deg)}100%{transform:translate3d(-5%,6%,0) rotate(-6deg)}}
-html[data-ambiance=verre]:not([data-glass-lite]) body.personalized :is(.sidebar,.topbar,.panel,.stat,.course-card,.resource-card,.sector-tile,.job-path,.syllabus-lesson,.course-collection,.download-row,.bottom-nav,.settings-card,.nunya-course-card,.ambiance-card,.daily-card){-webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 18px 40px -22px rgba(5,8,30,.55)}
+html[data-ambiance=verre]:not([data-glass-lite]) body.personalized :is(.sidebar,.topbar,.panel,.stat,.course-card,.resource-card,.sector-tile,.job-path,.syllabus-lesson,.course-collection,.download-row,.bottom-nav,.settings-card,.nunya-course-card,.ambiance-card,.daily-card){-webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);border-color:rgba(255,255,255,.28)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -1px 0 rgba(255,255,255,.08),0 18px 40px -22px rgba(5,8,30,.55)}
 html[data-ambiance=verre] body.personalized .modal{background:var(--glass-modal)!important}
 html[data-ambiance=verre][data-glass-lite] body.personalized::before{animation:none;opacity:.45}''')
 for mode, (surface, raised, soft) in GLASS_LITE.items():

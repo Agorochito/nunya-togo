@@ -1,0 +1,267 @@
+---
+{
+  "id": "phpi-m4-01",
+  "title_fr": "Trier, filtrer et regrouper des objets",
+  "course": "php-intermediaire",
+  "module": "m4",
+  "order": 10,
+  "minutes": 20,
+  "prerequisites": [
+    "phpi-m3-03"
+  ],
+  "outcomes": [
+    "Trier une liste d’objets avec usort sur plusieurs critères.",
+    "Filtrer, regrouper et résumer des objets avec array_filter, des tableaux associatifs et array_column."
+  ],
+  "idea_fr": "Les fonctions de tableaux fonctionnent aussi sur des listes d’objets : on décrit le critère, PHP applique.",
+  "analogy_fr": "Le surveillant range les copies par classe, puis par note, pour préparer le conseil de classe : deux critères, un seul passage.",
+  "examples": [
+    {
+      "code": "<?php\nclass Eleve\n{\n    public function __construct(public readonly string $nom, public readonly string $classe, public readonly float $moyenne)\n    {\n    }\n}\n\nfunction charger(array $donnees): array\n{\n    return array_map(fn($d) => new Eleve($d[0], $d[1], $d[2]), $donnees);\n}\n\n$eleves = charger([[\"Afi\", \"3e\", 14.5], [\"Kofi\", \"4e\", 9.0], [\"Yao\", \"3e\", 16.25], [\"Esi\", \"4e\", 14.5]]);\nusort($eleves, fn($a, $b) => ($b->moyenne <=> $a->moyenne) ?: strcmp($a->nom, $b->nom));\necho implode(\", \", array_column($eleves, \"nom\")), \"\\n\";\n$admis = array_values(array_filter($eleves, fn(Eleve $e) => $e->moyenne >= 10));\necho count($admis), \" admis\\n\";",
+      "expected_output": "Yao, Afi, Esi, Kofi\n3 admis",
+      "inputs": [],
+      "trace_fr": [
+        "Tri par moyenne décroissante.",
+        "Afi et Esi, ex aequo, sont départagés par nom.",
+        "array_filter garde les trois moyennes d’au moins 10."
+      ]
+    },
+    {
+      "code": "<?php\nclass Eleve\n{\n    public function __construct(public readonly string $nom, public readonly string $classe, public readonly float $moyenne)\n    {\n    }\n}\n\nfunction charger(array $donnees): array\n{\n    return array_map(fn($d) => new Eleve($d[0], $d[1], $d[2]), $donnees);\n}\n\n$groupes = [];\nforeach (charger([[\"Afi\", \"3e\", 14.5], [\"Kofi\", \"4e\", 9.0], [\"Yao\", \"3e\", 16.25]]) as $e) {\n    $groupes[$e->classe][] = $e->nom;\n}\necho json_encode($groupes), \"\\n\";",
+      "expected_output": "{\"3e\":[\"Afi\",\"Yao\"],\"4e\":[\"Kofi\"]}",
+      "inputs": [],
+      "trace_fr": [
+        "Chaque élève est ajouté à la case de sa classe.",
+        "La case est créée au premier élève de la classe.",
+        "Le résultat est un tableau associatif de listes."
+      ]
+    }
+  ],
+  "common_mistakes": [
+    {
+      "error": "Oublier array_values après array_filter",
+      "why_fr": "La liste garde des trous et devient un objet JSON.",
+      "fix_fr": "Entoure le résultat de array_values."
+    },
+    {
+      "error": "Trier sans critère de départage",
+      "why_fr": "L’ordre des ex aequo est imprévisible.",
+      "fix_fr": "Ajoute ?: avec un second critère."
+    },
+    {
+      "error": "Modifier un objet filtré en croyant travailler sur une copie",
+      "why_fr": "L’objet d’origine change aussi.",
+      "fix_fr": "Utilise readonly ou clone."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Comment trier des objets par moyenne décroissante ?",
+      "options": [
+        "sort($eleves)",
+        "usort($eleves, fn($a, $b) => $b->moyenne <=> $a->moyenne)",
+        "array_reverse($eleves)",
+        "ksort($eleves)"
+      ],
+      "answer": 1,
+      "explanation": "usort avec une comparaison inversée.",
+      "id": "phpi-m4-01-q1"
+    },
+    {
+      "question": "Que renvoie array_column($eleves, \"nom\") ?",
+      "options": [
+        "Le premier nom",
+        "La liste des noms",
+        "Le nombre d’élèves",
+        "Une erreur avec des objets"
+      ],
+      "answer": 1,
+      "explanation": "Il lit les propriétés publiques.",
+      "id": "phpi-m4-01-q2"
+    },
+    {
+      "question": "Après $g[$e->classe][] = $e->nom;, que se passe-t-il si la classe est nouvelle ?",
+      "options": [
+        "Une erreur",
+        "La case est créée",
+        "Le nom est ignoré",
+        "Le tableau est vidé"
+      ],
+      "answer": 1,
+      "explanation": "PHP crée la case automatiquement.",
+      "id": "phpi-m4-01-q3"
+    }
+  ],
+  "glossary": [
+    {
+      "term": "usort",
+      "definition": "Tri d’une liste avec une fonction de comparaison."
+    },
+    {
+      "term": "array_column",
+      "definition": "Extraction d’une colonne ou d’une propriété de chaque élément."
+    },
+    {
+      "term": "regroupement",
+      "definition": "Rangement des éléments par valeur d’une propriété."
+    },
+    {
+      "term": "critère de départage",
+      "definition": "Second critère qui ordonne les ex aequo."
+    }
+  ],
+  "recap_fr": [
+    "Trier une liste d’objets avec usort sur plusieurs critères.",
+    "Filtrer, regrouper et résumer des objets avec array_filter, des tableaux associatifs et array_column.",
+    "Lire un message d’erreur PHP, retrouver la ligne indiquée et corriger la cause."
+  ],
+  "tags": [
+    "php",
+    "intermédiaire",
+    "usort",
+    "array_column",
+    "regroupement",
+    "critère de départage"
+  ],
+  "status": "brouillon",
+  "reviewer": null,
+  "last_reviewed": null,
+  "language": "php",
+  "runtime": "php",
+  "level": "intermediaire",
+  "technical_checked_on": "2026-11-10",
+  "environment_fr": "PHP 8.3 réel, exécuté sur cet appareil dans un Worker isolé, comme en ligne de commande. Chaque saisie se lit avec trim(fgets(STDIN)). Pas de serveur web, de réseau ni de fichiers conservés : les données JSON sont écrites dans le programme. Les données sont fictives.",
+  "references": [
+    {
+      "title": "usort",
+      "url": "https://www.php.net/manual/fr/function.usort.php"
+    },
+    {
+      "title": "array_column",
+      "url": "https://www.php.net/manual/fr/function.array-column.php"
+    },
+    {
+      "title": "array_filter",
+      "url": "https://www.php.net/manual/fr/function.array-filter.php"
+    }
+  ],
+  "sources": [
+    {
+      "title": "usort",
+      "url": "https://www.php.net/manual/fr/function.usort.php",
+      "scope": "Manuel PHP officiel, référence technique ; texte, exemples et exercices originaux Nunya.",
+      "last_checked": "2026-11-10"
+    },
+    {
+      "title": "array_column",
+      "url": "https://www.php.net/manual/fr/function.array-column.php",
+      "scope": "Manuel PHP officiel, référence technique ; texte, exemples et exercices originaux Nunya.",
+      "last_checked": "2026-11-10"
+    },
+    {
+      "title": "array_filter",
+      "url": "https://www.php.net/manual/fr/function.array-filter.php",
+      "scope": "Manuel PHP officiel, référence technique ; texte, exemples et exercices originaux Nunya.",
+      "last_checked": "2026-11-10"
+    }
+  ]
+}
+---
+
+
+## Explication pas à pas
+
+Un programme réel manipule rarement un seul objet : il gère des listes d’élèves, de produits ou de commandes. Toutes les fonctions de tableaux vues au premier module s’appliquent à ces listes d’objets, en lisant les propriétés avec -> au lieu des crochets.
+
+Pour trier, usort reçoit une fonction de comparaison qui reçoit deux objets : fn($a, $b) => $b->moyenne <=> $a->moyenne trie par moyenne décroissante. Pour départager les ex aequo, on enchaîne un second critère avec ?: : ($b->moyenne <=> $a->moyenne) ?: strcmp($a->nom, $b->nom). Rappelle-toi que usort trie la liste sur place et renvoie true.
+
+Pour filtrer, array_filter garde les objets qui vérifient une condition : fn(Eleve $e) => $e->moyenne >= 10. Comme toujours, il conserve les clés : entoure le résultat de array_values pour obtenir une liste continue, surtout avant de la renvoyer ou de l’encoder en JSON.
+
+Pour extraire une propriété de chaque objet, array_column fonctionne aussi avec les propriétés publiques : array_column($eleves, 'nom') renvoie la liste des noms. Un troisième argument choisit la clé : array_column($eleves, 'moyenne', 'nom') donne un tableau nom => moyenne.
+
+Regrouper demande une petite boucle. On parcourt la liste et on ajoute chaque objet à la case de son groupe : $groupes[$e->classe][] = $e->nom;. Si la case n’existe pas encore, PHP la crée automatiquement. Les groupes apparaissent dans l’ordre de leur première rencontre ; on peut ensuite trier les clés avec ksort ou chaque groupe avec sort.
+
+Pour résumer, array_reduce ou une boucle calcule un total, un maximum ou une moyenne. La fonction max appliquée à array_column donne la meilleure valeur ; pour retrouver l’objet correspondant, il est plus simple de trier puis de prendre le premier élément, ou de parcourir la liste en gardant le meilleur.
+
+Ces opérations ne modifient pas les objets eux-mêmes : elles créent de nouveaux tableaux qui désignent les mêmes objets. Si une fonction modifie un objet obtenu par filtrage, elle modifie l’objet d’origine, puisque les objets ne sont pas copiés. Garde des propriétés readonly quand les objets représentent des données qui ne doivent pas changer, comme des résultats d’examen.
+
+Dans les exercices, la fonction charger, fournie, crée les objets Eleve à partir de tableaux simples [nom, classe, moyenne] : c’est l’étape que ferait la lecture d’un fichier JSON.
+
+## Exemple guidé 1
+
+```php
+<?php
+class Eleve
+{
+    public function __construct(public readonly string $nom, public readonly string $classe, public readonly float $moyenne)
+    {
+    }
+}
+
+function charger(array $donnees): array
+{
+    return array_map(fn($d) => new Eleve($d[0], $d[1], $d[2]), $donnees);
+}
+
+$eleves = charger([["Afi", "3e", 14.5], ["Kofi", "4e", 9.0], ["Yao", "3e", 16.25], ["Esi", "4e", 14.5]]);
+usort($eleves, fn($a, $b) => ($b->moyenne <=> $a->moyenne) ?: strcmp($a->nom, $b->nom));
+echo implode(", ", array_column($eleves, "nom")), "\n";
+$admis = array_values(array_filter($eleves, fn(Eleve $e) => $e->moyenne >= 10));
+echo count($admis), " admis\n";
+```
+
+Affichage attendu :
+
+    Yao, Afi, Esi, Kofi
+    3 admis
+
+Trace :
+
+- Tri par moyenne décroissante.
+- Afi et Esi, ex aequo, sont départagés par nom.
+- array_filter garde les trois moyennes d’au moins 10.
+
+## Exemple guidé 2
+
+```php
+<?php
+class Eleve
+{
+    public function __construct(public readonly string $nom, public readonly string $classe, public readonly float $moyenne)
+    {
+    }
+}
+
+function charger(array $donnees): array
+{
+    return array_map(fn($d) => new Eleve($d[0], $d[1], $d[2]), $donnees);
+}
+
+$groupes = [];
+foreach (charger([["Afi", "3e", 14.5], ["Kofi", "4e", 9.0], ["Yao", "3e", 16.25]]) as $e) {
+    $groupes[$e->classe][] = $e->nom;
+}
+echo json_encode($groupes), "\n";
+```
+
+Affichage attendu :
+
+    {"3e":["Afi","Yao"],"4e":["Kofi"]}
+
+Trace :
+
+- Chaque élève est ajouté à la case de sa classe.
+- La case est créée au premier élève de la classe.
+- Le résultat est un tableau associatif de listes.
+
+## Vérifier et expliquer
+
+Classe à la main les élèves de l’exercice final, puis compare avec ton programme, en particulier pour les ex aequo.
+
+## Références techniques
+
+Explications et activités originales Nunya. Mécanismes vérifiés dans le manuel PHP officiel :
+
+- [usort](https://www.php.net/manual/fr/function.usort.php)
+- [array_column](https://www.php.net/manual/fr/function.array-column.php)
+- [array_filter](https://www.php.net/manual/fr/function.array-filter.php)

@@ -1,0 +1,68 @@
+{
+  "id": "algorithmes",
+  "title_fr": "Algorithmes et structures de données",
+  "language": "python",
+  "runtime": "python",
+  "technology": "algo",
+  "level": "intermediaire",
+  "summary_fr": "Apprends à résoudre efficacement : complexité, recherche dichotomique, tris, récursivité, tri fusion et tri rapide, piles, files, dictionnaires et ensembles, graphes, parcours en largeur et en profondeur, jusqu’au plus court chemin entre villes du Togo. En Python, hors ligne.",
+  "prerequisite_courses": [
+    "python-bases"
+  ],
+  "prerequisites": [
+    "Savoir écrire des fonctions Python avec listes, dictionnaires, boucles et conditions.",
+    "Le cours Python débutant de Nunya fournit ces bases."
+  ],
+  "outcomes": [
+    "Estimer le coût d’un algorithme et comparer des croissances.",
+    "Rechercher et trier efficacement, y compris par récursivité.",
+    "Choisir entre pile, file, dictionnaire et ensemble selon le problème.",
+    "Parcourir des graphes et calculer des plus courts chemins.",
+    "Raisonner comme en entretien technique d’ingénieur logiciel."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Penser algorithme",
+      "outcome_fr": "Complexité, recherche dichotomique et tris simples.",
+      "lesson_ids": [
+        "algo-m1-01",
+        "algo-m1-02",
+        "algo-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Récursivité et tris efficaces",
+      "outcome_fr": "Récursivité, tri fusion, tri rapide et sélection.",
+      "lesson_ids": [
+        "algo-m2-01",
+        "algo-m2-02",
+        "algo-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Structures de données",
+      "outcome_fr": "Piles, files, dictionnaires et ensembles.",
+      "lesson_ids": [
+        "algo-m3-01",
+        "algo-m3-02",
+        "algo-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Graphes et chemins",
+      "outcome_fr": "Parcours en largeur et en profondeur, tri topologique et Dijkstra.",
+      "lesson_ids": [
+        "algo-m4-01",
+        "algo-m4-02",
+        "algo-m4-03"
+      ]
+    }
+  ],
+  "next_courses": [],
+  "status": "brouillon",
+  "reviewer": null
+}

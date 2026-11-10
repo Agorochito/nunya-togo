@@ -1,0 +1,278 @@
+{
+  "id": "php-intermediaire",
+  "title_fr": "PHP intermédiaire : objets et données",
+  "language": "php",
+  "runtime": "php",
+  "level": "intermediaire",
+  "summary_fr": "Écris du PHP structuré et fiable : fonctions typées, tableaux fonctionnels, classes, encapsulation, héritage et interfaces, exceptions, JSON, énumérations, validation et sécurité des entrées, jusqu’à la gestion des inscriptions d’une association. Vrai PHP 8.3 hors ligne.",
+  "prerequisite_courses": [
+    "php-bases"
+  ],
+  "prerequisites": [
+    "Savoir écrire des fonctions PHP, parcourir des tableaux et lire des saisies.",
+    "Le cours PHP débutant de Nunya fournit ces bases."
+  ],
+  "outcomes": [
+    "Écrire des fonctions typées et transformer des tableaux avec map, filter, reduce et usort.",
+    "Concevoir des classes protégées, avec héritage et interfaces.",
+    "Gérer les erreurs avec des exceptions personnalisées et échanger des données en JSON.",
+    "Modéliser des états avec des énumérations et valider les données reçues.",
+    "Livrer un programme robuste qui charge, vérifie et résume des données réelles."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Fonctions et tableaux avancés",
+      "outcome_fr": "Typage strict, fonctions de tableaux, formats et match.",
+      "lesson_ids": [
+        "phpi-m1-01",
+        "phpi-m1-02",
+        "phpi-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Programmation objet",
+      "outcome_fr": "Classes, encapsulation, héritage et interfaces.",
+      "lesson_ids": [
+        "phpi-m2-01",
+        "phpi-m2-02",
+        "phpi-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Erreurs, JSON et énumérations",
+      "outcome_fr": "Exceptions personnalisées, JSON fiable et enums.",
+      "lesson_ids": [
+        "phpi-m3-01",
+        "phpi-m3-02",
+        "phpi-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Données réelles et projet",
+      "outcome_fr": "Collections d’objets, validation, sécurité et projet d’association.",
+      "lesson_ids": [
+        "phpi-m4-01",
+        "phpi-m4-02",
+        "phpi-m4-03"
+      ]
+    }
+  ],
+  "next_courses": [],
+  "status": "brouillon",
+  "reviewer": null,
+  "later_modules": [],
+  "lessons": [
+    {
+      "id": "phpi-m1-01",
+      "title_fr": "Des fonctions typées et sûres",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "php-m4-03"
+      ],
+      "tags": [
+        "php",
+        "intermédiaire",
+        "déclaration de type",
+        "strict_types",
+        "type nullable",
+        "argument nommé"
+      ]
+    },
+    {
+      "id": "phpi-m1-02",
+      "title_fr": "Transformer des tableaux : map, filter, reduce et tri",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "phpi-m1-01"
+      ],
+      "tags": [
+        "php",
+        "intermédiaire",
+        "fonction fléchée",
+        "array_map",
+        "array_reduce",
+        "<=>"
+      ]
+    },
+    {
+      "id": "phpi-m1-03",
+      "title_fr": "Mettre en forme : sprintf, number_format et match",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "phpi-m1-02"
+      ],
+      "tags": [
+        "php",
+        "intermédiaire",
+        "number_format",
+        "sprintf",
+        "match",
+        "UnhandledMatchError"
+      ]
+    },
+    {
+      "id": "phpi-m2-01",
+      "title_fr": "Classes et objets en PHP",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "phpi-m1-03"
+      ],
+      "tags": [
+        "php",
+        "intermédiaire",
+        "classe",
+        "promotion de constructeur",
+        "$this",
+        "clone"
+      ]
+    },
+    {
+      "id": "phpi-m2-02",
+      "title_fr": "Encapsulation : private, readonly et validation",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "phpi-m2-01"
+      ],
+      "tags": [
+        "php",
+        "intermédiaire",
+        "encapsulation",
+        "private",
+        "readonly",
+        "méthode statique"
+      ]
+    },
+    {
+      "id": "phpi-m2-03",
+      "title_fr": "Héritage, classes abstraites et interfaces",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "phpi-m2-02"
+      ],
+      "tags": [
+        "php",
+        "intermédiaire",
+        "héritage",
+        "classe abstraite",
+        "interface",
+        "polymorphisme"
+      ]
+    },
+    {
+      "id": "phpi-m3-01",
+      "title_fr": "Exceptions personnalisées et finally",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "phpi-m2-03"
+      ],
+      "tags": [
+        "php",
+        "intermédiaire",
+        "exception personnalisée",
+        "catch multiple",
+        "finally",
+        "getMessage"
+      ]
+    },
+    {
+      "id": "phpi-m3-02",
+      "title_fr": "Lire et écrire du JSON",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "phpi-m3-01"
+      ],
+      "tags": [
+        "php",
+        "intermédiaire",
+        "JSON",
+        "json_decode",
+        "json_encode",
+        "JsonException"
+      ]
+    },
+    {
+      "id": "phpi-m3-03",
+      "title_fr": "Énumérations et match",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "phpi-m3-02"
+      ],
+      "tags": [
+        "php",
+        "intermédiaire",
+        "enum",
+        "backed enum",
+        "tryFrom",
+        "transition"
+      ]
+    },
+    {
+      "id": "phpi-m4-01",
+      "title_fr": "Trier, filtrer et regrouper des objets",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "phpi-m3-03"
+      ],
+      "tags": [
+        "php",
+        "intermédiaire",
+        "usort",
+        "array_column",
+        "regroupement",
+        "critère de départage"
+      ]
+    },
+    {
+      "id": "phpi-m4-02",
+      "title_fr": "Valider et sécuriser les données reçues",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "phpi-m4-01"
+      ],
+      "tags": [
+        "php",
+        "intermédiaire",
+        "validation",
+        "filter_var",
+        "échappement",
+        "XSS"
+      ]
+    },
+    {
+      "id": "phpi-m4-03",
+      "title_fr": "Projet : les inscriptions d’une association",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "phpi-m4-02"
+      ],
+      "tags": [
+        "php",
+        "intermédiaire",
+        "fiche valide",
+        "chargement",
+        "relance",
+        "robustesse"
+      ]
+    }
+  ],
+  "estimated_minutes": 240,
+  "content_revision": "cfddf437da59",
+  "exercise_count": 48,
+  "quiz_count": 36
+}

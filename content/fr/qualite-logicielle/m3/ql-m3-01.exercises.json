@@ -1,0 +1,342 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Renommer sans rien casser",
+    "instruction_fr": "La fonction f(a, b) applique une remise en pourcentage. Renomme-la prix_remise(prix, pourcentage) sans changer son calcul.",
+    "starter_code": "def f(a, b):\n    return a - a * b // 100\n",
+    "solution": "def prix_remise(prix, pourcentage):\n    return prix - prix * pourcentage // 100\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "prix_remise",
+            "args": [
+              5000,
+              10
+            ],
+            "unchanged_args": true,
+            "expected": 4500
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "prix_remise",
+            "args": [
+              1999,
+              0
+            ],
+            "unchanged_args": true,
+            "expected": 1999
+          },
+          {
+            "name": "prix_remise",
+            "args": [
+              800,
+              50
+            ],
+            "unchanged_args": true,
+            "expected": 400
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le test appelle prix_remise.",
+      "Renomme aussi les paramètres : a devient prix, b pourcentage.",
+      "Le calcul ne change pas."
+    ],
+    "explanation_fr": "Le comportement est identique ; seul le sens est devenu visible.",
+    "common_wrong_answers": [],
+    "id": "ql-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Extraire deux fonctions",
+    "instruction_fr": "f(l) calcule le total d’une facture : somme de quantité × prix pour chaque ligne (nom, quantité, prix), plus 1 500 FCFA de livraison sous 20 000 FCFA. Découpe-la en sous_total(lignes), frais_livraison(montant) et total_facture(lignes).",
+    "starter_code": "def f(l):\n    t = 0\n    for x in l:\n        t = t + x[1] * x[2]\n    if t >= 20000:\n        return t\n    return t + 1500\n",
+    "solution": "def sous_total(lignes):\n    return sum(quantite * prix for _, quantite, prix in lignes)\n\n\ndef frais_livraison(montant):\n    return 0 if montant >= 20000 else 1500\n\n\ndef total_facture(lignes):\n    montant = sous_total(lignes)\n    return montant + frais_livraison(montant)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "sous_total",
+            "args": [
+              [
+                [
+                  "riz",
+                  2,
+                  6000
+                ],
+                [
+                  "huile",
+                  1,
+                  3500
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 15500
+          },
+          {
+            "name": "frais_livraison",
+            "args": [
+              15500
+            ],
+            "unchanged_args": true,
+            "expected": 1500
+          },
+          {
+            "name": "total_facture",
+            "args": [
+              [
+                [
+                  "riz",
+                  2,
+                  6000
+                ],
+                [
+                  "huile",
+                  1,
+                  3500
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 17000
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "frais_livraison",
+            "args": [
+              20000
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "frais_livraison",
+            "args": [
+              19999
+            ],
+            "unchanged_args": true,
+            "expected": 1500
+          },
+          {
+            "name": "total_facture",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": 1500
+          },
+          {
+            "name": "total_facture",
+            "args": [
+              [
+                [
+                  "sac",
+                  4,
+                  5000
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 20000
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Chaque fonction reprend une étape de f.",
+      "frais_livraison reçoit un montant, pas des lignes.",
+      "total_facture appelle les deux autres."
+    ],
+    "explanation_fr": "Les petites fonctions se testent chacune sur quelques valeurs.",
+    "common_wrong_answers": [],
+    "id": "ql-m3-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le bug caché dans la grosse fonction",
+    "instruction_fr": "resume_classe(notes) calcule trois choses dans une seule boucle, et le nombre d’admis est faux : une note de 10 n’est pas comptée. Découpe-la en moyenne(notes), meilleure(notes) et nb_admis(notes) (admis à partir de 10), et corrige le bug au passage. Pour une liste vide : 0, None et 0.",
+    "starter_code": "def resume_classe(notes):\n    t = 0\n    m = None\n    a = 0\n    for n in notes:\n        t += n\n        if m is None or n > m:\n            m = n\n        if n > 10:\n            a += 1\n    return [t / len(notes) if notes else 0, m, a]\n",
+    "solution": "def moyenne(notes):\n    return sum(notes) / len(notes) if notes else 0\n\n\ndef meilleure(notes):\n    return max(notes) if notes else None\n\n\ndef nb_admis(notes):\n    return len([n for n in notes if n >= 10])\n\n\ndef resume_classe(notes):\n    return [moyenne(notes), meilleure(notes), nb_admis(notes)]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "nb_admis",
+            "args": [
+              [
+                10,
+                9,
+                14
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 2
+          },
+          {
+            "name": "moyenne",
+            "args": [
+              [
+                10,
+                9,
+                14
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 11.0
+          },
+          {
+            "name": "meilleure",
+            "args": [
+              [
+                10,
+                9,
+                14
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 14
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "resume_classe",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": [
+              0,
+              null,
+              0
+            ]
+          },
+          {
+            "name": "resume_classe",
+            "args": [
+              [
+                10
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              10.0,
+              10,
+              1
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La condition n > 10 exclut la note 10.",
+      "Chaque fonction se teste séparément : le bug devient visible.",
+      "Utilise n >= 10 dans nb_admis."
+    ],
+    "explanation_fr": "Isolé dans sa propre fonction, le comptage se vérifie sur trois notes.",
+    "common_wrong_answers": [],
+    "id": "ql-m3-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Ticket de caisse lisible",
+    "instruction_fr": "Écris ligne_ticket(nom, quantite, prix) qui renvoie \"nom x quantite = montant\" et ticket(articles) qui renvoie la liste des lignes puis \"Total = montant\". Exemple : ligne_ticket(\"riz\", 2, 600) donne \"riz x 2 = 1200\".",
+    "starter_code": "def ticket(articles):\n    r = []\n    s = 0\n    for a in articles:\n        r.append(a[0] + \" x \" + str(a[1]))\n        s += a[1] * a[2]\n    return r\n",
+    "solution": "def ligne_ticket(nom, quantite, prix):\n    return f\"{nom} x {quantite} = {quantite * prix}\"\n\n\ndef ticket(articles):\n    lignes = [ligne_ticket(nom, quantite, prix) for nom, quantite, prix in articles]\n    total = sum(quantite * prix for _, quantite, prix in articles)\n    return lignes + [f\"Total = {total}\"]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ligne_ticket",
+            "args": [
+              "riz",
+              2,
+              600
+            ],
+            "unchanged_args": true,
+            "expected": "riz x 2 = 1200"
+          },
+          {
+            "name": "ticket",
+            "args": [
+              [
+                [
+                  "riz",
+                  2,
+                  600
+                ],
+                [
+                  "savon",
+                  1,
+                  250
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "riz x 2 = 1200",
+              "savon x 1 = 250",
+              "Total = 1450"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ticket",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "Total = 0"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Commence par ligne_ticket, testable seule.",
+      "ticket appelle ligne_ticket pour chaque article.",
+      "Ajoute la ligne du total à la fin."
+    ],
+    "explanation_fr": "Chaque fonction a un nom qui dit exactement son rôle.",
+    "common_wrong_answers": [],
+    "id": "ql-m3-01-e4"
+  }
+]

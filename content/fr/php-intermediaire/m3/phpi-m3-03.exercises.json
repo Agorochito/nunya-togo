@@ -1,0 +1,258 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Libellé d’un niveau",
+    "instruction_fr": "Ajoute à l’enum Niveau une méthode libelle(): string qui renvoie \"Débutant\", \"Intermédiaire\" ou \"Avancé\" avec match($this). La fonction verifier fournie convertit un texte avec from.",
+    "starter_code": "<?php\nenum Niveau: string\n{\n    case Debutant = \"debutant\";\n    case Intermediaire = \"intermediaire\";\n    case Avance = \"avance\";\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction verifier(string $valeur): string\n{\n    return Niveau::from($valeur)->libelle();\n}\n",
+    "solution": "<?php\nenum Niveau: string\n{\n    case Debutant = \"debutant\";\n    case Intermediaire = \"intermediaire\";\n    case Avance = \"avance\";\n\n    public function libelle(): string\n    {\n        return match ($this) {\n            Niveau::Debutant => \"Débutant\",\n            Niveau::Intermediaire => \"Intermédiaire\",\n            Niveau::Avance => \"Avancé\",\n        };\n    }\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction verifier(string $valeur): string\n{\n    return Niveau::from($valeur)->libelle();\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              "intermediaire"
+            ],
+            "expected": "Intermédiaire"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              "debutant"
+            ],
+            "expected": "Débutant"
+          },
+          {
+            "name": "verifier",
+            "args": [
+              "avance"
+            ],
+            "expected": "Avancé"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La méthode libelle n’existe pas.",
+      "Dans un enum, $this est le cas courant.",
+      "return match ($this) { Niveau::Debutant => \"Débutant\", … };"
+    ],
+    "explanation_fr": "L’affichage vit avec les valeurs : un seul endroit à modifier.",
+    "common_wrong_answers": [],
+    "id": "phpi-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Compter les statuts",
+    "instruction_fr": "Écris compter(array $valeurs): array avec l’enum Statut fourni : renvoie [\"paye\" => n, \"attente\" => n, \"annule\" => n, \"invalides\" => n], dans cet ordre, en convertissant chaque texte avec tryFrom.",
+    "starter_code": "<?php\nenum Statut: string\n{\n    case Paye = \"paye\";\n    case Attente = \"attente\";\n    case Annule = \"annule\";\n\n    public function libelle(): string\n    {\n        return match ($this) {\n            Statut::Paye => \"payé\",\n            Statut::Attente => \"en attente\",\n            Statut::Annule => \"annulé\",\n        };\n    }\n}\n\nfunction compter(array $valeurs): array\n{\n    return [\"paye\" => count($valeurs), \"attente\" => 0, \"annule\" => 0, \"invalides\" => 0];\n}\n",
+    "solution": "<?php\nenum Statut: string\n{\n    case Paye = \"paye\";\n    case Attente = \"attente\";\n    case Annule = \"annule\";\n\n    public function libelle(): string\n    {\n        return match ($this) {\n            Statut::Paye => \"payé\",\n            Statut::Attente => \"en attente\",\n            Statut::Annule => \"annulé\",\n        };\n    }\n}\n\nfunction compter(array $valeurs): array\n{\n    $resultat = [];\n    foreach (Statut::cases() as $cas) {\n        $resultat[$cas->value] = 0;\n    }\n    $resultat[\"invalides\"] = 0;\n    foreach ($valeurs as $v) {\n        $statut = Statut::tryFrom($v);\n        if ($statut === null) {\n            $resultat[\"invalides\"]++;\n        } else {\n            $resultat[$statut->value]++;\n        }\n    }\n    return $resultat;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compter",
+            "args": [
+              [
+                "paye",
+                "attente",
+                "payé",
+                "paye"
+              ]
+            ],
+            "expected": {
+              "paye": 2,
+              "attente": 1,
+              "annule": 0,
+              "invalides": 1
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compter",
+            "args": [
+              []
+            ],
+            "expected": {
+              "paye": 0,
+              "attente": 0,
+              "annule": 0,
+              "invalides": 0
+            }
+          },
+          {
+            "name": "compter",
+            "args": [
+              [
+                "annule",
+                "annule"
+              ]
+            ],
+            "expected": {
+              "paye": 0,
+              "attente": 0,
+              "annule": 2,
+              "invalides": 0
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Initialise un compteur par cas avec Statut::cases().",
+      "tryFrom renvoie null pour une valeur inconnue.",
+      "Compte avec $statut->value comme clé."
+    ],
+    "explanation_fr": "Les compteurs suivent automatiquement les cas de l’enum.",
+    "common_wrong_answers": [],
+    "id": "phpi-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Statut inconnu",
+    "instruction_fr": "libelleOuInconnu(string $valeur): string doit renvoyer le libellé du statut, ou \"statut inconnu\" pour une valeur invalide. Elle utilise from, qui lève une ValueError. Corrige-la avec tryFrom.",
+    "starter_code": "<?php\nenum Statut: string\n{\n    case Paye = \"paye\";\n    case Attente = \"attente\";\n    case Annule = \"annule\";\n\n    public function libelle(): string\n    {\n        return match ($this) {\n            Statut::Paye => \"payé\",\n            Statut::Attente => \"en attente\",\n            Statut::Annule => \"annulé\",\n        };\n    }\n}\n\nfunction libelleOuInconnu(string $valeur): string\n{\n    return Statut::from($valeur)->libelle();\n}\n",
+    "solution": "<?php\nenum Statut: string\n{\n    case Paye = \"paye\";\n    case Attente = \"attente\";\n    case Annule = \"annule\";\n\n    public function libelle(): string\n    {\n        return match ($this) {\n            Statut::Paye => \"payé\",\n            Statut::Attente => \"en attente\",\n            Statut::Annule => \"annulé\",\n        };\n    }\n}\n\nfunction libelleOuInconnu(string $valeur): string\n{\n    return Statut::tryFrom($valeur)?->libelle() ?? \"statut inconnu\";\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "libelleOuInconnu",
+            "args": [
+              "payé"
+            ],
+            "expected": "statut inconnu"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "libelleOuInconnu",
+            "args": [
+              "annule"
+            ],
+            "expected": "annulé"
+          },
+          {
+            "name": "libelleOuInconnu",
+            "args": [
+              ""
+            ],
+            "expected": "statut inconnu"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : ValueError.",
+      "tryFrom renvoie null au lieu de lever.",
+      "?-> appelle la méthode seulement si l’objet n’est pas null, puis ?? fournit le texte par défaut."
+    ],
+    "explanation_fr": "L’opérateur nullsafe ?-> évite un test de null explicite.",
+    "common_wrong_answers": [],
+    "id": "phpi-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Suivi d’une commande",
+    "instruction_fr": "Écris suivre(array $etapes): string avec l’enum Statut et la fonction peutPasser fournis : la commande commence en \"attente\" ; pour chaque texte d’étape, convertis avec tryFrom (texte inconnu : renvoie \"statut inconnu : texte\"), refuse une transition interdite (renvoie \"transition refusée : de -> vers\" avec les valeurs) ; à la fin, renvoie le libellé du statut final.",
+    "starter_code": "<?php\nenum Statut: string\n{\n    case Paye = \"paye\";\n    case Attente = \"attente\";\n    case Annule = \"annule\";\n\n    public function libelle(): string\n    {\n        return match ($this) {\n            Statut::Paye => \"payé\",\n            Statut::Attente => \"en attente\",\n            Statut::Annule => \"annulé\",\n        };\n    }\n}\n\nfunction peutPasser(Statut $de, Statut $vers): bool\n{\n    return match ($de) {\n        Statut::Attente => $vers !== Statut::Attente,\n        Statut::Paye => $vers === Statut::Annule,\n        Statut::Annule => false,\n    };\n}\n\nfunction suivre(array $etapes): string\n{\n    return \"en attente\";\n}\n",
+    "solution": "<?php\nenum Statut: string\n{\n    case Paye = \"paye\";\n    case Attente = \"attente\";\n    case Annule = \"annule\";\n\n    public function libelle(): string\n    {\n        return match ($this) {\n            Statut::Paye => \"payé\",\n            Statut::Attente => \"en attente\",\n            Statut::Annule => \"annulé\",\n        };\n    }\n}\n\nfunction peutPasser(Statut $de, Statut $vers): bool\n{\n    return match ($de) {\n        Statut::Attente => $vers !== Statut::Attente,\n        Statut::Paye => $vers === Statut::Annule,\n        Statut::Annule => false,\n    };\n}\n\nfunction suivre(array $etapes): string\n{\n    $statut = Statut::Attente;\n    foreach ($etapes as $texte) {\n        $vers = Statut::tryFrom($texte);\n        if ($vers === null) {\n            return \"statut inconnu : \" . $texte;\n        }\n        if (!peutPasser($statut, $vers)) {\n            return \"transition refusée : \" . $statut->value . \" -> \" . $vers->value;\n        }\n        $statut = $vers;\n    }\n    return $statut->libelle();\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "suivre",
+            "args": [
+              [
+                "paye"
+              ]
+            ],
+            "expected": "payé"
+          },
+          {
+            "name": "suivre",
+            "args": [
+              [
+                "annule",
+                "paye"
+              ]
+            ],
+            "expected": "transition refusée : annule -> paye"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "suivre",
+            "args": [
+              []
+            ],
+            "expected": "en attente"
+          },
+          {
+            "name": "suivre",
+            "args": [
+              [
+                "paye",
+                "livré"
+              ]
+            ],
+            "expected": "statut inconnu : livré"
+          },
+          {
+            "name": "suivre",
+            "args": [
+              [
+                "paye",
+                "annule"
+              ]
+            ],
+            "expected": "annulé"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le statut reste toujours en attente.",
+      "Convertis chaque étape, puis vérifie la transition.",
+      "Renvoie un message dès le premier problème."
+    ],
+    "explanation_fr": "Les règles de transition, écrites une fois, protègent toute l’application.",
+    "common_wrong_answers": [],
+    "id": "phpi-m3-03-e4"
+  }
+]

@@ -1,0 +1,286 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Un seul taux",
+    "instruction_fr": "en_fcfa utilise 655.957 et en_euros utilise 656 : les conversions ne sont pas cohérentes. Définis TAUX_EURO = 655.957 et utilise-le dans les deux fonctions.",
+    "starter_code": "def en_fcfa(euros):\n    return round(euros * 655.957)\n\n\ndef en_euros(fcfa):\n    return round(fcfa / 656, 2)\n",
+    "solution": "TAUX_EURO = 655.957\n\n\ndef en_fcfa(euros):\n    return round(euros * TAUX_EURO)\n\n\ndef en_euros(fcfa):\n    return round(fcfa / TAUX_EURO, 2)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "en_euros",
+            "args": [
+              655957
+            ],
+            "unchanged_args": true,
+            "expected": 1000.0
+          },
+          {
+            "name": "en_fcfa",
+            "args": [
+              100
+            ],
+            "unchanged_args": true,
+            "expected": 65596
+          }
+        ],
+        "variables": {
+          "TAUX_EURO": {
+            "type": "float",
+            "value": 655.957
+          }
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "en_euros",
+            "args": [
+              0
+            ],
+            "unchanged_args": true,
+            "expected": 0.0
+          },
+          {
+            "name": "en_fcfa",
+            "args": [
+              1
+            ],
+            "unchanged_args": true,
+            "expected": 656
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La deuxième fonction utilise une valeur arrondie.",
+      "Définis la constante en haut du fichier.",
+      "Remplace les deux nombres par TAUX_EURO."
+    ],
+    "explanation_fr": "Avec une seule source, les deux conversions sont cohérentes.",
+    "common_wrong_answers": [],
+    "id": "ql-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Une grille au lieu de trois fonctions",
+    "instruction_fr": "Remplace les trois fonctions de frais par un dictionnaire TARIFS et une fonction frais(zone) qui lève ValueError pour une zone inconnue.",
+    "starter_code": "def frais_lome():\n    return 500\n\n\ndef frais_kara():\n    return 2500\n\n\ndef frais_sokode():\n    return 2000\n",
+    "solution": "TARIFS = {\"Lomé\": 500, \"Kara\": 2500, \"Sokodé\": 2000}\n\n\ndef frais(zone):\n    if zone not in TARIFS:\n        raise ValueError(\"zone inconnue : \" + zone)\n    return TARIFS[zone]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "frais",
+            "args": [
+              "Lomé"
+            ],
+            "unchanged_args": true,
+            "expected": 500
+          },
+          {
+            "name": "frais",
+            "args": [
+              "Kara"
+            ],
+            "unchanged_args": true,
+            "expected": 2500
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "frais",
+            "args": [
+              "Sokodé"
+            ],
+            "unchanged_args": true,
+            "expected": 2000
+          },
+          {
+            "name": "frais",
+            "args": [
+              "Paris"
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une clé par zone, une valeur par tarif.",
+      "Vérifie zone in TARIFS avant de lire.",
+      "raise ValueError pour une zone absente."
+    ],
+    "explanation_fr": "Ajouter une ville devient l’ajout d’une ligne de données.",
+    "common_wrong_answers": [],
+    "id": "ql-m3-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le bug corrigé une seule fois",
+    "instruction_fr": "inscrire(nom) et modifier(nom) copient la même validation ; un bug a été corrigé dans inscrire mais pas dans modifier, qui accepte un nom fait d’espaces. Rassemble la validation dans nom_valide(nom) (au moins 2 lettres après avoir retiré les espaces) et utilise-la dans les deux fonctions.",
+    "starter_code": "def inscrire(nom):\n    if len(nom.strip()) < 2:\n        return \"refusé\"\n    return \"inscrit : \" + nom.strip()\n\n\ndef modifier(nom):\n    if len(nom) < 2:\n        return \"refusé\"\n    return \"modifié : \" + nom.strip()\n",
+    "solution": "def nom_valide(nom):\n    return len(nom.strip()) >= 2\n\n\ndef inscrire(nom):\n    if not nom_valide(nom):\n        return \"refusé\"\n    return \"inscrit : \" + nom.strip()\n\n\ndef modifier(nom):\n    if not nom_valide(nom):\n        return \"refusé\"\n    return \"modifié : \" + nom.strip()\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "modifier",
+            "args": [
+              "   "
+            ],
+            "unchanged_args": true,
+            "expected": "refusé"
+          },
+          {
+            "name": "nom_valide",
+            "args": [
+              " Afi "
+            ],
+            "unchanged_args": true,
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "inscrire",
+            "args": [
+              "  "
+            ],
+            "unchanged_args": true,
+            "expected": "refusé"
+          },
+          {
+            "name": "modifier",
+            "args": [
+              "Kossi"
+            ],
+            "unchanged_args": true,
+            "expected": "modifié : Kossi"
+          },
+          {
+            "name": "nom_valide",
+            "args": [
+              "A"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Compare les deux conditions : l’une utilise strip(), l’autre non.",
+      "Écris nom_valide une seule fois.",
+      "Appelle-la dans inscrire et modifier."
+    ],
+    "explanation_fr": "La règle vit maintenant à un seul endroit : une prochaine correction s’appliquera partout.",
+    "common_wrong_answers": [],
+    "id": "ql-m3-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Bulletin sans nombres magiques",
+    "instruction_fr": "mention(moyenne) utilise des seuils écrits en dur. Définis SEUIL_ADMIS = 10 et SEUIL_TRES_BIEN = 16, utilise-les, et écris admis(moyenne) qui utilise aussi SEUIL_ADMIS.",
+    "starter_code": "def mention(moyenne):\n    if moyenne >= 16:\n        return \"Très bien\"\n    if moyenne >= 10:\n        return \"Admis\"\n    return \"Ajourné\"\n",
+    "solution": "SEUIL_ADMIS = 10\nSEUIL_TRES_BIEN = 16\n\n\ndef mention(moyenne):\n    if moyenne >= SEUIL_TRES_BIEN:\n        return \"Très bien\"\n    if moyenne >= SEUIL_ADMIS:\n        return \"Admis\"\n    return \"Ajourné\"\n\n\ndef admis(moyenne):\n    return moyenne >= SEUIL_ADMIS\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "admis",
+            "args": [
+              10
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "mention",
+            "args": [
+              16
+            ],
+            "unchanged_args": true,
+            "expected": "Très bien"
+          }
+        ],
+        "variables": {
+          "SEUIL_ADMIS": {
+            "type": "int",
+            "value": 10
+          },
+          "SEUIL_TRES_BIEN": {
+            "type": "int",
+            "value": 16
+          }
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "admis",
+            "args": [
+              9.5
+            ],
+            "unchanged_args": true,
+            "expected": false
+          },
+          {
+            "name": "mention",
+            "args": [
+              12
+            ],
+            "unchanged_args": true,
+            "expected": "Admis"
+          },
+          {
+            "name": "mention",
+            "args": [
+              3
+            ],
+            "unchanged_args": true,
+            "expected": "Ajourné"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Définis les deux constantes en haut.",
+      "Remplace 16 et 10 dans mention.",
+      "admis compare avec SEUIL_ADMIS."
+    ],
+    "explanation_fr": "Si l’école change de seuil, une seule ligne change.",
+    "common_wrong_answers": [],
+    "id": "ql-m3-02-e4"
+  }
+]

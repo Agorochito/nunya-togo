@@ -1,0 +1,287 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Moyenne typée",
+    "instruction_fr": "Écris moyenne(array $notes): float qui renvoie la moyenne arrondie à 2 décimales, ou 0.0 pour une liste vide.",
+    "starter_code": "<?php\ndeclare(strict_types=1);\n\nfunction moyenne(array $notes): int\n{\n    return intdiv(array_sum($notes), count($notes));\n}\n",
+    "solution": "<?php\ndeclare(strict_types=1);\n\nfunction moyenne(array $notes): float\n{\n    if (count($notes) === 0) {\n        return 0.0;\n    }\n    return round(array_sum($notes) / count($notes), 2);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moyenne",
+            "args": [
+              [
+                12,
+                15
+              ]
+            ],
+            "expected": 13.5,
+            "expected_type": "float"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moyenne",
+            "args": [
+              []
+            ],
+            "expected": 0.0,
+            "expected_type": "float"
+          },
+          {
+            "name": "moyenne",
+            "args": [
+              [
+                12,
+                15,
+                16
+              ]
+            ],
+            "expected": 14.33,
+            "expected_type": "float"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le type de retour int perd les décimales.",
+      "Une liste vide provoque une division par zéro.",
+      "Retour float, cas vide d’abord, puis round(…, 2)."
+    ],
+    "explanation_fr": "Le type de retour oblige à traiter tous les cas, y compris la liste vide.",
+    "common_wrong_answers": [],
+    "id": "phpi-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Code de réduction",
+    "instruction_fr": "Écris remise(int $montant, ?string $code = null): int : avec le code \"NUNYA10\", 10 % de réduction arrondie à l’entier ; avec \"FIDELE\", 500 FCFA de moins sans descendre sous 0 ; sinon le montant inchangé.",
+    "starter_code": "<?php\ndeclare(strict_types=1);\n\nfunction remise(int $montant, ?string $code = null): int\n{\n    return $montant;\n}\n",
+    "solution": "<?php\ndeclare(strict_types=1);\n\nfunction remise(int $montant, ?string $code = null): int\n{\n    if ($code === \"NUNYA10\") {\n        return (int) round($montant * 0.9);\n    }\n    if ($code === \"FIDELE\") {\n        return max(0, $montant - 500);\n    }\n    return $montant;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "remise",
+            "args": [
+              5000,
+              "NUNYA10"
+            ],
+            "expected": 4500,
+            "expected_type": "int"
+          },
+          {
+            "name": "remise",
+            "args": [
+              5000
+            ],
+            "expected": 5000,
+            "expected_type": "int"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "remise",
+            "args": [
+              300,
+              "FIDELE"
+            ],
+            "expected": 0,
+            "expected_type": "int"
+          },
+          {
+            "name": "remise",
+            "args": [
+              2000,
+              "FIDELE"
+            ],
+            "expected": 1500,
+            "expected_type": "int"
+          },
+          {
+            "name": "remise",
+            "args": [
+              999,
+              "inconnu"
+            ],
+            "expected": 999,
+            "expected_type": "int"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Compare le code avec ===.",
+      "max(0, …) empêche un montant négatif.",
+      "Sans code ou avec un code inconnu, rien ne change."
+    ],
+    "explanation_fr": "Le type ?string documente qu’un code est facultatif.",
+    "common_wrong_answers": [],
+    "id": "phpi-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Total d’une commande",
+    "instruction_fr": "total(array $lignes): int reçoit des lignes [quantité, prix] et doit renvoyer la somme des quantités × prix. Elle colle des textes avec . au lieu d’additionner, ce que strict_types refuse au retour. Corrige-la.",
+    "starter_code": "<?php\ndeclare(strict_types=1);\n\nfunction total(array $lignes): int\n{\n    $total = \"\";\n    foreach ($lignes as [$quantite, $prix]) {\n        $total = $total . ($quantite * $prix);\n    }\n    return $total;\n}\n",
+    "solution": "<?php\ndeclare(strict_types=1);\n\nfunction total(array $lignes): int\n{\n    $total = 0;\n    foreach ($lignes as [$quantite, $prix]) {\n        $total = $total + $quantite * $prix;\n    }\n    return $total;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "total",
+            "args": [
+              [
+                [
+                  2,
+                  600
+                ],
+                [
+                  1,
+                  1200
+                ]
+              ]
+            ],
+            "expected": 2400,
+            "expected_type": "int"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "total",
+            "args": [
+              []
+            ],
+            "expected": 0,
+            "expected_type": "int"
+          },
+          {
+            "name": "total",
+            "args": [
+              [
+                [
+                  1,
+                  250
+                ]
+              ]
+            ],
+            "expected": 250,
+            "expected_type": "int"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis le nom de l’erreur : TypeError au retour.",
+      "Le point colle des textes ; le plus additionne.",
+      "Pars de 0 et utilise +."
+    ],
+    "explanation_fr": "Le typage strict signale l’erreur au lieu de renvoyer un texte « 1200 1200 ».",
+    "common_wrong_answers": [],
+    "id": "phpi-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Facture",
+    "instruction_fr": "Écris facture(array $lignes, float $taux = 0.18): array qui renvoie [\"ht\" => total HT, \"tva\" => TVA arrondie à l’entier, \"ttc\" => ht + tva], tous des int. Les lignes sont des paires [quantité, prix].",
+    "starter_code": "<?php\ndeclare(strict_types=1);\n\nfunction facture(array $lignes, float $taux = 0.18): array\n{\n    return [];\n}\n",
+    "solution": "<?php\ndeclare(strict_types=1);\n\nfunction facture(array $lignes, float $taux = 0.18): array\n{\n    $ht = 0;\n    foreach ($lignes as [$quantite, $prix]) {\n        $ht += $quantite * $prix;\n    }\n    $tva = (int) round($ht * $taux);\n    return [\"ht\" => $ht, \"tva\" => $tva, \"ttc\" => $ht + $tva];\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "facture",
+            "args": [
+              [
+                [
+                  2,
+                  600
+                ],
+                [
+                  1,
+                  1200
+                ]
+              ]
+            ],
+            "expected": {
+              "ht": 2400,
+              "tva": 432,
+              "ttc": 2832
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "facture",
+            "args": [
+              [
+                [
+                  1,
+                  1000
+                ]
+              ],
+              0.0
+            ],
+            "expected": {
+              "ht": 1000,
+              "tva": 0,
+              "ttc": 1000
+            }
+          },
+          {
+            "name": "facture",
+            "args": [
+              []
+            ],
+            "expected": {
+              "ht": 0,
+              "tva": 0,
+              "ttc": 0
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Calcule d’abord le total HT avec une boucle.",
+      "Arrondis la TVA avec round puis convertis en int.",
+      "Renvoie un tableau associatif avec trois clés."
+    ],
+    "explanation_fr": "Un tableau associatif typé array regroupe plusieurs résultats liés.",
+    "common_wrong_answers": [],
+    "id": "phpi-m1-01-e4"
+  }
+]

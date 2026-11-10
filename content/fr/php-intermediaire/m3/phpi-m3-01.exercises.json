@@ -1,0 +1,242 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une exception métier",
+    "instruction_fr": "Crée la classe MontantInvalide qui étend Exception, et fais lever par payer(int $solde, int $montant): int une MontantInvalide(\"Montant invalide\") quand le montant est nul ou négatif ; sinon payer renvoie le solde diminué du montant. La fonction verifier fournie renvoie le résultat ou le message.",
+    "starter_code": "<?php\nfunction payer(int $solde, int $montant): int\n{\n    return $solde - $montant;\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction verifier(int $solde, int $montant): int|string\n{\n    try {\n        return payer($solde, $montant);\n    } catch (MontantInvalide $e) {\n        return \"refus : \" . $e->getMessage();\n    }\n}\n",
+    "solution": "<?php\nclass MontantInvalide extends Exception\n{\n}\n\nfunction payer(int $solde, int $montant): int\n{\n    if ($montant <= 0) {\n        throw new MontantInvalide(\"Montant invalide\");\n    }\n    return $solde - $montant;\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction verifier(int $solde, int $montant): int|string\n{\n    try {\n        return payer($solde, $montant);\n    } catch (MontantInvalide $e) {\n        return \"refus : \" . $e->getMessage();\n    }\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              1000,
+              -50
+            ],
+            "expected": "refus : Montant invalide"
+          },
+          {
+            "name": "verifier",
+            "args": [
+              1000,
+              400
+            ],
+            "expected": 600
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              1000,
+              0
+            ],
+            "expected": "refus : Montant invalide"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un montant négatif augmente le solde.",
+      "La classe MontantInvalide n’existe pas encore.",
+      "class MontantInvalide extends Exception {} puis throw dans payer."
+    ],
+    "explanation_fr": "Le nom de l’exception dit à l’appelant exactement ce qui s’est passé.",
+    "common_wrong_answers": [],
+    "id": "phpi-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Lire une quantité",
+    "instruction_fr": "Écris lireQuantite(string $texte): int : retire les espaces avec trim ; si le texte n’est pas fait uniquement de chiffres (preg_match('/^\\d+$/', …)) ou vaut 0, lève InvalidArgumentException(\"Quantité invalide : \" suivi du texte nettoyé) ; sinon renvoie l’entier. La fonction verifier fournie renvoie la quantité ou le message.",
+    "starter_code": "<?php\nfunction lireQuantite(string $texte): int\n{\n    return (int) $texte;\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction verifier(string $texte): int|string\n{\n    try {\n        return lireQuantite($texte);\n    } catch (InvalidArgumentException $e) {\n        return $e->getMessage();\n    }\n}\n",
+    "solution": "<?php\nfunction lireQuantite(string $texte): int\n{\n    $propre = trim($texte);\n    if (!preg_match('/^\\d+$/', $propre) || (int) $propre === 0) {\n        throw new InvalidArgumentException(\"Quantité invalide : \" . $propre);\n    }\n    return (int) $propre;\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction verifier(string $texte): int|string\n{\n    try {\n        return lireQuantite($texte);\n    } catch (InvalidArgumentException $e) {\n        return $e->getMessage();\n    }\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              " 12 "
+            ],
+            "expected": 12
+          },
+          {
+            "name": "verifier",
+            "args": [
+              "douze"
+            ],
+            "expected": "Quantité invalide : douze"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              "0"
+            ],
+            "expected": "Quantité invalide : 0"
+          },
+          {
+            "name": "verifier",
+            "args": [
+              "-3"
+            ],
+            "expected": "Quantité invalide : -3"
+          },
+          {
+            "name": "verifier",
+            "args": [
+              "2.5"
+            ],
+            "expected": "Quantité invalide : 2.5"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "(int) \"douze\" donne 0 sans prévenir.",
+      "Valide avec preg_match avant de convertir.",
+      "Lève l’exception avec le texte nettoyé dans le message."
+    ],
+    "explanation_fr": "Une conversion silencieuse cache l’erreur ; une exception la rend visible.",
+    "common_wrong_answers": [],
+    "id": "phpi-m3-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Ordre des catch",
+    "instruction_fr": "traiter(int $stock, int $quantite): string doit renvoyer \"rupture : message\" pour StockInsuffisant et \"erreur : message\" pour les autres exceptions. Le catch général est placé en premier et attrape tout. Corrige l’ordre.",
+    "starter_code": "<?php\nclass StockInsuffisant extends Exception\n{\n}\n\nfunction vendre(int $stock, int $quantite): int\n{\n    if ($quantite <= 0) {\n        throw new InvalidArgumentException(\"Quantité invalide\");\n    }\n    if ($quantite > $stock) {\n        throw new StockInsuffisant(\"Il reste seulement $stock article(s)\");\n    }\n    return $stock - $quantite;\n}\n\nfunction traiter(int $stock, int $quantite): string\n{\n    try {\n        return \"reste \" . vendre($stock, $quantite);\n    } catch (Exception $e) {\n        return \"erreur : \" . $e->getMessage();\n    } catch (StockInsuffisant $e) {\n        return \"rupture : \" . $e->getMessage();\n    }\n}\n",
+    "solution": "<?php\nclass StockInsuffisant extends Exception\n{\n}\n\nfunction vendre(int $stock, int $quantite): int\n{\n    if ($quantite <= 0) {\n        throw new InvalidArgumentException(\"Quantité invalide\");\n    }\n    if ($quantite > $stock) {\n        throw new StockInsuffisant(\"Il reste seulement $stock article(s)\");\n    }\n    return $stock - $quantite;\n}\n\nfunction traiter(int $stock, int $quantite): string\n{\n    try {\n        return \"reste \" . vendre($stock, $quantite);\n    } catch (StockInsuffisant $e) {\n        return \"rupture : \" . $e->getMessage();\n    } catch (Exception $e) {\n        return \"erreur : \" . $e->getMessage();\n    }\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "traiter",
+            "args": [
+              2,
+              5
+            ],
+            "expected": "rupture : Il reste seulement 2 article(s)"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "traiter",
+            "args": [
+              2,
+              0
+            ],
+            "expected": "erreur : Quantité invalide"
+          },
+          {
+            "name": "traiter",
+            "args": [
+              2,
+              1
+            ],
+            "expected": "reste 1"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une rupture est signalée comme une erreur générale.",
+      "StockInsuffisant hérite d’Exception : le premier catch l’attrape.",
+      "Place le catch StockInsuffisant avant le catch Exception."
+    ],
+    "explanation_fr": "Du plus précis au plus général : la règle évite les catch qui ne servent jamais.",
+    "common_wrong_answers": [],
+    "id": "phpi-m3-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Journée de ventes",
+    "instruction_fr": "Écris journee(int $stock, array $quantites): array avec vendre (fournie) : pour chaque quantité, tente la vente ; renvoie [\"acceptees\" => nombre de ventes réussies, \"refus\" => liste des messages d’erreur dans l’ordre, \"stock\" => stock final].",
+    "starter_code": "<?php\nclass StockInsuffisant extends Exception\n{\n}\n\nfunction vendre(int $stock, int $quantite): int\n{\n    if ($quantite <= 0) {\n        throw new InvalidArgumentException(\"Quantité invalide\");\n    }\n    if ($quantite > $stock) {\n        throw new StockInsuffisant(\"Il reste seulement $stock article(s)\");\n    }\n    return $stock - $quantite;\n}\n\nfunction journee(int $stock, array $quantites): array\n{\n    return [\"acceptees\" => count($quantites), \"refus\" => [], \"stock\" => $stock];\n}\n",
+    "solution": "<?php\nclass StockInsuffisant extends Exception\n{\n}\n\nfunction vendre(int $stock, int $quantite): int\n{\n    if ($quantite <= 0) {\n        throw new InvalidArgumentException(\"Quantité invalide\");\n    }\n    if ($quantite > $stock) {\n        throw new StockInsuffisant(\"Il reste seulement $stock article(s)\");\n    }\n    return $stock - $quantite;\n}\n\nfunction journee(int $stock, array $quantites): array\n{\n    $acceptees = 0;\n    $refus = [];\n    foreach ($quantites as $q) {\n        try {\n            $stock = vendre($stock, $q);\n            $acceptees++;\n        } catch (StockInsuffisant | InvalidArgumentException $e) {\n            $refus[] = $e->getMessage();\n        }\n    }\n    return [\"acceptees\" => $acceptees, \"refus\" => $refus, \"stock\" => $stock];\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "journee",
+            "args": [
+              10,
+              [
+                4,
+                0,
+                2,
+                9,
+                3
+              ]
+            ],
+            "expected": {
+              "acceptees": 3,
+              "refus": [
+                "Quantité invalide",
+                "Il reste seulement 4 article(s)"
+              ],
+              "stock": 1
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "journee",
+            "args": [
+              5,
+              []
+            ],
+            "expected": {
+              "acceptees": 0,
+              "refus": [],
+              "stock": 5
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Chaque vente peut échouer : un try par quantité.",
+      "Le stock ne change que si la vente réussit.",
+      "Un catch multiple regroupe les deux exceptions."
+    ],
+    "explanation_fr": "La journée continue malgré les refus, et chaque refus reste expliqué.",
+    "common_wrong_answers": [],
+    "id": "phpi-m3-01-e4"
+  }
+]

@@ -1,0 +1,218 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une classe fille",
+    "instruction_fr": "Écris la classe Promotion qui étend ArticleSimple : son constructeur reçoit nom, prix unitaire et pourcentage (int), et prix() renvoie le prix unitaire diminué du pourcentage, arrondi. Utilise parent::prix(). La fonction verifier fournie renvoie le libellé.",
+    "starter_code": "<?php\ninterface Affichable\n{\n    public function libelle(): string;\n}\n\nabstract class Article implements Affichable\n{\n    public function __construct(public readonly string $nom)\n    {\n    }\n\n    abstract public function prix(): int;\n\n    public function libelle(): string\n    {\n        return $this->nom . \" : \" . $this->prix() . \" FCFA\";\n    }\n}\n\nclass ArticleSimple extends Article\n{\n    public function __construct(string $nom, private int $prixUnitaire)\n    {\n        parent::__construct($nom);\n    }\n\n    public function prix(): int\n    {\n        return $this->prixUnitaire;\n    }\n}\n\nclass Lot extends Article\n{\n    public function __construct(string $nom, private int $prixUnitaire, private int $quantite, private float $remise)\n    {\n        parent::__construct($nom);\n    }\n\n    public function prix(): int\n    {\n        return (int) round($this->prixUnitaire * $this->quantite * (1 - $this->remise));\n    }\n}\n\nclass Promotion extends ArticleSimple\n{\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction verifier(string $nom, int $prix, int $pourcentage): string\n{\n    return (new Promotion($nom, $prix, $pourcentage))->libelle();\n}\n",
+    "solution": "<?php\ninterface Affichable\n{\n    public function libelle(): string;\n}\n\nabstract class Article implements Affichable\n{\n    public function __construct(public readonly string $nom)\n    {\n    }\n\n    abstract public function prix(): int;\n\n    public function libelle(): string\n    {\n        return $this->nom . \" : \" . $this->prix() . \" FCFA\";\n    }\n}\n\nclass ArticleSimple extends Article\n{\n    public function __construct(string $nom, private int $prixUnitaire)\n    {\n        parent::__construct($nom);\n    }\n\n    public function prix(): int\n    {\n        return $this->prixUnitaire;\n    }\n}\n\nclass Lot extends Article\n{\n    public function __construct(string $nom, private int $prixUnitaire, private int $quantite, private float $remise)\n    {\n        parent::__construct($nom);\n    }\n\n    public function prix(): int\n    {\n        return (int) round($this->prixUnitaire * $this->quantite * (1 - $this->remise));\n    }\n}\n\nclass Promotion extends ArticleSimple\n{\n    public function __construct(string $nom, int $prixUnitaire, private int $pourcentage)\n    {\n        parent::__construct($nom, $prixUnitaire);\n    }\n\n    public function prix(): int\n    {\n        return (int) round(parent::prix() * (100 - $this->pourcentage) / 100);\n    }\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction verifier(string $nom, int $prix, int $pourcentage): string\n{\n    return (new Promotion($nom, $prix, $pourcentage))->libelle();\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              "Huile",
+              1200,
+              10
+            ],
+            "expected": "Huile : 1080 FCFA"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              "Riz",
+              600,
+              0
+            ],
+            "expected": "Riz : 600 FCFA"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La classe vide ne sait pas recevoir le pourcentage.",
+      "Appelle parent::__construct($nom, $prixUnitaire).",
+      "prix() part de parent::prix()."
+    ],
+    "explanation_fr": "libelle, héritée d’Article, affiche automatiquement le nouveau prix.",
+    "common_wrong_answers": [],
+    "id": "phpi-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Respecter une interface",
+    "instruction_fr": "Écris la classe Service qui implémente Affichable : un constructeur promu (public string $nom, public int $tarifHoraire, public int $heures) et libelle() qui renvoie \"nom : total FCFA (heures h)\". La fonction verifier fournie accepte tout Affichable.",
+    "starter_code": "<?php\ninterface Affichable\n{\n    public function libelle(): string;\n}\n\nclass Service\n{\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction afficher(Affichable $x): string\n{\n    return $x->libelle();\n}\n\nfunction verifier(string $nom, int $tarif, int $heures): string\n{\n    return afficher(new Service($nom, $tarif, $heures));\n}\n",
+    "solution": "<?php\ninterface Affichable\n{\n    public function libelle(): string;\n}\n\nclass Service implements Affichable\n{\n    public function __construct(public string $nom, public int $tarifHoraire, public int $heures)\n    {\n    }\n\n    public function libelle(): string\n    {\n        return $this->nom . \" : \" . ($this->tarifHoraire * $this->heures) . \" FCFA (\" . $this->heures . \" h)\";\n    }\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction afficher(Affichable $x): string\n{\n    return $x->libelle();\n}\n\nfunction verifier(string $nom, int $tarif, int $heures): string\n{\n    return afficher(new Service($nom, $tarif, $heures));\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              "Cours de soutien",
+              2000,
+              3
+            ],
+            "expected": "Cours de soutien : 6000 FCFA (3 h)"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              "Réparation",
+              1500,
+              0
+            ],
+            "expected": "Réparation : 0 FCFA (0 h)"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La classe ne déclare pas implements Affichable.",
+      "afficher refuse un objet qui ne respecte pas le contrat.",
+      "Ajoute implements Affichable et la méthode libelle."
+    ],
+    "explanation_fr": "Un service n’est pas un article, mais il respecte le même contrat d’affichage.",
+    "common_wrong_answers": [],
+    "id": "phpi-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Constructeur parent oublié",
+    "instruction_fr": "La classe Lot ne remplit pas le nom hérité : son constructeur n’appelle pas le constructeur parent, et l’accès à la propriété readonly non initialisée échoue. Corrige-la.",
+    "starter_code": "<?php\ninterface Affichable\n{\n    public function libelle(): string;\n}\n\nabstract class Article implements Affichable\n{\n    public function __construct(public readonly string $nom)\n    {\n    }\n\n    abstract public function prix(): int;\n\n    public function libelle(): string\n    {\n        return $this->nom . \" : \" . $this->prix() . \" FCFA\";\n    }\n}\n\nclass ArticleSimple extends Article\n{\n    public function __construct(string $nom, private int $prixUnitaire)\n    {\n        parent::__construct($nom);\n    }\n\n    public function prix(): int\n    {\n        return $this->prixUnitaire;\n    }\n}\n\nclass Lot extends Article\n{\n    public function __construct(string $nom, private int $prixUnitaire, private int $quantite, private float $remise)\n    {\n    }\n\n    public function prix(): int\n    {\n        return (int) round($this->prixUnitaire * $this->quantite * (1 - $this->remise));\n    }\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction verifier(string $nom, int $prix, int $quantite, float $remise): string\n{\n    return (new Lot($nom, $prix, $quantite, $remise))->libelle();\n}\n",
+    "solution": "<?php\ninterface Affichable\n{\n    public function libelle(): string;\n}\n\nabstract class Article implements Affichable\n{\n    public function __construct(public readonly string $nom)\n    {\n    }\n\n    abstract public function prix(): int;\n\n    public function libelle(): string\n    {\n        return $this->nom . \" : \" . $this->prix() . \" FCFA\";\n    }\n}\n\nclass ArticleSimple extends Article\n{\n    public function __construct(string $nom, private int $prixUnitaire)\n    {\n        parent::__construct($nom);\n    }\n\n    public function prix(): int\n    {\n        return $this->prixUnitaire;\n    }\n}\n\nclass Lot extends Article\n{\n    public function __construct(string $nom, private int $prixUnitaire, private int $quantite, private float $remise)\n    {\n        parent::__construct($nom);\n    }\n\n    public function prix(): int\n    {\n        return (int) round($this->prixUnitaire * $this->quantite * (1 - $this->remise));\n    }\n}\n\n// Fonction de vérification fournie : ne la modifie pas.\nfunction verifier(string $nom, int $prix, int $quantite, float $remise): string\n{\n    return (new Lot($nom, $prix, $quantite, $remise))->libelle();\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              "Lot de cahiers",
+              300,
+              6,
+              0.1
+            ],
+            "expected": "Lot de cahiers : 1620 FCFA"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              "Pack",
+              250,
+              2,
+              0.0
+            ],
+            "expected": "Pack : 500 FCFA"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis le message : la propriété nom n’est pas initialisée.",
+      "C’est le constructeur d’Article qui remplit nom.",
+      "Ajoute parent::__construct($nom); dans le constructeur de Lot."
+    ],
+    "explanation_fr": "Une classe fille qui redéfinit le constructeur doit appeler celui du parent.",
+    "common_wrong_answers": [],
+    "id": "phpi-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Catalogue polymorphe",
+    "instruction_fr": "Écris catalogue(array $lignes): array : chaque ligne est [\"simple\", nom, prix] ou [\"lot\", nom, prix, quantité, remise]. Crée les objets correspondants (classes fournies), puis renvoie [\"libelles\" => liste des libellés dans l’ordre, \"total\" => somme des prix()].",
+    "starter_code": "<?php\ninterface Affichable\n{\n    public function libelle(): string;\n}\n\nabstract class Article implements Affichable\n{\n    public function __construct(public readonly string $nom)\n    {\n    }\n\n    abstract public function prix(): int;\n\n    public function libelle(): string\n    {\n        return $this->nom . \" : \" . $this->prix() . \" FCFA\";\n    }\n}\n\nclass ArticleSimple extends Article\n{\n    public function __construct(string $nom, private int $prixUnitaire)\n    {\n        parent::__construct($nom);\n    }\n\n    public function prix(): int\n    {\n        return $this->prixUnitaire;\n    }\n}\n\nclass Lot extends Article\n{\n    public function __construct(string $nom, private int $prixUnitaire, private int $quantite, private float $remise)\n    {\n        parent::__construct($nom);\n    }\n\n    public function prix(): int\n    {\n        return (int) round($this->prixUnitaire * $this->quantite * (1 - $this->remise));\n    }\n}\n\nfunction catalogue(array $lignes): array\n{\n    return [\"libelles\" => [], \"total\" => 0];\n}\n",
+    "solution": "<?php\ninterface Affichable\n{\n    public function libelle(): string;\n}\n\nabstract class Article implements Affichable\n{\n    public function __construct(public readonly string $nom)\n    {\n    }\n\n    abstract public function prix(): int;\n\n    public function libelle(): string\n    {\n        return $this->nom . \" : \" . $this->prix() . \" FCFA\";\n    }\n}\n\nclass ArticleSimple extends Article\n{\n    public function __construct(string $nom, private int $prixUnitaire)\n    {\n        parent::__construct($nom);\n    }\n\n    public function prix(): int\n    {\n        return $this->prixUnitaire;\n    }\n}\n\nclass Lot extends Article\n{\n    public function __construct(string $nom, private int $prixUnitaire, private int $quantite, private float $remise)\n    {\n        parent::__construct($nom);\n    }\n\n    public function prix(): int\n    {\n        return (int) round($this->prixUnitaire * $this->quantite * (1 - $this->remise));\n    }\n}\n\nfunction catalogue(array $lignes): array\n{\n    $articles = array_map(fn($l) => $l[0] === \"lot\" ? new Lot($l[1], $l[2], $l[3], $l[4]) : new ArticleSimple($l[1], $l[2]), $lignes);\n    return [\n        \"libelles\" => array_map(fn(Affichable $a) => $a->libelle(), $articles),\n        \"total\" => array_reduce($articles, fn($s, Article $a) => $s + $a->prix(), 0),\n    ];\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "catalogue",
+            "args": [
+              [
+                [
+                  "simple",
+                  "Savon",
+                  250
+                ],
+                [
+                  "lot",
+                  "Lot de 6 cahiers",
+                  300,
+                  6,
+                  0.1
+                ]
+              ]
+            ],
+            "expected": {
+              "libelles": [
+                "Savon : 250 FCFA",
+                "Lot de 6 cahiers : 1620 FCFA"
+              ],
+              "total": 1870
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "catalogue",
+            "args": [
+              []
+            ],
+            "expected": {
+              "libelles": [],
+              "total": 0
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Crée un objet par ligne selon son type.",
+      "array_map transforme les lignes en objets.",
+      "Les libellés et le total s’obtiennent sans savoir quel type d’article on traite."
+    ],
+    "explanation_fr": "Seule la création connaît les classes concrètes ; le reste du programme ne voit que des articles.",
+    "common_wrong_answers": [],
+    "id": "phpi-m2-03-e4"
+  }
+]

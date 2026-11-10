@@ -1,0 +1,354 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Classement",
+    "instruction_fr": "Écris classement(array $donnees): array : charge les élèves avec charger (fournie), trie-les par moyenne décroissante puis par nom, et renvoie la liste des noms.",
+    "starter_code": "<?php\nclass Eleve\n{\n    public function __construct(public readonly string $nom, public readonly string $classe, public readonly float $moyenne)\n    {\n    }\n}\n\nfunction charger(array $donnees): array\n{\n    return array_map(fn($d) => new Eleve($d[0], $d[1], $d[2]), $donnees);\n}\n\nfunction classement(array $donnees): array\n{\n    $eleves = charger($donnees);\n    usort($eleves, fn($a, $b) => $b->moyenne <=> $a->moyenne);\n    return array_column($eleves, \"nom\");\n}\n",
+    "solution": "<?php\nclass Eleve\n{\n    public function __construct(public readonly string $nom, public readonly string $classe, public readonly float $moyenne)\n    {\n    }\n}\n\nfunction charger(array $donnees): array\n{\n    return array_map(fn($d) => new Eleve($d[0], $d[1], $d[2]), $donnees);\n}\n\nfunction classement(array $donnees): array\n{\n    $eleves = charger($donnees);\n    usort($eleves, fn($a, $b) => ($b->moyenne <=> $a->moyenne) ?: strcmp($a->nom, $b->nom));\n    return array_column($eleves, \"nom\");\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "classement",
+            "args": [
+              [
+                [
+                  "Afi",
+                  "3e",
+                  14.5
+                ],
+                [
+                  "Kofi",
+                  "4e",
+                  9.0
+                ],
+                [
+                  "Yao",
+                  "3e",
+                  16.25
+                ],
+                [
+                  "Esi",
+                  "4e",
+                  14.5
+                ],
+                [
+                  "Ama",
+                  "3e",
+                  11.0
+                ]
+              ]
+            ],
+            "expected": [
+              "Yao",
+              "Afi",
+              "Esi",
+              "Ama",
+              "Kofi"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "classement",
+            "args": [
+              [
+                [
+                  "B",
+                  "3e",
+                  12.0
+                ],
+                [
+                  "A",
+                  "3e",
+                  12.0
+                ]
+              ]
+            ],
+            "expected": [
+              "A",
+              "B"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Afi et Esi sont ex aequo, et leur ordre n’est pas garanti.",
+      "Ajoute un second critère avec ?:.",
+      "strcmp($a->nom, $b->nom)"
+    ],
+    "explanation_fr": "Un classement publié doit être stable : le départage est une règle, pas un hasard.",
+    "common_wrong_answers": [],
+    "id": "phpi-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Élèves par classe",
+    "instruction_fr": "Écris parClasse(array $donnees): array qui renvoie un tableau classe => liste des noms triés alphabétiquement, les classes triées par ordre alphabétique (ksort).",
+    "starter_code": "<?php\nclass Eleve\n{\n    public function __construct(public readonly string $nom, public readonly string $classe, public readonly float $moyenne)\n    {\n    }\n}\n\nfunction charger(array $donnees): array\n{\n    return array_map(fn($d) => new Eleve($d[0], $d[1], $d[2]), $donnees);\n}\n\nfunction parClasse(array $donnees): array\n{\n    return [];\n}\n",
+    "solution": "<?php\nclass Eleve\n{\n    public function __construct(public readonly string $nom, public readonly string $classe, public readonly float $moyenne)\n    {\n    }\n}\n\nfunction charger(array $donnees): array\n{\n    return array_map(fn($d) => new Eleve($d[0], $d[1], $d[2]), $donnees);\n}\n\nfunction parClasse(array $donnees): array\n{\n    $groupes = [];\n    foreach (charger($donnees) as $e) {\n        $groupes[$e->classe][] = $e->nom;\n    }\n    foreach ($groupes as &$noms) {\n        sort($noms);\n    }\n    unset($noms);\n    ksort($groupes);\n    return $groupes;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "parClasse",
+            "args": [
+              [
+                [
+                  "Afi",
+                  "3e",
+                  14.5
+                ],
+                [
+                  "Kofi",
+                  "4e",
+                  9.0
+                ],
+                [
+                  "Yao",
+                  "3e",
+                  16.25
+                ],
+                [
+                  "Esi",
+                  "4e",
+                  14.5
+                ],
+                [
+                  "Ama",
+                  "3e",
+                  11.0
+                ]
+              ]
+            ],
+            "expected": {
+              "3e": [
+                "Afi",
+                "Ama",
+                "Yao"
+              ],
+              "4e": [
+                "Esi",
+                "Kofi"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "parClasse",
+            "args": [
+              [
+                [
+                  "Zoe",
+                  "5e",
+                  10.0
+                ]
+              ]
+            ],
+            "expected": {
+              "5e": [
+                "Zoe"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Range chaque nom dans la case de sa classe.",
+      "Trie chaque liste avec sort, puis les clés avec ksort.",
+      "Avec foreach par référence (&), pense à unset après la boucle."
+    ],
+    "explanation_fr": "Le regroupement prépare le conseil de classe en une seule passe.",
+    "common_wrong_answers": [],
+    "id": "phpi-m4-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Liste des admis",
+    "instruction_fr": "admis(array $donnees): array doit renvoyer la liste des noms des élèves ayant au moins 10, dans l’ordre d’origine. Elle oublie array_values : la liste garde des trous et devient un objet JSON. Corrige-la.",
+    "starter_code": "<?php\nclass Eleve\n{\n    public function __construct(public readonly string $nom, public readonly string $classe, public readonly float $moyenne)\n    {\n    }\n}\n\nfunction charger(array $donnees): array\n{\n    return array_map(fn($d) => new Eleve($d[0], $d[1], $d[2]), $donnees);\n}\n\nfunction admis(array $donnees): array\n{\n    $retenus = array_filter(charger($donnees), fn(Eleve $e) => $e->moyenne >= 10);\n    return array_map(fn(Eleve $e) => $e->nom, $retenus);\n}\n",
+    "solution": "<?php\nclass Eleve\n{\n    public function __construct(public readonly string $nom, public readonly string $classe, public readonly float $moyenne)\n    {\n    }\n}\n\nfunction charger(array $donnees): array\n{\n    return array_map(fn($d) => new Eleve($d[0], $d[1], $d[2]), $donnees);\n}\n\nfunction admis(array $donnees): array\n{\n    $retenus = array_filter(charger($donnees), fn(Eleve $e) => $e->moyenne >= 10);\n    return array_values(array_map(fn(Eleve $e) => $e->nom, $retenus));\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "admis",
+            "args": [
+              [
+                [
+                  "Afi",
+                  "3e",
+                  14.5
+                ],
+                [
+                  "Kofi",
+                  "4e",
+                  9.0
+                ],
+                [
+                  "Yao",
+                  "3e",
+                  16.25
+                ],
+                [
+                  "Esi",
+                  "4e",
+                  14.5
+                ],
+                [
+                  "Ama",
+                  "3e",
+                  11.0
+                ]
+              ]
+            ],
+            "expected": [
+              "Afi",
+              "Yao",
+              "Esi",
+              "Ama"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "admis",
+            "args": [
+              [
+                [
+                  "A",
+                  "3e",
+                  9.5
+                ],
+                [
+                  "B",
+                  "3e",
+                  10.0
+                ]
+              ]
+            ],
+            "expected": [
+              "B"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Kofi est retiré, mais les clés 0, 2, 3, 4 restent.",
+      "array_map conserve aussi ces clés.",
+      "Entoure le résultat de array_values."
+    ],
+    "explanation_fr": "Un résultat renvoyé à un autre programme doit être une vraie liste.",
+    "common_wrong_answers": [],
+    "id": "phpi-m4-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Statistiques de la classe",
+    "instruction_fr": "Écris statistiques(array $donnees): array qui renvoie [\"effectif\" => n, \"moyenne\" => moyenne générale arrondie à 2 décimales (0.0 si vide), \"meilleur\" => nom de la meilleure moyenne (premier par nom en cas d’égalité, null si vide), \"admis\" => nombre d’élèves à 10 ou plus].",
+    "starter_code": "<?php\nclass Eleve\n{\n    public function __construct(public readonly string $nom, public readonly string $classe, public readonly float $moyenne)\n    {\n    }\n}\n\nfunction charger(array $donnees): array\n{\n    return array_map(fn($d) => new Eleve($d[0], $d[1], $d[2]), $donnees);\n}\n\nfunction statistiques(array $donnees): array\n{\n    return [\"effectif\" => count($donnees), \"moyenne\" => 0.0, \"meilleur\" => null, \"admis\" => 0];\n}\n",
+    "solution": "<?php\nclass Eleve\n{\n    public function __construct(public readonly string $nom, public readonly string $classe, public readonly float $moyenne)\n    {\n    }\n}\n\nfunction charger(array $donnees): array\n{\n    return array_map(fn($d) => new Eleve($d[0], $d[1], $d[2]), $donnees);\n}\n\nfunction statistiques(array $donnees): array\n{\n    $eleves = charger($donnees);\n    $n = count($eleves);\n    if ($n === 0) {\n        return [\"effectif\" => 0, \"moyenne\" => 0.0, \"meilleur\" => null, \"admis\" => 0];\n    }\n    usort($eleves, fn($a, $b) => ($b->moyenne <=> $a->moyenne) ?: strcmp($a->nom, $b->nom));\n    $moyenne = round(array_sum(array_column($eleves, \"moyenne\")) / $n, 2);\n    $admis = count(array_filter($eleves, fn(Eleve $e) => $e->moyenne >= 10));\n    return [\"effectif\" => $n, \"moyenne\" => $moyenne, \"meilleur\" => $eleves[0]->nom, \"admis\" => $admis];\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "statistiques",
+            "args": [
+              [
+                [
+                  "Afi",
+                  "3e",
+                  14.5
+                ],
+                [
+                  "Kofi",
+                  "4e",
+                  9.0
+                ],
+                [
+                  "Yao",
+                  "3e",
+                  16.25
+                ],
+                [
+                  "Esi",
+                  "4e",
+                  14.5
+                ],
+                [
+                  "Ama",
+                  "3e",
+                  11.0
+                ]
+              ]
+            ],
+            "expected": {
+              "effectif": 5,
+              "moyenne": 13.05,
+              "meilleur": "Yao",
+              "admis": 4
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "statistiques",
+            "args": [
+              []
+            ],
+            "expected": {
+              "effectif": 0,
+              "moyenne": 0.0,
+              "meilleur": null,
+              "admis": 0
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Traite d’abord le cas sans élève.",
+      "Trie pour obtenir le meilleur en premier.",
+      "array_column puis array_sum pour la moyenne."
+    ],
+    "explanation_fr": "Quatre indicateurs, calculés à partir des mêmes objets, résument une classe entière.",
+    "common_wrong_answers": [],
+    "id": "phpi-m4-01-e4"
+  }
+]

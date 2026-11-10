@@ -1,0 +1,263 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Factorielle",
+    "instruction_fr": "Écris factorielle(n) de façon récursive : 1 pour n = 0, sinon n × factorielle(n - 1).",
+    "starter_code": "def factorielle(n):\n    return n * factorielle(n - 1)\n",
+    "solution": "def factorielle(n):\n    if n == 0:\n        return 1\n    return n * factorielle(n - 1)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "factorielle",
+            "args": [
+              3
+            ],
+            "unchanged_args": true,
+            "expected": 6
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "factorielle",
+            "args": [
+              0
+            ],
+            "unchanged_args": true,
+            "expected": 1
+          },
+          {
+            "name": "factorielle",
+            "args": [
+              10
+            ],
+            "unchanged_args": true,
+            "expected": 3628800
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : RecursionError.",
+      "Il manque le cas où la récursion s’arrête.",
+      "if n == 0: return 1"
+    ],
+    "explanation_fr": "Sans cas de base, une fonction récursive ne s’arrête jamais.",
+    "common_wrong_answers": [],
+    "id": "algo-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Maximum récursif",
+    "instruction_fr": "Écris maximum(liste) récursivement, sans max ni boucle : pour un seul élément, c’est lui ; sinon, le plus grand entre le premier élément et le maximum du reste. La liste n’est jamais vide.",
+    "starter_code": "def maximum(liste):\n    return liste[0]\n",
+    "solution": "def maximum(liste):\n    if len(liste) == 1:\n        return liste[0]\n    reste = maximum(liste[1:])\n    return liste[0] if liste[0] > reste else reste\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "maximum",
+            "args": [
+              [
+                4,
+                17,
+                9
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 17
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "maximum",
+            "args": [
+              [
+                5
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 5
+          },
+          {
+            "name": "maximum",
+            "args": [
+              [
+                -3,
+                -8,
+                -1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": -1
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le cas de base est la liste d’un seul élément.",
+      "Calcule le maximum du reste avec un appel récursif.",
+      "Compare-le au premier élément."
+    ],
+    "explanation_fr": "Le même schéma — premier élément et reste — résout beaucoup de problèmes sur les listes.",
+    "common_wrong_answers": [],
+    "id": "algo-m2-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Puissance",
+    "instruction_fr": "puissance(base, exposant) doit renvoyer base élevée à l’exposant (entier positif ou nul), récursivement. Son cas de base renvoie 0 au lieu de 1. Corrige-le.",
+    "starter_code": "def puissance(base, exposant):\n    if exposant == 0:\n        return 0\n    return base * puissance(base, exposant - 1)\n",
+    "solution": "def puissance(base, exposant):\n    if exposant == 0:\n        return 1\n    return base * puissance(base, exposant - 1)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "puissance",
+            "args": [
+              2,
+              10
+            ],
+            "unchanged_args": true,
+            "expected": 1024
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "puissance",
+            "args": [
+              7,
+              0
+            ],
+            "unchanged_args": true,
+            "expected": 1
+          },
+          {
+            "name": "puissance",
+            "args": [
+              3,
+              3
+            ],
+            "unchanged_args": true,
+            "expected": 27
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Tous les résultats valent 0.",
+      "Le cas de base est multiplié par tout le reste.",
+      "Une puissance d’exposant 0 vaut 1."
+    ],
+    "explanation_fr": "Un cas de base faux contamine tous les résultats.",
+    "common_wrong_answers": [],
+    "id": "algo-m2-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Aplatir une liste",
+    "instruction_fr": "Écris aplatir(liste) qui renvoie une liste simple contenant tous les éléments d’une liste imbriquée à n’importe quelle profondeur, dans l’ordre : [1, [2, [3, 4]], 5] donne [1, 2, 3, 4, 5].",
+    "starter_code": "def aplatir(liste):\n    return list(liste)\n",
+    "solution": "def aplatir(liste):\n    resultat = []\n    for element in liste:\n        if isinstance(element, list):\n            resultat += aplatir(element)\n        else:\n            resultat.append(element)\n    return resultat\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "aplatir",
+            "args": [
+              [
+                1,
+                [
+                  2,
+                  [
+                    3,
+                    4
+                  ]
+                ],
+                5
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "aplatir",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "aplatir",
+            "args": [
+              [
+                [
+                  [
+                    [
+                      "a"
+                    ]
+                  ]
+                ],
+                "b"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "a",
+              "b"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les sous-listes sont copiées telles quelles.",
+      "isinstance(element, list) repère une sous-liste.",
+      "Aplatis la sous-liste par un appel récursif et ajoute le résultat."
+    ],
+    "explanation_fr": "La profondeur inconnue est exactement le cas où la récursivité brille.",
+    "common_wrong_answers": [],
+    "id": "algo-m2-01-e4"
+  }
+]

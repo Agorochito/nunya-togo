@@ -1,0 +1,226 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Encaissé seulement",
+    "instruction_fr": "Écris encaisse(string $json): int avec charger (fournie) : renvoie la somme des cotisations des inscriptions valides au statut payé.",
+    "starter_code": "<?php\nenum Statut: string\n{\n    case Paye = \"paye\";\n    case Attente = \"attente\";\n    case Annule = \"annule\";\n\n    public function libelle(): string\n    {\n        return match ($this) {\n            Statut::Paye => \"payé\",\n            Statut::Attente => \"en attente\",\n            Statut::Annule => \"annulé\",\n        };\n    }\n}\n\nclass Inscription\n{\n    public function __construct(\n        public readonly string $nom,\n        public readonly string $courriel,\n        public readonly Statut $statut,\n        public readonly int $cotisation,\n    ) {\n        if (trim($nom) === \"\") {\n            throw new InvalidArgumentException(\"nom requis\");\n        }\n        if (filter_var($courriel, FILTER_VALIDATE_EMAIL) === false) {\n            throw new InvalidArgumentException(\"courriel invalide\");\n        }\n        if ($cotisation < 0) {\n            throw new InvalidArgumentException(\"cotisation invalide\");\n        }\n    }\n\n    public static function depuisTableau(array $d): self\n    {\n        $statut = Statut::tryFrom($d[\"statut\"] ?? \"\");\n        if ($statut === null) {\n            throw new InvalidArgumentException(\"statut invalide\");\n        }\n        return new self($d[\"nom\"] ?? \"\", $d[\"courriel\"] ?? \"\", $statut, (int) ($d[\"cotisation\"] ?? 0));\n    }\n}\n\nfunction charger(string $json): array\n{\n    try {\n        $lignes = json_decode($json, true, 512, JSON_THROW_ON_ERROR);\n    } catch (JsonException $e) {\n        return [[], [\"JSON invalide\"]];\n    }\n    $inscriptions = [];\n    $erreurs = [];\n    foreach ($lignes as $i => $ligne) {\n        try {\n            $inscriptions[] = Inscription::depuisTableau($ligne);\n        } catch (InvalidArgumentException $e) {\n            $erreurs[] = \"ligne \" . ($i + 1) . \" : \" . $e->getMessage();\n        }\n    }\n    return [$inscriptions, $erreurs];\n}\n\nfunction encaisse(string $json): int\n{\n    [$valides] = charger($json);\n    return array_sum(array_map(fn(Inscription $i) => $i->cotisation, $valides));\n}\n",
+    "solution": "<?php\nenum Statut: string\n{\n    case Paye = \"paye\";\n    case Attente = \"attente\";\n    case Annule = \"annule\";\n\n    public function libelle(): string\n    {\n        return match ($this) {\n            Statut::Paye => \"payé\",\n            Statut::Attente => \"en attente\",\n            Statut::Annule => \"annulé\",\n        };\n    }\n}\n\nclass Inscription\n{\n    public function __construct(\n        public readonly string $nom,\n        public readonly string $courriel,\n        public readonly Statut $statut,\n        public readonly int $cotisation,\n    ) {\n        if (trim($nom) === \"\") {\n            throw new InvalidArgumentException(\"nom requis\");\n        }\n        if (filter_var($courriel, FILTER_VALIDATE_EMAIL) === false) {\n            throw new InvalidArgumentException(\"courriel invalide\");\n        }\n        if ($cotisation < 0) {\n            throw new InvalidArgumentException(\"cotisation invalide\");\n        }\n    }\n\n    public static function depuisTableau(array $d): self\n    {\n        $statut = Statut::tryFrom($d[\"statut\"] ?? \"\");\n        if ($statut === null) {\n            throw new InvalidArgumentException(\"statut invalide\");\n        }\n        return new self($d[\"nom\"] ?? \"\", $d[\"courriel\"] ?? \"\", $statut, (int) ($d[\"cotisation\"] ?? 0));\n    }\n}\n\nfunction charger(string $json): array\n{\n    try {\n        $lignes = json_decode($json, true, 512, JSON_THROW_ON_ERROR);\n    } catch (JsonException $e) {\n        return [[], [\"JSON invalide\"]];\n    }\n    $inscriptions = [];\n    $erreurs = [];\n    foreach ($lignes as $i => $ligne) {\n        try {\n            $inscriptions[] = Inscription::depuisTableau($ligne);\n        } catch (InvalidArgumentException $e) {\n            $erreurs[] = \"ligne \" . ($i + 1) . \" : \" . $e->getMessage();\n        }\n    }\n    return [$inscriptions, $erreurs];\n}\n\nfunction encaisse(string $json): int\n{\n    [$valides] = charger($json);\n    $payees = array_filter($valides, fn(Inscription $i) => $i->statut === Statut::Paye);\n    return array_sum(array_map(fn(Inscription $i) => $i->cotisation, $payees));\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "encaisse",
+            "args": [
+              "[{\"nom\": \"Afi\", \"courriel\": \"afi@asso.tg\", \"statut\": \"paye\", \"cotisation\": 2000}, {\"nom\": \"Kofi\", \"courriel\": \"kofi@asso\", \"statut\": \"paye\", \"cotisation\": 2000}, {\"nom\": \"Esi\", \"courriel\": \"esi@asso.tg\", \"statut\": \"attente\", \"cotisation\": 2000}, {\"nom\": \"Yao\", \"courriel\": \"yao@asso.tg\", \"statut\": \"rembourse\", \"cotisation\": 1000}, {\"nom\": \"Ama\", \"courriel\": \"ama@asso.tg\", \"statut\": \"paye\", \"cotisation\": 1500}]"
+            ],
+            "expected": 3500
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "encaisse",
+            "args": [
+              "[]"
+            ],
+            "expected": 0
+          },
+          {
+            "name": "encaisse",
+            "args": [
+              "{"
+            ],
+            "expected": 0
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La cotisation en attente d’Esi est comptée.",
+      "Filtre sur le statut payé.",
+      "$i->statut === Statut::Paye"
+    ],
+    "explanation_fr": "Comparer des cas d’enum évite les fautes de frappe de statuts en texte.",
+    "common_wrong_answers": [],
+    "id": "phpi-m4-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "À relancer",
+    "instruction_fr": "Écris aRelancer(string $json): array avec charger (fournie) : renvoie les courriels des inscriptions valides en attente de paiement, triés alphabétiquement.",
+    "starter_code": "<?php\nenum Statut: string\n{\n    case Paye = \"paye\";\n    case Attente = \"attente\";\n    case Annule = \"annule\";\n\n    public function libelle(): string\n    {\n        return match ($this) {\n            Statut::Paye => \"payé\",\n            Statut::Attente => \"en attente\",\n            Statut::Annule => \"annulé\",\n        };\n    }\n}\n\nclass Inscription\n{\n    public function __construct(\n        public readonly string $nom,\n        public readonly string $courriel,\n        public readonly Statut $statut,\n        public readonly int $cotisation,\n    ) {\n        if (trim($nom) === \"\") {\n            throw new InvalidArgumentException(\"nom requis\");\n        }\n        if (filter_var($courriel, FILTER_VALIDATE_EMAIL) === false) {\n            throw new InvalidArgumentException(\"courriel invalide\");\n        }\n        if ($cotisation < 0) {\n            throw new InvalidArgumentException(\"cotisation invalide\");\n        }\n    }\n\n    public static function depuisTableau(array $d): self\n    {\n        $statut = Statut::tryFrom($d[\"statut\"] ?? \"\");\n        if ($statut === null) {\n            throw new InvalidArgumentException(\"statut invalide\");\n        }\n        return new self($d[\"nom\"] ?? \"\", $d[\"courriel\"] ?? \"\", $statut, (int) ($d[\"cotisation\"] ?? 0));\n    }\n}\n\nfunction charger(string $json): array\n{\n    try {\n        $lignes = json_decode($json, true, 512, JSON_THROW_ON_ERROR);\n    } catch (JsonException $e) {\n        return [[], [\"JSON invalide\"]];\n    }\n    $inscriptions = [];\n    $erreurs = [];\n    foreach ($lignes as $i => $ligne) {\n        try {\n            $inscriptions[] = Inscription::depuisTableau($ligne);\n        } catch (InvalidArgumentException $e) {\n            $erreurs[] = \"ligne \" . ($i + 1) . \" : \" . $e->getMessage();\n        }\n    }\n    return [$inscriptions, $erreurs];\n}\n\nfunction aRelancer(string $json): array\n{\n    return [];\n}\n",
+    "solution": "<?php\nenum Statut: string\n{\n    case Paye = \"paye\";\n    case Attente = \"attente\";\n    case Annule = \"annule\";\n\n    public function libelle(): string\n    {\n        return match ($this) {\n            Statut::Paye => \"payé\",\n            Statut::Attente => \"en attente\",\n            Statut::Annule => \"annulé\",\n        };\n    }\n}\n\nclass Inscription\n{\n    public function __construct(\n        public readonly string $nom,\n        public readonly string $courriel,\n        public readonly Statut $statut,\n        public readonly int $cotisation,\n    ) {\n        if (trim($nom) === \"\") {\n            throw new InvalidArgumentException(\"nom requis\");\n        }\n        if (filter_var($courriel, FILTER_VALIDATE_EMAIL) === false) {\n            throw new InvalidArgumentException(\"courriel invalide\");\n        }\n        if ($cotisation < 0) {\n            throw new InvalidArgumentException(\"cotisation invalide\");\n        }\n    }\n\n    public static function depuisTableau(array $d): self\n    {\n        $statut = Statut::tryFrom($d[\"statut\"] ?? \"\");\n        if ($statut === null) {\n            throw new InvalidArgumentException(\"statut invalide\");\n        }\n        return new self($d[\"nom\"] ?? \"\", $d[\"courriel\"] ?? \"\", $statut, (int) ($d[\"cotisation\"] ?? 0));\n    }\n}\n\nfunction charger(string $json): array\n{\n    try {\n        $lignes = json_decode($json, true, 512, JSON_THROW_ON_ERROR);\n    } catch (JsonException $e) {\n        return [[], [\"JSON invalide\"]];\n    }\n    $inscriptions = [];\n    $erreurs = [];\n    foreach ($lignes as $i => $ligne) {\n        try {\n            $inscriptions[] = Inscription::depuisTableau($ligne);\n        } catch (InvalidArgumentException $e) {\n            $erreurs[] = \"ligne \" . ($i + 1) . \" : \" . $e->getMessage();\n        }\n    }\n    return [$inscriptions, $erreurs];\n}\n\nfunction aRelancer(string $json): array\n{\n    [$valides] = charger($json);\n    $courriels = array_map(fn(Inscription $i) => $i->courriel, array_filter($valides, fn(Inscription $i) => $i->statut === Statut::Attente));\n    sort($courriels);\n    return $courriels;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "aRelancer",
+            "args": [
+              "[{\"nom\": \"Afi\", \"courriel\": \"afi@asso.tg\", \"statut\": \"paye\", \"cotisation\": 2000}, {\"nom\": \"Kofi\", \"courriel\": \"kofi@asso\", \"statut\": \"paye\", \"cotisation\": 2000}, {\"nom\": \"Esi\", \"courriel\": \"esi@asso.tg\", \"statut\": \"attente\", \"cotisation\": 2000}, {\"nom\": \"Yao\", \"courriel\": \"yao@asso.tg\", \"statut\": \"rembourse\", \"cotisation\": 1000}, {\"nom\": \"Ama\", \"courriel\": \"ama@asso.tg\", \"statut\": \"paye\", \"cotisation\": 1500}]"
+            ],
+            "expected": [
+              "esi@asso.tg"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "aRelancer",
+            "args": [
+              "[{\"nom\": \"B\", \"courriel\": \"b@x.tg\", \"statut\": \"attente\", \"cotisation\": 1}, {\"nom\": \"A\", \"courriel\": \"a@x.tg\", \"statut\": \"attente\", \"cotisation\": 1}]"
+            ],
+            "expected": [
+              "a@x.tg",
+              "b@x.tg"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Filtre le statut en attente.",
+      "Extrais les courriels.",
+      "sort renumérote la liste en la triant."
+    ],
+    "explanation_fr": "La liste de relance est prête à être copiée dans un message groupé.",
+    "common_wrong_answers": [],
+    "id": "phpi-m4-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Chargement fragile",
+    "instruction_fr": "chargerFragile(string $json): array doit renvoyer [nombre de valides, liste des erreurs]. Elle met tout le traitement dans un seul try : la première ligne invalide arrête tout. Déplace le try dans la boucle pour traiter chaque ligne.",
+    "starter_code": "<?php\nenum Statut: string\n{\n    case Paye = \"paye\";\n    case Attente = \"attente\";\n    case Annule = \"annule\";\n\n    public function libelle(): string\n    {\n        return match ($this) {\n            Statut::Paye => \"payé\",\n            Statut::Attente => \"en attente\",\n            Statut::Annule => \"annulé\",\n        };\n    }\n}\n\nclass Inscription\n{\n    public function __construct(\n        public readonly string $nom,\n        public readonly string $courriel,\n        public readonly Statut $statut,\n        public readonly int $cotisation,\n    ) {\n        if (trim($nom) === \"\") {\n            throw new InvalidArgumentException(\"nom requis\");\n        }\n        if (filter_var($courriel, FILTER_VALIDATE_EMAIL) === false) {\n            throw new InvalidArgumentException(\"courriel invalide\");\n        }\n        if ($cotisation < 0) {\n            throw new InvalidArgumentException(\"cotisation invalide\");\n        }\n    }\n\n    public static function depuisTableau(array $d): self\n    {\n        $statut = Statut::tryFrom($d[\"statut\"] ?? \"\");\n        if ($statut === null) {\n            throw new InvalidArgumentException(\"statut invalide\");\n        }\n        return new self($d[\"nom\"] ?? \"\", $d[\"courriel\"] ?? \"\", $statut, (int) ($d[\"cotisation\"] ?? 0));\n    }\n}\n\nfunction chargerFragile(string $json): array\n{\n    $valides = 0;\n    $erreurs = [];\n    try {\n        foreach (json_decode($json, true) as $i => $ligne) {\n            Inscription::depuisTableau($ligne);\n            $valides++;\n        }\n    } catch (InvalidArgumentException $e) {\n        $erreurs[] = $e->getMessage();\n    }\n    return [$valides, $erreurs];\n}\n",
+    "solution": "<?php\nenum Statut: string\n{\n    case Paye = \"paye\";\n    case Attente = \"attente\";\n    case Annule = \"annule\";\n\n    public function libelle(): string\n    {\n        return match ($this) {\n            Statut::Paye => \"payé\",\n            Statut::Attente => \"en attente\",\n            Statut::Annule => \"annulé\",\n        };\n    }\n}\n\nclass Inscription\n{\n    public function __construct(\n        public readonly string $nom,\n        public readonly string $courriel,\n        public readonly Statut $statut,\n        public readonly int $cotisation,\n    ) {\n        if (trim($nom) === \"\") {\n            throw new InvalidArgumentException(\"nom requis\");\n        }\n        if (filter_var($courriel, FILTER_VALIDATE_EMAIL) === false) {\n            throw new InvalidArgumentException(\"courriel invalide\");\n        }\n        if ($cotisation < 0) {\n            throw new InvalidArgumentException(\"cotisation invalide\");\n        }\n    }\n\n    public static function depuisTableau(array $d): self\n    {\n        $statut = Statut::tryFrom($d[\"statut\"] ?? \"\");\n        if ($statut === null) {\n            throw new InvalidArgumentException(\"statut invalide\");\n        }\n        return new self($d[\"nom\"] ?? \"\", $d[\"courriel\"] ?? \"\", $statut, (int) ($d[\"cotisation\"] ?? 0));\n    }\n}\n\nfunction chargerFragile(string $json): array\n{\n    $valides = 0;\n    $erreurs = [];\n    foreach (json_decode($json, true) as $i => $ligne) {\n        try {\n            Inscription::depuisTableau($ligne);\n            $valides++;\n        } catch (InvalidArgumentException $e) {\n            $erreurs[] = \"ligne \" . ($i + 1) . \" : \" . $e->getMessage();\n        }\n    }\n    return [$valides, $erreurs];\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chargerFragile",
+            "args": [
+              "[{\"nom\": \"Afi\", \"courriel\": \"afi@asso.tg\", \"statut\": \"paye\", \"cotisation\": 2000}, {\"nom\": \"Kofi\", \"courriel\": \"kofi@asso\", \"statut\": \"paye\", \"cotisation\": 2000}, {\"nom\": \"Esi\", \"courriel\": \"esi@asso.tg\", \"statut\": \"attente\", \"cotisation\": 2000}, {\"nom\": \"Yao\", \"courriel\": \"yao@asso.tg\", \"statut\": \"rembourse\", \"cotisation\": 1000}, {\"nom\": \"Ama\", \"courriel\": \"ama@asso.tg\", \"statut\": \"paye\", \"cotisation\": 1500}]"
+            ],
+            "expected": [
+              3,
+              [
+                "ligne 2 : courriel invalide",
+                "ligne 4 : statut invalide"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chargerFragile",
+            "args": [
+              "[]"
+            ],
+            "expected": [
+              0,
+              []
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Après Kofi, plus aucune ligne n’est traitée.",
+      "Le try doit entourer une seule ligne.",
+      "Ajoute aussi le numéro de ligne au message."
+    ],
+    "explanation_fr": "Le placement du try décide de ce qui s’arrête en cas d’erreur.",
+    "common_wrong_answers": [],
+    "id": "phpi-m4-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Rapport du trésorier",
+    "instruction_fr": "Écris rapport(string $json): array avec charger (fournie) : renvoie [\"valides\" => nombre, \"encaisse\" => total des cotisations payées, \"par_statut\" => [libellé => nombre] pour chaque cas de l’enum dans l’ordre de Statut::cases(), \"erreurs\" => liste des erreurs de charger].",
+    "starter_code": "<?php\nenum Statut: string\n{\n    case Paye = \"paye\";\n    case Attente = \"attente\";\n    case Annule = \"annule\";\n\n    public function libelle(): string\n    {\n        return match ($this) {\n            Statut::Paye => \"payé\",\n            Statut::Attente => \"en attente\",\n            Statut::Annule => \"annulé\",\n        };\n    }\n}\n\nclass Inscription\n{\n    public function __construct(\n        public readonly string $nom,\n        public readonly string $courriel,\n        public readonly Statut $statut,\n        public readonly int $cotisation,\n    ) {\n        if (trim($nom) === \"\") {\n            throw new InvalidArgumentException(\"nom requis\");\n        }\n        if (filter_var($courriel, FILTER_VALIDATE_EMAIL) === false) {\n            throw new InvalidArgumentException(\"courriel invalide\");\n        }\n        if ($cotisation < 0) {\n            throw new InvalidArgumentException(\"cotisation invalide\");\n        }\n    }\n\n    public static function depuisTableau(array $d): self\n    {\n        $statut = Statut::tryFrom($d[\"statut\"] ?? \"\");\n        if ($statut === null) {\n            throw new InvalidArgumentException(\"statut invalide\");\n        }\n        return new self($d[\"nom\"] ?? \"\", $d[\"courriel\"] ?? \"\", $statut, (int) ($d[\"cotisation\"] ?? 0));\n    }\n}\n\nfunction charger(string $json): array\n{\n    try {\n        $lignes = json_decode($json, true, 512, JSON_THROW_ON_ERROR);\n    } catch (JsonException $e) {\n        return [[], [\"JSON invalide\"]];\n    }\n    $inscriptions = [];\n    $erreurs = [];\n    foreach ($lignes as $i => $ligne) {\n        try {\n            $inscriptions[] = Inscription::depuisTableau($ligne);\n        } catch (InvalidArgumentException $e) {\n            $erreurs[] = \"ligne \" . ($i + 1) . \" : \" . $e->getMessage();\n        }\n    }\n    return [$inscriptions, $erreurs];\n}\n\nfunction rapport(string $json): array\n{\n    return [\"valides\" => 0, \"encaisse\" => 0, \"par_statut\" => [], \"erreurs\" => []];\n}\n",
+    "solution": "<?php\nenum Statut: string\n{\n    case Paye = \"paye\";\n    case Attente = \"attente\";\n    case Annule = \"annule\";\n\n    public function libelle(): string\n    {\n        return match ($this) {\n            Statut::Paye => \"payé\",\n            Statut::Attente => \"en attente\",\n            Statut::Annule => \"annulé\",\n        };\n    }\n}\n\nclass Inscription\n{\n    public function __construct(\n        public readonly string $nom,\n        public readonly string $courriel,\n        public readonly Statut $statut,\n        public readonly int $cotisation,\n    ) {\n        if (trim($nom) === \"\") {\n            throw new InvalidArgumentException(\"nom requis\");\n        }\n        if (filter_var($courriel, FILTER_VALIDATE_EMAIL) === false) {\n            throw new InvalidArgumentException(\"courriel invalide\");\n        }\n        if ($cotisation < 0) {\n            throw new InvalidArgumentException(\"cotisation invalide\");\n        }\n    }\n\n    public static function depuisTableau(array $d): self\n    {\n        $statut = Statut::tryFrom($d[\"statut\"] ?? \"\");\n        if ($statut === null) {\n            throw new InvalidArgumentException(\"statut invalide\");\n        }\n        return new self($d[\"nom\"] ?? \"\", $d[\"courriel\"] ?? \"\", $statut, (int) ($d[\"cotisation\"] ?? 0));\n    }\n}\n\nfunction charger(string $json): array\n{\n    try {\n        $lignes = json_decode($json, true, 512, JSON_THROW_ON_ERROR);\n    } catch (JsonException $e) {\n        return [[], [\"JSON invalide\"]];\n    }\n    $inscriptions = [];\n    $erreurs = [];\n    foreach ($lignes as $i => $ligne) {\n        try {\n            $inscriptions[] = Inscription::depuisTableau($ligne);\n        } catch (InvalidArgumentException $e) {\n            $erreurs[] = \"ligne \" . ($i + 1) . \" : \" . $e->getMessage();\n        }\n    }\n    return [$inscriptions, $erreurs];\n}\n\nfunction rapport(string $json): array\n{\n    [$valides, $erreurs] = charger($json);\n    $parStatut = [];\n    foreach (Statut::cases() as $cas) {\n        $parStatut[$cas->libelle()] = 0;\n    }\n    $encaisse = 0;\n    foreach ($valides as $i) {\n        $parStatut[$i->statut->libelle()]++;\n        if ($i->statut === Statut::Paye) {\n            $encaisse += $i->cotisation;\n        }\n    }\n    return [\"valides\" => count($valides), \"encaisse\" => $encaisse, \"par_statut\" => $parStatut, \"erreurs\" => $erreurs];\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rapport",
+            "args": [
+              "[{\"nom\": \"Afi\", \"courriel\": \"afi@asso.tg\", \"statut\": \"paye\", \"cotisation\": 2000}, {\"nom\": \"Kofi\", \"courriel\": \"kofi@asso\", \"statut\": \"paye\", \"cotisation\": 2000}, {\"nom\": \"Esi\", \"courriel\": \"esi@asso.tg\", \"statut\": \"attente\", \"cotisation\": 2000}, {\"nom\": \"Yao\", \"courriel\": \"yao@asso.tg\", \"statut\": \"rembourse\", \"cotisation\": 1000}, {\"nom\": \"Ama\", \"courriel\": \"ama@asso.tg\", \"statut\": \"paye\", \"cotisation\": 1500}]"
+            ],
+            "expected": {
+              "valides": 3,
+              "encaisse": 3500,
+              "par_statut": {
+                "payé": 2,
+                "en attente": 1,
+                "annulé": 0
+              },
+              "erreurs": [
+                "ligne 2 : courriel invalide",
+                "ligne 4 : statut invalide"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rapport",
+            "args": [
+              "[{"
+            ],
+            "expected": {
+              "valides": 0,
+              "encaisse": 0,
+              "par_statut": {
+                "payé": 0,
+                "en attente": 0,
+                "annulé": 0
+              },
+              "erreurs": [
+                "JSON invalide"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Commence par charger, qui sépare valides et erreurs.",
+      "Initialise un compteur par cas de l’enum.",
+      "N’additionne que les cotisations payées."
+    ],
+    "explanation_fr": "Le trésorier présente un bilan juste, et chaque fiche écartée a son explication.",
+    "common_wrong_answers": [],
+    "id": "phpi-m4-03-e4"
+  }
+]

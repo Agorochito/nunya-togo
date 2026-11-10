@@ -1,5 +1,17 @@
 # Historique
 
+## 5.18.0 — 10 novembre 2026
+
+- Nouveau cours : **PHP intermédiaire : objets et données**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, sur le vrai PHP 8.3 hors ligne : declare(strict_types=1), types nullables et arguments nommés, array_map/array_filter/array_reduce/usort et <=>, sprintf, number_format et match, classes avec constructeur promu, private et readonly, constantes et fabriques statiques, héritage, classes abstraites et interfaces, exceptions personnalisées et finally, JSON avec JSON_THROW_ON_ERROR, énumérations et transitions d’état, collections d’objets, validation avec filter_var et échappement avec htmlspecialchars, puis gestion des inscriptions d’une association.
+- L’atelier PHP accepte declare(strict_types=1) sur la ligne qui suit <?php, comme on l’écrit d’habitude (les numéros de ligne des erreurs restent exacts).
+- Le cours remplace l’étape « PHP intermédiaire — en préparation » du parcours back-end.
+- Nouveau cours : **Algorithmes et structures de données**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, en Python hors ligne : complexité, recherche dichotomique, tris simples, récursivité, tri fusion, tri rapide, piles, files, dictionnaires et ensembles, graphes, parcours en largeur et en profondeur, tri topologique et plus court chemin entre villes du Togo.
+- Nouveau cours : **Qualité logicielle : tester, déboguer, relire**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, en Python hors ligne : assert et tests en tableau, cas limites et classes d’équivalence, lecture des traces, débogage par hypothèses et par dichotomie, pièges classiques de Python, noms et petites fonctions, constantes, docstrings, doctests et annotations, développement piloté par les tests, revue de code et petit linter. Les tests écrits par l’élève sont éprouvés par des versions volontairement défectueuses du code (test par mutation).
+- Le parcours Ingénieur·e logiciel est complet : les deux étapes « en préparation » sont devenues ces deux cours.
+- Ambiance **Verre liquide** redessinée : plus aucune teinte verte. Le mode sombre passe sur un fond nuit traversé de bleu, violet, rose et ambre ; le mode clair devient un verre blanc dépoli à accent saphir. Panneaux plus flous et plus lumineux sur leurs bords ; tous les textes restent au-dessus de 4,5:1 sur chaque zone de couleur.
+- Sur ordinateur, la barre latérale se replie en un rail d’icônes (bouton en haut de la barre) ; les liens gardent leur nom accessible et une info-bulle, et le choix reste sur l’appareil.
+- Une réussite d’exercice est maintenant célébrée : le message de réussite apparaît avec une petite animation et le bouton « exercice suivant » s’illumine. Les animations respectent la préférence « réduire les animations ».
+
 ## 5.17.0 — 10 novembre 2026
 
 - Nouveau cours : **SQL intermédiaire : analyser les données d’une boutique**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, sur le vrai SQLite hors ligne : CASE et agrégation conditionnelle, fonctions de texte et de dates, UNION/INTERSECT/EXCEPT, sous-requêtes scalaires et corrélées, WITH et requêtes récursives (chaîne de parrainage, calendrier), ROW_NUMBER/RANK/DENSE_RANK, cumuls et moyennes glissantes, LAG/LEAD, vues et index (dont unique), UPSERT, déclencheurs qui tiennent le stock à jour et refusent une vente impossible, puis tableau de bord complet.

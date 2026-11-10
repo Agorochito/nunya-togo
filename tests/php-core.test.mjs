@@ -22,6 +22,9 @@ describe('PHP runner helpers',()=>{
   expect(script.split('\n')[0]).toContain("define('STDIN'");
   const strict=buildScript('<?php declare(strict_types=1);\necho 1;',[],'t');
   expect(strict.startsWith('<?php declare(strict_types=1);')).toBe(true);
+  const nextLine=buildScript('<?php\ndeclare(strict_types=1);\n\necho 1;',[],'t');
+  expect(nextLine.startsWith("<?php\ndeclare(strict_types=1); if(!defined('STDIN'))")).toBe(true);
+  expect(nextLine.split('\n').length).toBe(4);
  });
  it('rejects unsafe check names',()=>{
   expect(()=>buildScript('<?php',[{name:'system("x")'}],'t')).toThrow(/invalide/);

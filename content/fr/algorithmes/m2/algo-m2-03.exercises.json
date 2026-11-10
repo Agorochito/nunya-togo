@@ -1,0 +1,380 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Partition",
+    "instruction_fr": "Écris partition(liste, pivot) qui renvoie [petits, egaux, grands] : les éléments plus petits, égaux et plus grands que le pivot, chacun dans l’ordre d’origine.",
+    "starter_code": "def partition(liste, pivot):\n    petits = [x for x in liste if x < pivot]\n    grands = [x for x in liste if x > pivot]\n    return [petits, [], grands]\n",
+    "solution": "def partition(liste, pivot):\n    petits = [x for x in liste if x < pivot]\n    egaux = [x for x in liste if x == pivot]\n    grands = [x for x in liste if x > pivot]\n    return [petits, egaux, grands]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "partition",
+            "args": [
+              [
+                7,
+                2,
+                9,
+                4,
+                7,
+                1
+              ],
+              7
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                2,
+                4,
+                1
+              ],
+              [
+                7,
+                7
+              ],
+              [
+                9
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "partition",
+            "args": [
+              [],
+              3
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [],
+              [],
+              []
+            ]
+          },
+          {
+            "name": "partition",
+            "args": [
+              [
+                5,
+                5
+              ],
+              5
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [],
+              [
+                5,
+                5
+              ],
+              []
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les éléments égaux au pivot disparaissent.",
+      "Il faut un troisième groupe.",
+      "egaux = [x for x in liste if x == pivot]"
+    ],
+    "explanation_fr": "Trois groupes rendent la partition juste, même avec des doublons.",
+    "common_wrong_answers": [],
+    "id": "algo-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Tri rapide",
+    "instruction_fr": "Écris tri_rapide(liste) : liste de 0 ou 1 élément renvoyée en copie ; sinon, pivot au milieu, partition en trois groupes, puis tri récursif des petits et des grands.",
+    "starter_code": "def tri_rapide(liste):\n    return list(liste)\n",
+    "solution": "def tri_rapide(liste):\n    if len(liste) <= 1:\n        return list(liste)\n    pivot = liste[len(liste) // 2]\n    petits = [x for x in liste if x < pivot]\n    egaux = [x for x in liste if x == pivot]\n    grands = [x for x in liste if x > pivot]\n    return tri_rapide(petits) + egaux + tri_rapide(grands)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tri_rapide",
+            "args": [
+              [
+                33,
+                10,
+                55,
+                71,
+                29,
+                3,
+                18,
+                42
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              3,
+              10,
+              18,
+              29,
+              33,
+              42,
+              55,
+              71
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tri_rapide",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "tri_rapide",
+            "args": [
+              [
+                4,
+                4,
+                4,
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              1,
+              4,
+              4,
+              4
+            ]
+          },
+          {
+            "name": "tri_rapide",
+            "args": [
+              [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Commence par le cas de base.",
+      "Choisis le pivot au milieu.",
+      "Recolle tri_rapide(petits) + egaux + tri_rapide(grands)."
+    ],
+    "explanation_fr": "Le travail est fait avant les appels récursifs, à l’inverse du tri fusion.",
+    "common_wrong_answers": [],
+    "id": "algo-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Doublons perdus",
+    "instruction_fr": "Ce tri rapide perd les doublons du pivot. Corrige-le en ajoutant le groupe des égaux.",
+    "starter_code": "def tri_rapide(liste):\n    if len(liste) <= 1:\n        return list(liste)\n    pivot = liste[len(liste) // 2]\n    petits = [x for x in liste if x < pivot]\n    grands = [x for x in liste if x > pivot]\n    return tri_rapide(petits) + [pivot] + tri_rapide(grands)\n",
+    "solution": "def tri_rapide(liste):\n    if len(liste) <= 1:\n        return list(liste)\n    pivot = liste[len(liste) // 2]\n    petits = [x for x in liste if x < pivot]\n    egaux = [x for x in liste if x == pivot]\n    grands = [x for x in liste if x > pivot]\n    return tri_rapide(petits) + egaux + tri_rapide(grands)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tri_rapide",
+            "args": [
+              [
+                3,
+                1,
+                3,
+                2
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              1,
+              2,
+              3,
+              3
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tri_rapide",
+            "args": [
+              [
+                2,
+                2,
+                2
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              2,
+              2,
+              2
+            ]
+          },
+          {
+            "name": "tri_rapide",
+            "args": [
+              [
+                5,
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              1,
+              5
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "[3, 1, 3, 2] devient [1, 2, 3] : un 3 a disparu.",
+      "Seul un exemplaire du pivot est remis.",
+      "Garde tous les éléments égaux au pivot."
+    ],
+    "explanation_fr": "Un tri qui perd des éléments est faux, même si le résultat semble trié.",
+    "common_wrong_answers": [],
+    "id": "algo-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "La médiane sans tout trier",
+    "instruction_fr": "Écris kieme(liste, k) qui renvoie le k-ième plus petit élément (k commence à 1) par quickselect : partitionne autour du pivot du milieu, puis continue seulement dans le groupe qui contient la k-ième position. N’utilise pas sorted.",
+    "starter_code": "def kieme(liste, k):\n    return liste[k - 1]\n",
+    "solution": "def kieme(liste, k):\n    pivot = liste[len(liste) // 2]\n    petits = [x for x in liste if x < pivot]\n    egaux = [x for x in liste if x == pivot]\n    grands = [x for x in liste if x > pivot]\n    if k <= len(petits):\n        return kieme(petits, k)\n    if k <= len(petits) + len(egaux):\n        return pivot\n    return kieme(grands, k - len(petits) - len(egaux))\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "kieme",
+            "args": [
+              [
+                12,
+                3,
+                17,
+                8,
+                15
+              ],
+              3
+            ],
+            "unchanged_args": true,
+            "expected": 12
+          },
+          {
+            "name": "kieme",
+            "args": [
+              [
+                12,
+                3,
+                17,
+                8,
+                15
+              ],
+              1
+            ],
+            "unchanged_args": true,
+            "expected": 3
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "kieme",
+            "args": [
+              [
+                9
+              ],
+              1
+            ],
+            "unchanged_args": true,
+            "expected": 9
+          },
+          {
+            "name": "kieme",
+            "args": [
+              [
+                4,
+                4,
+                1,
+                4
+              ],
+              3
+            ],
+            "unchanged_args": true,
+            "expected": 4
+          },
+          {
+            "name": "kieme",
+            "args": [
+              [
+                10,
+                9,
+                8,
+                7,
+                6,
+                5
+              ],
+              6
+            ],
+            "unchanged_args": true,
+            "expected": 10
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La liste n’est pas triée : l’élément d’indice k - 1 est quelconque.",
+      "Après la partition, compte les éléments de chaque groupe.",
+      "Ne poursuis que dans le groupe qui contient la position k."
+    ],
+    "explanation_fr": "La médiane d’une classe s’obtient sans trier toute la classe.",
+    "common_wrong_answers": [],
+    "id": "algo-m2-03-e4"
+  }
+]

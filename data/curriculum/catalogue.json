@@ -935,6 +935,297 @@
       "quiz_count": 159
     },
     {
+      "id": "algorithmes",
+      "title_fr": "Algorithmes et structures de données",
+      "language": "python",
+      "runtime": "python",
+      "technology": "algo",
+      "level": "intermediaire",
+      "summary_fr": "Apprends à résoudre efficacement : complexité, recherche dichotomique, tris, récursivité, tri fusion et tri rapide, piles, files, dictionnaires et ensembles, graphes, parcours en largeur et en profondeur, jusqu’au plus court chemin entre villes du Togo. En Python, hors ligne.",
+      "prerequisite_courses": [
+        "python-bases"
+      ],
+      "prerequisites": [
+        "Savoir écrire des fonctions Python avec listes, dictionnaires, boucles et conditions.",
+        "Le cours Python débutant de Nunya fournit ces bases."
+      ],
+      "outcomes": [
+        "Estimer le coût d’un algorithme et comparer des croissances.",
+        "Rechercher et trier efficacement, y compris par récursivité.",
+        "Choisir entre pile, file, dictionnaire et ensemble selon le problème.",
+        "Parcourir des graphes et calculer des plus courts chemins.",
+        "Raisonner comme en entretien technique d’ingénieur logiciel."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Penser algorithme",
+          "outcome_fr": "Complexité, recherche dichotomique et tris simples.",
+          "lesson_ids": [
+            "algo-m1-01",
+            "algo-m1-02",
+            "algo-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Récursivité et tris efficaces",
+          "outcome_fr": "Récursivité, tri fusion, tri rapide et sélection.",
+          "lesson_ids": [
+            "algo-m2-01",
+            "algo-m2-02",
+            "algo-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Structures de données",
+          "outcome_fr": "Piles, files, dictionnaires et ensembles.",
+          "lesson_ids": [
+            "algo-m3-01",
+            "algo-m3-02",
+            "algo-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Graphes et chemins",
+          "outcome_fr": "Parcours en largeur et en profondeur, tri topologique et Dijkstra.",
+          "lesson_ids": [
+            "algo-m4-01",
+            "algo-m4-02",
+            "algo-m4-03"
+          ]
+        }
+      ],
+      "next_courses": [],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "algo-m1-01",
+          "title_fr": "Compter les opérations : la complexité",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "py-m12-03"
+          ],
+          "tags": [
+            "algorithmes",
+            "python",
+            "structures de données",
+            "algorithme",
+            "complexité",
+            "O(n)",
+            "pire cas"
+          ]
+        },
+        {
+          "id": "algo-m1-02",
+          "title_fr": "Chercher vite : la recherche dichotomique",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "algo-m1-01"
+          ],
+          "tags": [
+            "algorithmes",
+            "python",
+            "structures de données",
+            "recherche linéaire",
+            "dichotomie",
+            "O(log n)",
+            "bisect"
+          ]
+        },
+        {
+          "id": "algo-m1-03",
+          "title_fr": "Trier : sélection, insertion et sorted",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "algo-m1-02"
+          ],
+          "tags": [
+            "algorithmes",
+            "python",
+            "structures de données",
+            "tri par sélection",
+            "tri par insertion",
+            "clé de tri",
+            "stabilité"
+          ]
+        },
+        {
+          "id": "algo-m2-01",
+          "title_fr": "Penser récursif",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "algo-m1-03"
+          ],
+          "tags": [
+            "algorithmes",
+            "python",
+            "structures de données",
+            "récursivité",
+            "cas de base",
+            "pile d’appels",
+            "RecursionError"
+          ]
+        },
+        {
+          "id": "algo-m2-02",
+          "title_fr": "Diviser pour régner : le tri fusion",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "algo-m2-01"
+          ],
+          "tags": [
+            "algorithmes",
+            "python",
+            "structures de données",
+            "diviser pour régner",
+            "fusion",
+            "O(n log n)",
+            "compromis temps-mémoire"
+          ]
+        },
+        {
+          "id": "algo-m2-03",
+          "title_fr": "Le tri rapide et la sélection",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "algo-m2-02"
+          ],
+          "tags": [
+            "algorithmes",
+            "python",
+            "structures de données",
+            "pivot",
+            "partition",
+            "tri rapide",
+            "quickselect"
+          ]
+        },
+        {
+          "id": "algo-m3-01",
+          "title_fr": "Les piles : dernier arrivé, premier servi",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "algo-m2-03"
+          ],
+          "tags": [
+            "algorithmes",
+            "python",
+            "structures de données",
+            "structure de données",
+            "pile",
+            "sommet",
+            "notation postfixée"
+          ]
+        },
+        {
+          "id": "algo-m3-02",
+          "title_fr": "Les files : premier arrivé, premier servi",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "algo-m3-01"
+          ],
+          "tags": [
+            "algorithmes",
+            "python",
+            "structures de données",
+            "file",
+            "deque",
+            "simulation",
+            "tourniquet"
+          ]
+        },
+        {
+          "id": "algo-m3-03",
+          "title_fr": "Dictionnaires et ensembles : trouver en un instant",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "algo-m3-02"
+          ],
+          "tags": [
+            "algorithmes",
+            "python",
+            "structures de données",
+            "hachage",
+            "clé immuable",
+            "Counter",
+            "complément"
+          ]
+        },
+        {
+          "id": "algo-m4-01",
+          "title_fr": "Graphes et parcours en largeur",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "algo-m3-03"
+          ],
+          "tags": [
+            "algorithmes",
+            "python",
+            "structures de données",
+            "graphe",
+            "liste d’adjacence",
+            "parcours en largeur",
+            "parent"
+          ]
+        },
+        {
+          "id": "algo-m4-02",
+          "title_fr": "Parcours en profondeur et ordre des cours",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "algo-m4-01"
+          ],
+          "tags": [
+            "algorithmes",
+            "python",
+            "structures de données",
+            "parcours en profondeur",
+            "composante connexe",
+            "graphe orienté",
+            "tri topologique"
+          ]
+        },
+        {
+          "id": "algo-m4-03",
+          "title_fr": "Projet : le plus court chemin entre villes",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "algo-m4-02"
+          ],
+          "tags": [
+            "algorithmes",
+            "python",
+            "structures de données",
+            "graphe pondéré",
+            "Dijkstra",
+            "tas",
+            "file de priorité"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "e27db9d9cdd3",
+      "exercise_count": 48,
+      "quiz_count": 36
+    },
+    {
       "id": "bash-bases",
       "title_fr": "Terminal et Linux : les bases",
       "language": "bash",
@@ -4532,6 +4823,284 @@
       "quiz_count": 36
     },
     {
+      "id": "php-intermediaire",
+      "title_fr": "PHP intermédiaire : objets et données",
+      "language": "php",
+      "runtime": "php",
+      "level": "intermediaire",
+      "summary_fr": "Écris du PHP structuré et fiable : fonctions typées, tableaux fonctionnels, classes, encapsulation, héritage et interfaces, exceptions, JSON, énumérations, validation et sécurité des entrées, jusqu’à la gestion des inscriptions d’une association. Vrai PHP 8.3 hors ligne.",
+      "prerequisite_courses": [
+        "php-bases"
+      ],
+      "prerequisites": [
+        "Savoir écrire des fonctions PHP, parcourir des tableaux et lire des saisies.",
+        "Le cours PHP débutant de Nunya fournit ces bases."
+      ],
+      "outcomes": [
+        "Écrire des fonctions typées et transformer des tableaux avec map, filter, reduce et usort.",
+        "Concevoir des classes protégées, avec héritage et interfaces.",
+        "Gérer les erreurs avec des exceptions personnalisées et échanger des données en JSON.",
+        "Modéliser des états avec des énumérations et valider les données reçues.",
+        "Livrer un programme robuste qui charge, vérifie et résume des données réelles."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Fonctions et tableaux avancés",
+          "outcome_fr": "Typage strict, fonctions de tableaux, formats et match.",
+          "lesson_ids": [
+            "phpi-m1-01",
+            "phpi-m1-02",
+            "phpi-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Programmation objet",
+          "outcome_fr": "Classes, encapsulation, héritage et interfaces.",
+          "lesson_ids": [
+            "phpi-m2-01",
+            "phpi-m2-02",
+            "phpi-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Erreurs, JSON et énumérations",
+          "outcome_fr": "Exceptions personnalisées, JSON fiable et enums.",
+          "lesson_ids": [
+            "phpi-m3-01",
+            "phpi-m3-02",
+            "phpi-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Données réelles et projet",
+          "outcome_fr": "Collections d’objets, validation, sécurité et projet d’association.",
+          "lesson_ids": [
+            "phpi-m4-01",
+            "phpi-m4-02",
+            "phpi-m4-03"
+          ]
+        }
+      ],
+      "next_courses": [],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "phpi-m1-01",
+          "title_fr": "Des fonctions typées et sûres",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "php-m4-03"
+          ],
+          "tags": [
+            "php",
+            "intermédiaire",
+            "déclaration de type",
+            "strict_types",
+            "type nullable",
+            "argument nommé"
+          ]
+        },
+        {
+          "id": "phpi-m1-02",
+          "title_fr": "Transformer des tableaux : map, filter, reduce et tri",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "phpi-m1-01"
+          ],
+          "tags": [
+            "php",
+            "intermédiaire",
+            "fonction fléchée",
+            "array_map",
+            "array_reduce",
+            "<=>"
+          ]
+        },
+        {
+          "id": "phpi-m1-03",
+          "title_fr": "Mettre en forme : sprintf, number_format et match",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "phpi-m1-02"
+          ],
+          "tags": [
+            "php",
+            "intermédiaire",
+            "number_format",
+            "sprintf",
+            "match",
+            "UnhandledMatchError"
+          ]
+        },
+        {
+          "id": "phpi-m2-01",
+          "title_fr": "Classes et objets en PHP",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "phpi-m1-03"
+          ],
+          "tags": [
+            "php",
+            "intermédiaire",
+            "classe",
+            "promotion de constructeur",
+            "$this",
+            "clone"
+          ]
+        },
+        {
+          "id": "phpi-m2-02",
+          "title_fr": "Encapsulation : private, readonly et validation",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "phpi-m2-01"
+          ],
+          "tags": [
+            "php",
+            "intermédiaire",
+            "encapsulation",
+            "private",
+            "readonly",
+            "méthode statique"
+          ]
+        },
+        {
+          "id": "phpi-m2-03",
+          "title_fr": "Héritage, classes abstraites et interfaces",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "phpi-m2-02"
+          ],
+          "tags": [
+            "php",
+            "intermédiaire",
+            "héritage",
+            "classe abstraite",
+            "interface",
+            "polymorphisme"
+          ]
+        },
+        {
+          "id": "phpi-m3-01",
+          "title_fr": "Exceptions personnalisées et finally",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "phpi-m2-03"
+          ],
+          "tags": [
+            "php",
+            "intermédiaire",
+            "exception personnalisée",
+            "catch multiple",
+            "finally",
+            "getMessage"
+          ]
+        },
+        {
+          "id": "phpi-m3-02",
+          "title_fr": "Lire et écrire du JSON",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "phpi-m3-01"
+          ],
+          "tags": [
+            "php",
+            "intermédiaire",
+            "JSON",
+            "json_decode",
+            "json_encode",
+            "JsonException"
+          ]
+        },
+        {
+          "id": "phpi-m3-03",
+          "title_fr": "Énumérations et match",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "phpi-m3-02"
+          ],
+          "tags": [
+            "php",
+            "intermédiaire",
+            "enum",
+            "backed enum",
+            "tryFrom",
+            "transition"
+          ]
+        },
+        {
+          "id": "phpi-m4-01",
+          "title_fr": "Trier, filtrer et regrouper des objets",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "phpi-m3-03"
+          ],
+          "tags": [
+            "php",
+            "intermédiaire",
+            "usort",
+            "array_column",
+            "regroupement",
+            "critère de départage"
+          ]
+        },
+        {
+          "id": "phpi-m4-02",
+          "title_fr": "Valider et sécuriser les données reçues",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "phpi-m4-01"
+          ],
+          "tags": [
+            "php",
+            "intermédiaire",
+            "validation",
+            "filter_var",
+            "échappement",
+            "XSS"
+          ]
+        },
+        {
+          "id": "phpi-m4-03",
+          "title_fr": "Projet : les inscriptions d’une association",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "phpi-m4-02"
+          ],
+          "tags": [
+            "php",
+            "intermédiaire",
+            "fiche valide",
+            "chargement",
+            "relance",
+            "robustesse"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "cfddf437da59",
+      "exercise_count": 48,
+      "quiz_count": 36
+    },
+    {
       "id": "python-intermediaire",
       "title_fr": "Python : construire des outils fiables",
       "language": "python",
@@ -4895,6 +5464,297 @@
       "content_revision": "6213b293aa3d",
       "exercise_count": 72,
       "quiz_count": 54
+    },
+    {
+      "id": "qualite-logicielle",
+      "title_fr": "Qualité logicielle : tester, déboguer, relire",
+      "language": "python",
+      "runtime": "python",
+      "technology": "qualite",
+      "level": "intermediaire",
+      "summary_fr": "Écris du code fiable comme en entreprise : tests avec assert, cas limites, tests en tableau, lecture des traces d’erreur, débogage par hypothèses, pièges classiques de Python, noms clairs, refactoring, docstrings et doctests, développement piloté par les tests et revue de code. Tes tests sont éprouvés par des versions défectueuses du code. En Python, hors ligne.",
+      "prerequisite_courses": [
+        "python-bases"
+      ],
+      "prerequisites": [
+        "Savoir écrire des fonctions Python avec listes, dictionnaires, boucles et conditions.",
+        "Le cours Python débutant de Nunya fournit ces bases."
+      ],
+      "outcomes": [
+        "Écrire des tests qui détectent vraiment les erreurs, y compris aux frontières.",
+        "Lire une trace d’erreur et déboguer méthodiquement, par hypothèses et par dichotomie.",
+        "Éviter les pièges classiques de Python.",
+        "Rendre un code lisible : noms, petites fonctions, constantes, documentation vérifiée.",
+        "Pratiquer le développement piloté par les tests et la revue de code."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Tester son code",
+          "outcome_fr": "assert, tests par mutation, cas limites et tests en tableau.",
+          "lesson_ids": [
+            "ql-m1-01",
+            "ql-m1-02",
+            "ql-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Déboguer avec méthode",
+          "outcome_fr": "Traces d’erreur, hypothèses, dichotomie et pièges de Python.",
+          "lesson_ids": [
+            "ql-m2-01",
+            "ql-m2-02",
+            "ql-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Un code lisible",
+          "outcome_fr": "Noms, petites fonctions, constantes, docstrings et annotations.",
+          "lesson_ids": [
+            "ql-m3-01",
+            "ql-m3-02",
+            "ql-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Travailler comme une équipe",
+          "outcome_fr": "TDD, revue de code et projet de bulletin testé.",
+          "lesson_ids": [
+            "ql-m4-01",
+            "ql-m4-02",
+            "ql-m4-03"
+          ]
+        }
+      ],
+      "next_courses": [],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "ql-m1-01",
+          "title_fr": "Écrire ses premiers tests avec assert",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "py-m12-03"
+          ],
+          "tags": [
+            "qualité logicielle",
+            "tests",
+            "python",
+            "test automatique",
+            "assert",
+            "mutant",
+            "pytest"
+          ]
+        },
+        {
+          "id": "ql-m1-02",
+          "title_fr": "Cas limites et classes d’équivalence",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "ql-m1-01"
+          ],
+          "tags": [
+            "qualité logicielle",
+            "tests",
+            "python",
+            "classe d’équivalence",
+            "frontière",
+            "valeurs limites",
+            "entrée invalide"
+          ]
+        },
+        {
+          "id": "ql-m1-03",
+          "title_fr": "Des tests en tableau",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "ql-m1-02"
+          ],
+          "tags": [
+            "qualité logicielle",
+            "tests",
+            "python",
+            "test en tableau",
+            "spécification",
+            "parametrize",
+            "documentation vivante"
+          ]
+        },
+        {
+          "id": "ql-m2-01",
+          "title_fr": "Lire une trace d’erreur",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "ql-m1-03"
+          ],
+          "tags": [
+            "qualité logicielle",
+            "tests",
+            "python",
+            "trace",
+            "chaîne d’appels",
+            "symptôme",
+            "cause"
+          ]
+        },
+        {
+          "id": "ql-m2-02",
+          "title_fr": "Déboguer par hypothèses",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "ql-m2-01"
+          ],
+          "tags": [
+            "qualité logicielle",
+            "tests",
+            "python",
+            "hypothèse",
+            "exemple minimal",
+            "git bisect",
+            "non-régression"
+          ]
+        },
+        {
+          "id": "ql-m2-03",
+          "title_fr": "Pièges classiques de Python",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "ql-m2-02"
+          ],
+          "tags": [
+            "qualité logicielle",
+            "tests",
+            "python",
+            "valeur par défaut modifiable",
+            "flottant",
+            "math.isclose",
+            "identité"
+          ]
+        },
+        {
+          "id": "ql-m3-01",
+          "title_fr": "Des noms clairs et de petites fonctions",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "ql-m2-03"
+          ],
+          "tags": [
+            "qualité logicielle",
+            "tests",
+            "python",
+            "lisibilité",
+            "refactoring",
+            "extraire une fonction",
+            "PEP 8"
+          ]
+        },
+        {
+          "id": "ql-m3-02",
+          "title_fr": "Ne pas se répéter : constantes et code partagé",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "ql-m3-01"
+          ],
+          "tags": [
+            "qualité logicielle",
+            "tests",
+            "python",
+            "nombre magique",
+            "constante",
+            "DRY",
+            "table de données"
+          ]
+        },
+        {
+          "id": "ql-m3-03",
+          "title_fr": "Documenter : docstrings, doctests et annotations",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "ql-m3-02"
+          ],
+          "tags": [
+            "qualité logicielle",
+            "tests",
+            "python",
+            "docstring",
+            "doctest",
+            "annotation de type",
+            "mypy"
+          ]
+        },
+        {
+          "id": "ql-m4-01",
+          "title_fr": "Développer en écrivant le test d’abord",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "ql-m3-03"
+          ],
+          "tags": [
+            "qualité logicielle",
+            "tests",
+            "python",
+            "TDD",
+            "rouge",
+            "vert",
+            "régression"
+          ]
+        },
+        {
+          "id": "ql-m4-02",
+          "title_fr": "Relire le code : la revue",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "ql-m4-01"
+          ],
+          "tags": [
+            "qualité logicielle",
+            "tests",
+            "python",
+            "revue de code",
+            "pull request",
+            "linter",
+            "bloquant"
+          ]
+        },
+        {
+          "id": "ql-m4-03",
+          "title_fr": "Projet : un bulletin testé et remanié",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "ql-m4-02"
+          ],
+          "tags": [
+            "qualité logicielle",
+            "tests",
+            "python",
+            "moyenne pondérée",
+            "ex æquo",
+            "responsabilité",
+            "qualité logicielle"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "62ee8cf32b60",
+      "exercise_count": 48,
+      "quiz_count": 36
     },
     {
       "id": "react-bases",
@@ -6203,13 +7063,6 @@
       "title_fr": "TypeScript : démarrer avec les types",
       "summary_fr": "Types, fonctions et unions ; après JavaScript.",
       "status": "bientôt"
-    },
-    {
-      "id": "php-intermediaire",
-      "title_fr": "PHP intermédiaire : objets et données",
-      "summary_fr": "Classes, exceptions, JSON et organisation d’un projet ; après PHP : les bases.",
-      "status": "bientôt",
-      "level": "intermediaire"
     }
   ],
   "legacy_references": [
