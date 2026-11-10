@@ -1,0 +1,246 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Repérer les signaux",
+    "instruction_fr": "Écris signaux(message) qui renvoie la liste des catégories de SIGNAUX dont au moins un indice apparaît dans le message mis en minuscules, dans l’ordre du dictionnaire.",
+    "starter_code": "SIGNAUX = {\n    \"urgence\": [\"urgent\", \"immédiatement\", \"dernier délai\"],\n    \"argent\": [\"envoie\", \"transfert\", \"mobile money\", \"frais\"],\n    \"code\": [\"code\", \"mot de passe\"],\n    \"lien\": [\"bit.ly\", \"cliquez\"],\n}\n\n\ndef signaux(message):\n    return []\n",
+    "solution": "SIGNAUX = {\n    \"urgence\": [\"urgent\", \"immédiatement\", \"dernier délai\"],\n    \"argent\": [\"envoie\", \"transfert\", \"mobile money\", \"frais\"],\n    \"code\": [\"code\", \"mot de passe\"],\n    \"lien\": [\"bit.ly\", \"cliquez\"],\n}\n\n\ndef signaux(message):\n    texte = message.lower()\n    return [nom for nom, indices in SIGNAUX.items() if any(i in texte for i in indices)]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "signaux",
+            "args": [
+              "URGENT : envoie le code reçu par SMS"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "urgence",
+              "argent",
+              "code"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "signaux",
+            "args": [
+              "Cliquez sur bit.ly/cadeau"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "lien"
+            ]
+          },
+          {
+            "name": "signaux",
+            "args": [
+              "À demain"
+            ],
+            "unchanged_args": true,
+            "expected": []
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Mets le message en minuscules.",
+      "Pour chaque catégorie, teste ses indices.",
+      "any(i in texte for i in indices)"
+    ],
+    "explanation_fr": "Un programme simple qui suit la même démarche que toi : chercher le scénario.",
+    "common_wrong_answers": [],
+    "id": "ia-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un niveau d’alerte",
+    "instruction_fr": "Écris niveau(message) : 0 signal donne \"faible\", 1 donne \"moyen\", 2 ou plus donnent \"élevé\". La fonction signaux est fournie.",
+    "starter_code": "SIGNAUX = {\n    \"urgence\": [\"urgent\", \"immédiatement\", \"dernier délai\"],\n    \"argent\": [\"envoie\", \"transfert\", \"mobile money\", \"frais\"],\n    \"code\": [\"code\", \"mot de passe\"],\n    \"lien\": [\"bit.ly\", \"cliquez\"],\n}\n\n\ndef signaux(message):\n    texte = message.lower()\n    return [nom for nom, indices in SIGNAUX.items() if any(i in texte for i in indices)]\n\n\ndef niveau(message):\n    return \"faible\"\n",
+    "solution": "SIGNAUX = {\n    \"urgence\": [\"urgent\", \"immédiatement\", \"dernier délai\"],\n    \"argent\": [\"envoie\", \"transfert\", \"mobile money\", \"frais\"],\n    \"code\": [\"code\", \"mot de passe\"],\n    \"lien\": [\"bit.ly\", \"cliquez\"],\n}\n\n\ndef signaux(message):\n    texte = message.lower()\n    return [nom for nom, indices in SIGNAUX.items() if any(i in texte for i in indices)]\n\n\ndef niveau(message):\n    n = len(signaux(message))\n    if n >= 2:\n        return \"élevé\"\n    if n == 1:\n        return \"moyen\"\n    return \"faible\"\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "niveau",
+            "args": [
+              "URGENT : envoie le code"
+            ],
+            "unchanged_args": true,
+            "expected": "élevé"
+          },
+          {
+            "name": "niveau",
+            "args": [
+              "Bonne fête !"
+            ],
+            "unchanged_args": true,
+            "expected": "faible"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "niveau",
+            "args": [
+              "Votre colis : cliquez ici"
+            ],
+            "unchanged_args": true,
+            "expected": "moyen"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Compte les signaux.",
+      "Deux ou plus : élevé.",
+      "Un seul : moyen."
+    ],
+    "explanation_fr": "Combiner plusieurs signaux est plus fiable qu’un seul mot.",
+    "common_wrong_answers": [],
+    "id": "ia-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Les majuscules qui trompent",
+    "instruction_fr": "Le filtre ne repère pas « URGENT » ni « Mobile Money » : signaux compare le message sans le mettre en minuscules. Corrige-le.",
+    "starter_code": "SIGNAUX = {\n    \"urgence\": [\"urgent\", \"immédiatement\", \"dernier délai\"],\n    \"argent\": [\"envoie\", \"transfert\", \"mobile money\", \"frais\"],\n    \"code\": [\"code\", \"mot de passe\"],\n    \"lien\": [\"bit.ly\", \"cliquez\"],\n}\n\n\ndef signaux(message):\n    texte = message\n    return [nom for nom, indices in SIGNAUX.items() if any(i in texte for i in indices)]\n",
+    "solution": "SIGNAUX = {\n    \"urgence\": [\"urgent\", \"immédiatement\", \"dernier délai\"],\n    \"argent\": [\"envoie\", \"transfert\", \"mobile money\", \"frais\"],\n    \"code\": [\"code\", \"mot de passe\"],\n    \"lien\": [\"bit.ly\", \"cliquez\"],\n}\n\n\ndef signaux(message):\n    texte = message.lower()\n    return [nom for nom, indices in SIGNAUX.items() if any(i in texte for i in indices)]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "signaux",
+            "args": [
+              "URGENT : Mobile Money"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "urgence",
+              "argent"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "signaux",
+            "args": [
+              "Votre CODE"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "code"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les indices sont écrits en minuscules.",
+      "Le message contient des majuscules.",
+      "texte = message.lower()"
+    ],
+    "explanation_fr": "Les fraudeurs écrivent souvent en majuscules, justement pour presser.",
+    "common_wrong_answers": [],
+    "id": "ia-m4-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Le conseil adapté",
+    "instruction_fr": "Écris conseil(message, numero_connu) : si le message contient \"code\" parmi ses signaux, renvoie \"Ne donne jamais ce code.\" ; sinon, si le niveau est \"élevé\" ou si le numéro n’est pas connu et qu’il y a au moins un signal, renvoie \"Vérifie par un autre canal.\" ; sinon \"Aucun signal particulier.\". signaux et niveau sont fournis.",
+    "starter_code": "SIGNAUX = {\n    \"urgence\": [\"urgent\", \"immédiatement\", \"dernier délai\"],\n    \"argent\": [\"envoie\", \"transfert\", \"mobile money\", \"frais\"],\n    \"code\": [\"code\", \"mot de passe\"],\n    \"lien\": [\"bit.ly\", \"cliquez\"],\n}\n\n\ndef signaux(message):\n    texte = message.lower()\n    return [nom for nom, indices in SIGNAUX.items() if any(i in texte for i in indices)]\n\n\ndef niveau(message):\n    n = len(signaux(message))\n    return \"élevé\" if n >= 2 else \"moyen\" if n == 1 else \"faible\"\n\n\ndef conseil(message, numero_connu):\n    return \"\"\n",
+    "solution": "SIGNAUX = {\n    \"urgence\": [\"urgent\", \"immédiatement\", \"dernier délai\"],\n    \"argent\": [\"envoie\", \"transfert\", \"mobile money\", \"frais\"],\n    \"code\": [\"code\", \"mot de passe\"],\n    \"lien\": [\"bit.ly\", \"cliquez\"],\n}\n\n\ndef signaux(message):\n    texte = message.lower()\n    return [nom for nom, indices in SIGNAUX.items() if any(i in texte for i in indices)]\n\n\ndef niveau(message):\n    n = len(signaux(message))\n    return \"élevé\" if n >= 2 else \"moyen\" if n == 1 else \"faible\"\n\n\ndef conseil(message, numero_connu):\n    trouves = signaux(message)\n    if \"code\" in trouves:\n        return \"Ne donne jamais ce code.\"\n    if niveau(message) == \"élevé\" or (not numero_connu and trouves):\n        return \"Vérifie par un autre canal.\"\n    return \"Aucun signal particulier.\"\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "conseil",
+            "args": [
+              "Envoie-moi le code reçu",
+              true
+            ],
+            "unchanged_args": true,
+            "expected": "Ne donne jamais ce code."
+          },
+          {
+            "name": "conseil",
+            "args": [
+              "Envoie 20 000 immédiatement",
+              true
+            ],
+            "unchanged_args": true,
+            "expected": "Vérifie par un autre canal."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "conseil",
+            "args": [
+              "Fais un transfert stp",
+              false
+            ],
+            "unchanged_args": true,
+            "expected": "Vérifie par un autre canal."
+          },
+          {
+            "name": "conseil",
+            "args": [
+              "Fais un transfert stp",
+              true
+            ],
+            "unchanged_args": true,
+            "expected": "Aucun signal particulier."
+          },
+          {
+            "name": "conseil",
+            "args": [
+              "On mange ensemble ?",
+              false
+            ],
+            "unchanged_args": true,
+            "expected": "Aucun signal particulier."
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le code passe avant tout.",
+      "Puis le niveau élevé, ou un signal venant d’un numéro inconnu.",
+      "Sinon, aucun signal particulier."
+    ],
+    "explanation_fr": "Le programme conseille ; la décision et la vérification restent humaines.",
+    "common_wrong_answers": [],
+    "id": "ia-m4-02-e4"
+  }
+]

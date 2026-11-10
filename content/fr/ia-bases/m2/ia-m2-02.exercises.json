@@ -1,0 +1,252 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Découper en mots",
+    "instruction_fr": "Écris mots(texte) qui renvoie la liste des mots en minuscules, sans ponctuation, avec re.findall et le motif fourni.",
+    "starter_code": "import re\n\n\ndef mots(texte):\n    return texte.split()\n",
+    "solution": "import re\n\n\ndef mots(texte):\n    return re.findall(r\"[a-zàâçéèêëîïôûùüÿœ]+\", texte.lower())\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "mots",
+            "args": [
+              "Vous avez GAGNÉ !"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "vous",
+              "avez",
+              "gagné"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "mots",
+            "args": [
+              "Code: 1234, vite."
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "code",
+              "vite"
+            ]
+          },
+          {
+            "name": "mots",
+            "args": [
+              ""
+            ],
+            "unchanged_args": true,
+            "expected": []
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "split garde la ponctuation et les majuscules.",
+      "Mets d’abord le texte en minuscules.",
+      "re.findall(r\"[a-zàâçéèêëîïôûùüÿœ]+\", texte.lower())"
+    ],
+    "explanation_fr": "Les chiffres sont ignorés par ce motif : un choix de prétraitement, à discuter.",
+    "common_wrong_answers": [],
+    "id": "ia-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Compter les mots",
+    "instruction_fr": "Écris compter(textes) qui renvoie un dictionnaire mot → nombre total d’apparitions dans tous les textes. La fonction mots est fournie.",
+    "starter_code": "import re\n\n\ndef mots(texte):\n    return re.findall(r\"[a-zàâçéèêëîïôûùüÿœ]+\", texte.lower())\n\n\ndef compter(textes):\n    return {}\n",
+    "solution": "import re\n\n\ndef mots(texte):\n    return re.findall(r\"[a-zàâçéèêëîïôûùüÿœ]+\", texte.lower())\n\nfrom collections import Counter\n\n\ndef compter(textes):\n    total = Counter()\n    for texte in textes:\n        total.update(mots(texte))\n    return dict(total)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compter",
+            "args": [
+              [
+                "Gagné le code",
+                "le CODE"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "gagné": 1,
+              "le": 2,
+              "code": 2
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compter",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": {}
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Parcours chaque texte.",
+      "Ajoute ses mots au compte total.",
+      "Counter.update ajoute une liste de mots."
+    ],
+    "explanation_fr": "Ce comptage est la base de nombreux modèles de texte.",
+    "common_wrong_answers": [],
+    "id": "ia-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Les majuscules oubliées",
+    "instruction_fr": "Le filtre apprend « Gagné » et « gagné » comme deux mots différents : mots ne met pas le texte en minuscules. Corrige mots.",
+    "starter_code": "import re\n\n\ndef mots(texte):\n    return re.findall(r\"[A-Za-zÀ-ÿœ]+\", texte)\n",
+    "solution": "import re\n\n\ndef mots(texte):\n    return re.findall(r\"[a-zàâçéèêëîïôûùüÿœ]+\", texte.lower())\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "mots",
+            "args": [
+              "Gagné GAGNÉ gagné"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "gagné",
+              "gagné",
+              "gagné"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "mots",
+            "args": [
+              "Urgent !"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "urgent"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Trois formes du même mot doivent donner trois fois « gagné ».",
+      "Le texte doit passer en minuscules.",
+      "Utilise texte.lower() et le motif en minuscules."
+    ],
+    "explanation_fr": "Un prétraitement négligé divise les comptes et affaiblit le modèle.",
+    "common_wrong_answers": [],
+    "id": "ia-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Le filtre d’arnaques",
+    "instruction_fr": "Écris apprendre(arnaques, normaux) qui renvoie le dictionnaire des poids (+1 par apparition dans une arnaque, −1 dans un message normal), et classer(poids, message) qui renvoie \"arnaque\" si la somme des poids de ses mots est strictement positive, sinon \"normal\". La fonction mots est fournie.",
+    "starter_code": "import re\n\n\ndef mots(texte):\n    return re.findall(r\"[a-zàâçéèêëîïôûùüÿœ]+\", texte.lower())\n\n\ndef apprendre(arnaques, normaux):\n    return {}\n\n\ndef classer(poids, message):\n    return \"normal\"\n",
+    "solution": "import re\n\n\ndef mots(texte):\n    return re.findall(r\"[a-zàâçéèêëîïôûùüÿœ]+\", texte.lower())\n\n\ndef apprendre(arnaques, normaux):\n    poids = {}\n    for texte in arnaques:\n        for m in mots(texte):\n            poids[m] = poids.get(m, 0) + 1\n    for texte in normaux:\n        for m in mots(texte):\n            poids[m] = poids.get(m, 0) - 1\n    return poids\n\n\ndef classer(poids, message):\n    score = sum(poids.get(m, 0) for m in mots(message))\n    return \"arnaque\" if score > 0 else \"normal\"\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "apprendre",
+            "args": [
+              [
+                "gagné code"
+              ],
+              [
+                "code demain"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "gagné": 1,
+              "code": 0,
+              "demain": -1
+            }
+          },
+          {
+            "name": "classer",
+            "args": [
+              {
+                "gagné": 2,
+                "demain": -3
+              },
+              "Gagné !"
+            ],
+            "unchanged_args": true,
+            "expected": "arnaque"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "classer",
+            "args": [
+              {
+                "gagné": 2,
+                "demain": -3
+              },
+              "Gagné demain"
+            ],
+            "unchanged_args": true,
+            "expected": "normal"
+          },
+          {
+            "name": "classer",
+            "args": [
+              {},
+              "Bonjour"
+            ],
+            "unchanged_args": true,
+            "expected": "normal"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Parcours les arnaques, puis les messages normaux.",
+      "poids.get(mot, 0) évite les clés absentes.",
+      "Le score est la somme des poids des mots du message."
+    ],
+    "explanation_fr": "Un mot inconnu ne pèse rien : le modèle ne sait que ce qu’on lui a montré.",
+    "common_wrong_answers": [],
+    "id": "ia-m2-02-e4"
+  }
+]

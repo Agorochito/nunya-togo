@@ -845,7 +845,7 @@
     "Objets connectés et robotique",
     "Blockchain"
   ],
-  "updated_for_release": "5.20.0",
+  "updated_for_release": "5.21.0",
   "updated_at": "2026-11-10",
   "additional_implemented": [
     {
@@ -939,6 +939,19 @@
       "evidence": [
         "content/fr/projet-web/",
         "docs/PROJET_WEB_UI_RESULTS.json"
+      ]
+    },
+    {
+      "id": "ia-bases",
+      "modules": 4,
+      "lessons": 12,
+      "activities": 48,
+      "quizzes": 36,
+      "status": "brouillon",
+      "scope": "Introduction à l’IA par des modèles faits main en Python hors ligne, avec évaluation, biais et sécurité ; série complémentaire des parcours données et cybersécurité.",
+      "evidence": [
+        "content/fr/ia-bases/",
+        "docs/IA_BASES_UI_RESULTS.json"
       ]
     }
   ]

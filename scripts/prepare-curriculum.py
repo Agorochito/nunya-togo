@@ -19,7 +19,7 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
  language=course.get('language',course.get('runtime','python'))
  if language not in ['python','javascript','html','css','sql','php','cpp','bash','java']:raise ValueError('Unsupported offline runtime: '+language)
  runtime=course.get('runtime',language)
- if runtime not in ['python','javascript','html','css','http','sql','dom','react','php','cpp','bash','java'] or (runtime=='http' and language!='javascript'):raise ValueError('Unsupported runtime/language pair')
+ if runtime not in ['python','javascript','html','css','http','sql','dom','react','php','cpp','bash','java','node'] or (runtime in ['http','node'] and language!='javascript'):raise ValueError('Unsupported runtime/language pair')
  if runtime in ['dom','react']:
   engine_files=['lib/dom/client.mjs','lib/dom/compile.mjs','lib/dom/frame.mjs','lib/dom/react-libs.mjs','package-lock.json']
   course['engine_revision']=hashlib.sha256(b''.join((r/f).read_bytes() for f in engine_files)).hexdigest()[:12]
@@ -44,6 +44,7 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
    row['exercises']=json.loads(path.with_suffix('.exercises.json').read_text())
    if runtime=='http':row.setdefault('environment_fr','API pédagogique locale : données fictives, pas de serveur distant ni d’écriture conservée. Les requêtes restent sur cet appareil. await est autorisé dans l’atelier.')
    if runtime=='bash':row.setdefault('environment_fr','Bash 5.2 dans un vrai système Linux en ligne, sur le service Wandbox (wandbox.org, Japon) : une connexion est nécessaire pour exécuter. Chaque essai démarre dans un dossier neuf avec ses fichiers de départ. Seuls tes commandes, les saisies et ces fichiers fictifs sont envoyés, sans nom ni compte.')
+   if runtime=='node':row.setdefault('environment_fr','Node.js 20 exécuté en ligne sur le service Wandbox (wandbox.org, Japon) : une connexion est nécessaire pour exécuter. Seul le code du programme est envoyé, sans nom ni compte. Les serveurs sont testés par l’atelier sur un port local temporaire. Les leçons, exemples et questions restent lisibles hors ligne.')
    if runtime=='java':row.setdefault('environment_fr','Java 21 (OpenJDK) compilé en ligne sur le service Wandbox (wandbox.org, Japon) : une connexion est nécessaire pour exécuter. Seul le code du programme et les saisies de test sont envoyés, sans nom ni compte. Les leçons, exemples et questions restent lisibles hors ligne.')
    if runtime=='cpp':row.setdefault('environment_fr','C++17 compilé en ligne par GCC 13 sur le service Wandbox (wandbox.org, Japon) : une connexion est nécessaire pour exécuter. Seul le code du programme et les saisies de test sont envoyés, sans nom ni compte. Les leçons, exemples et questions restent lisibles hors ligne.')
    if runtime=='php':row.setdefault('environment_fr','PHP 8.3 réel, exécuté sur cet appareil dans un Worker isolé, comme en ligne de commande. Chaque saisie se lit avec trim(fgets(STDIN)). Pas de serveur web, de réseau, de fichiers conservés ni de base de données dans ce cours.')

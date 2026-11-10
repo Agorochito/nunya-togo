@@ -1,0 +1,345 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Le modèle qui mémorise",
+    "instruction_fr": "Écris predire_memoire(table, x) : table est un dictionnaire caractéristiques (tuple) → étiquette. Renvoie l’étiquette si x est connu, sinon \"inconnu\".",
+    "starter_code": "def predire_memoire(table, x):\n    return table[tuple(x)]\n",
+    "solution": "def predire_memoire(table, x):\n    return table.get(tuple(x), \"inconnu\")\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "predire_memoire",
+            "args": [
+              {},
+              [
+                1,
+                3
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "inconnu"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "predire_memoire",
+            "args": [
+              {},
+              []
+            ],
+            "unchanged_args": true,
+            "expected": "inconnu"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une liste n’est pas une clé de dictionnaire : convertis en tuple.",
+      "Une clé absente lève KeyError.",
+      "table.get(tuple(x), \"inconnu\")"
+    ],
+    "explanation_fr": "Ce « modèle » est parfait sur ce qu’il a vu et muet sur tout le reste.",
+    "common_wrong_answers": [],
+    "id": "ia-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Diagnostiquer l’écart",
+    "instruction_fr": "Écris diagnostic(exactitude_app, exactitude_test) qui renvoie [écart arrondi à 2 décimales, \"sur-apprentissage\" si l’écart dépasse strictement 0.1, sinon \"correct\"].",
+    "starter_code": "def diagnostic(exactitude_app, exactitude_test):\n    return [0, \"correct\"]\n",
+    "solution": "def diagnostic(exactitude_app, exactitude_test):\n    ecart = round(exactitude_app - exactitude_test, 2)\n    return [ecart, \"sur-apprentissage\" if ecart > 0.1 else \"correct\"]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "diagnostic",
+            "args": [
+              1.0,
+              0.6
+            ],
+            "unchanged_args": true,
+            "expected": [
+              0.4,
+              "sur-apprentissage"
+            ]
+          },
+          {
+            "name": "diagnostic",
+            "args": [
+              0.9,
+              0.86
+            ],
+            "unchanged_args": true,
+            "expected": [
+              0.04,
+              "correct"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "diagnostic",
+            "args": [
+              0.8,
+              0.7
+            ],
+            "unchanged_args": true,
+            "expected": [
+              0.1,
+              "correct"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’écart est apprentissage − test.",
+      "Arrondis avant de comparer.",
+      "Seuil strict de 0.1."
+    ],
+    "explanation_fr": "Quelques points d’écart sont normaux ; quarante, c’est de la mémorisation.",
+    "common_wrong_answers": [],
+    "id": "ia-m3-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le test caché dans l’apprentissage",
+    "instruction_fr": "separer(exemples, part_test) renvoie un jeu d’apprentissage qui contient aussi les exemples de test. Corrige-la : les derniers exemples vont au test, les autres à l’apprentissage, sans recouvrement.",
+    "starter_code": "def separer(exemples, part_test):\n    n_test = int(len(exemples) * part_test)\n    return [exemples, exemples[len(exemples) - n_test:]]\n",
+    "solution": "def separer(exemples, part_test):\n    n_test = int(len(exemples) * part_test)\n    return [exemples[:len(exemples) - n_test], exemples[len(exemples) - n_test:]]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "separer",
+            "args": [
+              [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+              ],
+              0.2
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              [
+                8,
+                9
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "separer",
+            "args": [
+              [
+                "a",
+                "b",
+                "c",
+                "d"
+              ],
+              0.25
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                "a",
+                "b",
+                "c"
+              ],
+              [
+                "d"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’apprentissage reçoit toute la liste.",
+      "Il doit s’arrêter avant les exemples de test.",
+      "exemples[:len(exemples) - n_test]"
+    ],
+    "explanation_fr": "Avec ce bug, le modèle aurait été évalué en partie sur ce qu’il connaissait déjà.",
+    "common_wrong_answers": [],
+    "id": "ia-m3-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Une évaluation honnête",
+    "instruction_fr": "Écris evaluer(exemples, k) : sépare 25 % des exemples (les derniers) pour le test avec separer, classe chaque exemple de test avec knn appris sur le reste, et renvoie l’exactitude arrondie à 2 décimales. separer et knn sont fournis.",
+    "starter_code": "def separer(exemples, part_test):\n    n_test = int(len(exemples) * part_test)\n    return [exemples[:len(exemples) - n_test], exemples[len(exemples) - n_test:]]\n\nimport math\nfrom collections import Counter\n\n\ndef knn(exemples, point, k):\n    proches = sorted(exemples, key=lambda ex: math.dist(ex[0], point))[:k]\n    return Counter(e for _, e in proches).most_common(1)[0][0]\n\n\ndef evaluer(exemples, k):\n    return 1.0\n",
+    "solution": "def separer(exemples, part_test):\n    n_test = int(len(exemples) * part_test)\n    return [exemples[:len(exemples) - n_test], exemples[len(exemples) - n_test:]]\n\nimport math\nfrom collections import Counter\n\n\ndef knn(exemples, point, k):\n    proches = sorted(exemples, key=lambda ex: math.dist(ex[0], point))[:k]\n    return Counter(e for _, e in proches).most_common(1)[0][0]\n\n\ndef evaluer(exemples, k):\n    app, test = separer(exemples, 0.25)\n    justes = sum(1 for x, e in test if knn(app, x, k) == e)\n    return round(justes / len(test), 2)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "evaluer",
+            "args": [
+              [
+                [
+                  [
+                    1,
+                    1
+                  ],
+                  "a"
+                ],
+                [
+                  [
+                    1,
+                    2
+                  ],
+                  "a"
+                ],
+                [
+                  [
+                    2,
+                    1
+                  ],
+                  "a"
+                ],
+                [
+                  [
+                    8,
+                    8
+                  ],
+                  "b"
+                ],
+                [
+                  [
+                    8,
+                    9
+                  ],
+                  "b"
+                ],
+                [
+                  [
+                    9,
+                    8
+                  ],
+                  "b"
+                ],
+                [
+                  [
+                    2,
+                    2
+                  ],
+                  "a"
+                ],
+                [
+                  [
+                    9,
+                    9
+                  ],
+                  "b"
+                ]
+              ],
+              3
+            ],
+            "unchanged_args": true,
+            "expected": 1.0
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "evaluer",
+            "args": [
+              [
+                [
+                  [
+                    1,
+                    1
+                  ],
+                  "a"
+                ],
+                [
+                  [
+                    1,
+                    2
+                  ],
+                  "a"
+                ],
+                [
+                  [
+                    8,
+                    8
+                  ],
+                  "b"
+                ],
+                [
+                  [
+                    1.5,
+                    1.5
+                  ],
+                  "b"
+                ]
+              ],
+              1
+            ],
+            "unchanged_args": true,
+            "expected": 0.0
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Sépare d’abord avec separer(exemples, 0.25).",
+      "knn n’apprend que sur la partie apprentissage.",
+      "Compte les justes sur le test."
+    ],
+    "explanation_fr": "Le second cas contient une étiquette fausse : le modèle honnête ne peut pas la deviner, et l’évaluation le montre.",
+    "common_wrong_answers": [],
+    "id": "ia-m3-02-e4"
+  }
+]

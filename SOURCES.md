@@ -115,6 +115,10 @@ Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités origin
 
 Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la documentation officielle de SQLite (SELECT, expressions, fonctions, dates, WITH, fonctions de fenêtre, vues, index, UPSERT, déclencheurs, EXPLAIN QUERY PLAN), citée dans chaque leçon ; aucun texte n’en est repris. Produits, clients, quartiers et ventes de la boutique sont fictifs.
 
+## Intelligence artificielle : comprendre, vérifier, se protéger — 10 novembre 2026
+
+Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la documentation officielle de Python (math, collections, re), de la recommandation de l’UNESCO sur l’éthique de l’IA, des pages de la CNIL sur l’intelligence artificielle, du Top 10 OWASP des risques des grands modèles de langage, des recommandations de l’ANSSI pour les systèmes d’IA générative, de la fiche hameçonnage de Cybermalveillance.gouv.fr et des cours d’informatique de Khan Academy. Les modèles sont construits à la main ; aucun service d’IA en ligne n’est appelé. Les messages, personnes et données sont fictifs. Aucun texte, exercice ou corrigé n’est repris d’un autre site.
+
 ## Projet web : ma page personnelle — 10 novembre 2026
 
 Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la documentation MDN en français (structure de document, img, liens, bases du CSS, propriétés personnalisées, Flexbox, grilles, requêtes média, details, :focus-visible, validation des formulaires), des critères de contraste des WCAG 2.1 du W3C et de la documentation GitHub Pages. La personne et ses projets sont fictifs ; les adresses utilisent le domaine réservé example.com. Aucun texte, exercice ou corrigé n’est repris d’un autre site.

@@ -1,0 +1,216 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Repérer une adresse électronique",
+    "instruction_fr": "Écris contient_courriel(texte) qui renvoie True si le texte contient une adresse électronique, avec re.search et le motif COURRIEL fourni.",
+    "starter_code": "import re\n\nCOURRIEL = r\"[\\w.+-]+@[\\w-]+(\\.[\\w-]+)+\"\n\n\ndef contient_courriel(texte):\n    return \"@\" in texte\n",
+    "solution": "import re\n\nCOURRIEL = r\"[\\w.+-]+@[\\w-]+(\\.[\\w-]+)+\"\n\n\ndef contient_courriel(texte):\n    return re.search(COURRIEL, texte) is not None\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "contient_courriel",
+            "args": [
+              "Écris à ama@example.com"
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "contient_courriel",
+            "args": [
+              "Rendez-vous à 15 h"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "contient_courriel",
+            "args": [
+              "Mon pseudo : @ama_lome"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un simple @ ne suffit pas : un pseudo en contient un.",
+      "re.search cherche le motif complet.",
+      "Compare le résultat à None."
+    ],
+    "explanation_fr": "Le motif exige un domaine avec un point : un pseudo de réseau social n’est pas une adresse.",
+    "common_wrong_answers": [],
+    "id": "ia-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Masquer avant de partager",
+    "instruction_fr": "Écris masquer(texte) qui remplace les adresses électroniques par [courriel] et les numéros de téléphone par [téléphone], avec re.sub et les motifs fournis.",
+    "starter_code": "import re\n\nCOURRIEL = r\"[\\w.+-]+@[\\w-]+(\\.[\\w-]+)+\"\nTELEPHONE = r\"(\\+228\\s?)?\\d{2}(\\s?\\d{2}){3}\"\n\n\ndef masquer(texte):\n    return texte\n",
+    "solution": "import re\n\nCOURRIEL = r\"[\\w.+-]+@[\\w-]+(\\.[\\w-]+)+\"\nTELEPHONE = r\"(\\+228\\s?)?\\d{2}(\\s?\\d{2}){3}\"\n\n\ndef masquer(texte):\n    texte = re.sub(COURRIEL, \"[courriel]\", texte)\n    return re.sub(TELEPHONE, \"[téléphone]\", texte)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "masquer",
+            "args": [
+              "Écris à kossi.a@example.com ou appelle le 90 12 34 56."
+            ],
+            "unchanged_args": true,
+            "expected": "Écris à [courriel] ou appelle le [téléphone]."
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "masquer",
+            "args": [
+              "Numéro : +228 70112233"
+            ],
+            "unchanged_args": true,
+            "expected": "Numéro : [téléphone]"
+          },
+          {
+            "name": "masquer",
+            "args": [
+              "Rien à cacher"
+            ],
+            "unchanged_args": true,
+            "expected": "Rien à cacher"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Applique re.sub pour chaque motif.",
+      "Commence par les courriels.",
+      "Renvoie le texte transformé."
+    ],
+    "explanation_fr": "L’assistant pourra aider sur le texte sans recevoir les coordonnées.",
+    "common_wrong_answers": [],
+    "id": "ia-m4-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le numéro qui échappe",
+    "instruction_fr": "Le motif de téléphone n’accepte pas les espaces entre les paires de chiffres : « 90 12 34 56 » n’est pas masqué. Corrige TELEPHONE pour accepter un espace facultatif entre les paires.",
+    "starter_code": "import re\n\nTELEPHONE = r\"(\\+228\\s?)?\\d{8}\"\n\n\ndef masquer_tel(texte):\n    return re.sub(TELEPHONE, \"[téléphone]\", texte)\n",
+    "solution": "import re\n\nTELEPHONE = r\"(\\+228\\s?)?\\d{2}(\\s?\\d{2}){3}\"\n\n\ndef masquer_tel(texte):\n    return re.sub(TELEPHONE, \"[téléphone]\", texte)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "masquer_tel",
+            "args": [
+              "Appelle le 90 12 34 56"
+            ],
+            "unchanged_args": true,
+            "expected": "Appelle le [téléphone]"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "masquer_tel",
+            "args": [
+              "Tel 90123456"
+            ],
+            "unchanged_args": true,
+            "expected": "Tel [téléphone]"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "\\d{8} exige huit chiffres collés.",
+      "Décris deux chiffres, puis trois fois : espace facultatif et deux chiffres.",
+      "\\d{2}(\\s?\\d{2}){3}"
+    ],
+    "explanation_fr": "Un format d’écriture courant oublié, et la donnée passe : il faut tester avec des exemples réels.",
+    "common_wrong_answers": [],
+    "id": "ia-m4-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Rapport de confidentialité",
+    "instruction_fr": "Écris rapport(texte) qui renvoie {\"courriels\": nombre trouvé, \"telephones\": nombre trouvé, \"texte\": texte masqué, \"pret\": True si aucun mot « mot de passe » (sans tenir compte des majuscules) n’apparaît}. La fonction masquer et les motifs sont fournis.",
+    "starter_code": "import re\n\nCOURRIEL = r\"[\\w.+-]+@[\\w-]+(\\.[\\w-]+)+\"\nTELEPHONE = r\"(\\+228\\s?)?\\d{2}(\\s?\\d{2}){3}\"\n\n\ndef masquer(texte):\n    texte = re.sub(COURRIEL, \"[courriel]\", texte)\n    return re.sub(TELEPHONE, \"[téléphone]\", texte)\n\n\ndef rapport(texte):\n    return {}\n",
+    "solution": "import re\n\nCOURRIEL = r\"[\\w.+-]+@[\\w-]+(\\.[\\w-]+)+\"\nTELEPHONE = r\"(\\+228\\s?)?\\d{2}(\\s?\\d{2}){3}\"\n\n\ndef masquer(texte):\n    texte = re.sub(COURRIEL, \"[courriel]\", texte)\n    return re.sub(TELEPHONE, \"[téléphone]\", texte)\n\n\ndef rapport(texte):\n    courriels = len(list(re.finditer(COURRIEL, texte)))\n    sans_courriels = re.sub(COURRIEL, \"\", texte)\n    telephones = len(list(re.finditer(TELEPHONE, sans_courriels)))\n    pret = re.search(r\"mot de passe\", texte, re.IGNORECASE) is None\n    return {\"courriels\": courriels, \"telephones\": telephones, \"texte\": masquer(texte), \"pret\": pret}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rapport",
+            "args": [
+              "Écris à kossi.a@example.com ou au 90 12 34 56."
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "courriels": 1,
+              "telephones": 1,
+              "texte": "Écris à [courriel] ou au [téléphone].",
+              "pret": true
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rapport",
+            "args": [
+              "Mot de passe : Lome2026, tel +228 70112233"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "courriels": 0,
+              "telephones": 1,
+              "texte": "Mot de passe : Lome2026, tel [téléphone]",
+              "pret": false
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "re.finditer trouve toutes les occurrences.",
+      "Compte les téléphones après avoir retiré les courriels.",
+      "Un texte qui parle d’un mot de passe n’est jamais prêt."
+    ],
+    "explanation_fr": "Le masquage aide, mais certaines informations ne doivent pas partir du tout.",
+    "common_wrong_answers": [],
+    "id": "ia-m4-01-e4"
+  }
+]

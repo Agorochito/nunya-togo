@@ -1,0 +1,71 @@
+{
+  "id": "ia-bases",
+  "title_fr": "Intelligence artificielle : comprendre, vérifier, se protéger",
+  "language": "python",
+  "runtime": "python",
+  "technology": "ia",
+  "level": "debutant",
+  "replaces_plans": [
+    "ia-cyber"
+  ],
+  "summary_fr": "Comprends ce qu’il y a dans une IA en construisant des modèles à la main : seuil appris, plus proches voisins, régression, filtre d’arnaques par sac de mots et neurone artificiel. Apprends à les évaluer honnêtement, à repérer leurs biais et le sur-apprentissage, à comprendre les hallucinations des assistants, puis à te protéger : données personnelles, arnaques à fausse voix et injection de consignes. En Python, hors ligne.",
+  "prerequisite_courses": [
+    "python-bases"
+  ],
+  "prerequisites": [
+    "Savoir écrire des fonctions Python avec listes, dictionnaires, boucles et conditions.",
+    "Le cours Python débutant de Nunya fournit ces bases."
+  ],
+  "outcomes": [
+    "Expliquer la différence entre règles écrites et apprentissage à partir d’exemples.",
+    "Construire et évaluer de petits modèles : voisins, régression, sac de mots, perceptron.",
+    "Repérer les biais, le sur-apprentissage et les hallucinations.",
+    "Protéger ses données et celles des autres face aux assistants.",
+    "Reconnaître les arnaques dopées à l’IA et l’injection de consignes."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Comprendre l’apprentissage",
+      "outcome_fr": "Règles contre exemples, plus proches voisins et évaluation.",
+      "lesson_ids": [
+        "ia-m1-01",
+        "ia-m1-02",
+        "ia-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Construire des modèles",
+      "outcome_fr": "Régression, sac de mots et neurone artificiel.",
+      "lesson_ids": [
+        "ia-m2-01",
+        "ia-m2-02",
+        "ia-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Les limites des modèles",
+      "outcome_fr": "Biais, sur-apprentissage et hallucinations.",
+      "lesson_ids": [
+        "ia-m3-01",
+        "ia-m3-02",
+        "ia-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "IA et sécurité",
+      "outcome_fr": "Données personnelles, arnaques et injection de consignes.",
+      "lesson_ids": [
+        "ia-m4-01",
+        "ia-m4-02",
+        "ia-m4-03"
+      ]
+    }
+  ],
+  "next_courses": [],
+  "status": "brouillon",
+  "reviewer": null
+}

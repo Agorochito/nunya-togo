@@ -107,6 +107,7 @@
       "python-intermediaire",
       "sql-intermediaire",
       "statistiques-python",
+      "ia-bases",
       "git-bases"
     ],
     "planned_fr": [
@@ -130,7 +131,8 @@
       "bash-bases",
       "git-bases",
       "reseaux-bases",
-      "cyber-bases"
+      "cyber-bases",
+      "ia-bases"
     ],
     "planned_fr": [],
     "outcome_fr": "Comprendre les réseaux et défendre une petite organisation : adresses, filtrage, mots de passe, journaux, droits, sauvegardes et réponse aux incidents.",

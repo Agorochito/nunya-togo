@@ -1,5 +1,10 @@
 # Historique
 
+## 5.21.0 — 10 novembre 2026
+
+- Nouveau cours : **Intelligence artificielle : comprendre, vérifier, se protéger**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, en Python hors ligne, sans aucun service d’IA en ligne : seuil appris, plus proches voisins, exactitude, précision et rappel, régression comparée à un modèle de référence, filtre d’arnaques par sac de mots, perceptron entraîné pas à pas, biais mesurés groupe par groupe, sur-apprentissage, mini-modèle de langage et hallucinations, masquage des données personnelles, arnaques à fausse voix et injection de consignes.
+- Remplace la série « Introduction à l’IA et à la cybersécurité — en préparation » ; ajouté aux parcours Analyste de données et Cybersécurité.
+
 ## 5.20.0 — 10 novembre 2026
 
 - Nouveau cours : **Projet web : ma page personnelle**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, dans le vrai moteur de rendu de Nunya : plan et squelette sémantique, présentation avec image décrite et listes, projets et liens sûrs, feuille de style avec variables CSS, contraste et typographie, cartes en grille, mobile d’abord et requêtes média vérifiées à 360 et 1 000 pixels, images et mots longs qui ne débordent pas, volets details, focus clavier visible, formulaire de contact accessible, liste de contrôle et publication sur GitHub Pages.
