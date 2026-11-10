@@ -839,7 +839,7 @@
     "Objets connectés et robotique",
     "Blockchain"
   ],
-  "updated_for_release": "5.14.0",
+  "updated_for_release": "5.15.0",
   "updated_at": "2026-11-10",
   "additional_implemented": [
     {
@@ -855,6 +855,19 @@
       "evidence": [
         "docs/GIT_ENGINE_RESULTS.json",
         "docs/GIT_UI_RESULTS.json"
+      ]
+    },
+    {
+      "id": "cyber-bases",
+      "modules": 4,
+      "lessons": 12,
+      "activities": 48,
+      "quizzes": 36,
+      "status": "brouillon",
+      "scope": "Cybersécurité défensive en Python hors ligne, données fictives ; série complémentaire du parcours cybersécurité.",
+      "evidence": [
+        "content/fr/cyber-bases/",
+        "docs/TEST_RESULTS.md"
       ]
     }
   ]

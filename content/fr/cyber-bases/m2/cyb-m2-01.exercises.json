@@ -1,0 +1,291 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Le vrai domaine",
+    "instruction_fr": "Écris domaine_reel(lien) qui renvoie les deux dernières parties du nom d’hôte du lien.",
+    "starter_code": "from urllib.parse import urlparse\n\ndef domaine_reel(lien):\n    return urlparse(lien).hostname\n",
+    "solution": "from urllib.parse import urlparse\n\ndef domaine_reel(lien):\n    hote = urlparse(lien).hostname\n    return \".\".join(hote.split(\".\")[-2:])\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "domaine_reel",
+            "args": [
+              "https://ecole-avenir.tg.verif-compte.com/notes"
+            ],
+            "unchanged_args": true,
+            "expected": "verif-compte.com"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "domaine_reel",
+            "args": [
+              "https://ecole-avenir.tg/notes"
+            ],
+            "unchanged_args": true,
+            "expected": "ecole-avenir.tg"
+          },
+          {
+            "name": "domaine_reel",
+            "args": [
+              "http://www.caisse-kara.tg"
+            ],
+            "unchanged_args": true,
+            "expected": "caisse-kara.tg"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le nom d’hôte entier est renvoyé.",
+      "Découpe-le aux points.",
+      "\".\".join(hote.split(\".\")[-2:])"
+    ],
+    "explanation_fr": "La fin du nom d’hôte désigne le propriétaire réel du site.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:urllib.parse"
+    ],
+    "id": "cyb-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Domaine sosie",
+    "instruction_fr": "Écris est_sosie(domaine, officiel) : renvoie True si domaine est différent de officiel mais devient identique après avoir remplacé \"0\" par \"o\", \"1\" par \"l\" et \"rn\" par \"m\".",
+    "starter_code": "def est_sosie(domaine, officiel):\n    return domaine != officiel\n",
+    "solution": "def est_sosie(domaine, officiel):\n    normal = domaine.replace(\"0\", \"o\").replace(\"1\", \"l\").replace(\"rn\", \"m\")\n    return domaine != officiel and normal == officiel\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "est_sosie",
+            "args": [
+              "ec0le-avenir.tg",
+              "ecole-avenir.tg"
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "est_sosie",
+            "args": [
+              "ecole-avenir.tg",
+              "ecole-avenir.tg"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "est_sosie",
+            "args": [
+              "caisse-kara.tg",
+              "ecole-avenir.tg"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          },
+          {
+            "name": "est_sosie",
+            "args": [
+              "rnairie-lome.tg",
+              "mairie-lome.tg"
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "est_sosie",
+            "args": [
+              "ma1rie.tg",
+              "mairie.tg"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le domaine officiel lui-même n’est pas un sosie.",
+      "Enchaîne trois replace.",
+      "Compare le résultat normalisé au domaine officiel."
+    ],
+    "explanation_fr": "Normaliser révèle ce que l’œil confond.",
+    "common_wrong_answers": [],
+    "id": "cyb-m2-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Signaux d’alerte",
+    "instruction_fr": "signaux_trouves(message, signaux) doit renvoyer la liste des signaux présents dans le message, sans tenir compte des majuscules. Elle rate les messages écrits en majuscules. Corrige-la.",
+    "starter_code": "def signaux_trouves(message, signaux):\n    return [s for s in signaux if s in message]\n",
+    "solution": "def signaux_trouves(message, signaux):\n    texte = message.lower()\n    return [s for s in signaux if s in texte]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "signaux_trouves",
+            "args": [
+              "URGENT : cliquez ici",
+              [
+                "urgent",
+                "bloqué",
+                "code secret",
+                "gagné",
+                "cliquez"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "urgent",
+              "cliquez"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "signaux_trouves",
+            "args": [
+              "Réunion des parents samedi",
+              [
+                "urgent",
+                "bloqué",
+                "code secret",
+                "gagné",
+                "cliquez"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "signaux_trouves",
+            "args": [
+              "Vous avez GAGNÉ",
+              [
+                "urgent",
+                "bloqué",
+                "code secret",
+                "gagné",
+                "cliquez"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "gagné"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "URGENT n’est pas égal à urgent.",
+      "Mets le message en minuscules une fois.",
+      "Cherche ensuite chaque signal dans ce texte."
+    ],
+    "explanation_fr": "lower() fonctionne aussi sur les lettres accentuées : GAGNÉ devient gagné.",
+    "common_wrong_answers": [],
+    "id": "cyb-m2-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Verdict sur un message",
+    "instruction_fr": "Écris verdict(message, lien, officiel). Le score vaut le nombre de signaux de la liste [\"urgent\", \"bloqué\", \"code secret\", \"gagné\", \"cliquez\"] présents (sans tenir compte des majuscules), plus 2 si le domaine réel du lien n’est pas officiel. Renvoie \"fiable\" pour 0, \"suspect\" pour 1 ou 2, \"dangereux\" au-delà.",
+    "starter_code": "def verdict(message, lien, officiel):\n    return \"fiable\"\n",
+    "solution": "from urllib.parse import urlparse\n\ndef domaine_reel(lien):\n    hote = urlparse(lien).hostname\n    return \".\".join(hote.split(\".\")[-2:])\n\nSIGNAUX = [\"urgent\", \"bloqué\", \"code secret\", \"gagné\", \"cliquez\"]\n\ndef verdict(message, lien, officiel):\n    texte = message.lower()\n    score = len([s for s in SIGNAUX if s in texte])\n    if domaine_reel(lien) != officiel:\n        score += 2\n    if score == 0:\n        return \"fiable\"\n    if score <= 2:\n        return \"suspect\"\n    return \"dangereux\"\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verdict",
+            "args": [
+              "Les notes du trimestre sont en ligne.",
+              "https://ecole-avenir.tg/notes",
+              "ecole-avenir.tg"
+            ],
+            "unchanged_args": true,
+            "expected": "fiable"
+          },
+          {
+            "name": "verdict",
+            "args": [
+              "URGENT : compte bloqué",
+              "https://ecole-avenir.tg.verif.com/x",
+              "ecole-avenir.tg"
+            ],
+            "unchanged_args": true,
+            "expected": "dangereux"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verdict",
+            "args": [
+              "Cliquez pour voir les photos",
+              "https://ecole-avenir.tg/photos",
+              "ecole-avenir.tg"
+            ],
+            "unchanged_args": true,
+            "expected": "suspect"
+          },
+          {
+            "name": "verdict",
+            "args": [
+              "Bulletin disponible",
+              "https://bulletins-tg.com/a",
+              "ecole-avenir.tg"
+            ],
+            "unchanged_args": true,
+            "expected": "suspect"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Réutilise domaine_reel.",
+      "Additionne signaux et pénalité de domaine dans un seul score.",
+      "Trois seuils : 0, 1 à 2, plus."
+    ],
+    "explanation_fr": "Combiner plusieurs indices rend le tri plus fiable qu’un seul critère.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:urllib.parse"
+    ],
+    "id": "cyb-m2-01-e4"
+  }
+]

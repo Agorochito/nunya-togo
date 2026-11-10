@@ -6,8 +6,7 @@
       "exercises": 72,
       "quiz": 54,
       "coldOffline": true,
-      "axeViolations": 0,
-      "exceptionDescriptions": true
+      "axeViolations": 0
     },
     {
       "width": 1440,
@@ -15,8 +14,7 @@
       "exercises": 72,
       "quiz": 54,
       "coldOffline": true,
-      "axeViolations": 0,
-      "exceptionDescriptions": true
+      "axeViolations": 0
     }
   ],
   "errors": []

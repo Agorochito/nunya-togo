@@ -1,0 +1,310 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Découper une ligne",
+    "instruction_fr": "Écris lire_ligne(ligne) qui renvoie un dictionnaire avec les clés \"date\", \"heure\", \"statut\", \"compte\" et \"ip\".",
+    "starter_code": "def lire_ligne(ligne):\n    date, heure, statut, ip, compte = ligne.split()\n    return {\"date\": date, \"heure\": heure, \"statut\": statut, \"compte\": compte, \"ip\": ip}\n",
+    "solution": "def lire_ligne(ligne):\n    date, heure, statut, compte, ip = ligne.split()\n    return {\"date\": date, \"heure\": heure, \"statut\": statut, \"compte\": compte, \"ip\": ip}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_ligne",
+            "args": [
+              "2026-11-09 08:15:02 ECHEC kodjo 10.0.0.7"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "date": "2026-11-09",
+              "heure": "08:15:02",
+              "statut": "ECHEC",
+              "compte": "kodjo",
+              "ip": "10.0.0.7"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire_ligne",
+            "args": [
+              "2026-11-09 08:16:40 SUCCES ama 10.0.0.12"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "date": "2026-11-09",
+              "heure": "08:16:40",
+              "statut": "SUCCES",
+              "compte": "ama",
+              "ip": "10.0.0.12"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Compare l’ordre des variables avec celui de la ligne.",
+      "Le compte vient avant l’adresse IP.",
+      "date, heure, statut, compte, ip = ligne.split()"
+    ],
+    "explanation_fr": "Nommer les champs une fois évite de se tromper d’indice partout ailleurs.",
+    "common_wrong_answers": [],
+    "id": "cyb-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Échecs par adresse",
+    "instruction_fr": "Écris echecs_par_ip(journal) qui renvoie un dictionnaire adresse IP → nombre de lignes ECHEC. Les adresses sans échec n’y figurent pas.",
+    "starter_code": "def echecs_par_ip(journal):\n    return {}\n",
+    "solution": "from collections import Counter\n\ndef echecs_par_ip(journal):\n    compte = Counter()\n    for ligne in journal:\n        champs = ligne.split()\n        if champs[2] == \"ECHEC\":\n            compte[champs[4]] += 1\n    return dict(compte)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "echecs_par_ip",
+            "args": [
+              [
+                "2026-11-09 08:15:02 ECHEC kodjo 10.0.0.7",
+                "2026-11-09 08:15:09 ECHEC kodjo 10.0.0.7",
+                "2026-11-09 08:16:40 SUCCES ama 10.0.0.12",
+                "2026-11-09 08:17:03 ECHEC admin 10.0.0.7"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "10.0.0.7": 3
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "echecs_par_ip",
+            "args": [
+              [
+                "2026-11-09 09:00:01 ECHEC admin 10.0.0.9",
+                "2026-11-09 09:00:04 ECHEC admin 10.0.0.9",
+                "2026-11-09 09:00:07 ECHEC admin 10.0.0.9",
+                "2026-11-09 09:00:10 SUCCES admin 10.0.0.9",
+                "2026-11-09 09:01:00 SUCCES ama 10.0.0.12",
+                "2026-11-09 09:02:00 ECHEC esi 10.0.0.14"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "10.0.0.9": 3,
+              "10.0.0.14": 1
+            }
+          },
+          {
+            "name": "echecs_par_ip",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": {}
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Ne garde que les lignes dont le statut est ECHEC.",
+      "Counter commence à zéro pour chaque nouvelle clé.",
+      "L’adresse IP est le cinquième champ : indice 4."
+    ],
+    "explanation_fr": "Ce comptage est la base de presque toutes les détections de force brute.",
+    "common_wrong_answers": [],
+    "id": "cyb-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Adresses suspectes",
+    "instruction_fr": "ips_suspectes(journal, seuil) doit renvoyer la liste triée des adresses qui ont au moins seuil échecs. Elle exclut les adresses au seuil exact et ne trie pas. Corrige-la.",
+    "starter_code": "def ips_suspectes(journal, seuil):\n    compte = {}\n    for ligne in journal:\n        champs = ligne.split()\n        if champs[2] == \"ECHEC\":\n            compte[champs[4]] = compte.get(champs[4], 0) + 1\n    return [ip for ip, n in compte.items() if n > seuil]\n",
+    "solution": "def ips_suspectes(journal, seuil):\n    compte = {}\n    for ligne in journal:\n        champs = ligne.split()\n        if champs[2] == \"ECHEC\":\n            compte[champs[4]] = compte.get(champs[4], 0) + 1\n    return sorted(ip for ip, n in compte.items() if n >= seuil)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ips_suspectes",
+            "args": [
+              [
+                "2026-11-09 08:15:02 ECHEC kodjo 10.0.0.7",
+                "2026-11-09 08:15:09 ECHEC kodjo 10.0.0.7",
+                "2026-11-09 08:16:40 SUCCES ama 10.0.0.12",
+                "2026-11-09 08:17:03 ECHEC admin 10.0.0.7"
+              ],
+              3
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "10.0.0.7"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ips_suspectes",
+            "args": [
+              [
+                "2026-11-09 09:00:01 ECHEC admin 10.0.0.9",
+                "2026-11-09 09:00:04 ECHEC admin 10.0.0.9",
+                "2026-11-09 09:00:07 ECHEC admin 10.0.0.9",
+                "2026-11-09 09:00:10 SUCCES admin 10.0.0.9",
+                "2026-11-09 09:01:00 SUCCES ama 10.0.0.12",
+                "2026-11-09 09:02:00 ECHEC esi 10.0.0.14"
+              ],
+              1
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "10.0.0.14",
+              "10.0.0.9"
+            ]
+          },
+          {
+            "name": "ips_suspectes",
+            "args": [
+              [
+                "2026-11-09 09:00:01 ECHEC admin 10.0.0.9",
+                "2026-11-09 09:00:04 ECHEC admin 10.0.0.9",
+                "2026-11-09 09:00:07 ECHEC admin 10.0.0.9",
+                "2026-11-09 09:00:10 SUCCES admin 10.0.0.9",
+                "2026-11-09 09:01:00 SUCCES ama 10.0.0.12",
+                "2026-11-09 09:02:00 ECHEC esi 10.0.0.14"
+              ],
+              4
+            ],
+            "unchanged_args": true,
+            "expected": []
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "« Au moins » inclut le seuil.",
+      "Remplace > par >=.",
+      "Entoure le résultat de sorted()."
+    ],
+    "explanation_fr": "Un ordre stable rend deux rapports comparables d’un jour à l’autre.",
+    "common_wrong_answers": [],
+    "id": "cyb-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Comptes probablement compromis",
+    "instruction_fr": "Écris compromis(journal, seuil) : parcours le journal dans l’ordre et renvoie la liste triée, sans doublon, des comptes qui ont obtenu un SUCCES depuis une adresse ayant déjà au moins seuil échecs à ce moment-là.",
+    "starter_code": "def compromis(journal, seuil):\n    return []\n",
+    "solution": "def compromis(journal, seuil):\n    echecs = {}\n    comptes = set()\n    for ligne in journal:\n        date, heure, statut, compte, ip = ligne.split()\n        if statut == \"ECHEC\":\n            echecs[ip] = echecs.get(ip, 0) + 1\n        elif statut == \"SUCCES\" and echecs.get(ip, 0) >= seuil:\n            comptes.add(compte)\n    return sorted(comptes)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compromis",
+            "args": [
+              [
+                "2026-11-09 09:00:01 ECHEC admin 10.0.0.9",
+                "2026-11-09 09:00:04 ECHEC admin 10.0.0.9",
+                "2026-11-09 09:00:07 ECHEC admin 10.0.0.9",
+                "2026-11-09 09:00:10 SUCCES admin 10.0.0.9",
+                "2026-11-09 09:01:00 SUCCES ama 10.0.0.12",
+                "2026-11-09 09:02:00 ECHEC esi 10.0.0.14"
+              ],
+              3
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "admin"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compromis",
+            "args": [
+              [
+                "2026-11-09 08:15:02 ECHEC kodjo 10.0.0.7",
+                "2026-11-09 08:15:09 ECHEC kodjo 10.0.0.7",
+                "2026-11-09 08:16:40 SUCCES ama 10.0.0.12",
+                "2026-11-09 08:17:03 ECHEC admin 10.0.0.7"
+              ],
+              3
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "compromis",
+            "args": [
+              [
+                "2026-11-09 09:00:01 ECHEC admin 10.0.0.9",
+                "2026-11-09 09:00:04 ECHEC admin 10.0.0.9",
+                "2026-11-09 09:00:07 ECHEC admin 10.0.0.9",
+                "2026-11-09 09:00:10 SUCCES admin 10.0.0.9",
+                "2026-11-09 09:01:00 SUCCES ama 10.0.0.12",
+                "2026-11-09 09:02:00 ECHEC esi 10.0.0.14",
+                "2026-11-09 09:03:00 SUCCES esi 10.0.0.14"
+              ],
+              1
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "admin",
+              "esi"
+            ]
+          },
+          {
+            "name": "compromis",
+            "args": [
+              [
+                "2026-11-09 07:00:00 SUCCES ama 10.0.0.5",
+                "2026-11-09 07:00:01 ECHEC ama 10.0.0.5"
+              ],
+              1
+            ],
+            "unchanged_args": true,
+            "expected": []
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Tiens un compteur d’échecs par adresse, mis à jour ligne par ligne.",
+      "Au moment d’un succès, regarde le compteur actuel de son adresse.",
+      "Un ensemble évite les doublons ; sorted le transforme en liste triée."
+    ],
+    "explanation_fr": "C’est l’alerte qui justifie d’appeler la personne, de bloquer le compte et de changer le mot de passe.",
+    "common_wrong_answers": [],
+    "id": "cyb-m2-02-e4"
+  }
+]

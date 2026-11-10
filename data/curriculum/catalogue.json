@@ -2153,6 +2153,295 @@
       "quiz_count": 54
     },
     {
+      "id": "cyber-bases",
+      "title_fr": "Cybersécurité : défendre une petite organisation",
+      "language": "python",
+      "runtime": "python",
+      "technology": "cyber",
+      "level": "debutant",
+      "summary_fr": "Protège une école, une boutique ou une coopérative : risques, mots de passe, hachage, hameçonnage, journaux de connexion, droits d’accès, validation des entrées, sauvegardes et réponse aux incidents, jusqu’à un audit complet. Tout en Python, hors ligne, sur des données fictives.",
+      "prerequisite_courses": [
+        "python-bases"
+      ],
+      "prerequisites": [
+        "Savoir écrire des fonctions Python, parcourir listes et dictionnaires, et utiliser if et for.",
+        "Le cours est défensif : on protège uniquement des systèmes que l’on a le droit d’examiner."
+      ],
+      "outcomes": [
+        "Évaluer et classer des risques selon la confidentialité, l’intégrité et la disponibilité.",
+        "Vérifier des mots de passe, les stocker avec un hachage salé et repérer un hameçonnage.",
+        "Analyser des journaux de connexion pour détecter force brute et connexions inhabituelles.",
+        "Appliquer moindre privilège, validation des entrées, contrôle d’intégrité et sauvegardes 3-2-1.",
+        "Réagir à un incident et produire un rapport d’audit classé par priorité."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Comprendre et protéger les accès",
+          "outcome_fr": "Classer les risques, exiger des mots de passe solides et les stocker correctement.",
+          "lesson_ids": [
+            "cyb-m1-01",
+            "cyb-m1-02",
+            "cyb-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Détecter les attaques",
+          "outcome_fr": "Repérer l’hameçonnage, lire les journaux et signaler les connexions inhabituelles.",
+          "lesson_ids": [
+            "cyb-m2-01",
+            "cyb-m2-02",
+            "cyb-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Réduire la surface d’attaque",
+          "outcome_fr": "Limiter les droits, valider les entrées et vérifier l’intégrité des fichiers.",
+          "lesson_ids": [
+            "cyb-m3-01",
+            "cyb-m3-02",
+            "cyb-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Sauvegarder, réagir et auditer",
+          "outcome_fr": "Appliquer la règle 3-2-1, gérer un incident et livrer un audit complet.",
+          "lesson_ids": [
+            "cyb-m4-01",
+            "cyb-m4-02",
+            "cyb-m4-03"
+          ]
+        }
+      ],
+      "next_courses": [],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "cyb-m1-01",
+          "title_fr": "Ce qu’on protège : confidentialité, intégrité, disponibilité",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [],
+          "tags": [
+            "cybersécurité",
+            "python",
+            "défense",
+            "actif",
+            "CID",
+            "vulnérabilité",
+            "risque"
+          ]
+        },
+        {
+          "id": "cyb-m1-02",
+          "title_fr": "Mots de passe : la longueur avant tout",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "cyb-m1-01"
+          ],
+          "tags": [
+            "cybersécurité",
+            "python",
+            "défense",
+            "attaque par dictionnaire",
+            "force brute",
+            "phrase de passe",
+            "double authentification"
+          ]
+        },
+        {
+          "id": "cyb-m1-03",
+          "title_fr": "Stocker un mot de passe : hachage et sel",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "cyb-m1-02"
+          ],
+          "tags": [
+            "cybersécurité",
+            "python",
+            "défense",
+            "hachage",
+            "empreinte",
+            "sel",
+            "compare_digest"
+          ]
+        },
+        {
+          "id": "cyb-m2-01",
+          "title_fr": "Reconnaître un message d’hameçonnage",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "cyb-m1-03"
+          ],
+          "tags": [
+            "cybersécurité",
+            "python",
+            "défense",
+            "hameçonnage",
+            "nom d’hôte",
+            "domaine sosie",
+            "signal d’alerte"
+          ]
+        },
+        {
+          "id": "cyb-m2-02",
+          "title_fr": "Lire un journal de connexions",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "cyb-m2-01"
+          ],
+          "tags": [
+            "cybersécurité",
+            "python",
+            "défense",
+            "journal",
+            "adresse IP",
+            "Counter",
+            "seuil"
+          ]
+        },
+        {
+          "id": "cyb-m2-03",
+          "title_fr": "Repérer les connexions inhabituelles",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "cyb-m2-02"
+          ],
+          "tags": [
+            "cybersécurité",
+            "python",
+            "défense",
+            "anomalie",
+            "adresse privée",
+            "strptime",
+            "SIEM"
+          ]
+        },
+        {
+          "id": "cyb-m3-01",
+          "title_fr": "Donner le moins de droits possible",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "cyb-m2-03"
+          ],
+          "tags": [
+            "cybersécurité",
+            "python",
+            "défense",
+            "autorisation",
+            "moindre privilège",
+            "rôle",
+            "séparation des tâches"
+          ]
+        },
+        {
+          "id": "cyb-m3-02",
+          "title_fr": "Ne jamais faire confiance aux entrées",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "cyb-m3-01"
+          ],
+          "tags": [
+            "cybersécurité",
+            "python",
+            "défense",
+            "injection",
+            "liste autorisée",
+            "échappement",
+            "requête paramétrée"
+          ]
+        },
+        {
+          "id": "cyb-m3-03",
+          "title_fr": "Encoder, chiffrer, hacher : vérifier l’intégrité",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "cyb-m3-02"
+          ],
+          "tags": [
+            "cybersécurité",
+            "python",
+            "défense",
+            "encodage",
+            "chiffrement",
+            "intégrité",
+            "manifeste"
+          ]
+        },
+        {
+          "id": "cyb-m4-01",
+          "title_fr": "Sauvegarder pour survivre à un rançongiciel",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "cyb-m3-03"
+          ],
+          "tags": [
+            "cybersécurité",
+            "python",
+            "défense",
+            "rançongiciel",
+            "règle 3-2-1",
+            "restauration",
+            "timedelta"
+          ]
+        },
+        {
+          "id": "cyb-m4-02",
+          "title_fr": "Réagir à un incident",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "cyb-m4-01"
+          ],
+          "tags": [
+            "cybersécurité",
+            "python",
+            "défense",
+            "incident",
+            "confinement",
+            "chronologie",
+            "retour d’expérience"
+          ]
+        },
+        {
+          "id": "cyb-m4-03",
+          "title_fr": "Projet : audit de sécurité d’une coopérative",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "cyb-m4-02"
+          ],
+          "tags": [
+            "cybersécurité",
+            "python",
+            "défense",
+            "audit",
+            "constat",
+            "périmètre",
+            "CTF"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "2ebe2810572d",
+      "exercise_count": 48,
+      "quiz_count": 36
+    },
+    {
       "id": "html-bases",
       "title_fr": "HTML : premières pages accessibles",
       "language": "html",

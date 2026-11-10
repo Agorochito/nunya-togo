@@ -1,5 +1,14 @@
 # Historique
 
+## 5.15.0 — 10 novembre 2026
+
+- **Sept ambiances visuelles** remplacent l’ancien choix de couleur : Nunya (vert forêt et orange, nouvelle apparence par défaut), Lagune, Kente, Sauge, Prune, Nuit et **Verre liquide** (panneaux translucides sur des champs de couleur animés). Chaque ambiance existe en clair et en sombre ; le choix se fait dès l’écran d’accueil ou dans « Mon profil & confort », avec un aperçu par carte, et reste sur l’appareil. La couleur personnalisée reste disponible (« Ou compose ta propre couleur ») et les anciens choix sont conservés.
+- Cartes avec relief et léger soulèvement au survol, barres de progression plus visibles, boutons animés ; tout mouvement s’arrête si le système demande moins d’animations.
+- Verre liquide léger automatique (panneaux opaques, fond immobile) sur les appareils de 2 Go de mémoire ou moins, en mode économie de données du navigateur ou si le système demande moins de transparence ; réglage manuel « Verre léger ».
+- Les palettes sont générées par `scripts/build-ambiances.py`, qui refuse la construction si un texte passe sous 4,5:1 dans une ambiance, y compris sur le verre au-dessus de ses couleurs les plus vives.
+- Nouveau cours : **Cybersécurité : défendre une petite organisation**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, en Python hors ligne et sur données fictives : triade confidentialité-intégrité-disponibilité et score de risque, mots de passe et listes interdites, hachage salé, hameçonnage et domaines sosies, journaux de connexion et force brute, connexions inhabituelles, moindre privilège et séparation des tâches, validation des entrées et échappement, encodage/chiffrement/hachage et intégrité des fichiers, sauvegardes 3-2-1, réponse aux incidents, puis audit complet d’une coopérative. Cadre légal togolais rappelé (loi n° 2018-026, CERT.tg).
+- Le cours remplace l’étape « Cybersécurité — en préparation » du parcours cybersécurité et ouvre le domaine « Cybersécurité » du catalogue.
+
 ## 5.14.0 — 10 novembre 2026
 
 - Nouveau cours : **Java : premiers programmes**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux en français : `System.out.println`, types et `final`, calculs et division entière, saisies avec `Scanner` et `Integer.parseInt`, `if`/`else` et `equals`, `switch` en flèche, `while`, `for`, méthodes et surcharge, tableaux, `String` et `ArrayList`, classes et constructeurs, encapsulation, exceptions avec `try`/`catch`, et projet de gestion d’une boutique de quartier (stock, ventes refusées, rapport).

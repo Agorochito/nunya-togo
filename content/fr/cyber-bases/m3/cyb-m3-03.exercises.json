@@ -1,0 +1,322 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Chiffrement de César",
+    "instruction_fr": "Écris cesar(texte, decalage) qui décale les lettres minuscules de a à z, en revenant au début après z ; les autres caractères restent inchangés.",
+    "starter_code": "def cesar(texte, decalage):\n    resultat = \"\"\n    for c in texte:\n        if \"a\" <= c <= \"z\":\n            resultat += chr(ord(c) + decalage)\n        else:\n            resultat += c\n    return resultat\n",
+    "solution": "def cesar(texte, decalage):\n    resultat = \"\"\n    for c in texte:\n        if \"a\" <= c <= \"z\":\n            resultat += chr((ord(c) - ord(\"a\") + decalage) % 26 + ord(\"a\"))\n        else:\n            resultat += c\n    return resultat\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "cesar",
+            "args": [
+              "zoo",
+              3
+            ],
+            "unchanged_args": true,
+            "expected": "crr"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "cesar",
+            "args": [
+              "abc xyz!",
+              1
+            ],
+            "unchanged_args": true,
+            "expected": "bcd yza!"
+          },
+          {
+            "name": "cesar",
+            "args": [
+              "crr",
+              -3
+            ],
+            "unchanged_args": true,
+            "expected": "zoo"
+          },
+          {
+            "name": "cesar",
+            "args": [
+              "kara",
+              26
+            ],
+            "unchanged_args": true,
+            "expected": "kara"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "z décalé de 3 sort de l’alphabet.",
+      "Ramène le rang entre 0 et 25 avec % 26.",
+      "chr((ord(c) - ord(\"a\") + decalage) % 26 + ord(\"a\"))"
+    ],
+    "explanation_fr": "Le modulo fait de l’alphabet un cercle : après z vient a.",
+    "common_wrong_answers": [],
+    "id": "cyb-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Casser César",
+    "instruction_fr": "Écris casser(chiffre, mot_connu) qui essaie les décalages de 0 à 25 et renvoie le premier décalage d dont le déchiffrement (cesar(chiffre, -d)) contient mot_connu ; renvoie None si aucun ne marche. Inclus ta fonction cesar.",
+    "starter_code": "def casser(chiffre, mot_connu):\n    return 3\n",
+    "solution": "def cesar(texte, decalage):\n    resultat = \"\"\n    for c in texte:\n        if \"a\" <= c <= \"z\":\n            resultat += chr((ord(c) - ord(\"a\") + decalage) % 26 + ord(\"a\"))\n        else:\n            resultat += c\n    return resultat\n\ndef casser(chiffre, mot_connu):\n    for d in range(26):\n        if mot_connu in cesar(chiffre, -d):\n            return d\n    return None\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "casser",
+            "args": [
+              "uhqghc-yrxv dx crr",
+              "rendez"
+            ],
+            "unchanged_args": true,
+            "expected": 3
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "casser",
+            "args": [
+              "ndud",
+              "kara"
+            ],
+            "unchanged_args": true,
+            "expected": 3
+          },
+          {
+            "name": "casser",
+            "args": [
+              "bonjour",
+              "bonjour"
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "casser",
+            "args": [
+              "abc",
+              "zzz"
+            ],
+            "unchanged_args": true,
+            "expected": null
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une boucle for d in range(26) essaie toutes les clés.",
+      "Déchiffrer, c’est décaler de -d.",
+      "Renvoie d dès que le mot connu apparaît."
+    ],
+    "explanation_fr": "Vingt-six essais suffisent : c’est pour cela que César n’est qu’un jeu.",
+    "common_wrong_answers": [],
+    "id": "cyb-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Fichiers altérés",
+    "instruction_fr": "alteres(fichiers, manifeste) reçoit un dictionnaire nom → contenu et un dictionnaire nom → empreinte SHA-256. Elle doit renvoyer la liste triée des fichiers du manifeste modifiés ou manquants. Elle compare le contenu à l’empreinte et plante sur un fichier manquant. Corrige-la.",
+    "starter_code": "def alteres(fichiers, manifeste):\n    resultat = []\n    for nom, empreinte in manifeste.items():\n        if fichiers[nom] != empreinte:\n            resultat.append(nom)\n    return sorted(resultat)\n",
+    "solution": "import hashlib\n\ndef alteres(fichiers, manifeste):\n    resultat = []\n    for nom, empreinte in manifeste.items():\n        if nom not in fichiers:\n            resultat.append(nom)\n        elif hashlib.sha256(fichiers[nom].encode(\"utf-8\")).hexdigest() != empreinte:\n            resultat.append(nom)\n    return sorted(resultat)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "alteres",
+            "args": [
+              {
+                "notes.csv": "ama;15\nkofi;19\n",
+                "membres.txt": "Ama\nKofi\n",
+                "virus.exe": "MZ"
+              },
+              {
+                "notes.csv": "e51e73f2743c483ac4b43365b9f06c77cf32fb3ab35661e31915180dbba7dff2",
+                "membres.txt": "916c34d51960f1c7459070c6d4718fb628359fb538cd6ca84b1a5c6120cec6cc",
+                "budget.csv": "ddcfd05740f705b2a68fdc7f77cb90e1e99c9384b14365646795bd61fcec98f1"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "budget.csv",
+              "notes.csv"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "alteres",
+            "args": [
+              {
+                "notes.csv": "ama;15\nkofi;12\n",
+                "membres.txt": "Ama\nKofi\n",
+                "budget.csv": "total;50000\n"
+              },
+              {
+                "notes.csv": "e51e73f2743c483ac4b43365b9f06c77cf32fb3ab35661e31915180dbba7dff2",
+                "membres.txt": "916c34d51960f1c7459070c6d4718fb628359fb538cd6ca84b1a5c6120cec6cc",
+                "budget.csv": "ddcfd05740f705b2a68fdc7f77cb90e1e99c9384b14365646795bd61fcec98f1"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "alteres",
+            "args": [
+              {},
+              {
+                "notes.csv": "e51e73f2743c483ac4b43365b9f06c77cf32fb3ab35661e31915180dbba7dff2",
+                "membres.txt": "916c34d51960f1c7459070c6d4718fb628359fb538cd6ca84b1a5c6120cec6cc",
+                "budget.csv": "ddcfd05740f705b2a68fdc7f77cb90e1e99c9384b14365646795bd61fcec98f1"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "budget.csv",
+              "membres.txt",
+              "notes.csv"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le manifeste contient des empreintes, pas des contenus.",
+      "Calcule le SHA-256 du contenu avant de comparer.",
+      "Teste d’abord si le fichier existe : nom not in fichiers."
+    ],
+    "explanation_fr": "Comparer des empreintes détecte le moindre changement, comme la note de Kofi passée de 12 à 19.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:hashlib"
+    ],
+    "id": "cyb-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Rapport d’intégrité",
+    "instruction_fr": "Écris rapport_integrite(fichiers, manifeste) qui renvoie un dictionnaire avec les clés \"intacts\", \"modifiés\", \"manquants\" et \"nouveaux\", chacune associée à une liste triée de noms. Les nouveaux sont les fichiers absents du manifeste.",
+    "starter_code": "def rapport_integrite(fichiers, manifeste):\n    return {\"intacts\": sorted(fichiers)}\n",
+    "solution": "import hashlib\n\ndef rapport_integrite(fichiers, manifeste):\n    r = {\"intacts\": [], \"modifiés\": [], \"manquants\": [], \"nouveaux\": []}\n    for nom, empreinte in manifeste.items():\n        if nom not in fichiers:\n            r[\"manquants\"].append(nom)\n        elif hashlib.sha256(fichiers[nom].encode(\"utf-8\")).hexdigest() == empreinte:\n            r[\"intacts\"].append(nom)\n        else:\n            r[\"modifiés\"].append(nom)\n    for nom in fichiers:\n        if nom not in manifeste:\n            r[\"nouveaux\"].append(nom)\n    for liste in r.values():\n        liste.sort()\n    return r\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rapport_integrite",
+            "args": [
+              {
+                "notes.csv": "ama;15\nkofi;19\n",
+                "membres.txt": "Ama\nKofi\n",
+                "virus.exe": "MZ"
+              },
+              {
+                "notes.csv": "e51e73f2743c483ac4b43365b9f06c77cf32fb3ab35661e31915180dbba7dff2",
+                "membres.txt": "916c34d51960f1c7459070c6d4718fb628359fb538cd6ca84b1a5c6120cec6cc",
+                "budget.csv": "ddcfd05740f705b2a68fdc7f77cb90e1e99c9384b14365646795bd61fcec98f1"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "intacts": [
+                "membres.txt"
+              ],
+              "modifiés": [
+                "notes.csv"
+              ],
+              "manquants": [
+                "budget.csv"
+              ],
+              "nouveaux": [
+                "virus.exe"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rapport_integrite",
+            "args": [
+              {},
+              {}
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "intacts": [],
+              "modifiés": [],
+              "manquants": [],
+              "nouveaux": []
+            }
+          },
+          {
+            "name": "rapport_integrite",
+            "args": [
+              {
+                "a.txt": "x"
+              },
+              {
+                "a.txt": "2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "intacts": [
+                "a.txt"
+              ],
+              "modifiés": [],
+              "manquants": [],
+              "nouveaux": []
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Parcours d’abord le manifeste, puis les fichiers.",
+      "Chaque fichier du manifeste tombe dans une seule des trois premières catégories.",
+      "Trie toutes les listes à la fin."
+    ],
+    "explanation_fr": "Le fichier virus.exe, inattendu, est souvent le premier indice d’une intrusion.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:hashlib"
+    ],
+    "id": "cyb-m3-03-e4"
+  }
+]

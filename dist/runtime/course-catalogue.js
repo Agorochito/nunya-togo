@@ -19,12 +19,13 @@ const TECHNOLOGIES={
   cpp:{label:'C++',mark:'C++',aliases:'c++ cpp c plus plus programmation compilee systeme'},
   java:{label:'Java',mark:'Jv',aliases:'java jdk objet objets classes programmation compilee android logiciel entreprise backend'},
   php:{label:'PHP',mark:'php',aliases:'php programmation serveur web back-end backend script'},
+  cyber:{label:'Cybersécurité',mark:'Sec',aliases:'cybersecurite securite cyber defense hameconnage phishing mots de passe journaux logs audit incident sauvegarde python'},
   git:{label:'Git',mark:'Git',aliases:'git versions branches historique'}
 };
 
 function normalize(value){return String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[’']/g,' ').replace(/\s+/g,' ').trim();}
 function technology(course){
-  const key=Object.hasOwn(TECHNOLOGIES,course.runtime)?course.runtime:course.language;
+  const key=Object.hasOwn(TECHNOLOGIES,course.technology)?course.technology:Object.hasOwn(TECHNOLOGIES,course.runtime)?course.runtime:course.language;
   return {key:String(key||'autres'),...(TECHNOLOGIES[key]||{label:course.technology_fr||course.language||'Autres outils',mark:'<>',aliases:''})};
 }
 function writtenCourses(catalogue){return (catalogue.courses||[]).filter(c=>c?.id&&Array.isArray(c.lessons)&&c.lessons.length>0);}
@@ -85,6 +86,7 @@ const DOMAINS=[
   {key:'web',title:'Web : sites et applications',text:'Créer des pages, les mettre en forme et les rendre interactives, du premier HTML à React.',technologies:['html','css','javascript','dom','react','http']},
   {key:'langages',title:'Langages de programmation',text:'Programmer des scripts, des logiciels et des serveurs avec un langage généraliste.',technologies:['python','php','cpp','java']},
   {key:'donnees',title:'Données',text:'Interroger, organiser et analyser des informations avec une base de données.',technologies:['sql']},
+  {key:'securite',title:'Cybersécurité',text:'Protéger les comptes, détecter les attaques et réagir aux incidents, sur des données fictives et dans un cadre légal.',technologies:['cyber']},
   {key:'outils',title:'Outils et systèmes',text:'Le terminal, Linux et les outils que tout développeur et tout analyste en sécurité utilisent chaque jour.',technologies:['bash']}
 ];
 function filtering(){return filters.q.trim()!==''||filters.technology!=='all'||filters.level!=='all';}

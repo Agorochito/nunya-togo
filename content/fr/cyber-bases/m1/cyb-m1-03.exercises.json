@@ -1,0 +1,296 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Empreinte salée",
+    "instruction_fr": "Écris empreinte(mdp, sel) qui renvoie le SHA-256 hexadécimal du texte sel + mdp, encodé en UTF-8.",
+    "starter_code": "import hashlib\n\ndef empreinte(mdp, sel):\n    return hashlib.sha256(mdp.encode(\"utf-8\")).hexdigest()\n",
+    "solution": "import hashlib\n\ndef empreinte(mdp, sel):\n    return hashlib.sha256((sel + mdp).encode(\"utf-8\")).hexdigest()\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "empreinte",
+            "args": [
+              "mangue",
+              "k3f9"
+            ],
+            "unchanged_args": true,
+            "expected": "35021217ba4599a9f68681f4f1567286e6131d31a635ac6c03ec2bf5f4450e88"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "empreinte",
+            "args": [
+              "kara-2026",
+              "x1"
+            ],
+            "unchanged_args": true,
+            "expected": "579233e977333802ae22a083d209c0b26ea95e805a53ba24e8f6f541863fd17f"
+          },
+          {
+            "name": "empreinte",
+            "args": [
+              "",
+              "sel"
+            ],
+            "unchanged_args": true,
+            "expected": "69110cefbfea018dfef9e466adfc18174f85539ae281711825c1c186cb448384"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le sel est ignoré : deux comptes identiques auraient la même empreinte.",
+      "Colle le sel devant le mot de passe.",
+      "hashlib.sha256((sel + mdp).encode(\"utf-8\")).hexdigest()"
+    ],
+    "explanation_fr": "L’ordre sel puis mot de passe doit rester le même à l’inscription et à la connexion.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:hashlib"
+    ],
+    "id": "cyb-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Vérifier une connexion",
+    "instruction_fr": "Écris verifier(saisie, sel, empreinte_stockee) qui renvoie True si le SHA-256 de sel + saisie est égal à l’empreinte stockée. Compare avec hmac.compare_digest.",
+    "starter_code": "import hashlib\nimport hmac\n\ndef verifier(saisie, sel, empreinte_stockee):\n    return False\n",
+    "solution": "import hashlib\nimport hmac\n\ndef verifier(saisie, sel, empreinte_stockee):\n    calcul = hashlib.sha256((sel + saisie).encode(\"utf-8\")).hexdigest()\n    return hmac.compare_digest(calcul, empreinte_stockee)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              "mangue",
+              "k3f9",
+              "35021217ba4599a9f68681f4f1567286e6131d31a635ac6c03ec2bf5f4450e88"
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "verifier",
+            "args": [
+              "Mangue",
+              "k3f9",
+              "35021217ba4599a9f68681f4f1567286e6131d31a635ac6c03ec2bf5f4450e88"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [
+              "mangue",
+              "x7q2",
+              "35021217ba4599a9f68681f4f1567286e6131d31a635ac6c03ec2bf5f4450e88"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          },
+          {
+            "name": "verifier",
+            "args": [
+              "pirogue",
+              "a",
+              "9f5dacc7fb7b130576dcfbbd323f0ae4fa4dd77c8559feca3c9dfb1639c06815"
+            ],
+            "unchanged_args": true,
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Hache la saisie exactement comme à l’inscription.",
+      "compare_digest renvoie directement un booléen.",
+      "Même mot de passe, autre sel : la vérification doit échouer."
+    ],
+    "explanation_fr": "Le serveur ne compare jamais deux mots de passe, seulement deux empreintes.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:hmac"
+    ],
+    "id": "cyb-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Création de compte",
+    "instruction_fr": "creer_compte(nom, mdp, sel) doit renvoyer {\"nom\": nom, \"sel\": sel, \"empreinte\": SHA-256 de sel + mdp}. Elle garde le mot de passe en clair et inverse l’ordre de concaténation. Corrige-la.",
+    "starter_code": "import hashlib\n\ndef creer_compte(nom, mdp, sel):\n    return {\n        \"nom\": nom,\n        \"sel\": sel,\n        \"mot_de_passe\": mdp,\n        \"empreinte\": hashlib.sha256((mdp + sel).encode(\"utf-8\")).hexdigest(),\n    }\n",
+    "solution": "import hashlib\n\ndef creer_compte(nom, mdp, sel):\n    return {\n        \"nom\": nom,\n        \"sel\": sel,\n        \"empreinte\": hashlib.sha256((sel + mdp).encode(\"utf-8\")).hexdigest(),\n    }\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "creer_compte",
+            "args": [
+              "ama",
+              "pirogue",
+              "a1"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "nom": "ama",
+              "sel": "a1",
+              "empreinte": "e45292ea94ce6d198aed4e97320cb0fb0f612d2f7ac4a085a9d8ba64683cca6d"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "creer_compte",
+            "args": [
+              "yao",
+              "x",
+              "zz"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "nom": "yao",
+              "sel": "zz",
+              "empreinte": "c0df030cf0cfc0d1a22652ec64d4d0577e975baee6a2b44855ea52585e307d20"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le dictionnaire ne doit contenir que nom, sel et empreinte.",
+      "Le sel se place avant le mot de passe.",
+      "Supprime la clé mot_de_passe."
+    ],
+    "explanation_fr": "Ce qui n’est pas stocké ne peut pas fuir.",
+    "common_wrong_answers": [],
+    "id": "cyb-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Connexion sans indice",
+    "instruction_fr": "Écris connexion(comptes, nom, mdp) : comptes est une liste de dictionnaires {\"nom\", \"sel\", \"empreinte\"}. Renvoie \"accepté\" si le compte existe et que le mot de passe est correct, sinon \"refusé\" — y compris pour un nom inconnu, pour ne pas révéler quels comptes existent.",
+    "starter_code": "import hashlib\n\ndef connexion(comptes, nom, mdp):\n    for compte in comptes:\n        if compte[\"nom\"] == nom:\n            return \"accepté\"\n    return \"utilisateur inconnu\"\n",
+    "solution": "import hashlib\nimport hmac\n\ndef connexion(comptes, nom, mdp):\n    for compte in comptes:\n        if compte[\"nom\"] == nom:\n            calcul = hashlib.sha256((compte[\"sel\"] + mdp).encode(\"utf-8\")).hexdigest()\n            if hmac.compare_digest(calcul, compte[\"empreinte\"]):\n                return \"accepté\"\n            return \"refusé\"\n    return \"refusé\"\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "connexion",
+            "args": [
+              [
+                {
+                  "nom": "ama",
+                  "sel": "a1",
+                  "empreinte": "e45292ea94ce6d198aed4e97320cb0fb0f612d2f7ac4a085a9d8ba64683cca6d"
+                }
+              ],
+              "ama",
+              "pirogue"
+            ],
+            "unchanged_args": true,
+            "expected": "accepté"
+          },
+          {
+            "name": "connexion",
+            "args": [
+              [
+                {
+                  "nom": "ama",
+                  "sel": "a1",
+                  "empreinte": "e45292ea94ce6d198aed4e97320cb0fb0f612d2f7ac4a085a9d8ba64683cca6d"
+                }
+              ],
+              "ama",
+              "mangue"
+            ],
+            "unchanged_args": true,
+            "expected": "refusé"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "connexion",
+            "args": [
+              [
+                {
+                  "nom": "ama",
+                  "sel": "a1",
+                  "empreinte": "e45292ea94ce6d198aed4e97320cb0fb0f612d2f7ac4a085a9d8ba64683cca6d"
+                },
+                {
+                  "nom": "kofi",
+                  "sel": "k9",
+                  "empreinte": "6d4b1049cb3c8de65969cb93e291ae119db40a40935e37fbd58894da37480347"
+                }
+              ],
+              "kofi",
+              "lampe-orage"
+            ],
+            "unchanged_args": true,
+            "expected": "accepté"
+          },
+          {
+            "name": "connexion",
+            "args": [
+              [
+                {
+                  "nom": "ama",
+                  "sel": "a1",
+                  "empreinte": "e45292ea94ce6d198aed4e97320cb0fb0f612d2f7ac4a085a9d8ba64683cca6d"
+                }
+              ],
+              "inconnu",
+              "pirogue"
+            ],
+            "unchanged_args": true,
+            "expected": "refusé"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le compte trouvé n’est accepté qu’après vérification de l’empreinte.",
+      "Un nom inconnu et un mauvais mot de passe donnent le même message.",
+      "Calcule l’empreinte avec le sel du compte trouvé."
+    ],
+    "explanation_fr": "Un message identique empêche un attaquant de dresser la liste des comptes existants.",
+    "common_wrong_answers": [],
+    "id": "cyb-m1-03-e4"
+  }
+]

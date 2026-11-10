@@ -1,0 +1,406 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Règle 3-2-1",
+    "instruction_fr": "Écris respecte_321(copies) : copies est une liste de dictionnaires {\"support\", \"lieu\"}. Renvoie True s’il y a au moins 3 copies, au moins 2 supports différents et au moins une copie dont le lieu n’est pas \"bureau\".",
+    "starter_code": "def respecte_321(copies):\n    return len(copies) >= 3\n",
+    "solution": "def respecte_321(copies):\n    supports = {c[\"support\"] for c in copies}\n    hors_site = any(c[\"lieu\"] != \"bureau\" for c in copies)\n    return len(copies) >= 3 and len(supports) >= 2 and hors_site\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "respecte_321",
+            "args": [
+              [
+                {
+                  "support": "disque",
+                  "lieu": "bureau"
+                },
+                {
+                  "support": "clé",
+                  "lieu": "bureau"
+                },
+                {
+                  "support": "nuage",
+                  "lieu": "hors site"
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "respecte_321",
+            "args": [
+              [
+                {
+                  "support": "disque",
+                  "lieu": "bureau"
+                },
+                {
+                  "support": "disque",
+                  "lieu": "bureau"
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "respecte_321",
+            "args": [
+              [
+                {
+                  "support": "disque",
+                  "lieu": "bureau"
+                },
+                {
+                  "support": "disque",
+                  "lieu": "bureau"
+                },
+                {
+                  "support": "disque",
+                  "lieu": "bureau"
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": false
+          },
+          {
+            "name": "respecte_321",
+            "args": [
+              [
+                {
+                  "support": "disque",
+                  "lieu": "bureau"
+                },
+                {
+                  "support": "clé",
+                  "lieu": "bureau"
+                },
+                {
+                  "support": "disque",
+                  "lieu": "bureau"
+                }
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Trois copies du même disque au bureau ne suffisent pas.",
+      "Un ensemble compte les supports distincts.",
+      "any vérifie la présence d’une copie hors site."
+    ],
+    "explanation_fr": "Chaque chiffre de la règle répond à une menace différente : panne, défaut de support, sinistre.",
+    "common_wrong_answers": [],
+    "id": "cyb-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Perte maximale",
+    "instruction_fr": "Écris perte_max(heures) : heures est la liste des heures (0 à 23) des sauvegardes quotidiennes. Renvoie le plus long intervalle, en heures, entre deux sauvegardes consécutives sur un cycle de 24 h.",
+    "starter_code": "def perte_max(heures):\n    return 24\n",
+    "solution": "def perte_max(heures):\n    triees = sorted(heures)\n    ecarts = [triees[i + 1] - triees[i] for i in range(len(triees) - 1)]\n    ecarts.append(triees[0] + 24 - triees[-1])\n    return max(ecarts)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "perte_max",
+            "args": [
+              [
+                2,
+                14
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 12
+          },
+          {
+            "name": "perte_max",
+            "args": [
+              [
+                13,
+                1,
+                3
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 12
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "perte_max",
+            "args": [
+              [
+                2
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 24
+          },
+          {
+            "name": "perte_max",
+            "args": [
+              [
+                0,
+                6,
+                12,
+                18
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 6
+          },
+          {
+            "name": "perte_max",
+            "args": [
+              [
+                22,
+                2
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 20
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Trie les heures d’abord.",
+      "Calcule les écarts entre heures voisines.",
+      "N’oublie pas l’écart entre la dernière et la première du lendemain : + 24."
+    ],
+    "explanation_fr": "Ce nombre se présente à la direction : « au pire, nous perdons 12 heures de travail ».",
+    "common_wrong_answers": [],
+    "id": "cyb-m4-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Sauvegardes en retard",
+    "instruction_fr": "en_retard(dernieres, maintenant, limite) : dernieres associe chaque machine à la date de sa dernière sauvegarde (\"AAAA-MM-JJ HH:MM\"). Renvoie la liste triée des machines dont la dernière sauvegarde date de plus de limite heures. La fonction ne compare que les heures affichées et oublie les jours. Corrige-la.",
+    "starter_code": "from datetime import datetime\n\ndef en_retard(dernieres, maintenant, limite):\n    fin = datetime.strptime(maintenant, \"%Y-%m-%d %H:%M\")\n    resultat = []\n    for machine, texte in dernieres.items():\n        debut = datetime.strptime(texte, \"%Y-%m-%d %H:%M\")\n        if fin.hour - debut.hour > limite:\n            resultat.append(machine)\n    return sorted(resultat)\n",
+    "solution": "from datetime import datetime\n\ndef en_retard(dernieres, maintenant, limite):\n    fin = datetime.strptime(maintenant, \"%Y-%m-%d %H:%M\")\n    resultat = []\n    for machine, texte in dernieres.items():\n        debut = datetime.strptime(texte, \"%Y-%m-%d %H:%M\")\n        if (fin - debut).total_seconds() / 3600 > limite:\n            resultat.append(machine)\n    return sorted(resultat)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "en_retard",
+            "args": [
+              {
+                "caisse": "2026-11-07 20:00",
+                "secretariat": "2026-11-09 02:00"
+              },
+              "2026-11-09 18:00",
+              24
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "caisse"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "en_retard",
+            "args": [
+              {
+                "a": "2026-11-09 17:00"
+              },
+              "2026-11-09 18:00",
+              24
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "en_retard",
+            "args": [
+              {
+                "b": "2026-11-01 18:00",
+                "a": "2026-11-08 17:00"
+              },
+              "2026-11-09 18:00",
+              24
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "a",
+              "b"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La caisse n’a pas été sauvegardée depuis deux jours, mais 18 - 20 est négatif.",
+      "Soustrais les deux objets datetime entiers.",
+      "(fin - debut).total_seconds() / 3600"
+    ],
+    "explanation_fr": "Une date complète évite les erreurs autour de minuit et des changements de mois.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:datetime"
+    ],
+    "id": "cyb-m4-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Évaluer un plan de sauvegarde",
+    "instruction_fr": "Écris evaluer_plan(plan) : plan contient \"copies\" (liste {\"support\", \"lieu\"}), \"frequence_h\" et \"dernier_test_jours\". Renvoie, dans cet ordre, les recommandations qui s’appliquent : \"ajouter des copies\" (moins de 3), \"varier les supports\" (moins de 2 supports), \"garder une copie hors site\" (aucune hors du bureau), \"sauvegarder au moins toutes les 24 h\" (fréquence au-delà de 24), \"tester une restauration\" (plus de 90 jours). Si aucune ne s’applique, renvoie [\"plan conforme\"].",
+    "starter_code": "def evaluer_plan(plan):\n    return [\"plan conforme\"]\n",
+    "solution": "def evaluer_plan(plan):\n    copies = plan[\"copies\"]\n    conseils = []\n    if len(copies) < 3:\n        conseils.append(\"ajouter des copies\")\n    if len({c[\"support\"] for c in copies}) < 2:\n        conseils.append(\"varier les supports\")\n    if not any(c[\"lieu\"] != \"bureau\" for c in copies):\n        conseils.append(\"garder une copie hors site\")\n    if plan[\"frequence_h\"] > 24:\n        conseils.append(\"sauvegarder au moins toutes les 24 h\")\n    if plan[\"dernier_test_jours\"] > 90:\n        conseils.append(\"tester une restauration\")\n    return conseils or [\"plan conforme\"]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "evaluer_plan",
+            "args": [
+              {
+                "copies": [
+                  {
+                    "support": "disque",
+                    "lieu": "bureau"
+                  },
+                  {
+                    "support": "clé",
+                    "lieu": "bureau"
+                  },
+                  {
+                    "support": "nuage",
+                    "lieu": "hors site"
+                  }
+                ],
+                "frequence_h": 24,
+                "dernier_test_jours": 30
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "plan conforme"
+            ]
+          },
+          {
+            "name": "evaluer_plan",
+            "args": [
+              {
+                "copies": [
+                  {
+                    "support": "disque",
+                    "lieu": "bureau"
+                  },
+                  {
+                    "support": "disque",
+                    "lieu": "bureau"
+                  }
+                ],
+                "frequence_h": 168,
+                "dernier_test_jours": 400
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "ajouter des copies",
+              "varier les supports",
+              "garder une copie hors site",
+              "sauvegarder au moins toutes les 24 h",
+              "tester une restauration"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "evaluer_plan",
+            "args": [
+              {
+                "copies": [
+                  {
+                    "support": "disque",
+                    "lieu": "bureau"
+                  },
+                  {
+                    "support": "clé",
+                    "lieu": "bureau"
+                  },
+                  {
+                    "support": "nuage",
+                    "lieu": "hors site"
+                  }
+                ],
+                "frequence_h": 12,
+                "dernier_test_jours": 91
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "tester une restauration"
+            ]
+          },
+          {
+            "name": "evaluer_plan",
+            "args": [
+              {
+                "copies": [],
+                "frequence_h": 24,
+                "dernier_test_jours": 0
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "ajouter des copies",
+              "varier les supports",
+              "garder une copie hors site"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une condition par recommandation, dans l’ordre demandé.",
+      "Les limites 24 et 90 sont acceptées : utilise >.",
+      "conseils or [\"plan conforme\"] renvoie la liste par défaut quand elle est vide."
+    ],
+    "explanation_fr": "Des recommandations précises se transforment directement en tâches à faire.",
+    "common_wrong_answers": [],
+    "id": "cyb-m4-01-e4"
+  }
+]

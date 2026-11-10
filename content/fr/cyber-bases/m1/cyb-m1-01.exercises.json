@@ -1,0 +1,308 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Score d’un risque",
+    "instruction_fr": "Écris score_risque(probabilite, impact) qui renvoie le produit des deux notes.",
+    "starter_code": "def score_risque(probabilite, impact):\n    return probabilite + impact\n",
+    "solution": "def score_risque(probabilite, impact):\n    return probabilite * impact\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "score_risque",
+            "args": [
+              3,
+              4
+            ],
+            "unchanged_args": true,
+            "expected": 12
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "score_risque",
+            "args": [
+              1,
+              5
+            ],
+            "unchanged_args": true,
+            "expected": 5
+          },
+          {
+            "name": "score_risque",
+            "args": [
+              5,
+              5
+            ],
+            "unchanged_args": true,
+            "expected": 25
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le score combine probabilité et impact.",
+      "La méthode du cours multiplie, elle n’additionne pas.",
+      "return probabilite * impact"
+    ],
+    "explanation_fr": "Multiplier fait ressortir les risques à la fois probables et graves.",
+    "common_wrong_answers": [],
+    "id": "cyb-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Niveau d’un risque",
+    "instruction_fr": "Écris niveau(score) qui renvoie \"critique\" à partir de 15, \"élevé\" à partir de 8, \"moyen\" à partir de 4, sinon \"faible\".",
+    "starter_code": "def niveau(score):\n    pass\n",
+    "solution": "def niveau(score):\n    if score >= 15:\n        return \"critique\"\n    if score >= 8:\n        return \"élevé\"\n    if score >= 4:\n        return \"moyen\"\n    return \"faible\"\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "niveau",
+            "args": [
+              15
+            ],
+            "unchanged_args": true,
+            "expected": "critique"
+          },
+          {
+            "name": "niveau",
+            "args": [
+              9
+            ],
+            "unchanged_args": true,
+            "expected": "élevé"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "niveau",
+            "args": [
+              8
+            ],
+            "unchanged_args": true,
+            "expected": "élevé"
+          },
+          {
+            "name": "niveau",
+            "args": [
+              4
+            ],
+            "unchanged_args": true,
+            "expected": "moyen"
+          },
+          {
+            "name": "niveau",
+            "args": [
+              3
+            ],
+            "unchanged_args": true,
+            "expected": "faible"
+          },
+          {
+            "name": "niveau",
+            "args": [
+              25
+            ],
+            "unchanged_args": true,
+            "expected": "critique"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Teste du seuil le plus haut au plus bas.",
+      "Chaque return termine la fonction.",
+      "Les limites 15, 8 et 4 sont incluses : utilise >=."
+    ],
+    "explanation_fr": "Les seuils traduisent un nombre en décision compréhensible par la direction.",
+    "common_wrong_answers": [],
+    "id": "cyb-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le risque le plus urgent",
+    "instruction_fr": "plus_urgent(risques) reçoit une liste de [nom, probabilité, impact] et doit renvoyer le nom du risque au score le plus élevé. Elle ne compare que la probabilité. Corrige-la.",
+    "starter_code": "def plus_urgent(risques):\n    meilleur = None\n    score_max = 0\n    for nom, p, i in risques:\n        if p > score_max:\n            score_max = p\n            meilleur = nom\n    return meilleur\n",
+    "solution": "def plus_urgent(risques):\n    meilleur = None\n    score_max = 0\n    for nom, p, i in risques:\n        if p * i > score_max:\n            score_max = p * i\n            meilleur = nom\n    return meilleur\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "plus_urgent",
+            "args": [
+              [
+                [
+                  "Wi-Fi",
+                  4,
+                  2
+                ],
+                [
+                  "Caisse",
+                  3,
+                  5
+                ],
+                [
+                  "USB",
+                  2,
+                  4
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "Caisse"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "plus_urgent",
+            "args": [
+              [
+                [
+                  "Panne",
+                  1,
+                  5
+                ],
+                [
+                  "Virus",
+                  2,
+                  2
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "Panne"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le Wi-Fi est renvoyé alors que la caisse est plus grave.",
+      "Le score est probabilité × impact.",
+      "Compare et retiens p * i."
+    ],
+    "explanation_fr": "Un tri sur un seul critère cache les risques rares mais catastrophiques.",
+    "common_wrong_answers": [],
+    "id": "cyb-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Plan d’action classé",
+    "instruction_fr": "Écris trier_risques(risques) qui renvoie la liste des noms, du score le plus élevé au plus faible ; à score égal, par ordre alphabétique. La liste reçue ne doit pas être modifiée.",
+    "starter_code": "def trier_risques(risques):\n    risques.sort()\n    return [r[0] for r in risques]\n",
+    "solution": "def trier_risques(risques):\n    classes = sorted(risques, key=lambda r: (-r[1] * r[2], r[0]))\n    return [r[0] for r in classes]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "trier_risques",
+            "args": [
+              [
+                [
+                  "Wi-Fi",
+                  4,
+                  2
+                ],
+                [
+                  "Caisse",
+                  3,
+                  5
+                ],
+                [
+                  "USB",
+                  2,
+                  4
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "Caisse",
+              "USB",
+              "Wi-Fi"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "trier_risques",
+            "args": [
+              [
+                [
+                  "B",
+                  1,
+                  1
+                ],
+                [
+                  "A",
+                  1,
+                  1
+                ],
+                [
+                  "C",
+                  5,
+                  5
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "C",
+              "A",
+              "B"
+            ]
+          },
+          {
+            "name": "trier_risques",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": []
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "sort() modifie la liste reçue ; sorted() en crée une nouvelle.",
+      "La clé de tri peut être un tuple : score négatif, puis nom.",
+      "sorted(risques, key=lambda r: (-r[1] * r[2], r[0]))"
+    ],
+    "explanation_fr": "Ce classement devient le plan d’action : on traite les lignes dans l’ordre.",
+    "common_wrong_answers": [],
+    "id": "cyb-m1-01-e4"
+  }
+]

@@ -1,0 +1,630 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Refus par défaut",
+    "instruction_fr": "Écris peut(roles, role, action) qui renvoie True seulement si action figure dans la liste du rôle. Un rôle inconnu renvoie False.",
+    "starter_code": "def peut(roles, role, action):\n    return role in roles\n",
+    "solution": "def peut(roles, role, action):\n    return action in roles.get(role, [])\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "peut",
+            "args": [
+              {
+                "enseignant": [
+                  "lire_notes",
+                  "saisir_notes"
+                ],
+                "secretariat": [
+                  "lire_eleves",
+                  "modifier_eleves",
+                  "saisir_paiement"
+                ],
+                "comptable": [
+                  "valider_paiement",
+                  "lire_paiements"
+                ],
+                "eleve": [
+                  "lire_ses_notes"
+                ]
+              },
+              "enseignant",
+              "saisir_notes"
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "peut",
+            "args": [
+              {
+                "enseignant": [
+                  "lire_notes",
+                  "saisir_notes"
+                ],
+                "secretariat": [
+                  "lire_eleves",
+                  "modifier_eleves",
+                  "saisir_paiement"
+                ],
+                "comptable": [
+                  "valider_paiement",
+                  "lire_paiements"
+                ],
+                "eleve": [
+                  "lire_ses_notes"
+                ]
+              },
+              "eleve",
+              "saisir_notes"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "peut",
+            "args": [
+              {
+                "enseignant": [
+                  "lire_notes",
+                  "saisir_notes"
+                ],
+                "secretariat": [
+                  "lire_eleves",
+                  "modifier_eleves",
+                  "saisir_paiement"
+                ],
+                "comptable": [
+                  "valider_paiement",
+                  "lire_paiements"
+                ],
+                "eleve": [
+                  "lire_ses_notes"
+                ]
+              },
+              "visiteur",
+              "lire_notes"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          },
+          {
+            "name": "peut",
+            "args": [
+              {
+                "enseignant": [
+                  "lire_notes",
+                  "saisir_notes"
+                ],
+                "secretariat": [
+                  "lire_eleves",
+                  "modifier_eleves",
+                  "saisir_paiement"
+                ],
+                "comptable": [
+                  "valider_paiement",
+                  "lire_paiements"
+                ],
+                "eleve": [
+                  "lire_ses_notes"
+                ]
+              },
+              "comptable",
+              "valider_paiement"
+            ],
+            "unchanged_args": true,
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le rôle existe, mais a-t-il cette action ?",
+      "Cherche l’action dans la liste du rôle.",
+      "roles.get(role, []) donne une liste vide pour un rôle inconnu."
+    ],
+    "explanation_fr": "Le refus par défaut transforme toute erreur de configuration en refus, pas en accès.",
+    "common_wrong_answers": [],
+    "id": "cyb-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Permissions d’une personne",
+    "instruction_fr": "Écris permissions(roles, liste_roles) qui renvoie la liste triée, sans doublon, des permissions apportées par tous les rôles de la liste. Les rôles inconnus n’apportent rien.",
+    "starter_code": "def permissions(roles, liste_roles):\n    return roles[liste_roles[0]]\n",
+    "solution": "def permissions(roles, liste_roles):\n    resultat = set()\n    for role in liste_roles:\n        resultat |= set(roles.get(role, []))\n    return sorted(resultat)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "permissions",
+            "args": [
+              {
+                "enseignant": [
+                  "lire_notes",
+                  "saisir_notes"
+                ],
+                "secretariat": [
+                  "lire_eleves",
+                  "modifier_eleves",
+                  "saisir_paiement"
+                ],
+                "comptable": [
+                  "valider_paiement",
+                  "lire_paiements"
+                ],
+                "eleve": [
+                  "lire_ses_notes"
+                ]
+              },
+              [
+                "secretariat",
+                "comptable"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "lire_eleves",
+              "lire_paiements",
+              "modifier_eleves",
+              "saisir_paiement",
+              "valider_paiement"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "permissions",
+            "args": [
+              {
+                "enseignant": [
+                  "lire_notes",
+                  "saisir_notes"
+                ],
+                "secretariat": [
+                  "lire_eleves",
+                  "modifier_eleves",
+                  "saisir_paiement"
+                ],
+                "comptable": [
+                  "valider_paiement",
+                  "lire_paiements"
+                ],
+                "eleve": [
+                  "lire_ses_notes"
+                ]
+              },
+              []
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "permissions",
+            "args": [
+              {
+                "enseignant": [
+                  "lire_notes",
+                  "saisir_notes"
+                ],
+                "secretariat": [
+                  "lire_eleves",
+                  "modifier_eleves",
+                  "saisir_paiement"
+                ],
+                "comptable": [
+                  "valider_paiement",
+                  "lire_paiements"
+                ],
+                "eleve": [
+                  "lire_ses_notes"
+                ]
+              },
+              [
+                "eleve",
+                "inconnu",
+                "eleve"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "lire_ses_notes"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une personne peut avoir plusieurs rôles.",
+      "Un ensemble évite les doublons.",
+      "Renvoie sorted(resultat)."
+    ],
+    "explanation_fr": "L’union des rôles montre ce qu’une personne peut vraiment faire, souvent plus qu’on ne le croit.",
+    "common_wrong_answers": [],
+    "id": "cyb-m3-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Autoriser une personne",
+    "instruction_fr": "autoriser(roles, utilisateurs, nom, action) doit renvoyer True si l’un des rôles de la personne permet l’action. Elle plante pour une personne inconnue. Corrige-la pour refuser dans ce cas.",
+    "starter_code": "def autoriser(roles, utilisateurs, nom, action):\n    for role in utilisateurs[nom]:\n        if action in roles.get(role, []):\n            return True\n    return False\n",
+    "solution": "def autoriser(roles, utilisateurs, nom, action):\n    for role in utilisateurs.get(nom, []):\n        if action in roles.get(role, []):\n            return True\n    return False\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "autoriser",
+            "args": [
+              {
+                "enseignant": [
+                  "lire_notes",
+                  "saisir_notes"
+                ],
+                "secretariat": [
+                  "lire_eleves",
+                  "modifier_eleves",
+                  "saisir_paiement"
+                ],
+                "comptable": [
+                  "valider_paiement",
+                  "lire_paiements"
+                ],
+                "eleve": [
+                  "lire_ses_notes"
+                ]
+              },
+              {
+                "ama": [
+                  "enseignant"
+                ],
+                "kofi": [
+                  "secretariat",
+                  "comptable"
+                ],
+                "esi": [
+                  "eleve"
+                ],
+                "yao": [
+                  "comptable"
+                ]
+              },
+              "inconnu",
+              "lire_notes"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          },
+          {
+            "name": "autoriser",
+            "args": [
+              {
+                "enseignant": [
+                  "lire_notes",
+                  "saisir_notes"
+                ],
+                "secretariat": [
+                  "lire_eleves",
+                  "modifier_eleves",
+                  "saisir_paiement"
+                ],
+                "comptable": [
+                  "valider_paiement",
+                  "lire_paiements"
+                ],
+                "eleve": [
+                  "lire_ses_notes"
+                ]
+              },
+              {
+                "ama": [
+                  "enseignant"
+                ],
+                "kofi": [
+                  "secretariat",
+                  "comptable"
+                ],
+                "esi": [
+                  "eleve"
+                ],
+                "yao": [
+                  "comptable"
+                ]
+              },
+              "ama",
+              "saisir_notes"
+            ],
+            "unchanged_args": true,
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "autoriser",
+            "args": [
+              {
+                "enseignant": [
+                  "lire_notes",
+                  "saisir_notes"
+                ],
+                "secretariat": [
+                  "lire_eleves",
+                  "modifier_eleves",
+                  "saisir_paiement"
+                ],
+                "comptable": [
+                  "valider_paiement",
+                  "lire_paiements"
+                ],
+                "eleve": [
+                  "lire_ses_notes"
+                ]
+              },
+              {
+                "ama": [
+                  "enseignant"
+                ],
+                "kofi": [
+                  "secretariat",
+                  "comptable"
+                ],
+                "esi": [
+                  "eleve"
+                ],
+                "yao": [
+                  "comptable"
+                ]
+              },
+              "esi",
+              "saisir_notes"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          },
+          {
+            "name": "autoriser",
+            "args": [
+              {
+                "enseignant": [
+                  "lire_notes",
+                  "saisir_notes"
+                ],
+                "secretariat": [
+                  "lire_eleves",
+                  "modifier_eleves",
+                  "saisir_paiement"
+                ],
+                "comptable": [
+                  "valider_paiement",
+                  "lire_paiements"
+                ],
+                "eleve": [
+                  "lire_ses_notes"
+                ]
+              },
+              {
+                "ama": [
+                  "enseignant"
+                ],
+                "kofi": [
+                  "secretariat",
+                  "comptable"
+                ],
+                "esi": [
+                  "eleve"
+                ],
+                "yao": [
+                  "comptable"
+                ]
+              },
+              "kofi",
+              "valider_paiement"
+            ],
+            "unchanged_args": true,
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis le nom de l’erreur : KeyError.",
+      "Une personne absente doit recevoir une liste de rôles vide.",
+      "utilisateurs.get(nom, [])"
+    ],
+    "explanation_fr": "Un refus propre vaut mieux qu’un plantage : le service reste disponible.",
+    "common_wrong_answers": [],
+    "id": "cyb-m3-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Audit de séparation des tâches",
+    "instruction_fr": "Écris conflits(roles, utilisateurs, paires) : paires est une liste de [action1, action2] qu’une même personne ne doit pas cumuler. Renvoie la liste triée des noms qui cumulent au moins une paire.",
+    "starter_code": "def conflits(roles, utilisateurs, paires):\n    return []\n",
+    "solution": "def conflits(roles, utilisateurs, paires):\n    noms = []\n    for nom, liste in utilisateurs.items():\n        droits = set()\n        for role in liste:\n            droits |= set(roles.get(role, []))\n        if any(a in droits and b in droits for a, b in paires):\n            noms.append(nom)\n    return sorted(noms)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "conflits",
+            "args": [
+              {
+                "enseignant": [
+                  "lire_notes",
+                  "saisir_notes"
+                ],
+                "secretariat": [
+                  "lire_eleves",
+                  "modifier_eleves",
+                  "saisir_paiement"
+                ],
+                "comptable": [
+                  "valider_paiement",
+                  "lire_paiements"
+                ],
+                "eleve": [
+                  "lire_ses_notes"
+                ]
+              },
+              {
+                "ama": [
+                  "enseignant"
+                ],
+                "kofi": [
+                  "secretariat",
+                  "comptable"
+                ],
+                "esi": [
+                  "eleve"
+                ],
+                "yao": [
+                  "comptable"
+                ]
+              },
+              [
+                [
+                  "saisir_paiement",
+                  "valider_paiement"
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "kofi"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "conflits",
+            "args": [
+              {
+                "enseignant": [
+                  "lire_notes",
+                  "saisir_notes"
+                ],
+                "secretariat": [
+                  "lire_eleves",
+                  "modifier_eleves",
+                  "saisir_paiement"
+                ],
+                "comptable": [
+                  "valider_paiement",
+                  "lire_paiements"
+                ],
+                "eleve": [
+                  "lire_ses_notes"
+                ]
+              },
+              {
+                "ama": [
+                  "enseignant"
+                ],
+                "kofi": [
+                  "secretariat",
+                  "comptable"
+                ],
+                "esi": [
+                  "eleve"
+                ],
+                "yao": [
+                  "comptable"
+                ]
+              },
+              []
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "conflits",
+            "args": [
+              {
+                "enseignant": [
+                  "lire_notes",
+                  "saisir_notes"
+                ],
+                "secretariat": [
+                  "lire_eleves",
+                  "modifier_eleves",
+                  "saisir_paiement"
+                ],
+                "comptable": [
+                  "valider_paiement",
+                  "lire_paiements"
+                ],
+                "eleve": [
+                  "lire_ses_notes"
+                ]
+              },
+              {
+                "b": [
+                  "enseignant",
+                  "eleve"
+                ],
+                "a": [
+                  "enseignant"
+                ]
+              },
+              [
+                [
+                  "saisir_notes",
+                  "lire_ses_notes"
+                ],
+                [
+                  "x",
+                  "y"
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "b"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Calcule d’abord toutes les permissions de chaque personne.",
+      "any vérifie si au moins une paire est entièrement présente.",
+      "Trie les noms pour un rapport stable."
+    ],
+    "explanation_fr": "Le cumul vient rarement d’une décision : il s’accumule au fil des rôles ajoutés.",
+    "common_wrong_answers": [],
+    "id": "cyb-m3-01-e4"
+  }
+]

@@ -8,7 +8,7 @@ Apprendre en français, à son rythme, même hors connexion : coder depuis zéro
 
 ## État du projet
 
-Pilote en cours ; version 5.14. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
+Pilote en cours ; version 5.15. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
 
 ## Ce que propose Nunya
 
@@ -21,6 +21,7 @@ Pilote en cours ; version 5.14. Tous les contenus sont des **brouillons** rédig
    - *CSS intermédiaire* (6 modules, 18 leçons, 72 exercices) : cascade, Flexbox et grilles robustes, interfaces adaptatives, états accessibles et tableau de club ;
    - *PHP : les bases* (4 modules, 12 leçons, 48 exercices) avec un vrai interpréteur PHP 8.3 sur l’appareil : variables, conditions, boucles, tableaux, fonctions et caisse de boutique ;
    - *C++ : les fondamentaux* (4 modules, 12 leçons, 48 exercices), compilé en ligne par GCC 13 sur Wandbox : types, boucles, fonctions, vecteurs, textes, références, structures et bulletin de classe ;
+   - *Cybersécurité : défendre une petite organisation* (4 modules, 12 leçons, 48 exercices), en Python hors ligne : risques, mots de passe et hachage salé, hameçonnage, journaux de connexion, droits d’accès, validation des entrées, intégrité, sauvegardes 3-2-1, réponse aux incidents et audit complet ;
    - *Java : premiers programmes* (4 modules, 12 leçons, 48 exercices), compilé en ligne par OpenJDK 21 sur Wandbox : types, conditions, boucles, méthodes, tableaux, textes et listes, classes, encapsulation, exceptions et gestion d’une boutique ;
    - *Terminal et Linux : les bases* (4 modules, 12 leçons, 48 exercices), dans un vrai Linux en ligne : fichiers, grep, tubes, redirections, scripts Bash, droits d’accès et analyse d’un journal de connexions ;
    - Git/GitHub (12 leçons, 48 activités, dont 32 ateliers Git locaux) ;
@@ -43,6 +44,8 @@ Pilote en cours ; version 5.14. Tous les contenus sont des **brouillons** rédig
 ## Données et confidentialité
 
 La progression, le profil et les notes restent **sur l’appareil** (localStorage et IndexedDB), sans compte. Ils peuvent être exportés et restaurés.
+
+Sept ambiances visuelles se choisissent dès l’accueil ou dans « Mon profil & confort » : Nunya, Lagune, Kente, Sauge, Prune, Nuit et Verre liquide, chacune en clair et en sombre, avec un contraste vérifié automatiquement à la construction. Le verre liquide passe en version légère sur les téléphones modestes.
 
 Deux fonctions utilisent un service en ligne. Les ateliers C++, Java et Terminal envoient le programme ou les commandes, les saisies de test et les fichiers fictifs de l’exercice au service Wandbox (Japon), sans pseudo ni progression. Nunya Aide utilise un serveur :
 - une session anonyme Supabase (Union européenne) ;

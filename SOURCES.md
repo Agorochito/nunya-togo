@@ -98,3 +98,11 @@ Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités origin
 ## Java : premiers programmes — 10 novembre 2026
 
 Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la documentation officielle Java (tutoriels dev.java et API Java SE 21 d’Oracle), citée dans chaque leçon ; aucun texte n’en est repris. Les noms, prix et stocks sont fictifs. Exécution : service Wandbox (OpenJDK 21). Coloration : mode `clike` (Java) de `@codemirror/legacy-modes` (MIT), déjà installé.
+
+## Cybersécurité : défendre une petite organisation — 10 novembre 2026
+
+Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la documentation Python officielle, des guides de l’ANSSI et de Cybermalveillance.gouv.fr, des fiches OWASP (stockage des mots de passe, validation des entrées, journalisation, autorisation), du NIST (SP 800-63B, SP 800-61) et du CERT.tg, cités dans chaque leçon ; aucun texte n’en est repris. Comptes, mots de passe, journaux, adresses, messages et organisations sont fictifs. Le cadre légal togolais cité est la loi n° 2018-026 du 7 décembre 2018 sur la cybersécurité et la lutte contre la cybercriminalité.
+
+## Ambiances visuelles — 10 novembre 2026
+
+Palettes, aperçus et effet de verre originaux Nunya, en CSS sans police ni image téléchargée. Contrastes calculés selon la formule de luminance relative des WCAG 2.

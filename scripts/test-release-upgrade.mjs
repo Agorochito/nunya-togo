@@ -7,13 +7,13 @@ const work='print("mon brouillon à garder")';await ctx.addInitScript(work=>{if(
 const p=await ctx.newPage();p.on('pageerror',e=>errors.push(e.message));
 try{
  await p.goto(base+'#/apprendre');await p.locator('#main a[href="#/apprendre/python-bases"]').first().waitFor();await p.evaluate(async()=>{await navigator.serviceWorker.ready;if(!navigator.serviceWorker.controller)await new Promise(r=>navigator.serviceWorker.addEventListener('controllerchange',r,{once:true}))});
- const oldCount=JSON.parse(execFileSync('git',['show',oldRef+':dist/data/curriculum/index.json'],{encoding:'utf8'})).courses.length;expect(oldCount).toBe(oldRef==='2df60ddf'?1:oldRef==='0c959e4b'?8:oldRef==='ae5f349e'?9:oldRef==='1bfe4d75'?11:oldRef==='98fb0d05'?14:oldRef==='50abf346'?12:oldRef==='3c70f03d'?13:oldRef==='6463ba00'?13:6);modern=true;await p.reload();
+ const oldCount=JSON.parse(execFileSync('git',['show',oldRef+':dist/data/curriculum/index.json'],{encoding:'utf8'})).courses.length;expect(oldCount).toBe(oldRef==='2df60ddf'?1:oldRef==='0c959e4b'?8:oldRef==='ae5f349e'?9:oldRef==='1bfe4d75'?11:oldRef==='98fb0d05'?14:oldRef==='e6b49388'?15:oldRef==='50abf346'?12:oldRef==='3c70f03d'?13:oldRef==='6463ba00'?13:6);modern=true;await p.reload();
  await p.waitForFunction(async()=>{const keys=await caches.keys(),current='nunya-v'+document.documentElement.dataset.release;return keys.includes(current)&&!keys.some(k=>/^nunya-v[0-9]/.test(k)&&k!==current)});
- if(baseline){await p.waitForTimeout(500);const count=await p.locator('.nunya-course-card').count();console.log(JSON.stringify({oldCount,afterNewServiceWorker:count,expectedFreshCatalogue:15,errors}));expect(count).toBe(1);}
+ if(baseline){await p.waitForTimeout(500);const count=await p.locator('.nunya-course-card').count();console.log(JSON.stringify({oldCount,afterNewServiceWorker:count,expectedFreshCatalogue:16,errors}));expect(count).toBe(1);}
  else{
-  await expect(p.locator('.nunya-course-card')).toHaveCount(15);await expect(p.locator('.nunya-course-quick a')).toHaveCount(16);await expect(p.locator('.nunya-course-quick a[href="#/apprendre/sql-bases"]')).toBeVisible();
+  await expect(p.locator('.nunya-course-card')).toHaveCount(16);await expect(p.locator('.nunya-course-quick a')).toHaveCount(17);await expect(p.locator('.nunya-course-quick a[href="#/apprendre/sql-bases"]')).toBeVisible();
   const state=await p.evaluate(()=>JSON.parse(localStorage.getItem('nunya-state')));expect(state.curriculum.work['py-m1-01-e1'].code).toBe(work);expect(state.curriculum.positions['py-m1-01']).toBe(1);
   await p.locator('a[href="#/apprendre/sql-bases"]').first().click();await expect(p.locator('.curr-module')).toHaveCount(6);await p.locator('.curr-outline a').first().click();await expect(p.locator('.curr-lesson-head h1')).toBeVisible();
-  expect(errors).toEqual([]);const results={oldRef,oldCount,currentCourses:15,singleNavigation:true,draftPreserved:true,exercisePositionPreserved:true,sqlOpens:true,errors};await fs.writeFile('docs/RELEASE_UPGRADE_'+oldRef+'_RESULTS.json',JSON.stringify(results,null,2));console.log(JSON.stringify(results));
+  expect(errors).toEqual([]);const results={oldRef,oldCount,currentCourses:16,singleNavigation:true,draftPreserved:true,exercisePositionPreserved:true,sqlOpens:true,errors};await fs.writeFile('docs/RELEASE_UPGRADE_'+oldRef+'_RESULTS.json',JSON.stringify(results,null,2));console.log(JSON.stringify(results));
  }
 }finally{await browser.close();await new Promise(r=>server.close(r))}

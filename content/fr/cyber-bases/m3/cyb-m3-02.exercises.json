@@ -1,0 +1,309 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Identifiant valide",
+    "instruction_fr": "Écris identifiant_valide(texte) qui renvoie True si tout le texte correspond à r\"[a-z][a-z0-9_]{2,15}\".",
+    "starter_code": "import re\n\ndef identifiant_valide(texte):\n    return bool(re.search(r\"[a-z][a-z0-9_]{2,15}\", texte))\n",
+    "solution": "import re\n\ndef identifiant_valide(texte):\n    return bool(re.fullmatch(r\"[a-z][a-z0-9_]{2,15}\", texte))\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "identifiant_valide",
+            "args": [
+              "ama_2026"
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "identifiant_valide",
+            "args": [
+              "ama;DROP"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "identifiant_valide",
+            "args": [
+              "ab"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          },
+          {
+            "name": "identifiant_valide",
+            "args": [
+              "Kofi"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          },
+          {
+            "name": "identifiant_valide",
+            "args": [
+              "kofi_agbo"
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "identifiant_valide",
+            "args": [
+              "aaaaaaaaaaaaaaaaa"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "ama;DROP est accepté : le motif est trouvé au début.",
+      "search cherche n’importe où.",
+      "Utilise re.fullmatch."
+    ],
+    "explanation_fr": "Valider, c’est vérifier tout le texte, pas en trouver un morceau acceptable.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:re"
+    ],
+    "id": "cyb-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Numéro togolais",
+    "instruction_fr": "Écris normaliser_tel(texte) : retire les espaces ; si le résultat est 8 chiffres, éventuellement précédés de +228, renvoie \"+228\" suivi des 8 chiffres ; sinon renvoie None.",
+    "starter_code": "def normaliser_tel(texte):\n    return \"+228\" + texte\n",
+    "solution": "import re\n\ndef normaliser_tel(texte):\n    brut = texte.replace(\" \", \"\")\n    m = re.fullmatch(r\"(\\+228)?(\\d{8})\", brut)\n    if m is None:\n        return None\n    return \"+228\" + m.group(2)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "normaliser_tel",
+            "args": [
+              "90 12 34 56"
+            ],
+            "unchanged_args": true,
+            "expected": "+22890123456"
+          },
+          {
+            "name": "normaliser_tel",
+            "args": [
+              "+228 70 11 22 33"
+            ],
+            "unchanged_args": true,
+            "expected": "+22870112233"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "normaliser_tel",
+            "args": [
+              "9012345"
+            ],
+            "unchanged_args": true,
+            "expected": null
+          },
+          {
+            "name": "normaliser_tel",
+            "args": [
+              "+229 90 12 34 56"
+            ],
+            "unchanged_args": true,
+            "expected": null
+          },
+          {
+            "name": "normaliser_tel",
+            "args": [
+              "90-12-34-56"
+            ],
+            "unchanged_args": true,
+            "expected": null
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Retire les espaces avec replace.",
+      "(\\+228)? rend l’indicatif facultatif ; \\d{8} exige huit chiffres.",
+      "m.group(2) renvoie les huit chiffres."
+    ],
+    "explanation_fr": "Normaliser donne un format unique, plus simple à comparer et à stocker.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:re"
+    ],
+    "id": "cyb-m3-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Afficher un commentaire",
+    "instruction_fr": "afficher(nom, texte) doit renvoyer \"<p><b>nom</b> : texte</p>\" en échappant le nom ET le texte. Elle oublie d’échapper le nom. Corrige-la.",
+    "starter_code": "import html\n\ndef afficher(nom, texte):\n    return \"<p><b>\" + nom + \"</b> : \" + html.escape(texte) + \"</p>\"\n",
+    "solution": "import html\n\ndef afficher(nom, texte):\n    return \"<p><b>\" + html.escape(nom) + \"</b> : \" + html.escape(texte) + \"</p>\"\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "afficher",
+            "args": [
+              "<script>",
+              "Bravo"
+            ],
+            "unchanged_args": true,
+            "expected": "<p><b>&lt;script&gt;</b> : Bravo</p>"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "afficher",
+            "args": [
+              "Ama",
+              "<i>super</i>"
+            ],
+            "unchanged_args": true,
+            "expected": "<p><b>Ama</b> : &lt;i&gt;super&lt;/i&gt;</p>"
+          },
+          {
+            "name": "afficher",
+            "args": [
+              "\"Kofi\"",
+              "a & b"
+            ],
+            "unchanged_args": true,
+            "expected": "<p><b>&quot;Kofi&quot;</b> : a &amp; b</p>"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le nom aussi vient de l’extérieur.",
+      "Toute donnée insérée dans le HTML doit être échappée.",
+      "html.escape(nom)"
+    ],
+    "explanation_fr": "Une seule donnée oubliée suffit à ouvrir une faille XSS.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:html"
+    ],
+    "id": "cyb-m3-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Valider une inscription",
+    "instruction_fr": "Écris valider_inscription(formulaire) : formulaire est un dictionnaire avec \"identifiant\", \"telephone\" et \"age\" (textes). Renvoie la liste des erreurs, dans cet ordre : \"identifiant invalide\", \"téléphone invalide\", \"âge invalide\" (l’âge doit être un entier écrit en chiffres, de 10 à 99). Une liste vide signifie que tout est valide. Ne modifie pas le formulaire.",
+    "starter_code": "def valider_inscription(formulaire):\n    return []\n",
+    "solution": "import re\n\ndef valider_inscription(formulaire):\n    erreurs = []\n    if not re.fullmatch(r\"[a-z][a-z0-9_]{2,15}\", formulaire[\"identifiant\"]):\n        erreurs.append(\"identifiant invalide\")\n    if not re.fullmatch(r\"(\\+228)?\\d{8}\", formulaire[\"telephone\"].replace(\" \", \"\")):\n        erreurs.append(\"téléphone invalide\")\n    age = formulaire[\"age\"]\n    if not re.fullmatch(r\"\\d{2}\", age) or not 10 <= int(age) <= 99:\n        erreurs.append(\"âge invalide\")\n    return erreurs\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "valider_inscription",
+            "args": [
+              {
+                "identifiant": "ama_2026",
+                "telephone": "90 12 34 56",
+                "age": "16"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "valider_inscription",
+            "args": [
+              {
+                "identifiant": "Ama!",
+                "telephone": "123",
+                "age": "seize"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "identifiant invalide",
+              "téléphone invalide",
+              "âge invalide"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "valider_inscription",
+            "args": [
+              {
+                "identifiant": "kofi",
+                "telephone": "+22870112233",
+                "age": "09"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "âge invalide"
+            ]
+          },
+          {
+            "name": "valider_inscription",
+            "args": [
+              {
+                "identifiant": "kofi",
+                "telephone": "+228 70 11 22 33",
+                "age": "-5"
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "âge invalide"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une vérification par champ, chacune ajoute son message.",
+      "Vérifie le format de l’âge avant de le convertir.",
+      "L’ordre des messages est imposé : identifiant, téléphone, âge."
+    ],
+    "explanation_fr": "Toutes les erreurs sont rendues d’un coup : la personne corrige son formulaire en une fois.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:re"
+    ],
+    "id": "cyb-m3-02-e4"
+  }
+]

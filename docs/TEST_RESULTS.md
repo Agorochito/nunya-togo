@@ -1,3 +1,10 @@
+# Vérifications 5.15.0 — 10 novembre 2026
+
+- Ambiances (`AMBIANCES_UI_RESULTS.json`) : choix depuis l’écran d’accueil et depuis les réglages, enregistrement sur l’appareil, Nuit qui active le thème sombre, Verre léger, couleur personnalisée conservée ; 26 audits axe par largeur (7 ambiances × clair/sombre × réglages et catalogue) à 360 et 1440 px, zéro violation, aucun défilement horizontal. Le générateur de palettes refuse tout texte sous 4,5:1 (plus faible : 4,93:1, texte secondaire du verre sombre au-dessus de sa couleur la plus vive).
+- Cybersécurité : 24 exemples, 48 solutions et 48 codes de départ vérifiés dans le vrai Pyodide 3.14 du site (120 contrôles, tous les départs refusés) ; contrôle Python de la construction réussi (1 142 cas). Interface (`CYBER_BASES_UI_RESULTS.json`) : 12 leçons, 48 exercices et 36 questions à 360 et 1440 px, lecture hors ligne à froid, zéro violation axe.
+- 222 tests unitaires, ESLint, TypeScript, schémas, prérequis et liens réussis ; 38 tests navigateur réussis, dont catalogue (16 programmes, 17 raccourcis), parcours, rendu des 275 leçons, ancien pack enregistré et migrations depuis 5.12.0, 5.13.0 et 5.14.0. Bundle principal : 148 941 octets gzip (149 229 selon le contrôle de l’académie), sous 150 000.
+- Docker Desktop était en pause sur la machine de vérification : les parcours Terminal et Java et leur contrôle de construction n’ont pas été relancés localement (contenus inchangés) ; GitHub Actions les exécute avec Bash et Temurin 21 natifs. Le simulateur local détecte désormais un Docker en pause (`docker ps`) au lieu d’échouer.
+
 # Vérifications 5.14.0 — 10 novembre 2026
 
 - Java dans le contrôle de compilation, compilé par OpenJDK 21 dans un conteneur `eclipse-temurin:21-jdk` sans réseau, au format de Wandbox : 24 exemples et 131 cas de référence ; 48 solutions acceptées et 48 codes de départ refusés. GitHub Actions exécute le même contrôle avec Temurin 21 natif.

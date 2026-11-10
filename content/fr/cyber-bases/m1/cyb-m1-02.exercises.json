@@ -1,0 +1,333 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Assez long ?",
+    "instruction_fr": "Écris assez_long(mdp) qui renvoie True si le mot de passe a au moins 15 caractères.",
+    "starter_code": "def assez_long(mdp):\n    return len(mdp) > 15\n",
+    "solution": "def assez_long(mdp):\n    return len(mdp) >= 15\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "assez_long",
+            "args": [
+              "abcdefghijklmno"
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "assez_long",
+            "args": [
+              "court"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "assez_long",
+            "args": [
+              "pirogue-cactus-lampe"
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "assez_long",
+            "args": [
+              "quatorze-carac"
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "15 caractères exactement doit être accepté.",
+      "> exclut la limite.",
+      "Utilise >= 15."
+    ],
+    "explanation_fr": "La valeur limite est le cas qui révèle le mauvais opérateur.",
+    "common_wrong_answers": [],
+    "id": "cyb-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Évaluer un mot de passe",
+    "instruction_fr": "Écris evaluer(mdp, interdits) : \"interdit\" si mdp en minuscules est dans la liste interdits, sinon \"trop court\" s’il a moins de 15 caractères, sinon \"acceptable\".",
+    "starter_code": "def evaluer(mdp, interdits):\n    return \"acceptable\"\n",
+    "solution": "def evaluer(mdp, interdits):\n    if mdp.lower() in interdits:\n        return \"interdit\"\n    if len(mdp) < 15:\n        return \"trop court\"\n    return \"acceptable\"\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "evaluer",
+            "args": [
+              "AZERTY",
+              [
+                "123456",
+                "azerty",
+                "password",
+                "togo2026",
+                "motdepasse"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "interdit"
+          },
+          {
+            "name": "evaluer",
+            "args": [
+              "Lome2026",
+              [
+                "123456",
+                "azerty",
+                "password",
+                "togo2026",
+                "motdepasse"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "trop court"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "evaluer",
+            "args": [
+              "soleil-kara-mangue-17",
+              [
+                "123456",
+                "azerty",
+                "password",
+                "togo2026",
+                "motdepasse"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "acceptable"
+          },
+          {
+            "name": "evaluer",
+            "args": [
+              "togo2026",
+              [
+                "123456",
+                "azerty",
+                "password",
+                "togo2026",
+                "motdepasse"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "interdit"
+          },
+          {
+            "name": "evaluer",
+            "args": [
+              "",
+              [
+                "123456",
+                "azerty",
+                "password",
+                "togo2026",
+                "motdepasse"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "trop court"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Commence par la liste interdite.",
+      "lower() rend la comparaison insensible aux majuscules.",
+      "Puis vérifie la longueur avec len."
+    ],
+    "explanation_fr": "L’ordre des tests compte : un mot interdit l’est quelle que soit sa longueur.",
+    "common_wrong_answers": [],
+    "id": "cyb-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Compter les combinaisons",
+    "instruction_fr": "combinaisons(alphabet, longueur) doit renvoyer le nombre de mots de passe possibles : alphabet puissance longueur. Elle multiplie au lieu d’élever à la puissance. Corrige-la.",
+    "starter_code": "def combinaisons(alphabet, longueur):\n    return alphabet * longueur\n",
+    "solution": "def combinaisons(alphabet, longueur):\n    return alphabet ** longueur\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "combinaisons",
+            "args": [
+              10,
+              4
+            ],
+            "unchanged_args": true,
+            "expected": 10000
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "combinaisons",
+            "args": [
+              26,
+              8
+            ],
+            "unchanged_args": true,
+            "expected": 208827064576
+          },
+          {
+            "name": "combinaisons",
+            "args": [
+              2,
+              1
+            ],
+            "unchanged_args": true,
+            "expected": 2
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un code PIN de 4 chiffres a 10 000 possibilités, pas 40.",
+      "Chaque position multiplie par la taille de l’alphabet.",
+      "Utilise l’opérateur ** ."
+    ],
+    "explanation_fr": "La croissance est exponentielle : c’est pour cela que la longueur protège autant.",
+    "common_wrong_answers": [],
+    "id": "cyb-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Audit des mots de passe d’une école",
+    "instruction_fr": "Écris rapport(comptes, interdits) : comptes est un dictionnaire nom → mot de passe fictif. Renvoie un dictionnaire avec exactement les clés \"interdit\", \"trop court\" et \"acceptable\", chacune associée à la liste triée des noms concernés (règles de evaluer). Ne modifie pas les arguments.",
+    "starter_code": "def rapport(comptes, interdits):\n    return {}\n",
+    "solution": "def evaluer(mdp, interdits):\n    if mdp.lower() in interdits:\n        return \"interdit\"\n    if len(mdp) < 15:\n        return \"trop court\"\n    return \"acceptable\"\n\ndef rapport(comptes, interdits):\n    resultat = {\"interdit\": [], \"trop court\": [], \"acceptable\": []}\n    for nom, mdp in comptes.items():\n        resultat[evaluer(mdp, interdits)].append(nom)\n    for liste in resultat.values():\n        liste.sort()\n    return resultat\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rapport",
+            "args": [
+              {
+                "kodjo": "Azerty",
+                "ama": "pirogue-cactus-lampe",
+                "esi": "Esi2010"
+              },
+              [
+                "123456",
+                "azerty",
+                "password",
+                "togo2026",
+                "motdepasse"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "interdit": [
+                "kodjo"
+              ],
+              "trop court": [
+                "esi"
+              ],
+              "acceptable": [
+                "ama"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rapport",
+            "args": [
+              {},
+              [
+                "123456",
+                "azerty",
+                "password",
+                "togo2026",
+                "motdepasse"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "interdit": [],
+              "trop court": [],
+              "acceptable": []
+            }
+          },
+          {
+            "name": "rapport",
+            "args": [
+              {
+                "yao": "123456",
+                "afi": "motdepasse"
+              },
+              [
+                "123456",
+                "azerty",
+                "password",
+                "togo2026",
+                "motdepasse"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "interdit": [
+                "afi",
+                "yao"
+              ],
+              "trop court": [],
+              "acceptable": []
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Prépare les trois listes vides avant la boucle.",
+      "Réutilise la logique de evaluer pour choisir la liste.",
+      "Trie chaque liste à la fin pour un rapport stable."
+    ],
+    "explanation_fr": "Un audit présente des catégories et des noms, jamais les mots de passe eux-mêmes.",
+    "common_wrong_answers": [],
+    "id": "cyb-m1-02-e4"
+  }
+]

@@ -1,0 +1,311 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Gravité d’un incident",
+    "instruction_fr": "Écris gravite(personnes, sensibles, arret) : le score vaut 2 si des données sensibles sont touchées, plus 2 si le service est arrêté, plus 1 si au moins 50 personnes sont concernées. Renvoie \"critique\" à partir de 4, \"majeure\" à partir de 2, sinon \"mineure\".",
+    "starter_code": "def gravite(personnes, sensibles, arret):\n    if personnes >= 50:\n        return \"critique\"\n    return \"mineure\"\n",
+    "solution": "def gravite(personnes, sensibles, arret):\n    score = 0\n    if sensibles:\n        score += 2\n    if arret:\n        score += 2\n    if personnes >= 50:\n        score += 1\n    if score >= 4:\n        return \"critique\"\n    if score >= 2:\n        return \"majeure\"\n    return \"mineure\"\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "gravite",
+            "args": [
+              300,
+              true,
+              true
+            ],
+            "unchanged_args": true,
+            "expected": "critique"
+          },
+          {
+            "name": "gravite",
+            "args": [
+              10,
+              true,
+              false
+            ],
+            "unchanged_args": true,
+            "expected": "majeure"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "gravite",
+            "args": [
+              60,
+              false,
+              false
+            ],
+            "unchanged_args": true,
+            "expected": "mineure"
+          },
+          {
+            "name": "gravite",
+            "args": [
+              5,
+              false,
+              true
+            ],
+            "unchanged_args": true,
+            "expected": "majeure"
+          },
+          {
+            "name": "gravite",
+            "args": [
+              50,
+              true,
+              false
+            ],
+            "unchanged_args": true,
+            "expected": "majeure"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La version actuelle ne regarde que le nombre de personnes.",
+      "Construis un score en additionnant les points.",
+      "Puis applique les deux seuils, du plus haut au plus bas."
+    ],
+    "explanation_fr": "Plusieurs critères évitent de sous-estimer une fuite qui touche peu de personnes mais des données sensibles.",
+    "common_wrong_answers": [],
+    "id": "cyb-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Chronologie",
+    "instruction_fr": "Écris chronologie(evenements) : evenements est une liste de [heure \"HH:MM\", texte]. Renvoie la liste des textes \"HH:MM texte\" triés par heure. La liste reçue ne doit pas être modifiée.",
+    "starter_code": "def chronologie(evenements):\n    evenements.sort()\n    return [h + \" \" + t for h, t in evenements]\n",
+    "solution": "def chronologie(evenements):\n    return [h + \" \" + t for h, t in sorted(evenements)]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chronologie",
+            "args": [
+              [
+                [
+                  "10:40",
+                  "Ordinateur de caisse débranché du réseau"
+                ],
+                [
+                  "09:55",
+                  "Fichiers renommés en .lock"
+                ],
+                [
+                  "10:05",
+                  "Message de rançon affiché"
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "09:55 Fichiers renommés en .lock",
+              "10:05 Message de rançon affiché",
+              "10:40 Ordinateur de caisse débranché du réseau"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "chronologie",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "chronologie",
+            "args": [
+              [
+                [
+                  "23:10",
+                  "B"
+                ],
+                [
+                  "07:05",
+                  "A"
+                ]
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "07:05 A",
+              "23:10 B"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "sort() modifie les notes originales.",
+      "sorted() renvoie une nouvelle liste triée.",
+      "Une compréhension assemble heure et texte."
+    ],
+    "explanation_fr": "Les notes d’origine sont des preuves : on ne les modifie pas, on en produit une version triée.",
+    "common_wrong_answers": [],
+    "id": "cyb-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Étape suivante",
+    "instruction_fr": "etape_suivante(etape) doit renvoyer la phase qui suit dans la liste des six phases, ou \"terminé\" après le retour d’expérience. Elle renvoie la phase courante et plante à la fin. Corrige-la.",
+    "starter_code": "PHASES = [\"préparation\", \"détection\", \"confinement\", \"éradication\", \"rétablissement\", \"retour d’expérience\"]\n\ndef etape_suivante(etape):\n    i = PHASES.index(etape)\n    return PHASES[i]\n",
+    "solution": "PHASES = [\"préparation\", \"détection\", \"confinement\", \"éradication\", \"rétablissement\", \"retour d’expérience\"]\n\ndef etape_suivante(etape):\n    i = PHASES.index(etape)\n    if i + 1 == len(PHASES):\n        return \"terminé\"\n    return PHASES[i + 1]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "etape_suivante",
+            "args": [
+              "détection"
+            ],
+            "unchanged_args": true,
+            "expected": "confinement"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "etape_suivante",
+            "args": [
+              "retour d’expérience"
+            ],
+            "unchanged_args": true,
+            "expected": "terminé"
+          },
+          {
+            "name": "etape_suivante",
+            "args": [
+              "préparation"
+            ],
+            "unchanged_args": true,
+            "expected": "détection"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La phase suivante est à l’indice i + 1.",
+      "Après la dernière phase, il n’y a plus d’indice valide.",
+      "Teste i + 1 == len(PHASES) avant de lire la liste."
+    ],
+    "explanation_fr": "Une erreur d’un cran est la plus fréquente avec les indices.",
+    "common_wrong_answers": [],
+    "id": "cyb-m4-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Fiche d’incident",
+    "instruction_fr": "Écris fiche(evenements, personnes, sensibles, arret) qui renvoie un dictionnaire : \"gravité\" (règles de gravite), \"début\" et \"fin\" (première et dernière heure), \"durée_min\" (minutes entre début et fin) et \"chronologie\" (textes triés \"HH:MM texte\"). La liste d’événements n’est jamais vide.",
+    "starter_code": "def fiche(evenements, personnes, sensibles, arret):\n    return {}\n",
+    "solution": "def gravite(personnes, sensibles, arret):\n    score = (2 if sensibles else 0) + (2 if arret else 0) + (1 if personnes >= 50 else 0)\n    if score >= 4:\n        return \"critique\"\n    if score >= 2:\n        return \"majeure\"\n    return \"mineure\"\n\ndef minutes(heure):\n    h, m = heure.split(\":\")\n    return int(h) * 60 + int(m)\n\ndef fiche(evenements, personnes, sensibles, arret):\n    tries = sorted(evenements)\n    debut, fin = tries[0][0], tries[-1][0]\n    return {\n        \"gravité\": gravite(personnes, sensibles, arret),\n        \"début\": debut,\n        \"fin\": fin,\n        \"durée_min\": minutes(fin) - minutes(debut),\n        \"chronologie\": [h + \" \" + t for h, t in tries],\n    }\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fiche",
+            "args": [
+              [
+                [
+                  "10:40",
+                  "Ordinateur de caisse débranché du réseau"
+                ],
+                [
+                  "09:55",
+                  "Fichiers renommés en .lock"
+                ],
+                [
+                  "10:05",
+                  "Message de rançon affiché"
+                ]
+              ],
+              120,
+              true,
+              true
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "gravité": "critique",
+              "début": "09:55",
+              "fin": "10:40",
+              "durée_min": 45,
+              "chronologie": [
+                "09:55 Fichiers renommés en .lock",
+                "10:05 Message de rançon affiché",
+                "10:40 Ordinateur de caisse débranché du réseau"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "fiche",
+            "args": [
+              [
+                [
+                  "08:00",
+                  "Clé USB perdue"
+                ]
+              ],
+              30,
+              true,
+              false
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "gravité": "majeure",
+              "début": "08:00",
+              "fin": "08:00",
+              "durée_min": 0,
+              "chronologie": [
+                "08:00 Clé USB perdue"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Trie une fois, puis lis le premier et le dernier événement.",
+      "Convertis les heures en minutes pour calculer la durée.",
+      "Réutilise gravite pour la clé \"gravité\"."
+    ],
+    "explanation_fr": "Cette fiche est ce que la direction et le CERT.tg demanderont en premier.",
+    "common_wrong_answers": [],
+    "id": "cyb-m4-02-e4"
+  }
+]
