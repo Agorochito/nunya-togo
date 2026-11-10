@@ -1,3 +1,10 @@
+# Vérifications 5.19.0 — 10 novembre 2026
+
+- Statistiques avec Python : 24 exemples, 48 solutions et 48 codes de départ vérifiés dans le vrai Pyodide 3.14 du site (120 contrôles, tous les départs refusés) et rejoués sous Python 3.9 (120 contrôles) ; les simulations aléatoires sont vérifiées par des propriétés stables (bornes, fréquence proche de la probabilité), pas par des tirages exacts. Contrôle Python de la construction réussi (131 leçons Python, 1 622 cas). Interface (`STATISTIQUES_PYTHON_UI_RESULTS.json`) : 12 leçons, 48 exercices et 36 questions à 360 et 1440 px, lecture hors ligne à froid, zéro violation axe.
+- Domaines repliables du catalogue (`CATALOGUE_DOMAINS_UI_RESULTS.json`) : à 360 et 1440 px, repli d’un domaine à la souris et au clavier, `aria-expanded` et `aria-controls`, choix conservé après rechargement, « Tout replier » puis « Tout déplier », vue filtrée sans domaines, zéro violation axe, aucun défilement horizontal.
+- Barre repliée : liens du bas réduits en icônes ; test des ambiances relancé (52 audits axe, zéro violation).
+- 222 tests unitaires, ESLint, TypeScript, schémas, prérequis et liens réussis ; grille de contenu : 22 programmes, 347 leçons, 1 388 exercices. Catalogue (22 programmes, 23 raccourcis, 9 cours intermédiaires), parcours, ancien pack enregistré, Qualité logicielle et migration depuis 5.18.0 réussis. Bundle principal : 149 224 octets gzip (149 512 selon le contrôle de l’académie), sous 150 000.
+
 # Vérifications 5.18.0 — 10 novembre 2026
 
 - PHP intermédiaire : avec PHP : les bases, 48 exemples et 233 cas de référence exécutés dans le vrai PHP 8.3 (php-wasm) ; 96 solutions acceptées et 96 codes de départ ou scripts vides refusés pour les deux cours PHP. Interface (`PHP_INTERMEDIAIRE_UI_RESULTS.json`) : 12 leçons, 48 exercices et 36 questions à 360 et 1440 px, lecture hors ligne à froid, zéro violation axe. Test unitaire ajouté pour `declare(strict_types=1)` sur la ligne qui suit `<?php`.

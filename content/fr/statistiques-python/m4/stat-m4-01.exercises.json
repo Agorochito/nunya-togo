@@ -1,0 +1,251 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Cas favorables sur cas possibles",
+    "instruction_fr": "Écris probabilite(favorables, possibles) qui renvoie la probabilité arrondie à 3 décimales, et lève ValueError si possibles vaut 0 ou si favorables dépasse possibles.",
+    "starter_code": "def probabilite(favorables, possibles):\n    return favorables / possibles\n",
+    "solution": "def probabilite(favorables, possibles):\n    if possibles == 0 or favorables > possibles:\n        raise ValueError(\"cas impossibles\")\n    return round(favorables / possibles, 3)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "probabilite",
+            "args": [
+              1,
+              6
+            ],
+            "unchanged_args": true,
+            "expected": 0.167
+          },
+          {
+            "name": "probabilite",
+            "args": [
+              6,
+              36
+            ],
+            "unchanged_args": true,
+            "expected": 0.167
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "probabilite",
+            "args": [
+              0,
+              6
+            ],
+            "unchanged_args": true,
+            "expected": 0.0
+          },
+          {
+            "name": "probabilite",
+            "args": [
+              1,
+              0
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError"
+          },
+          {
+            "name": "probabilite",
+            "args": [
+              7,
+              6
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Arrondis le rapport à 3 décimales.",
+      "Une probabilité ne peut pas dépasser 1.",
+      "Vérifie les deux cas impossibles avant de diviser."
+    ],
+    "explanation_fr": "Une probabilité supérieure à 1 signale toujours une erreur de comptage.",
+    "common_wrong_answers": [],
+    "id": "stat-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Fréquence observée",
+    "instruction_fr": "Écris frequence(tirages, valeur) qui renvoie la fréquence de la valeur dans les tirages, arrondie à 3 décimales (0 pour une liste vide).",
+    "starter_code": "def frequence(tirages, valeur):\n    return tirages.count(valeur)\n",
+    "solution": "def frequence(tirages, valeur):\n    if not tirages:\n        return 0\n    return round(tirages.count(valeur) / len(tirages), 3)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "frequence",
+            "args": [
+              [
+                6,
+                2,
+                6,
+                1,
+                3,
+                4
+              ],
+              6
+            ],
+            "unchanged_args": true,
+            "expected": 0.333
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "frequence",
+            "args": [
+              [],
+              6
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "frequence",
+            "args": [
+              [
+                1,
+                2,
+                3
+              ],
+              6
+            ],
+            "unchanged_args": true,
+            "expected": 0.0
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "count donne l’effectif, pas la fréquence.",
+      "Divise par le nombre de tirages.",
+      "Traite la liste vide."
+    ],
+    "explanation_fr": "Sur six lancers, observer 1/3 de six n’a rien d’étonnant.",
+    "common_wrong_answers": [],
+    "id": "stat-m4-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le dé à huit faces",
+    "instruction_fr": "lancer(n, graine) simule n lancers de dé reproductibles, mais randint(0, 7) produit des valeurs impossibles. Corrige-la. La vérification fournie liste les faces obtenues sur 600 lancers.",
+    "starter_code": "import random\n\n\ndef lancer(n, graine):\n    random.seed(graine)\n    return [random.randint(0, 7) for _ in range(n)]\n\n\n# Vérification fournie : ne la modifie pas.\ndef faces_obtenues():\n    return sorted(set(lancer(600, 1)))\n",
+    "solution": "import random\n\n\ndef lancer(n, graine):\n    random.seed(graine)\n    return [random.randint(1, 6) for _ in range(n)]\n\n\n# Vérification fournie : ne la modifie pas.\ndef faces_obtenues():\n    return sorted(set(lancer(600, 1)))\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "faces_obtenues",
+            "args": [],
+            "unchanged_args": true,
+            "expected": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lancer",
+            "args": [
+              0,
+              3
+            ],
+            "unchanged_args": true,
+            "expected": []
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les faces obtenues contiennent 0 et 7.",
+      "randint inclut ses deux bornes.",
+      "random.randint(1, 6)"
+    ],
+    "explanation_fr": "randint(a, b) inclut a et b, contrairement à range.",
+    "common_wrong_answers": [],
+    "id": "stat-m4-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Somme de deux dés",
+    "instruction_fr": "Écris sommes(n, graine) qui simule n lancers de deux dés (graine fixée) et renvoie la liste des sommes. La vérification fournie contrôle sur 6 000 lancers que les sommes vont de 2 à 12 et que la fréquence de 7 est proche de 1/6.",
+    "starter_code": "import random\n\n\ndef sommes(n, graine):\n    random.seed(graine)\n    return [random.randint(2, 12) for _ in range(n)]\n\n\n# Vérification fournie : ne la modifie pas.\ndef verifier():\n    s = sommes(6000, 3)\n    return [min(s), max(s), abs(s.count(7) / 6000 - 1 / 6) < 0.02, sommes(10, 5) == sommes(10, 5)]\n",
+    "solution": "import random\n\n\ndef sommes(n, graine):\n    random.seed(graine)\n    return [random.randint(1, 6) + random.randint(1, 6) for _ in range(n)]\n\n\n# Vérification fournie : ne la modifie pas.\ndef verifier():\n    s = sommes(6000, 3)\n    return [min(s), max(s), abs(s.count(7) / 6000 - 1 / 6) < 0.02, sommes(10, 5) == sommes(10, 5)]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier",
+            "args": [],
+            "unchanged_args": true,
+            "expected": [
+              2,
+              12,
+              true,
+              true
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "sommes",
+            "args": [
+              0,
+              1
+            ],
+            "unchanged_args": true,
+            "expected": []
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "randint(2, 12) rend toutes les sommes également probables, ce qui est faux.",
+      "Lance deux dés et additionne.",
+      "Le 7 doit sortir environ une fois sur six, le 2 une fois sur 36."
+    ],
+    "explanation_fr": "Tirer directement entre 2 et 12 donnerait au 7 une fréquence de 1/11 : le modèle compte autant que le calcul.",
+    "common_wrong_answers": [],
+    "id": "stat-m4-01-e4"
+  }
+]

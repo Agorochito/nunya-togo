@@ -1,0 +1,23 @@
+{
+  "results": [
+    {
+      "width": 360,
+      "domains": 5,
+      "toggle": true,
+      "keyboard": true,
+      "persistedAfterReload": true,
+      "toggleAll": true,
+      "axeViolations": 0
+    },
+    {
+      "width": 1440,
+      "domains": 5,
+      "toggle": true,
+      "keyboard": true,
+      "persistedAfterReload": true,
+      "toggleAll": true,
+      "axeViolations": 0
+    }
+  ],
+  "errors": []
+}

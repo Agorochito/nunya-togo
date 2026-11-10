@@ -845,7 +845,7 @@
     "Objets connectés et robotique",
     "Blockchain"
   ],
-  "updated_for_release": "5.18.0",
+  "updated_for_release": "5.19.0",
   "updated_at": "2026-11-10",
   "additional_implemented": [
     {
@@ -913,6 +913,19 @@
       "evidence": [
         "content/fr/qualite-logicielle/",
         "docs/QUALITE_LOGICIELLE_UI_RESULTS.json"
+      ]
+    },
+    {
+      "id": "statistiques-python",
+      "modules": 4,
+      "lessons": 12,
+      "activities": 48,
+      "quizzes": 36,
+      "status": "brouillon",
+      "scope": "Statistique descriptive, corrélation, régression, simulation et marge d’erreur en Python hors ligne ; étape du parcours Analyste de données.",
+      "evidence": [
+        "content/fr/statistiques-python/",
+        "docs/STATISTIQUES_PYTHON_UI_RESULTS.json"
       ]
     }
   ]

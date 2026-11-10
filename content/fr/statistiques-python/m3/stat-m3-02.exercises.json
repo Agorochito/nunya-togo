@@ -1,0 +1,350 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Calculer r",
+    "instruction_fr": "Écris correlation(xs, ys) : covariance de population divisée par le produit des écarts-types de population, arrondie à 3 décimales. La fonction covariance est fournie.",
+    "starter_code": "import statistics\n\n\ndef covariance(xs, ys):\n    mx = sum(xs) / len(xs)\n    my = sum(ys) / len(ys)\n    return sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / len(xs)\n\n\ndef correlation(xs, ys):\n    return round(covariance(xs, ys), 3)\n",
+    "solution": "import statistics\n\n\ndef covariance(xs, ys):\n    mx = sum(xs) / len(xs)\n    my = sum(ys) / len(ys)\n    return sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / len(xs)\n\n\ndef correlation(xs, ys):\n    return round(covariance(xs, ys) / (statistics.pstdev(xs) * statistics.pstdev(ys)), 3)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "correlation",
+            "args": [
+              [
+                1,
+                2,
+                2,
+                3,
+                4,
+                5
+              ],
+              [
+                8,
+                9,
+                11,
+                12,
+                14,
+                15
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 0.967
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "correlation",
+            "args": [
+              [
+                1,
+                2,
+                3,
+                4
+              ],
+              [
+                8,
+                6,
+                4,
+                2
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": -1.0
+          },
+          {
+            "name": "correlation",
+            "args": [
+              [
+                1,
+                2,
+                3,
+                4,
+                5
+              ],
+              [
+                2,
+                6,
+                8,
+                6,
+                2
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 0.0
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La covariance seule dépend des unités.",
+      "Divise par statistics.pstdev(xs) * statistics.pstdev(ys).",
+      "Arrondis à 3 décimales."
+    ],
+    "explanation_fr": "La division par les écarts-types ramène le résultat entre −1 et 1.",
+    "common_wrong_answers": [],
+    "id": "stat-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Qualifier la force",
+    "instruction_fr": "Écris force(r) qui renvoie \"forte\" si |r| ≥ 0.7, \"modérée\" si |r| ≥ 0.3, sinon \"faible\".",
+    "starter_code": "def force(r):\n    if r >= 0.7:\n        return \"forte\"\n    return \"faible\"\n",
+    "solution": "def force(r):\n    if abs(r) >= 0.7:\n        return \"forte\"\n    if abs(r) >= 0.3:\n        return \"modérée\"\n    return \"faible\"\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "force",
+            "args": [
+              0.98
+            ],
+            "unchanged_args": true,
+            "expected": "forte"
+          },
+          {
+            "name": "force",
+            "args": [
+              -0.85
+            ],
+            "unchanged_args": true,
+            "expected": "forte"
+          },
+          {
+            "name": "force",
+            "args": [
+              0.45
+            ],
+            "unchanged_args": true,
+            "expected": "modérée"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "force",
+            "args": [
+              0.1
+            ],
+            "unchanged_args": true,
+            "expected": "faible"
+          },
+          {
+            "name": "force",
+            "args": [
+              -0.3
+            ],
+            "unchanged_args": true,
+            "expected": "modérée"
+          },
+          {
+            "name": "force",
+            "args": [
+              0.7
+            ],
+            "unchanged_args": true,
+            "expected": "forte"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une corrélation de −0,85 est aussi forte que 0,85.",
+      "Utilise abs(r).",
+      "Ajoute le palier modéré."
+    ],
+    "explanation_fr": "La force dépend de la valeur absolue ; le signe donne seulement le sens.",
+    "common_wrong_answers": [],
+    "id": "stat-m3-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Divisé par les variances",
+    "instruction_fr": "correlation(xs, ys) divise la covariance par le produit des variances, au lieu des écarts-types. Le résultat sort même de l’intervalle [−1 ; 1]. Corrige-la.",
+    "starter_code": "import statistics\n\n\ndef covariance(xs, ys):\n    mx = sum(xs) / len(xs)\n    my = sum(ys) / len(ys)\n    return sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / len(xs)\n\n\ndef correlation(xs, ys):\n    return round(covariance(xs, ys) / (statistics.pvariance(xs) * statistics.pvariance(ys)), 3)\n",
+    "solution": "import statistics\n\n\ndef covariance(xs, ys):\n    mx = sum(xs) / len(xs)\n    my = sum(ys) / len(ys)\n    return sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / len(xs)\n\n\ndef correlation(xs, ys):\n    return round(covariance(xs, ys) / (statistics.pstdev(xs) * statistics.pstdev(ys)), 3)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "correlation",
+            "args": [
+              [
+                1,
+                2,
+                3,
+                4
+              ],
+              [
+                2,
+                4,
+                6,
+                8
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 1.0
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "correlation",
+            "args": [
+              [
+                1,
+                2,
+                2,
+                3,
+                4,
+                5
+              ],
+              [
+                8,
+                9,
+                11,
+                12,
+                14,
+                15
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 0.967
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Pour des points alignés, r doit valoir 1.",
+      "La variance est le carré de l’écart-type.",
+      "Utilise statistics.pstdev."
+    ],
+    "explanation_fr": "Une valeur hors de [−1 ; 1] signale toujours une erreur de formule.",
+    "common_wrong_answers": [],
+    "id": "stat-m3-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Quelle variable est la plus liée ?",
+    "instruction_fr": "Écris plus_liee(cible, variables) : variables est un dictionnaire nom → liste de valeurs. Renvoie [nom, r] pour la variable dont la corrélation avec cible est la plus forte en valeur absolue (r arrondi à 3 décimales). La fonction correlation est fournie.",
+    "starter_code": "import statistics\n\n\ndef covariance(xs, ys):\n    mx = sum(xs) / len(xs)\n    my = sum(ys) / len(ys)\n    return sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / len(xs)\n\n\ndef correlation(xs, ys):\n    return round(covariance(xs, ys) / (statistics.pstdev(xs) * statistics.pstdev(ys)), 3)\n\n\ndef plus_liee(cible, variables):\n    return None\n",
+    "solution": "import statistics\n\n\ndef covariance(xs, ys):\n    mx = sum(xs) / len(xs)\n    my = sum(ys) / len(ys)\n    return sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / len(xs)\n\n\ndef correlation(xs, ys):\n    return round(covariance(xs, ys) / (statistics.pstdev(xs) * statistics.pstdev(ys)), 3)\n\n\ndef plus_liee(cible, variables):\n    nom = max(variables, key=lambda n: abs(correlation(variables[n], cible)))\n    return [nom, correlation(variables[nom], cible)]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "plus_liee",
+            "args": [
+              [
+                8,
+                9,
+                11,
+                12,
+                14,
+                15
+              ],
+              {
+                "sommeil": [
+                  6,
+                  7,
+                  8,
+                  6,
+                  9,
+                  7
+                ],
+                "revisions": [
+                  1,
+                  2,
+                  2,
+                  3,
+                  4,
+                  5
+                ],
+                "trajet": [
+                  40,
+                  35,
+                  30,
+                  25,
+                  20,
+                  15
+                ]
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "trajet",
+              -0.995
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "plus_liee",
+            "args": [
+              [
+                1,
+                2,
+                3
+              ],
+              {
+                "a": [
+                  3,
+                  1,
+                  2
+                ],
+                "b": [
+                  1,
+                  2,
+                  4
+                ]
+              }
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "b",
+              0.982
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Calcule r pour chaque variable.",
+      "Compare les valeurs absolues avec max et une clé.",
+      "Le trajet, corrélé négativement, peut être le plus lié."
+    ],
+    "explanation_fr": "Un lien fort négatif compte autant qu’un lien fort positif ; reste à se demander pourquoi.",
+    "common_wrong_answers": [],
+    "id": "stat-m3-02-e4"
+  }
+]

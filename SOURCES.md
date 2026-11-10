@@ -115,6 +115,10 @@ Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités origin
 
 Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la documentation officielle de SQLite (SELECT, expressions, fonctions, dates, WITH, fonctions de fenêtre, vues, index, UPSERT, déclencheurs, EXPLAIN QUERY PLAN), citée dans chaque leçon ; aucun texte n’en est repris. Produits, clients, quartiers et ventes de la boutique sont fictifs.
 
+## Statistiques avec Python : décrire, relier, estimer — 10 novembre 2026
+
+Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la documentation officielle de Python (statistics, collections.Counter, random, csv) et du cours de statistiques et probabilités de Khan Academy en français pour les notions générales. La marge d’erreur 1/√n est l’approximation enseignée au lycée, présentée avec ses conditions. Toutes les données (notes, ventes, salaires, enquêtes) sont fictives. Aucun texte, exercice ou corrigé n’est repris d’un autre site.
+
 ## Algorithmes et structures de données — 10 novembre 2026
 
 Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la documentation officielle de Python (structures de données, guide du tri, collections.deque, heapq, bisect), de la page TimeComplexity du wiki Python pour les coûts des opérations et du cours d’algorithmique de Khan Academy en français pour les notions générales. Les distances entre villes du Togo sont des valeurs pédagogiques arrondies, présentées comme telles. Aucun texte, exercice ou corrigé n’est repris d’un autre site.

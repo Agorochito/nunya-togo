@@ -109,19 +109,16 @@
       "sql-bases",
       "python-intermediaire",
       "sql-intermediaire",
+      "statistiques-python",
       "git-bases"
     ],
     "planned_fr": [
       {
         "title_fr": "Tableur pour l’analyse",
         "summary_fr": "Formules, tableaux croisés et graphiques."
-      },
-      {
-        "title_fr": "Statistiques avec Python",
-        "summary_fr": "Moyennes, dispersion, échantillons et graphiques."
       }
     ],
-    "outcome_fr": "Préparer un bilan et un tableau de bord à partir de données fictives, en Python et en SQL avancé, et conserver ses versions ; statistiques et visualisation suivront."
+    "outcome_fr": "Préparer un bilan et un tableau de bord à partir de données fictives, en Python et en SQL avancé, décrire et relier des données, estimer avec une marge d’erreur et conserver ses versions ; le tableur suivra."
   },
   {
     "id": "cyber",

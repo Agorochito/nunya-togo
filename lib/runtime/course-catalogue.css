@@ -118,7 +118,16 @@
 .nunya-journey-modules ol li{display:list-item;border:0;padding:0}
 .nunya-journey-modules span{color:var(--muted);font-size:14px}
 .nunya-journey-beginner,.nunya-journey-planned-note{font-size:14px;color:var(--muted)}
-.nunya-catalogue-domain{margin-top:26px}
+.nunya-catalogue-domain{margin-top:12px;padding-top:10px;border-top:1px solid var(--border)}
 .nunya-catalogue-domain>h3{font-size:20px;margin:0 0 4px}
-.nunya-catalogue-domain>p{color:var(--muted);margin:0 0 14px;font-size:15px}
+.nunya-catalogue-domain>h3>button{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:6px 4px;cursor:pointer;border-radius:10px;font:inherit;color:var(--ink)}
+.nunya-catalogue-domain>h3>button:hover{background:var(--accent-soft,rgba(0,0,0,.04))}
+.nunya-catalogue-domain>h3>button:focus-visible{outline:3px solid var(--accent-text);outline-offset:2px}
+.nunya-domain-count{margin-left:auto;font-size:13px;font-weight:600;color:var(--muted);white-space:nowrap}
+.nunya-domain-chevron{width:10px;height:10px;flex:none;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translate(-2px,-2px);transition:transform .2s}
+[aria-expanded=false]>.nunya-domain-chevron{transform:rotate(-45deg)}
+.nunya-domain-body>p{color:var(--muted);margin:0 0 14px;font-size:15px}
+.nunya-domain-tools{display:flex;justify-content:flex-end;margin-top:18px}
+.nunya-domain-tools+.nunya-catalogue-domain{margin-top:8px}
+@media (prefers-reduced-motion:reduce){.nunya-domain-chevron{transition:none}}
 

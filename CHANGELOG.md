@@ -1,5 +1,12 @@
 # Historique
 
+## 5.19.0 — 10 novembre 2026
+
+- Nouveau cours : **Statistiques avec Python : décrire, relier, estimer**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, en Python hors ligne : moyenne, médiane et mode, étendue, variance et écart-type (population et échantillon), quartiles et valeurs aberrantes, effectifs et fréquences cumulées, classes et histogrammes, nettoyage d’un fichier CSV (virgule décimale, valeurs manquantes, doublons), covariance, corrélation et ses pièges, droite de régression et résidus, probabilités et simulation reproductible, marge d’erreur et intervalle de confiance, puis enquête complète d’un lycée.
+- Le cours remplace l’étape « Statistiques avec Python — en préparation » du parcours Analyste de données.
+- Catalogue : chaque grand domaine (Web, Langages, Données, Cybersécurité, Outils) se replie ou se déplie d’un clic sur son titre, avec le nombre de cours affiché ; un bouton « Tout replier / Tout déplier » permet de passer d’un défilement complet à une vue compacte. Le choix reste sur l’appareil.
+- Barre latérale repliée : les liens du bas (« Donner mon avis », « Un coup de pouce ? ») se replient aussi en icônes, avec info-bulle et nom accessible, au lieu d’afficher leur texte mot par mot.
+
 ## 5.18.0 — 10 novembre 2026
 
 - Nouveau cours : **PHP intermédiaire : objets et données**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, sur le vrai PHP 8.3 hors ligne : declare(strict_types=1), types nullables et arguments nommés, array_map/array_filter/array_reduce/usort et <=>, sprintf, number_format et match, classes avec constructeur promu, private et readonly, constantes et fabriques statiques, héritage, classes abstraites et interfaces, exceptions personnalisées et finally, JSON avec JSON_THROW_ON_ERROR, énumérations et transitions d’état, collections d’objets, validation avec filter_var et échappement avec htmlspecialchars, puis gestion des inscriptions d’une association.

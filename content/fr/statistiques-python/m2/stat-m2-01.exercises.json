@@ -1,0 +1,314 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Compter les réponses",
+    "instruction_fr": "Écris effectifs(reponses) qui renvoie un dictionnaire ordinaire réponse → nombre d’apparitions, avec Counter.",
+    "starter_code": "def effectifs(reponses):\n    resultat = {}\n    for r in reponses:\n        resultat[r] = 1\n    return resultat\n",
+    "solution": "from collections import Counter\n\n\ndef effectifs(reponses):\n    return dict(Counter(reponses))\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "effectifs",
+            "args": [
+              [
+                "pied",
+                "moto",
+                "pied",
+                "bus"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "pied": 2,
+              "moto": 1,
+              "bus": 1
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "effectifs",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": {}
+          },
+          {
+            "name": "effectifs",
+            "args": [
+              [
+                "oui",
+                "oui",
+                "oui"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "oui": 3
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La version actuelle remplace le compte au lieu de l’augmenter.",
+      "Counter compte tout en une ligne.",
+      "dict(Counter(reponses))"
+    ],
+    "explanation_fr": "Counter évite la boucle et ses erreurs.",
+    "common_wrong_answers": [],
+    "id": "stat-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Des fréquences en pourcentage",
+    "instruction_fr": "Écris frequences(reponses) qui renvoie un dictionnaire réponse → fréquence en pourcentage, arrondie à 1 décimale.",
+    "starter_code": "def frequences(reponses):\n    return {}\n",
+    "solution": "from collections import Counter\n\n\ndef frequences(reponses):\n    total = len(reponses)\n    return {r: round(100 * n / total, 1) for r, n in Counter(reponses).items()}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "frequences",
+            "args": [
+              [
+                "pied",
+                "moto",
+                "pied",
+                "bus"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "pied": 50.0,
+              "moto": 25.0,
+              "bus": 25.0
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "frequences",
+            "args": [
+              [
+                "a",
+                "b",
+                "b"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "a": 33.3,
+              "b": 66.7
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Compte d’abord avec Counter.",
+      "Divise chaque effectif par le total.",
+      "Multiplie par 100 et arrondis à 1 décimale."
+    ],
+    "explanation_fr": "33,3 + 66,7 = 100 : ici les arrondis tombent juste, ce n’est pas toujours le cas.",
+    "common_wrong_answers": [],
+    "id": "stat-m2-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le cumul dans le désordre",
+    "instruction_fr": "cumulees(valeurs) doit renvoyer la liste des [valeur, fréquence cumulée en % arrondie à l’entier], valeurs rangées dans l’ordre croissant. Elle cumule dans l’ordre d’apparition. Corrige-la.",
+    "starter_code": "from collections import Counter\n\n\ndef cumulees(valeurs):\n    effectifs = Counter(valeurs)\n    cumul = 0\n    resultat = []\n    for v in effectifs:\n        cumul += effectifs[v]\n        resultat.append([v, round(100 * cumul / len(valeurs))])\n    return resultat\n",
+    "solution": "from collections import Counter\n\n\ndef cumulees(valeurs):\n    effectifs = Counter(valeurs)\n    cumul = 0\n    resultat = []\n    for v in sorted(effectifs):\n        cumul += effectifs[v]\n        resultat.append([v, round(100 * cumul / len(valeurs))])\n    return resultat\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "cumulees",
+            "args": [
+              [
+                0,
+                2,
+                1,
+                2,
+                3,
+                1,
+                2,
+                0,
+                2,
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                0,
+                20
+              ],
+              [
+                1,
+                50
+              ],
+              [
+                2,
+                90
+              ],
+              [
+                3,
+                100
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "cumulees",
+            "args": [
+              [
+                5,
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                1,
+                50
+              ],
+              [
+                5,
+                100
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le premier élément de la liste n’est pas la plus petite valeur.",
+      "Le cumul n’a de sens que dans l’ordre croissant.",
+      "Parcours sorted(effectifs)."
+    ],
+    "explanation_fr": "Une fréquence cumulée répond à « combien au plus ? » : l’ordre est indispensable.",
+    "common_wrong_answers": [],
+    "id": "stat-m2-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Tableau d’un sondage",
+    "instruction_fr": "Écris tableau(reponses) qui renvoie une liste de [réponse, effectif, fréquence en % arrondie à 1 décimale], de la plus fréquente à la moins fréquente ; à effectif égal, par ordre alphabétique.",
+    "starter_code": "def tableau(reponses):\n    return []\n",
+    "solution": "from collections import Counter\n\n\ndef tableau(reponses):\n    total = len(reponses)\n    lignes = sorted(Counter(reponses).items(), key=lambda paire: (-paire[1], paire[0]))\n    return [[r, n, round(100 * n / total, 1)] for r, n in lignes]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tableau",
+            "args": [
+              [
+                "moto",
+                "pied",
+                "bus",
+                "pied",
+                "moto",
+                "pied",
+                "vélo"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                "pied",
+                3,
+                42.9
+              ],
+              [
+                "moto",
+                2,
+                28.6
+              ],
+              [
+                "bus",
+                1,
+                14.3
+              ],
+              [
+                "vélo",
+                1,
+                14.3
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "tableau",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "tableau",
+            "args": [
+              [
+                "oui"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                "oui",
+                1,
+                100.0
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Compte avec Counter.",
+      "Trie par effectif décroissant puis par nom : une clé (-effectif, nom).",
+      "Calcule la fréquence pour chaque ligne."
+    ],
+    "explanation_fr": "Ici les fréquences arrondies font 100,1 % : un tableau publié le signalerait.",
+    "common_wrong_answers": [],
+    "id": "stat-m2-01-e4"
+  }
+]

@@ -8,7 +8,7 @@ Apprendre en français, à son rythme, même hors connexion : coder depuis zéro
 
 ## État du projet
 
-Pilote en cours ; version 5.18. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
+Pilote en cours ; version 5.19. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
 
 ## Ce que propose Nunya
 
@@ -21,6 +21,7 @@ Pilote en cours ; version 5.18. Tous les contenus sont des **brouillons** rédig
    - *CSS intermédiaire* (6 modules, 18 leçons, 72 exercices) : cascade, Flexbox et grilles robustes, interfaces adaptatives, états accessibles et tableau de club ;
    - *PHP : les bases* (4 modules, 12 leçons, 48 exercices) avec un vrai interpréteur PHP 8.3 sur l’appareil : variables, conditions, boucles, tableaux, fonctions et caisse de boutique ;
    - *C++ : les fondamentaux* (4 modules, 12 leçons, 48 exercices), compilé en ligne par GCC 13 sur Wandbox : types, boucles, fonctions, vecteurs, textes, références, structures et bulletin de classe ;
+   - *Statistiques avec Python : décrire, relier, estimer* (4 modules, 12 leçons, 48 exercices), en Python hors ligne : moyenne, médiane, dispersion, quartiles, fréquences, nettoyage, corrélation, régression, simulation et marge d’erreur ;
    - *Algorithmes et structures de données* (4 modules, 12 leçons, 48 exercices), en Python hors ligne : complexité, dichotomie, tris, récursivité, piles, files, dictionnaires, ensembles, graphes et plus court chemin ;
    - *Qualité logicielle : tester, déboguer, relire* (4 modules, 12 leçons, 48 exercices), en Python hors ligne : tests, cas limites, traces, débogage, pièges de Python, refactoring, docstrings et doctests, TDD et revue de code ;
    - *PHP intermédiaire : objets et données* (4 modules, 12 leçons, 48 exercices), vrai PHP 8.3 hors ligne : typage strict, fonctions de tableaux, classes, encapsulation, héritage, interfaces, exceptions, JSON, énumérations, validation et inscriptions d’une association ;

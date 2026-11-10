@@ -7037,6 +7037,297 @@
       "content_revision": "8fe0c818b12e",
       "exercise_count": 48,
       "quiz_count": 36
+    },
+    {
+      "id": "statistiques-python",
+      "title_fr": "Statistiques avec Python : décrire, relier, estimer",
+      "language": "python",
+      "runtime": "python",
+      "technology": "stats",
+      "level": "intermediaire",
+      "summary_fr": "Analyse des données comme un ou une statisticienne : moyenne, médiane, mode, écart-type, quartiles et valeurs aberrantes, effectifs et fréquences, histogrammes, nettoyage d’un fichier CSV, covariance, corrélation et ses pièges, droite de régression, probabilités et simulation, sondages et marge d’erreur, puis enquête complète d’un lycée. En Python, hors ligne, avec le module statistics.",
+      "prerequisite_courses": [
+        "python-bases"
+      ],
+      "prerequisites": [
+        "Savoir écrire des fonctions Python avec listes, dictionnaires, boucles et conditions.",
+        "Le cours Python débutant de Nunya fournit ces bases."
+      ],
+      "outcomes": [
+        "Résumer une série par des indicateurs de position et de dispersion adaptés.",
+        "Organiser et nettoyer des données avant de calculer.",
+        "Mesurer et interpréter un lien entre deux variables sans confondre corrélation et causalité.",
+        "Simuler une expérience aléatoire et estimer une proportion avec sa marge d’erreur.",
+        "Rédiger une conclusion statistique qui annonce ses limites."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Décrire une série",
+          "outcome_fr": "Moyenne, médiane, mode, dispersion, quartiles et valeurs aberrantes.",
+          "lesson_ids": [
+            "stat-m1-01",
+            "stat-m1-02",
+            "stat-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Organiser les données",
+          "outcome_fr": "Effectifs, fréquences, classes, histogrammes et nettoyage.",
+          "lesson_ids": [
+            "stat-m2-01",
+            "stat-m2-02",
+            "stat-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Relier deux variables",
+          "outcome_fr": "Covariance, corrélation, régression et prévisions prudentes.",
+          "lesson_ids": [
+            "stat-m3-01",
+            "stat-m3-02",
+            "stat-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Hasard et échantillons",
+          "outcome_fr": "Probabilités, simulation, marge d’erreur et enquête complète.",
+          "lesson_ids": [
+            "stat-m4-01",
+            "stat-m4-02",
+            "stat-m4-03"
+          ]
+        }
+      ],
+      "next_courses": [],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "stat-m1-01",
+          "title_fr": "Moyenne, médiane et mode",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "py-m12-03"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "moyenne",
+            "médiane",
+            "mode",
+            "robuste"
+          ]
+        },
+        {
+          "id": "stat-m1-02",
+          "title_fr": "Mesurer la dispersion : étendue et écart-type",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m1-01"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "étendue",
+            "variance",
+            "écart-type",
+            "échantillon"
+          ]
+        },
+        {
+          "id": "stat-m1-03",
+          "title_fr": "Quartiles et valeurs aberrantes",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m1-02"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "quartile",
+            "écart interquartile",
+            "valeur aberrante",
+            "boîte à moustaches"
+          ]
+        },
+        {
+          "id": "stat-m2-01",
+          "title_fr": "Effectifs et fréquences",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m1-03"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "variable qualitative",
+            "effectif",
+            "fréquence",
+            "effectif cumulé"
+          ]
+        },
+        {
+          "id": "stat-m2-02",
+          "title_fr": "Regrouper en classes et histogrammes",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m2-01"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "classe",
+            "largeur",
+            "histogramme",
+            "distribution"
+          ]
+        },
+        {
+          "id": "stat-m2-03",
+          "title_fr": "Nettoyer les données avant de calculer",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m2-02"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "valeur manquante",
+            "valeur impossible",
+            "doublon",
+            "CSV"
+          ]
+        },
+        {
+          "id": "stat-m3-01",
+          "title_fr": "Deux variables : nuage de points et covariance",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m2-03"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "nuage de points",
+            "covariance",
+            "relation croissante",
+            "individu"
+          ]
+        },
+        {
+          "id": "stat-m3-02",
+          "title_fr": "Le coefficient de corrélation et ses pièges",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m3-01"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "coefficient de corrélation",
+            "causalité",
+            "facteur de confusion",
+            "relation linéaire"
+          ]
+        },
+        {
+          "id": "stat-m3-03",
+          "title_fr": "La droite de régression et les prévisions",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m3-02"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "régression linéaire",
+            "moindres carrés",
+            "résidu",
+            "extrapolation"
+          ]
+        },
+        {
+          "id": "stat-m4-01",
+          "title_fr": "Probabilités et simulation",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m3-03"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "probabilité",
+            "événement contraire",
+            "loi des grands nombres",
+            "graine"
+          ]
+        },
+        {
+          "id": "stat-m4-02",
+          "title_fr": "Échantillons, sondages et marge d’erreur",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m4-01"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "échantillon",
+            "fluctuation d’échantillonnage",
+            "intervalle de confiance",
+            "biais"
+          ]
+        },
+        {
+          "id": "stat-m4-03",
+          "title_fr": "Projet : l’enquête du lycée",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m4-02"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "étude statistique",
+            "association",
+            "effectif analysé",
+            "limites"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "76638cbb3330",
+      "exercise_count": 48,
+      "quiz_count": 36
     }
   ],
   "plans": [
