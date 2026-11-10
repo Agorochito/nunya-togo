@@ -27,3 +27,21 @@ WebContainers exécute réellement des applications Node dans le navigateur, mai
 Wasmer/Edge.js offre un environnement compatible avec certaines API Node, mais ce n’est pas le runtime Node.js natif. Il impose lui aussi une isolation et des moteurs plus lourds ; la prévisualisation d’un serveur et le réseau local doivent être éprouvés sur les appareils ciblés. [Wasmer SDK](https://docs.wasmer.io/runtime/js/), [Edge.js](https://github.com/wasmerio/edgejs).
 
 Le cours Node exécutable reste donc fermé tant qu’un prototype réel, honnêtement nommé, ne passe pas les vérifications de compatibilité, de stockage et de hors-ligne. La matrice des niveaux intermédiaire et avancé demeure dans `data/review/course_coverage_2026-11-04.json`.
+
+## PHP, C, C++ et Java — relevé du 9 novembre 2026
+
+Demande du propriétaire : ouvrir de nouveaux langages (PHP, C++, Java…) du niveau débutant au niveau avancé. La règle du projet reste inchangée : pas de cours sans moteur réel, utilisable hors ligne et vérifié. Ce relevé provient des métadonnées du registre npm et de la mesure des fichiers publiés. **Aucun de ces moteurs n’a encore été exécuté ni intégré** : chaque ligne reste à confirmer par un prototype avant toute rédaction de cours.
+
+| Langage | Candidat | Licence | Poids mesuré ou publié | Avis |
+|---|---|---|---|---|
+| PHP | `php-wasm` 0.2.0 (interpréteur PHP 8.0 à 8.5 compilé en WebAssembly) | Apache-2.0 ou GPL-2.0 au choix | PHP 8.3 : 12,2 Mo, soit 3,1 Mo gzip ; colle JavaScript d’environ 0,65 Mo | **Premier candidat.** Plus léger que le moteur Python déjà en ligne (9,6 Mo de WebAssembly et 2,5 Mo de bibliothèque standard). L’option Apache-2.0 convient à un projet propriétaire. |
+| PHP | `@php-wasm/web` 3.1 (WordPress Playground) | GPL-2.0-or-later | paquet de 31 à 50 Mo | Écarté par prudence : licence à réciprocité, à faire examiner avant tout usage dans un projet propriétaire. |
+| C++ | `@yowasp/clang`, `browsercc` (vrai compilateur Clang) | ISC, MIT | 105 à 114 Mo décompressés | Vrai compilateur, mais trop lourd pour les connexions visées. À réévaluer seulement avec un téléchargement facultatif et annoncé. |
+| C++ | `JSCPP` 2.0.9 | MIT | interpréteur JavaScript, bien plus léger | Interprète un **sous-ensemble** de C++ et n’est plus mis à jour depuis 2022. Utilisable seulement si le cours est nommé honnêtement et borné aux constructions réellement vérifiées. |
+| C | `picoc-js` 1.0.12 | MIT | 1,6 Mo | Interpréteur d’un sous-ensemble de C, non mis à jour depuis 2022. Même réserve que JSCPP. |
+| Java | aucun paquet auto-hébergeable trouvé sur npm sous les noms cherchés (CheerpJ, TeaVM javac) | — | — | Recherche séparée nécessaire : compilateur et machine virtuelle dans le navigateur, licence, poids et fonctionnement hors ligne. Aucun cours annoncé avant ce choix. |
+
+Étapes pour PHP, dans l’ordre : prototype dans un Worker avec capture de la sortie, des erreurs et arrêt d’une boucle infinie ; vérification du démarrage à froid hors ligne ; mesure sur un téléphone d’entrée de gamme ; puis rédaction d’un premier cours « PHP : les bases » sur le même contrat que les autres programmes (deux exemples, quatre exercices et trois questions par leçon). PHP s’exécuterait ici comme un interpréteur en ligne de commande : les pages dynamiques servies par un vrai serveur ne doivent pas être annoncées tant qu’elles ne sont pas réellement disponibles.
+
+Sans moteur supplémentaire, les suites suivantes peuvent être rédigées dès maintenant avec les moteurs déjà vérifiés : SQL intermédiaire (SQLite), JavaScript intermédiaire et asynchrone (Worker), Python avancé (Pyodide), HTML et CSS avancés (vérificateur de navigateur).
+
