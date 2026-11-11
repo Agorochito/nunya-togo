@@ -1,5 +1,23 @@
 # Historique
 
+## Non publié — refonte visuelle, phase 0 (fondations)
+
+- Plan de refonte visuelle et décisions du propriétaire : docs/PLAN_REFONTE_VISUELLE.md (palette forêt, latérite, soleil ; motif tissage ; une dizaine de jalons ; les sept ambiances conservées).
+- Nouveaux jetons générés pour les sept ambiances, en clair et en sombre (couleurs chaudes, panneau « moment », bordures fortes, couleurs de domaine, échelles de texte, d’espacement et de rayons), encore inutilisés : l’apparence du site ne change pas. Le contrôle de contraste couvre aussi les éléments non textuels.
+- Garde-fou CSS (npm run check:css) : budget gzip et cliquet sur les !important, les couleurs en dur et les textes de moins de 12 px.
+- Captures de référence et axe portables, y compris sous Windows (npm run test:visual) ; axe tourne aussi en CI. Deux défauts de contraste repérés, corrigés en phase 1 : la note grise de « Ma progression » et l’onglet actif « Coder » en Verre liquide.
+- Fins de ligne LF imposées (.gitattributes) pour des constructions identiques sous Windows, macOS et Linux.
+
+## 5.26.0 — 11 novembre 2026
+
+- **Attestation de fin de cours** : quand toutes les leçons d’un cours sont validées, la page du programme propose « Mon attestation Nunya ». L’élève tape le nom à afficher (non vérifié, jamais envoyé), puis imprime, enregistre en PDF ou télécharge un fichier HTML autonome. Le document est titré « Attestation Nunya — pas un diplôme » et liste les compétences et les modules du cours.
+- **Imprimer ou PDF depuis une leçon** : nouveau bouton à côté de la fiche de lecture, avec ou sans indices et corrigés. Ctrl+P sur une page de cours n’imprime plus une page blanche (la règle d’impression du CV ne s’applique plus qu’au CV) ; menus et éditeur sont masqués.
+- **Changement de parcours** : la fenêtre distingue un premier choix (« Commencer ce parcours »), le parcours déjà suivi (« Reprendre le parcours ») et un changement (« Rester sur « X » » / « Changer et commencer », avec le rappel que la progression du parcours actuel est conservée).
+- Prérequis de leçon venant d’un autre cours : le titre du cours et de la leçon s’affiche au lieu de l’identifiant brut (par ex. « css-m4-03 »). Le contrôle des prérequis refuse désormais un identifiant de cours écrit dans les prérequis en texte.
+- Titres en police serif déjà présente sur l’appareil (aucun téléchargement), distincte du texte courant.
+- Le choix de langue EN est conservé après rechargement ; menu et fil d’Ariane affichent « Learn to code » en anglais. Les parcours full-stack et ingénieur·e logiciel choisis ne sont plus oubliés au rechargement.
+- Cache `nunya-v5.26.0`.
+
 ## 5.25.0 — 10 novembre 2026
 
 - Nouveau cours : **Backend en ligne : PostgreSQL et Supabase**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux : types, contraintes et identités PostgreSQL, RETURNING et agrégats filtrés, vues, fonctions et déclencheurs PL/pgSQL, UPSERT et transactions, puis rôles et privilèges, sécurité par ligne avec auth.uid(), politiques d’écriture WITH CHECK, traduction des appels supabase-js, fonctions SECURITY DEFINER appelées par RPC et migration de sécurité d’une boutique prête pour la production.

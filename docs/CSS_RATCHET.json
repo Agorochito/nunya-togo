@@ -1,0 +1,45 @@
+{
+  "_note": "Cliquet CSS produit par node scripts/check-css.mjs --update. Les valeurs ne doivent jamais augmenter ; règles de comptage en tête de scripts/check-css.mjs. colours=null : métrique non applicable (fichier généré, couleurs = jetons).",
+  "fichiers": {
+    "dist/styles.css": {
+      "important": 20,
+      "colours": 554,
+      "petitesPolices": 287
+    },
+    "dist/theme-system.css": {
+      "important": 72,
+      "colours": 5,
+      "petitesPolices": 7
+    },
+    "dist/ambiances.css": {
+      "important": 13,
+      "colours": null,
+      "petitesPolices": 0
+    },
+    "dist/resource-studio.css": {
+      "important": 1,
+      "colours": 0,
+      "petitesPolices": 20
+    },
+    "dist/academy-layout.css": {
+      "important": 47,
+      "colours": 15,
+      "petitesPolices": 14
+    },
+    "dist/assessment-ui.css": {
+      "important": 2,
+      "colours": 40,
+      "petitesPolices": 1
+    },
+    "dist/onboarding-flow.css": {
+      "important": 3,
+      "colours": 0,
+      "petitesPolices": 1
+    },
+    "lib/runtime/course-catalogue.css": {
+      "important": 7,
+      "colours": 12,
+      "petitesPolices": 10
+    }
+  }
+}
