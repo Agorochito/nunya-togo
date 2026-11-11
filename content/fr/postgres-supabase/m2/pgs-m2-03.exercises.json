@@ -1,0 +1,134 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Réapprovisionner",
+    "instruction_fr": "Ajoute 10 unités au produit d’id 1 avec un upsert : insert (1, 'Riz parfumé', 600, 10) … on conflict (id) do update en additionnant les stocks. Renvoie id et stock. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "insert into produits (id, nom, prix, stock) values (1, 'Riz parfumé', 600, 10)\nreturning id, stock;",
+    "solution": "insert into produits (id, nom, prix, stock) values (1, 'Riz parfumé', 600, 10)\non conflict (id) do update set stock = produits.stock + excluded.stock\nreturning id, stock;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "insert into produits (id, nom, prix, stock) values (1, 'Riz parfumé', 600, 10) on conflict (id) do update set stock = produits.stock + excluded.stock returning id, stock;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "insert into produits (id, nom, prix, stock) values (1, 'Riz parfumé', 600, 10) on conflict (id) do update set stock = produits.stock + excluded.stock returning id, stock;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Sans on conflict, l’id 1 provoque un doublon.",
+      "excluded.stock vaut 10.",
+      "produits.stock + excluded.stock."
+    ],
+    "explanation_fr": "Une seule instruction, sûre même si plusieurs imports tournent en même temps.",
+    "common_wrong_answers": [],
+    "id": "pgs-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Mettre à jour un nom de profil",
+    "instruction_fr": "Avec un upsert sur id, enregistre le profil 11111111-1111-1111-1111-111111111111 avec le nom « Afi Mensah » (role client) : il existe déjà, son nom doit être remplacé. Renvoie id et nom. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "insert into profils (id, nom) values ('11111111-1111-1111-1111-111111111111', 'Afi Mensah')\non conflict (id) do nothing\nreturning id, nom;",
+    "solution": "insert into profils (id, nom, role) values ('11111111-1111-1111-1111-111111111111', 'Afi Mensah', 'client')\non conflict (id) do update set nom = excluded.nom\nreturning id, nom;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "insert into profils (id, nom, role) values ('11111111-1111-1111-1111-111111111111', 'Afi Mensah', 'client') on conflict (id) do update set nom = excluded.nom returning id, nom;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "insert into profils (id, nom, role) values ('11111111-1111-1111-1111-111111111111', 'Afi Mensah', 'client') on conflict (id) do update set nom = excluded.nom returning id, nom;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "do nothing ignore la ligne : le nom ne change pas.",
+      "Il faut do update.",
+      "set nom = excluded.nom."
+    ],
+    "explanation_fr": "do nothing convient pour « créer si absent », do update pour « créer ou remplacer ».",
+    "common_wrong_answers": [],
+    "id": "pgs-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La cible introuvable",
+    "instruction_fr": "L’upsert vise la colonne nom, qui n’a pas de contrainte unique : PostgreSQL refuse. Vise plutôt id, puis renvoie id et prix. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "insert into produits (id, nom, prix, stock) values (4, 'Savon noir', 400, 0)\non conflict (nom) do update set prix = excluded.prix\nreturning id, prix;",
+    "solution": "insert into produits (id, nom, prix, stock) values (4, 'Savon noir', 400, 0)\non conflict (id) do update set prix = excluded.prix\nreturning id, prix;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "insert into produits (id, nom, prix, stock) values (4, 'Savon noir', 400, 0) on conflict (id) do update set prix = excluded.prix returning id, prix;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "insert into produits (id, nom, prix, stock) values (4, 'Savon noir', 400, 0) on conflict (id) do update set prix = excluded.prix returning id, prix;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : aucune contrainte unique ne correspond.",
+      "id est la clé primaire.",
+      "on conflict (id)."
+    ],
+    "explanation_fr": "La cible d’un conflit doit être garantie unique par la base.",
+    "common_wrong_answers": [],
+    "id": "pgs-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Une commande en bloc",
+    "instruction_fr": "Dans une transaction, retire 3 unités du stock du produit 4 et enregistre la commande de Yao (22222222-2222-2222-2222-222222222222) pour 3 unités de ce produit, puis valide. Termine par select stock from produits where id = 4. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "update produits set stock = stock - 3 where id = 4;\nselect stock from produits where id = 4;",
+    "solution": "begin;\nupdate produits set stock = stock - 3 where id = 4;\ninsert into commandes (client_id, produit_id, quantite) values ('22222222-2222-2222-2222-222222222222', 4, 3);\ncommit;\nselect stock from produits where id = 4;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "begin; update produits set stock = stock - 3 where id = 4; insert into commandes (client_id, produit_id, quantite) values ('22222222-2222-2222-2222-222222222222', 4, 3); commit; select stock from produits where id = 4;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "begin; update produits set stock = stock - 3 where id = 4; insert into commandes (client_id, produit_id, quantite) values ('22222222-2222-2222-2222-222222222222', 4, 3); commit; select stock from produits where id = 4;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Ouvre avec begin.",
+      "Le stock et la commande changent ensemble.",
+      "Ferme avec commit."
+    ],
+    "explanation_fr": "Si l’insertion avait échoué, la transaction aurait annulé la baisse du stock.",
+    "common_wrong_answers": [],
+    "id": "pgs-m2-03-e4"
+  }
+]

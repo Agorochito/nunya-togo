@@ -15,6 +15,7 @@ const TECHNOLOGIES={
   react:{label:'React',mark:'R',aliases:'react jsx composants etat interface javascript js'},
   http:{label:'HTTP et API',mark:'API',aliases:'http api fetch requete reponse client'},
   sql:{label:'SQL',mark:'SQL',aliases:'sql sqlite donnees base requete'},
+  postgres:{label:'PostgreSQL et Supabase',mark:'PG',aliases:'postgresql postgres supabase backend base de donnees rls securite par ligne politique role auth api rpc plpgsql declencheur fonction migration vercel en ligne'},
   bash:{label:'Terminal et Linux',mark:'>_',aliases:'terminal linux bash shell ligne de commande console fichiers scripts'},
   cpp:{label:'C++',mark:'C++',aliases:'c++ cpp c plus plus programmation compilee systeme'},
   java:{label:'Java',mark:'Jv',aliases:'java jdk objet objets classes programmation compilee android logiciel entreprise backend'},
@@ -94,7 +95,7 @@ function renderOrientation(api,courses){
 const DOMAINS=[
   {key:'web',title:'Web : sites et applications',text:'Créer des pages, les mettre en forme et les rendre interactives, du premier HTML à React.',technologies:['html','css','javascript','dom','typescript','react','http','projetweb','projetfs']},
   {key:'langages',title:'Langages de programmation',text:'Programmer des scripts, des logiciels et des serveurs avec un langage généraliste.',technologies:['python','php','cpp','java','node','algo','qualite']},
-  {key:'donnees',title:'Données',text:'Interroger, organiser et analyser des informations, avec une base de données, les statistiques ou l’intelligence artificielle.',technologies:['sql','stats','ia']},
+  {key:'donnees',title:'Données',text:'Interroger, organiser et analyser des informations, avec une base de données, les statistiques ou l’intelligence artificielle.',technologies:['sql','postgres','stats','ia']},
   {key:'securite',title:'Cybersécurité',text:'Protéger les comptes, détecter les attaques et réagir aux incidents, sur des données fictives et dans un cadre légal.',technologies:['cyber']},
   {key:'outils',title:'Outils et systèmes',text:'Le terminal, Linux, les réseaux et les outils que tout développeur et tout analyste en sécurité utilisent chaque jour.',technologies:['bash','reseaux']}
 ];

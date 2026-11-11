@@ -4576,7 +4576,7 @@
         "react-bases",
         "http-bases"
       ],
-      "engine_revision": "c501cc1cc3a0",
+      "engine_revision": "e8265b1255cf",
       "lessons": [
         {
           "id": "dom-m1-01",
@@ -4837,7 +4837,7 @@
         }
       ],
       "estimated_minutes": 360,
-      "content_revision": "d5bdb488fc80",
+      "content_revision": "db994f58324f",
       "exercise_count": 72,
       "quiz_count": 54
     },
@@ -5685,6 +5685,296 @@
       ],
       "estimated_minutes": 240,
       "content_revision": "cfddf437da59",
+      "exercise_count": 48,
+      "quiz_count": 36
+    },
+    {
+      "id": "postgres-supabase",
+      "title_fr": "Backend en ligne : PostgreSQL et Supabase",
+      "language": "sql",
+      "runtime": "sql",
+      "engine": "postgres",
+      "technology": "postgres",
+      "level": "intermediaire",
+      "summary_fr": "Construis et sécurise la base d’une application en ligne, comme avec Supabase : types et contraintes PostgreSQL, identités, RETURNING, vues, fonctions et déclencheurs PL/pgSQL, transactions, puis rôles, privilèges et sécurité par ligne avec auth.uid(), traduction des appels supabase-js et fonctions SECURITY DEFINER. Vrai PostgreSQL 18 (PGlite) dans le navigateur, sans Docker ni serveur à installer.",
+      "prerequisite_courses": [
+        "sql-bases"
+      ],
+      "prerequisites": [
+        "Savoir créer des tables, filtrer, joindre et modifier des données avec SQL.",
+        "Le cours SQL débutant de Nunya fournit ces bases ; le cours intermédiaire aide pour les vues et les déclencheurs."
+      ],
+      "outcomes": [
+        "Concevoir des tables PostgreSQL solides : types, identités, clés et contraintes.",
+        "Écrire des vues, des fonctions et des déclencheurs en PL/pgSQL, et regrouper des écritures dans une transaction.",
+        "Protéger chaque table avec des privilèges et des politiques de sécurité par ligne.",
+        "Prévoir le résultat d’un appel supabase-js et écrire des fonctions sécurisées appelées par RPC.",
+        "Préparer une base pour la production : migration de sécurité, clés et variables d’environnement."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "PostgreSQL, le moteur de Supabase",
+          "outcome_fr": "Types, contraintes, identités, RETURNING et agrégats filtrés.",
+          "lesson_ids": [
+            "pgs-m1-01",
+            "pgs-m1-02",
+            "pgs-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "De la logique dans la base",
+          "outcome_fr": "Vues, fonctions, déclencheurs, UPSERT et transactions.",
+          "lesson_ids": [
+            "pgs-m2-01",
+            "pgs-m2-02",
+            "pgs-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Sécuriser les données",
+          "outcome_fr": "Rôles, privilèges et politiques de sécurité par ligne.",
+          "lesson_ids": [
+            "pgs-m3-01",
+            "pgs-m3-02",
+            "pgs-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Mettre en ligne avec Supabase",
+          "outcome_fr": "API, fonctions sécurisées et migration de production.",
+          "lesson_ids": [
+            "pgs-m4-01",
+            "pgs-m4-02",
+            "pgs-m4-03"
+          ]
+        }
+      ],
+      "next_courses": [],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "pgs-m1-01",
+          "title_fr": "De SQLite à PostgreSQL",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "PostgreSQL",
+            "uuid",
+            "conversion de type",
+            "ILIKE"
+          ]
+        },
+        {
+          "id": "pgs-m1-02",
+          "title_fr": "Des tables solides",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m1-01"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "contrainte",
+            "identity",
+            "clé étrangère",
+            "migration"
+          ]
+        },
+        {
+          "id": "pgs-m1-03",
+          "title_fr": "RETURNING, FILTER et agrégats",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m1-02"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "RETURNING",
+            "FILTER",
+            "string_agg",
+            "aller-retour"
+          ]
+        },
+        {
+          "id": "pgs-m2-01",
+          "title_fr": "Vues et fonctions SQL",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m1-03"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "vue",
+            "fonction",
+            "RPC",
+            "immutable"
+          ]
+        },
+        {
+          "id": "pgs-m2-02",
+          "title_fr": "Déclencheurs en PL/pgSQL",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m2-01"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "déclencheur",
+            "PL/pgSQL",
+            "NEW et OLD",
+            "raise exception"
+          ]
+        },
+        {
+          "id": "pgs-m2-03",
+          "title_fr": "UPSERT et transactions",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m2-02"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "UPSERT",
+            "ON CONFLICT",
+            "transaction",
+            "atomicité"
+          ]
+        },
+        {
+          "id": "pgs-m3-01",
+          "title_fr": "Rôles et privilèges : qui peut faire quoi",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m2-03"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "rôle",
+            "privilège",
+            "anon",
+            "service_role"
+          ]
+        },
+        {
+          "id": "pgs-m3-02",
+          "title_fr": "La sécurité par ligne (RLS)",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m3-01"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "RLS",
+            "politique",
+            "using",
+            "refus par défaut"
+          ]
+        },
+        {
+          "id": "pgs-m3-03",
+          "title_fr": "Politiques d’écriture : WITH CHECK",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m3-02"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "with check",
+            "using",
+            "politique d’écriture",
+            "accès détourné"
+          ]
+        },
+        {
+          "id": "pgs-m4-01",
+          "title_fr": "De la table à l’API",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m3-03"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "PostgREST",
+            "supabase-js",
+            "filtre",
+            "relation imbriquée"
+          ]
+        },
+        {
+          "id": "pgs-m4-02",
+          "title_fr": "Des fonctions sécurisées pour les actions sensibles",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m4-01"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "security definer",
+            "security invoker",
+            "search_path",
+            "RPC"
+          ]
+        },
+        {
+          "id": "pgs-m4-03",
+          "title_fr": "Projet : une boutique prête pour la production",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m4-02"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "migration de sécurité",
+            "variable d’environnement",
+            "conseiller de sécurité",
+            "production"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "e363e26d39bb",
       "exercise_count": 48,
       "quiz_count": 36
     },
@@ -7023,7 +7313,7 @@
       "status": "brouillon",
       "reviewer": null,
       "depth_fr": "Socle progressif avec projets et tests locaux ; relecture pédagogique en cours. Les niveaux supérieurs restent à construire.",
-      "engine_revision": "c501cc1cc3a0",
+      "engine_revision": "e8265b1255cf",
       "lessons": [
         {
           "id": "react-m1-01",
@@ -7283,7 +7573,7 @@
         }
       ],
       "estimated_minutes": 360,
-      "content_revision": "8451ad97d2ef",
+      "content_revision": "1c5ac4f1b82e",
       "exercise_count": 72,
       "quiz_count": 54
     },

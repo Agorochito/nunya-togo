@@ -1,0 +1,134 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Les produits disponibles",
+    "instruction_fr": "Affiche nom et prix des produits en stock (stock > 0), du moins cher au plus cher, puis par id. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "select * from produits;",
+    "solution": "select nom, prix from produits where stock > 0 order by prix, id;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "select nom, prix from produits where stock > 0 order by prix, id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "select nom, prix from produits where stock > 0 order by prix, id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Garde seulement nom et prix.",
+      "Filtre avec stock > 0.",
+      "Trie par prix puis par id."
+    ],
+    "explanation_fr": "Une requête précise : colonnes, filtre et ordre.",
+    "common_wrong_answers": [],
+    "id": "pgs-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Recherche sans majuscules",
+    "instruction_fr": "Affiche le nom des produits dont le nom contient la lettre h, majuscule ou minuscule, triés par nom. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "select nom from produits where nom like '%h%' order by nom;",
+    "solution": "select nom from produits where nom ilike '%h%' order by nom;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "select nom from produits where nom ilike '%h%' order by nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "select nom from produits where nom ilike '%h%' order by nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "LIKE tient compte de la casse : « Huile » commence par un H majuscule.",
+      "Utilise ILIKE.",
+      "where nom ilike '%h%'"
+    ],
+    "explanation_fr": "ILIKE évite de deviner comment le nom a été saisi.",
+    "common_wrong_answers": [],
+    "id": "pgs-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Nombre et texte",
+    "instruction_fr": "La requête doit afficher nom et affichage, par exemple « 600 FCFA », triés par id. PostgreSQL la refuse : corrige-la. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "select nom, prix + ' FCFA' as affichage from produits order by id;",
+    "solution": "select nom, prix::text || ' FCFA' as affichage from produits order by id;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "select nom, prix::text || ' FCFA' as affichage from produits order by id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "select nom, prix::text || ' FCFA' as affichage from produits order by id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : PostgreSQL ne sait pas additionner un entier et un texte.",
+      "Convertis le prix en texte.",
+      "Assemble avec ||."
+    ],
+    "explanation_fr": "SQLite aurait renvoyé un résultat étrange sans prévenir ; PostgreSQL arrête l’erreur.",
+    "common_wrong_answers": [],
+    "id": "pgs-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Montant de chaque commande",
+    "instruction_fr": "Affiche id de la commande, nom du produit et montant (quantité × prix), triés par id de commande. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "select id, quantite from commandes order by id;",
+    "solution": "select c.id, p.nom, c.quantite * p.prix as montant\nfrom commandes c\njoin produits p on p.id = c.produit_id\norder by c.id;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "select c.id, p.nom, c.quantite * p.prix as montant from commandes c join produits p on p.id = c.produit_id order by c.id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "select c.id, p.nom, c.quantite * p.prix as montant from commandes c join produits p on p.id = c.produit_id order by c.id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Joins commandes et produits.",
+      "Le montant est quantite * prix.",
+      "Nomme la colonne montant."
+    ],
+    "explanation_fr": "Les jointures s’écrivent exactement comme en SQLite.",
+    "common_wrong_answers": [],
+    "id": "pgs-m1-01-e4"
+  }
+]

@@ -8,7 +8,7 @@ Apprendre en français, à son rythme, même hors connexion : coder depuis zéro
 
 ## État du projet
 
-Pilote en cours ; version 5.24. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
+Pilote en cours ; version 5.25. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
 
 ## Ce que propose Nunya
 
@@ -31,6 +31,7 @@ Pilote en cours ; version 5.24. Tous les contenus sont des **brouillons** rédig
    - *Qualité logicielle : tester, déboguer, relire* (4 modules, 12 leçons, 48 exercices), en Python hors ligne : tests, cas limites, traces, débogage, pièges de Python, refactoring, docstrings et doctests, TDD et revue de code ;
    - *PHP intermédiaire : objets et données* (4 modules, 12 leçons, 48 exercices), vrai PHP 8.3 hors ligne : typage strict, fonctions de tableaux, classes, encapsulation, héritage, interfaces, exceptions, JSON, énumérations, validation et inscriptions d’une association ;
    - *SQL intermédiaire : analyser les données d’une boutique* (4 modules, 12 leçons, 48 exercices), vrai SQLite hors ligne : CASE, fonctions de texte et de dates, opérateurs ensemblistes, sous-requêtes corrélées, WITH et requêtes récursives, fonctions de fenêtre, vues, index, UPSERT, déclencheurs et tableau de bord ;
+   - *Backend en ligne : PostgreSQL et Supabase* (4 modules, 12 leçons, 48 exercices), vrai PostgreSQL 18 (PGlite) dans le navigateur, sans Docker : contraintes, PL/pgSQL, transactions, rôles, sécurité par ligne avec auth.uid(), appels supabase-js et fonctions sécurisées ;
    - *Réseaux informatiques : comprendre et diagnostiquer* (4 modules, 12 leçons, 48 exercices), en Python hors ligne : adresses IP, masques et sous-réseaux, couches, ports, DNS, ping, traceroute, configurations, pare-feu, Wi-Fi et segmentation, puis diagnostic du réseau d’un collège ;
    - *Cybersécurité : défendre une petite organisation* (4 modules, 12 leçons, 48 exercices), en Python hors ligne : risques, mots de passe et hachage salé, hameçonnage, journaux de connexion, droits d’accès, validation des entrées, intégrité, sauvegardes 3-2-1, réponse aux incidents et audit complet ;
    - *Java : premiers programmes* (4 modules, 12 leçons, 48 exercices), compilé en ligne par OpenJDK 21 sur Wandbox : types, conditions, boucles, méthodes, tableaux, textes et listes, classes, encapsulation, exceptions et gestion d’une boutique ;

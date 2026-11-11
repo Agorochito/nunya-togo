@@ -30,6 +30,7 @@
       "python-intermediaire",
       "sql-bases",
       "sql-intermediaire",
+      "postgres-supabase",
       "php-bases",
       "php-intermediaire",
       "java-bases",
@@ -43,7 +44,7 @@
         "summary_fr": "Empaqueter une application et la mettre en ligne."
       }
     ],
-    "outcome_fr": "Comprendre les données et les échanges d’un service, en Python, en PHP objet et en Java, avec SQL avancé, et travailler au terminal ; le déploiement suivra."
+    "outcome_fr": "Comprendre les données et les échanges d’un service, en Python, en PHP objet et en Java, concevoir et sécuriser une base PostgreSQL comme avec Supabase, et travailler au terminal ; le déploiement avec Docker suivra."
   },
   {
     "id": "fullstack",
@@ -56,6 +57,7 @@
       "javascript-bases",
       "javascript-dom",
       "sql-bases",
+      "postgres-supabase",
       "php-bases",
       "http-bases",
       "nodejs-bases",

@@ -1,5 +1,12 @@
 # Historique
 
+## 5.25.0 — 10 novembre 2026
+
+- Nouveau cours : **Backend en ligne : PostgreSQL et Supabase**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux : types, contraintes et identités PostgreSQL, RETURNING et agrégats filtrés, vues, fonctions et déclencheurs PL/pgSQL, UPSERT et transactions, puis rôles et privilèges, sécurité par ligne avec auth.uid(), politiques d’écriture WITH CHECK, traduction des appels supabase-js, fonctions SECURITY DEFINER appelées par RPC et migration de sécurité d’une boutique prête pour la production.
+- Nouveau moteur : vrai PostgreSQL 18 (PGlite, WebAssembly) dans un Worker du navigateur, sans Docker ni serveur ; environ 6 Mo compressés, téléchargés seulement pour ce cours et disponibles hors ligne une fois enregistrés. Les rôles anon, authenticated et service_role et la fonction auth.uid() reproduisent Supabase : chaque politique est vérifiée sous plusieurs identités (client, autre client, vendeur, visiteur).
+- Un script qui laisse une transaction ouverte échoue avec un message clair, comme dans l’atelier SQLite.
+- Parcours Backend et Full-stack : le cours s’ajoute après SQL. L’étape « Docker et déploiement » reste annoncée.
+
 ## 5.24.0 — 10 novembre 2026
 
 - Nouveau cours : **Projet complet : une boutique en ligne full-stack**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, sur Node.js 20 en ligne : routeur à paramètres, modèle de données validé avec identifiants sûrs, pages HTML générées par le serveur et échappées, formulaire selon Post/Redirect/Get (303) avec erreurs et valeurs réaffichées, API JSON avec recherche, panier en cookie HttpOnly et SameSite dont les prix viennent toujours du serveur, pagination bornée, filet d’erreurs (500 sans détail technique), limite de taille (413), en-têtes de sécurité (CSP, nosniff), configuration par variables d’environnement et application complète testée par des parcours de bout en bout.
