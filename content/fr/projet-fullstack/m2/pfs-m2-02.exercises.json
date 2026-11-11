@@ -1,0 +1,170 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Décoder un formulaire",
+    "instruction_fr": "Écris lireFormulaire(texte) qui renvoie un objet des champs avec URLSearchParams et Object.fromEntries.",
+    "starter_code": "function lireFormulaire(texte) {\n  return JSON.parse(texte);\n}\n",
+    "solution": "function lireFormulaire(texte) {\n  return Object.fromEntries(new URLSearchParams(texte));\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "lireFormulaire(\"nom=Mangue&prix=300\")",
+            "expected": "{\"nom\":\"Mangue\",\"prix\":\"300\"}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "lireFormulaire(\"nom=Pain+de+mie&note=caf%C3%A9\")",
+            "expected": "{\"nom\":\"Pain de mie\",\"note\":\"café\"}"
+          },
+          {
+            "expr": "lireFormulaire(\"\")",
+            "expected": "{}"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le corps n’est pas du JSON.",
+      "URLSearchParams décode les paires.",
+      "Object.fromEntries en fait un objet."
+    ],
+    "explanation_fr": "Les accents encodés en %C3%A9 sont décodés automatiquement.",
+    "common_wrong_answers": [],
+    "id": "pfs-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Afficher le formulaire",
+    "instruction_fr": "Ajoute la route GET /produits/nouveau qui répond 200 avec page(\"Nouveau produit\", formulaire({}, [])). Les briques sont fournies.",
+    "starter_code": "const http = require(\"http\");\n\nfunction echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction page(titre, contenu) {\n  return `<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>${echapper(titre)} · Marché de Bè</title></head>`\n    + `<body><main><h1>${echapper(titre)}</h1>${contenu}</main></body></html>`;\n}\n\nconst produits = [\n  { id: 1, nom: \"Riz parfumé\", prix: 600 },\n  { id: 2, nom: \"Huile de palme\", prix: 1500 },\n  { id: 3, nom: \"Gari\", prix: 400 },\n];\nlet prochainId = 4;\n\nfunction lister() {\n  return produits.map(p => ({ ...p }));\n}\n\nfunction trouver(id) {\n  const p = produits.find(x => x.id === id);\n  return p ? { ...p } : undefined;\n}\n\nfunction valider(d) {\n  const erreurs = [];\n  const nom = typeof d.nom === \"string\" ? d.nom.trim() : \"\";\n  if (nom.length < 2 || nom.length > 40) erreurs.push(\"Le nom doit contenir 2 à 40 caractères.\");\n  const prix = Number(d.prix);\n  if (d.prix === undefined || d.prix === \"\" || !Number.isInteger(prix) || prix <= 0) erreurs.push(\"Le prix doit être un nombre entier positif.\");\n  return erreurs;\n}\n\nfunction ajouter(d) {\n  const erreurs = valider(d);\n  if (erreurs.length) return { ok: false, erreurs };\n  const produit = { id: prochainId++, nom: d.nom.trim(), prix: Number(d.prix) };\n  produits.push(produit);\n  return { ok: true, produit };\n}\n\nfunction envoyer(res, statut, type, corps) {\n  res.writeHead(statut, { \"Content-Type\": type + \"; charset=utf-8\" });\n  res.end(corps);\n}\n\nfunction listeHTML(liste) {\n  return \"<ul>\" + liste.map(p => `<li><a href=\"/produits/${p.id}\">${echapper(p.nom)}</a> — ${p.prix} FCFA</li>`).join(\"\") + \"</ul>\";\n}\n\nfunction formulaire(valeurs, erreurs) {\n  const liste = erreurs.length ? \"<ul class=\\\"erreurs\\\">\" + erreurs.map(e => `<li>${echapper(e)}</li>`).join(\"\") + \"</ul>\" : \"\";\n  return liste + `<form method=\"post\" action=\"/produits\">`\n    + `<label for=\"nom\">Nom</label><input id=\"nom\" name=\"nom\" value=\"${echapper(valeurs.nom ?? \"\")}\" required>`\n    + `<label for=\"prix\">Prix (FCFA)</label><input id=\"prix\" name=\"prix\" type=\"number\" value=\"${echapper(valeurs.prix ?? \"\")}\" required>`\n    + `<button type=\"submit\">Ajouter</button></form>`;\n}\n\nconst serveur = http.createServer((req, res) => {\n  envoyer(res, 404, \"text/html\", page(\"Introuvable\", \"<p>Cette page n’existe pas.</p>\"));\n});\n",
+    "solution": "const http = require(\"http\");\n\nfunction echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction page(titre, contenu) {\n  return `<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>${echapper(titre)} · Marché de Bè</title></head>`\n    + `<body><main><h1>${echapper(titre)}</h1>${contenu}</main></body></html>`;\n}\n\nconst produits = [\n  { id: 1, nom: \"Riz parfumé\", prix: 600 },\n  { id: 2, nom: \"Huile de palme\", prix: 1500 },\n  { id: 3, nom: \"Gari\", prix: 400 },\n];\nlet prochainId = 4;\n\nfunction lister() {\n  return produits.map(p => ({ ...p }));\n}\n\nfunction trouver(id) {\n  const p = produits.find(x => x.id === id);\n  return p ? { ...p } : undefined;\n}\n\nfunction valider(d) {\n  const erreurs = [];\n  const nom = typeof d.nom === \"string\" ? d.nom.trim() : \"\";\n  if (nom.length < 2 || nom.length > 40) erreurs.push(\"Le nom doit contenir 2 à 40 caractères.\");\n  const prix = Number(d.prix);\n  if (d.prix === undefined || d.prix === \"\" || !Number.isInteger(prix) || prix <= 0) erreurs.push(\"Le prix doit être un nombre entier positif.\");\n  return erreurs;\n}\n\nfunction ajouter(d) {\n  const erreurs = valider(d);\n  if (erreurs.length) return { ok: false, erreurs };\n  const produit = { id: prochainId++, nom: d.nom.trim(), prix: Number(d.prix) };\n  produits.push(produit);\n  return { ok: true, produit };\n}\n\nfunction envoyer(res, statut, type, corps) {\n  res.writeHead(statut, { \"Content-Type\": type + \"; charset=utf-8\" });\n  res.end(corps);\n}\n\nfunction listeHTML(liste) {\n  return \"<ul>\" + liste.map(p => `<li><a href=\"/produits/${p.id}\">${echapper(p.nom)}</a> — ${p.prix} FCFA</li>`).join(\"\") + \"</ul>\";\n}\n\nfunction formulaire(valeurs, erreurs) {\n  const liste = erreurs.length ? \"<ul class=\\\"erreurs\\\">\" + erreurs.map(e => `<li>${echapper(e)}</li>`).join(\"\") + \"</ul>\" : \"\";\n  return liste + `<form method=\"post\" action=\"/produits\">`\n    + `<label for=\"nom\">Nom</label><input id=\"nom\" name=\"nom\" value=\"${echapper(valeurs.nom ?? \"\")}\" required>`\n    + `<label for=\"prix\">Prix (FCFA)</label><input id=\"prix\" name=\"prix\" type=\"number\" value=\"${echapper(valeurs.prix ?? \"\")}\" required>`\n    + `<button type=\"submit\">Ajouter</button></form>`;\n}\n\nconst serveur = http.createServer((req, res) => {\n  const { pathname } = new URL(req.url, \"http://localhost\");\n  if (req.method === \"GET\" && pathname === \"/produits/nouveau\") {\n    return envoyer(res, 200, \"text/html\", page(\"Nouveau produit\", formulaire({}, [])));\n  }\n  envoyer(res, 404, \"text/html\", page(\"Introuvable\", \"<p>Cette page n’existe pas.</p>\"));\n});\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/produits/nouveau\").then(r => [r.statut, r.corps.includes('<form method=\"post\" action=\"/produits\">')])",
+            "expected": "[200,true]"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/produits/nouveau\").then(r => r.corps.includes(\"<h1>Nouveau produit</h1>\"))",
+            "expected": "true"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une route GET de plus.",
+      "Le formulaire vide : formulaire({}, []).",
+      "Dans la page commune."
+    ],
+    "explanation_fr": "Le formulaire pointe vers POST /produits, que l’exercice suivant traite.",
+    "common_wrong_answers": [],
+    "id": "pfs-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le double enregistrement",
+    "instruction_fr": "Après un POST réussi, le serveur renvoie directement la page du produit : actualiser recréerait le produit. Remplace cette réponse par une redirection 303 vers /produits/ID.",
+    "starter_code": "const http = require(\"http\");\n\nfunction echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction page(titre, contenu) {\n  return `<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>${echapper(titre)} · Marché de Bè</title></head>`\n    + `<body><main><h1>${echapper(titre)}</h1>${contenu}</main></body></html>`;\n}\n\nconst produits = [\n  { id: 1, nom: \"Riz parfumé\", prix: 600 },\n  { id: 2, nom: \"Huile de palme\", prix: 1500 },\n  { id: 3, nom: \"Gari\", prix: 400 },\n];\nlet prochainId = 4;\n\nfunction lister() {\n  return produits.map(p => ({ ...p }));\n}\n\nfunction trouver(id) {\n  const p = produits.find(x => x.id === id);\n  return p ? { ...p } : undefined;\n}\n\nfunction valider(d) {\n  const erreurs = [];\n  const nom = typeof d.nom === \"string\" ? d.nom.trim() : \"\";\n  if (nom.length < 2 || nom.length > 40) erreurs.push(\"Le nom doit contenir 2 à 40 caractères.\");\n  const prix = Number(d.prix);\n  if (d.prix === undefined || d.prix === \"\" || !Number.isInteger(prix) || prix <= 0) erreurs.push(\"Le prix doit être un nombre entier positif.\");\n  return erreurs;\n}\n\nfunction ajouter(d) {\n  const erreurs = valider(d);\n  if (erreurs.length) return { ok: false, erreurs };\n  const produit = { id: prochainId++, nom: d.nom.trim(), prix: Number(d.prix) };\n  produits.push(produit);\n  return { ok: true, produit };\n}\n\nfunction envoyer(res, statut, type, corps) {\n  res.writeHead(statut, { \"Content-Type\": type + \"; charset=utf-8\" });\n  res.end(corps);\n}\n\nfunction listeHTML(liste) {\n  return \"<ul>\" + liste.map(p => `<li><a href=\"/produits/${p.id}\">${echapper(p.nom)}</a> — ${p.prix} FCFA</li>`).join(\"\") + \"</ul>\";\n}\n\nfunction lireCorps(req) {\n  return new Promise((ok, ko) => {\n    let texte = \"\";\n    req.on(\"data\", m => { texte += m; });\n    req.on(\"end\", () => ok(texte));\n    req.on(\"error\", ko);\n  });\n}\n\nconst serveur = http.createServer(async (req, res) => {\n  if (req.method === \"POST\" && req.url === \"/produits\") {\n    const r = ajouter(Object.fromEntries(new URLSearchParams(await lireCorps(req))));\n    if (r.ok) return envoyer(res, 200, \"text/html\", page(r.produit.nom, \"<p>Ajouté</p>\"));\n  }\n  envoyer(res, 404, \"text/html\", page(\"Introuvable\", \"\"));\n});\n",
+    "solution": "const http = require(\"http\");\n\nfunction echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction page(titre, contenu) {\n  return `<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>${echapper(titre)} · Marché de Bè</title></head>`\n    + `<body><main><h1>${echapper(titre)}</h1>${contenu}</main></body></html>`;\n}\n\nconst produits = [\n  { id: 1, nom: \"Riz parfumé\", prix: 600 },\n  { id: 2, nom: \"Huile de palme\", prix: 1500 },\n  { id: 3, nom: \"Gari\", prix: 400 },\n];\nlet prochainId = 4;\n\nfunction lister() {\n  return produits.map(p => ({ ...p }));\n}\n\nfunction trouver(id) {\n  const p = produits.find(x => x.id === id);\n  return p ? { ...p } : undefined;\n}\n\nfunction valider(d) {\n  const erreurs = [];\n  const nom = typeof d.nom === \"string\" ? d.nom.trim() : \"\";\n  if (nom.length < 2 || nom.length > 40) erreurs.push(\"Le nom doit contenir 2 à 40 caractères.\");\n  const prix = Number(d.prix);\n  if (d.prix === undefined || d.prix === \"\" || !Number.isInteger(prix) || prix <= 0) erreurs.push(\"Le prix doit être un nombre entier positif.\");\n  return erreurs;\n}\n\nfunction ajouter(d) {\n  const erreurs = valider(d);\n  if (erreurs.length) return { ok: false, erreurs };\n  const produit = { id: prochainId++, nom: d.nom.trim(), prix: Number(d.prix) };\n  produits.push(produit);\n  return { ok: true, produit };\n}\n\nfunction envoyer(res, statut, type, corps) {\n  res.writeHead(statut, { \"Content-Type\": type + \"; charset=utf-8\" });\n  res.end(corps);\n}\n\nfunction listeHTML(liste) {\n  return \"<ul>\" + liste.map(p => `<li><a href=\"/produits/${p.id}\">${echapper(p.nom)}</a> — ${p.prix} FCFA</li>`).join(\"\") + \"</ul>\";\n}\n\nfunction lireCorps(req) {\n  return new Promise((ok, ko) => {\n    let texte = \"\";\n    req.on(\"data\", m => { texte += m; });\n    req.on(\"end\", () => ok(texte));\n    req.on(\"error\", ko);\n  });\n}\n\nconst serveur = http.createServer(async (req, res) => {\n  if (req.method === \"POST\" && req.url === \"/produits\") {\n    const r = ajouter(Object.fromEntries(new URLSearchParams(await lireCorps(req))));\n    if (r.ok) {\n      res.writeHead(303, { Location: \"/produits/\" + r.produit.id });\n      return res.end();\n    }\n  }\n  envoyer(res, 404, \"text/html\", page(\"Introuvable\", \"\"));\n});\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaEchange(serveur, \"/produits\", { method: \"POST\", headers: { \"Content-Type\": \"application/x-www-form-urlencoded\" }, body: \"nom=Mangue&prix=300\" }).then(r => [r.statut, r.entetes.location, r.corps])",
+            "expected": "[303,\"/produits/4\",\"\"]"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaEchange(serveur, \"/produits\", { method: \"POST\", headers: { \"Content-Type\": \"application/x-www-form-urlencoded\" }, body: \"nom=Ananas&prix=500\" }).then(r => r.entetes.location)",
+            "expected": "/produits/4"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une réponse 200 laisse le POST dans l’historique.",
+      "Réponds 303 avec l’en-tête Location.",
+      "Corps vide : res.end()."
+    ],
+    "explanation_fr": "Le navigateur chargera la page du produit avec un GET, qu’on peut actualiser sans risque.",
+    "common_wrong_answers": [],
+    "id": "pfs-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Créer un produit de bout en bout",
+    "instruction_fr": "Écris le serveur : GET /produits/nouveau affiche le formulaire ; POST /produits décode le formulaire, appelle ajouter et redirige en 303 vers /produits/ID en cas de succès (les erreurs seront traitées à la leçon suivante : pour l’instant, 400 avec page(\"Nouveau produit\", formulaire(donnees, r.erreurs))) ; tout le reste 404.",
+    "starter_code": "const http = require(\"http\");\n\nfunction echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction page(titre, contenu) {\n  return `<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>${echapper(titre)} · Marché de Bè</title></head>`\n    + `<body><main><h1>${echapper(titre)}</h1>${contenu}</main></body></html>`;\n}\n\nconst produits = [\n  { id: 1, nom: \"Riz parfumé\", prix: 600 },\n  { id: 2, nom: \"Huile de palme\", prix: 1500 },\n  { id: 3, nom: \"Gari\", prix: 400 },\n];\nlet prochainId = 4;\n\nfunction lister() {\n  return produits.map(p => ({ ...p }));\n}\n\nfunction trouver(id) {\n  const p = produits.find(x => x.id === id);\n  return p ? { ...p } : undefined;\n}\n\nfunction valider(d) {\n  const erreurs = [];\n  const nom = typeof d.nom === \"string\" ? d.nom.trim() : \"\";\n  if (nom.length < 2 || nom.length > 40) erreurs.push(\"Le nom doit contenir 2 à 40 caractères.\");\n  const prix = Number(d.prix);\n  if (d.prix === undefined || d.prix === \"\" || !Number.isInteger(prix) || prix <= 0) erreurs.push(\"Le prix doit être un nombre entier positif.\");\n  return erreurs;\n}\n\nfunction ajouter(d) {\n  const erreurs = valider(d);\n  if (erreurs.length) return { ok: false, erreurs };\n  const produit = { id: prochainId++, nom: d.nom.trim(), prix: Number(d.prix) };\n  produits.push(produit);\n  return { ok: true, produit };\n}\n\nfunction envoyer(res, statut, type, corps) {\n  res.writeHead(statut, { \"Content-Type\": type + \"; charset=utf-8\" });\n  res.end(corps);\n}\n\nfunction listeHTML(liste) {\n  return \"<ul>\" + liste.map(p => `<li><a href=\"/produits/${p.id}\">${echapper(p.nom)}</a> — ${p.prix} FCFA</li>`).join(\"\") + \"</ul>\";\n}\n\nfunction lireCorps(req) {\n  return new Promise((ok, ko) => {\n    let texte = \"\";\n    req.on(\"data\", m => { texte += m; });\n    req.on(\"end\", () => ok(texte));\n    req.on(\"error\", ko);\n  });\n}\n\nfunction formulaire(valeurs, erreurs) {\n  const liste = erreurs.length ? \"<ul class=\\\"erreurs\\\">\" + erreurs.map(e => `<li>${echapper(e)}</li>`).join(\"\") + \"</ul>\" : \"\";\n  return liste + `<form method=\"post\" action=\"/produits\">`\n    + `<label for=\"nom\">Nom</label><input id=\"nom\" name=\"nom\" value=\"${echapper(valeurs.nom ?? \"\")}\" required>`\n    + `<label for=\"prix\">Prix (FCFA)</label><input id=\"prix\" name=\"prix\" type=\"number\" value=\"${echapper(valeurs.prix ?? \"\")}\" required>`\n    + `<button type=\"submit\">Ajouter</button></form>`;\n}\n\nconst serveur = http.createServer(async (req, res) => {\n  envoyer(res, 404, \"text/html\", page(\"Introuvable\", \"\"));\n});\n",
+    "solution": "const http = require(\"http\");\n\nfunction echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction page(titre, contenu) {\n  return `<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>${echapper(titre)} · Marché de Bè</title></head>`\n    + `<body><main><h1>${echapper(titre)}</h1>${contenu}</main></body></html>`;\n}\n\nconst produits = [\n  { id: 1, nom: \"Riz parfumé\", prix: 600 },\n  { id: 2, nom: \"Huile de palme\", prix: 1500 },\n  { id: 3, nom: \"Gari\", prix: 400 },\n];\nlet prochainId = 4;\n\nfunction lister() {\n  return produits.map(p => ({ ...p }));\n}\n\nfunction trouver(id) {\n  const p = produits.find(x => x.id === id);\n  return p ? { ...p } : undefined;\n}\n\nfunction valider(d) {\n  const erreurs = [];\n  const nom = typeof d.nom === \"string\" ? d.nom.trim() : \"\";\n  if (nom.length < 2 || nom.length > 40) erreurs.push(\"Le nom doit contenir 2 à 40 caractères.\");\n  const prix = Number(d.prix);\n  if (d.prix === undefined || d.prix === \"\" || !Number.isInteger(prix) || prix <= 0) erreurs.push(\"Le prix doit être un nombre entier positif.\");\n  return erreurs;\n}\n\nfunction ajouter(d) {\n  const erreurs = valider(d);\n  if (erreurs.length) return { ok: false, erreurs };\n  const produit = { id: prochainId++, nom: d.nom.trim(), prix: Number(d.prix) };\n  produits.push(produit);\n  return { ok: true, produit };\n}\n\nfunction envoyer(res, statut, type, corps) {\n  res.writeHead(statut, { \"Content-Type\": type + \"; charset=utf-8\" });\n  res.end(corps);\n}\n\nfunction listeHTML(liste) {\n  return \"<ul>\" + liste.map(p => `<li><a href=\"/produits/${p.id}\">${echapper(p.nom)}</a> — ${p.prix} FCFA</li>`).join(\"\") + \"</ul>\";\n}\n\nfunction lireCorps(req) {\n  return new Promise((ok, ko) => {\n    let texte = \"\";\n    req.on(\"data\", m => { texte += m; });\n    req.on(\"end\", () => ok(texte));\n    req.on(\"error\", ko);\n  });\n}\n\nfunction formulaire(valeurs, erreurs) {\n  const liste = erreurs.length ? \"<ul class=\\\"erreurs\\\">\" + erreurs.map(e => `<li>${echapper(e)}</li>`).join(\"\") + \"</ul>\" : \"\";\n  return liste + `<form method=\"post\" action=\"/produits\">`\n    + `<label for=\"nom\">Nom</label><input id=\"nom\" name=\"nom\" value=\"${echapper(valeurs.nom ?? \"\")}\" required>`\n    + `<label for=\"prix\">Prix (FCFA)</label><input id=\"prix\" name=\"prix\" type=\"number\" value=\"${echapper(valeurs.prix ?? \"\")}\" required>`\n    + `<button type=\"submit\">Ajouter</button></form>`;\n}\n\nconst serveur = http.createServer(async (req, res) => {\n  const { pathname } = new URL(req.url, \"http://localhost\");\n  if (pathname === \"/produits/nouveau\" && req.method === \"GET\") {\n    return envoyer(res, 200, \"text/html\", page(\"Nouveau produit\", formulaire({}, [])));\n  }\n  if (pathname === \"/produits\" && req.method === \"POST\") {\n    const donnees = Object.fromEntries(new URLSearchParams(await lireCorps(req)));\n    const resultat = ajouter(donnees);\n    if (!resultat.ok) {\n      return envoyer(res, 400, \"text/html\", page(\"Nouveau produit\", formulaire(donnees, resultat.erreurs)));\n    }\n    res.writeHead(303, { Location: \"/produits/\" + resultat.produit.id });\n    return res.end();\n  }\n  envoyer(res, 404, \"text/html\", page(\"Introuvable\", \"<p>Cette page n’existe pas.</p>\"));\n});\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaEchange(serveur, \"/produits\", { method: \"POST\", headers: { \"Content-Type\": \"application/x-www-form-urlencoded\" }, body: \"nom=Mangue&prix=300\" }).then(r => [r.statut, r.entetes.location])",
+            "expected": "[303,\"/produits/4\"]"
+          },
+          {
+            "expr": "lister().length",
+            "expected": "4"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/produits/nouveau\").then(r => r.statut)",
+            "expected": "200"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/produits\").then(r => r.statut)",
+            "expected": "404"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Deux routes : GET pour afficher, POST pour traiter.",
+      "Décode avec URLSearchParams.",
+      "Redirige en 303 en cas de succès."
+    ],
+    "explanation_fr": "GET /produits, sans POST, n’existe pas : 404.",
+    "common_wrong_answers": [],
+    "id": "pfs-m2-02-e4"
+  }
+]

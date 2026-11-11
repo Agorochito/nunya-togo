@@ -1,3 +1,9 @@
+# Vérifications 5.24.0 — 10 novembre 2026
+
+- Projet complet : dans le contrôle de construction, 24 exemples, 96 cas de référence, 48 solutions acceptées et 48 codes de départ refusés, avec le même enveloppement que le navigateur exécuté par Node en local ; pages, formulaires, redirections 303, cookies, erreurs 400, 404, 413 et 500 et en-têtes de sécurité vérifiés par de vraies requêtes. Interface (`PROJET_FULLSTACK_UI_RESULTS.json`) : 12 leçons, 48 exercices et 36 questions à 360 et 1440 px, une requête par vérification plus une erreur volontaire expliquée en français, lecture hors ligne à froid, zéro violation axe.
+- Atelier Node.js : nouvel outil d’essai nunyaEchange (statut, type, en-têtes Location, Set-Cookie et de sécurité, sans suivre les redirections), couvert par un test unitaire ; le cours Node.js revérifié sans changement.
+- 235 tests unitaires, ESLint, TypeScript, schémas, prérequis et liens réussis ; grille de contenu : 27 programmes, 407 leçons, 1 628 exercices. Catalogue (27 programmes, 28 raccourcis, 12 cours intermédiaires), parcours, ancien pack enregistré et migration depuis 5.23.0 réussis. Bundle principal : 149 273 octets gzip (149 561 selon le contrôle de l’académie), sous 150 000.
+
 # Vérifications 5.23.0 — 10 novembre 2026
 
 - TypeScript : dans le contrôle de construction, 24 exemples, 96 cas de référence, 48 solutions acceptées et 48 codes de départ refusés, compilés par le même TypeScript 5.6.2 que le service Wandbox (mode strict, noEmitOnError) ; les vérifications « refusé par les types » échouent bien quand les types de l’élève sont trop larges. Interface (`TYPESCRIPT_BASES_UI_RESULTS.json`) : 12 leçons, 48 exercices et 36 questions à 360 et 1440 px, une requête par vérification plus une erreur de type volontaire expliquée en français avec sa ligne, lecture hors ligne à froid, zéro violation axe. Lancé juste après d’autres tests, ce parcours a dépassé un délai une fois, puis a réussi relancé seul.

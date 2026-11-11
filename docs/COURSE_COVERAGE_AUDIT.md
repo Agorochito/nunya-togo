@@ -17,6 +17,7 @@ Le prompt maître impose une réalisation par lots, avec une cible finale de 72 
 | React : composants et application interactive | 6 | 18 | 72 | React/ReactDOM réels, JSX, état, formulaires, effets et service de démonstration simulé ; contenu à relire. |
 | HTML : documents et formulaires accessibles | 4 | 12 | 48 | Niveau intermédiaire : régions, formulaires reliés, tableaux, images, langue et annuaire ; vrai navigateur, contenu à relire. |
 | PHP intermédiaire : objets et données | 4 | 12 | 48 | Vrai PHP 8.3 hors ligne : typage, tableaux fonctionnels, objets, héritage, interfaces, exceptions, JSON, enums, validation et projet ; contenu à relire. |
+| Projet complet : une boutique en ligne full-stack | 4 | 12 | 48 | Node.js 20 en ligne : pages, formulaires, API, cookie, erreurs, sécurité et configuration, testés par de vraies requêtes ; contenu à relire. |
 | TypeScript : du JavaScript sûr | 4 | 12 | 48 | TypeScript 5.6 strict en ligne (Wandbox) : types, unions, génériques, utilitaires, classes, gardes de type ; vérifications « refusé par les types » ; contenu à relire. |
 | Node.js : le serveur en JavaScript | 4 | 12 | 48 | Node.js 20 en ligne (Wandbox) : modules, JSON, asynchrone, fichiers, serveurs HTTP réellement interrogés, API JSON, événements et sécurité ; contenu à relire. |
 | Intelligence artificielle : comprendre, vérifier, se protéger | 4 | 12 | 48 | Python hors ligne, sans service d’IA : modèles faits main, évaluation, biais, hallucinations, confidentialité, arnaques et injection de consignes ; contenu à relire. |
@@ -33,7 +34,7 @@ Le prompt maître impose une réalisation par lots, avec une cible finale de 72 
 | PHP : les bases de la programmation | 4 | 12 | 48 | Vrai PHP 8.3 hors ligne : variables, conditions, boucles, tableaux, fonctions et caisse de boutique ; contenu à relire. |
 | CSS : interfaces robustes et adaptatives | 6 | 18 | 72 | Niveau intermédiaire : cascade, Flexbox, grilles, media queries, typographie, états et thème ; styles calculés à deux largeurs, contenu à relire. |
 
-Vingt-six programmes principaux : 126 modules, 395 leçons, 1 580 exercices et 1 185 QCM. Git/GitHub et Découverte sont comptés séparément ci-dessous. DOM est une suite intermédiaire aux fondamentaux JavaScript ; ce cours ne prétend pas couvrir à lui seul tout le niveau intermédiaire.
+Vingt-sept programmes principaux : 130 modules, 407 leçons, 1 628 exercices et 1 221 QCM. Git/GitHub et Découverte sont comptés séparément ci-dessous. DOM est une suite intermédiaire aux fondamentaux JavaScript ; ce cours ne prétend pas couvrir à lui seul tout le niveau intermédiaire.
 
 Les leçons possèdent chacune 300–700 mots d’explication, deux exemples commentés, quatre exercices, trois questions de compréhension, des erreurs fréquentes, un glossaire et un récapitulatif. Elles sont des brouillons originaux : aucun enseignant réviseur, partenariat ou certificat externe n’est inventé. Les 22 chapitres Python antérieurs, leurs identifiants et leurs questions de fin de chapitre restent conservés.
 

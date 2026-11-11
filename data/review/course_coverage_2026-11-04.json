@@ -845,7 +845,7 @@
     "Objets connectés et robotique",
     "Blockchain"
   ],
-  "updated_for_release": "5.23.0",
+  "updated_for_release": "5.24.0",
   "updated_at": "2026-11-10",
   "additional_implemented": [
     {
@@ -978,6 +978,19 @@
       "evidence": [
         "content/fr/typescript-bases/",
         "docs/TYPESCRIPT_BASES_UI_RESULTS.json"
+      ]
+    },
+    {
+      "id": "projet-fullstack",
+      "modules": 4,
+      "lessons": 12,
+      "activities": 48,
+      "quizzes": 36,
+      "status": "brouillon",
+      "scope": "Projet full-stack sur Node.js 20 en ligne, testé par de vraies requêtes ; dernière étape du parcours full-stack.",
+      "evidence": [
+        "content/fr/projet-fullstack/",
+        "docs/PROJET_FULLSTACK_UI_RESULTS.json"
       ]
     }
   ]

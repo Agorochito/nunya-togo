@@ -1,0 +1,166 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Le filet de sécurité",
+    "instruction_fr": "Écris gestionnaireSur(traiter) qui renvoie un gestionnaire async : il appelle traiter dans un try ; en cas d’erreur, il la note avec console.error et répond 500 avec page(\"Erreur\", \"<p>Une erreur est survenue. Réessaie plus tard.</p>\") si rien n’a encore été envoyé. envoyer et page sont fournies.",
+    "starter_code": "const http = require(\"http\");\n\nfunction echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction page(titre, contenu) {\n  return `<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>${echapper(titre)} · Marché de Bè</title></head>`\n    + `<body><main><h1>${echapper(titre)}</h1>${contenu}</main></body></html>`;\n}\n\nfunction envoyer(res, statut, type, corps) {\n  res.writeHead(statut, { \"Content-Type\": type + \"; charset=utf-8\" });\n  res.end(corps);\n}\n\nfunction gestionnaireSur(traiter) {\n  return traiter;\n}\n\nconst serveur = http.createServer(gestionnaireSur(async (req, res) => {\n  if (req.url === \"/panne\") throw new Error(\"base injoignable\");\n  envoyer(res, 200, \"text/plain\", \"ok\");\n}));\n",
+    "solution": "const http = require(\"http\");\n\nfunction echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction page(titre, contenu) {\n  return `<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>${echapper(titre)} · Marché de Bè</title></head>`\n    + `<body><main><h1>${echapper(titre)}</h1>${contenu}</main></body></html>`;\n}\n\nfunction envoyer(res, statut, type, corps) {\n  res.writeHead(statut, { \"Content-Type\": type + \"; charset=utf-8\" });\n  res.end(corps);\n}\n\nfunction gestionnaireSur(traiter) {\n  return async (req, res) => {\n    try {\n      await traiter(req, res);\n    } catch (erreur) {\n      console.error(\"Erreur :\", erreur.message);\n      if (!res.headersSent) {\n        const statut = erreur.statut === 413 ? 413 : 500;\n        envoyer(res, statut, \"text/html\", page(statut === 413 ? \"Envoi trop volumineux\" : \"Erreur\", \"<p>Une erreur est survenue. Réessaie plus tard.</p>\"));\n      }\n    }\n  };\n}\n\nconst serveur = http.createServer(gestionnaireSur(async (req, res) => {\n  if (req.url === \"/panne\") throw new Error(\"base injoignable\");\n  envoyer(res, 200, \"text/plain\", \"ok\");\n}));\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/panne\").then(r => [r.statut, r.corps.includes(\"Une erreur est survenue\"), r.corps.includes(\"base injoignable\")])",
+            "expected": "[500,true,false]"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/\").then(r => r.corps)",
+            "expected": "ok"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Renvoie une fonction async qui enveloppe traiter.",
+      "Attrape l’erreur, note-la avec console.error.",
+      "Vérifie res.headersSent avant d’envoyer."
+    ],
+    "explanation_fr": "Le message « base injoignable » reste dans les journaux, pas dans la page.",
+    "common_wrong_answers": [],
+    "id": "pfs-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Limiter la taille reçue",
+    "instruction_fr": "Écris lireCorps(req, limite = 10000) qui lève une erreur « corps trop volumineux » portant statut = 413 dès que le texte reçu dépasse la limite, puis arrête de lire : retire l’écouteur data avec req.removeAllListeners(\"data\") et laisse passer le reste avec req.resume().",
+    "starter_code": "function lireCorps(req, limite = 10000) {\n  return new Promise((ok, ko) => {\n    let texte = \"\";\n    req.on(\"data\", m => { texte += m; });\n    req.on(\"end\", () => ok(texte));\n  });\n}\n",
+    "solution": "function lireCorps(req, limite = 10000) {\n  return new Promise((ok, ko) => {\n    let texte = \"\";\n    req.on(\"data\", m => {\n      texte += m;\n      if (texte.length > limite) {\n        const e = new Error(\"corps trop volumineux\");\n        e.statut = 413;\n        ko(e);\n        req.removeAllListeners(\"data\");\n        req.resume();\n      }\n    });\n    req.on(\"end\", () => ok(texte));\n    req.on(\"error\", ko);\n  });\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(async () => { const E = require(\"events\"); const req = new E(); req.resume = () => {}; const p = lireCorps(req, 5); req.emit(\"data\", \"abcdefgh\"); try { await p; return \"accepté\"; } catch (e) { return e.statut + \" \" + e.message; } })()",
+            "expected": "413 corps trop volumineux"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(async () => { const E = require(\"events\"); const req = new E(); req.resume = () => {}; const p = lireCorps(req, 5); req.emit(\"data\", \"abc\"); req.emit(\"end\"); return p; })()",
+            "expected": "abc"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Compte la longueur à chaque morceau.",
+      "Crée l’erreur et ajoute-lui statut = 413.",
+      "Rejette la promesse, retire l’écouteur et vide le reste avec resume."
+    ],
+    "explanation_fr": "Le test simule une requête avec un émetteur d’événements : pas besoin de vrai réseau pour vérifier la limite.",
+    "common_wrong_answers": [],
+    "id": "pfs-m4-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La trace affichée",
+    "instruction_fr": "Le filet affiche le message technique de l’erreur dans la page. Remplace-le par le message générique « Une erreur est survenue. Réessaie plus tard. » et garde le détail dans console.error.",
+    "starter_code": "const http = require(\"http\");\n\nfunction echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction page(titre, contenu) {\n  return `<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>${echapper(titre)} · Marché de Bè</title></head>`\n    + `<body><main><h1>${echapper(titre)}</h1>${contenu}</main></body></html>`;\n}\n\nfunction envoyer(res, statut, type, corps) {\n  res.writeHead(statut, { \"Content-Type\": type + \"; charset=utf-8\" });\n  res.end(corps);\n}\n\nfunction gestionnaireSur(traiter) {\n  return async (req, res) => {\n    try {\n      await traiter(req, res);\n    } catch (erreur) {\n      console.error(\"Erreur :\", erreur.message);\n      if (!res.headersSent) {\n        const statut = erreur.statut === 413 ? 413 : 500;\n        envoyer(res, statut, \"text/html\", page(statut === 413 ? \"Envoi trop volumineux\" : \"Erreur\", \"<p>\" + echapper(erreur.stack) + \"</p>\"));\n      }\n    }\n  };\n}\n\nconst serveur = http.createServer(gestionnaireSur(async () => {\n  throw new Error(\"SELECT * FROM clients a échoué\");\n}));\n",
+    "solution": "const http = require(\"http\");\n\nfunction echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction page(titre, contenu) {\n  return `<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>${echapper(titre)} · Marché de Bè</title></head>`\n    + `<body><main><h1>${echapper(titre)}</h1>${contenu}</main></body></html>`;\n}\n\nfunction envoyer(res, statut, type, corps) {\n  res.writeHead(statut, { \"Content-Type\": type + \"; charset=utf-8\" });\n  res.end(corps);\n}\n\nfunction gestionnaireSur(traiter) {\n  return async (req, res) => {\n    try {\n      await traiter(req, res);\n    } catch (erreur) {\n      console.error(\"Erreur :\", erreur.message);\n      if (!res.headersSent) {\n        const statut = erreur.statut === 413 ? 413 : 500;\n        envoyer(res, statut, \"text/html\", page(statut === 413 ? \"Envoi trop volumineux\" : \"Erreur\", \"<p>Une erreur est survenue. Réessaie plus tard.</p>\"));\n      }\n    }\n  };\n}\n\nconst serveur = http.createServer(gestionnaireSur(async () => {\n  throw new Error(\"SELECT * FROM clients a échoué\");\n}));\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/\").then(r => r.corps.includes(\"SELECT\"))",
+            "expected": "false"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/\").then(r => [r.statut, r.corps.includes(\"Une erreur est survenue\")])",
+            "expected": "[500,true]"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La page montre la requête SQL et la trace.",
+      "Ces détails aident un attaquant.",
+      "Affiche le message générique."
+    ],
+    "explanation_fr": "Le détail reste utile, mais seulement dans les journaux.",
+    "common_wrong_answers": [],
+    "id": "pfs-m4-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Une application robuste",
+    "instruction_fr": "Enveloppe le serveur du formulaire dans gestionnaireSur et utilise lireCorps avec une limite de 2000 caractères : un envoi trop gros répond 413, une erreur imprévue 500, un envoi valide 303. Les briques sont fournies.",
+    "starter_code": "const http = require(\"http\");\n\nfunction echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction page(titre, contenu) {\n  return `<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>${echapper(titre)} · Marché de Bè</title></head>`\n    + `<body><main><h1>${echapper(titre)}</h1>${contenu}</main></body></html>`;\n}\n\nconst produits = [\n  { id: 1, nom: \"Riz parfumé\", prix: 600 },\n  { id: 2, nom: \"Huile de palme\", prix: 1500 },\n  { id: 3, nom: \"Gari\", prix: 400 },\n];\nlet prochainId = 4;\n\nfunction lister() {\n  return produits.map(p => ({ ...p }));\n}\n\nfunction trouver(id) {\n  const p = produits.find(x => x.id === id);\n  return p ? { ...p } : undefined;\n}\n\nfunction valider(d) {\n  const erreurs = [];\n  const nom = typeof d.nom === \"string\" ? d.nom.trim() : \"\";\n  if (nom.length < 2 || nom.length > 40) erreurs.push(\"Le nom doit contenir 2 à 40 caractères.\");\n  const prix = Number(d.prix);\n  if (d.prix === undefined || d.prix === \"\" || !Number.isInteger(prix) || prix <= 0) erreurs.push(\"Le prix doit être un nombre entier positif.\");\n  return erreurs;\n}\n\nfunction ajouter(d) {\n  const erreurs = valider(d);\n  if (erreurs.length) return { ok: false, erreurs };\n  const produit = { id: prochainId++, nom: d.nom.trim(), prix: Number(d.prix) };\n  produits.push(produit);\n  return { ok: true, produit };\n}\n\nfunction envoyer(res, statut, type, corps) {\n  res.writeHead(statut, { \"Content-Type\": type + \"; charset=utf-8\" });\n  res.end(corps);\n}\n\nfunction listeHTML(liste) {\n  return \"<ul>\" + liste.map(p => `<li><a href=\"/produits/${p.id}\">${echapper(p.nom)}</a> — ${p.prix} FCFA</li>`).join(\"\") + \"</ul>\";\n}\n\nfunction lireCorps(req, limite = 10000) {\n  return new Promise((ok, ko) => {\n    let texte = \"\";\n    req.on(\"data\", m => {\n      texte += m;\n      if (texte.length > limite) {\n        const e = new Error(\"corps trop volumineux\");\n        e.statut = 413;\n        ko(e);\n        req.removeAllListeners(\"data\");\n        req.resume();\n      }\n    });\n    req.on(\"end\", () => ok(texte));\n    req.on(\"error\", ko);\n  });\n}\n\nfunction formulaire(valeurs, erreurs) {\n  const liste = erreurs.length ? \"<ul class=\\\"erreurs\\\">\" + erreurs.map(e => `<li>${echapper(e)}</li>`).join(\"\") + \"</ul>\" : \"\";\n  return liste + `<form method=\"post\" action=\"/produits\">`\n    + `<label for=\"nom\">Nom</label><input id=\"nom\" name=\"nom\" value=\"${echapper(valeurs.nom ?? \"\")}\" required>`\n    + `<label for=\"prix\">Prix (FCFA)</label><input id=\"prix\" name=\"prix\" type=\"number\" value=\"${echapper(valeurs.prix ?? \"\")}\" required>`\n    + `<button type=\"submit\">Ajouter</button></form>`;\n}\n\nconst serveur = http.createServer(async (req, res) => {\n  const donnees = Object.fromEntries(new URLSearchParams(await lireCorps(req)));\n  const r = ajouter(donnees);\n  res.writeHead(303, { Location: \"/produits/\" + r.produit.id });\n  res.end();\n});\n",
+    "solution": "const http = require(\"http\");\n\nfunction echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction page(titre, contenu) {\n  return `<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>${echapper(titre)} · Marché de Bè</title></head>`\n    + `<body><main><h1>${echapper(titre)}</h1>${contenu}</main></body></html>`;\n}\n\nconst produits = [\n  { id: 1, nom: \"Riz parfumé\", prix: 600 },\n  { id: 2, nom: \"Huile de palme\", prix: 1500 },\n  { id: 3, nom: \"Gari\", prix: 400 },\n];\nlet prochainId = 4;\n\nfunction lister() {\n  return produits.map(p => ({ ...p }));\n}\n\nfunction trouver(id) {\n  const p = produits.find(x => x.id === id);\n  return p ? { ...p } : undefined;\n}\n\nfunction valider(d) {\n  const erreurs = [];\n  const nom = typeof d.nom === \"string\" ? d.nom.trim() : \"\";\n  if (nom.length < 2 || nom.length > 40) erreurs.push(\"Le nom doit contenir 2 à 40 caractères.\");\n  const prix = Number(d.prix);\n  if (d.prix === undefined || d.prix === \"\" || !Number.isInteger(prix) || prix <= 0) erreurs.push(\"Le prix doit être un nombre entier positif.\");\n  return erreurs;\n}\n\nfunction ajouter(d) {\n  const erreurs = valider(d);\n  if (erreurs.length) return { ok: false, erreurs };\n  const produit = { id: prochainId++, nom: d.nom.trim(), prix: Number(d.prix) };\n  produits.push(produit);\n  return { ok: true, produit };\n}\n\nfunction envoyer(res, statut, type, corps) {\n  res.writeHead(statut, { \"Content-Type\": type + \"; charset=utf-8\" });\n  res.end(corps);\n}\n\nfunction listeHTML(liste) {\n  return \"<ul>\" + liste.map(p => `<li><a href=\"/produits/${p.id}\">${echapper(p.nom)}</a> — ${p.prix} FCFA</li>`).join(\"\") + \"</ul>\";\n}\n\nfunction lireCorps(req, limite = 10000) {\n  return new Promise((ok, ko) => {\n    let texte = \"\";\n    req.on(\"data\", m => {\n      texte += m;\n      if (texte.length > limite) {\n        const e = new Error(\"corps trop volumineux\");\n        e.statut = 413;\n        ko(e);\n        req.removeAllListeners(\"data\");\n        req.resume();\n      }\n    });\n    req.on(\"end\", () => ok(texte));\n    req.on(\"error\", ko);\n  });\n}\n\nfunction formulaire(valeurs, erreurs) {\n  const liste = erreurs.length ? \"<ul class=\\\"erreurs\\\">\" + erreurs.map(e => `<li>${echapper(e)}</li>`).join(\"\") + \"</ul>\" : \"\";\n  return liste + `<form method=\"post\" action=\"/produits\">`\n    + `<label for=\"nom\">Nom</label><input id=\"nom\" name=\"nom\" value=\"${echapper(valeurs.nom ?? \"\")}\" required>`\n    + `<label for=\"prix\">Prix (FCFA)</label><input id=\"prix\" name=\"prix\" type=\"number\" value=\"${echapper(valeurs.prix ?? \"\")}\" required>`\n    + `<button type=\"submit\">Ajouter</button></form>`;\n}\n\nfunction gestionnaireSur(traiter) {\n  return async (req, res) => {\n    try {\n      await traiter(req, res);\n    } catch (erreur) {\n      console.error(\"Erreur :\", erreur.message);\n      if (!res.headersSent) {\n        const statut = erreur.statut === 413 ? 413 : 500;\n        envoyer(res, statut, \"text/html\", page(statut === 413 ? \"Envoi trop volumineux\" : \"Erreur\", \"<p>Une erreur est survenue. Réessaie plus tard.</p>\"));\n      }\n    }\n  };\n}\n\nconst serveur = http.createServer(gestionnaireSur(async (req, res) => {\n  if (req.method !== \"POST\" || req.url !== \"/produits\") return envoyer(res, 404, \"text/html\", page(\"Introuvable\", \"\"));\n  const donnees = Object.fromEntries(new URLSearchParams(await lireCorps(req, 2000)));\n  const r = ajouter(donnees);\n  if (!r.ok) return envoyer(res, 400, \"text/html\", page(\"Nouveau produit\", formulaire(donnees, r.erreurs)));\n  res.writeHead(303, { Location: \"/produits/\" + r.produit.id });\n  res.end();\n}));\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaEchange(serveur, \"/produits\", { method: \"POST\", headers: { \"Content-Type\": \"application/x-www-form-urlencoded\" }, body: \"nom=Mangue&prix=300\" }).then(r => r.statut)",
+            "expected": "303"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/produits\", { method: \"POST\", headers: { \"Content-Type\": \"application/x-www-form-urlencoded\" }, body: \"nom=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&prix=1\" }).then(r => r.statut)",
+            "expected": "413"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/produits\", { method: \"POST\", headers: { \"Content-Type\": \"application/x-www-form-urlencoded\" }, body: \"nom=&prix=\" }).then(r => r.statut)",
+            "expected": "400"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/\").then(r => r.statut)",
+            "expected": "404"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Enveloppe le gestionnaire.",
+      "Passe la limite à lireCorps.",
+      "Réponds 400 aux erreurs de saisie avant de créer."
+    ],
+    "explanation_fr": "Chaque type de problème a sa réponse : 400, 404, 413 ou 500, jamais une page blanche.",
+    "common_wrong_answers": [],
+    "id": "pfs-m4-01-e4"
+  }
+]

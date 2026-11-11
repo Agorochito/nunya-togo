@@ -1,0 +1,186 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Découper une page",
+    "instruction_fr": "Écris tranche(liste, page, taille) qui renvoie les éléments de la page demandée (pages numérotées à partir de 1).",
+    "starter_code": "function tranche(liste, page, taille) {\n  return liste.slice(page, page + taille);\n}\n",
+    "solution": "function tranche(liste, page, taille) {\n  return liste.slice((page - 1) * taille, page * taille);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "tranche([1, 2, 3, 4, 5], 2, 2)",
+            "expected": "[3,4]"
+          },
+          {
+            "expr": "tranche([1, 2, 3, 4, 5], 3, 2)",
+            "expected": "[5]"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "tranche([1, 2, 3], 1, 10)",
+            "expected": "[1,2,3]"
+          },
+          {
+            "expr": "tranche([], 1, 5)",
+            "expected": "[]"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La page 1 commence à l’indice 0.",
+      "Le début vaut (page − 1) × taille.",
+      "La fin vaut page × taille, exclue."
+    ],
+    "explanation_fr": "La dernière page peut contenir moins d’éléments.",
+    "common_wrong_answers": [],
+    "id": "pfs-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Borner un paramètre",
+    "instruction_fr": "Écris borner(texte, defaut, min, max) : convertit le texte en entier avec Number.parseInt ; s’il n’est pas un nombre, utilise defaut ; puis ramène le résultat entre min et max.",
+    "starter_code": "function borner(texte, defaut, min, max) {\n  return Number(texte);\n}\n",
+    "solution": "function borner(texte, defaut, min, max) {\n  const n = Number.parseInt(texte, 10);\n  return Math.min(Math.max(Number.isNaN(n) ? defaut : n, min), max);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "borner(\"1000000\", 10, 1, 50)",
+            "expected": "50"
+          },
+          {
+            "expr": "borner(\"-3\", 1, 1, 9)",
+            "expected": "1"
+          },
+          {
+            "expr": "borner(null, 10, 1, 50)",
+            "expected": "10"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "borner(\"7\", 10, 1, 50)",
+            "expected": "7"
+          },
+          {
+            "expr": "borner(\"abc\", 2, 1, 5)",
+            "expected": "2"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "parseInt renvoie NaN pour un texte non numérique.",
+      "Remplace NaN par la valeur par défaut.",
+      "Math.min et Math.max encadrent le résultat."
+    ],
+    "explanation_fr": "Toute valeur reçue sort de cette fonction dans des limites sûres.",
+    "common_wrong_answers": [],
+    "id": "pfs-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le tri qui modifie les données",
+    "instruction_fr": "trier(liste, tri) trie directement la liste reçue : les données de la boutique changent d’ordre. Trie une copie, et n’accepte que \"prix\" (sinon tri par nom en français).",
+    "starter_code": "function trier(liste, tri) {\n  return liste.sort((a, b) => a[tri] > b[tri] ? 1 : -1);\n}\n",
+    "solution": "function trier(liste, tri) {\n  return [...liste].sort((a, b) => tri === \"prix\" ? a.prix - b.prix : a.nom.localeCompare(b.nom, \"fr\"));\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { const l = [{ nom: \"Riz\", prix: 600 }, { nom: \"Gari\", prix: 400 }]; trier(l, \"prix\"); return l[0].nom; })()",
+            "expected": "Riz"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "trier([{ nom: \"Riz\", prix: 600 }, { nom: \"Gari\", prix: 400 }], \"prix\").map(p => p.nom)",
+            "expected": "[\"Gari\",\"Riz\"]"
+          },
+          {
+            "expr": "trier([{ nom: \"Éclair\", prix: 1 }, { nom: \"Fonio\", prix: 2 }], \"inconnu\").map(p => p.nom)",
+            "expected": "[\"Éclair\",\"Fonio\"]"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "sort modifie le tableau sur place.",
+      "Trie une copie avec [...liste].",
+      "Un tri inconnu revient au nom."
+    ],
+    "explanation_fr": "Le tri par nom en français range « Éclair » avant « Fonio », ce qu’une comparaison brute ne fait pas.",
+    "common_wrong_answers": [],
+    "id": "pfs-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "La liste paginée",
+    "instruction_fr": "Écris paginer(liste, options) qui renvoie { page, pages, total, produits } : tri \"prix\" ou par nom ; taille bornée entre 1 et 50 (10 par défaut) ; page bornée entre 1 et le nombre de pages (au moins 1).",
+    "starter_code": "function paginer(liste, options) {\n  return { page: 1, pages: 1, total: liste.length, produits: liste };\n}\n",
+    "solution": "function paginer(liste, options) {\n  const tri = options.tri === \"prix\" ? \"prix\" : \"nom\";\n  const t = Number.parseInt(options.taille, 10);\n  const taille = Math.min(Math.max(Number.isNaN(t) ? 10 : t, 1), 50);\n  const triee = [...liste].sort((a, b) => tri === \"prix\" ? a.prix - b.prix : a.nom.localeCompare(b.nom, \"fr\"));\n  const pages = Math.max(1, Math.ceil(triee.length / taille));\n  const n = Number.parseInt(options.page, 10);\n  const page = Math.min(Math.max(Number.isNaN(n) ? 1 : n, 1), pages);\n  return { page, pages, total: triee.length, produits: triee.slice((page - 1) * taille, page * taille) };\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "paginer([{ nom: \"Riz\", prix: 600 }, { nom: \"Gari\", prix: 400 }, { nom: \"Huile\", prix: 1500 }], { page: \"2\", taille: \"2\", tri: \"prix\" })",
+            "expected": "{\"page\":2,\"pages\":2,\"total\":3,\"produits\":[{\"nom\":\"Huile\",\"prix\":1500}]}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "paginer([], {})",
+            "expected": "{\"page\":1,\"pages\":1,\"total\":0,\"produits\":[]}"
+          },
+          {
+            "expr": "paginer([{ nom: \"B\", prix: 1 }, { nom: \"A\", prix: 2 }], { page: \"9\", taille: \"0\" })",
+            "expected": "{\"page\":2,\"pages\":2,\"total\":2,\"produits\":[{\"nom\":\"B\",\"prix\":1}]}"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Calcule d’abord la taille bornée et le tri.",
+      "Le nombre de pages vaut au moins 1.",
+      "La page est bornée par ce nombre."
+    ],
+    "explanation_fr": "Aucune combinaison de paramètres ne peut dérégler cette fonction.",
+    "common_wrong_answers": [],
+    "id": "pfs-m3-03-e4"
+  }
+]

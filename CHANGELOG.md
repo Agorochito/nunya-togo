@@ -1,5 +1,11 @@
 # Historique
 
+## 5.24.0 — 10 novembre 2026
+
+- Nouveau cours : **Projet complet : une boutique en ligne full-stack**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, sur Node.js 20 en ligne : routeur à paramètres, modèle de données validé avec identifiants sûrs, pages HTML générées par le serveur et échappées, formulaire selon Post/Redirect/Get (303) avec erreurs et valeurs réaffichées, API JSON avec recherche, panier en cookie HttpOnly et SameSite dont les prix viennent toujours du serveur, pagination bornée, filet d’erreurs (500 sans détail technique), limite de taille (413), en-têtes de sécurité (CSP, nosniff), configuration par variables d’environnement et application complète testée par des parcours de bout en bout.
+- Complète le parcours Développeur·se full-stack : l’étape « Projet complet — en préparation » est remplacée par ce cours.
+- Atelier Node.js : l’outil d’essai nunyaEchange montre aussi les redirections, les cookies et les en-têtes de sécurité d’une réponse.
+
 ## 5.23.0 — 10 novembre 2026
 
 - Nouveau cours : **TypeScript : du JavaScript sûr**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, compilés par TypeScript 5.6 en mode strict puis exécutés en ligne (Wandbox) : annotations et inférence, tableaux, tuples, any et unknown, fonctions typées, interfaces, unions et rétrécissement, null et undefined en mode strict, unions discriminées avec vérification d’exhaustivité, génériques, types utilitaires, classes, gardes de type pour les données externes et suivi de commandes typé. Certaines vérifications contrôlent qu’un appel incorrect est bien refusé par les types de l’élève : des types trop larges, comme any, les font échouer. Les erreurs de type sont expliquées en français avec la ligne de l’élève.

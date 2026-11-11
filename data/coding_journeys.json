@@ -60,15 +60,11 @@
       "http-bases",
       "nodejs-bases",
       "react-bases",
-      "git-bases"
+      "git-bases",
+      "projet-fullstack"
     ],
-    "planned_fr": [
-      {
-        "title_fr": "Projet complet",
-        "summary_fr": "Une application avec interface, serveur, base de données et mise en ligne."
-      }
-    ],
-    "outcome_fr": "Relier une interface, un serveur PHP et une base SQL ; Node.js et un projet complet publié suivront."
+    "planned_fr": [],
+    "outcome_fr": "Relier une interface, un serveur PHP ou Node.js et une base SQL, puis construire et sécuriser une application complète testée de bout en bout."
   },
   {
     "id": "logiciel",

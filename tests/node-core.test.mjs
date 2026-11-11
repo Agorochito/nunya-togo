@@ -26,6 +26,11 @@ describe('Node.js online workshop',()=>{
   expect(res[0].checks[1].passed).toBe(true);
   expect(res[1].assertions_passed).toBe(true);
  },20000);
+ it('exposes the redirect location and cookies through nunyaEchange',()=>{
+  const code='const http = require("http");\nconst serveur = http.createServer((req, res) => { res.writeHead(303, { Location: "/merci", "Set-Cookie": "panier=abc; HttpOnly" }); res.end(); });';
+  const [r]=run(code,[{expressions:[{expr:'nunyaEchange(serveur, "/commande", { method: "POST" })',expected:'{"statut":303,"type":"","entetes":{"location":"/merci","set-cookie":"panier=abc; HttpOnly"},"corps":""}'}]}]);
+  expect(r.checks[0].actual).toBe(r.checks[0].expected);
+ });
  it('reports learner errors with their own line number, in French',()=>{
   const [r]=run('const a = 1;\nconsole.log(b);',[{expressions:[]}]);
   expect(r.error).toBe('ReferenceError');

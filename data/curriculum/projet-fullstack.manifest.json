@@ -1,0 +1,68 @@
+{
+  "id": "projet-fullstack",
+  "title_fr": "Projet complet : une boutique en ligne full-stack",
+  "language": "javascript",
+  "runtime": "node",
+  "technology": "projetfs",
+  "level": "intermediaire",
+  "summary_fr": "Construis de bout en bout l’application d’une boutique fictive : routeur, modèle de données validé, pages HTML générées par le serveur et échappées, formulaire avec redirection 303 et erreurs réaffichées, API JSON avec recherche, panier en cookie protégé, pagination, filet d’erreurs, limite de taille, en-têtes de sécurité et configuration. Chaque étape est testée par de vraies requêtes. Node.js 20 en ligne.",
+  "prerequisite_courses": [
+    "nodejs-bases"
+  ],
+  "prerequisites": [
+    "Avoir suivi le cours Node.js : serveurs HTTP, async/await et validation.",
+    "Les cours HTML et HTTP et API aident à comprendre les pages et les échanges."
+  ],
+  "outcomes": [
+    "Concevoir les routes et le modèle de données d’une application.",
+    "Générer des pages HTML sûres et traiter des formulaires selon Post/Redirect/Get.",
+    "Exposer une API JSON et gérer un panier par cookie.",
+    "Rendre une application robuste : erreurs, limites, en-têtes de sécurité, configuration.",
+    "Vérifier une application par des parcours de bout en bout."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Concevoir l’application",
+      "outcome_fr": "Routes, modèle de données et gabarits HTML.",
+      "lesson_ids": [
+        "pfs-m1-01",
+        "pfs-m1-02",
+        "pfs-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Pages et formulaires",
+      "outcome_fr": "Servir les pages, recevoir et valider un formulaire.",
+      "lesson_ids": [
+        "pfs-m2-01",
+        "pfs-m2-02",
+        "pfs-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "API et état",
+      "outcome_fr": "API JSON, panier en cookie et pagination.",
+      "lesson_ids": [
+        "pfs-m3-01",
+        "pfs-m3-02",
+        "pfs-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Robustesse et livraison",
+      "outcome_fr": "Erreurs, sécurité, configuration et application complète.",
+      "lesson_ids": [
+        "pfs-m4-01",
+        "pfs-m4-02",
+        "pfs-m4-03"
+      ]
+    }
+  ],
+  "next_courses": [],
+  "status": "brouillon",
+  "reviewer": null
+}
