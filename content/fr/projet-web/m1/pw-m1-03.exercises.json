@@ -1,0 +1,189 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Un projet dans un article",
+    "instruction_fr": "Entoure le titre, la description et le lien du projet par un article, et transforme le titre en h3.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <section id=\"projets\">\n    <h2>Projets</h2>\n    <p><b>Quiz de révision</b></p>\n    <p>Un quiz en Python pour réviser le bac.</p>\n    <a href=\"#contact\">Me demander une démonstration</a>\n  </section>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <section id=\"projets\">\n    <h2>Projets</h2>\n    <article>\n      <h3>Quiz de révision</h3>\n      <p>Un quiz en Python pour réviser le bac.</p>\n      <a href=\"#contact\">Me demander une démonstration</a>\n    </article>\n  </section>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Article titré",
+        "checks": [
+          {
+            "selector": "#projets > article > h3",
+            "textIncludes": "Quiz de révision"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Contenu regroupé",
+        "checks": [
+          {
+            "selector": "#projets article p",
+            "count": 1
+          },
+          {
+            "selector": "#projets article a",
+            "count": 1
+          },
+          {
+            "selector": "b",
+            "exists": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le projet devient un article.",
+      "Le titre en gras devient un vrai h3.",
+      "La description et le lien vont dans l’article."
+    ],
+    "explanation_fr": "Le h3 entre dans la table des matières, pas le texte en gras.",
+    "common_wrong_answers": [],
+    "id": "pw-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un lien de contact",
+    "instruction_fr": "Dans section#contact, ajoute un paragraphe contenant un lien « Écrire à Ama » vers mailto:ama.mensah@example.com.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <section id=\"contact\">\n    <h2>Contact</h2>\n  </section>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <section id=\"contact\">\n    <h2>Contact</h2>\n    <p><a href=\"mailto:ama.mensah@example.com\">Écrire à Ama</a></p>\n  </section>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Lien de courriel",
+        "checks": [
+          {
+            "selector": "#contact a",
+            "attributes": {
+              "href": "mailto:ama.mensah@example.com"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Texte explicite",
+        "checks": [
+          {
+            "selector": "#contact p > a",
+            "textIncludes": "Écrire à Ama"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un lien de courriel commence par mailto:.",
+      "Le texte annonce l’action.",
+      "<a href=\"mailto:ama.mensah@example.com\">Écrire à Ama</a>"
+    ],
+    "explanation_fr": "Le visiteur garde la main : rien n’est envoyé sans lui.",
+    "common_wrong_answers": [],
+    "id": "pw-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Des liens muets et risqués",
+    "instruction_fr": "Le lien externe dit « cliquez ici » et s’ouvre dans un nouvel onglet sans protection. Change son texte en « Voir le code du quiz » et ajoute rel=\"noopener\".",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <article>\n    <h3>Quiz de révision</h3>\n    <p>Le code est disponible : <a href=\"https://github.com/exemple/quiz\" target=\"_blank\">cliquez ici</a>.</p>\n  </article>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <article>\n    <h3>Quiz de révision</h3>\n    <p>Le code est disponible : <a href=\"https://github.com/exemple/quiz\" target=\"_blank\" rel=\"noopener\">Voir le code du quiz</a>.</p>\n  </article>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Lien protégé",
+        "checks": [
+          {
+            "selector": "a[target=\"_blank\"]",
+            "attributes": {
+              "rel": "noopener"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Texte explicite",
+        "checks": [
+          {
+            "selector": "article a",
+            "textIncludes": "Voir le code du quiz"
+          },
+          {
+            "selector": "article a",
+            "attributes": {
+              "href": "https://github.com/exemple/quiz"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le texte doit annoncer la destination.",
+      "Un nouvel onglet demande rel=\"noopener\".",
+      "Garde la même adresse."
+    ],
+    "explanation_fr": "Lisible hors contexte et sans risque pour ta page.",
+    "common_wrong_answers": [],
+    "id": "pw-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Section Projets et contact",
+    "instruction_fr": "Construis main avec section#projets (h2 « Projets » et deux articles, chacun avec h3, paragraphe et lien ; l’un externe avec target=\"_blank\" et rel=\"noopener\") et section#contact (h2 « Contact » et lien mailto vers ama.mensah@example.com).",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <main>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <main>\n    <section id=\"projets\">\n      <h2>Projets</h2>\n      <article>\n        <h3>Quiz de révision</h3>\n        <p>Un quiz en Python pour réviser le bac.</p>\n        <a href=\"https://github.com/exemple/quiz\" target=\"_blank\" rel=\"noopener\">Voir le code du quiz</a>\n      </article>\n      <article>\n        <h3>Site du club de lecture</h3>\n        <p>Une page HTML et CSS pour annoncer les rencontres.</p>\n        <a href=\"#contact\">Me demander une démonstration</a>\n      </article>\n    </section>\n    <section id=\"contact\">\n      <h2>Contact</h2>\n      <p><a href=\"mailto:ama.mensah@example.com\">Écrire à Ama</a></p>\n    </section>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Deux projets",
+        "checks": [
+          {
+            "selector": "#projets > article",
+            "count": 2
+          },
+          {
+            "selector": "#projets article > h3",
+            "count": 2
+          },
+          {
+            "selector": "#projets article > p",
+            "count": 2
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Liens sûrs et contact",
+        "checks": [
+          {
+            "selector": "#projets a[target=\"_blank\"]",
+            "count": 1,
+            "attributes": {
+              "rel": "noopener"
+            }
+          },
+          {
+            "selector": "#contact a",
+            "attributes": {
+              "href": "mailto:ama.mensah@example.com"
+            }
+          },
+          {
+            "selector": "#contact > h2",
+            "textIncludes": "Contact"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Chaque projet : article, h3, p, a.",
+      "Le lien externe a target et rel.",
+      "Le contact utilise mailto."
+    ],
+    "explanation_fr": "Le contenu de la page est complet ; place maintenant au style.",
+    "common_wrong_answers": [],
+    "id": "pw-m1-03-e4"
+  }
+]

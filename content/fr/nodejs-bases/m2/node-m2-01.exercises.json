@@ -1,0 +1,162 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Prévoir l’ordre",
+    "instruction_fr": "planifier(journal) doit ajouter \"a\" au journal tout de suite, programmer l’ajout de \"c\" avec setTimeout(…, 0), puis ajouter \"b\". Le journal final doit valoir a, b, c.",
+    "starter_code": "function planifier(journal) {\n  journal.push(\"a\");\n  journal.push(\"c\");\n  journal.push(\"b\");\n}\n",
+    "solution": "function planifier(journal) {\n  journal.push(\"a\");\n  setTimeout(() => journal.push(\"c\"), 0);\n  journal.push(\"b\");\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(async () => { const j = []; planifier(j); await new Promise(r => setTimeout(r, 20)); return j.join(\",\"); })()",
+            "expected": "a,b,c"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { const j = []; planifier(j); return j.join(\",\"); })()",
+            "expected": "a,b"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "« c » doit être ajouté plus tard.",
+      "Place-le dans un rappel de setTimeout.",
+      "setTimeout(() => journal.push(\"c\"), 0);"
+    ],
+    "explanation_fr": "Le second test montre que, juste après l’appel, le minuteur n’est pas encore passé.",
+    "common_wrong_answers": [],
+    "id": "node-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un rappel après un délai",
+    "instruction_fr": "Écris apresDelai(ms, valeur, rappel) qui appelle rappel(valeur) après ms millisecondes.",
+    "starter_code": "function apresDelai(ms, valeur, rappel) {\n  rappel(valeur);\n}\n",
+    "solution": "function apresDelai(ms, valeur, rappel) {\n  setTimeout(() => rappel(valeur), ms);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "new Promise(r => apresDelai(5, \"prêt\", r))",
+            "expected": "prêt"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { let vu = \"rien\"; apresDelai(5, \"tard\", v => { vu = v; }); return vu; })()",
+            "expected": "rien"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le rappel doit attendre.",
+      "setTimeout prend le rappel puis le délai.",
+      "setTimeout(() => rappel(valeur), ms);"
+    ],
+    "explanation_fr": "Juste après l’appel, rien ne s’est encore passé : c’est tout l’asynchrone.",
+    "common_wrong_answers": [],
+    "id": "node-m2-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "L’erreur d’abord oubliée",
+    "instruction_fr": "lireAge(texte, rappel) doit appeler rappel(null, age) si le texte est un entier entre 0 et 120, sinon rappel(new Error(\"âge invalide\")). Elle appelle rappel(age), sans erreur en premier. Corrige-la.",
+    "starter_code": "function lireAge(texte, rappel) {\n  const age = Number(texte);\n  rappel(age);\n}\n",
+    "solution": "function lireAge(texte, rappel) {\n  const age = Number(texte);\n  if (!Number.isInteger(age) || age < 0 || age > 120) {\n    rappel(new Error(\"âge invalide\"));\n    return;\n  }\n  rappel(null, age);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "new Promise(r => lireAge(\"17\", (err, age) => r(err ? \"erreur\" : age)))",
+            "expected": "17"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "new Promise(r => lireAge(\"dix\", (err, age) => r(err ? err.message : age)))",
+            "expected": "âge invalide"
+          },
+          {
+            "expr": "new Promise(r => lireAge(\"200\", err => r(err ? \"erreur\" : \"ok\")))",
+            "expected": "erreur"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le premier argument est réservé à l’erreur.",
+      "En cas de succès, passe null puis l’âge.",
+      "Vérifie que l’âge est un entier raisonnable."
+    ],
+    "explanation_fr": "Le code appelant teste toujours err d’abord : il doit pouvoir compter sur la convention.",
+    "common_wrong_answers": [],
+    "id": "node-m2-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Un compte à rebours",
+    "instruction_fr": "Écris compteARebours(n, chaque, fin) : appelle chaque(n), puis chaque(n − 1)… jusqu’à chaque(1), chaque appel 1 ms après le précédent, puis appelle fin().",
+    "starter_code": "function compteARebours(n, chaque, fin) {\n  fin();\n}\n",
+    "solution": "function compteARebours(n, chaque, fin) {\n  if (n === 0) {\n    fin();\n    return;\n  }\n  chaque(n);\n  setTimeout(() => compteARebours(n - 1, chaque, fin), 1);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "new Promise(r => { const vus = []; compteARebours(3, x => vus.push(x), () => r(vus.join(\",\"))); })",
+            "expected": "3,2,1"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "new Promise(r => { const vus = []; compteARebours(0, x => vus.push(x), () => r(\"fin \" + vus.length)); })",
+            "expected": "fin 0"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Si n vaut 0, appelle fin.",
+      "Sinon, appelle chaque(n).",
+      "Programme la suite avec setTimeout et n − 1."
+    ],
+    "explanation_fr": "Chaque étape attend son tour sans jamais bloquer Node.js.",
+    "common_wrong_answers": [],
+    "id": "node-m2-01-e4"
+  }
+]

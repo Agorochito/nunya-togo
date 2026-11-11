@@ -3,7 +3,7 @@
  "base": "http://localhost:4187/",
  "platform": "win32-x64",
  "browser": "157.0.4341.46",
- "durationMs": 71813,
+ "durationMs": 68927,
  "thresholds": {
   "maxDiffRatio": 0.01,
   "channelTolerance": 10,
@@ -40,7 +40,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1729
+   "ms": 1659
   },
   {
    "name": "apprendre-360-nunya-light",
@@ -57,7 +57,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1629
+   "ms": 1702
   },
   {
    "name": "apprendre_python-bases-360-nunya-light",
@@ -74,7 +74,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1330
+   "ms": 1277
   },
   {
    "name": "apprendre_python-bases_m1_py-m1-01-360-nunya-light",
@@ -91,7 +91,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1216
+   "ms": 1163
   },
   {
    "name": "avenir-360-nunya-light",
@@ -108,7 +108,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1195
+   "ms": 1093
   },
   {
    "name": "bibliotheque-360-nunya-light",
@@ -125,7 +125,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1193
+   "ms": 1093
   },
   {
    "name": "mes-cours-360-nunya-light",
@@ -142,7 +142,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1084
+   "ms": 1023
   },
   {
    "name": "progression-360-nunya-light",
@@ -173,7 +173,7 @@
    ],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1379
+   "ms": 1318
   },
   {
    "name": "accueil-360-nunya-dark",
@@ -190,7 +190,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1500
+   "ms": 1467
   },
   {
    "name": "apprendre-360-nunya-dark",
@@ -207,7 +207,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1564
+   "ms": 1613
   },
   {
    "name": "apprendre_python-bases-360-nunya-dark",
@@ -224,7 +224,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1384
+   "ms": 1326
   },
   {
    "name": "apprendre_python-bases_m1_py-m1-01-360-nunya-dark",
@@ -241,7 +241,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1217
+   "ms": 1233
   },
   {
    "name": "avenir-360-nunya-dark",
@@ -258,7 +258,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1185
+   "ms": 1093
   },
   {
    "name": "bibliotheque-360-nunya-dark",
@@ -275,7 +275,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1187
+   "ms": 1141
   },
   {
    "name": "mes-cours-360-nunya-dark",
@@ -292,7 +292,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1144
+   "ms": 1015
   },
   {
    "name": "progression-360-nunya-dark",
@@ -309,7 +309,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1345
+   "ms": 1274
   },
   {
    "name": "accueil-360-verre-light",
@@ -326,7 +326,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1575
+   "ms": 1582
   },
   {
    "name": "apprendre-360-verre-light",
@@ -343,7 +343,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1693
+   "ms": 1742
   },
   {
    "name": "apprendre_python-bases-360-verre-light",
@@ -360,7 +360,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1400
+   "ms": 1343
   },
   {
    "name": "apprendre_python-bases_m1_py-m1-01-360-verre-light",
@@ -377,7 +377,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1302
+   "ms": 1231
   },
   {
    "name": "avenir-360-verre-light",
@@ -394,7 +394,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1260
+   "ms": 1178
   },
   {
    "name": "bibliotheque-360-verre-light",
@@ -411,7 +411,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1322
+   "ms": 1158
   },
   {
    "name": "mes-cours-360-verre-light",
@@ -438,7 +438,7 @@
    ],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1253
+   "ms": 1156
   },
   {
    "name": "progression-360-verre-light",
@@ -469,7 +469,7 @@
    ],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1412
+   "ms": 1354
   },
   {
    "name": "accueil-1440-nunya-light",
@@ -486,7 +486,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1681
+   "ms": 1678
   },
   {
    "name": "apprendre-1440-nunya-light",
@@ -503,7 +503,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1723
+   "ms": 1767
   },
   {
    "name": "apprendre_python-bases-1440-nunya-light",
@@ -520,7 +520,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1527
+   "ms": 1420
   },
   {
    "name": "apprendre_python-bases_m1_py-m1-01-1440-nunya-light",
@@ -537,7 +537,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1417
+   "ms": 1311
   },
   {
    "name": "avenir-1440-nunya-light",
@@ -554,7 +554,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1314
+   "ms": 1217
   },
   {
    "name": "bibliotheque-1440-nunya-light",
@@ -571,7 +571,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1299
+   "ms": 1250
   },
   {
    "name": "mes-cours-1440-nunya-light",
@@ -588,7 +588,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1249
+   "ms": 1177
   },
   {
    "name": "progression-1440-nunya-light",
@@ -619,7 +619,7 @@
    ],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1477
+   "ms": 1363
   },
   {
    "name": "accueil-1440-nunya-dark",
@@ -636,7 +636,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1648
+   "ms": 1695
   },
   {
    "name": "apprendre-1440-nunya-dark",
@@ -653,7 +653,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1748
+   "ms": 1914
   },
   {
    "name": "apprendre_python-bases-1440-nunya-dark",
@@ -670,7 +670,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1458
+   "ms": 1377
   },
   {
    "name": "apprendre_python-bases_m1_py-m1-01-1440-nunya-dark",
@@ -687,7 +687,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1385
+   "ms": 1355
   },
   {
    "name": "avenir-1440-nunya-dark",
@@ -704,7 +704,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1340
+   "ms": 1265
   },
   {
    "name": "bibliotheque-1440-nunya-dark",
@@ -721,7 +721,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1358
+   "ms": 1231
   },
   {
    "name": "mes-cours-1440-nunya-dark",
@@ -738,7 +738,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1248
+   "ms": 1184
   },
   {
    "name": "progression-1440-nunya-dark",
@@ -755,7 +755,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1511
+   "ms": 1464
   },
   {
    "name": "accueil-1440-verre-light",
@@ -772,7 +772,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1940
+   "ms": 1872
   },
   {
    "name": "apprendre-1440-verre-light",
@@ -789,7 +789,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1966
+   "ms": 2058
   },
   {
    "name": "apprendre_python-bases-1440-verre-light",
@@ -806,7 +806,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1684
+   "ms": 1623
   },
   {
    "name": "apprendre_python-bases_m1_py-m1-01-1440-verre-light",
@@ -823,7 +823,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1689
+   "ms": 1491
   },
   {
    "name": "avenir-1440-verre-light",
@@ -840,7 +840,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1569
+   "ms": 1441
   },
   {
    "name": "bibliotheque-1440-verre-light",
@@ -857,7 +857,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1681
+   "ms": 1447
   },
   {
    "name": "mes-cours-1440-verre-light",
@@ -874,7 +874,7 @@
    "axe": [],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1409
+   "ms": 1368
   },
   {
    "name": "progression-1440-verre-light",
@@ -905,7 +905,7 @@
    ],
    "diffRatio": 0,
    "pageErrors": [],
-   "ms": 1646
+   "ms": 1467
   }
  ]
 }

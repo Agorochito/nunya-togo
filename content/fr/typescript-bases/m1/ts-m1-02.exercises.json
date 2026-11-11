@@ -1,0 +1,178 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Un tableau typé",
+    "instruction_fr": "Déclare const notes: number[] contenant 12, 15 et 9, puis écris moyenne(): number qui renvoie leur moyenne. Un ajout de texte doit être refusé.",
+    "starter_code": "const notes: any[] = [12, 15, 9];\nfunction moyenne(): number {\n  return notes.reduce((s, n) => s + n, 0) / notes.length;\n}\n",
+    "solution": "const notes: number[] = [12, 15, 9];\nfunction moyenne(): number {\n  return notes.reduce((s, n) => s + n, 0) / notes.length;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "moyenne()",
+            "expected": "12"
+          },
+          {
+            "expr": "notes.push(\"vingt\")",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "notes.length",
+            "expected": "3"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "any[] accepte n’importe quoi.",
+      "Le type précis est number[].",
+      "Remplace any[] par number[]."
+    ],
+    "explanation_fr": "Avec any[], la vérification ne peut pas protéger le calcul.",
+    "common_wrong_answers": [],
+    "id": "ts-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un tuple nom-prix",
+    "instruction_fr": "Écris versTuple(nom: string, prix: number): [string, number] qui renvoie la paire, et prixDe(article: [string, number]): number qui renvoie le prix.",
+    "starter_code": "function versTuple(nom: string, prix: number) {\n  return [nom, prix];\n}\n\nfunction prixDe(article: any): number {\n  return article[1];\n}\n",
+    "solution": "function versTuple(nom: string, prix: number): [string, number] {\n  return [nom, prix];\n}\n\nfunction prixDe(article: [string, number]): number {\n  return article[1];\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "prixDe(versTuple(\"riz\", 600))",
+            "expected": "600"
+          },
+          {
+            "expr": "prixDe([\"riz\", \"600\"])",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "versTuple(\"sel\", 150)",
+            "expected": "[\"sel\",150]"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Sans annotation, [nom, prix] est typé (string | number)[].",
+      "Annote le résultat comme tuple.",
+      "Le paramètre de prixDe aussi."
+    ],
+    "explanation_fr": "Le tuple garantit que la deuxième case est un nombre.",
+    "common_wrong_answers": [],
+    "id": "ts-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La porte any",
+    "instruction_fr": "lireQuantite reçoit une valeur any et la renvoie comme nombre : un texte passe sans erreur et le calcul devient absurde. Remplace any par unknown et renvoie 0 si la valeur n’est pas un nombre.",
+    "starter_code": "function lireQuantite(valeur: any): number {\n  return valeur;\n}\n",
+    "solution": "function lireQuantite(valeur: unknown): number {\n  return typeof valeur === \"number\" ? valeur : 0;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "lireQuantite(\"3\") + 1",
+            "expected": "1"
+          },
+          {
+            "expr": "lireQuantite(4) + 1",
+            "expected": "5"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "lireQuantite(null)",
+            "expected": "0"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Avec any, le texte \"3\" est renvoyé tel quel.",
+      "unknown oblige à vérifier.",
+      "typeof valeur === \"number\"."
+    ],
+    "explanation_fr": "Avec any, \"3\" + 1 aurait donné \"31\".",
+    "common_wrong_answers": [],
+    "id": "ts-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Le panier typé",
+    "instruction_fr": "Écris un panier : const panier: [string, number][] = [] ; ajouter(nom: string, prix: number): void qui ajoute la paire ; total(): number qui renvoie la somme des prix. Un ajout avec un prix en texte doit être refusé.",
+    "starter_code": "const panier: any[] = [];\nfunction ajouter(nom, prix) {\n  panier.push([nom, prix]);\n}\nfunction total() {\n  return 0;\n}\n",
+    "solution": "const panier: [string, number][] = [];\n\nfunction ajouter(nom: string, prix: number): void {\n  panier.push([nom, prix]);\n}\n\nfunction total(): number {\n  return panier.reduce((s, [, prix]) => s + prix, 0);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { ajouter(\"riz\", 600); ajouter(\"sel\", 150); return total(); })()",
+            "expected": "750"
+          },
+          {
+            "expr": "ajouter(\"huile\", \"1500\")",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "ajouter(1, 2)",
+            "kind": "type_error"
+          },
+          {
+            "expr": "typeof total()",
+            "expected": "number"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un tableau de tuples : [string, number][].",
+      "Annote les paramètres et le retour.",
+      "reduce additionne les prix."
+    ],
+    "explanation_fr": "Le panier n’accepte que des paires nom-prix : un prix en texte est refusé avant l’exécution.",
+    "common_wrong_answers": [],
+    "id": "ts-m1-02-e4"
+  }
+]

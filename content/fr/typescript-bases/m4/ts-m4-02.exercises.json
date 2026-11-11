@@ -1,0 +1,186 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une garde pour les nombres",
+    "instruction_fr": "Écris estNombre(x: unknown): x is number qui renvoie true pour un nombre qui n’est pas NaN.",
+    "starter_code": "function estNombre(x: unknown): boolean {\n  return true;\n}\n",
+    "solution": "function estNombre(x: unknown): x is number {\n  return typeof x === \"number\" && !Number.isNaN(x);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "estNombre(3)",
+            "expected": "true"
+          },
+          {
+            "expr": "estNombre(\"3\")",
+            "expected": "false"
+          },
+          {
+            "expr": "(() => { const v: unknown = 4; return estNombre(v) ? v + 1 : 0; })()",
+            "expected": "5"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "estNombre(NaN)",
+            "expected": "false"
+          },
+          {
+            "expr": "estNombre(null)",
+            "expected": "false"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le retour boolean ne rétrécit pas le type.",
+      "Utilise x is number.",
+      "typeof et Number.isNaN font la vérification."
+    ],
+    "explanation_fr": "Grâce au prédicat, v + 1 est accepté après la vérification.",
+    "common_wrong_answers": [],
+    "id": "ts-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Une garde pour les produits",
+    "instruction_fr": "Écris estProduit(x: unknown): x is Produit qui vérifie que x est un objet non null avec un nom textuel et un prix numérique.",
+    "starter_code": "interface Produit {\n  nom: string;\n  prix: number;\n}\n\nfunction estProduit(x: unknown): x is Produit {\n  return typeof x === \"object\";\n}\n",
+    "solution": "interface Produit {\n  nom: string;\n  prix: number;\n}\n\nfunction estProduit(x: unknown): x is Produit {\n  return typeof x === \"object\" && x !== null\n    && typeof (x as Produit).nom === \"string\"\n    && typeof (x as Produit).prix === \"number\";\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "estProduit({ nom: \"riz\", prix: 600 })",
+            "expected": "true"
+          },
+          {
+            "expr": "estProduit({ nom: \"sel\", prix: \"150\" })",
+            "expected": "false"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "estProduit(null)",
+            "expected": "false"
+          },
+          {
+            "expr": "estProduit({ prix: 1 })",
+            "expected": "false"
+          },
+          {
+            "expr": "estProduit(\"riz\")",
+            "expected": "false"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "typeof null vaut \"object\" : exclus-le.",
+      "Vérifie le type de chaque propriété.",
+      "Utilise (x as Produit).prix seulement pour lire."
+    ],
+    "explanation_fr": "La version de départ acceptait null et tout objet : une garde mensongère.",
+    "common_wrong_answers": [],
+    "id": "ts-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "L’affirmation trompeuse",
+    "instruction_fr": "lireProduit utilise as Produit : un JSON sans prix passe. Remplace l’assertion par la garde estProduit (fournie) et lève une erreur « produit invalide » si la vérification échoue.",
+    "starter_code": "interface Produit {\n  nom: string;\n  prix: number;\n}\n\nfunction estProduit(x: unknown): x is Produit {\n  return typeof x === \"object\" && x !== null\n    && typeof (x as Produit).nom === \"string\"\n    && typeof (x as Produit).prix === \"number\";\n}\n\nfunction lireProduit(texte: string): Produit {\n  return JSON.parse(texte) as Produit;\n}\n",
+    "solution": "interface Produit {\n  nom: string;\n  prix: number;\n}\n\nfunction estProduit(x: unknown): x is Produit {\n  return typeof x === \"object\" && x !== null\n    && typeof (x as Produit).nom === \"string\"\n    && typeof (x as Produit).prix === \"number\";\n}\n\nfunction lireProduit(texte: string): Produit {\n  const donnees: unknown = JSON.parse(texte);\n  if (!estProduit(donnees)) throw new Error(\"produit invalide\");\n  return donnees;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { try { lireProduit('{\"nom\":\"riz\"}'); return \"accepté\"; } catch (e) { return (e as Error).message; } })()",
+            "expected": "produit invalide"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "lireProduit('{\"nom\":\"sel\",\"prix\":150}').prix",
+            "expected": "150"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "as ne vérifie rien.",
+      "Passe par unknown et la garde.",
+      "Lève une erreur si la garde échoue."
+    ],
+    "explanation_fr": "Le produit sans prix est arrêté à la frontière, avec un message clair.",
+    "common_wrong_answers": [],
+    "id": "ts-m4-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Importer des commandes",
+    "instruction_fr": "Écris importer(texte: string): { commandes: Commande[]; rejetees: number } pour interface Commande { client: string; total: number }. Lève « JSON invalide » si le texte n’est pas du JSON, « liste attendue » si ce n’est pas un tableau ; garde les commandes valides et compte les autres.",
+    "starter_code": "interface Commande {\n  client: string;\n  total: number;\n}\n\nfunction importer(texte: string): { commandes: Commande[]; rejetees: number } {\n  return { commandes: JSON.parse(texte), rejetees: 0 };\n}\n",
+    "solution": "interface Commande {\n  client: string;\n  total: number;\n}\n\nfunction estCommande(x: unknown): x is Commande {\n  return typeof x === \"object\" && x !== null\n    && typeof (x as Commande).client === \"string\"\n    && typeof (x as Commande).total === \"number\";\n}\n\nfunction importer(texte: string): { commandes: Commande[]; rejetees: number } {\n  let donnees: unknown;\n  try {\n    donnees = JSON.parse(texte);\n  } catch {\n    throw new Error(\"JSON invalide\");\n  }\n  if (!Array.isArray(donnees)) throw new Error(\"liste attendue\");\n  const commandes = donnees.filter(estCommande);\n  return { commandes, rejetees: donnees.length - commandes.length };\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "importer('[{\"client\":\"Afi\",\"total\":2700},{\"client\":\"Yao\"}]')",
+            "expected": "{\"commandes\":[{\"client\":\"Afi\",\"total\":2700}],\"rejetees\":1}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { try { importer(\"{\"); return \"accepté\"; } catch (e) { return (e as Error).message; } })()",
+            "expected": "JSON invalide"
+          },
+          {
+            "expr": "(() => { try { importer('{\"client\":\"Afi\"}'); return \"accepté\"; } catch (e) { return (e as Error).message; } })()",
+            "expected": "liste attendue"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Attrape l’erreur de JSON.parse.",
+      "Vérifie le tableau, puis chaque élément.",
+      "filter avec une garde donne un Commande[]."
+    ],
+    "explanation_fr": "À la frontière, tout est vérifié ; à l’intérieur, les types suffisent.",
+    "common_wrong_answers": [],
+    "id": "ts-m4-02-e4"
+  }
+]

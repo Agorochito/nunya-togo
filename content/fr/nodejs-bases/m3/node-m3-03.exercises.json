@@ -1,0 +1,178 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une fonction pour répondre en JSON",
+    "instruction_fr": "Écris envoyerJSON(res, statut, donnees) : statut et type application/json; charset=utf-8 avec writeHead, puis le JSON des données avec res.end. Le serveur fourni l’utilise.",
+    "starter_code": "const http = require(\"http\");\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.end(String(donnees));\n}\n\nconst serveur = http.createServer((req, res) => envoyerJSON(res, 418, { message: \"je suis une théière\" }));\n",
+    "solution": "const http = require(\"http\");\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.writeHead(statut, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify(donnees));\n}\n\nconst serveur = http.createServer((req, res) => envoyerJSON(res, 418, { message: \"je suis une théière\" }));\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/\")",
+            "expected": "{\"statut\":418,\"type\":\"application/json\",\"corps\":\"{\\\"message\\\":\\\"je suis une théière\\\"}\"}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/x\").then(r => JSON.parse(r.corps).message)",
+            "expected": "je suis une théière"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "writeHead reçoit le statut et l’en-tête.",
+      "Convertis les données avec JSON.stringify.",
+      "Termine avec res.end."
+    ],
+    "explanation_fr": "418 est un vrai code, né d’une blague : il prouve que le statut choisi arrive bien au client.",
+    "common_wrong_answers": [],
+    "id": "node-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un écho JSON",
+    "instruction_fr": "Écris un serveur : POST /echo lit le corps JSON et le renvoie avec le statut 200 sous la forme {\"recu\": données}. lireCorps et envoyerJSON sont fournis.",
+    "starter_code": "const http = require(\"http\");\n\nfunction lireCorps(req) {\n  return new Promise((ok, ko) => {\n    let texte = \"\";\n    req.on(\"data\", morceau => { texte += morceau; });\n    req.on(\"end\", () => ok(texte));\n    req.on(\"error\", ko);\n  });\n}\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.writeHead(statut, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify(donnees));\n}\n\nconst serveur = http.createServer(async (req, res) => {\n  envoyerJSON(res, 200, { recu: null });\n});\n",
+    "solution": "const http = require(\"http\");\n\nfunction lireCorps(req) {\n  return new Promise((ok, ko) => {\n    let texte = \"\";\n    req.on(\"data\", morceau => { texte += morceau; });\n    req.on(\"end\", () => ok(texte));\n    req.on(\"error\", ko);\n  });\n}\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.writeHead(statut, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify(donnees));\n}\n\nconst serveur = http.createServer(async (req, res) => {\n  const donnees = JSON.parse(await lireCorps(req));\n  envoyerJSON(res, 200, { recu: donnees });\n});\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/echo\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\" }, body: \"{\\\"nom\\\": \\\"Afi\\\", \\\"age\\\": 16}\" })",
+            "expected": "{\"statut\":200,\"type\":\"application/json\",\"corps\":\"{\\\"recu\\\":{\\\"nom\\\":\\\"Afi\\\",\\\"age\\\":16}}\"}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/echo\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\" }, body: \"[1, 2]\" }).then(r => r.corps)",
+            "expected": "{\"recu\":[1,2]}"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le gestionnaire doit être async.",
+      "Attends le texte avec await lireCorps(req).",
+      "Convertis-le avec JSON.parse."
+    ],
+    "explanation_fr": "Ce serveur fait confiance au JSON reçu : l’exercice suivant corrige ce défaut.",
+    "common_wrong_answers": [],
+    "id": "node-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le JSON invalide",
+    "instruction_fr": "Ce serveur échoue quand le corps n’est pas du JSON valide : la requête reste sans réponse. Corrige-le pour répondre 400 avec {\"erreur\":\"JSON invalide\"}.",
+    "starter_code": "const http = require(\"http\");\n\nfunction lireCorps(req) {\n  return new Promise((ok, ko) => {\n    let texte = \"\";\n    req.on(\"data\", morceau => { texte += morceau; });\n    req.on(\"end\", () => ok(texte));\n    req.on(\"error\", ko);\n  });\n}\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.writeHead(statut, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify(donnees));\n}\n\nconst serveur = http.createServer(async (req, res) => {\n  const donnees = JSON.parse(await lireCorps(req));\n  envoyerJSON(res, 200, { recu: donnees });\n});\n",
+    "solution": "const http = require(\"http\");\n\nfunction lireCorps(req) {\n  return new Promise((ok, ko) => {\n    let texte = \"\";\n    req.on(\"data\", morceau => { texte += morceau; });\n    req.on(\"end\", () => ok(texte));\n    req.on(\"error\", ko);\n  });\n}\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.writeHead(statut, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify(donnees));\n}\n\nconst serveur = http.createServer(async (req, res) => {\n  let donnees;\n  try {\n    donnees = JSON.parse(await lireCorps(req));\n  } catch (erreur) {\n    return envoyerJSON(res, 400, { erreur: \"JSON invalide\" });\n  }\n  envoyerJSON(res, 200, { recu: donnees });\n});\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/echo\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\" }, body: \"{produit: riz}\" })",
+            "expected": "{\"statut\":400,\"type\":\"application/json\",\"corps\":\"{\\\"erreur\\\":\\\"JSON invalide\\\"}\"}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/echo\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\" }, body: \"{\\\"ok\\\": true}\" }).then(r => r.statut)",
+            "expected": "200"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "JSON.parse lève une SyntaxError.",
+      "L’erreur n’est attrapée nulle part.",
+      "Entoure JSON.parse d’un try…catch et réponds 400."
+    ],
+    "explanation_fr": "Une seule requête malformée ne doit jamais faire tomber le service.",
+    "common_wrong_answers": [],
+    "id": "node-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Créer des commandes",
+    "instruction_fr": "Écris l’API /commandes : GET liste les commandes ; POST crée {id, produit, quantite} (statut 201) si produit est une chaîne non vide et quantite un entier ≥ 1, sinon 400 {\"erreur\":\"produit et quantité valides requis\"} ; JSON invalide : 400 {\"erreur\":\"JSON invalide\"} ; autre méthode : 405 ; autre chemin : 404. lireCorps et envoyerJSON sont fournis.",
+    "starter_code": "const http = require(\"http\");\n\nfunction lireCorps(req) {\n  return new Promise((ok, ko) => {\n    let texte = \"\";\n    req.on(\"data\", morceau => { texte += morceau; });\n    req.on(\"end\", () => ok(texte));\n    req.on(\"error\", ko);\n  });\n}\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.writeHead(statut, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify(donnees));\n}\n\nconst commandes = [];\n\nconst serveur = http.createServer(async (req, res) => {\n  envoyerJSON(res, 200, commandes);\n});\n",
+    "solution": "const http = require(\"http\");\n\nfunction lireCorps(req) {\n  return new Promise((ok, ko) => {\n    let texte = \"\";\n    req.on(\"data\", morceau => { texte += morceau; });\n    req.on(\"end\", () => ok(texte));\n    req.on(\"error\", ko);\n  });\n}\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.writeHead(statut, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify(donnees));\n}\n\nconst commandes = [];\n\nconst serveur = http.createServer(async (req, res) => {\n  if (req.url !== \"/commandes\") return envoyerJSON(res, 404, { erreur: \"introuvable\" });\n  if (req.method === \"GET\") return envoyerJSON(res, 200, commandes);\n  if (req.method !== \"POST\") return envoyerJSON(res, 405, { erreur: \"méthode non autorisée\" });\n  let donnees;\n  try {\n    donnees = JSON.parse(await lireCorps(req));\n  } catch (erreur) {\n    return envoyerJSON(res, 400, { erreur: \"JSON invalide\" });\n  }\n  const { produit, quantite } = donnees || {};\n  if (typeof produit !== \"string\" || produit.trim() === \"\" || !Number.isInteger(quantite) || quantite < 1) {\n    return envoyerJSON(res, 400, { erreur: \"produit et quantité valides requis\" });\n  }\n  const commande = { id: commandes.length + 1, produit: produit.trim(), quantite };\n  commandes.push(commande);\n  envoyerJSON(res, 201, commande);\n});\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/commandes\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\" }, body: \"{\\\"produit\\\": \\\"riz\\\", \\\"quantite\\\": 2}\" })",
+            "expected": "{\"statut\":201,\"type\":\"application/json\",\"corps\":\"{\\\"id\\\":1,\\\"produit\\\":\\\"riz\\\",\\\"quantite\\\":2}\"}"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/commandes\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\" }, body: \"{\\\"produit\\\": \\\"huile\\\", \\\"quantite\\\": 0}\" })",
+            "expected": "{\"statut\":400,\"type\":\"application/json\",\"corps\":\"{\\\"erreur\\\":\\\"produit et quantité valides requis\\\"}\"}"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/commandes\")",
+            "expected": "{\"statut\":200,\"type\":\"application/json\",\"corps\":\"[{\\\"id\\\":1,\\\"produit\\\":\\\"riz\\\",\\\"quantite\\\":2}]\"}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/commandes\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\" }, body: \"pas du json\" }).then(r => r.statut + r.corps)",
+            "expected": "400{\"erreur\":\"JSON invalide\"}"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/commandes\", { method: \"POST\", headers: { \"Content-Type\": \"application/json\" }, body: \"{\\\"produit\\\": \\\"sel\\\", \\\"quantite\\\": \\\"3\\\"}\" }).then(r => r.statut)",
+            "expected": "400"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/commandes\", { method: \"DELETE\" }).then(r => r.statut)",
+            "expected": "405"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/clients\").then(r => r.statut)",
+            "expected": "404"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Commence par le chemin, puis la méthode.",
+      "Lis et convertis le corps dans un try.",
+      "Vérifie produit et quantité avant de créer."
+    ],
+    "explanation_fr": "Une quantité \"3\" écrite en texte est refusée : la validation porte sur le type, pas seulement sur la valeur.",
+    "common_wrong_answers": [],
+    "id": "node-m3-03-e4"
+  }
+]

@@ -1,0 +1,178 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Lister proprement",
+    "instruction_fr": "Écris lister() qui renvoie des copies des produits, triées par nom (localeCompare en français).",
+    "starter_code": "const produits = [\n  { id: 1, nom: \"Riz parfumé\", prix: 600 },\n  { id: 2, nom: \"Huile de palme\", prix: 1500 },\n  { id: 3, nom: \"Gari\", prix: 400 },\n];\nlet prochainId = 4;\n\nfunction lister() {\n  return produits;\n}\n",
+    "solution": "const produits = [\n  { id: 1, nom: \"Riz parfumé\", prix: 600 },\n  { id: 2, nom: \"Huile de palme\", prix: 1500 },\n  { id: 3, nom: \"Gari\", prix: 400 },\n];\nlet prochainId = 4;\n\nfunction lister() {\n  return produits.map(p => ({ ...p })).sort((a, b) => a.nom.localeCompare(b.nom, \"fr\"));\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "lister().map(p => p.nom)",
+            "expected": "[\"Gari\",\"Huile de palme\",\"Riz parfumé\"]"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { lister()[0].prix = 1; return produits.find(p => p.nom === \"Gari\").prix; })()",
+            "expected": "400"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Copie chaque produit avec { ...p }.",
+      "Trie avec localeCompare.",
+      "Le tableau d’origine ne doit pas changer."
+    ],
+    "explanation_fr": "Modifier un élément de la liste renvoyée ne touche plus les données.",
+    "common_wrong_answers": [],
+    "id": "pfs-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Valider une saisie",
+    "instruction_fr": "Écris valider(d) qui renvoie la liste des erreurs : « Le nom doit contenir 2 à 40 caractères. » si le nom, sans espaces autour, est trop court ou trop long ; « Le prix doit être un nombre entier positif. » si le prix (souvent un texte) n’est pas un entier > 0.",
+    "starter_code": "function valider(d) {\n  return [];\n}\n",
+    "solution": "function valider(d) {\n  const erreurs = [];\n  const nom = typeof d.nom === \"string\" ? d.nom.trim() : \"\";\n  if (nom.length < 2 || nom.length > 40) erreurs.push(\"Le nom doit contenir 2 à 40 caractères.\");\n  const prix = Number(d.prix);\n  if (d.prix === undefined || d.prix === \"\" || !Number.isInteger(prix) || prix <= 0) erreurs.push(\"Le prix doit être un nombre entier positif.\");\n  return erreurs;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "valider({ nom: \"Mangue\", prix: \"300\" })",
+            "expected": "[]"
+          },
+          {
+            "expr": "valider({ nom: \" A \", prix: \"0\" })",
+            "expected": "[\"Le nom doit contenir 2 à 40 caractères.\",\"Le prix doit être un nombre entier positif.\"]"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "valider({ nom: \"Gari\", prix: \"4.5\" }).length",
+            "expected": "1"
+          },
+          {
+            "expr": "valider({}).length",
+            "expected": "2"
+          },
+          {
+            "expr": "valider({ nom: \"x\".repeat(41), prix: 100 }).length",
+            "expected": "1"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Retire les espaces avec trim avant de mesurer.",
+      "Number(\"\") vaut 0 : refuse-le explicitement.",
+      "Number.isInteger refuse 4.5."
+    ],
+    "explanation_fr": "Les messages sont écrits pour être affichés tels quels à la personne qui saisit.",
+    "common_wrong_answers": [],
+    "id": "pfs-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Les identifiants en double",
+    "instruction_fr": "ajouter calcule l’identifiant avec produits.length + 1 : après une suppression, deux produits reçoivent le même identifiant. Utilise le compteur prochainId.",
+    "starter_code": "const produits = [\n  { id: 1, nom: \"Riz parfumé\", prix: 600 },\n  { id: 2, nom: \"Huile de palme\", prix: 1500 },\n  { id: 3, nom: \"Gari\", prix: 400 },\n];\nlet prochainId = 4;\n\nfunction supprimer(id) {\n  const i = produits.findIndex(p => p.id === id);\n  if (i !== -1) produits.splice(i, 1);\n}\n\nfunction ajouter(d) {\n  const produit = { id: produits.length + 1, nom: d.nom, prix: Number(d.prix) };\n  produits.push(produit);\n  return produit;\n}\n",
+    "solution": "const produits = [\n  { id: 1, nom: \"Riz parfumé\", prix: 600 },\n  { id: 2, nom: \"Huile de palme\", prix: 1500 },\n  { id: 3, nom: \"Gari\", prix: 400 },\n];\nlet prochainId = 4;\n\nfunction supprimer(id) {\n  const i = produits.findIndex(p => p.id === id);\n  if (i !== -1) produits.splice(i, 1);\n}\n\nfunction ajouter(d) {\n  const produit = { id: prochainId++, nom: d.nom, prix: Number(d.prix) };\n  produits.push(produit);\n  return produit;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { supprimer(1); return ajouter({ nom: \"Mangue\", prix: \"300\" }).id; })()",
+            "expected": "4"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { ajouter({ nom: \"a\", prix: 1 }); return new Set(produits.map(p => p.id)).size === produits.length; })()",
+            "expected": "true"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Après suppression, il reste 2 produits : length + 1 vaut 3.",
+      "L’identifiant 3 existe déjà.",
+      "Utilise prochainId++."
+    ],
+    "explanation_fr": "Un identifiant réutilisé ferait afficher un produit à la place d’un autre.",
+    "common_wrong_answers": [],
+    "id": "pfs-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Le magasin complet",
+    "instruction_fr": "Écris ajouter(d) : valide avec valider (fournie) ; en cas d’erreur renvoie { ok: false, erreurs } sans rien enregistrer ; sinon crée { id: prochainId++, nom (sans espaces autour), prix (nombre) }, l’ajoute et renvoie { ok: true, produit }. Écris aussi trouver(id) qui renvoie une copie ou undefined.",
+    "starter_code": "const produits = [\n  { id: 1, nom: \"Riz parfumé\", prix: 600 },\n  { id: 2, nom: \"Huile de palme\", prix: 1500 },\n  { id: 3, nom: \"Gari\", prix: 400 },\n];\nlet prochainId = 4;\n\nfunction valider(d) {\n  const erreurs = [];\n  const nom = typeof d.nom === \"string\" ? d.nom.trim() : \"\";\n  if (nom.length < 2 || nom.length > 40) erreurs.push(\"Le nom doit contenir 2 à 40 caractères.\");\n  const prix = Number(d.prix);\n  if (d.prix === undefined || d.prix === \"\" || !Number.isInteger(prix) || prix <= 0) erreurs.push(\"Le prix doit être un nombre entier positif.\");\n  return erreurs;\n}\n\nfunction ajouter(d) {\n  produits.push(d);\n}\n\nfunction trouver(id) {\n  return produits.find(p => p.id === id);\n}\n",
+    "solution": "const produits = [\n  { id: 1, nom: \"Riz parfumé\", prix: 600 },\n  { id: 2, nom: \"Huile de palme\", prix: 1500 },\n  { id: 3, nom: \"Gari\", prix: 400 },\n];\nlet prochainId = 4;\n\nfunction lister() {\n  return produits.map(p => ({ ...p }));\n}\n\nfunction trouver(id) {\n  const p = produits.find(x => x.id === id);\n  return p ? { ...p } : undefined;\n}\n\nfunction valider(d) {\n  const erreurs = [];\n  const nom = typeof d.nom === \"string\" ? d.nom.trim() : \"\";\n  if (nom.length < 2 || nom.length > 40) erreurs.push(\"Le nom doit contenir 2 à 40 caractères.\");\n  const prix = Number(d.prix);\n  if (d.prix === undefined || d.prix === \"\" || !Number.isInteger(prix) || prix <= 0) erreurs.push(\"Le prix doit être un nombre entier positif.\");\n  return erreurs;\n}\n\nfunction ajouter(d) {\n  const erreurs = valider(d);\n  if (erreurs.length) return { ok: false, erreurs };\n  const produit = { id: prochainId++, nom: d.nom.trim(), prix: Number(d.prix) };\n  produits.push(produit);\n  return { ok: true, produit };\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "ajouter({ nom: \" Mangue \", prix: \"300\" })",
+            "expected": "{\"ok\":true,\"produit\":{\"id\":4,\"nom\":\"Mangue\",\"prix\":300}}"
+          },
+          {
+            "expr": "trouver(4).nom",
+            "expected": "Mangue"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { const r = ajouter({ nom: \"\", prix: \"-2\" }); return [r.ok, r.erreurs.length, produits.length]; })()",
+            "expected": "[false,2,3]"
+          },
+          {
+            "expr": "trouver(42)",
+            "expected": "undefined"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Appelle valider en premier.",
+      "N’enregistre rien en cas d’erreur.",
+      "Renvoie des copies dans trouver."
+    ],
+    "explanation_fr": "Ce module servira aux pages comme à l’API : une seule source de vérité.",
+    "common_wrong_answers": [],
+    "id": "pfs-m1-02-e4"
+  }
+]

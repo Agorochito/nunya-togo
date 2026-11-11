@@ -1,0 +1,190 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Décrire le portrait",
+    "instruction_fr": "Le portrait n’a pas de texte alternatif. Ajoute alt=\"Portrait d’Ama Mensah souriante\".",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <main>\n    <img src=\"portrait-ama.jpg\" width=\"160\" height=\"160\">\n    <p>Élève à Lomé.</p>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <main>\n    <img src=\"portrait-ama.jpg\" alt=\"Portrait d’Ama Mensah souriante\" width=\"160\" height=\"160\">\n    <p>Élève à Lomé.</p>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Texte alternatif",
+        "checks": [
+          {
+            "selector": "img",
+            "attributes": {
+              "alt": "Portrait d’Ama Mensah souriante"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Dimensions conservées",
+        "checks": [
+          {
+            "selector": "img",
+            "attributes": {
+              "width": "160",
+              "height": "160"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’attribut alt va dans la balise img.",
+      "Décris ce que montre l’image.",
+      "alt=\"Portrait d’Ama Mensah souriante\""
+    ],
+    "explanation_fr": "Sans alt, un lecteur d’écran annoncerait « portrait-ama.jpg ».",
+    "common_wrong_answers": [],
+    "id": "pw-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Une liste de compétences",
+    "instruction_fr": "Ajoute après le paragraphe une liste à puces ul id=\"competences\" avec trois li : « HTML et CSS », « Python », « Dessin numérique ».",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <main>\n    <h2>À propos</h2>\n    <p>J’apprends à programmer.</p>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <main>\n    <h2>À propos</h2>\n    <p>J’apprends à programmer.</p>\n    <ul id=\"competences\">\n      <li>HTML et CSS</li>\n      <li>Python</li>\n      <li>Dessin numérique</li>\n    </ul>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Trois compétences",
+        "checks": [
+          {
+            "selector": "ul#competences > li",
+            "count": 3
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Contenu des éléments",
+        "checks": [
+          {
+            "selector": "#competences li",
+            "textIncludes": "Python"
+          },
+          {
+            "selector": "#competences li",
+            "textIncludes": "Dessin numérique"
+          },
+          {
+            "selector": "p + ul#competences",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une liste à puces commence par ul.",
+      "Chaque compétence est un li.",
+      "Place la liste juste après le paragraphe."
+    ],
+    "explanation_fr": "La liste est annoncée comme telle par les lecteurs d’écran.",
+    "common_wrong_answers": [],
+    "id": "pw-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Les fausses listes",
+    "instruction_fr": "Les loisirs sont écrits comme des paragraphes commençant par un tiret. Transforme-les en une vraie liste ul id=\"loisirs\" de trois li, sans les tirets.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <main>\n    <h2>Loisirs</h2>\n    <p>- Football</p>\n    <p>- Lecture</p>\n    <p>- Musique</p>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <main>\n    <h2>Loisirs</h2>\n    <ul id=\"loisirs\">\n      <li>Football</li>\n      <li>Lecture</li>\n      <li>Musique</li>\n    </ul>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Vraie liste",
+        "checks": [
+          {
+            "selector": "#loisirs > li",
+            "count": 3
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Plus de faux paragraphes",
+        "checks": [
+          {
+            "selector": "main > p",
+            "exists": false
+          },
+          {
+            "selector": "#loisirs li",
+            "textIncludes": "Lecture"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Des tirets ne font pas une liste.",
+      "Remplace les paragraphes par des li dans un ul.",
+      "Retire les tirets du texte."
+    ],
+    "explanation_fr": "La structure, et non l’apparence, fait la liste.",
+    "common_wrong_answers": [],
+    "id": "pw-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "La section À propos",
+    "instruction_fr": "Construis section#apropos : un h2 « À propos », un img avec un alt non vide et width/height de 160, un paragraphe, ul#competences de trois li, et une dl de trois paires dt/dd (Ville, Classe, Langues).",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <main>\n    <section id=\"apropos\">\n      <h2>À propos</h2>\n    </section>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <main>\n    <section id=\"apropos\">\n      <h2>À propos</h2>\n      <img src=\"portrait-ama.jpg\" alt=\"Portrait d’Ama Mensah souriante\" width=\"160\" height=\"160\">\n      <p>J’ai 17 ans et j’apprends à programmer depuis un an.</p>\n      <ul id=\"competences\">\n        <li>HTML et CSS</li>\n        <li>Python</li>\n        <li>Dessin numérique</li>\n      </ul>\n      <dl>\n        <dt>Ville</dt><dd>Lomé</dd>\n        <dt>Classe</dt><dd>Première D</dd>\n        <dt>Langues</dt><dd>Français, éwé, anglais</dd>\n      </dl>\n    </section>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Image et listes",
+        "checks": [
+          {
+            "selector": "#apropos > h2",
+            "textIncludes": "À propos"
+          },
+          {
+            "selector": "#apropos img[alt]:not([alt=\"\"])",
+            "count": 1
+          },
+          {
+            "selector": "#competences > li",
+            "count": 3
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Informations pratiques",
+        "checks": [
+          {
+            "selector": "#apropos dl > dt",
+            "count": 3
+          },
+          {
+            "selector": "#apropos dl > dd",
+            "count": 3
+          },
+          {
+            "selector": "#apropos img",
+            "attributes": {
+              "width": "160",
+              "height": "160"
+            }
+          },
+          {
+            "selector": "#apropos dt",
+            "textIncludes": "Ville"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Commence par l’image et le paragraphe.",
+      "Ajoute la liste de compétences.",
+      "Termine par la dl : chaque dt suivi de son dd."
+    ],
+    "explanation_fr": "Ta présentation se lit maintenant en quelques secondes.",
+    "common_wrong_answers": [],
+    "id": "pw-m1-02-e4"
+  }
+]

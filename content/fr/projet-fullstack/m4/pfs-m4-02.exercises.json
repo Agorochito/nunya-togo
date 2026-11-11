@@ -1,0 +1,162 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Des en-têtes pour toutes les pages",
+    "instruction_fr": "Complète envoyer pour ajouter X-Content-Type-Options: nosniff, Content-Security-Policy: default-src 'self' et Cache-Control: no-store à chaque réponse.",
+    "starter_code": "const http = require(\"http\");\n\nfunction echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction page(titre, contenu) {\n  return `<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>${echapper(titre)} · Marché de Bè</title></head>`\n    + `<body><main><h1>${echapper(titre)}</h1>${contenu}</main></body></html>`;\n}\n\nfunction envoyer(res, statut, type, corps) {\n  res.writeHead(statut, { \"Content-Type\": type + \"; charset=utf-8\" });\n  res.end(corps);\n}\n\nconst serveur = http.createServer((req, res) => envoyer(res, 200, \"text/html\", page(\"Accueil\", \"\")));\n",
+    "solution": "const http = require(\"http\");\n\nfunction echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction page(titre, contenu) {\n  return `<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>${echapper(titre)} · Marché de Bè</title></head>`\n    + `<body><main><h1>${echapper(titre)}</h1>${contenu}</main></body></html>`;\n}\n\nfunction envoyer(res, statut, type, corps) {\n  res.writeHead(statut, {\n    \"Content-Type\": type + \"; charset=utf-8\",\n    \"X-Content-Type-Options\": \"nosniff\",\n    \"Content-Security-Policy\": \"default-src 'self'\",\n    \"Cache-Control\": \"no-store\",\n  });\n  res.end(corps);\n}\n\nconst serveur = http.createServer((req, res) => envoyer(res, 200, \"text/html\", page(\"Accueil\", \"\")));\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaEchange(serveur, \"/\").then(r => r.entetes[\"x-content-type-options\"] + \" | \" + r.entetes[\"content-security-policy\"])",
+            "expected": "nosniff | default-src 'self'"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaEchange(serveur, \"/x\").then(r => r.entetes[\"cache-control\"])",
+            "expected": "no-store"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Ajoute les en-têtes dans l’objet de writeHead.",
+      "Les apostrophes font partie de la valeur CSP.",
+      "Toutes les routes passent par envoyer."
+    ],
+    "explanation_fr": "Une seule fonction, et tout le site est protégé.",
+    "common_wrong_answers": [],
+    "id": "pfs-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Lire la configuration",
+    "instruction_fr": "Écris configuration(env) qui renvoie { port, production, cleApi } : port entier de 1 à 65535 lu dans env.PORT, sinon 3000 ; production vrai si env.NODE_ENV vaut \"production\" ; cleApi = env.CLE_API ou null.",
+    "starter_code": "function configuration(env) {\n  return { port: 3000, production: false, cleApi: \"cle-de-test\" };\n}\n",
+    "solution": "function configuration(env) {\n  const port = Number.parseInt(env.PORT, 10);\n  return {\n    port: Number.isInteger(port) && port > 0 && port < 65536 ? port : 3000,\n    production: env.NODE_ENV === \"production\",\n    cleApi: env.CLE_API || null,\n  };\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "configuration({ PORT: \"8080\", NODE_ENV: \"production\", CLE_API: \"abc\" })",
+            "expected": "{\"port\":8080,\"production\":true,\"cleApi\":\"abc\"}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "configuration({})",
+            "expected": "{\"port\":3000,\"production\":false,\"cleApi\":null}"
+          },
+          {
+            "expr": "configuration({ PORT: \"70000\" }).port",
+            "expected": "3000"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Convertis le port avec parseInt et vérifie-le.",
+      "production est un booléen.",
+      "Pas de clé par défaut : null."
+    ],
+    "explanation_fr": "Un port hors limites revient prudemment à 3000.",
+    "common_wrong_answers": [],
+    "id": "pfs-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La clé dans le code",
+    "instruction_fr": "cleApi() renvoie une clé écrite dans le code : elle finirait publiée sur GitHub. Lis-la dans env.CLE_API et lève une erreur « CLE_API manquante » si elle est absente.",
+    "starter_code": "function cleApi(env) {\n  return \"sk-123456-secret\";\n}\n",
+    "solution": "function cleApi(env) {\n  if (!env.CLE_API) throw new Error(\"CLE_API manquante\");\n  return env.CLE_API;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { try { cleApi({}); return \"pas d’erreur\"; } catch (e) { return e.message; } })()",
+            "expected": "CLE_API manquante"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "cleApi({ CLE_API: \"fournie-par-l-hebergeur\" })",
+            "expected": "fournie-par-l-hebergeur"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une clé dans le code est visible de tous.",
+      "Lis-la dans l’environnement.",
+      "Refuse clairement si elle manque."
+    ],
+    "explanation_fr": "Si une clé a déjà été publiée, il faut la révoquer et en créer une nouvelle : la supprimer du code ne suffit pas.",
+    "common_wrong_answers": [],
+    "id": "pfs-m4-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Démarrage configurable",
+    "instruction_fr": "Écris demarrage(env) qui renvoie le texte « Boutique en écoute sur le port P (mode MODE) », avec MODE = production ou développement, en utilisant configuration (fournie). Le serveur fourni utilise envoyer avec les en-têtes de sécurité.",
+    "starter_code": "function configuration(env) {\n  const port = Number.parseInt(env.PORT, 10);\n  return {\n    port: Number.isInteger(port) && port > 0 && port < 65536 ? port : 3000,\n    production: env.NODE_ENV === \"production\",\n    cleApi: env.CLE_API || null,\n  };\n}\n\nfunction demarrage(env) {\n  return \"Boutique en écoute sur le port 3000\";\n}\n",
+    "solution": "function configuration(env) {\n  const port = Number.parseInt(env.PORT, 10);\n  return {\n    port: Number.isInteger(port) && port > 0 && port < 65536 ? port : 3000,\n    production: env.NODE_ENV === \"production\",\n    cleApi: env.CLE_API || null,\n  };\n}\n\nfunction demarrage(env) {\n  const c = configuration(env);\n  return `Boutique en écoute sur le port ${c.port} (mode ${c.production ? \"production\" : \"développement\"})`;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "demarrage({ PORT: \"8080\", NODE_ENV: \"production\" })",
+            "expected": "Boutique en écoute sur le port 8080 (mode production)"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "demarrage({})",
+            "expected": "Boutique en écoute sur le port 3000 (mode développement)"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Appelle configuration(env).",
+      "Choisis le mot selon production.",
+      "Compose la phrase avec un gabarit."
+    ],
+    "explanation_fr": "En production, le serveur appellerait serveur.listen(c.port) avec ce port.",
+    "common_wrong_answers": [],
+    "id": "pfs-m4-02-e4"
+  }
+]

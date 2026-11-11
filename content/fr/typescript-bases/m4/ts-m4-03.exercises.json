@@ -1,0 +1,166 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Payer une commande",
+    "instruction_fr": "Complète avancer pour l’événement payer : seule une commande « créée » peut être payée ; elle devient « payée » avec le moyen de paiement. Sinon, lève « paiement impossible ». Les autres cas sont fournis.",
+    "starter_code": "type Commande =\n  | { etat: \"créée\"; id: number; total: number }\n  | { etat: \"payée\"; id: number; total: number; paiement: string }\n  | { etat: \"livrée\"; id: number; total: number; paiement: string; livreur: string }\n  | { etat: \"annulée\"; id: number; total: number; motif: string };\n\ntype Evenement =\n  | { type: \"payer\"; paiement: string }\n  | { type: \"livrer\"; livreur: string }\n  | { type: \"annuler\"; motif: string };\n\nfunction avancer(c: Commande, ev: Evenement): Commande {\n  switch (ev.type) {\n    case \"payer\":\n      return c;\n    case \"livrer\":\n      if (c.etat !== \"payée\") throw new Error(\"livraison impossible\");\n      return { ...c, etat: \"livrée\", livreur: ev.livreur };\n    case \"annuler\":\n      if (c.etat === \"livrée\" || c.etat === \"annulée\") throw new Error(\"annulation impossible\");\n      return { etat: \"annulée\", id: c.id, total: c.total, motif: ev.motif };\n    default: {\n      const impossible: never = ev;\n      return impossible;\n    }\n  }\n}\n",
+    "solution": "type Commande =\n  | { etat: \"créée\"; id: number; total: number }\n  | { etat: \"payée\"; id: number; total: number; paiement: string }\n  | { etat: \"livrée\"; id: number; total: number; paiement: string; livreur: string }\n  | { etat: \"annulée\"; id: number; total: number; motif: string };\n\ntype Evenement =\n  | { type: \"payer\"; paiement: string }\n  | { type: \"livrer\"; livreur: string }\n  | { type: \"annuler\"; motif: string };\n\nfunction avancer(c: Commande, ev: Evenement): Commande {\n  switch (ev.type) {\n    case \"payer\":\n      if (c.etat !== \"créée\") throw new Error(\"paiement impossible\");\n      return { etat: \"payée\", id: c.id, total: c.total, paiement: ev.paiement };\n    case \"livrer\":\n      if (c.etat !== \"payée\") throw new Error(\"livraison impossible\");\n      return { ...c, etat: \"livrée\", livreur: ev.livreur };\n    case \"annuler\":\n      if (c.etat === \"livrée\" || c.etat === \"annulée\") throw new Error(\"annulation impossible\");\n      return { etat: \"annulée\", id: c.id, total: c.total, motif: ev.motif };\n    default: {\n      const impossible: never = ev;\n      return impossible;\n    }\n  }\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "avancer({ etat: \"créée\", id: 1, total: 10 }, { type: \"payer\", paiement: \"espèces\" })",
+            "expected": "{\"etat\":\"payée\",\"id\":1,\"total\":10,\"paiement\":\"espèces\"}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { try { avancer({ etat: \"annulée\", id: 2, total: 5, motif: \"x\" }, { type: \"payer\", paiement: \"espèces\" }); return \"accepté\"; } catch (e) { return (e as Error).message; } })()",
+            "expected": "paiement impossible"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Vérifie l’état avant tout.",
+      "Construis le nouvel état « payée ».",
+      "Il doit contenir le moyen de paiement."
+    ],
+    "explanation_fr": "TypeScript refuserait un état « payée » sans paiement.",
+    "common_wrong_answers": [],
+    "id": "ts-m4-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un résumé générique",
+    "instruction_fr": "Écris resumer<T extends { etat: string }>(liste: T[]): Record<string, number> qui compte les éléments par état.",
+    "starter_code": "function resumer(liste: any[]): any {\n  return {};\n}\n",
+    "solution": "function resumer<T extends { etat: string }>(liste: T[]): Record<string, number> {\n  const r: Record<string, number> = {};\n  for (const c of liste) r[c.etat] = (r[c.etat] ?? 0) + 1;\n  return r;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "resumer([{ etat: \"créée\" }, { etat: \"payée\" }, { etat: \"créée\" }])",
+            "expected": "{\"créée\":2,\"payée\":1}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "resumer([])",
+            "expected": "{}"
+          },
+          {
+            "expr": "resumer([{ statut: \"x\" }])",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Contrains T à posséder un etat textuel.",
+      "Compte avec un Record.",
+      "?? 0 initialise un compteur absent."
+    ],
+    "explanation_fr": "La même fonction servira pour des inscriptions ou des livraisons.",
+    "common_wrong_answers": [],
+    "id": "ts-m4-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "L’annulation après livraison",
+    "instruction_fr": "avancer accepte d’annuler une commande déjà livrée. Corrige la règle : l’annulation est impossible pour une commande livrée ou déjà annulée.",
+    "starter_code": "type Commande =\n  | { etat: \"créée\"; id: number; total: number }\n  | { etat: \"payée\"; id: number; total: number; paiement: string }\n  | { etat: \"livrée\"; id: number; total: number; paiement: string; livreur: string }\n  | { etat: \"annulée\"; id: number; total: number; motif: string };\n\ntype Evenement =\n  | { type: \"payer\"; paiement: string }\n  | { type: \"livrer\"; livreur: string }\n  | { type: \"annuler\"; motif: string };\n\nfunction avancer(c: Commande, ev: Evenement): Commande {\n  switch (ev.type) {\n    case \"payer\":\n      if (c.etat !== \"créée\") throw new Error(\"paiement impossible\");\n      return { etat: \"payée\", id: c.id, total: c.total, paiement: ev.paiement };\n    case \"livrer\":\n      if (c.etat !== \"payée\") throw new Error(\"livraison impossible\");\n      return { ...c, etat: \"livrée\", livreur: ev.livreur };\n    case \"annuler\":\n      if (c.etat === \"annulée\") throw new Error(\"annulation impossible\");\n      return { etat: \"annulée\", id: c.id, total: c.total, motif: ev.motif };\n    default: {\n      const impossible: never = ev;\n      return impossible;\n    }\n  }\n}\n",
+    "solution": "type Commande =\n  | { etat: \"créée\"; id: number; total: number }\n  | { etat: \"payée\"; id: number; total: number; paiement: string }\n  | { etat: \"livrée\"; id: number; total: number; paiement: string; livreur: string }\n  | { etat: \"annulée\"; id: number; total: number; motif: string };\n\ntype Evenement =\n  | { type: \"payer\"; paiement: string }\n  | { type: \"livrer\"; livreur: string }\n  | { type: \"annuler\"; motif: string };\n\nfunction avancer(c: Commande, ev: Evenement): Commande {\n  switch (ev.type) {\n    case \"payer\":\n      if (c.etat !== \"créée\") throw new Error(\"paiement impossible\");\n      return { etat: \"payée\", id: c.id, total: c.total, paiement: ev.paiement };\n    case \"livrer\":\n      if (c.etat !== \"payée\") throw new Error(\"livraison impossible\");\n      return { ...c, etat: \"livrée\", livreur: ev.livreur };\n    case \"annuler\":\n      if (c.etat === \"livrée\" || c.etat === \"annulée\") throw new Error(\"annulation impossible\");\n      return { etat: \"annulée\", id: c.id, total: c.total, motif: ev.motif };\n    default: {\n      const impossible: never = ev;\n      return impossible;\n    }\n  }\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { try { avancer({ etat: \"livrée\", id: 1, total: 5, paiement: \"x\", livreur: \"y\" }, { type: \"annuler\", motif: \"z\" }); return \"accepté\"; } catch (e) { return (e as Error).message; } })()",
+            "expected": "annulation impossible"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "avancer({ etat: \"payée\", id: 3, total: 9, paiement: \"x\" }, { type: \"annuler\", motif: \"rupture\" }).etat",
+            "expected": "annulée"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une commande livrée ne s’annule plus.",
+      "Ajoute ce cas à la condition.",
+      "c.etat === \"livrée\" || c.etat === \"annulée\"."
+    ],
+    "explanation_fr": "Les types ne voient pas cette règle : elle dépend de la valeur de l’état, d’où le test.",
+    "common_wrong_answers": [],
+    "id": "ts-m4-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Importer et faire avancer",
+    "instruction_fr": "Écris traiter(texte: string, ev: Evenement): Record<string, number> : lis le JSON (un tableau de commandes « créée » avec id et total numériques ; ignore les éléments invalides), applique ev à chaque commande valide avec avancer (une commande refusée garde son état), puis renvoie le résumé par état. avancer et resumer sont fournis ; lève « JSON invalide » si besoin.",
+    "starter_code": "type Commande =\n  | { etat: \"créée\"; id: number; total: number }\n  | { etat: \"payée\"; id: number; total: number; paiement: string }\n  | { etat: \"livrée\"; id: number; total: number; paiement: string; livreur: string }\n  | { etat: \"annulée\"; id: number; total: number; motif: string };\n\ntype Evenement =\n  | { type: \"payer\"; paiement: string }\n  | { type: \"livrer\"; livreur: string }\n  | { type: \"annuler\"; motif: string };\n\nfunction avancer(c: Commande, ev: Evenement): Commande {\n  switch (ev.type) {\n    case \"payer\":\n      if (c.etat !== \"créée\") throw new Error(\"paiement impossible\");\n      return { etat: \"payée\", id: c.id, total: c.total, paiement: ev.paiement };\n    case \"livrer\":\n      if (c.etat !== \"payée\") throw new Error(\"livraison impossible\");\n      return { ...c, etat: \"livrée\", livreur: ev.livreur };\n    case \"annuler\":\n      if (c.etat === \"livrée\" || c.etat === \"annulée\") throw new Error(\"annulation impossible\");\n      return { etat: \"annulée\", id: c.id, total: c.total, motif: ev.motif };\n    default: {\n      const impossible: never = ev;\n      return impossible;\n    }\n  }\n}\n\nfunction resumer<T extends { etat: string }>(liste: T[]): Record<string, number> {\n  const r: Record<string, number> = {};\n  for (const c of liste) r[c.etat] = (r[c.etat] ?? 0) + 1;\n  return r;\n}\n\nfunction traiter(texte: string, ev: Evenement): Record<string, number> {\n  return resumer(JSON.parse(texte));\n}\n",
+    "solution": "type Commande =\n  | { etat: \"créée\"; id: number; total: number }\n  | { etat: \"payée\"; id: number; total: number; paiement: string }\n  | { etat: \"livrée\"; id: number; total: number; paiement: string; livreur: string }\n  | { etat: \"annulée\"; id: number; total: number; motif: string };\n\ntype Evenement =\n  | { type: \"payer\"; paiement: string }\n  | { type: \"livrer\"; livreur: string }\n  | { type: \"annuler\"; motif: string };\n\nfunction avancer(c: Commande, ev: Evenement): Commande {\n  switch (ev.type) {\n    case \"payer\":\n      if (c.etat !== \"créée\") throw new Error(\"paiement impossible\");\n      return { etat: \"payée\", id: c.id, total: c.total, paiement: ev.paiement };\n    case \"livrer\":\n      if (c.etat !== \"payée\") throw new Error(\"livraison impossible\");\n      return { ...c, etat: \"livrée\", livreur: ev.livreur };\n    case \"annuler\":\n      if (c.etat === \"livrée\" || c.etat === \"annulée\") throw new Error(\"annulation impossible\");\n      return { etat: \"annulée\", id: c.id, total: c.total, motif: ev.motif };\n    default: {\n      const impossible: never = ev;\n      return impossible;\n    }\n  }\n}\n\nfunction resumer<T extends { etat: string }>(liste: T[]): Record<string, number> {\n  const r: Record<string, number> = {};\n  for (const c of liste) r[c.etat] = (r[c.etat] ?? 0) + 1;\n  return r;\n}\n\nfunction estCreee(x: unknown): x is Commande {\n  return typeof x === \"object\" && x !== null\n    && (x as Commande).etat === \"créée\"\n    && typeof (x as Commande).id === \"number\"\n    && typeof (x as Commande).total === \"number\";\n}\n\nfunction traiter(texte: string, ev: Evenement): Record<string, number> {\n  let donnees: unknown;\n  try {\n    donnees = JSON.parse(texte);\n  } catch {\n    throw new Error(\"JSON invalide\");\n  }\n  const commandes = Array.isArray(donnees) ? donnees.filter(estCreee) : [];\n  const suivantes = commandes.map(c => {\n    try {\n      return avancer(c, ev);\n    } catch {\n      return c;\n    }\n  });\n  return resumer(suivantes);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "traiter('[{\"etat\":\"créée\",\"id\":1,\"total\":10},{\"etat\":\"créée\",\"id\":2},{\"etat\":\"créée\",\"id\":3,\"total\":5}]', { type: \"payer\", paiement: \"espèces\" })",
+            "expected": "{\"payée\":2}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "traiter('[{\"etat\":\"créée\",\"id\":1,\"total\":10}]', { type: \"livrer\", livreur: \"Kossi\" })",
+            "expected": "{\"créée\":1}"
+          },
+          {
+            "expr": "(() => { try { traiter(\"[\", { type: \"annuler\", motif: \"x\" }); return \"accepté\"; } catch (e) { return (e as Error).message; } })()",
+            "expected": "JSON invalide"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une garde vérifie chaque commande importée.",
+      "Une transition refusée laisse la commande telle quelle.",
+      "Termine par resumer."
+    ],
+    "explanation_fr": "Frontière vérifiée, transitions sûres, outil générique : tout le cours en une fonction.",
+    "common_wrong_answers": [],
+    "id": "ts-m4-03-e4"
+  }
+]

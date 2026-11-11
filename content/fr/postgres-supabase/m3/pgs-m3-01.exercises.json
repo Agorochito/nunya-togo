@@ -1,0 +1,348 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Fermer les commandes aux visiteurs",
+    "instruction_fr": "Retire tous les privilèges du rôle anon sur la table commandes. Les personnes connectées doivent toujours pouvoir les lire. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "revoke insert on commandes from anon;",
+    "solution": "revoke all on commandes from anon;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "revoke all on commandes from anon;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "select count(*)::int from commandes",
+            "description_fr": "Un visiteur ne peut plus lire les commandes.",
+            "error_includes": "permission denied",
+            "as": {
+              "role": "anon"
+            }
+          },
+          {
+            "sql": "select count(*)::int from commandes",
+            "description_fr": "Une personne connectée les lit encore.",
+            "expected": [
+              [
+                3
+              ]
+            ],
+            "as": {
+              "role": "authenticated",
+              "uid": "11111111-1111-1111-1111-111111111111"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "revoke all on commandes from anon;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "select count(*)::int from commandes",
+            "description_fr": "Un visiteur ne peut plus lire les commandes.",
+            "error_includes": "permission denied",
+            "as": {
+              "role": "anon"
+            }
+          },
+          {
+            "sql": "select count(*)::int from commandes",
+            "description_fr": "Une personne connectée les lit encore.",
+            "expected": [
+              [
+                4
+              ]
+            ],
+            "as": {
+              "role": "authenticated",
+              "uid": "11111111-1111-1111-1111-111111111111"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La consigne demande tous les privilèges.",
+      "revoke all retire select, insert, update et delete.",
+      "revoke all on commandes from anon;"
+    ],
+    "explanation_fr": "Le visiteur reçoit maintenant « permission denied » au lieu des commandes des clients.",
+    "common_wrong_answers": [],
+    "id": "pgs-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un catalogue en lecture seule",
+    "instruction_fr": "Les visiteurs doivent pouvoir lire les produits, mais ni en ajouter, ni en modifier, ni en supprimer. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "revoke all on produits from anon;",
+    "solution": "revoke insert, update, delete on produits from anon;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "revoke insert, update, delete on produits from anon;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "select count(*)::int from produits",
+            "description_fr": "Le catalogue reste lisible.",
+            "expected": [
+              [
+                4
+              ]
+            ],
+            "as": {
+              "role": "anon"
+            }
+          },
+          {
+            "sql": "insert into produits (nom, prix) values ('Piège', 1)",
+            "description_fr": "Un visiteur ne peut pas ajouter de produit.",
+            "error_includes": "permission denied",
+            "as": {
+              "role": "anon"
+            }
+          },
+          {
+            "sql": "update produits set prix = 1",
+            "description_fr": "Un visiteur ne peut pas changer les prix.",
+            "error_includes": "permission denied",
+            "as": {
+              "role": "anon"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "revoke insert, update, delete on produits from anon;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "select count(*)::int from produits",
+            "description_fr": "Le catalogue reste lisible.",
+            "expected": [
+              [
+                5
+              ]
+            ],
+            "as": {
+              "role": "anon"
+            }
+          },
+          {
+            "sql": "insert into produits (nom, prix) values ('Piège', 1)",
+            "description_fr": "Un visiteur ne peut pas ajouter de produit.",
+            "error_includes": "permission denied",
+            "as": {
+              "role": "anon"
+            }
+          },
+          {
+            "sql": "update produits set prix = 1",
+            "description_fr": "Un visiteur ne peut pas changer les prix.",
+            "error_includes": "permission denied",
+            "as": {
+              "role": "anon"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "revoke all bloquerait aussi la lecture.",
+      "Retire seulement les trois opérations d’écriture.",
+      "revoke insert, update, delete …"
+    ],
+    "explanation_fr": "La lecture publique reste possible ; l’écriture, non.",
+    "common_wrong_answers": [],
+    "id": "pgs-m3-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le mauvais verrou",
+    "instruction_fr": "Ce script empêche les visiteurs de lire le catalogue, ce qui casse le site, mais les laisse supprimer des produits. Corrige-le : lecture permise, suppression interdite. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "revoke select on produits from anon;",
+    "solution": "revoke delete on produits from anon;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "revoke delete on produits from anon;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "select count(*)::int from produits",
+            "description_fr": "Les visiteurs voient le catalogue.",
+            "expected": [
+              [
+                4
+              ]
+            ],
+            "as": {
+              "role": "anon"
+            }
+          },
+          {
+            "sql": "delete from produits where stock = 0",
+            "description_fr": "Les visiteurs ne peuvent rien supprimer.",
+            "error_includes": "permission denied",
+            "as": {
+              "role": "anon"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "revoke delete on produits from anon;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "select count(*)::int from produits",
+            "description_fr": "Les visiteurs voient le catalogue.",
+            "expected": [
+              [
+                5
+              ]
+            ],
+            "as": {
+              "role": "anon"
+            }
+          },
+          {
+            "sql": "delete from produits where stock = 0",
+            "description_fr": "Les visiteurs ne peuvent rien supprimer.",
+            "error_includes": "permission denied",
+            "as": {
+              "role": "anon"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le site a besoin de lire les produits.",
+      "C’est la suppression qu’il fallait retirer.",
+      "revoke delete on produits from anon;"
+    ],
+    "explanation_fr": "Retirer le mauvais privilège casse le site sans le protéger.",
+    "common_wrong_answers": [],
+    "id": "pgs-m3-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Protéger les profils",
+    "instruction_fr": "Les visiteurs ne doivent rien pouvoir faire sur profils ; les personnes connectées peuvent seulement les lire. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "revoke all on profils from authenticated;",
+    "solution": "revoke all on profils from anon;\nrevoke insert, update, delete on profils from authenticated;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "revoke all on profils from anon; revoke insert, update, delete on profils from authenticated;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "select count(*)::int from profils",
+            "description_fr": "Un visiteur ne lit pas les profils.",
+            "error_includes": "permission denied",
+            "as": {
+              "role": "anon"
+            }
+          },
+          {
+            "sql": "select count(*)::int from profils",
+            "description_fr": "Une personne connectée les lit.",
+            "expected": [
+              [
+                4
+              ]
+            ],
+            "as": {
+              "role": "authenticated",
+              "uid": "22222222-2222-2222-2222-222222222222"
+            }
+          },
+          {
+            "sql": "update profils set role = 'vendeur'",
+            "description_fr": "Une personne connectée ne peut pas se donner le rôle vendeur.",
+            "error_includes": "permission denied",
+            "as": {
+              "role": "authenticated",
+              "uid": "22222222-2222-2222-2222-222222222222"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "revoke all on profils from anon; revoke insert, update, delete on profils from authenticated;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "select count(*)::int from profils",
+            "description_fr": "Un visiteur ne lit pas les profils.",
+            "error_includes": "permission denied",
+            "as": {
+              "role": "anon"
+            }
+          },
+          {
+            "sql": "select count(*)::int from profils",
+            "description_fr": "Une personne connectée les lit.",
+            "expected": [
+              [
+                4
+              ]
+            ],
+            "as": {
+              "role": "authenticated",
+              "uid": "22222222-2222-2222-2222-222222222222"
+            }
+          },
+          {
+            "sql": "update profils set role = 'vendeur'",
+            "description_fr": "Une personne connectée ne peut pas se donner le rôle vendeur.",
+            "error_includes": "permission denied",
+            "as": {
+              "role": "authenticated",
+              "uid": "22222222-2222-2222-2222-222222222222"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Deux rôles, deux règles.",
+      "revoke all pour anon.",
+      "Pour authenticated, retire seulement les écritures."
+    ],
+    "explanation_fr": "Sans ce verrou, un client aurait pu se déclarer vendeur.",
+    "common_wrong_answers": [],
+    "id": "pgs-m3-01-e4"
+  }
+]

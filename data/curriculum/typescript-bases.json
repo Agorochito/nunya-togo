@@ -1,0 +1,294 @@
+{
+  "id": "typescript-bases",
+  "title_fr": "TypeScript : du JavaScript sûr",
+  "language": "typescript",
+  "runtime": "typescript",
+  "technology": "typescript",
+  "level": "intermediaire",
+  "replaces_plans": [
+    "typescript"
+  ],
+  "summary_fr": "Ajoute des types à ton JavaScript et laisse le compilateur trouver les erreurs avant l’exécution : types de base et fonctions, interfaces, unions et rétrécissement, null en mode strict, unions discriminées et cas oubliés, génériques, types utilitaires, classes, validation des données externes, puis suivi de commandes typé. TypeScript 5.6 en mode strict, en ligne.",
+  "prerequisite_courses": [
+    "javascript-bases"
+  ],
+  "prerequisites": [
+    "Maîtriser les fonctions, tableaux, objets et classes en JavaScript.",
+    "Le cours JavaScript de Nunya fournit ces bases."
+  ],
+  "outcomes": [
+    "Typer variables, fonctions, objets et tableaux, et lire les erreurs de type.",
+    "Modéliser des données avec unions, unions discriminées et types utilitaires.",
+    "Écrire des fonctions et classes génériques précises.",
+    "Traiter null et undefined en mode strict.",
+    "Vérifier les données externes avec des gardes de type."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Les types de base",
+      "outcome_fr": "Pourquoi TypeScript, types, tableaux, tuples et fonctions.",
+      "lesson_ids": [
+        "ts-m1-01",
+        "ts-m1-02",
+        "ts-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Objets et unions",
+      "outcome_fr": "Interfaces, unions, rétrécissement et null.",
+      "lesson_ids": [
+        "ts-m2-01",
+        "ts-m2-02",
+        "ts-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Types avancés",
+      "outcome_fr": "Unions discriminées, génériques et types utilitaires.",
+      "lesson_ids": [
+        "ts-m3-01",
+        "ts-m3-02",
+        "ts-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Programmer avec les types",
+      "outcome_fr": "Classes, validation des données et projet de suivi.",
+      "lesson_ids": [
+        "ts-m4-01",
+        "ts-m4-02",
+        "ts-m4-03"
+      ]
+    }
+  ],
+  "next_courses": [],
+  "status": "brouillon",
+  "reviewer": null,
+  "later_modules": [],
+  "lessons": [
+    {
+      "id": "ts-m1-01",
+      "title_fr": "Pourquoi TypeScript ?",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "js-m8-03"
+      ],
+      "tags": [
+        "typescript",
+        "types",
+        "javascript",
+        "TypeScript",
+        "annotation",
+        "inférence",
+        "mode strict"
+      ]
+    },
+    {
+      "id": "ts-m1-02",
+      "title_fr": "Types de base, tableaux et tuples",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "ts-m1-01"
+      ],
+      "tags": [
+        "typescript",
+        "types",
+        "javascript",
+        "type primitif",
+        "tuple",
+        "any",
+        "unknown"
+      ]
+    },
+    {
+      "id": "ts-m1-03",
+      "title_fr": "Fonctions typées",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "ts-m1-02"
+      ],
+      "tags": [
+        "typescript",
+        "types",
+        "javascript",
+        "signature",
+        "void",
+        "paramètre optionnel",
+        "type de fonction"
+      ]
+    },
+    {
+      "id": "ts-m2-01",
+      "title_fr": "Objets, interfaces et types",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "ts-m1-03"
+      ],
+      "tags": [
+        "typescript",
+        "types",
+        "javascript",
+        "interface",
+        "alias de type",
+        "typage structurel",
+        "readonly"
+      ]
+    },
+    {
+      "id": "ts-m2-02",
+      "title_fr": "Unions et rétrécissement",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "ts-m2-01"
+      ],
+      "tags": [
+        "typescript",
+        "types",
+        "javascript",
+        "union",
+        "type littéral",
+        "rétrécissement",
+        "analyse de flux"
+      ]
+    },
+    {
+      "id": "ts-m2-03",
+      "title_fr": "null, undefined et le mode strict",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "ts-m2-02"
+      ],
+      "tags": [
+        "typescript",
+        "types",
+        "javascript",
+        "null",
+        "undefined",
+        "chaînage optionnel",
+        "coalescence"
+      ]
+    },
+    {
+      "id": "ts-m3-01",
+      "title_fr": "Unions discriminées et cas oubliés",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "ts-m2-03"
+      ],
+      "tags": [
+        "typescript",
+        "types",
+        "javascript",
+        "union discriminée",
+        "discriminant",
+        "never",
+        "exhaustivité"
+      ]
+    },
+    {
+      "id": "ts-m3-02",
+      "title_fr": "Les génériques",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "ts-m3-01"
+      ],
+      "tags": [
+        "typescript",
+        "types",
+        "javascript",
+        "générique",
+        "paramètre de type",
+        "contrainte",
+        "inférence de type générique"
+      ]
+    },
+    {
+      "id": "ts-m3-03",
+      "title_fr": "Les types utilitaires",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "ts-m3-02"
+      ],
+      "tags": [
+        "typescript",
+        "types",
+        "javascript",
+        "type utilitaire",
+        "Partial",
+        "Omit",
+        "Record"
+      ]
+    },
+    {
+      "id": "ts-m4-01",
+      "title_fr": "Classes typées",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "ts-m3-03"
+      ],
+      "tags": [
+        "typescript",
+        "types",
+        "javascript",
+        "encapsulation",
+        "private",
+        "implements",
+        "propriété de paramètre"
+      ]
+    },
+    {
+      "id": "ts-m4-02",
+      "title_fr": "Valider les données venues de l’extérieur",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "ts-m4-01"
+      ],
+      "tags": [
+        "typescript",
+        "types",
+        "javascript",
+        "donnée externe",
+        "assertion de type",
+        "garde de type",
+        "prédicat de type"
+      ]
+    },
+    {
+      "id": "ts-m4-03",
+      "title_fr": "Projet : suivre des commandes en toute sécurité",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "ts-m4-02"
+      ],
+      "tags": [
+        "typescript",
+        "types",
+        "javascript",
+        "cycle de vie",
+        "transition",
+        "immuabilité",
+        "frontière"
+      ]
+    }
+  ],
+  "estimated_minutes": 240,
+  "content_revision": "8eaed2a6f241",
+  "exercise_count": 48,
+  "quiz_count": 36
+}

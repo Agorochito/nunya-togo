@@ -1,0 +1,204 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Un texte plus grand",
+    "instruction_fr": "Le texte de body fait 13 pixels. Passe-le à 18 pixels.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    body {\n      font-size: 13px;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <h1>Ama Mensah</h1>\n    <h2>Projets</h2>\n    <p>Mon quiz : <a href=\"#quiz\">voir le quiz</a>.</p>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    body {\n      font-size: 18px;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <h1>Ama Mensah</h1>\n    <h2>Projets</h2>\n    <p>Mon quiz : <a href=\"#quiz\">voir le quiz</a>.</p>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Texte confortable",
+        "checks": [
+          {
+            "selector": "body",
+            "style": {
+              "font-size": "18px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Les paragraphes héritent",
+        "checks": [
+          {
+            "selector": "p",
+            "style": {
+              "font-size": "18px"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La règle body fixe la taille de base.",
+      "Remplace 13px.",
+      "font-size: 18px;"
+    ],
+    "explanation_fr": "Les paragraphes héritent de la taille de body.",
+    "common_wrong_answers": [],
+    "id": "pw-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Une échelle de titres",
+    "instruction_fr": "Donne au h1 une taille de 32px et au h2 une taille de 24px, tous deux de la couleur d’accent var(--accent).",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    :root {\n      --accent: #1f5e46;\n    }\n    body {\n      font-size: 18px;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <h1>Ama Mensah</h1>\n    <h2>Projets</h2>\n    <p>Mon quiz : <a href=\"#quiz\">voir le quiz</a>.</p>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    :root {\n      --accent: #1f5e46;\n    }\n    body {\n      font-size: 18px;\n    }\n    h1 {\n      font-size: 32px;\n      color: var(--accent);\n    }\n    h2 {\n      font-size: 24px;\n      color: var(--accent);\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <h1>Ama Mensah</h1>\n    <h2>Projets</h2>\n    <p>Mon quiz : <a href=\"#quiz\">voir le quiz</a>.</p>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Tailles des titres",
+        "checks": [
+          {
+            "selector": "h1",
+            "style": {
+              "font-size": "32px"
+            }
+          },
+          {
+            "selector": "h2",
+            "style": {
+              "font-size": "24px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Couleur d’accent",
+        "checks": [
+          {
+            "selector": "h1",
+            "style": {
+              "color": "#1f5e46"
+            }
+          },
+          {
+            "selector": "h2",
+            "style": {
+              "color": "#1f5e46"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une règle par niveau de titre.",
+      "Utilise var(--accent) pour la couleur.",
+      "h1 : 32px, h2 : 24px."
+    ],
+    "explanation_fr": "Une échelle régulière donne une impression d’ordre.",
+    "common_wrong_answers": [],
+    "id": "pw-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le texte invisible au soleil",
+    "instruction_fr": "Les paragraphes utilisent #b8b8b8 sur fond blanc, soit environ 2 pour 1. Remplace cette couleur par #333333, et rends les liens soulignés.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    body {\n      background-color: #ffffff;\n    }\n    p {\n      color: #b8b8b8;\n    }\n    a {\n      text-decoration: none;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <h1>Ama Mensah</h1>\n    <h2>Projets</h2>\n    <p>Mon quiz : <a href=\"#quiz\">voir le quiz</a>.</p>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    body {\n      background-color: #ffffff;\n    }\n    p {\n      color: #333333;\n    }\n    a {\n      text-decoration: underline;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <h1>Ama Mensah</h1>\n    <h2>Projets</h2>\n    <p>Mon quiz : <a href=\"#quiz\">voir le quiz</a>.</p>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Texte contrasté",
+        "checks": [
+          {
+            "selector": "p",
+            "style": {
+              "color": "#333333"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Liens visibles",
+        "checks": [
+          {
+            "selector": "a",
+            "style": {
+              "text-decoration-line": "underline"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le gris clair n’atteint pas 4,5 pour 1.",
+      "#333333 dépasse 12 pour 1.",
+      "Remets text-decoration: underline sur a."
+    ],
+    "explanation_fr": "Lisibilité d’abord : l’élégance ne compte que si l’on peut lire.",
+    "common_wrong_answers": [],
+    "id": "pw-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "La typographie d’Ama",
+    "instruction_fr": "Écris : variables --texte (#1d1d1f) et --accent (#1f5e46) ; body en 18px, couleur var(--texte), fond #ffffff ; h1 en 32px et h2 en 24px de couleur d’accent ; liens de couleur d’accent et soulignés.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    body {\n      font-size: 12px;\n      color: #aaaaaa;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <h1>Ama Mensah</h1>\n    <h2>Projets</h2>\n    <p>Mon quiz : <a href=\"#quiz\">voir le quiz</a>.</p>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    :root {\n      --texte: #1d1d1f;\n      --accent: #1f5e46;\n    }\n    body {\n      font-size: 18px;\n      color: var(--texte);\n      background-color: #ffffff;\n    }\n    h1 {\n      font-size: 32px;\n      color: var(--accent);\n    }\n    h2 {\n      font-size: 24px;\n      color: var(--accent);\n    }\n    a {\n      color: var(--accent);\n      text-decoration: underline;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <h1>Ama Mensah</h1>\n    <h2>Projets</h2>\n    <p>Mon quiz : <a href=\"#quiz\">voir le quiz</a>.</p>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Texte et titres",
+        "checks": [
+          {
+            "selector": "body",
+            "style": {
+              "font-size": "18px",
+              "color": "#1d1d1f"
+            }
+          },
+          {
+            "selector": "h1",
+            "style": {
+              "font-size": "32px"
+            }
+          },
+          {
+            "selector": "h2",
+            "style": {
+              "font-size": "24px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Couleurs et liens",
+        "checks": [
+          {
+            "selector": "h1",
+            "style": {
+              "color": "#1f5e46"
+            }
+          },
+          {
+            "selector": "a",
+            "style": {
+              "color": "#1f5e46",
+              "text-decoration-line": "underline"
+            }
+          },
+          {
+            "selector": "body",
+            "style": {
+              "background-color": "#ffffff"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Commence par les variables.",
+      "Puis body, h1 et h2.",
+      "Termine par la règle des liens."
+    ],
+    "explanation_fr": "Ta page est lisible au soleil comme à l’ombre.",
+    "common_wrong_answers": [],
+    "id": "pw-m2-02-e4"
+  }
+]

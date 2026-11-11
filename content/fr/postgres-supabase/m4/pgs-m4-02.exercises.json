@@ -1,0 +1,446 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Compter ses commandes",
+    "instruction_fr": "Crée la fonction mon_total() (security invoker, stable) qui renvoie le nombre de commandes de la personne connectée, en integer. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "create function mon_total() returns integer\nlanguage sql stable\nas $$ select count(*)::int from commandes $$;",
+    "solution": "create function mon_total() returns integer\nlanguage sql stable\nas $$ select count(*)::int from commandes where client_id = auth.uid() $$;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "create function mon_total() returns integer language sql stable as $$ select count(*)::int from commandes where client_id = auth.uid() $$;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "select mon_total()",
+            "description_fr": "Le total d’Afi.",
+            "expected": [
+              [
+                2
+              ]
+            ],
+            "as": {
+              "role": "authenticated",
+              "uid": "11111111-1111-1111-1111-111111111111"
+            }
+          },
+          {
+            "sql": "select mon_total()",
+            "description_fr": "Le total de Yao.",
+            "expected": [
+              [
+                1
+              ]
+            ],
+            "as": {
+              "role": "authenticated",
+              "uid": "22222222-2222-2222-2222-222222222222"
+            }
+          },
+          {
+            "sql": "select mon_total()",
+            "description_fr": "Un visiteur obtient 0.",
+            "expected": [
+              [
+                0
+              ]
+            ],
+            "as": {
+              "role": "anon"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "create function mon_total() returns integer language sql stable as $$ select count(*)::int from commandes where client_id = auth.uid() $$;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "select mon_total()",
+            "description_fr": "Le total d’Afi.",
+            "expected": [
+              [
+                1
+              ]
+            ],
+            "as": {
+              "role": "authenticated",
+              "uid": "11111111-1111-1111-1111-111111111111"
+            }
+          },
+          {
+            "sql": "select mon_total()",
+            "description_fr": "Le total de Yao.",
+            "expected": [
+              [
+                3
+              ]
+            ],
+            "as": {
+              "role": "authenticated",
+              "uid": "22222222-2222-2222-2222-222222222222"
+            }
+          },
+          {
+            "sql": "select mon_total()",
+            "description_fr": "Un visiteur obtient 0.",
+            "expected": [
+              [
+                0
+              ]
+            ],
+            "as": {
+              "role": "anon"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Filtre sur la personne connectée.",
+      "auth.uid() fonctionne dans la fonction.",
+      "where client_id = auth.uid()."
+    ],
+    "explanation_fr": "Une fonction invoker ordinaire : elle ne contourne aucune règle.",
+    "common_wrong_answers": [],
+    "id": "pgs-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Passer commande en sécurité",
+    "instruction_fr": "Le catalogue et les commandes sont protégés (fourni). Écris passer_commande(p_produit bigint, p_quantite integer) returns bigint, security definer, search_path public : refuse « connexion requise » sans identité, « stock insuffisant » si la quantité est < 1 ou dépasse le stock, puis baisse le stock, crée la commande au nom de auth.uid() et renvoie son id. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "alter table produits enable row level security;\ncreate policy catalogue_public on produits for select to anon, authenticated using (true);\nalter table commandes enable row level security;\ncreate policy mes_commandes on commandes for select to authenticated using (client_id = auth.uid());\ncreate function passer_commande(p_produit bigint, p_quantite integer) returns bigint\nlanguage plpgsql\nsecurity definer\nset search_path = public\nas $$\nbegin\n  return 0;\nend;\n$$;",
+    "solution": "alter table produits enable row level security;\ncreate policy catalogue_public on produits for select to anon, authenticated using (true);\nalter table commandes enable row level security;\ncreate policy mes_commandes on commandes for select to authenticated using (client_id = auth.uid());\ncreate function passer_commande(p_produit bigint, p_quantite integer) returns bigint\nlanguage plpgsql\nsecurity definer\nset search_path = public\nas $$\ndeclare\n  nouvel_id bigint;\nbegin\n  if auth.uid() is null then\n    raise exception 'connexion requise';\n  end if;\n  if p_quantite < 1 or (select stock from produits where id = p_produit) < p_quantite then\n    raise exception 'stock insuffisant';\n  end if;\n  update produits set stock = stock - p_quantite where id = p_produit;\n  insert into commandes (client_id, produit_id, quantite) values (auth.uid(), p_produit, p_quantite)\n  returning id into nouvel_id;\n  return nouvel_id;\nend;\n$$;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "alter table produits enable row level security; create policy catalogue_public on produits for select to anon, authenticated using (true); alter table commandes enable row level security; create policy mes_commandes on commandes for select to authenticated using (client_id = auth.uid()); create function passer_commande(p_produit bigint, p_quantite integer) returns bigint language plpgsql security definer set search_path = public as $$ declare   nouvel_id bigint; begin   if auth.uid() is null then     raise exception 'connexion requise';   end if;   if p_quantite < 1 or (select stock from produits where id = p_produit) < p_quantite then     raise exception 'stock insuffisant';   end if;   update produits set stock = stock - p_quantite where id = p_produit;   insert into commandes (client_id, produit_id, quantite) values (auth.uid(), p_produit, p_quantite)   returning id into nouvel_id;   return nouvel_id; end; $$;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "select passer_commande(1, 2); select stock from produits where id = 1",
+            "description_fr": "Afi commande : le stock baisse.",
+            "expected": [
+              [
+                38
+              ]
+            ],
+            "as": {
+              "role": "authenticated",
+              "uid": "11111111-1111-1111-1111-111111111111"
+            }
+          },
+          {
+            "sql": "select passer_commande(1, 2)",
+            "description_fr": "Un visiteur est refusé.",
+            "error_includes": "connexion requise",
+            "as": {
+              "role": "anon"
+            }
+          },
+          {
+            "sql": "select passer_commande(1, 100000)",
+            "description_fr": "Une quantité excessive est refusée.",
+            "error_includes": "stock insuffisant",
+            "as": {
+              "role": "authenticated",
+              "uid": "11111111-1111-1111-1111-111111111111"
+            }
+          },
+          {
+            "sql": "with u as (update produits set stock = 0 returning id) select count(*)::int from u",
+            "description_fr": "Afi ne peut toujours pas modifier les stocks directement.",
+            "expected": [
+              [
+                0
+              ]
+            ],
+            "as": {
+              "role": "authenticated",
+              "uid": "11111111-1111-1111-1111-111111111111"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "alter table produits enable row level security; create policy catalogue_public on produits for select to anon, authenticated using (true); alter table commandes enable row level security; create policy mes_commandes on commandes for select to authenticated using (client_id = auth.uid()); create function passer_commande(p_produit bigint, p_quantite integer) returns bigint language plpgsql security definer set search_path = public as $$ declare   nouvel_id bigint; begin   if auth.uid() is null then     raise exception 'connexion requise';   end if;   if p_quantite < 1 or (select stock from produits where id = p_produit) < p_quantite then     raise exception 'stock insuffisant';   end if;   update produits set stock = stock - p_quantite where id = p_produit;   insert into commandes (client_id, produit_id, quantite) values (auth.uid(), p_produit, p_quantite)   returning id into nouvel_id;   return nouvel_id; end; $$;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "select passer_commande(1, 2); select stock from produits where id = 1",
+            "description_fr": "Afi commande : le stock baisse.",
+            "expected": [
+              [
+                98
+              ]
+            ],
+            "as": {
+              "role": "authenticated",
+              "uid": "11111111-1111-1111-1111-111111111111"
+            }
+          },
+          {
+            "sql": "select passer_commande(1, 2)",
+            "description_fr": "Un visiteur est refusé.",
+            "error_includes": "connexion requise",
+            "as": {
+              "role": "anon"
+            }
+          },
+          {
+            "sql": "select passer_commande(1, 100000)",
+            "description_fr": "Une quantité excessive est refusée.",
+            "error_includes": "stock insuffisant",
+            "as": {
+              "role": "authenticated",
+              "uid": "11111111-1111-1111-1111-111111111111"
+            }
+          },
+          {
+            "sql": "with u as (update produits set stock = 0 returning id) select count(*)::int from u",
+            "description_fr": "Afi ne peut toujours pas modifier les stocks directement.",
+            "expected": [
+              [
+                0
+              ]
+            ],
+            "as": {
+              "role": "authenticated",
+              "uid": "11111111-1111-1111-1111-111111111111"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Vérifie auth.uid() en premier.",
+      "Contrôle la quantité et le stock avant toute écriture.",
+      "insert … returning id into nouvel_id."
+    ],
+    "explanation_fr": "Le client passe commande sans jamais pouvoir toucher aux stocks lui-même.",
+    "common_wrong_answers": [],
+    "id": "pgs-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La fonction ouverte aux anonymes",
+    "instruction_fr": "passer_commande fonctionne, mais oublie de vérifier l’identité : un visiteur anonyme peut créer une commande sans client, ce que la table refuse avec une erreur confuse. Ajoute le refus « connexion requise ». Chaque essai repart de la base initiale fictive.",
+    "starter_code": "alter table produits enable row level security;\ncreate policy catalogue_public on produits for select to anon, authenticated using (true);\nalter table commandes enable row level security;\ncreate policy mes_commandes on commandes for select to authenticated using (client_id = auth.uid());\ncreate function passer_commande(p_produit bigint, p_quantite integer) returns bigint\nlanguage plpgsql\nsecurity definer\nset search_path = public\nas $$\ndeclare\n  nouvel_id bigint;\nbegin\n  if p_quantite < 1 or (select stock from produits where id = p_produit) < p_quantite then\n    raise exception 'stock insuffisant';\n  end if;\n  update produits set stock = stock - p_quantite where id = p_produit;\n  insert into commandes (client_id, produit_id, quantite) values (auth.uid(), p_produit, p_quantite)\n  returning id into nouvel_id;\n  return nouvel_id;\nend;\n$$;",
+    "solution": "alter table produits enable row level security;\ncreate policy catalogue_public on produits for select to anon, authenticated using (true);\nalter table commandes enable row level security;\ncreate policy mes_commandes on commandes for select to authenticated using (client_id = auth.uid());\ncreate function passer_commande(p_produit bigint, p_quantite integer) returns bigint\nlanguage plpgsql\nsecurity definer\nset search_path = public\nas $$\ndeclare\n  nouvel_id bigint;\nbegin\n  if auth.uid() is null then\n    raise exception 'connexion requise';\n  end if;\n  if p_quantite < 1 or (select stock from produits where id = p_produit) < p_quantite then\n    raise exception 'stock insuffisant';\n  end if;\n  update produits set stock = stock - p_quantite where id = p_produit;\n  insert into commandes (client_id, produit_id, quantite) values (auth.uid(), p_produit, p_quantite)\n  returning id into nouvel_id;\n  return nouvel_id;\nend;\n$$;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "alter table produits enable row level security; create policy catalogue_public on produits for select to anon, authenticated using (true); alter table commandes enable row level security; create policy mes_commandes on commandes for select to authenticated using (client_id = auth.uid()); create function passer_commande(p_produit bigint, p_quantite integer) returns bigint language plpgsql security definer set search_path = public as $$ declare   nouvel_id bigint; begin   if auth.uid() is null then     raise exception 'connexion requise';   end if;   if p_quantite < 1 or (select stock from produits where id = p_produit) < p_quantite then     raise exception 'stock insuffisant';   end if;   update produits set stock = stock - p_quantite where id = p_produit;   insert into commandes (client_id, produit_id, quantite) values (auth.uid(), p_produit, p_quantite)   returning id into nouvel_id;   return nouvel_id; end; $$;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "select passer_commande(1, 1)",
+            "description_fr": "Un visiteur reçoit un message clair.",
+            "error_includes": "connexion requise",
+            "as": {
+              "role": "anon"
+            }
+          },
+          {
+            "sql": "select passer_commande(4, 1); select stock from produits where id = 4",
+            "description_fr": "Yao peut toujours commander.",
+            "expected": [
+              [
+                24
+              ]
+            ],
+            "as": {
+              "role": "authenticated",
+              "uid": "22222222-2222-2222-2222-222222222222"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "alter table produits enable row level security; create policy catalogue_public on produits for select to anon, authenticated using (true); alter table commandes enable row level security; create policy mes_commandes on commandes for select to authenticated using (client_id = auth.uid()); create function passer_commande(p_produit bigint, p_quantite integer) returns bigint language plpgsql security definer set search_path = public as $$ declare   nouvel_id bigint; begin   if auth.uid() is null then     raise exception 'connexion requise';   end if;   if p_quantite < 1 or (select stock from produits where id = p_produit) < p_quantite then     raise exception 'stock insuffisant';   end if;   update produits set stock = stock - p_quantite where id = p_produit;   insert into commandes (client_id, produit_id, quantite) values (auth.uid(), p_produit, p_quantite)   returning id into nouvel_id;   return nouvel_id; end; $$;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "select passer_commande(1, 1)",
+            "description_fr": "Un visiteur reçoit un message clair.",
+            "error_includes": "connexion requise",
+            "as": {
+              "role": "anon"
+            }
+          },
+          {
+            "sql": "select passer_commande(4, 1); select stock from produits where id = 4",
+            "description_fr": "Yao peut toujours commander.",
+            "expected": [
+              [
+                7
+              ]
+            ],
+            "as": {
+              "role": "authenticated",
+              "uid": "22222222-2222-2222-2222-222222222222"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "auth.uid() vaut null pour un visiteur.",
+      "Vérifie-le avant toute écriture.",
+      "raise exception 'connexion requise'."
+    ],
+    "explanation_fr": "Une fonction de confiance doit refuser explicitement : on ne compte pas sur une erreur accidentelle.",
+    "common_wrong_answers": [],
+    "id": "pgs-m4-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Annuler une commande",
+    "instruction_fr": "Écris annuler_commande(p_id bigint) returns void (security definer, search_path public) : la commande doit appartenir à auth.uid() et être en_attente, sinon « commande introuvable » ; remets la quantité en stock, puis supprime la commande. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "alter table produits enable row level security;\ncreate policy catalogue_public on produits for select to anon, authenticated using (true);\nalter table commandes enable row level security;\ncreate policy mes_commandes on commandes for select to authenticated using (client_id = auth.uid());\ncreate function annuler_commande(p_id bigint) returns void\nlanguage plpgsql\nsecurity definer\nset search_path = public\nas $$\nbegin\n  delete from commandes where id = p_id;\nend;\n$$;",
+    "solution": "alter table produits enable row level security;\ncreate policy catalogue_public on produits for select to anon, authenticated using (true);\nalter table commandes enable row level security;\ncreate policy mes_commandes on commandes for select to authenticated using (client_id = auth.uid());\ncreate function annuler_commande(p_id bigint) returns void\nlanguage plpgsql\nsecurity definer\nset search_path = public\nas $$\ndeclare\n  c commandes;\nbegin\n  select * into c from commandes where id = p_id and client_id = auth.uid() and statut = 'en_attente';\n  if not found then\n    raise exception 'commande introuvable';\n  end if;\n  update produits set stock = stock + c.quantite where id = c.produit_id;\n  delete from commandes where id = p_id;\nend;\n$$;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "alter table produits enable row level security; create policy catalogue_public on produits for select to anon, authenticated using (true); alter table commandes enable row level security; create policy mes_commandes on commandes for select to authenticated using (client_id = auth.uid()); create function annuler_commande(p_id bigint) returns void language plpgsql security definer set search_path = public as $$ declare   c commandes; begin   select * into c from commandes where id = p_id and client_id = auth.uid() and statut = 'en_attente';   if not found then     raise exception 'commande introuvable';   end if;   update produits set stock = stock + c.quantite where id = c.produit_id;   delete from commandes where id = p_id; end; $$;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "select annuler_commande((select min(id) from commandes where client_id = '22222222-2222-2222-2222-222222222222' and statut = 'en_attente')); select id, stock from produits order by id",
+            "description_fr": "Yao annule sa commande en attente : le stock revient.",
+            "expected": [
+              [
+                1,
+                40
+              ],
+              [
+                2,
+                13
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                4,
+                25
+              ]
+            ],
+            "as": {
+              "role": "authenticated",
+              "uid": "22222222-2222-2222-2222-222222222222"
+            }
+          },
+          {
+            "sql": "select annuler_commande((select min(id) from commandes where client_id = '22222222-2222-2222-2222-222222222222'))",
+            "description_fr": "Afi ne peut pas annuler la commande de Yao.",
+            "error_includes": "commande introuvable",
+            "as": {
+              "role": "authenticated",
+              "uid": "11111111-1111-1111-1111-111111111111"
+            }
+          },
+          {
+            "sql": "select annuler_commande((select min(id) from commandes where client_id = '11111111-1111-1111-1111-111111111111' and statut <> 'en_attente'))",
+            "description_fr": "Une commande déjà payée ou livrée ne s’annule pas.",
+            "error_includes": "commande introuvable",
+            "as": {
+              "role": "authenticated",
+              "uid": "11111111-1111-1111-1111-111111111111"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "alter table produits enable row level security; create policy catalogue_public on produits for select to anon, authenticated using (true); alter table commandes enable row level security; create policy mes_commandes on commandes for select to authenticated using (client_id = auth.uid()); create function annuler_commande(p_id bigint) returns void language plpgsql security definer set search_path = public as $$ declare   c commandes; begin   select * into c from commandes where id = p_id and client_id = auth.uid() and statut = 'en_attente';   if not found then     raise exception 'commande introuvable';   end if;   update produits set stock = stock + c.quantite where id = c.produit_id;   delete from commandes where id = p_id; end; $$;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "select annuler_commande((select min(id) from commandes where client_id = '22222222-2222-2222-2222-222222222222' and statut = 'en_attente')); select id, stock from produits order by id",
+            "description_fr": "Yao annule sa commande en attente : le stock revient.",
+            "expected": [
+              [
+                1,
+                100
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                60
+              ],
+              [
+                4,
+                9
+              ],
+              [
+                5,
+                30
+              ]
+            ],
+            "as": {
+              "role": "authenticated",
+              "uid": "22222222-2222-2222-2222-222222222222"
+            }
+          },
+          {
+            "sql": "select annuler_commande((select min(id) from commandes where client_id = '22222222-2222-2222-2222-222222222222'))",
+            "description_fr": "Afi ne peut pas annuler la commande de Yao.",
+            "error_includes": "commande introuvable",
+            "as": {
+              "role": "authenticated",
+              "uid": "11111111-1111-1111-1111-111111111111"
+            }
+          },
+          {
+            "sql": "select annuler_commande((select min(id) from commandes where client_id = '11111111-1111-1111-1111-111111111111' and statut <> 'en_attente'))",
+            "description_fr": "Une commande déjà payée ou livrée ne s’annule pas.",
+            "error_includes": "commande introuvable",
+            "as": {
+              "role": "authenticated",
+              "uid": "11111111-1111-1111-1111-111111111111"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "select … into c avec les trois conditions.",
+      "if not found then raise exception.",
+      "Remets le stock avant de supprimer."
+    ],
+    "explanation_fr": "Toutes les conditions sont dans la fonction : l’application n’a qu’à appeler et afficher le message.",
+    "common_wrong_answers": [],
+    "id": "pgs-m4-02-e4"
+  }
+]

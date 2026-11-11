@@ -1,0 +1,211 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Images souples",
+    "instruction_fr": "Ajoute une règle qui empêche toutes les images de dépasser leur conteneur, tout en gardant leurs proportions.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <main>\n    <img src=\"portrait-ama.jpg\" alt=\"Portrait d’Ama Mensah souriante\" width=\"800\" height=\"600\">\n    <p>Mon adresse de projet : https://exemple.github.io/un-tres-long-nom-de-depot-sans-espace</p>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    img {\n      max-width: 100%;\n      height: auto;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <img src=\"portrait-ama.jpg\" alt=\"Portrait d’Ama Mensah souriante\" width=\"800\" height=\"600\">\n    <p>Mon adresse de projet : https://exemple.github.io/un-tres-long-nom-de-depot-sans-espace</p>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Image limitée",
+        "checks": [
+          {
+            "selector": "img",
+            "style": {
+              "max-width": "100%"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 700
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Dimensions HTML conservées",
+        "checks": [
+          {
+            "selector": "img",
+            "attributes": {
+              "width": "800",
+              "height": "600"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 700
+        }
+      }
+    ],
+    "hints": [
+      "La règle vise img.",
+      "max-width limite la largeur.",
+      "max-width: 100%; height: auto;"
+    ],
+    "explanation_fr": "Une règle de deux lignes protège toutes les images de la page.",
+    "common_wrong_answers": [],
+    "id": "pw-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "L’adresse trop longue",
+    "instruction_fr": "Ajoute une règle qui autorise les paragraphes à couper les mots trop longs avec overflow-wrap: anywhere.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    img {\n      max-width: 100%;\n      height: auto;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <img src=\"portrait-ama.jpg\" alt=\"Portrait d’Ama Mensah souriante\" width=\"800\" height=\"600\">\n    <p>Mon adresse de projet : https://exemple.github.io/un-tres-long-nom-de-depot-sans-espace</p>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    img {\n      max-width: 100%;\n      height: auto;\n    }\n    p {\n      overflow-wrap: anywhere;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <img src=\"portrait-ama.jpg\" alt=\"Portrait d’Ama Mensah souriante\" width=\"800\" height=\"600\">\n    <p>Mon adresse de projet : https://exemple.github.io/un-tres-long-nom-de-depot-sans-espace</p>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Coupure autorisée",
+        "checks": [
+          {
+            "selector": "p",
+            "style": {
+              "overflow-wrap": "anywhere"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 700
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Image toujours souple",
+        "checks": [
+          {
+            "selector": "img",
+            "style": {
+              "max-width": "100%"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 700
+        }
+      }
+    ],
+    "hints": [
+      "La règle vise p.",
+      "La propriété s’appelle overflow-wrap.",
+      "overflow-wrap: anywhere;"
+    ],
+    "explanation_fr": "L’adresse va à la ligne au lieu d’élargir la page.",
+    "common_wrong_answers": [],
+    "id": "pw-m3-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La largeur fixe",
+    "instruction_fr": "main a width: 900px et déborde sur téléphone. Remplace cette largeur par une largeur maximale de 900px.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    main {\n      width: 900px;\n      margin: 0 auto;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <p>Contenu principal.</p>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    main {\n      max-width: 900px;\n      margin: 0 auto;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <p>Contenu principal.</p>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Largeur maximale",
+        "checks": [
+          {
+            "selector": "main",
+            "style": {
+              "max-width": "900px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 700
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Sur ordinateur",
+        "checks": [
+          {
+            "selector": "main",
+            "style": {
+              "max-width": "900px",
+              "width": "900px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 1200,
+          "height": 700
+        }
+      }
+    ],
+    "hints": [
+      "width impose 900 pixels partout.",
+      "max-width fixe seulement un maximum.",
+      "Remplace width par max-width."
+    ],
+    "explanation_fr": "Sur un grand écran, le résultat est identique ; sur téléphone, la page ne déborde plus.",
+    "common_wrong_answers": [],
+    "id": "pw-m3-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Une feuille de style anti-débordement",
+    "instruction_fr": "Écris trois règles : img avec max-width 100% et height auto ; p avec overflow-wrap anywhere ; main avec max-width 720px centré (margin 0 auto) et padding 16px. Garde la balise viewport.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    main {\n      width: 720px;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <img src=\"portrait-ama.jpg\" alt=\"Portrait d’Ama Mensah souriante\" width=\"800\" height=\"600\">\n    <p>Mon adresse de projet : https://exemple.github.io/un-tres-long-nom-de-depot-sans-espace</p>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    img {\n      max-width: 100%;\n      height: auto;\n    }\n    p {\n      overflow-wrap: anywhere;\n    }\n    main {\n      max-width: 720px;\n      margin: 0 auto;\n      padding: 16px;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <img src=\"portrait-ama.jpg\" alt=\"Portrait d’Ama Mensah souriante\" width=\"800\" height=\"600\">\n    <p>Mon adresse de projet : https://exemple.github.io/un-tres-long-nom-de-depot-sans-espace</p>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Téléphone",
+        "checks": [
+          {
+            "selector": "meta[name=\"viewport\"]",
+            "count": 1
+          },
+          {
+            "selector": "img",
+            "style": {
+              "max-width": "100%"
+            }
+          },
+          {
+            "selector": "main",
+            "style": {
+              "max-width": "720px",
+              "padding-left": "16px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 700
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Longs mots",
+        "checks": [
+          {
+            "selector": "p",
+            "style": {
+              "overflow-wrap": "anywhere"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 700
+        }
+      }
+    ],
+    "hints": [
+      "Ajoute d’abord la balise viewport.",
+      "Remplace width par max-width sur main.",
+      "Ajoute les règles img et p."
+    ],
+    "explanation_fr": "Ces règles méritent une place en haut de toutes tes feuilles de style.",
+    "common_wrong_answers": [],
+    "id": "pw-m3-02-e4"
+  }
+]

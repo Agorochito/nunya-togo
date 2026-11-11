@@ -1,0 +1,179 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une grille espacée",
+    "instruction_fr": "Fais du conteneur .projets une grille avec display: grid et un espace de 16px entre les cartes.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    .projets {\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <section id=\"projets\">\n      <h2>Projets</h2>\n      <div class=\"projets\">\n        <article>\n          <h3>Quiz de révision</h3>\n          <p>Un quiz en Python.</p>\n        </article>\n        <article>\n          <h3>Site du club</h3>\n          <p>Une page HTML et CSS.</p>\n        </article>\n      </div>\n    </section>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    .projets {\n      display: grid;\n      gap: 16px;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <section id=\"projets\">\n      <h2>Projets</h2>\n      <div class=\"projets\">\n        <article>\n          <h3>Quiz de révision</h3>\n          <p>Un quiz en Python.</p>\n        </article>\n        <article>\n          <h3>Site du club</h3>\n          <p>Une page HTML et CSS.</p>\n        </article>\n      </div>\n    </section>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Grille",
+        "checks": [
+          {
+            "selector": ".projets",
+            "style": {
+              "display": "grid"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Espacement",
+        "checks": [
+          {
+            "selector": ".projets",
+            "style": {
+              "row-gap": "16px"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "display transforme le conteneur.",
+      "gap fixe l’espace entre les éléments.",
+      "display: grid; gap: 16px;"
+    ],
+    "explanation_fr": "Une seule colonne pour l’instant : idéal sur un téléphone.",
+    "common_wrong_answers": [],
+    "id": "pw-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Dessiner une carte",
+    "instruction_fr": "Donne à chaque .projets article : padding 16px, bordure 1px solid #d9d4ca, border-radius 12px et fond #ffffff.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    .projets {\n      display: grid;\n      gap: 16px;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <section id=\"projets\">\n      <h2>Projets</h2>\n      <div class=\"projets\">\n        <article>\n          <h3>Quiz de révision</h3>\n          <p>Un quiz en Python.</p>\n        </article>\n        <article>\n          <h3>Site du club</h3>\n          <p>Une page HTML et CSS.</p>\n        </article>\n      </div>\n    </section>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    .projets {\n      display: grid;\n      gap: 16px;\n    }\n    .projets article {\n      padding: 16px;\n      border: 1px solid #d9d4ca;\n      border-radius: 12px;\n      background-color: #ffffff;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <section id=\"projets\">\n      <h2>Projets</h2>\n      <div class=\"projets\">\n        <article>\n          <h3>Quiz de révision</h3>\n          <p>Un quiz en Python.</p>\n        </article>\n        <article>\n          <h3>Site du club</h3>\n          <p>Une page HTML et CSS.</p>\n        </article>\n      </div>\n    </section>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Carte",
+        "checks": [
+          {
+            "selector": ".projets article",
+            "style": {
+              "padding-top": "16px",
+              "border-top-left-radius": "12px",
+              "background-color": "#ffffff"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Bordure",
+        "checks": [
+          {
+            "selector": ".projets article",
+            "style": {
+              "border-top-style": "solid",
+              "border-top-width": "1px",
+              "border-top-color": "#d9d4ca"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le sélecteur .projets article vise chaque carte.",
+      "border prend épaisseur, style et couleur.",
+      "border-radius arrondit les coins."
+    ],
+    "explanation_fr": "Toutes les cartes partagent la même règle : elles se ressemblent.",
+    "common_wrong_answers": [],
+    "id": "pw-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La grille qui ne marche pas",
+    "instruction_fr": "La règle vise .projet au lieu de .projets : la grille ne s’applique pas. Corrige le sélecteur.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    .projet {\n      display: grid;\n      gap: 16px;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <section id=\"projets\">\n      <h2>Projets</h2>\n      <div class=\"projets\">\n        <article>\n          <h3>Quiz de révision</h3>\n          <p>Un quiz en Python.</p>\n        </article>\n        <article>\n          <h3>Site du club</h3>\n          <p>Une page HTML et CSS.</p>\n        </article>\n      </div>\n    </section>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    .projets {\n      display: grid;\n      gap: 16px;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <section id=\"projets\">\n      <h2>Projets</h2>\n      <div class=\"projets\">\n        <article>\n          <h3>Quiz de révision</h3>\n          <p>Un quiz en Python.</p>\n        </article>\n        <article>\n          <h3>Site du club</h3>\n          <p>Une page HTML et CSS.</p>\n        </article>\n      </div>\n    </section>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Grille appliquée",
+        "checks": [
+          {
+            "selector": ".projets",
+            "style": {
+              "display": "grid"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Espacement appliqué",
+        "checks": [
+          {
+            "selector": ".projets",
+            "style": {
+              "row-gap": "16px"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Compare le sélecteur à l’attribut class du div.",
+      "Il manque une lettre.",
+      ".projets { … }"
+    ],
+    "explanation_fr": "Un sélecteur qui ne vise rien ne provoque aucune erreur visible.",
+    "common_wrong_answers": [],
+    "id": "pw-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "La section Projets mise en forme",
+    "instruction_fr": "Écris les deux règles : .projets en grille avec gap 16px ; .projets article avec padding 16px, bordure 1px solid #d9d4ca, rayon 12px et fond #ffffff.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <main>\n    <section id=\"projets\">\n      <h2>Projets</h2>\n      <div class=\"projets\">\n        <article>\n          <h3>Quiz de révision</h3>\n          <p>Un quiz en Python.</p>\n        </article>\n        <article>\n          <h3>Site du club</h3>\n          <p>Une page HTML et CSS.</p>\n        </article>\n      </div>\n    </section>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    .projets {\n      display: grid;\n      gap: 16px;\n    }\n    .projets article {\n      padding: 16px;\n      border: 1px solid #d9d4ca;\n      border-radius: 12px;\n      background-color: #ffffff;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <section id=\"projets\">\n      <h2>Projets</h2>\n      <div class=\"projets\">\n        <article>\n          <h3>Quiz de révision</h3>\n          <p>Un quiz en Python.</p>\n        </article>\n        <article>\n          <h3>Site du club</h3>\n          <p>Une page HTML et CSS.</p>\n        </article>\n      </div>\n    </section>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Grille et cartes",
+        "checks": [
+          {
+            "selector": ".projets",
+            "style": {
+              "display": "grid",
+              "row-gap": "16px"
+            }
+          },
+          {
+            "selector": ".projets article",
+            "style": {
+              "padding-top": "16px"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Apparence des cartes",
+        "checks": [
+          {
+            "selector": ".projets article",
+            "style": {
+              "border-top-left-radius": "12px",
+              "border-top-style": "solid",
+              "background-color": "#ffffff"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Commence par la grille.",
+      "Puis l’apparence des cartes.",
+      "Vérifie le nom de la classe."
+    ],
+    "explanation_fr": "Tes projets sont présentés comme sur un vrai portfolio.",
+    "common_wrong_answers": [],
+    "id": "pw-m2-03-e4"
+  }
+]

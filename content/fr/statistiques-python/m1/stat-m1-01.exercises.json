@@ -1,0 +1,314 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Moyenne et médiane",
+    "instruction_fr": "Écris position(valeurs) qui renvoie [moyenne arrondie à 2 décimales, médiane] avec le module statistics.",
+    "starter_code": "def position(valeurs):\n    milieu = valeurs[len(valeurs) // 2]\n    return [sum(valeurs) / len(valeurs), milieu]\n",
+    "solution": "import statistics\n\n\ndef position(valeurs):\n    return [round(statistics.mean(valeurs), 2), statistics.median(valeurs)]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "position",
+            "args": [
+              [
+                12,
+                8,
+                15,
+                10
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              11.25,
+              11.0
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "position",
+            "args": [
+              [
+                60000,
+                60000,
+                60000,
+                60000,
+                600000
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              168000,
+              60000
+            ]
+          },
+          {
+            "name": "position",
+            "args": [
+              [
+                7,
+                3,
+                5
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              5,
+              5
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La liste n’est pas triée : la valeur centrale n’est pas la médiane.",
+      "statistics.median trie et gère le cas pair.",
+      "round(statistics.mean(valeurs), 2)"
+    ],
+    "explanation_fr": "Le module évite les erreurs de tri et de cas pair.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:statistics"
+    ],
+    "id": "stat-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Médiane à la main",
+    "instruction_fr": "Écris mediane(valeurs) sans le module statistics : trie, puis prends la valeur centrale, ou la moyenne des deux centrales pour un nombre pair. Renvoie None pour une liste vide.",
+    "starter_code": "def mediane(valeurs):\n    return valeurs[len(valeurs) // 2]\n",
+    "solution": "def mediane(valeurs):\n    if not valeurs:\n        return None\n    rangees = sorted(valeurs)\n    milieu = len(rangees) // 2\n    if len(rangees) % 2 == 1:\n        return rangees[milieu]\n    return (rangees[milieu - 1] + rangees[milieu]) / 2\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "mediane",
+            "args": [
+              [
+                3,
+                9,
+                4,
+                1,
+                7
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 4
+          },
+          {
+            "name": "mediane",
+            "args": [
+              [
+                12,
+                8,
+                15,
+                10
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 11.0
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "mediane",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": null
+          },
+          {
+            "name": "mediane",
+            "args": [
+              [
+                5
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 5
+          },
+          {
+            "name": "mediane",
+            "args": [
+              [
+                2,
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 1.5
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "sorted renvoie une nouvelle liste rangée.",
+      "len // 2 donne l’indice du centre.",
+      "Pour un nombre pair, prends les indices milieu - 1 et milieu."
+    ],
+    "explanation_fr": "C’est exactement ce que fait statistics.median.",
+    "common_wrong_answers": [],
+    "id": "stat-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le mode qui n’en est pas un",
+    "instruction_fr": "modes(reponses) doit renvoyer la liste de toutes les réponses les plus fréquentes, dans l’ordre de première apparition. La version actuelle renvoie la plus grande valeur. Corrige-la.",
+    "starter_code": "def modes(reponses):\n    return [max(reponses)]\n",
+    "solution": "import statistics\n\n\ndef modes(reponses):\n    return statistics.multimode(reponses)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "modes",
+            "args": [
+              [
+                "riz",
+                "maïs",
+                "riz",
+                "igname",
+                "maïs"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "riz",
+              "maïs"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "modes",
+            "args": [
+              [
+                3,
+                1,
+                3
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              3
+            ]
+          },
+          {
+            "name": "modes",
+            "args": [
+              [
+                "a",
+                "b"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "a",
+              "b"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "max donne la plus grande valeur, pas la plus fréquente.",
+      "Plusieurs valeurs peuvent être à égalité.",
+      "statistics.multimode renvoie toutes les plus fréquentes."
+    ],
+    "explanation_fr": "Le mode compte les apparitions ; il ne compare pas les valeurs.",
+    "common_wrong_answers": [],
+    "id": "stat-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Salaires d’une entreprise",
+    "instruction_fr": "Écris resume_salaires(salaires) qui renvoie un dictionnaire {\"moyenne\": ..., \"mediane\": ..., \"ecart\": ...} : moyenne arrondie à l’entier, médiane, et écart = moyenne arrondie - médiane. Ajoute la clé \"alerte\" : True si l’écart dépasse 20 % de la médiane.",
+    "starter_code": "def resume_salaires(salaires):\n    return {}\n",
+    "solution": "import statistics\n\n\ndef resume_salaires(salaires):\n    moyenne = round(statistics.mean(salaires))\n    mediane = statistics.median(salaires)\n    ecart = moyenne - mediane\n    return {\"moyenne\": moyenne, \"mediane\": mediane, \"ecart\": ecart, \"alerte\": ecart > 0.2 * mediane}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "resume_salaires",
+            "args": [
+              [
+                60000,
+                60000,
+                60000,
+                60000,
+                600000
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "moyenne": 168000,
+              "mediane": 60000,
+              "ecart": 108000,
+              "alerte": true
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "resume_salaires",
+            "args": [
+              [
+                50000,
+                55000,
+                60000
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "moyenne": 55000,
+              "mediane": 55000,
+              "ecart": 0,
+              "alerte": false
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Calcule moyenne et médiane avec statistics.",
+      "L’écart est la différence entre les deux.",
+      "alerte compare l’écart à 0.2 * mediane."
+    ],
+    "explanation_fr": "Un écart important entre moyenne et médiane mérite toujours d’être signalé.",
+    "common_wrong_answers": [],
+    "id": "stat-m1-01-e4"
+  }
+]

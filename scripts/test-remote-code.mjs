@@ -1,7 +1,8 @@
 import fs from 'node:fs';import assert from 'node:assert/strict';
-import * as cpp from '../lib/remote/cpp.mjs';import * as bash from '../lib/remote/bash.mjs';import * as java from '../lib/remote/java.mjs';import {compileLocally,cxx,bashReady,javaReady} from '../lib/test/local-compiler.mjs';
+import * as cpp from '../lib/remote/cpp.mjs';import * as bash from '../lib/remote/bash.mjs';import * as java from '../lib/remote/java.mjs';import * as node from '../lib/remote/node.mjs';import * as typescript from '../lib/remote/typescript.mjs';import {compileLocally,cxx,bashReady,javaReady} from '../lib/test/local-compiler.mjs';
 // Build gate for online courses (C++, Bash, Java): same wrapper and parser as the browser, run locally in the Wandbox format, never on the public service.
-const ENGINES={cpp:{lang:cpp,ready:!!cxx,tool:cxx},bash:{lang:bash,ready:bashReady,tool:process.platform==='linux'?'bash':'docker debian:bookworm-slim'},java:{lang:java,ready:javaReady,tool:'javac 21 (local ou eclipse-temurin:21-jdk)'}};
+// On the Vercel build machine, Node.js and TypeScript checks are left to GitHub Actions (like Bash and Java elsewhere): its sandbox differs from a normal machine.
+const ENGINES={cpp:{lang:cpp,ready:!!cxx,tool:cxx},bash:{lang:bash,ready:bashReady,tool:process.platform==='linux'?'bash':'docker debian:bookworm-slim'},java:{lang:java,ready:javaReady,tool:'javac 21 (local ou eclipse-temurin:21-jdk)'},node:{lang:node,ready:!process.env.VERCEL,tool:'node '+process.version},typescript:{lang:typescript,ready:!process.env.VERCEL,tool:'tsc 5.6.2 (typescript-wandbox) + node '+process.version}};
 const normalize=s=>String(s||'').replace(/\r\n/g,'\n').trimEnd(),passes=(r,t)=>!r.error&&r.assertions_passed!==false&&normalize(r.output)===normalize(t.expected_output);
 const report={};
 for(const course of JSON.parse(fs.readFileSync('dist/data/curriculum/index.json')).courses.filter(c=>ENGINES[c.runtime])){

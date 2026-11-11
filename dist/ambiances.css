@@ -85,10 +85,11 @@ html[data-sidebar=mini] .sidebar-toggle{position:static;margin:0 auto 12px}
 html[data-sidebar=mini] .sidebar :is(.brand-sub,.nav-label,.nav-pill,.sidebar-footer,.offline-note){display:none}
 html[data-sidebar=mini] .sidebar .brand{font-size:0;justify-content:center}
 html[data-sidebar=mini] .sidebar .brand .brand-mark{font-size:30px}
-html[data-sidebar=mini] .sidebar .nav-item{justify-content:center;padding-left:0;padding-right:0;font-size:0;gap:0}
-html[data-sidebar=mini] .sidebar .nav-item>:first-child{font-size:16px}
-html[data-sidebar=mini] .sidebar .nav-item>:not(:first-child){position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-html[data-sidebar=mini] .sidebar .nav-item{position:relative}
+html[data-sidebar=mini] .sidebar :is(.nav-item,.help-button){justify-content:center;padding-left:0;padding-right:0;font-size:0;gap:0;width:100%}
+html[data-sidebar=mini] .sidebar :is(.nav-item,.help-button)>:first-child{font-size:16px}
+html[data-sidebar=mini] .sidebar :is(.nav-item,.help-button)>:not(:first-child){position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+html[data-sidebar=mini] .sidebar :is(.nav-item,.help-button){position:relative}
+html[data-sidebar=mini] .sidebar .sidebar-bottom{padding-left:0;padding-right:0;align-items:center}
 html[data-sidebar=mini] .sidebar .nav-item>:is(.nav-pill,.tiny-dot){display:none}
 }
 @media (min-width:701px) and (prefers-reduced-motion:reduce){.sidebar,.workspace{transition:none}}

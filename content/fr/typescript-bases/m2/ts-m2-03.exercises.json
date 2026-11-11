@@ -1,0 +1,174 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Un stock par défaut",
+    "instruction_fr": "stockOuDefaut(stock?: number): number doit renvoyer le stock s’il est connu, même 0, et 10 sinon. Remplace || par l’opérateur adapté.",
+    "starter_code": "function stockOuDefaut(stock?: number): number {\n  return stock || 10;\n}\n",
+    "solution": "function stockOuDefaut(stock?: number): number {\n  return stock ?? 10;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "stockOuDefaut(0)",
+            "expected": "0"
+          },
+          {
+            "expr": "stockOuDefaut()",
+            "expected": "10"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "stockOuDefaut(4)",
+            "expected": "4"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "|| remplace aussi 0.",
+      "Seule l’absence doit être remplacée.",
+      "Utilise ??."
+    ],
+    "explanation_fr": "Un stock nul est une information réelle : il ne doit pas devenir 10.",
+    "common_wrong_answers": [],
+    "id": "ts-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Chercher sans planter",
+    "instruction_fr": "Écris nomDe(produits: { id: number; nom: string }[], id: number): string qui renvoie le nom du produit trouvé, ou « introuvable ».",
+    "starter_code": "function nomDe(produits: { id: number; nom: string }[], id: number): string {\n  return produits.find(p => p.id === id).nom;\n}\n",
+    "solution": "function nomDe(produits: { id: number; nom: string }[], id: number): string {\n  return produits.find(p => p.id === id)?.nom ?? \"introuvable\";\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nomDe([{ id: 1, nom: \"riz\" }], 1)",
+            "expected": "riz"
+          },
+          {
+            "expr": "nomDe([{ id: 1, nom: \"riz\" }], 2)",
+            "expected": "introuvable"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nomDe([], 1)",
+            "expected": "introuvable"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : le résultat de find peut être undefined.",
+      "?. lit nom seulement s’il existe.",
+      "?? donne la valeur de remplacement."
+    ],
+    "explanation_fr": "Le mode strict a empêché un plantage pour tout id inconnu.",
+    "common_wrong_answers": [],
+    "id": "ts-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "L’assertion mensongère",
+    "instruction_fr": "ville utilise l’assertion ! et plante pour un client sans adresse. Remplace-la par une vérification : renvoie « ville inconnue » si l’adresse manque.",
+    "starter_code": "interface Client {\n  nom: string;\n  adresse?: { ville: string };\n}\n\nfunction ville(c: Client): string {\n  return c.adresse!.ville;\n}\n",
+    "solution": "interface Client {\n  nom: string;\n  adresse?: { ville: string };\n}\n\nfunction ville(c: Client): string {\n  return c.adresse?.ville ?? \"ville inconnue\";\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "ville({ nom: \"Yao\" })",
+            "expected": "ville inconnue"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "ville({ nom: \"Ama\", adresse: { ville: \"Kara\" } })",
+            "expected": "Kara"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "! fait taire TypeScript sans rien vérifier.",
+      "Le client sans adresse fait planter le programme.",
+      "Utilise ?. et ??."
+    ],
+    "explanation_fr": "L’assertion ! déplace l’erreur de la compilation vers l’exécution : le pire moment.",
+    "common_wrong_answers": [],
+    "id": "ts-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "La fiche d’un élève",
+    "instruction_fr": "Écris resume(e: { nom: string; classe?: string; notes?: number[] }): string qui renvoie « NOM (CLASSE) : moyenne M » avec CLASSE = « classe inconnue » si absente et M = moyenne arrondie à une décimale, ou « pas de note » si aucune note.",
+    "starter_code": "function resume(e: { nom: string; classe?: string; notes?: number[] }): string {\n  const m = e.notes.reduce((s, n) => s + n, 0) / e.notes.length;\n  return `${e.nom} (${e.classe}) : moyenne ${m}`;\n}\n",
+    "solution": "function resume(e: { nom: string; classe?: string; notes?: number[] }): string {\n  const classe = e.classe ?? \"classe inconnue\";\n  const notes = e.notes ?? [];\n  if (notes.length === 0) return `${e.nom} (${classe}) : pas de note`;\n  const m = Math.round(notes.reduce((s, n) => s + n, 0) / notes.length * 10) / 10;\n  return `${e.nom} (${classe}) : moyenne ${m}`;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "resume({ nom: \"Afi\", classe: \"1re D\", notes: [12, 15, 14] })",
+            "expected": "Afi (1re D) : moyenne 13.7"
+          },
+          {
+            "expr": "resume({ nom: \"Yao\" })",
+            "expected": "Yao (classe inconnue) : pas de note"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "resume({ nom: \"Ama\", notes: [] })",
+            "expected": "Ama (classe inconnue) : pas de note"
+          },
+          {
+            "expr": "resume({ classe: \"2nde\" })",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Remplace les valeurs absentes par ??.",
+      "Traite la liste vide avant de diviser.",
+      "Arrondis à une décimale."
+    ],
+    "explanation_fr": "Chaque absence est un cas prévu, pas un plantage.",
+    "common_wrong_answers": [],
+    "id": "ts-m2-03-e4"
+  }
+]

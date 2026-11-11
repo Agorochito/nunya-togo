@@ -3463,6 +3463,300 @@
       "quiz_count": 36
     },
     {
+      "id": "ia-bases",
+      "title_fr": "Intelligence artificielle : comprendre, vérifier, se protéger",
+      "language": "python",
+      "runtime": "python",
+      "technology": "ia",
+      "level": "debutant",
+      "replaces_plans": [
+        "ia-cyber"
+      ],
+      "summary_fr": "Comprends ce qu’il y a dans une IA en construisant des modèles à la main : seuil appris, plus proches voisins, régression, filtre d’arnaques par sac de mots et neurone artificiel. Apprends à les évaluer honnêtement, à repérer leurs biais et le sur-apprentissage, à comprendre les hallucinations des assistants, puis à te protéger : données personnelles, arnaques à fausse voix et injection de consignes. En Python, hors ligne.",
+      "prerequisite_courses": [
+        "python-bases"
+      ],
+      "prerequisites": [
+        "Savoir écrire des fonctions Python avec listes, dictionnaires, boucles et conditions.",
+        "Le cours Python débutant de Nunya fournit ces bases."
+      ],
+      "outcomes": [
+        "Expliquer la différence entre règles écrites et apprentissage à partir d’exemples.",
+        "Construire et évaluer de petits modèles : voisins, régression, sac de mots, perceptron.",
+        "Repérer les biais, le sur-apprentissage et les hallucinations.",
+        "Protéger ses données et celles des autres face aux assistants.",
+        "Reconnaître les arnaques dopées à l’IA et l’injection de consignes."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Comprendre l’apprentissage",
+          "outcome_fr": "Règles contre exemples, plus proches voisins et évaluation.",
+          "lesson_ids": [
+            "ia-m1-01",
+            "ia-m1-02",
+            "ia-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Construire des modèles",
+          "outcome_fr": "Régression, sac de mots et neurone artificiel.",
+          "lesson_ids": [
+            "ia-m2-01",
+            "ia-m2-02",
+            "ia-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Les limites des modèles",
+          "outcome_fr": "Biais, sur-apprentissage et hallucinations.",
+          "lesson_ids": [
+            "ia-m3-01",
+            "ia-m3-02",
+            "ia-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "IA et sécurité",
+          "outcome_fr": "Données personnelles, arnaques et injection de consignes.",
+          "lesson_ids": [
+            "ia-m4-01",
+            "ia-m4-02",
+            "ia-m4-03"
+          ]
+        }
+      ],
+      "next_courses": [],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "ia-m1-01",
+          "title_fr": "Qu’est-ce que l’intelligence artificielle ?",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "py-m12-03"
+          ],
+          "tags": [
+            "intelligence artificielle",
+            "sécurité",
+            "python",
+            "intelligence artificielle",
+            "apprentissage automatique",
+            "exemple étiqueté",
+            "modèle"
+          ]
+        },
+        {
+          "id": "ia-m1-02",
+          "title_fr": "Les plus proches voisins",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "ia-m1-01"
+          ],
+          "tags": [
+            "intelligence artificielle",
+            "sécurité",
+            "python",
+            "caractéristique",
+            "distance euclidienne",
+            "k plus proches voisins",
+            "mise à l’échelle"
+          ]
+        },
+        {
+          "id": "ia-m1-03",
+          "title_fr": "Évaluer un modèle : exactitude et erreurs",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "ia-m1-02"
+          ],
+          "tags": [
+            "intelligence artificielle",
+            "sécurité",
+            "python",
+            "exemples de test",
+            "matrice de confusion",
+            "précision",
+            "rappel"
+          ]
+        },
+        {
+          "id": "ia-m2-01",
+          "title_fr": "Prédire un nombre : la régression",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "ia-m1-03"
+          ],
+          "tags": [
+            "intelligence artificielle",
+            "sécurité",
+            "python",
+            "régression",
+            "modèle de référence",
+            "erreur moyenne absolue",
+            "paramètre"
+          ]
+        },
+        {
+          "id": "ia-m2-02",
+          "title_fr": "Classer des textes : le sac de mots",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "ia-m2-01"
+          ],
+          "tags": [
+            "intelligence artificielle",
+            "sécurité",
+            "python",
+            "sac de mots",
+            "prétraitement",
+            "poids",
+            "anonymiser"
+          ]
+        },
+        {
+          "id": "ia-m2-03",
+          "title_fr": "Le perceptron : un neurone artificiel",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "ia-m2-02"
+          ],
+          "tags": [
+            "intelligence artificielle",
+            "sécurité",
+            "python",
+            "neurone artificiel",
+            "poids",
+            "biais",
+            "époque"
+          ]
+        },
+        {
+          "id": "ia-m3-01",
+          "title_fr": "Les biais : quand le modèle est injuste",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "ia-m2-03"
+          ],
+          "tags": [
+            "intelligence artificielle",
+            "sécurité",
+            "python",
+            "biais",
+            "déséquilibre",
+            "audit",
+            "contrôle humain"
+          ]
+        },
+        {
+          "id": "ia-m3-02",
+          "title_fr": "Sur-apprentissage : mémoriser n’est pas comprendre",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "ia-m3-01"
+          ],
+          "tags": [
+            "intelligence artificielle",
+            "sécurité",
+            "python",
+            "généraliser",
+            "sur-apprentissage",
+            "jeu de validation",
+            "fuite de données"
+          ]
+        },
+        {
+          "id": "ia-m3-03",
+          "title_fr": "Les grands modèles de langage et leurs hallucinations",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "ia-m3-02"
+          ],
+          "tags": [
+            "intelligence artificielle",
+            "sécurité",
+            "python",
+            "modèle de langage",
+            "bigramme",
+            "hallucination",
+            "source fiable"
+          ]
+        },
+        {
+          "id": "ia-m4-01",
+          "title_fr": "Protéger ses données face aux assistants",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "ia-m3-03"
+          ],
+          "tags": [
+            "intelligence artificielle",
+            "sécurité",
+            "python",
+            "donnée personnelle",
+            "pseudonymiser",
+            "expression régulière",
+            "conditions d’utilisation"
+          ]
+        },
+        {
+          "id": "ia-m4-02",
+          "title_fr": "Arnaques dopées à l’IA : hameçonnage et fausses voix",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "ia-m4-01"
+          ],
+          "tags": [
+            "intelligence artificielle",
+            "sécurité",
+            "python",
+            "hameçonnage",
+            "clonage de voix",
+            "hypertrucage",
+            "autre canal"
+          ]
+        },
+        {
+          "id": "ia-m4-03",
+          "title_fr": "Injection de consignes et usage responsable",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "ia-m4-02"
+          ],
+          "tags": [
+            "intelligence artificielle",
+            "sécurité",
+            "python",
+            "injection de consignes",
+            "délimiter",
+            "moindre privilège",
+            "humain dans la boucle"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "233938e20586",
+      "exercise_count": 48,
+      "quiz_count": 36
+    },
+    {
       "id": "java-bases",
       "title_fr": "Java : premiers programmes",
       "language": "java",
@@ -4282,7 +4576,7 @@
         "react-bases",
         "http-bases"
       ],
-      "engine_revision": "42d813e139d4",
+      "engine_revision": "e8265b1255cf",
       "lessons": [
         {
           "id": "dom-m1-01",
@@ -4543,9 +4837,303 @@
         }
       ],
       "estimated_minutes": 360,
-      "content_revision": "64d7f8d4220b",
+      "content_revision": "db994f58324f",
       "exercise_count": 72,
       "quiz_count": 54
+    },
+    {
+      "id": "nodejs-bases",
+      "title_fr": "Node.js : le serveur en JavaScript",
+      "language": "javascript",
+      "runtime": "node",
+      "technology": "node",
+      "level": "intermediaire",
+      "replaces_plans": [
+        "nodejs"
+      ],
+      "summary_fr": "Passe du navigateur au serveur avec le même langage : modules et JSON, boucle d’événements, promesses et async/await, fichiers, puis de vrais serveurs HTTP testés par l’atelier — routes, paramètres, API JSON avec validation, événements, sécurité des entrées et API de boutique complète. Node.js 20 en ligne.",
+      "prerequisite_courses": [
+        "javascript-bases"
+      ],
+      "prerequisites": [
+        "Maîtriser les fonctions, tableaux, objets et classes en JavaScript.",
+        "Le cours JavaScript de Nunya fournit ces bases ; le cours HTTP et API aide pour le module 3."
+      ],
+      "outcomes": [
+        "Organiser un programme Node.js en modules et manipuler du JSON.",
+        "Écrire du code asynchrone lisible avec les promesses et async/await.",
+        "Lire et écrire des fichiers sans bloquer le serveur.",
+        "Construire un serveur HTTP et une API JSON avec routes, validation et codes de statut.",
+        "Protéger un serveur : validation, échappement, chemins sûrs et secrets hors du code."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Node.js, modules et JSON",
+          "outcome_fr": "JavaScript hors du navigateur, modules et données JSON.",
+          "lesson_ids": [
+            "node-m1-01",
+            "node-m1-02",
+            "node-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "L’asynchrone",
+          "outcome_fr": "Boucle d’événements, promesses, async/await et fichiers.",
+          "lesson_ids": [
+            "node-m2-01",
+            "node-m2-02",
+            "node-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Serveurs HTTP",
+          "outcome_fr": "Premier serveur, routes et API JSON validée.",
+          "lesson_ids": [
+            "node-m3-01",
+            "node-m3-02",
+            "node-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Organiser et sécuriser",
+          "outcome_fr": "Événements, sécurité des entrées et API de boutique.",
+          "lesson_ids": [
+            "node-m4-01",
+            "node-m4-02",
+            "node-m4-03"
+          ]
+        }
+      ],
+      "next_courses": [],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "node-m1-01",
+          "title_fr": "Node.js : JavaScript hors du navigateur",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "js-m8-03"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "Node.js",
+            "V8",
+            "npm",
+            "gabarit de chaîne"
+          ]
+        },
+        {
+          "id": "node-m1-02",
+          "title_fr": "Modules : require et module.exports",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m1-01"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "module",
+            "require",
+            "module.exports",
+            "dépendance"
+          ]
+        },
+        {
+          "id": "node-m1-03",
+          "title_fr": "JSON : lire et écrire des données",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m1-02"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "JSON",
+            "JSON.parse",
+            "JSON.stringify",
+            "validation"
+          ]
+        },
+        {
+          "id": "node-m2-01",
+          "title_fr": "La boucle d’événements : rappels et minuteurs",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m1-03"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "boucle d’événements",
+            "rappel",
+            "synchrone",
+            "erreur d’abord"
+          ]
+        },
+        {
+          "id": "node-m2-02",
+          "title_fr": "Promesses et async/await",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m2-01"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "promesse",
+            "async",
+            "await",
+            "Promise.all"
+          ]
+        },
+        {
+          "id": "node-m2-03",
+          "title_fr": "Lire et écrire des fichiers",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m2-02"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "fs.promises",
+            "ENOENT",
+            "Buffer",
+            "dossier temporaire"
+          ]
+        },
+        {
+          "id": "node-m3-01",
+          "title_fr": "Un premier serveur HTTP",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m2-03"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "serveur HTTP",
+            "gestionnaire",
+            "code de statut",
+            "Content-Type"
+          ]
+        },
+        {
+          "id": "node-m3-02",
+          "title_fr": "Routes, méthodes et paramètres",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m3-01"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "route",
+            "routage",
+            "paramètre de requête",
+            "pathname"
+          ]
+        },
+        {
+          "id": "node-m3-03",
+          "title_fr": "Une API JSON qui reçoit des données",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m3-02"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "API",
+            "corps de requête",
+            "validation",
+            "201 Created"
+          ]
+        },
+        {
+          "id": "node-m4-01",
+          "title_fr": "Les événements : découpler son programme",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m3-03"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "EventEmitter",
+            "écouteur",
+            "emit",
+            "découplage"
+          ]
+        },
+        {
+          "id": "node-m4-02",
+          "title_fr": "Sécurité : ne jamais faire confiance aux entrées",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m4-01"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "XSS",
+            "échappement",
+            "traversée de chemin",
+            "variable d’environnement"
+          ]
+        },
+        {
+          "id": "node-m4-03",
+          "title_fr": "Projet : l’API d’une boutique",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m4-02"
+          ],
+          "tags": [
+            "node.js",
+            "serveur",
+            "javascript",
+            "fonction pure",
+            "test de bout en bout",
+            "cadriciel",
+            "process.env.PORT"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "858b33765c43",
+      "exercise_count": 48,
+      "quiz_count": 36
     },
     {
       "id": "php-bases",
@@ -5097,6 +5685,883 @@
       ],
       "estimated_minutes": 240,
       "content_revision": "cfddf437da59",
+      "exercise_count": 48,
+      "quiz_count": 36
+    },
+    {
+      "id": "postgres-supabase",
+      "title_fr": "Backend en ligne : PostgreSQL et Supabase",
+      "language": "sql",
+      "runtime": "sql",
+      "engine": "postgres",
+      "technology": "postgres",
+      "level": "intermediaire",
+      "summary_fr": "Construis et sécurise la base d’une application en ligne, comme avec Supabase : types et contraintes PostgreSQL, identités, RETURNING, vues, fonctions et déclencheurs PL/pgSQL, transactions, puis rôles, privilèges et sécurité par ligne avec auth.uid(), traduction des appels supabase-js et fonctions SECURITY DEFINER. Vrai PostgreSQL 18 (PGlite) dans le navigateur, sans Docker ni serveur à installer.",
+      "prerequisite_courses": [
+        "sql-bases"
+      ],
+      "prerequisites": [
+        "Savoir créer des tables, filtrer, joindre et modifier des données avec SQL.",
+        "Le cours SQL débutant de Nunya fournit ces bases ; le cours intermédiaire aide pour les vues et les déclencheurs."
+      ],
+      "outcomes": [
+        "Concevoir des tables PostgreSQL solides : types, identités, clés et contraintes.",
+        "Écrire des vues, des fonctions et des déclencheurs en PL/pgSQL, et regrouper des écritures dans une transaction.",
+        "Protéger chaque table avec des privilèges et des politiques de sécurité par ligne.",
+        "Prévoir le résultat d’un appel supabase-js et écrire des fonctions sécurisées appelées par RPC.",
+        "Préparer une base pour la production : migration de sécurité, clés et variables d’environnement."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "PostgreSQL, le moteur de Supabase",
+          "outcome_fr": "Types, contraintes, identités, RETURNING et agrégats filtrés.",
+          "lesson_ids": [
+            "pgs-m1-01",
+            "pgs-m1-02",
+            "pgs-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "De la logique dans la base",
+          "outcome_fr": "Vues, fonctions, déclencheurs, UPSERT et transactions.",
+          "lesson_ids": [
+            "pgs-m2-01",
+            "pgs-m2-02",
+            "pgs-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Sécuriser les données",
+          "outcome_fr": "Rôles, privilèges et politiques de sécurité par ligne.",
+          "lesson_ids": [
+            "pgs-m3-01",
+            "pgs-m3-02",
+            "pgs-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Mettre en ligne avec Supabase",
+          "outcome_fr": "API, fonctions sécurisées et migration de production.",
+          "lesson_ids": [
+            "pgs-m4-01",
+            "pgs-m4-02",
+            "pgs-m4-03"
+          ]
+        }
+      ],
+      "next_courses": [],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "pgs-m1-01",
+          "title_fr": "De SQLite à PostgreSQL",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "PostgreSQL",
+            "uuid",
+            "conversion de type",
+            "ILIKE"
+          ]
+        },
+        {
+          "id": "pgs-m1-02",
+          "title_fr": "Des tables solides",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m1-01"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "contrainte",
+            "identity",
+            "clé étrangère",
+            "migration"
+          ]
+        },
+        {
+          "id": "pgs-m1-03",
+          "title_fr": "RETURNING, FILTER et agrégats",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m1-02"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "RETURNING",
+            "FILTER",
+            "string_agg",
+            "aller-retour"
+          ]
+        },
+        {
+          "id": "pgs-m2-01",
+          "title_fr": "Vues et fonctions SQL",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m1-03"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "vue",
+            "fonction",
+            "RPC",
+            "immutable"
+          ]
+        },
+        {
+          "id": "pgs-m2-02",
+          "title_fr": "Déclencheurs en PL/pgSQL",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m2-01"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "déclencheur",
+            "PL/pgSQL",
+            "NEW et OLD",
+            "raise exception"
+          ]
+        },
+        {
+          "id": "pgs-m2-03",
+          "title_fr": "UPSERT et transactions",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m2-02"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "UPSERT",
+            "ON CONFLICT",
+            "transaction",
+            "atomicité"
+          ]
+        },
+        {
+          "id": "pgs-m3-01",
+          "title_fr": "Rôles et privilèges : qui peut faire quoi",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m2-03"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "rôle",
+            "privilège",
+            "anon",
+            "service_role"
+          ]
+        },
+        {
+          "id": "pgs-m3-02",
+          "title_fr": "La sécurité par ligne (RLS)",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m3-01"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "RLS",
+            "politique",
+            "using",
+            "refus par défaut"
+          ]
+        },
+        {
+          "id": "pgs-m3-03",
+          "title_fr": "Politiques d’écriture : WITH CHECK",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m3-02"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "with check",
+            "using",
+            "politique d’écriture",
+            "accès détourné"
+          ]
+        },
+        {
+          "id": "pgs-m4-01",
+          "title_fr": "De la table à l’API",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m3-03"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "PostgREST",
+            "supabase-js",
+            "filtre",
+            "relation imbriquée"
+          ]
+        },
+        {
+          "id": "pgs-m4-02",
+          "title_fr": "Des fonctions sécurisées pour les actions sensibles",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m4-01"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "security definer",
+            "security invoker",
+            "search_path",
+            "RPC"
+          ]
+        },
+        {
+          "id": "pgs-m4-03",
+          "title_fr": "Projet : une boutique prête pour la production",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "pgs-m4-02"
+          ],
+          "tags": [
+            "sql",
+            "postgresql",
+            "supabase",
+            "migration de sécurité",
+            "variable d’environnement",
+            "conseiller de sécurité",
+            "production"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "e363e26d39bb",
+      "exercise_count": 48,
+      "quiz_count": 36
+    },
+    {
+      "id": "projet-fullstack",
+      "title_fr": "Projet complet : une boutique en ligne full-stack",
+      "language": "javascript",
+      "runtime": "node",
+      "technology": "projetfs",
+      "level": "intermediaire",
+      "summary_fr": "Construis de bout en bout l’application d’une boutique fictive : routeur, modèle de données validé, pages HTML générées par le serveur et échappées, formulaire avec redirection 303 et erreurs réaffichées, API JSON avec recherche, panier en cookie protégé, pagination, filet d’erreurs, limite de taille, en-têtes de sécurité et configuration. Chaque étape est testée par de vraies requêtes. Node.js 20 en ligne.",
+      "prerequisite_courses": [
+        "nodejs-bases"
+      ],
+      "prerequisites": [
+        "Avoir suivi le cours Node.js : serveurs HTTP, async/await et validation.",
+        "Les cours HTML et HTTP et API aident à comprendre les pages et les échanges."
+      ],
+      "outcomes": [
+        "Concevoir les routes et le modèle de données d’une application.",
+        "Générer des pages HTML sûres et traiter des formulaires selon Post/Redirect/Get.",
+        "Exposer une API JSON et gérer un panier par cookie.",
+        "Rendre une application robuste : erreurs, limites, en-têtes de sécurité, configuration.",
+        "Vérifier une application par des parcours de bout en bout."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Concevoir l’application",
+          "outcome_fr": "Routes, modèle de données et gabarits HTML.",
+          "lesson_ids": [
+            "pfs-m1-01",
+            "pfs-m1-02",
+            "pfs-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Pages et formulaires",
+          "outcome_fr": "Servir les pages, recevoir et valider un formulaire.",
+          "lesson_ids": [
+            "pfs-m2-01",
+            "pfs-m2-02",
+            "pfs-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "API et état",
+          "outcome_fr": "API JSON, panier en cookie et pagination.",
+          "lesson_ids": [
+            "pfs-m3-01",
+            "pfs-m3-02",
+            "pfs-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Robustesse et livraison",
+          "outcome_fr": "Erreurs, sécurité, configuration et application complète.",
+          "lesson_ids": [
+            "pfs-m4-01",
+            "pfs-m4-02",
+            "pfs-m4-03"
+          ]
+        }
+      ],
+      "next_courses": [],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "pfs-m1-01",
+          "title_fr": "Du besoin aux routes",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "node-m4-03"
+          ],
+          "tags": [
+            "full-stack",
+            "node.js",
+            "projet",
+            "full-stack",
+            "besoin utilisateur",
+            "routeur",
+            "paramètre de route"
+          ]
+        },
+        {
+          "id": "pfs-m1-02",
+          "title_fr": "Le modèle de données",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "pfs-m1-01"
+          ],
+          "tags": [
+            "full-stack",
+            "node.js",
+            "projet",
+            "modèle de données",
+            "fonction d’accès",
+            "validation",
+            "identifiant"
+          ]
+        },
+        {
+          "id": "pfs-m1-03",
+          "title_fr": "Des pages HTML générées par le serveur",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "pfs-m1-02"
+          ],
+          "tags": [
+            "full-stack",
+            "node.js",
+            "projet",
+            "rendu côté serveur",
+            "gabarit",
+            "échappement",
+            "fonction pure"
+          ]
+        },
+        {
+          "id": "pfs-m2-01",
+          "title_fr": "Servir les pages",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "pfs-m1-03"
+          ],
+          "tags": [
+            "full-stack",
+            "node.js",
+            "projet",
+            "gestionnaire",
+            "page d’erreur",
+            "expression régulière",
+            "rendu côté serveur"
+          ]
+        },
+        {
+          "id": "pfs-m2-02",
+          "title_fr": "Recevoir un formulaire",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "pfs-m2-01"
+          ],
+          "tags": [
+            "full-stack",
+            "node.js",
+            "projet",
+            "POST",
+            "URLSearchParams",
+            "303 See Other",
+            "Post/Redirect/Get"
+          ]
+        },
+        {
+          "id": "pfs-m2-03",
+          "title_fr": "Les erreurs de formulaire",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "pfs-m2-02"
+          ],
+          "tags": [
+            "full-stack",
+            "node.js",
+            "projet",
+            "400 Bad Request",
+            "message d’erreur",
+            "valeur réaffichée",
+            "validation côté serveur"
+          ]
+        },
+        {
+          "id": "pfs-m3-01",
+          "title_fr": "Une API JSON à côté des pages",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "pfs-m2-03"
+          ],
+          "tags": [
+            "full-stack",
+            "node.js",
+            "projet",
+            "API",
+            "client",
+            "filtre",
+            "version d’API"
+          ]
+        },
+        {
+          "id": "pfs-m3-02",
+          "title_fr": "Le panier avec un cookie",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "pfs-m3-01"
+          ],
+          "tags": [
+            "full-stack",
+            "node.js",
+            "projet",
+            "cookie",
+            "Set-Cookie",
+            "HttpOnly",
+            "session"
+          ]
+        },
+        {
+          "id": "pfs-m3-03",
+          "title_fr": "Pagination et tri",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "pfs-m3-02"
+          ],
+          "tags": [
+            "full-stack",
+            "node.js",
+            "projet",
+            "pagination",
+            "borne",
+            "valeur par défaut",
+            "liste d’autorisation"
+          ]
+        },
+        {
+          "id": "pfs-m4-01",
+          "title_fr": "Gérer les erreurs de bout en bout",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "pfs-m3-03"
+          ],
+          "tags": [
+            "full-stack",
+            "node.js",
+            "projet",
+            "filet de sécurité",
+            "500 Internal Server Error",
+            "413 Payload Too Large",
+            "journal"
+          ]
+        },
+        {
+          "id": "pfs-m4-02",
+          "title_fr": "En-têtes de sécurité et configuration",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "pfs-m4-01"
+          ],
+          "tags": [
+            "full-stack",
+            "node.js",
+            "projet",
+            "en-tête de sécurité",
+            "CSP",
+            "variable d’environnement",
+            "valeur par défaut sûre"
+          ]
+        },
+        {
+          "id": "pfs-m4-03",
+          "title_fr": "Projet final : la boutique complète",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "pfs-m4-02"
+          ],
+          "tags": [
+            "full-stack",
+            "node.js",
+            "projet",
+            "application full-stack",
+            "test de bout en bout",
+            "mise en ligne",
+            "cadriciel"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "3f9f462ec752",
+      "exercise_count": 48,
+      "quiz_count": 36
+    },
+    {
+      "id": "projet-web",
+      "title_fr": "Projet web : ma page personnelle",
+      "language": "html",
+      "runtime": "html",
+      "technology": "projetweb",
+      "level": "debutant",
+      "replaces_plans": [
+        "web-projet"
+      ],
+      "summary_fr": "Construis pas à pas ta page personnelle, comme un vrai portfolio : plan et squelette sémantique, présentation, projets et liens, feuille de style avec variables, couleurs lisibles, cartes en grille, mobile d’abord avec requêtes média, images souples, volets dépliables, focus clavier, formulaire de contact accessible, puis vérification et publication. Chaque étape est contrôlée dans un vrai rendu, sur téléphone et sur ordinateur.",
+      "prerequisite_courses": [
+        "html-bases",
+        "css-bases"
+      ],
+      "prerequisites": [
+        "Connaître les balises HTML courantes et les bases du CSS.",
+        "Les cours HTML et CSS débutants de Nunya fournissent ces bases."
+      ],
+      "outcomes": [
+        "Planifier et structurer une page complète et accessible.",
+        "Donner une identité visuelle cohérente et lisible avec des variables CSS.",
+        "Adapter la page aux téléphones et aux grands écrans.",
+        "Ajouter des interactions sans script et un formulaire accessible.",
+        "Vérifier une page avec une liste de contrôle et savoir la publier."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Structurer sa page",
+          "outcome_fr": "Plan, squelette, présentation, projets, liens et contact.",
+          "lesson_ids": [
+            "pw-m1-01",
+            "pw-m1-02",
+            "pw-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Lui donner un style",
+          "outcome_fr": "Feuille de style, variables, typographie lisible et cartes.",
+          "lesson_ids": [
+            "pw-m2-01",
+            "pw-m2-02",
+            "pw-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "S’adapter à tous les écrans",
+          "outcome_fr": "Mobile d’abord, requêtes média, contenus souples et colonnes.",
+          "lesson_ids": [
+            "pw-m3-01",
+            "pw-m3-02",
+            "pw-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Interagir et publier",
+          "outcome_fr": "Volets, focus, formulaire de contact, vérification et publication.",
+          "lesson_ids": [
+            "pw-m4-01",
+            "pw-m4-02",
+            "pw-m4-03"
+          ]
+        }
+      ],
+      "next_courses": [],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "pw-m1-01",
+          "title_fr": "Du plan au squelette de la page",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "html-m4-03",
+            "css-m4-03"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "squelette",
+            "région",
+            "ancre",
+            "hiérarchie des titres"
+          ]
+        },
+        {
+          "id": "pw-m1-02",
+          "title_fr": "Se présenter : texte, image et listes",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m1-01"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "texte alternatif",
+            "image décorative",
+            "liste de définitions",
+            "donnée personnelle"
+          ]
+        },
+        {
+          "id": "pw-m1-03",
+          "title_fr": "Projets, liens et contact",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m1-02"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "article",
+            "lien externe",
+            "rel=\"noopener\"",
+            "mailto"
+          ]
+        },
+        {
+          "id": "pw-m2-01",
+          "title_fr": "Une feuille de style et des variables",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m1-03"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "feuille de style",
+            "propriété personnalisée",
+            ":root",
+            "max-width"
+          ]
+        },
+        {
+          "id": "pw-m2-02",
+          "title_fr": "Couleurs lisibles et typographie",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m2-01"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "contraste",
+            "WCAG",
+            "échelle typographique",
+            "line-height"
+          ]
+        },
+        {
+          "id": "pw-m2-03",
+          "title_fr": "Des cartes pour les projets",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m2-02"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "carte",
+            "grille CSS",
+            "gap",
+            "padding"
+          ]
+        },
+        {
+          "id": "pw-m3-01",
+          "title_fr": "Mobile d’abord et requêtes média",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m2-03"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "mobile d’abord",
+            "viewport",
+            "requête média",
+            "point de rupture"
+          ]
+        },
+        {
+          "id": "pw-m3-02",
+          "title_fr": "Images et contenus souples",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m3-01"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "défilement horizontal",
+            "max-width",
+            "overflow-wrap",
+            "overflow-x"
+          ]
+        },
+        {
+          "id": "pw-m3-03",
+          "title_fr": "Deux colonnes et contenus selon l’écran",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m3-02"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "fr",
+            "grid-template-columns",
+            "display: none",
+            "ordre de lecture"
+          ]
+        },
+        {
+          "id": "pw-m4-01",
+          "title_fr": "Interactions sans script : volets, ancres et focus",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m3-03"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "details",
+            ":focus-visible",
+            "scroll-behavior",
+            "prefers-reduced-motion"
+          ]
+        },
+        {
+          "id": "pw-m4-02",
+          "title_fr": "Un formulaire de contact accessible",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m4-01"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "label",
+            "required",
+            "autocomplete",
+            "action"
+          ]
+        },
+        {
+          "id": "pw-m4-03",
+          "title_fr": "Projet final : assembler, vérifier et publier",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "pw-m4-02"
+          ],
+          "tags": [
+            "projet web",
+            "html",
+            "css",
+            "liste de contrôle",
+            "site statique",
+            "GitHub Pages",
+            "index.html"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "49790410b1a5",
       "exercise_count": 48,
       "quiz_count": 36
     },
@@ -5848,7 +7313,7 @@
       "status": "brouillon",
       "reviewer": null,
       "depth_fr": "Socle progressif avec projets et tests locaux ; relecture pédagogique en cours. Les niveaux supérieurs restent à construire.",
-      "engine_revision": "42d813e139d4",
+      "engine_revision": "e8265b1255cf",
       "lessons": [
         {
           "id": "react-m1-01",
@@ -6108,7 +7573,7 @@
         }
       ],
       "estimated_minutes": 360,
-      "content_revision": "560f61445638",
+      "content_revision": "1c5ac4f1b82e",
       "exercise_count": 72,
       "quiz_count": 54
     },
@@ -7037,34 +8502,594 @@
       "content_revision": "8fe0c818b12e",
       "exercise_count": 48,
       "quiz_count": 36
+    },
+    {
+      "id": "statistiques-python",
+      "title_fr": "Statistiques avec Python : décrire, relier, estimer",
+      "language": "python",
+      "runtime": "python",
+      "technology": "stats",
+      "level": "intermediaire",
+      "summary_fr": "Analyse des données comme un ou une statisticienne : moyenne, médiane, mode, écart-type, quartiles et valeurs aberrantes, effectifs et fréquences, histogrammes, nettoyage d’un fichier CSV, covariance, corrélation et ses pièges, droite de régression, probabilités et simulation, sondages et marge d’erreur, puis enquête complète d’un lycée. En Python, hors ligne, avec le module statistics.",
+      "prerequisite_courses": [
+        "python-bases"
+      ],
+      "prerequisites": [
+        "Savoir écrire des fonctions Python avec listes, dictionnaires, boucles et conditions.",
+        "Le cours Python débutant de Nunya fournit ces bases."
+      ],
+      "outcomes": [
+        "Résumer une série par des indicateurs de position et de dispersion adaptés.",
+        "Organiser et nettoyer des données avant de calculer.",
+        "Mesurer et interpréter un lien entre deux variables sans confondre corrélation et causalité.",
+        "Simuler une expérience aléatoire et estimer une proportion avec sa marge d’erreur.",
+        "Rédiger une conclusion statistique qui annonce ses limites."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Décrire une série",
+          "outcome_fr": "Moyenne, médiane, mode, dispersion, quartiles et valeurs aberrantes.",
+          "lesson_ids": [
+            "stat-m1-01",
+            "stat-m1-02",
+            "stat-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Organiser les données",
+          "outcome_fr": "Effectifs, fréquences, classes, histogrammes et nettoyage.",
+          "lesson_ids": [
+            "stat-m2-01",
+            "stat-m2-02",
+            "stat-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Relier deux variables",
+          "outcome_fr": "Covariance, corrélation, régression et prévisions prudentes.",
+          "lesson_ids": [
+            "stat-m3-01",
+            "stat-m3-02",
+            "stat-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Hasard et échantillons",
+          "outcome_fr": "Probabilités, simulation, marge d’erreur et enquête complète.",
+          "lesson_ids": [
+            "stat-m4-01",
+            "stat-m4-02",
+            "stat-m4-03"
+          ]
+        }
+      ],
+      "next_courses": [],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "stat-m1-01",
+          "title_fr": "Moyenne, médiane et mode",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "py-m12-03"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "moyenne",
+            "médiane",
+            "mode",
+            "robuste"
+          ]
+        },
+        {
+          "id": "stat-m1-02",
+          "title_fr": "Mesurer la dispersion : étendue et écart-type",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m1-01"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "étendue",
+            "variance",
+            "écart-type",
+            "échantillon"
+          ]
+        },
+        {
+          "id": "stat-m1-03",
+          "title_fr": "Quartiles et valeurs aberrantes",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m1-02"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "quartile",
+            "écart interquartile",
+            "valeur aberrante",
+            "boîte à moustaches"
+          ]
+        },
+        {
+          "id": "stat-m2-01",
+          "title_fr": "Effectifs et fréquences",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m1-03"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "variable qualitative",
+            "effectif",
+            "fréquence",
+            "effectif cumulé"
+          ]
+        },
+        {
+          "id": "stat-m2-02",
+          "title_fr": "Regrouper en classes et histogrammes",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m2-01"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "classe",
+            "largeur",
+            "histogramme",
+            "distribution"
+          ]
+        },
+        {
+          "id": "stat-m2-03",
+          "title_fr": "Nettoyer les données avant de calculer",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m2-02"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "valeur manquante",
+            "valeur impossible",
+            "doublon",
+            "CSV"
+          ]
+        },
+        {
+          "id": "stat-m3-01",
+          "title_fr": "Deux variables : nuage de points et covariance",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m2-03"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "nuage de points",
+            "covariance",
+            "relation croissante",
+            "individu"
+          ]
+        },
+        {
+          "id": "stat-m3-02",
+          "title_fr": "Le coefficient de corrélation et ses pièges",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m3-01"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "coefficient de corrélation",
+            "causalité",
+            "facteur de confusion",
+            "relation linéaire"
+          ]
+        },
+        {
+          "id": "stat-m3-03",
+          "title_fr": "La droite de régression et les prévisions",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m3-02"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "régression linéaire",
+            "moindres carrés",
+            "résidu",
+            "extrapolation"
+          ]
+        },
+        {
+          "id": "stat-m4-01",
+          "title_fr": "Probabilités et simulation",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m3-03"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "probabilité",
+            "événement contraire",
+            "loi des grands nombres",
+            "graine"
+          ]
+        },
+        {
+          "id": "stat-m4-02",
+          "title_fr": "Échantillons, sondages et marge d’erreur",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m4-01"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "échantillon",
+            "fluctuation d’échantillonnage",
+            "intervalle de confiance",
+            "biais"
+          ]
+        },
+        {
+          "id": "stat-m4-03",
+          "title_fr": "Projet : l’enquête du lycée",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "stat-m4-02"
+          ],
+          "tags": [
+            "statistiques",
+            "données",
+            "python",
+            "étude statistique",
+            "association",
+            "effectif analysé",
+            "limites"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "76638cbb3330",
+      "exercise_count": 48,
+      "quiz_count": 36
+    },
+    {
+      "id": "typescript-bases",
+      "title_fr": "TypeScript : du JavaScript sûr",
+      "language": "typescript",
+      "runtime": "typescript",
+      "technology": "typescript",
+      "level": "intermediaire",
+      "replaces_plans": [
+        "typescript"
+      ],
+      "summary_fr": "Ajoute des types à ton JavaScript et laisse le compilateur trouver les erreurs avant l’exécution : types de base et fonctions, interfaces, unions et rétrécissement, null en mode strict, unions discriminées et cas oubliés, génériques, types utilitaires, classes, validation des données externes, puis suivi de commandes typé. TypeScript 5.6 en mode strict, en ligne.",
+      "prerequisite_courses": [
+        "javascript-bases"
+      ],
+      "prerequisites": [
+        "Maîtriser les fonctions, tableaux, objets et classes en JavaScript.",
+        "Le cours JavaScript de Nunya fournit ces bases."
+      ],
+      "outcomes": [
+        "Typer variables, fonctions, objets et tableaux, et lire les erreurs de type.",
+        "Modéliser des données avec unions, unions discriminées et types utilitaires.",
+        "Écrire des fonctions et classes génériques précises.",
+        "Traiter null et undefined en mode strict.",
+        "Vérifier les données externes avec des gardes de type."
+      ],
+      "modules": [
+        {
+          "id": "m1",
+          "title_fr": "Les types de base",
+          "outcome_fr": "Pourquoi TypeScript, types, tableaux, tuples et fonctions.",
+          "lesson_ids": [
+            "ts-m1-01",
+            "ts-m1-02",
+            "ts-m1-03"
+          ]
+        },
+        {
+          "id": "m2",
+          "title_fr": "Objets et unions",
+          "outcome_fr": "Interfaces, unions, rétrécissement et null.",
+          "lesson_ids": [
+            "ts-m2-01",
+            "ts-m2-02",
+            "ts-m2-03"
+          ]
+        },
+        {
+          "id": "m3",
+          "title_fr": "Types avancés",
+          "outcome_fr": "Unions discriminées, génériques et types utilitaires.",
+          "lesson_ids": [
+            "ts-m3-01",
+            "ts-m3-02",
+            "ts-m3-03"
+          ]
+        },
+        {
+          "id": "m4",
+          "title_fr": "Programmer avec les types",
+          "outcome_fr": "Classes, validation des données et projet de suivi.",
+          "lesson_ids": [
+            "ts-m4-01",
+            "ts-m4-02",
+            "ts-m4-03"
+          ]
+        }
+      ],
+      "next_courses": [],
+      "status": "brouillon",
+      "reviewer": null,
+      "later_modules": [],
+      "lessons": [
+        {
+          "id": "ts-m1-01",
+          "title_fr": "Pourquoi TypeScript ?",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "js-m8-03"
+          ],
+          "tags": [
+            "typescript",
+            "types",
+            "javascript",
+            "TypeScript",
+            "annotation",
+            "inférence",
+            "mode strict"
+          ]
+        },
+        {
+          "id": "ts-m1-02",
+          "title_fr": "Types de base, tableaux et tuples",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "ts-m1-01"
+          ],
+          "tags": [
+            "typescript",
+            "types",
+            "javascript",
+            "type primitif",
+            "tuple",
+            "any",
+            "unknown"
+          ]
+        },
+        {
+          "id": "ts-m1-03",
+          "title_fr": "Fonctions typées",
+          "module": "m1",
+          "minutes": 20,
+          "prerequisites": [
+            "ts-m1-02"
+          ],
+          "tags": [
+            "typescript",
+            "types",
+            "javascript",
+            "signature",
+            "void",
+            "paramètre optionnel",
+            "type de fonction"
+          ]
+        },
+        {
+          "id": "ts-m2-01",
+          "title_fr": "Objets, interfaces et types",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "ts-m1-03"
+          ],
+          "tags": [
+            "typescript",
+            "types",
+            "javascript",
+            "interface",
+            "alias de type",
+            "typage structurel",
+            "readonly"
+          ]
+        },
+        {
+          "id": "ts-m2-02",
+          "title_fr": "Unions et rétrécissement",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "ts-m2-01"
+          ],
+          "tags": [
+            "typescript",
+            "types",
+            "javascript",
+            "union",
+            "type littéral",
+            "rétrécissement",
+            "analyse de flux"
+          ]
+        },
+        {
+          "id": "ts-m2-03",
+          "title_fr": "null, undefined et le mode strict",
+          "module": "m2",
+          "minutes": 20,
+          "prerequisites": [
+            "ts-m2-02"
+          ],
+          "tags": [
+            "typescript",
+            "types",
+            "javascript",
+            "null",
+            "undefined",
+            "chaînage optionnel",
+            "coalescence"
+          ]
+        },
+        {
+          "id": "ts-m3-01",
+          "title_fr": "Unions discriminées et cas oubliés",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "ts-m2-03"
+          ],
+          "tags": [
+            "typescript",
+            "types",
+            "javascript",
+            "union discriminée",
+            "discriminant",
+            "never",
+            "exhaustivité"
+          ]
+        },
+        {
+          "id": "ts-m3-02",
+          "title_fr": "Les génériques",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "ts-m3-01"
+          ],
+          "tags": [
+            "typescript",
+            "types",
+            "javascript",
+            "générique",
+            "paramètre de type",
+            "contrainte",
+            "inférence de type générique"
+          ]
+        },
+        {
+          "id": "ts-m3-03",
+          "title_fr": "Les types utilitaires",
+          "module": "m3",
+          "minutes": 20,
+          "prerequisites": [
+            "ts-m3-02"
+          ],
+          "tags": [
+            "typescript",
+            "types",
+            "javascript",
+            "type utilitaire",
+            "Partial",
+            "Omit",
+            "Record"
+          ]
+        },
+        {
+          "id": "ts-m4-01",
+          "title_fr": "Classes typées",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "ts-m3-03"
+          ],
+          "tags": [
+            "typescript",
+            "types",
+            "javascript",
+            "encapsulation",
+            "private",
+            "implements",
+            "propriété de paramètre"
+          ]
+        },
+        {
+          "id": "ts-m4-02",
+          "title_fr": "Valider les données venues de l’extérieur",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "ts-m4-01"
+          ],
+          "tags": [
+            "typescript",
+            "types",
+            "javascript",
+            "donnée externe",
+            "assertion de type",
+            "garde de type",
+            "prédicat de type"
+          ]
+        },
+        {
+          "id": "ts-m4-03",
+          "title_fr": "Projet : suivre des commandes en toute sécurité",
+          "module": "m4",
+          "minutes": 20,
+          "prerequisites": [
+            "ts-m4-02"
+          ],
+          "tags": [
+            "typescript",
+            "types",
+            "javascript",
+            "cycle de vie",
+            "transition",
+            "immuabilité",
+            "frontière"
+          ]
+        }
+      ],
+      "estimated_minutes": 240,
+      "content_revision": "8eaed2a6f241",
+      "exercise_count": 48,
+      "quiz_count": 36
     }
   ],
-  "plans": [
-    {
-      "id": "web-projet",
-      "title_fr": "Projet web : ma page personnelle",
-      "summary_fr": "Réunir structure, style et interactions.",
-      "status": "bientôt"
-    },
-    {
-      "id": "nodejs",
-      "title_fr": "Node.js : les bases du serveur",
-      "summary_fr": "JavaScript côté serveur ; après JavaScript.",
-      "status": "bientôt"
-    },
-    {
-      "id": "ia-cyber",
-      "title_fr": "Introduction à l’IA et à la cybersécurité",
-      "summary_fr": "Comprendre, vérifier et protéger.",
-      "status": "bientôt"
-    },
-    {
-      "id": "typescript",
-      "title_fr": "TypeScript : démarrer avec les types",
-      "summary_fr": "Types, fonctions et unions ; après JavaScript.",
-      "status": "bientôt"
-    }
-  ],
+  "plans": [],
   "legacy_references": [
     {
       "id": "agriculture",

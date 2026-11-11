@@ -1,0 +1,203 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une étiquette reliée",
+    "instruction_fr": "Le champ de nom n’a qu’un placeholder. Ajoute avant lui un label « Ton nom » relié par for=\"nom\".",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <form>\n    <input id=\"nom\" name=\"nom\" type=\"text\" placeholder=\"Ton nom\">\n  </form>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <form>\n    <label for=\"nom\">Ton nom</label>\n    <input id=\"nom\" name=\"nom\" type=\"text\" placeholder=\"Ton nom\">\n  </form>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Étiquette",
+        "checks": [
+          {
+            "selector": "label[for=\"nom\"]",
+            "textIncludes": "Ton nom"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Champ identifié",
+        "checks": [
+          {
+            "selector": "label + input#nom",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le label se place avant le champ.",
+      "for doit valoir l’id du champ.",
+      "<label for=\"nom\">Ton nom</label>"
+    ],
+    "explanation_fr": "Un clic sur l’étiquette place maintenant le curseur dans le champ.",
+    "common_wrong_answers": [],
+    "id": "pw-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Le bon type de champ",
+    "instruction_fr": "Ajoute un champ de courriel : label « Ton adresse électronique » relié à input#courriel, de type email, name=\"courriel\", autocomplete=\"email\" et obligatoire.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <form>\n    <label for=\"nom\">Ton nom</label>\n    <input id=\"nom\" name=\"nom\" type=\"text\" autocomplete=\"name\" required>\n  </form>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <form>\n    <label for=\"nom\">Ton nom</label>\n    <input id=\"nom\" name=\"nom\" type=\"text\" autocomplete=\"name\" required>\n    <label for=\"courriel\">Ton adresse électronique</label>\n    <input id=\"courriel\" name=\"courriel\" type=\"email\" autocomplete=\"email\" required>\n  </form>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Champ de courriel",
+        "checks": [
+          {
+            "selector": "#courriel",
+            "attributes": {
+              "type": "email",
+              "name": "courriel",
+              "autocomplete": "email"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Obligatoire et étiqueté",
+        "checks": [
+          {
+            "selector": "#courriel[required]",
+            "count": 1
+          },
+          {
+            "selector": "label[for=\"courriel\"]",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le type email adapte le clavier.",
+      "autocomplete=\"email\" aide à remplir.",
+      "Ajoute required."
+    ],
+    "explanation_fr": "Le navigateur vérifie le format et propose l’adresse connue.",
+    "common_wrong_answers": [],
+    "id": "pw-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Les étiquettes mal reliées",
+    "instruction_fr": "Les étiquettes utilisent for=\"mail\" et for=\"msg\" alors que les champs ont les id courriel et message. Corrige les for, et donne au bouton le texte « Envoyer le message ».",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <form>\n    <label for=\"mail\">Ton adresse électronique</label>\n    <input id=\"courriel\" name=\"courriel\" type=\"email\" required>\n    <label for=\"msg\">Ton message</label>\n    <textarea id=\"message\" name=\"message\" required></textarea>\n    <button type=\"submit\">OK</button>\n  </form>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <form>\n    <label for=\"courriel\">Ton adresse électronique</label>\n    <input id=\"courriel\" name=\"courriel\" type=\"email\" required>\n    <label for=\"message\">Ton message</label>\n    <textarea id=\"message\" name=\"message\" required></textarea>\n    <button type=\"submit\">Envoyer le message</button>\n  </form>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Étiquettes reliées",
+        "checks": [
+          {
+            "selector": "label[for=\"courriel\"]",
+            "count": 1
+          },
+          {
+            "selector": "label[for=\"message\"]",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Bouton explicite",
+        "checks": [
+          {
+            "selector": "button[type=\"submit\"]",
+            "textIncludes": "Envoyer le message"
+          },
+          {
+            "selector": "label[for=\"mail\"]",
+            "exists": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "for doit correspondre exactement à l’id.",
+      "mail n’est pas courriel.",
+      "Le bouton annonce l’action."
+    ],
+    "explanation_fr": "Un for qui ne vise rien laisse le champ sans nom pour les lecteurs d’écran.",
+    "common_wrong_answers": [],
+    "id": "pw-m4-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Le formulaire de contact",
+    "instruction_fr": "Construis section#contact avec un h2 et un formulaire (action=\"https://formulaire.example.com/ama\", method=\"post\") : nom (text, autocomplete name), courriel (email, autocomplete email) et message (textarea), tous étiquetés et obligatoires, puis un bouton submit « Envoyer le message ».",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <main>\n    <section id=\"contact\">\n      <h2>Contact</h2>\n    </section>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <main>\n    <section id=\"contact\">\n      <h2>Contact</h2>\n      <form action=\"https://formulaire.example.com/ama\" method=\"post\">\n        <label for=\"nom\">Ton nom</label>\n        <input id=\"nom\" name=\"nom\" type=\"text\" autocomplete=\"name\" required>\n        <label for=\"courriel\">Ton adresse électronique</label>\n        <input id=\"courriel\" name=\"courriel\" type=\"email\" autocomplete=\"email\" required>\n        <label for=\"message\">Ton message</label>\n        <textarea id=\"message\" name=\"message\" rows=\"5\" required></textarea>\n        <button type=\"submit\">Envoyer le message</button>\n      </form>\n    </section>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Champs étiquetés",
+        "checks": [
+          {
+            "selector": "#contact form label",
+            "count": 3
+          },
+          {
+            "selector": "label[for=\"nom\"] + #nom",
+            "count": 1
+          },
+          {
+            "selector": "#courriel",
+            "attributes": {
+              "type": "email"
+            }
+          },
+          {
+            "selector": "textarea#message",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Envoi et validation",
+        "checks": [
+          {
+            "selector": "#contact form",
+            "attributes": {
+              "method": "post",
+              "action": "https://formulaire.example.com/ama"
+            }
+          },
+          {
+            "selector": "#contact [required]",
+            "count": 3
+          },
+          {
+            "selector": "#nom",
+            "attributes": {
+              "autocomplete": "name"
+            }
+          },
+          {
+            "selector": "#courriel",
+            "attributes": {
+              "autocomplete": "email"
+            }
+          },
+          {
+            "selector": "button[type=\"submit\"]",
+            "textIncludes": "Envoyer le message"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un label avant chaque champ.",
+      "Les bons types et autocomplete.",
+      "required sur les trois champs."
+    ],
+    "explanation_fr": "Le formulaire est prêt ; il lui faudra un service ou un serveur pour recevoir les messages.",
+    "common_wrong_answers": [],
+    "id": "pw-m4-02-e4"
+  }
+]

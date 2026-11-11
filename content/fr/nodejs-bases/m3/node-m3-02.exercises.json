@@ -1,0 +1,178 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Bonjour avec un paramètre",
+    "instruction_fr": "La route /bonjour répond « Bonjour NOM » avec le paramètre nom, ou « Bonjour inconnu » s’il est absent. Utilise new URL pour lire le paramètre.",
+    "starter_code": "const http = require(\"http\");\n\nconst serveur = http.createServer((req, res) => {\n  res.writeHead(200, { \"Content-Type\": \"text/plain; charset=utf-8\" });\n  res.end(\"Bonjour \" + req.url);\n});\n",
+    "solution": "const http = require(\"http\");\n\nconst serveur = http.createServer((req, res) => {\n  const adresse = new URL(req.url, \"http://localhost\");\n  const nom = adresse.searchParams.get(\"nom\") || \"inconnu\";\n  res.writeHead(200, { \"Content-Type\": \"text/plain; charset=utf-8\" });\n  res.end(\"Bonjour \" + nom);\n});\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/bonjour?nom=Afi\").then(r => r.corps)",
+            "expected": "Bonjour Afi"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/bonjour\").then(r => r.corps)",
+            "expected": "Bonjour inconnu"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Analyse req.url avec new URL et une base.",
+      "searchParams.get(\"nom\") lit le paramètre.",
+      "|| \"inconnu\" remplace null."
+    ],
+    "explanation_fr": "Les accents passent aussi : ?nom=Kossi%C3%A9 serait décodé automatiquement.",
+    "common_wrong_answers": [],
+    "id": "node-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Le prix d’un article",
+    "instruction_fr": "Écris un serveur JSON : /prix?article=riz répond {\"article\":\"riz\",\"prix\":600} ; un article inconnu ou absent répond 404 avec {\"erreur\":\"article inconnu\"}. PRIX et envoyerJSON sont fournis.",
+    "starter_code": "const http = require(\"http\");\n\nconst PRIX = { riz: 600, huile: 1500, sel: 150 };\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.writeHead(statut, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify(donnees));\n}\n\nconst serveur = http.createServer((req, res) => {\n  envoyerJSON(res, 200, PRIX);\n});\n",
+    "solution": "const http = require(\"http\");\n\nconst PRIX = { riz: 600, huile: 1500, sel: 150 };\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.writeHead(statut, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify(donnees));\n}\n\nconst serveur = http.createServer((req, res) => {\n  const article = new URL(req.url, \"http://localhost\").searchParams.get(\"article\");\n  if (PRIX[article] === undefined) return envoyerJSON(res, 404, { erreur: \"article inconnu\" });\n  envoyerJSON(res, 200, { article, prix: PRIX[article] });\n});\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/prix?article=riz\")",
+            "expected": "{\"statut\":200,\"type\":\"application/json\",\"corps\":\"{\\\"article\\\":\\\"riz\\\",\\\"prix\\\":600}\"}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/prix?article=sucre\")",
+            "expected": "{\"statut\":404,\"type\":\"application/json\",\"corps\":\"{\\\"erreur\\\":\\\"article inconnu\\\"}\"}"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/prix\")",
+            "expected": "{\"statut\":404,\"type\":\"application/json\",\"corps\":\"{\\\"erreur\\\":\\\"article inconnu\\\"}\"}"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis le paramètre article.",
+      "PRIX[article] vaut undefined s’il est inconnu.",
+      "Utilise envoyerJSON pour les deux réponses."
+    ],
+    "explanation_fr": "Le paramètre absent donne null, qui n’est pas non plus dans PRIX : un seul test couvre les deux cas.",
+    "common_wrong_answers": [],
+    "id": "node-m3-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La liste qui disparaît avec la pagination",
+    "instruction_fr": "La route /produits fonctionne, mais /produits?page=2 répond 404 : le serveur compare req.url entier. Corrige-le pour comparer seulement le chemin.",
+    "starter_code": "const http = require(\"http\");\n\nconst PRIX = { riz: 600, huile: 1500, sel: 150 };\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.writeHead(statut, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify(donnees));\n}\n\nconst serveur = http.createServer((req, res) => {\n  if (req.url === \"/produits\") return envoyerJSON(res, 200, Object.keys(PRIX));\n  envoyerJSON(res, 404, { erreur: \"introuvable\" });\n});\n",
+    "solution": "const http = require(\"http\");\n\nconst PRIX = { riz: 600, huile: 1500, sel: 150 };\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.writeHead(statut, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify(donnees));\n}\n\nconst serveur = http.createServer((req, res) => {\n  const { pathname } = new URL(req.url, \"http://localhost\");\n  if (pathname === \"/produits\") return envoyerJSON(res, 200, Object.keys(PRIX));\n  envoyerJSON(res, 404, { erreur: \"introuvable\" });\n});\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/produits?page=2\").then(r => r.statut + \" \" + r.corps)",
+            "expected": "200 [\"riz\",\"huile\",\"sel\"]"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/produits\").then(r => r.statut)",
+            "expected": "200"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/clients\").then(r => r.statut)",
+            "expected": "404"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "req.url contient aussi ?page=2.",
+      "Seul le chemin identifie la route.",
+      "Utilise new URL(...).pathname."
+    ],
+    "explanation_fr": "Une erreur classique qui casse tous les liens partagés avec des paramètres.",
+    "common_wrong_answers": [],
+    "id": "node-m3-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Un petit routeur",
+    "instruction_fr": "Écris le serveur : toute méthode autre que GET reçoit 405 {\"erreur\":\"méthode non autorisée\"} ; GET /produits renvoie la liste des noms ; GET /produits/NOM renvoie {\"article\":NOM,\"prix\":…} ; tout le reste reçoit 404 {\"erreur\":\"introuvable\"}. PRIX et envoyerJSON sont fournis.",
+    "starter_code": "const http = require(\"http\");\n\nconst PRIX = { riz: 600, huile: 1500, sel: 150 };\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.writeHead(statut, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify(donnees));\n}\n\nconst serveur = http.createServer((req, res) => {\n  envoyerJSON(res, 404, { erreur: \"introuvable\" });\n});\n",
+    "solution": "const http = require(\"http\");\n\nconst PRIX = { riz: 600, huile: 1500, sel: 150 };\n\nfunction envoyerJSON(res, statut, donnees) {\n  res.writeHead(statut, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify(donnees));\n}\n\nconst serveur = http.createServer((req, res) => {\n  if (req.method !== \"GET\") return envoyerJSON(res, 405, { erreur: \"méthode non autorisée\" });\n  const { pathname } = new URL(req.url, \"http://localhost\");\n  if (pathname === \"/produits\") return envoyerJSON(res, 200, Object.keys(PRIX));\n  const parties = pathname.split(\"/\");\n  if (parties.length === 3 && parties[1] === \"produits\" && PRIX[parties[2]] !== undefined) {\n    return envoyerJSON(res, 200, { article: parties[2], prix: PRIX[parties[2]] });\n  }\n  envoyerJSON(res, 404, { erreur: \"introuvable\" });\n});\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/produits\")",
+            "expected": "{\"statut\":200,\"type\":\"application/json\",\"corps\":\"[\\\"riz\\\",\\\"huile\\\",\\\"sel\\\"]\"}"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/produits/sel\")",
+            "expected": "{\"statut\":200,\"type\":\"application/json\",\"corps\":\"{\\\"article\\\":\\\"sel\\\",\\\"prix\\\":150}\"}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/produits/sucre\").then(r => r.statut)",
+            "expected": "404"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/produits/riz/x\").then(r => r.statut)",
+            "expected": "404"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/produits\", { method: \"DELETE\" })",
+            "expected": "{\"statut\":405,\"type\":\"application/json\",\"corps\":\"{\\\"erreur\\\":\\\"méthode non autorisée\\\"}\"}"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Teste la méthode en premier.",
+      "Compare le pathname pour la liste.",
+      "Découpe le chemin pour le détail et vérifie sa longueur."
+    ],
+    "explanation_fr": "Chaque requête trouve une réponse, même inattendue : c’est la marque d’un serveur solide.",
+    "common_wrong_answers": [],
+    "id": "node-m3-02-e4"
+  }
+]

@@ -1,0 +1,321 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "La classe d’une valeur",
+    "instruction_fr": "Écris borne(valeur, largeur) qui renvoie la borne inférieure de la classe [a ; a + largeur[ qui contient la valeur.",
+    "starter_code": "def borne(valeur, largeur):\n    return valeur // largeur\n",
+    "solution": "def borne(valeur, largeur):\n    return (valeur // largeur) * largeur\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "borne",
+            "args": [
+              13,
+              5
+            ],
+            "unchanged_args": true,
+            "expected": 10
+          },
+          {
+            "name": "borne",
+            "args": [
+              10,
+              5
+            ],
+            "unchanged_args": true,
+            "expected": 10
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "borne",
+            "args": [
+              4,
+              5
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "borne",
+            "args": [
+              99,
+              20
+            ],
+            "unchanged_args": true,
+            "expected": 80
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La version actuelle renvoie le numéro de la classe.",
+      "Multiplie ce numéro par la largeur.",
+      "return (valeur // largeur) * largeur"
+    ],
+    "explanation_fr": "Une valeur frontière commence la classe suivante.",
+    "common_wrong_answers": [],
+    "id": "stat-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Regrouper avec les classes vides",
+    "instruction_fr": "Écris regrouper(valeurs, largeur) qui renvoie la liste des [borne, effectif] pour toutes les classes de la plus basse à la plus haute, classes vides comprises.",
+    "starter_code": "from collections import Counter\n\n\ndef regrouper(valeurs, largeur):\n    return sorted(Counter(valeurs).items())\n",
+    "solution": "from collections import Counter\n\n\ndef regrouper(valeurs, largeur):\n    if not valeurs:\n        return []\n    effectifs = Counter((v // largeur) * largeur for v in valeurs)\n    debut = (min(valeurs) // largeur) * largeur\n    return [[b, effectifs[b]] for b in range(debut, max(valeurs) + 1, largeur)]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "regrouper",
+            "args": [
+              [
+                4,
+                7,
+                12,
+                13,
+                9,
+                22,
+                11,
+                14,
+                8,
+                10
+              ],
+              5
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                0,
+                1
+              ],
+              [
+                5,
+                3
+              ],
+              [
+                10,
+                5
+              ],
+              [
+                15,
+                0
+              ],
+              [
+                20,
+                1
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "regrouper",
+            "args": [
+              [],
+              5
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "regrouper",
+            "args": [
+              [
+                31,
+                38,
+                52
+              ],
+              10
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                30,
+                2
+              ],
+              [
+                40,
+                0
+              ],
+              [
+                50,
+                1
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Compte par borne de classe, pas par valeur.",
+      "Commence à la borne du minimum.",
+      "range(debut, max + 1, largeur) parcourt toutes les classes."
+    ],
+    "explanation_fr": "La classe 15 vide reste visible : elle fait partie de l’information.",
+    "common_wrong_answers": [],
+    "id": "stat-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Les barres décalées",
+    "instruction_fr": "histogramme(classes, largeur) reçoit des [borne, effectif] et doit renvoyer des lignes \"borne-fin | ###\", où fin = borne + largeur − 1. Les barres ont un # de trop. Corrige-la.",
+    "starter_code": "def histogramme(classes, largeur):\n    return [f\"{b}-{b + largeur - 1} | \" + \"#\" * (n + 1) for b, n in classes]\n",
+    "solution": "def histogramme(classes, largeur):\n    return [f\"{b}-{b + largeur - 1} | \" + \"#\" * n for b, n in classes]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "histogramme",
+            "args": [
+              [
+                [
+                  0,
+                  1
+                ],
+                [
+                  5,
+                  3
+                ],
+                [
+                  10,
+                  0
+                ]
+              ],
+              5
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "0-4 | #",
+              "5-9 | ###",
+              "10-14 | "
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "histogramme",
+            "args": [
+              [
+                [
+                  20,
+                  2
+                ]
+              ],
+              10
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "20-29 | ##"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une classe vide affiche un #.",
+      "La hauteur doit être exactement l’effectif.",
+      "Retire le + 1."
+    ],
+    "explanation_fr": "Une barre de trop fait croire à une valeur qui n’existe pas.",
+    "common_wrong_answers": [],
+    "id": "stat-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Forme d’une distribution",
+    "instruction_fr": "Écris forme(valeurs) qui renvoie \"étirée à droite\" si la moyenne dépasse la médiane de plus de 10 % de la médiane, \"étirée à gauche\" si elle est inférieure de plus de 10 %, sinon \"symétrique\".",
+    "starter_code": "def forme(valeurs):\n    return \"symétrique\"\n",
+    "solution": "import statistics\n\n\ndef forme(valeurs):\n    moyenne = statistics.mean(valeurs)\n    mediane = statistics.median(valeurs)\n    if moyenne > mediane * 1.1:\n        return \"étirée à droite\"\n    if moyenne < mediane * 0.9:\n        return \"étirée à gauche\"\n    return \"symétrique\"\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "forme",
+            "args": [
+              [
+                1000,
+                1200,
+                1500,
+                2000,
+                15000
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "étirée à droite"
+          },
+          {
+            "name": "forme",
+            "args": [
+              [
+                9,
+                10,
+                10,
+                11
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "symétrique"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "forme",
+            "args": [
+              [
+                1,
+                18,
+                19,
+                19,
+                20
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "étirée à gauche"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Compare moyenne et médiane.",
+      "Une moyenne bien plus grande révèle quelques très grandes valeurs.",
+      "Utilise les seuils 1.1 et 0.9."
+    ],
+    "explanation_fr": "Cette règle simple est une première indication, à confirmer par l’histogramme.",
+    "common_wrong_answers": [],
+    "id": "stat-m2-02-e4"
+  }
+]

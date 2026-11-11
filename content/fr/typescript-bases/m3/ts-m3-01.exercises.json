@@ -1,0 +1,178 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "L’aire des formes",
+    "instruction_fr": "Écris aire(f: Forme): number avec un switch sur f.type : cercle (π × r², arrondi) et rectangle (largeur × hauteur).",
+    "starter_code": "type Forme =\n  | { type: \"cercle\"; rayon: number }\n  | { type: \"rectangle\"; largeur: number; hauteur: number };\n\nfunction aire(f: Forme): number {\n  return f.largeur * f.hauteur;\n}\n",
+    "solution": "type Forme =\n  | { type: \"cercle\"; rayon: number }\n  | { type: \"rectangle\"; largeur: number; hauteur: number };\n\nfunction aire(f: Forme): number {\n  switch (f.type) {\n    case \"cercle\":\n      return Math.round(Math.PI * f.rayon * f.rayon);\n    case \"rectangle\":\n      return f.largeur * f.hauteur;\n    default: {\n      const impossible: never = f;\n      return impossible;\n    }\n  }\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "aire({ type: \"cercle\", rayon: 2 })",
+            "expected": "13"
+          },
+          {
+            "expr": "aire({ type: \"rectangle\", largeur: 3, hauteur: 4 })",
+            "expected": "12"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "aire({ type: \"cercle\", largeur: 3 })",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "f.largeur n’existe pas pour un cercle.",
+      "Teste f.type avec un switch.",
+      "Chaque case utilise les propriétés de sa forme."
+    ],
+    "explanation_fr": "Un cercle sans rayon est refusé : aucune forme ne lui correspond.",
+    "common_wrong_answers": [],
+    "id": "ts-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Les états d’une commande",
+    "instruction_fr": "Écris montantPaye(e: Etat): number qui renvoie 0 pour une commande en attente et le montant sinon.",
+    "starter_code": "type Etat =\n  | { statut: \"en attente\" }\n  | { statut: \"payée\"; montant: number }\n  | { statut: \"livrée\"; montant: number; date: string };\n\nfunction montantPaye(e: Etat): number {\n  return e.montant;\n}\n",
+    "solution": "type Etat =\n  | { statut: \"en attente\" }\n  | { statut: \"payée\"; montant: number }\n  | { statut: \"livrée\"; montant: number; date: string };\n\nfunction montantPaye(e: Etat): number {\n  return e.statut === \"en attente\" ? 0 : e.montant;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "montantPaye({ statut: \"en attente\" })",
+            "expected": "0"
+          },
+          {
+            "expr": "montantPaye({ statut: \"livrée\", montant: 3000, date: \"12 mai\" })",
+            "expected": "3000"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "montantPaye({ statut: \"en attente\", montant: 10 })",
+            "kind": "type_error"
+          },
+          {
+            "expr": "montantPaye({ statut: \"payée\" })",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une commande en attente n’a pas de montant.",
+      "Teste le statut avant de lire montant.",
+      "Après le test, TypeScript sait qu’il y a un montant."
+    ],
+    "explanation_fr": "Les deux appels refusés décrivent des commandes impossibles.",
+    "common_wrong_answers": [],
+    "id": "ts-m3-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le triangle oublié",
+    "instruction_fr": "On a ajouté le triangle à l’union, mais perimetre ne le traite pas : la vérification never le signale. Ajoute le cas (somme des trois côtés).",
+    "starter_code": "type Forme =\n  | { type: \"carre\"; cote: number }\n  | { type: \"triangle\"; a: number; b: number; c: number };\n\nfunction perimetre(f: Forme): number {\n  switch (f.type) {\n    case \"carre\":\n      return 4 * f.cote;\n    default: {\n      const impossible: never = f;\n      return impossible;\n    }\n  }\n}\n",
+    "solution": "type Forme =\n  | { type: \"carre\"; cote: number }\n  | { type: \"triangle\"; a: number; b: number; c: number };\n\nfunction perimetre(f: Forme): number {\n  switch (f.type) {\n    case \"carre\":\n      return 4 * f.cote;\n    case \"triangle\":\n      return f.a + f.b + f.c;\n    default: {\n      const impossible: never = f;\n      return impossible;\n    }\n  }\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "perimetre({ type: \"triangle\", a: 3, b: 4, c: 5 })",
+            "expected": "12"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "perimetre({ type: \"carre\", cote: 2 })",
+            "expected": "8"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : le triangle ne peut pas être affecté à never.",
+      "Il manque un case.",
+      "case \"triangle\": return f.a + f.b + f.c;"
+    ],
+    "explanation_fr": "Sans la branche never, le triangle aurait renvoyé undefined en silence.",
+    "common_wrong_answers": [],
+    "id": "ts-m3-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Un panier piloté par actions",
+    "instruction_fr": "Écris appliquer(panier: string[], action: Action): string[] pour type Action = { type: \"ajouter\"; produit: string } | { type: \"retirer\"; produit: string } | { type: \"vider\" }. Renvoie un nouveau tableau, sans modifier l’ancien ; retirer enlève la première occurrence. Utilise un switch exhaustif.",
+    "starter_code": "type Action =\n  | { type: \"ajouter\"; produit: string }\n  | { type: \"retirer\"; produit: string }\n  | { type: \"vider\" };\n\nfunction appliquer(panier: string[], action: Action): string[] {\n  return panier;\n}\n",
+    "solution": "type Action =\n  | { type: \"ajouter\"; produit: string }\n  | { type: \"retirer\"; produit: string }\n  | { type: \"vider\" };\n\nfunction appliquer(panier: string[], action: Action): string[] {\n  switch (action.type) {\n    case \"ajouter\":\n      return [...panier, action.produit];\n    case \"retirer\": {\n      const i = panier.indexOf(action.produit);\n      return i === -1 ? [...panier] : [...panier.slice(0, i), ...panier.slice(i + 1)];\n    }\n    case \"vider\":\n      return [];\n    default: {\n      const impossible: never = action;\n      return impossible;\n    }\n  }\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "appliquer(appliquer([\"riz\"], { type: \"ajouter\", produit: \"sel\" }), { type: \"retirer\", produit: \"riz\" })",
+            "expected": "[\"sel\"]"
+          },
+          {
+            "expr": "appliquer([\"a\"], { type: \"vider\" })",
+            "expected": "[]"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { const p = [\"riz\", \"riz\"]; const q = appliquer(p, { type: \"retirer\", produit: \"riz\" }); return [p.length, q.length]; })()",
+            "expected": "[2,1]"
+          },
+          {
+            "expr": "appliquer([], { type: \"vider\", produit: \"x\" })",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un case par type d’action.",
+      "Renvoie toujours un nouveau tableau.",
+      "Termine par la branche never."
+    ],
+    "explanation_fr": "C’est le principe des gestionnaires d’état d’interfaces comme React.",
+    "common_wrong_answers": [],
+    "id": "ts-m3-01-e4"
+  }
+]

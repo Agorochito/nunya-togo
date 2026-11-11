@@ -11,20 +11,13 @@
       "html-intermediaire",
       "css-intermediaire",
       "javascript-dom",
+      "typescript-bases",
       "git-bases",
+      "projet-web",
       "http-bases",
       "react-bases"
     ],
-    "planned_fr": [
-      {
-        "title_fr": "TypeScript",
-        "summary_fr": "Ajouter des types au JavaScript pour des applications plus sûres."
-      },
-      {
-        "title_fr": "Projet web : mon portfolio",
-        "summary_fr": "Assembler et publier un site personnel complet."
-      }
-    ],
+    "planned_fr": [],
     "outcome_fr": "Construire et expliquer une interface web interactive et accessible ; poursuivre ensuite avec TypeScript et un projet publié."
   },
   {
@@ -37,6 +30,7 @@
       "python-intermediaire",
       "sql-bases",
       "sql-intermediaire",
+      "postgres-supabase",
       "php-bases",
       "php-intermediaire",
       "java-bases",
@@ -50,7 +44,7 @@
         "summary_fr": "Empaqueter une application et la mettre en ligne."
       }
     ],
-    "outcome_fr": "Comprendre les données et les échanges d’un service, en Python, en PHP objet et en Java, avec SQL avancé, et travailler au terminal ; le déploiement suivra."
+    "outcome_fr": "Comprendre les données et les échanges d’un service, en Python, en PHP objet et en Java, concevoir et sécuriser une base PostgreSQL comme avec Supabase, et travailler au terminal ; le déploiement avec Docker suivra."
   },
   {
     "id": "fullstack",
@@ -63,22 +57,16 @@
       "javascript-bases",
       "javascript-dom",
       "sql-bases",
+      "postgres-supabase",
       "php-bases",
       "http-bases",
+      "nodejs-bases",
       "react-bases",
-      "git-bases"
+      "git-bases",
+      "projet-fullstack"
     ],
-    "planned_fr": [
-      {
-        "title_fr": "Node.js : le serveur en JavaScript",
-        "summary_fr": "Écrire un serveur et une API avec le même langage que la page."
-      },
-      {
-        "title_fr": "Projet complet",
-        "summary_fr": "Une application avec interface, serveur, base de données et mise en ligne."
-      }
-    ],
-    "outcome_fr": "Relier une interface, un serveur PHP et une base SQL ; Node.js et un projet complet publié suivront."
+    "planned_fr": [],
+    "outcome_fr": "Relier une interface, un serveur PHP ou Node.js et une base SQL, puis construire et sécuriser une application complète testée de bout en bout."
   },
   {
     "id": "logiciel",
@@ -109,19 +97,17 @@
       "sql-bases",
       "python-intermediaire",
       "sql-intermediaire",
+      "statistiques-python",
+      "ia-bases",
       "git-bases"
     ],
     "planned_fr": [
       {
         "title_fr": "Tableur pour l’analyse",
         "summary_fr": "Formules, tableaux croisés et graphiques."
-      },
-      {
-        "title_fr": "Statistiques avec Python",
-        "summary_fr": "Moyennes, dispersion, échantillons et graphiques."
       }
     ],
-    "outcome_fr": "Préparer un bilan et un tableau de bord à partir de données fictives, en Python et en SQL avancé, et conserver ses versions ; statistiques et visualisation suivront."
+    "outcome_fr": "Préparer un bilan et un tableau de bord à partir de données fictives, en Python et en SQL avancé, décrire et relier des données, estimer avec une marge d’erreur et conserver ses versions ; le tableur suivra."
   },
   {
     "id": "cyber",
@@ -136,7 +122,8 @@
       "bash-bases",
       "git-bases",
       "reseaux-bases",
-      "cyber-bases"
+      "cyber-bases",
+      "ia-bases"
     ],
     "planned_fr": [],
     "outcome_fr": "Comprendre les réseaux et défendre une petite organisation : adresses, filtrage, mots de passe, journaux, droits, sauvegardes et réponse aux incidents.",

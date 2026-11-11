@@ -17,9 +17,16 @@ Le prompt maître impose une réalisation par lots, avec une cible finale de 72 
 | React : composants et application interactive | 6 | 18 | 72 | React/ReactDOM réels, JSX, état, formulaires, effets et service de démonstration simulé ; contenu à relire. |
 | HTML : documents et formulaires accessibles | 4 | 12 | 48 | Niveau intermédiaire : régions, formulaires reliés, tableaux, images, langue et annuaire ; vrai navigateur, contenu à relire. |
 | PHP intermédiaire : objets et données | 4 | 12 | 48 | Vrai PHP 8.3 hors ligne : typage, tableaux fonctionnels, objets, héritage, interfaces, exceptions, JSON, enums, validation et projet ; contenu à relire. |
+| Projet complet : une boutique en ligne full-stack | 4 | 12 | 48 | Node.js 20 en ligne : pages, formulaires, API, cookie, erreurs, sécurité et configuration, testés par de vraies requêtes ; contenu à relire. |
+| TypeScript : du JavaScript sûr | 4 | 12 | 48 | TypeScript 5.6 strict en ligne (Wandbox) : types, unions, génériques, utilitaires, classes, gardes de type ; vérifications « refusé par les types » ; contenu à relire. |
+| Node.js : le serveur en JavaScript | 4 | 12 | 48 | Node.js 20 en ligne (Wandbox) : modules, JSON, asynchrone, fichiers, serveurs HTTP réellement interrogés, API JSON, événements et sécurité ; contenu à relire. |
+| Intelligence artificielle : comprendre, vérifier, se protéger | 4 | 12 | 48 | Python hors ligne, sans service d’IA : modèles faits main, évaluation, biais, hallucinations, confidentialité, arnaques et injection de consignes ; contenu à relire. |
+| Projet web : ma page personnelle | 4 | 12 | 48 | Rendu réel à 360 et 1 000 px : structure, style, variables, requêtes média, details, focus, formulaire et publication ; contenu à relire. |
+| Statistiques avec Python : décrire, relier, estimer | 4 | 12 | 48 | Python hors ligne, données fictives : position, dispersion, quartiles, fréquences, histogrammes, nettoyage CSV, corrélation, régression, simulation et marge d’erreur ; contenu à relire. |
 | Algorithmes et structures de données | 4 | 12 | 48 | Python hors ligne : complexité, dichotomie, tris, récursivité, piles, files, dictionnaires, ensembles, graphes, BFS, DFS, tri topologique et Dijkstra ; contenu à relire. |
 | Qualité logicielle : tester, déboguer, relire | 4 | 12 | 48 | Python hors ligne : assert, tests par mutation, cas limites, tests en tableau, traces, débogage, pièges, refactoring, doctests, TDD et revue de code ; contenu à relire. |
 | SQL intermédiaire : analyser les données d’une boutique | 4 | 12 | 48 | Vrai SQLite hors ligne, base fictive d’une boutique : CASE, fonctions, opérateurs ensemblistes, CTE récursives, fenêtres, vues, index, UPSERT, déclencheurs et tableau de bord ; contenu à relire. |
+| Backend en ligne : PostgreSQL et Supabase | 4 | 12 | 48 | Vrai PostgreSQL 18 (PGlite) dans le navigateur : contraintes, PL/pgSQL, transactions, rôles, sécurité par ligne vérifiée sous plusieurs identités, supabase-js et fonctions sécurisées ; contenu à relire. |
 | Réseaux informatiques : comprendre et diagnostiquer | 4 | 12 | 48 | Python hors ligne, relevés fictifs : adresses, CIDR, sous-réseaux, couches, ports, DNS, ping, traceroute, configurations, pare-feu, segmentation et diagnostic ; contenu à relire. |
 | Cybersécurité : défendre une petite organisation | 4 | 12 | 48 | Python hors ligne, données fictives : risques, mots de passe, hachage, hameçonnage, journaux, droits, entrées, intégrité, sauvegardes, incidents et audit ; contenu à relire. |
 | Java : premiers programmes | 4 | 12 | 48 | OpenJDK 21 en ligne (Wandbox) : types, boucles, méthodes, tableaux, String, ArrayList, classes, exceptions et boutique ; contenu à relire. |
@@ -28,7 +35,7 @@ Le prompt maître impose une réalisation par lots, avec une cible finale de 72 
 | PHP : les bases de la programmation | 4 | 12 | 48 | Vrai PHP 8.3 hors ligne : variables, conditions, boucles, tableaux, fonctions et caisse de boutique ; contenu à relire. |
 | CSS : interfaces robustes et adaptatives | 6 | 18 | 72 | Niveau intermédiaire : cascade, Flexbox, grilles, media queries, typographie, états et thème ; styles calculés à deux largeurs, contenu à relire. |
 
-Vingt et un programmes principaux : 106 modules, 335 leçons, 1 340 exercices et 1 005 QCM. Git/GitHub et Découverte sont comptés séparément ci-dessous. DOM est une suite intermédiaire aux fondamentaux JavaScript ; ce cours ne prétend pas couvrir à lui seul tout le niveau intermédiaire.
+Vingt-huit programmes principaux : 134 modules, 419 leçons, 1 676 exercices et 1 257 QCM. Git/GitHub et Découverte sont comptés séparément ci-dessous. DOM est une suite intermédiaire aux fondamentaux JavaScript ; ce cours ne prétend pas couvrir à lui seul tout le niveau intermédiaire.
 
 Les leçons possèdent chacune 300–700 mots d’explication, deux exemples commentés, quatre exercices, trois questions de compréhension, des erreurs fréquentes, un glossaire et un récapitulatif. Elles sont des brouillons originaux : aucun enseignant réviseur, partenariat ou certificat externe n’est inventé. Les 22 chapitres Python antérieurs, leurs identifiants et leurs questions de fin de chapitre restent conservés.
 

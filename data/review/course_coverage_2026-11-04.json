@@ -845,7 +845,7 @@
     "Objets connectés et robotique",
     "Blockchain"
   ],
-  "updated_for_release": "5.18.0",
+  "updated_for_release": "5.25.0",
   "updated_at": "2026-11-10",
   "additional_implemented": [
     {
@@ -913,6 +913,97 @@
       "evidence": [
         "content/fr/qualite-logicielle/",
         "docs/QUALITE_LOGICIELLE_UI_RESULTS.json"
+      ]
+    },
+    {
+      "id": "statistiques-python",
+      "modules": 4,
+      "lessons": 12,
+      "activities": 48,
+      "quizzes": 36,
+      "status": "brouillon",
+      "scope": "Statistique descriptive, corrélation, régression, simulation et marge d’erreur en Python hors ligne ; étape du parcours Analyste de données.",
+      "evidence": [
+        "content/fr/statistiques-python/",
+        "docs/STATISTIQUES_PYTHON_UI_RESULTS.json"
+      ]
+    },
+    {
+      "id": "projet-web",
+      "modules": 4,
+      "lessons": 12,
+      "activities": 48,
+      "quizzes": 36,
+      "status": "brouillon",
+      "scope": "Projet de page personnelle en HTML et CSS, vérifié dans un rendu réel à deux largeurs ; étape du parcours front-end.",
+      "evidence": [
+        "content/fr/projet-web/",
+        "docs/PROJET_WEB_UI_RESULTS.json"
+      ]
+    },
+    {
+      "id": "ia-bases",
+      "modules": 4,
+      "lessons": 12,
+      "activities": 48,
+      "quizzes": 36,
+      "status": "brouillon",
+      "scope": "Introduction à l’IA par des modèles faits main en Python hors ligne, avec évaluation, biais et sécurité ; série complémentaire des parcours données et cybersécurité.",
+      "evidence": [
+        "content/fr/ia-bases/",
+        "docs/IA_BASES_UI_RESULTS.json"
+      ]
+    },
+    {
+      "id": "nodejs-bases",
+      "modules": 4,
+      "lessons": 12,
+      "activities": 48,
+      "quizzes": 36,
+      "status": "brouillon",
+      "scope": "Node.js 20 en ligne, serveurs HTTP réellement interrogés ; étape du parcours full-stack.",
+      "evidence": [
+        "content/fr/nodejs-bases/",
+        "docs/NODEJS_BASES_UI_RESULTS.json"
+      ]
+    },
+    {
+      "id": "typescript-bases",
+      "modules": 4,
+      "lessons": 12,
+      "activities": 48,
+      "quizzes": 36,
+      "status": "brouillon",
+      "scope": "TypeScript 5.6 strict en ligne, vérifications de types refusés ; étape du parcours front-end.",
+      "evidence": [
+        "content/fr/typescript-bases/",
+        "docs/TYPESCRIPT_BASES_UI_RESULTS.json"
+      ]
+    },
+    {
+      "id": "projet-fullstack",
+      "modules": 4,
+      "lessons": 12,
+      "activities": 48,
+      "quizzes": 36,
+      "status": "brouillon",
+      "scope": "Projet full-stack sur Node.js 20 en ligne, testé par de vraies requêtes ; dernière étape du parcours full-stack.",
+      "evidence": [
+        "content/fr/projet-fullstack/",
+        "docs/PROJET_FULLSTACK_UI_RESULTS.json"
+      ]
+    },
+    {
+      "id": "postgres-supabase",
+      "modules": 4,
+      "lessons": 12,
+      "activities": 48,
+      "quizzes": 36,
+      "status": "brouillon",
+      "scope": "PostgreSQL 18 réel (PGlite) dans le navigateur, sécurité par ligne façon Supabase vérifiée sous plusieurs identités ; s’ajoute aux parcours backend et full-stack.",
+      "evidence": [
+        "content/fr/postgres-supabase/",
+        "docs/POSTGRES_UI_RESULTS.json"
       ]
     }
   ]

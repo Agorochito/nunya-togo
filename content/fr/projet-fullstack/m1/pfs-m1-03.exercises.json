@@ -1,0 +1,178 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Échapper le HTML",
+    "instruction_fr": "Écris echapper(texte) : & → &amp;, < → &lt;, > → &gt;, \" → &quot;, ' → &#39;, en commençant par &.",
+    "starter_code": "function echapper(texte) {\n  return String(texte).replaceAll(\"<\", \"&lt;\");\n}\n",
+    "solution": "function echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "echapper(\"<b>Riz & sel</b>\")",
+            "expected": "&lt;b&gt;Riz &amp; sel&lt;/b&gt;"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "echapper('\"x\" \\'y\\'')",
+            "expected": "&quot;x&quot; &#39;y&#39;"
+          },
+          {
+            "expr": "echapper(600)",
+            "expected": "600"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Il manque plusieurs caractères.",
+      "Commence par & pour ne pas échapper tes propres entités.",
+      "String() accepte aussi les nombres."
+    ],
+    "explanation_fr": "Cette fonction protégera chaque page du projet.",
+    "common_wrong_answers": [],
+    "id": "pfs-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Le gabarit de page",
+    "instruction_fr": "Écris page(titre, contenu) qui renvoie exactement : <!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>TITRE · Marché de Bè</title></head><body><main><h1>TITRE</h1>CONTENU</main></body></html>, avec le titre échappé. echapper est fournie.",
+    "starter_code": "function echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction page(titre, contenu) {\n  return \"<h1>\" + titre + \"</h1>\" + contenu;\n}\n",
+    "solution": "function echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction page(titre, contenu) {\n  return `<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>${echapper(titre)} · Marché de Bè</title></head>`\n    + `<body><main><h1>${echapper(titre)}</h1>${contenu}</main></body></html>`;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "page(\"Accueil\", \"<p>x</p>\")",
+            "expected": "<!doctype html><html lang=\"fr\"><head><meta charset=\"utf-8\"><title>Accueil · Marché de Bè</title></head><body><main><h1>Accueil</h1><p>x</p></main></body></html>"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "page(\"A<b>\", \"\").includes(\"<h1>A&lt;b&gt;</h1>\")",
+            "expected": "true"
+          },
+          {
+            "expr": "page(\"x\", \"\").startsWith(\"<!doctype html><html lang=\\\"fr\\\">\")",
+            "expected": "true"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le gabarit commence par le doctype et la langue.",
+      "Le titre apparaît deux fois, échappé.",
+      "Le contenu est inséré tel quel."
+    ],
+    "explanation_fr": "Chaque route n’aura plus qu’à fournir son contenu.",
+    "common_wrong_answers": [],
+    "id": "pfs-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le nom piégé",
+    "instruction_fr": "listeHTML insère les noms sans les échapper : un produit nommé <script>… exécuterait du code. Corrige-la avec echapper (fournie).",
+    "starter_code": "function echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction listeHTML(liste) {\n  return \"<ul>\" + liste.map(p => `<li><a href=\"/produits/${p.id}\">${p.nom}</a> — ${p.prix} FCFA</li>`).join(\"\") + \"</ul>\";\n}\n",
+    "solution": "function echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction listeHTML(liste) {\n  return \"<ul>\" + liste.map(p => `<li><a href=\"/produits/${p.id}\">${echapper(p.nom)}</a> — ${p.prix} FCFA</li>`).join(\"\") + \"</ul>\";\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "listeHTML([{ id: 7, nom: \"<script>x</script>\", prix: 100 }])",
+            "expected": "<ul><li><a href=\"/produits/7\">&lt;script&gt;x&lt;/script&gt;</a> — 100 FCFA</li></ul>"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "listeHTML([{ id: 1, nom: \"Gari\", prix: 400 }, { id: 2, nom: \"Riz\", prix: 600 }])",
+            "expected": "<ul><li><a href=\"/produits/1\">Gari</a> — 400 FCFA</li><li><a href=\"/produits/2\">Riz</a> — 600 FCFA</li></ul>"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le nom vient d’une saisie.",
+      "Il est inséré tel quel dans le HTML.",
+      "Remplace ${p.nom} par ${echapper(p.nom)}."
+    ],
+    "explanation_fr": "Une seule insertion oubliée suffit à compromettre tout le site.",
+    "common_wrong_answers": [],
+    "id": "pfs-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Un formulaire prérempli",
+    "instruction_fr": "Écris formulaire(valeurs, erreurs) : si erreurs n’est pas vide, une liste <ul class=\"erreurs\"> de <li> échappés ; puis un formulaire POST vers /produits avec les champs nom et prix (labels « Nom » et « Prix (FCFA) »), préremplis avec les valeurs échappées, et un bouton « Ajouter ». echapper est fournie.",
+    "starter_code": "function echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction formulaire(valeurs, erreurs) {\n  return \"<form></form>\";\n}\n",
+    "solution": "function echapper(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nfunction formulaire(valeurs, erreurs) {\n  const liste = erreurs.length ? \"<ul class=\\\"erreurs\\\">\" + erreurs.map(e => `<li>${echapper(e)}</li>`).join(\"\") + \"</ul>\" : \"\";\n  return liste + `<form method=\"post\" action=\"/produits\">`\n    + `<label for=\"nom\">Nom</label><input id=\"nom\" name=\"nom\" value=\"${echapper(valeurs.nom ?? \"\")}\" required>`\n    + `<label for=\"prix\">Prix (FCFA)</label><input id=\"prix\" name=\"prix\" type=\"number\" value=\"${echapper(valeurs.prix ?? \"\")}\" required>`\n    + `<button type=\"submit\">Ajouter</button></form>`;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "formulaire({}, []).includes('<form method=\"post\" action=\"/produits\">')",
+            "expected": "true"
+          },
+          {
+            "expr": "formulaire({ nom: \"a\\\"><script>\" }, [\"Nom trop court\"]).includes('value=\"a&quot;&gt;&lt;script&gt;\"')",
+            "expected": "true"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "formulaire({}, [\"A\", \"B\"]).match(/<li>/g).length",
+            "expected": "2"
+          },
+          {
+            "expr": "formulaire({}, []).includes(\"erreurs\")",
+            "expected": "false"
+          },
+          {
+            "expr": "(formulaire({}, []).match(/<label/g) || []).length",
+            "expected": "2"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La liste d’erreurs n’apparaît que s’il y en a.",
+      "Échappe les valeurs dans les attributs value.",
+      "Un label pour chaque champ."
+    ],
+    "explanation_fr": "Le formulaire réaffichera les saisies sans jamais les laisser casser la page.",
+    "common_wrong_answers": [],
+    "id": "pfs-m1-03-e4"
+  }
+]

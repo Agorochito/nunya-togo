@@ -1,0 +1,261 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "La marge d’erreur",
+    "instruction_fr": "Écris marge(n) qui renvoie 1/√n arrondi à 3 décimales, et lève ValueError si n < 25.",
+    "starter_code": "def marge(n):\n    return round(1 / n, 3)\n",
+    "solution": "import math\n\n\ndef marge(n):\n    if n < 25:\n        raise ValueError(\"échantillon trop petit\")\n    return round(1 / math.sqrt(n), 3)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "marge",
+            "args": [
+              400
+            ],
+            "unchanged_args": true,
+            "expected": 0.05
+          },
+          {
+            "name": "marge",
+            "args": [
+              1000
+            ],
+            "unchanged_args": true,
+            "expected": 0.032
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "marge",
+            "args": [
+              25
+            ],
+            "unchanged_args": true,
+            "expected": 0.2
+          },
+          {
+            "name": "marge",
+            "args": [
+              10
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La marge varie comme l’inverse de la racine carrée.",
+      "math.sqrt calcule la racine.",
+      "Refuse les échantillons de moins de 25 personnes."
+    ],
+    "explanation_fr": "Le seuil de 25 rappelle que la formule ne vaut que pour des échantillons suffisants.",
+    "common_wrong_answers": [],
+    "id": "stat-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "L’intervalle de confiance",
+    "instruction_fr": "Écris intervalle(f, n) qui renvoie [f − 1/√n, f + 1/√n] arrondis à 3 décimales, sans sortir de [0 ; 1].",
+    "starter_code": "import math\n\n\ndef intervalle(f, n):\n    return [f, f]\n",
+    "solution": "import math\n\n\ndef intervalle(f, n):\n    m = 1 / math.sqrt(n)\n    return [round(max(0, f - m), 3), round(min(1, f + m), 3)]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "intervalle",
+            "args": [
+              0.52,
+              400
+            ],
+            "unchanged_args": true,
+            "expected": [
+              0.47,
+              0.57
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "intervalle",
+            "args": [
+              0.03,
+              100
+            ],
+            "unchanged_args": true,
+            "expected": [
+              0,
+              0.13
+            ]
+          },
+          {
+            "name": "intervalle",
+            "args": [
+              0.98,
+              400
+            ],
+            "unchanged_args": true,
+            "expected": [
+              0.93,
+              1
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La marge vaut 1/√n.",
+      "Soustrais et ajoute la marge.",
+      "Limite avec max(0, …) et min(1, …)."
+    ],
+    "explanation_fr": "Une proportion ne peut pas être négative ni dépasser 100 %.",
+    "common_wrong_answers": [],
+    "id": "stat-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Combien de personnes interroger ?",
+    "instruction_fr": "taille(m) doit renvoyer le nombre minimal de personnes pour une marge m, soit 1/m² arrondi à l’entier supérieur. Elle calcule 1/m. Corrige-la.",
+    "starter_code": "import math\n\n\ndef taille(m):\n    return math.ceil(1 / m)\n",
+    "solution": "import math\n\n\ndef taille(m):\n    return math.ceil(round(1 / m ** 2, 6))\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "taille",
+            "args": [
+              0.05
+            ],
+            "unchanged_args": true,
+            "expected": 400
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "taille",
+            "args": [
+              0.03
+            ],
+            "unchanged_args": true,
+            "expected": 1112
+          },
+          {
+            "name": "taille",
+            "args": [
+              0.1
+            ],
+            "unchanged_args": true,
+            "expected": 100
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Pour 5 points, on doit retrouver 400 personnes.",
+      "La marge vaut 1/√n, donc n = 1/m².",
+      "math.ceil arrondit à l’entier supérieur ; arrondir d’abord à 6 décimales évite qu’une erreur de flottant ajoute une personne."
+    ],
+    "explanation_fr": "Viser 3 points au lieu de 5 demande presque trois fois plus de personnes.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:math"
+    ],
+    "id": "stat-m4-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Vérifier une affirmation",
+    "instruction_fr": "Écris compatible(f, n, annonce) qui renvoie True si la proportion annoncée est dans l’intervalle de confiance [f − 1/√n ; f + 1/√n] (bornes arrondies à 3 décimales), sinon False.",
+    "starter_code": "def compatible(f, n, annonce):\n    return annonce == f\n",
+    "solution": "import math\n\n\ndef compatible(f, n, annonce):\n    m = 1 / math.sqrt(n)\n    return round(f - m, 3) <= annonce <= round(f + m, 3)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compatible",
+            "args": [
+              0.52,
+              400,
+              0.6
+            ],
+            "unchanged_args": true,
+            "expected": false
+          },
+          {
+            "name": "compatible",
+            "args": [
+              0.52,
+              400,
+              0.55
+            ],
+            "unchanged_args": true,
+            "expected": true
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "compatible",
+            "args": [
+              0.3,
+              100,
+              0.4
+            ],
+            "unchanged_args": true,
+            "expected": true
+          },
+          {
+            "name": "compatible",
+            "args": [
+              0.3,
+              2500,
+              0.35
+            ],
+            "unchanged_args": true,
+            "expected": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Calcule l’intervalle de confiance.",
+      "Teste si l’annonce est entre les deux bornes.",
+      "Avec plus de personnes, l’intervalle se resserre."
+    ],
+    "explanation_fr": "La même annonce peut être compatible avec un petit sondage et contredite par un grand.",
+    "common_wrong_answers": [],
+    "id": "stat-m4-02-e4"
+  }
+]

@@ -1,0 +1,162 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Le catalogue de la page d’accueil",
+    "instruction_fr": "Traduis en SQL, exécuté par un visiteur : supabase.from('produits').select('nom, prix').gt('stock', 0).order('prix') Chaque essai repart de la base initiale fictive.",
+    "starter_code": "select * from produits;",
+    "solution": "select nom, prix from produits where stock > 0 order by prix;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "select nom, prix from produits where stock > 0 order by prix;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "as": {
+          "role": "anon"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "select nom, prix from produits where stock > 0 order by prix;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "as": {
+          "role": "anon"
+        }
+      }
+    ],
+    "hints": [
+      "select('nom, prix') choisit les colonnes.",
+      "gt('stock', 0) devient where stock > 0.",
+      "order('prix') devient order by prix."
+    ],
+    "explanation_fr": "Le résultat est celui qu’obtiendrait l’application avec la clé publique.",
+    "common_wrong_answers": [],
+    "id": "pgs-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Recherche paginée",
+    "instruction_fr": "Traduis : supabase.from('produits').select('nom').ilike('nom', '%a%').order('nom').range(0, 1) Chaque essai repart de la base initiale fictive.",
+    "starter_code": "select nom from produits where nom ilike '%a%' order by nom;",
+    "solution": "select nom from produits where nom ilike '%a%' order by nom limit 2 offset 0;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "select nom from produits where nom ilike '%a%' order by nom limit 2 offset 0;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "as": {
+          "role": "anon"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "select nom from produits where nom ilike '%a%' order by nom limit 2 offset 0;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "as": {
+          "role": "anon"
+        }
+      }
+    ],
+    "hints": [
+      "range(0, 1) inclut ses deux bornes.",
+      "Cela fait deux lignes : limit 2.",
+      "offset 0 commence au début."
+    ],
+    "explanation_fr": "range(10, 19) donnerait la deuxième page de dix : limit 10 offset 10.",
+    "common_wrong_answers": [],
+    "id": "pgs-m4-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "L’ordre inversé",
+    "instruction_fr": "L’appel est supabase.from('commandes').select('id, statut').eq('statut', 'en_attente').order('id', { ascending: false }) ; la traduction trie dans le mauvais sens. Corrige-la. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "select id, statut from commandes where statut = 'en_attente' order by id;",
+    "solution": "select id, statut from commandes where statut = 'en_attente' order by id desc;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "select id, statut from commandes where statut = 'en_attente' order by id desc;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "as": {
+          "role": "authenticated",
+          "uid": "22222222-2222-2222-2222-222222222222"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "select id, statut from commandes where statut = 'en_attente' order by id desc;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "as": {
+          "role": "authenticated",
+          "uid": "22222222-2222-2222-2222-222222222222"
+        }
+      }
+    ],
+    "hints": [
+      "ascending: false signifie décroissant.",
+      "En SQL : desc.",
+      "order by id desc."
+    ],
+    "explanation_fr": "Les commandes les plus récentes d’abord : l’ordre habituel d’une liste d’activité.",
+    "common_wrong_answers": [],
+    "id": "pgs-m4-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Mes commandes avec le produit",
+    "instruction_fr": "Traduis : supabase.from('commandes').select('id, quantite, produits(nom)').eq('client_id', '11111111-1111-1111-1111-111111111111').order('id') en une jointure qui renvoie id, quantite et nom. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "select id, quantite from commandes where client_id = '11111111-1111-1111-1111-111111111111' order by id;",
+    "solution": "select c.id, c.quantite, p.nom\nfrom commandes c\njoin produits p on p.id = c.produit_id\nwhere c.client_id = '11111111-1111-1111-1111-111111111111'\norder by c.id;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "select c.id, c.quantite, p.nom from commandes c join produits p on p.id = c.produit_id where c.client_id = '11111111-1111-1111-1111-111111111111' order by c.id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "as": {
+          "role": "authenticated",
+          "uid": "11111111-1111-1111-1111-111111111111"
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "select c.id, c.quantite, p.nom from commandes c join produits p on p.id = c.produit_id where c.client_id = '11111111-1111-1111-1111-111111111111' order by c.id;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "as": {
+          "role": "authenticated",
+          "uid": "11111111-1111-1111-1111-111111111111"
+        }
+      }
+    ],
+    "hints": [
+      "produits(nom) suit la clé étrangère produit_id.",
+      "C’est une jointure.",
+      "Garde le filtre et l’ordre."
+    ],
+    "explanation_fr": "Une seule requête pour un écran entier : moins d’allers-retours sur un réseau mobile.",
+    "common_wrong_answers": [],
+    "id": "pgs-m4-01-e4"
+  }
+]

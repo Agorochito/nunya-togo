@@ -1,0 +1,290 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Les paires de mots",
+    "instruction_fr": "Écris bigrammes(texte) qui renvoie la liste des paires [mot, mot suivant]. La fonction mots est fournie.",
+    "starter_code": "import re\n\n\ndef mots(texte):\n    return re.findall(r\"[a-zàâçéèêëîïôûùüÿœ]+\", texte.lower())\n\n\ndef bigrammes(texte):\n    return []\n",
+    "solution": "import re\n\n\ndef mots(texte):\n    return re.findall(r\"[a-zàâçéèêëîïôûùüÿœ]+\", texte.lower())\n\n\ndef bigrammes(texte):\n    liste = mots(texte)\n    return [[a, b] for a, b in zip(liste, liste[1:])]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bigrammes",
+            "args": [
+              "le marché ouvre"
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                "le",
+                "marché"
+              ],
+              [
+                "marché",
+                "ouvre"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "bigrammes",
+            "args": [
+              "seul"
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "bigrammes",
+            "args": [
+              "A b."
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                "a",
+                "b"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Découpe le texte avec mots.",
+      "zip(liste, liste[1:]) associe chaque mot au suivant.",
+      "Construis la liste de paires."
+    ],
+    "explanation_fr": "Un mot seul ne forme aucune paire.",
+    "common_wrong_answers": [],
+    "id": "ia-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Prédire le mot suivant",
+    "instruction_fr": "Écris predire_suivant(table, mot) : table associe à chaque mot un dictionnaire suivant → nombre. Renvoie le suivant le plus fréquent (le premier rencontré en cas d’égalité), ou None si le mot est inconnu.",
+    "starter_code": "def predire_suivant(table, mot):\n    return None\n",
+    "solution": "def predire_suivant(table, mot):\n    if mot not in table:\n        return None\n    options = table[mot]\n    return max(options, key=options.get)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "predire_suivant",
+            "args": [
+              {
+                "le": {
+                  "marché": 2,
+                  "vent": 1
+                }
+              },
+              "le"
+            ],
+            "unchanged_args": true,
+            "expected": "marché"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "predire_suivant",
+            "args": [
+              {
+                "le": {
+                  "marché": 2
+                }
+              },
+              "la"
+            ],
+            "unchanged_args": true,
+            "expected": null
+          },
+          {
+            "name": "predire_suivant",
+            "args": [
+              {
+                "le": {
+                  "soir": 2,
+                  "marché": 2
+                }
+              },
+              "le"
+            ],
+            "unchanged_args": true,
+            "expected": "soir"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Vérifie d’abord que le mot est connu.",
+      "max avec key=options.get donne le plus fréquent.",
+      "max garde le premier en cas d’égalité."
+    ],
+    "explanation_fr": "Le modèle ne sait rien d’un mot qu’il n’a jamais vu.",
+    "common_wrong_answers": [],
+    "id": "ia-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le générateur bloqué",
+    "instruction_fr": "generer(table, debut, n) devrait prolonger la phrase mot après mot, mais elle prédit toujours à partir du premier mot. Corrige-la pour partir du dernier mot ajouté. La fonction predire_suivant est fournie.",
+    "starter_code": "def predire_suivant(table, mot):\n    if mot not in table:\n        return None\n    options = table[mot]\n    return max(options, key=options.get)\n\n\ndef generer(table, debut, n):\n    phrase = [debut]\n    for _ in range(n):\n        suivant = predire_suivant(table, phrase[0])\n        if suivant is None:\n            break\n        phrase.append(suivant)\n    return \" \".join(phrase)\n",
+    "solution": "def predire_suivant(table, mot):\n    if mot not in table:\n        return None\n    options = table[mot]\n    return max(options, key=options.get)\n\n\ndef generer(table, debut, n):\n    phrase = [debut]\n    for _ in range(n):\n        suivant = predire_suivant(table, phrase[-1])\n        if suivant is None:\n            break\n        phrase.append(suivant)\n    return \" \".join(phrase)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "generer",
+            "args": [
+              {
+                "le": {
+                  "marché": 1
+                },
+                "marché": {
+                  "ouvre": 1
+                }
+              },
+              "le",
+              2
+            ],
+            "unchanged_args": true,
+            "expected": "le marché ouvre"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "generer",
+            "args": [
+              {
+                "a": {
+                  "b": 1
+                }
+              },
+              "a",
+              5
+            ],
+            "unchanged_args": true,
+            "expected": "a b"
+          },
+          {
+            "name": "generer",
+            "args": [
+              {},
+              "x",
+              3
+            ],
+            "unchanged_args": true,
+            "expected": "x"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La phrase devient « le marché marché ».",
+      "Le mot suivant dépend du dernier mot.",
+      "Utilise phrase[-1]."
+    ],
+    "explanation_fr": "Le générateur s’arrête aussi quand il ne connaît plus de suite.",
+    "common_wrong_answers": [],
+    "id": "ia-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Un mini-modèle de langage",
+    "instruction_fr": "Écris suivants(texte) qui construit la table mot → {suivant: nombre}, puis ecrire(texte, debut, n) qui construit la table et génère jusqu’à n mots après debut. Les fonctions mots, predire_suivant et generer sont fournies.",
+    "starter_code": "import re\n\n\ndef mots(texte):\n    return re.findall(r\"[a-zàâçéèêëîïôûùüÿœ]+\", texte.lower())\n\n\ndef predire_suivant(table, mot):\n    if mot not in table:\n        return None\n    options = table[mot]\n    return max(options, key=options.get)\n\n\ndef generer(table, debut, n):\n    phrase = [debut]\n    for _ in range(n):\n        suivant = predire_suivant(table, phrase[-1])\n        if suivant is None:\n            break\n        phrase.append(suivant)\n    return \" \".join(phrase)\n\n\ndef suivants(texte):\n    return {}\n\n\ndef ecrire(texte, debut, n):\n    return debut\n",
+    "solution": "import re\n\n\ndef mots(texte):\n    return re.findall(r\"[a-zàâçéèêëîïôûùüÿœ]+\", texte.lower())\n\n\ndef predire_suivant(table, mot):\n    if mot not in table:\n        return None\n    options = table[mot]\n    return max(options, key=options.get)\n\n\ndef generer(table, debut, n):\n    phrase = [debut]\n    for _ in range(n):\n        suivant = predire_suivant(table, phrase[-1])\n        if suivant is None:\n            break\n        phrase.append(suivant)\n    return \" \".join(phrase)\n\n\ndef suivants(texte):\n    liste = mots(texte)\n    table = {}\n    for a, b in zip(liste, liste[1:]):\n        table.setdefault(a, {})\n        table[a][b] = table[a].get(b, 0) + 1\n    return table\n\n\ndef ecrire(texte, debut, n):\n    return generer(suivants(texte), debut, n)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "suivants",
+            "args": [
+              "le marché le soir"
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "le": {
+                "marché": 1,
+                "soir": 1
+              },
+              "marché": {
+                "le": 1
+              }
+            }
+          },
+          {
+            "name": "ecrire",
+            "args": [
+              "le marché ouvre le matin. le marché ferme le soir. le soir le vent souffle.",
+              "le",
+              6
+            ],
+            "unchanged_args": true,
+            "expected": "le marché ouvre le marché ouvre le"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ecrire",
+            "args": [
+              "un deux trois",
+              "deux",
+              5
+            ],
+            "unchanged_args": true,
+            "expected": "deux trois"
+          },
+          {
+            "name": "suivants",
+            "args": [
+              "seul"
+            ],
+            "unchanged_args": true,
+            "expected": {}
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Pour chaque paire de mots consécutifs, augmente le compte.",
+      "setdefault crée le dictionnaire d’un mot à sa première apparition.",
+      "ecrire combine suivants et generer."
+    ],
+    "explanation_fr": "Une phrase fluide et vide : la forme sans le sens. Les grands modèles font beaucoup mieux, mais sur le même principe.",
+    "common_wrong_answers": [],
+    "id": "ia-m3-03-e4"
+  }
+]

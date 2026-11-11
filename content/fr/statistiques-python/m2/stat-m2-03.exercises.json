@@ -1,0 +1,301 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Convertir les saisies",
+    "instruction_fr": "Écris convertir(textes) qui renvoie la liste des nombres décimaux, en acceptant la virgule et les espaces, et en ignorant les cases vides et \"NA\".",
+    "starter_code": "def convertir(textes):\n    return [float(t) for t in textes]\n",
+    "solution": "def convertir(textes):\n    nombres = []\n    for texte in textes:\n        texte = texte.strip()\n        if texte in (\"\", \"NA\"):\n            continue\n        nombres.append(float(texte.replace(\",\", \".\")))\n    return nombres\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "convertir",
+            "args": [
+              [
+                "12,5",
+                " 14 ",
+                "NA",
+                "",
+                "9.5"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              12.5,
+              14.0,
+              9.5
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "convertir",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "convertir",
+            "args": [
+              [
+                "0,25"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              0.25
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "float(\"12,5\") lève ValueError.",
+      "Retire les espaces avec strip.",
+      "Ignore \"\" et \"NA\" avec continue."
+    ],
+    "explanation_fr": "La conversion est la première étape de tout nettoyage.",
+    "common_wrong_answers": [],
+    "id": "stat-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Écarter les valeurs impossibles",
+    "instruction_fr": "Écris filtrer_notes(notes) qui renvoie [notes valides entre 0 et 20 inclus, nombre de notes écartées].",
+    "starter_code": "def filtrer_notes(notes):\n    return [notes, 0]\n",
+    "solution": "def filtrer_notes(notes):\n    valides = [n for n in notes if 0 <= n <= 20]\n    return [valides, len(notes) - len(valides)]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "filtrer_notes",
+            "args": [
+              [
+                14,
+                125,
+                9.5,
+                -1,
+                20
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                14,
+                9.5,
+                20
+              ],
+              2
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "filtrer_notes",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [],
+              0
+            ]
+          },
+          {
+            "name": "filtrer_notes",
+            "args": [
+              [
+                0,
+                21
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                0
+              ],
+              1
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une note est possible entre 0 et 20 inclus.",
+      "Construis une nouvelle liste par compréhension.",
+      "Le nombre écarté est la différence des longueurs."
+    ],
+    "explanation_fr": "Annoncer le nombre de rejets rend le nettoyage vérifiable.",
+    "common_wrong_answers": [],
+    "id": "stat-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Les absents comptés zéro",
+    "instruction_fr": "moyenne_classe(textes) compte les absents (\"NA\") comme des zéros, ce qui fait baisser la moyenne. Corrige-la : exclus les \"NA\" et renvoie [moyenne arrondie à 2 décimales, nombre d’absents]. Si tout le monde est absent, la moyenne vaut None.",
+    "starter_code": "def moyenne_classe(textes):\n    notes = [0 if t == \"NA\" else float(t) for t in textes]\n    return [round(sum(notes) / len(notes), 2), 0]\n",
+    "solution": "def moyenne_classe(textes):\n    notes = [float(t) for t in textes if t != \"NA\"]\n    absents = len(textes) - len(notes)\n    if not notes:\n        return [None, absents]\n    return [round(sum(notes) / len(notes), 2), absents]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moyenne_classe",
+            "args": [
+              [
+                "12",
+                "NA",
+                "15"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              13.5,
+              1
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moyenne_classe",
+            "args": [
+              [
+                "NA",
+                "NA"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              null,
+              2
+            ]
+          },
+          {
+            "name": "moyenne_classe",
+            "args": [
+              [
+                "10"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              10.0,
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Avec le zéro, la moyenne de 12 et 15 tombe à 9.",
+      "Exclus les \"NA\" au lieu de les remplacer.",
+      "Compte les absents et traite le cas où il n’en reste aucun."
+    ],
+    "explanation_fr": "Une valeur manquante n’est pas une valeur nulle.",
+    "common_wrong_answers": [],
+    "id": "stat-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Moyennes par classe depuis un CSV",
+    "instruction_fr": "Écris moyennes_par_classe(lignes) : lignes est une liste de textes CSV avec l’en-tête \"nom;classe;note\". Ignore les doublons (même nom et même classe), les notes manquantes (\"NA\" ou vide) et impossibles (hors 0–20), accepte la virgule décimale. Renvoie un dictionnaire classe → moyenne arrondie à 2 décimales.",
+    "starter_code": "import csv\n\n\ndef moyennes_par_classe(lignes):\n    return {}\n",
+    "solution": "import csv\n\n\ndef moyennes_par_classe(lignes):\n    vus = set()\n    notes = {}\n    for ligne in csv.DictReader(lignes, delimiter=\";\"):\n        cle = (ligne[\"nom\"], ligne[\"classe\"])\n        if cle in vus:\n            continue\n        vus.add(cle)\n        texte = ligne[\"note\"].strip()\n        if texte in (\"\", \"NA\"):\n            continue\n        note = float(texte.replace(\",\", \".\"))\n        if 0 <= note <= 20:\n            notes.setdefault(ligne[\"classe\"], []).append(note)\n    return {classe: round(sum(n) / len(n), 2) for classe, n in notes.items()}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moyennes_par_classe",
+            "args": [
+              [
+                "nom;classe;note",
+                "Afi;1A;14",
+                "Yao;1A;NA",
+                "Ama;1B;125",
+                "Afi;1A;14",
+                "Kossi;1B;11,5",
+                "Edem;1A;9"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "1A": 11.5,
+              "1B": 11.5
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "moyennes_par_classe",
+            "args": [
+              [
+                "nom;classe;note"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {}
+          },
+          {
+            "name": "moyennes_par_classe",
+            "args": [
+              [
+                "nom;classe;note",
+                "Afi;2A;12",
+                "Afi;2B;16"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "2A": 12.0,
+              "2B": 16.0
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "DictReader avec delimiter=\";\" donne des dictionnaires.",
+      "Un ensemble mémorise les couples (nom, classe) déjà vus.",
+      "setdefault crée la liste d’une classe à sa première note."
+    ],
+    "explanation_fr": "Doublon, absence, saisie impossible et virgule : les quatre pièges réunis dans un seul fichier.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:csv"
+    ],
+    "id": "stat-m2-03-e4"
+  }
+]

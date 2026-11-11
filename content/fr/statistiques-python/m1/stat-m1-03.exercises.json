@@ -1,0 +1,301 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Les trois quartiles",
+    "instruction_fr": "Écris quartiles(valeurs) qui renvoie [Q1, médiane, Q3] avec statistics.quantiles, n=4 et la méthode \"inclusive\".",
+    "starter_code": "import statistics\n\n\ndef quartiles(valeurs):\n    return statistics.quantiles(valeurs)\n",
+    "solution": "import statistics\n\n\ndef quartiles(valeurs):\n    return statistics.quantiles(valeurs, n=4, method=\"inclusive\")\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "quartiles",
+            "args": [
+              [
+                6,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                19
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              9.0,
+              11.0,
+              13.0
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "quartiles",
+            "args": [
+              [
+                12,
+                15,
+                14,
+                13,
+                16,
+                15,
+                14,
+                60
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              13.75,
+              14.5,
+              15.25
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La méthode par défaut est \"exclusive\".",
+      "Précise n=4 pour des quartiles.",
+      "Ajoute method=\"inclusive\"."
+    ],
+    "explanation_fr": "Préciser la méthode rend le résultat reproductible avec un tableur.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:statistics"
+    ],
+    "id": "stat-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Repérer les valeurs suspectes",
+    "instruction_fr": "Écris aberrantes(valeurs) qui renvoie, dans l’ordre d’origine, les valeurs en dehors de [Q1 − 1,5 × écart, Q3 + 1,5 × écart], avec les quartiles \"inclusive\".",
+    "starter_code": "def aberrantes(valeurs):\n    return [max(valeurs)]\n",
+    "solution": "import statistics\n\n\ndef aberrantes(valeurs):\n    q1, _, q3 = statistics.quantiles(valeurs, n=4, method=\"inclusive\")\n    ecart = q3 - q1\n    bas, haut = q1 - 1.5 * ecart, q3 + 1.5 * ecart\n    return [v for v in valeurs if v < bas or v > haut]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "aberrantes",
+            "args": [
+              [
+                12,
+                15,
+                14,
+                13,
+                16,
+                15,
+                14,
+                60
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              60
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "aberrantes",
+            "args": [
+              [
+                10,
+                11,
+                12,
+                13,
+                14
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": []
+          },
+          {
+            "name": "aberrantes",
+            "args": [
+              [
+                1,
+                40,
+                41,
+                42,
+                43,
+                44,
+                90
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              1,
+              90
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Calcule Q1 et Q3 d’abord.",
+      "Les bornes s’écartent de 1,5 écart interquartile.",
+      "Garde les valeurs strictement hors des bornes."
+    ],
+    "explanation_fr": "Une série peut n’avoir aucune valeur suspecte, ou en avoir des deux côtés.",
+    "common_wrong_answers": [],
+    "id": "stat-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le mauvais écart",
+    "instruction_fr": "ecart_interquartile(valeurs) renvoie Q3 − Q2 au lieu de Q3 − Q1. Corrige-la.",
+    "starter_code": "import statistics\n\n\ndef ecart_interquartile(valeurs):\n    q1, q2, q3 = statistics.quantiles(valeurs, n=4, method=\"inclusive\")\n    return q3 - q2\n",
+    "solution": "import statistics\n\n\ndef ecart_interquartile(valeurs):\n    q1, q2, q3 = statistics.quantiles(valeurs, n=4, method=\"inclusive\")\n    return q3 - q1\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ecart_interquartile",
+            "args": [
+              [
+                6,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                19
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 4.0
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ecart_interquartile",
+            "args": [
+              [
+                12,
+                15,
+                14,
+                13,
+                16,
+                15,
+                14,
+                60
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 1.5
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Q3 − Q2 ne couvre que le quart supérieur central.",
+      "La moitié centrale va de Q1 à Q3.",
+      "return q3 - q1"
+    ],
+    "explanation_fr": "L’écart interquartile couvre la moitié centrale des valeurs.",
+    "common_wrong_answers": [],
+    "id": "stat-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Résumé en cinq valeurs",
+    "instruction_fr": "Écris cinq_valeurs(valeurs) qui renvoie {\"min\": ..., \"q1\": ..., \"mediane\": ..., \"q3\": ..., \"max\": ...} avec les quartiles \"inclusive\".",
+    "starter_code": "def cinq_valeurs(valeurs):\n    return {\"min\": min(valeurs), \"max\": max(valeurs)}\n",
+    "solution": "import statistics\n\n\ndef cinq_valeurs(valeurs):\n    q1, q2, q3 = statistics.quantiles(valeurs, n=4, method=\"inclusive\")\n    return {\"min\": min(valeurs), \"q1\": q1, \"mediane\": q2, \"q3\": q3, \"max\": max(valeurs)}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "cinq_valeurs",
+            "args": [
+              [
+                6,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                19
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "min": 6,
+              "q1": 9.0,
+              "mediane": 11.0,
+              "q3": 13.0,
+              "max": 19
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "cinq_valeurs",
+            "args": [
+              [
+                3,
+                1,
+                2
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "min": 1,
+              "q1": 1.5,
+              "mediane": 2.0,
+              "q3": 2.5,
+              "max": 3
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les extrêmes viennent de min et max.",
+      "quantiles donne les trois autres.",
+      "Le deuxième quartile est la médiane."
+    ],
+    "explanation_fr": "Ces cinq nombres suffisent à dessiner une boîte à moustaches.",
+    "common_wrong_answers": [],
+    "id": "stat-m1-03-e4"
+  }
+]

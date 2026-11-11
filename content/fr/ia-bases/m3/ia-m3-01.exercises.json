@@ -1,0 +1,390 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "La répartition des données",
+    "instruction_fr": "Écris repartition(groupes) qui renvoie un dictionnaire groupe → part des exemples, arrondie à 2 décimales.",
+    "starter_code": "def repartition(groupes):\n    return {}\n",
+    "solution": "from collections import Counter\n\n\ndef repartition(groupes):\n    total = len(groupes)\n    return {g: round(n / total, 2) for g, n in Counter(groupes).items()}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "repartition",
+            "args": [
+              [
+                "ville",
+                "ville",
+                "ville",
+                "ville",
+                "ville",
+                "ville",
+                "ville",
+                "ville",
+                "village",
+                "village"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "ville": 0.8,
+              "village": 0.2
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "repartition",
+            "args": [
+              [
+                "a",
+                "b",
+                "c"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "a": 0.33,
+              "b": 0.33,
+              "c": 0.33
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Compte chaque groupe avec Counter.",
+      "Divise par le nombre total.",
+      "Arrondis à 2 décimales."
+    ],
+    "explanation_fr": "Un groupe à 20 % est déjà un signal à surveiller.",
+    "common_wrong_answers": [],
+    "id": "ia-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Exactitude par groupe",
+    "instruction_fr": "Écris exactitude_par_groupe(predictions, verites, groupes) qui renvoie un dictionnaire groupe → exactitude, arrondie à 2 décimales.",
+    "starter_code": "def exactitude_par_groupe(predictions, verites, groupes):\n    return {}\n",
+    "solution": "def exactitude_par_groupe(predictions, verites, groupes):\n    resultat = {}\n    for g in sorted(set(groupes)):\n        paires = [(p, v) for p, v, x in zip(predictions, verites, groupes) if x == g]\n        resultat[g] = round(sum(1 for p, v in paires if p == v) / len(paires), 2)\n    return resultat\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exactitude_par_groupe",
+            "args": [
+              [
+                "oui",
+                "oui",
+                "non",
+                "oui",
+                "non",
+                "non",
+                "oui",
+                "non",
+                "oui",
+                "oui"
+              ],
+              [
+                "oui",
+                "oui",
+                "non",
+                "oui",
+                "non",
+                "oui",
+                "non",
+                "oui",
+                "oui",
+                "non"
+              ],
+              [
+                "ville",
+                "ville",
+                "ville",
+                "ville",
+                "ville",
+                "village",
+                "village",
+                "village",
+                "ville",
+                "village"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "village": 0.0,
+              "ville": 1.0
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "exactitude_par_groupe",
+            "args": [
+              [
+                "a",
+                "b",
+                "a",
+                "a"
+              ],
+              [
+                "a",
+                "a",
+                "a",
+                "b"
+              ],
+              [
+                "x",
+                "x",
+                "y",
+                "y"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "x": 0.5,
+              "y": 0.5
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Pour chaque groupe, garde ses paires (prédiction, vérité).",
+      "Compte les justes.",
+      "Divise par la taille du groupe."
+    ],
+    "explanation_fr": "La même mesure, découpée par groupe, révèle ce que la moyenne cache.",
+    "common_wrong_answers": [],
+    "id": "ia-m3-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Compter ou comparer ?",
+    "instruction_fr": "erreurs_par_groupe compte le nombre brut d’erreurs : un grand groupe paraît toujours pire. Corrige-la pour renvoyer le taux d’erreur (erreurs / taille du groupe), arrondi à 2 décimales.",
+    "starter_code": "def erreurs_par_groupe(predictions, verites, groupes):\n    resultat = {}\n    for p, v, g in zip(predictions, verites, groupes):\n        resultat[g] = resultat.get(g, 0) + (p != v)\n    return resultat\n",
+    "solution": "def erreurs_par_groupe(predictions, verites, groupes):\n    erreurs, tailles = {}, {}\n    for p, v, g in zip(predictions, verites, groupes):\n        erreurs[g] = erreurs.get(g, 0) + (p != v)\n        tailles[g] = tailles.get(g, 0) + 1\n    return {g: round(erreurs[g] / tailles[g], 2) for g in tailles}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "erreurs_par_groupe",
+            "args": [
+              [
+                "a",
+                "a",
+                "a",
+                "a",
+                "a",
+                "a",
+                "a",
+                "a",
+                "a",
+                "a",
+                "a",
+                "a"
+              ],
+              [
+                "a",
+                "a",
+                "a",
+                "a",
+                "a",
+                "a",
+                "a",
+                "a",
+                "b",
+                "b",
+                "b",
+                "a"
+              ],
+              [
+                "ville",
+                "ville",
+                "ville",
+                "ville",
+                "ville",
+                "ville",
+                "ville",
+                "ville",
+                "ville",
+                "ville",
+                "village",
+                "village"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "ville": 0.2,
+              "village": 0.5
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "erreurs_par_groupe",
+            "args": [
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                "x",
+                "y"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La ville a 2 erreurs, le village 1 : la ville paraît pire.",
+      "Mais le village n’a que 2 exemples.",
+      "Divise par la taille de chaque groupe."
+    ],
+    "explanation_fr": "En taux, le village est en réalité le plus mal servi : 50 % d’erreurs contre 20 %.",
+    "common_wrong_answers": [],
+    "id": "ia-m3-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Audit d’équité",
+    "instruction_fr": "Écris audit(predictions, verites, groupes, tolerance) qui renvoie {\"par_groupe\": exactitudes par groupe, \"ecart\": meilleur − moins bon arrondi à 2 décimales, \"alerte\": True si l’écart dépasse strictement la tolérance}. La fonction exactitude_par_groupe est fournie.",
+    "starter_code": "def exactitude_par_groupe(predictions, verites, groupes):\n    resultat = {}\n    for g in sorted(set(groupes)):\n        paires = [(p, v) for p, v, x in zip(predictions, verites, groupes) if x == g]\n        resultat[g] = round(sum(1 for p, v in paires if p == v) / len(paires), 2)\n    return resultat\n\n\ndef audit(predictions, verites, groupes, tolerance):\n    return {}\n",
+    "solution": "def exactitude_par_groupe(predictions, verites, groupes):\n    resultat = {}\n    for g in sorted(set(groupes)):\n        paires = [(p, v) for p, v, x in zip(predictions, verites, groupes) if x == g]\n        resultat[g] = round(sum(1 for p, v in paires if p == v) / len(paires), 2)\n    return resultat\n\n\ndef audit(predictions, verites, groupes, tolerance):\n    par_groupe = exactitude_par_groupe(predictions, verites, groupes)\n    ecart = round(max(par_groupe.values()) - min(par_groupe.values()), 2)\n    return {\"par_groupe\": par_groupe, \"ecart\": ecart, \"alerte\": ecart > tolerance}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "audit",
+            "args": [
+              [
+                "oui",
+                "oui",
+                "non",
+                "oui",
+                "non",
+                "non",
+                "oui",
+                "non",
+                "oui",
+                "oui"
+              ],
+              [
+                "oui",
+                "oui",
+                "non",
+                "oui",
+                "non",
+                "oui",
+                "non",
+                "oui",
+                "oui",
+                "non"
+              ],
+              [
+                "ville",
+                "ville",
+                "ville",
+                "ville",
+                "ville",
+                "village",
+                "village",
+                "village",
+                "ville",
+                "village"
+              ],
+              0.1
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "par_groupe": {
+                "village": 0.0,
+                "ville": 1.0
+              },
+              "ecart": 1.0,
+              "alerte": true
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "audit",
+            "args": [
+              [
+                "a",
+                "b"
+              ],
+              [
+                "a",
+                "b"
+              ],
+              [
+                "x",
+                "y"
+              ],
+              0.1
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "par_groupe": {
+                "x": 1.0,
+                "y": 1.0
+              },
+              "ecart": 0.0,
+              "alerte": false
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Calcule les exactitudes par groupe.",
+      "L’écart est max − min.",
+      "Compare-le à la tolérance."
+    ],
+    "explanation_fr": "La tolérance se fixe avant l’audit, pas après avoir vu les résultats.",
+    "common_wrong_answers": [],
+    "id": "ia-m3-01-e4"
+  }
+]

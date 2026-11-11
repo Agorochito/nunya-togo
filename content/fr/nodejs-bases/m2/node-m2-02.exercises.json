@@ -1,0 +1,170 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une promesse qui attend",
+    "instruction_fr": "Écris attendre(ms) qui renvoie une promesse tenue après ms millisecondes, avec la valeur ms.",
+    "starter_code": "function attendre(ms) {\n  setTimeout(() => ms, ms);\n}\n",
+    "solution": "function attendre(ms) {\n  return new Promise(resolve => setTimeout(() => resolve(ms), ms));\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "attendre(5)",
+            "expected": "5"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "attendre(0)",
+            "expected": "0"
+          },
+          {
+            "expr": "attendre(5) instanceof Promise",
+            "expected": "true"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La fonction doit renvoyer une promesse.",
+      "new Promise(resolve => …).",
+      "Appelle resolve(ms) dans le minuteur."
+    ],
+    "explanation_fr": "Cette petite fonction servira tout le module.",
+    "common_wrong_answers": [],
+    "id": "node-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Une fonction async",
+    "instruction_fr": "Écris la fonction async doubleApres(x) qui attend 5 ms avec attendre, puis renvoie x × 2. attendre est fournie.",
+    "starter_code": "function attendre(ms) {\n  return new Promise(resolve => setTimeout(() => resolve(ms), ms));\n}\n\nfunction doubleApres(x) {\n  return x * 2;\n}\n",
+    "solution": "function attendre(ms) {\n  return new Promise(resolve => setTimeout(() => resolve(ms), ms));\n}\n\nasync function doubleApres(x) {\n  await attendre(5);\n  return x * 2;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "doubleApres(21)",
+            "expected": "42"
+          },
+          {
+            "expr": "doubleApres(1) instanceof Promise",
+            "expected": "true"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "doubleApres(-3)",
+            "expected": "-6"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Déclare la fonction avec async.",
+      "Attends avec await attendre(5).",
+      "Puis renvoie le double."
+    ],
+    "explanation_fr": "Une fonction async renvoie une promesse : l’atelier l’attend avant de comparer.",
+    "common_wrong_answers": [],
+    "id": "node-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le await oublié",
+    "instruction_fr": "total() doit renvoyer le prix du riz plus 100 FCFA de sachet, soit 700. Elle renvoie un texte étrange. Corrige-la.",
+    "starter_code": "async function prixRiz() {\n  await new Promise(r => setTimeout(r, 2));\n  return 600;\n}\n\nasync function total() {\n  const prix = prixRiz();\n  return prix + 100;\n}\n",
+    "solution": "async function prixRiz() {\n  await new Promise(r => setTimeout(r, 2));\n  return 600;\n}\n\nasync function total() {\n  const prix = await prixRiz();\n  return prix + 100;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "total()",
+            "expected": "700"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "total().then(v => typeof v)",
+            "expected": "number"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le résultat ressemble à « [object Promise]100 ».",
+      "prix est une promesse, pas un nombre.",
+      "Ajoute await devant prixRiz()."
+    ],
+    "explanation_fr": "Un await oublié ne provoque aucune erreur : seulement un résultat absurde.",
+    "common_wrong_answers": [],
+    "id": "node-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Charger plusieurs produits",
+    "instruction_fr": "Écris la fonction async chargerTout(ids) qui cherche tous les produits en parallèle avec chercherProduit (fournie) et renvoie { noms: [noms trouvés, dans l’ordre], erreurs: nombre d’échecs }. Utilise Promise.allSettled.",
+    "starter_code": "const STOCK = { riz: { nom: \"Riz\", prix: 600 }, huile: { nom: \"Huile\", prix: 1500 } };\n\nfunction chercherProduit(id) {\n  return new Promise((resolve, reject) => {\n    setTimeout(() => {\n      if (STOCK[id]) resolve(STOCK[id]);\n      else reject(new Error(\"produit introuvable : \" + id));\n    }, 2);\n  });\n}\n\nasync function chargerTout(ids) {\n  const noms = [];\n  for (const id of ids) {\n    noms.push((await chercherProduit(id)).nom);\n  }\n  return { noms, erreurs: 0 };\n}\n",
+    "solution": "const STOCK = { riz: { nom: \"Riz\", prix: 600 }, huile: { nom: \"Huile\", prix: 1500 } };\n\nfunction chercherProduit(id) {\n  return new Promise((resolve, reject) => {\n    setTimeout(() => {\n      if (STOCK[id]) resolve(STOCK[id]);\n      else reject(new Error(\"produit introuvable : \" + id));\n    }, 2);\n  });\n}\n\nasync function chargerTout(ids) {\n  const resultats = await Promise.allSettled(ids.map(chercherProduit));\n  const noms = resultats.filter(r => r.status === \"fulfilled\").map(r => r.value.nom);\n  return { noms, erreurs: resultats.length - noms.length };\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "chargerTout([\"riz\", \"sucre\", \"huile\"])",
+            "expected": "{\"noms\":[\"Riz\",\"Huile\"],\"erreurs\":1}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "chargerTout([])",
+            "expected": "{\"noms\":[],\"erreurs\":0}"
+          },
+          {
+            "expr": "chargerTout([\"riz\"])",
+            "expected": "{\"noms\":[\"Riz\"],\"erreurs\":0}"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lance toutes les recherches avec ids.map(chercherProduit).",
+      "Promise.allSettled attend tout, réussites et échecs.",
+      "Garde les valeurs dont status vaut \"fulfilled\"."
+    ],
+    "explanation_fr": "Un produit manquant n’empêche plus d’afficher les autres.",
+    "common_wrong_answers": [],
+    "id": "node-m2-02-e4"
+  }
+]

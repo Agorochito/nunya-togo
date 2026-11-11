@@ -1,0 +1,166 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "L’extension d’un fichier",
+    "instruction_fr": "Écris extension(nomFichier) qui renvoie l’extension avec path.extname (par exemple \".csv\").",
+    "starter_code": "function extension(nomFichier) {\n  return nomFichier.split(\".\")[1];\n}\n",
+    "solution": "const path = require(\"path\");\n\nfunction extension(nomFichier) {\n  return path.extname(nomFichier);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "extension(\"ventes.csv\")",
+            "expected": ".csv"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "extension(\"archive.tar.gz\")",
+            "expected": ".gz"
+          },
+          {
+            "expr": "extension(\"LISEZMOI\")",
+            "expected": ""
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "split ne gère pas les noms à plusieurs points.",
+      "Charge path avec require.",
+      "path.extname(nomFichier)"
+    ],
+    "explanation_fr": "Le module intégré gère les cas difficiles à ta place.",
+    "common_wrong_answers": [],
+    "id": "node-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Exporter ses fonctions",
+    "instruction_fr": "Écris tva(prix) qui renvoie 18 % du prix arrondi, ttc(prix) qui renvoie prix + tva(prix), puis exporte les deux avec module.exports.",
+    "starter_code": "function tva(prix) {\n  return Math.round(prix * 0.18);\n}\n",
+    "solution": "function tva(prix) {\n  return Math.round(prix * 0.18);\n}\n\nfunction ttc(prix) {\n  return prix + tva(prix);\n}\n\nmodule.exports = { tva, ttc };\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "module.exports.ttc(1000)",
+            "expected": "1180"
+          },
+          {
+            "expr": "Object.keys(module.exports).join(\",\")",
+            "expected": "tva,ttc"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "module.exports.tva(333)",
+            "expected": "60"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "ttc réutilise tva.",
+      "Place les deux dans un objet.",
+      "module.exports = { tva, ttc };"
+    ],
+    "explanation_fr": "Un autre fichier pourrait maintenant écrire const prix = require(\"./prix\").",
+    "common_wrong_answers": [],
+    "id": "node-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le module vide",
+    "instruction_fr": "Le module semble exporter rabais, mais un autre fichier ne la trouve pas. Corrige l’export.",
+    "starter_code": "function rabais(prix, pourcentage) {\n  return prix - Math.round(prix * pourcentage / 100);\n}\n\nmodule.export = { rabais };\n",
+    "solution": "function rabais(prix, pourcentage) {\n  return prix - Math.round(prix * pourcentage / 100);\n}\n\nmodule.exports = { rabais };\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "typeof module.exports.rabais",
+            "expected": "function"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "module.exports.rabais(5000, 10)",
+            "expected": "4500"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Aucune erreur, mais rien n’est exporté.",
+      "Compare avec l’orthographe exacte.",
+      "module.exports, avec un s."
+    ],
+    "explanation_fr": "L’erreur la plus silencieuse des modules CommonJS.",
+    "common_wrong_answers": [],
+    "id": "node-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Le chemin des rapports",
+    "instruction_fr": "Écris cheminRapport(annee, mois) qui renvoie le chemin rapports/ANNEE/MM.json, avec le mois sur deux chiffres, construit avec path.join. Exporte-la.",
+    "starter_code": "function cheminRapport(annee, mois) {\n  return \"rapports/\" + annee + \"/\" + mois + \".json\";\n}\n",
+    "solution": "const path = require(\"path\");\n\nfunction cheminRapport(annee, mois) {\n  return path.join(\"rapports\", String(annee), String(mois).padStart(2, \"0\") + \".json\");\n}\n\nmodule.exports = { cheminRapport };\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "module.exports.cheminRapport(2026, 3)",
+            "expected": "rapports/2026/03.json"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "module.exports.cheminRapport(2025, 11)",
+            "expected": "rapports/2025/11.json"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "padStart(2, \"0\") ajoute le zéro.",
+      "path.join assemble les morceaux.",
+      "N’oublie pas module.exports."
+    ],
+    "explanation_fr": "Des chemins bien formés évitent des fichiers perdus.",
+    "common_wrong_answers": [],
+    "id": "node-m1-02-e4"
+  }
+]

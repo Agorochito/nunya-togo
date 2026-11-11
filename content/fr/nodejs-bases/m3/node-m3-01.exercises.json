@@ -1,0 +1,162 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Répondre « Bienvenue au marché »",
+    "instruction_fr": "Complète le gestionnaire : statut 200, type text/plain; charset=utf-8 et corps « Bienvenue au marché ».",
+    "starter_code": "const http = require(\"http\");\n\nconst serveur = http.createServer((req, res) => {\n  res.end();\n});\n",
+    "solution": "const http = require(\"http\");\n\nconst serveur = http.createServer((req, res) => {\n  res.writeHead(200, { \"Content-Type\": \"text/plain; charset=utf-8\" });\n  res.end(\"Bienvenue au marché\");\n});\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/\")",
+            "expected": "{\"statut\":200,\"type\":\"text/plain\",\"corps\":\"Bienvenue au marché\"}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/autre\")",
+            "expected": "{\"statut\":200,\"type\":\"text/plain\",\"corps\":\"Bienvenue au marché\"}"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Fixe le statut et le type avec writeHead.",
+      "Passe le texte à res.end.",
+      "N’appelle pas listen : l’atelier s’en charge."
+    ],
+    "explanation_fr": "Toute requête reçoit la même réponse : il n’y a pas encore de routes.",
+    "common_wrong_answers": [],
+    "id": "node-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Répondre en JSON",
+    "instruction_fr": "Écris un serveur qui répond à toute requête par le JSON {\"message\":\"pong\"} avec le statut 200 et le type application/json.",
+    "starter_code": "const http = require(\"http\");\n\nconst serveur = http.createServer((req, res) => {\n  res.end(\"pong\");\n});\n",
+    "solution": "const http = require(\"http\");\n\nconst serveur = http.createServer((req, res) => {\n  res.writeHead(200, { \"Content-Type\": \"application/json; charset=utf-8\" });\n  res.end(JSON.stringify({ message: \"pong\" }));\n});\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/ping\")",
+            "expected": "{\"statut\":200,\"type\":\"application/json\",\"corps\":\"{\\\"message\\\":\\\"pong\\\"}\"}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/\").then(r => JSON.parse(r.corps).message)",
+            "expected": "pong"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le type devient application/json.",
+      "Le corps est le texte JSON.",
+      "JSON.stringify({ message: \"pong\" })"
+    ],
+    "explanation_fr": "Le client peut maintenant lire la réponse avec JSON.parse.",
+    "common_wrong_answers": [],
+    "id": "node-m3-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le client qui attend",
+    "instruction_fr": "Ce serveur prépare sa réponse mais ne la termine jamais : le client attend sans fin. Corrige-le.",
+    "starter_code": "const http = require(\"http\");\n\nconst serveur = http.createServer((req, res) => {\n  res.writeHead(200, { \"Content-Type\": \"text/plain; charset=utf-8\" });\n  res.write(\"Ouvert de 8 h à 18 h\");\n});\n",
+    "solution": "const http = require(\"http\");\n\nconst serveur = http.createServer((req, res) => {\n  res.writeHead(200, { \"Content-Type\": \"text/plain; charset=utf-8\" });\n  res.end(\"Ouvert de 8 h à 18 h\");\n});\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/horaires\")",
+            "expected": "{\"statut\":200,\"type\":\"text/plain\",\"corps\":\"Ouvert de 8 h à 18 h\"}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/\").then(r => r.statut)",
+            "expected": "200"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "res.write envoie un morceau sans terminer.",
+      "La réponse doit être terminée.",
+      "Utilise res.end."
+    ],
+    "explanation_fr": "L’atelier attend 5 secondes avant d’abandonner : un vrai navigateur attendrait bien plus.",
+    "common_wrong_answers": [],
+    "id": "node-m3-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Trois pages et une erreur",
+    "instruction_fr": "Écris un serveur : \"/\" répond « Accueil », \"/contact\" répond « Écris à boutique@example.com », toute autre adresse répond « Page introuvable » avec le statut 404. Toujours en text/plain; charset=utf-8.",
+    "starter_code": "const http = require(\"http\");\n\nconst serveur = http.createServer((req, res) => {\n  res.writeHead(200, { \"Content-Type\": \"text/plain; charset=utf-8\" });\n  res.end(\"Accueil\");\n});\n",
+    "solution": "const http = require(\"http\");\n\nconst PAGES = {\n  \"/\": \"Accueil\",\n  \"/contact\": \"Écris à boutique@example.com\",\n};\n\nconst serveur = http.createServer((req, res) => {\n  const texte = PAGES[req.url];\n  res.writeHead(texte ? 200 : 404, { \"Content-Type\": \"text/plain; charset=utf-8\" });\n  res.end(texte || \"Page introuvable\");\n});\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/\")",
+            "expected": "{\"statut\":200,\"type\":\"text/plain\",\"corps\":\"Accueil\"}"
+          },
+          {
+            "expr": "nunyaRequete(serveur, \"/contact\")",
+            "expected": "{\"statut\":200,\"type\":\"text/plain\",\"corps\":\"Écris à boutique@example.com\"}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/secret\")",
+            "expected": "{\"statut\":404,\"type\":\"text/plain\",\"corps\":\"Page introuvable\"}"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un objet peut associer chaque chemin à son texte.",
+      "Un chemin absent donne undefined.",
+      "Choisis 200 ou 404 selon le cas."
+    ],
+    "explanation_fr": "Ajouter une page devient l’ajout d’une ligne dans l’objet.",
+    "common_wrong_answers": [],
+    "id": "node-m3-01-e4"
+  }
+]

@@ -1,0 +1,186 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Un identifiant texte ou nombre",
+    "instruction_fr": "Écris formater(id: string | number): string : un texte est renvoyé en majuscules, un nombre précédé de « N° ».",
+    "starter_code": "function formater(id: string | number): string {\n  return id.toUpperCase();\n}\n",
+    "solution": "function formater(id: string | number): string {\n  if (typeof id === \"string\") return id.toUpperCase();\n  return \"N°\" + id;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "formater(\"cmd-12\")",
+            "expected": "CMD-12"
+          },
+          {
+            "expr": "formater(48)",
+            "expected": "N°48"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "formater(true)",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : toUpperCase n’existe pas sur number.",
+      "Vérifie le type avec typeof.",
+      "Traite chaque cas séparément."
+    ],
+    "explanation_fr": "TypeScript sait, après le return, qu’il ne reste qu’un nombre.",
+    "common_wrong_answers": [],
+    "id": "ts-m2-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Des statuts précis",
+    "instruction_fr": "Déclare type Statut = \"en attente\" | \"payée\" | \"livrée\" et écris suivant(s: Statut): Statut qui renvoie l’étape suivante (« livrée » reste « livrée »).",
+    "starter_code": "function suivant(s: string): string {\n  return s;\n}\n",
+    "solution": "type Statut = \"en attente\" | \"payée\" | \"livrée\";\n\nfunction suivant(s: Statut): Statut {\n  if (s === \"en attente\") return \"payée\";\n  return \"livrée\";\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "suivant(\"en attente\")",
+            "expected": "payée"
+          },
+          {
+            "expr": "suivant(\"payée\")",
+            "expected": "livrée"
+          },
+          {
+            "expr": "suivant(\"livré\")",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "suivant(\"livrée\")",
+            "expected": "livrée"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Une union de trois textes exacts.",
+      "Le paramètre et le retour ont ce type.",
+      "Une faute de frappe devient une erreur."
+    ],
+    "explanation_fr": "« livré » sans e est refusé avant l’exécution.",
+    "common_wrong_answers": [],
+    "id": "ts-m2-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La valeur magique",
+    "instruction_fr": "trouverPrix renvoie -1 pour un produit absent, et total ajoute ce -1 en silence. Fais renvoyer number | null à trouverPrix, et fais ignorer les produits absents par total.",
+    "starter_code": "const PRIX: Record<string, number> = { riz: 600, sel: 150 };\n\nfunction trouverPrix(nom: string): number {\n  return nom in PRIX ? PRIX[nom] : -1;\n}\n\nfunction total(noms: string[]): number {\n  return noms.reduce((s, n) => s + trouverPrix(n), 0);\n}\n",
+    "solution": "const PRIX: Record<string, number> = { riz: 600, sel: 150 };\n\nfunction trouverPrix(nom: string): number | null {\n  return nom in PRIX ? PRIX[nom] : null;\n}\n\nfunction total(noms: string[]): number {\n  return noms.reduce((s, n) => {\n    const prix = trouverPrix(n);\n    return prix === null ? s : s + prix;\n  }, 0);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "total([\"riz\", \"sucre\", \"sel\"])",
+            "expected": "750"
+          },
+          {
+            "expr": "trouverPrix(\"sucre\")",
+            "expected": "null"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "trouverPrix(\"riz\")",
+            "expected": "600"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "-1 se mélange aux vrais prix.",
+      "null oblige l’appelant à traiter l’absence.",
+      "Vérifie prix === null dans total."
+    ],
+    "explanation_fr": "Avec number | null, oublier le cas absent serait une erreur de compilation.",
+    "common_wrong_answers": [],
+    "id": "ts-m2-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Deux moyens de paiement",
+    "instruction_fr": "Déclare type Paiement = { especes: number } | { numero: string; montant: number }. Écris montant(p: Paiement): number et frais(p: Paiement): number (0 en espèces, 1 % du montant arrondi en mobile money).",
+    "starter_code": "type Paiement = { especes: number } | { numero: string; montant: number };\n\nfunction montant(p: Paiement): number {\n  return p.montant;\n}\n\nfunction frais(p: Paiement): number {\n  return 0;\n}\n",
+    "solution": "type Paiement = { especes: number } | { numero: string; montant: number };\n\nfunction montant(p: Paiement): number {\n  return \"numero\" in p ? p.montant : p.especes;\n}\n\nfunction frais(p: Paiement): number {\n  return \"numero\" in p ? Math.round(p.montant / 100) : 0;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "montant({ especes: 2000 })",
+            "expected": "2000"
+          },
+          {
+            "expr": "frais({ numero: \"90 12 34 56\", montant: 3550 })",
+            "expected": "36"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "montant({ numero: \"x\", montant: 10 })",
+            "expected": "10"
+          },
+          {
+            "expr": "frais({ especes: 5000 })",
+            "expected": "0"
+          },
+          {
+            "expr": "montant({ numero: \"x\" })",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "p.montant n’existe pas pour les espèces.",
+      "Rétrécis avec \"numero\" in p.",
+      "Traite les deux formes dans chaque fonction."
+    ],
+    "explanation_fr": "Un paiement incomplet est refusé : aucune forme ne lui correspond.",
+    "common_wrong_answers": [],
+    "id": "ts-m2-02-e4"
+  }
+]
