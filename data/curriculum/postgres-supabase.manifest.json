@@ -1,0 +1,69 @@
+{
+  "id": "postgres-supabase",
+  "title_fr": "Backend en ligne : PostgreSQL et Supabase",
+  "language": "sql",
+  "runtime": "sql",
+  "engine": "postgres",
+  "technology": "postgres",
+  "level": "intermediaire",
+  "summary_fr": "Construis et sécurise la base d’une application en ligne, comme avec Supabase : types et contraintes PostgreSQL, identités, RETURNING, vues, fonctions et déclencheurs PL/pgSQL, transactions, puis rôles, privilèges et sécurité par ligne avec auth.uid(), traduction des appels supabase-js et fonctions SECURITY DEFINER. Vrai PostgreSQL 18 (PGlite) dans le navigateur, sans Docker ni serveur à installer.",
+  "prerequisite_courses": [
+    "sql-bases"
+  ],
+  "prerequisites": [
+    "Savoir créer des tables, filtrer, joindre et modifier des données avec SQL.",
+    "Le cours SQL débutant de Nunya fournit ces bases ; le cours intermédiaire aide pour les vues et les déclencheurs."
+  ],
+  "outcomes": [
+    "Concevoir des tables PostgreSQL solides : types, identités, clés et contraintes.",
+    "Écrire des vues, des fonctions et des déclencheurs en PL/pgSQL, et regrouper des écritures dans une transaction.",
+    "Protéger chaque table avec des privilèges et des politiques de sécurité par ligne.",
+    "Prévoir le résultat d’un appel supabase-js et écrire des fonctions sécurisées appelées par RPC.",
+    "Préparer une base pour la production : migration de sécurité, clés et variables d’environnement."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "PostgreSQL, le moteur de Supabase",
+      "outcome_fr": "Types, contraintes, identités, RETURNING et agrégats filtrés.",
+      "lesson_ids": [
+        "pgs-m1-01",
+        "pgs-m1-02",
+        "pgs-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "De la logique dans la base",
+      "outcome_fr": "Vues, fonctions, déclencheurs, UPSERT et transactions.",
+      "lesson_ids": [
+        "pgs-m2-01",
+        "pgs-m2-02",
+        "pgs-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Sécuriser les données",
+      "outcome_fr": "Rôles, privilèges et politiques de sécurité par ligne.",
+      "lesson_ids": [
+        "pgs-m3-01",
+        "pgs-m3-02",
+        "pgs-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Mettre en ligne avec Supabase",
+      "outcome_fr": "API, fonctions sécurisées et migration de production.",
+      "lesson_ids": [
+        "pgs-m4-01",
+        "pgs-m4-02",
+        "pgs-m4-03"
+      ]
+    }
+  ],
+  "next_courses": [],
+  "status": "brouillon",
+  "reviewer": null
+}

@@ -1,0 +1,214 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Déclarer l’accent",
+    "instruction_fr": "Ajoute dans :root la variable --accent avec la valeur #1f5e46. La règle des titres l’utilise déjà.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    :root {\n      --fond: #fdfaf5;\n    }\n    h1, h2 {\n      color: var(--accent);\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <h1>Ama Mensah</h1>\n    <h2>À propos</h2>\n    <p>Élève à Lomé.</p>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    :root {\n      --fond: #fdfaf5;\n      --accent: #1f5e46;\n    }\n    h1, h2 {\n      color: var(--accent);\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <h1>Ama Mensah</h1>\n    <h2>À propos</h2>\n    <p>Élève à Lomé.</p>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Accent déclaré",
+        "checks": [
+          {
+            "selector": "html",
+            "style": {
+              "--accent": "#1f5e46"
+            }
+          },
+          {
+            "selector": "h1",
+            "style": {
+              "color": "#1f5e46"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Tous les titres",
+        "checks": [
+          {
+            "selector": "h2",
+            "style": {
+              "color": "#1f5e46"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les variables se déclarent dans :root.",
+      "Le nom commence par deux tirets.",
+      "--accent: #1f5e46;"
+    ],
+    "explanation_fr": "Sans déclaration, var(--accent) ne donne rien et les titres restent noirs.",
+    "common_wrong_answers": [],
+    "id": "pw-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Une colonne lisible",
+    "instruction_fr": "Retire la marge de body (margin: 0) et limite main à max-width: 720px, centré avec margin: 0 auto, avec padding: 16px.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    body {\n      font-family: system-ui, sans-serif;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <h1>Ama Mensah</h1>\n    <h2>À propos</h2>\n    <p>Élève à Lomé.</p>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    body {\n      margin: 0;\n      font-family: system-ui, sans-serif;\n    }\n    main {\n      max-width: 720px;\n      margin: 0 auto;\n      padding: 16px;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <h1>Ama Mensah</h1>\n    <h2>À propos</h2>\n    <p>Élève à Lomé.</p>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Colonne centrée",
+        "checks": [
+          {
+            "selector": "body",
+            "style": {
+              "margin-top": "0px"
+            }
+          },
+          {
+            "selector": "main",
+            "style": {
+              "max-width": "720px",
+              "padding-left": "16px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 1000,
+          "height": 700
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Toujours souple sur téléphone",
+        "checks": [
+          {
+            "selector": "main",
+            "style": {
+              "max-width": "720px",
+              "padding-top": "16px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 700
+        }
+      }
+    ],
+    "hints": [
+      "body a une marge par défaut de 8 pixels.",
+      "max-width fixe un maximum.",
+      "margin: 0 auto centre le bloc."
+    ],
+    "explanation_fr": "La même règle convient au grand écran et au téléphone.",
+    "common_wrong_answers": [],
+    "id": "pw-m2-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La variable mal écrite",
+    "instruction_fr": "Les titres devraient être verts, mais la règle utilise var(--accnet). Corrige la faute de frappe.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    :root {\n      --accent: #1f5e46;\n    }\n    h1, h2 {\n      color: var(--accnet);\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <h1>Ama Mensah</h1>\n    <h2>À propos</h2>\n    <p>Élève à Lomé.</p>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    :root {\n      --accent: #1f5e46;\n    }\n    h1, h2 {\n      color: var(--accent);\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <h1>Ama Mensah</h1>\n    <h2>À propos</h2>\n    <p>Élève à Lomé.</p>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Titres verts",
+        "checks": [
+          {
+            "selector": "h1",
+            "style": {
+              "color": "#1f5e46"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Aussi les h2",
+        "checks": [
+          {
+            "selector": "h2",
+            "style": {
+              "color": "#1f5e46"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Compare le nom déclaré et le nom utilisé.",
+      "accnet n’est pas accent.",
+      "color: var(--accent);"
+    ],
+    "explanation_fr": "Aucune erreur ne s’affiche : seule l’inspection du résultat révèle le problème.",
+    "common_wrong_answers": [],
+    "id": "pw-m2-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Le thème d’Ama",
+    "instruction_fr": "Écris la feuille de style : variables --fond (#fdfaf5), --texte (#1d1d1f) et --accent (#1f5e46) dans :root ; body sans marge, avec fond et texte issus des variables ; main limité à 720px, centré, padding 16px ; h1 et h2 de la couleur d’accent.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    body {\n      background-color: white;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <h1>Ama Mensah</h1>\n    <h2>À propos</h2>\n    <p>Élève à Lomé.</p>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    :root {\n      --fond: #fdfaf5;\n      --texte: #1d1d1f;\n      --accent: #1f5e46;\n    }\n    body {\n      margin: 0;\n      font-family: system-ui, sans-serif;\n      background-color: var(--fond);\n      color: var(--texte);\n    }\n    main {\n      max-width: 720px;\n      margin: 0 auto;\n      padding: 16px;\n    }\n    h1, h2 {\n      color: var(--accent);\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <h1>Ama Mensah</h1>\n    <h2>À propos</h2>\n    <p>Élève à Lomé.</p>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Couleurs du thème",
+        "checks": [
+          {
+            "selector": "body",
+            "style": {
+              "background-color": "#fdfaf5",
+              "color": "#1d1d1f"
+            }
+          },
+          {
+            "selector": "h1",
+            "style": {
+              "color": "#1f5e46"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Variables et colonne",
+        "checks": [
+          {
+            "selector": "html",
+            "style": {
+              "--fond": "#fdfaf5",
+              "--texte": "#1d1d1f",
+              "--accent": "#1f5e46"
+            }
+          },
+          {
+            "selector": "main",
+            "style": {
+              "max-width": "720px",
+              "padding-top": "16px"
+            }
+          },
+          {
+            "selector": "body",
+            "style": {
+              "margin-top": "0px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 1000,
+          "height": 700
+        }
+      }
+    ],
+    "hints": [
+      "Déclare les trois variables dans :root.",
+      "Utilise var() dans body et dans les titres.",
+      "Ajoute la règle de main."
+    ],
+    "explanation_fr": "Toute l’identité de la page tient dans trois lignes.",
+    "common_wrong_answers": [],
+    "id": "pw-m2-01-e4"
+  }
+]

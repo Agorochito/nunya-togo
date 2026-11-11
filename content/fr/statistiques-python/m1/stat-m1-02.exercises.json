@@ -1,0 +1,276 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "L’étendue",
+    "instruction_fr": "Écris etendue(valeurs) qui renvoie la plus grande valeur moins la plus petite, ou 0 pour une liste vide.",
+    "starter_code": "def etendue(valeurs):\n    return valeurs[-1] - valeurs[0]\n",
+    "solution": "def etendue(valeurs):\n    if not valeurs:\n        return 0\n    return max(valeurs) - min(valeurs)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "etendue",
+            "args": [
+              [
+                4,
+                12,
+                7,
+                15
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 11
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "etendue",
+            "args": [
+              []
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "etendue",
+            "args": [
+              [
+                15,
+                4
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 11
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La liste n’est pas triée : le premier et le dernier ne sont pas les extrêmes.",
+      "Utilise max et min.",
+      "Traite la liste vide à part."
+    ],
+    "explanation_fr": "max et min parcourent toute la liste, quel que soit l’ordre.",
+    "common_wrong_answers": [],
+    "id": "stat-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Variance à la main",
+    "instruction_fr": "Écris variance_population(valeurs) sans le module statistics : moyenne des carrés des écarts à la moyenne, arrondie à 2 décimales.",
+    "starter_code": "def variance_population(valeurs):\n    moyenne = sum(valeurs) / len(valeurs)\n    return round(sum(v - moyenne for v in valeurs) / len(valeurs), 2)\n",
+    "solution": "def variance_population(valeurs):\n    moyenne = sum(valeurs) / len(valeurs)\n    return round(sum((v - moyenne) ** 2 for v in valeurs) / len(valeurs), 2)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "variance_population",
+            "args": [
+              [
+                2,
+                6,
+                10,
+                14,
+                18
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 32.0
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "variance_population",
+            "args": [
+              [
+                9,
+                10,
+                10,
+                10,
+                11
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 0.4
+          },
+          {
+            "name": "variance_population",
+            "args": [
+              [
+                1,
+                2
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 0.25
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La somme des écarts simples vaut toujours 0.",
+      "Élève chaque écart au carré.",
+      "(v - moyenne) ** 2"
+    ],
+    "explanation_fr": "Les écarts positifs et négatifs se compensent : c’est pourquoi on les élève au carré.",
+    "common_wrong_answers": [],
+    "id": "stat-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Population ou échantillon ?",
+    "instruction_fr": "ecart_type_classe(notes) doit donner l’écart-type de toute la classe, arrondi à 2 décimales. Elle utilise la version échantillon. Corrige-la.",
+    "starter_code": "import statistics\n\n\ndef ecart_type_classe(notes):\n    return round(statistics.stdev(notes), 2)\n",
+    "solution": "import statistics\n\n\ndef ecart_type_classe(notes):\n    return round(statistics.pstdev(notes), 2)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ecart_type_classe",
+            "args": [
+              [
+                2,
+                6,
+                10,
+                14,
+                18
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 5.66
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "ecart_type_classe",
+            "args": [
+              [
+                9,
+                10,
+                10,
+                10,
+                11
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 0.63
+          },
+          {
+            "name": "ecart_type_classe",
+            "args": [
+              [
+                12
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 0.0
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "stdev divise par n − 1.",
+      "On a toutes les notes de la classe : c’est une population.",
+      "Remplace stdev par pstdev."
+    ],
+    "explanation_fr": "Avec une seule note, stdev lève même une erreur ; pstdev renvoie 0.",
+    "common_wrong_answers": [],
+    "id": "stat-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "L’élève le plus régulier",
+    "instruction_fr": "Écris plus_regulier(eleves) : eleves est un dictionnaire nom → liste de notes. Renvoie le nom dont l’écart-type de population est le plus petit ; en cas d’égalité, le premier par ordre alphabétique.",
+    "starter_code": "def plus_regulier(eleves):\n    return min(eleves)\n",
+    "solution": "import statistics\n\n\ndef plus_regulier(eleves):\n    return min(sorted(eleves), key=lambda nom: statistics.pstdev(eleves[nom]))\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "plus_regulier",
+            "args": [
+              {
+                "Afi": [
+                  2,
+                  18,
+                  10
+                ],
+                "Yao": [
+                  11,
+                  9,
+                  10
+                ],
+                "Ama": [
+                  14,
+                  16,
+                  6
+                ]
+              }
+            ],
+            "unchanged_args": true,
+            "expected": "Yao"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "plus_regulier",
+            "args": [
+              {
+                "Kossi": [
+                  10,
+                  12
+                ],
+                "Edem": [
+                  8,
+                  10
+                ]
+              }
+            ],
+            "unchanged_args": true,
+            "expected": "Edem"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Calcule pstdev des notes de chaque élève.",
+      "min accepte une clé de comparaison.",
+      "Trie les noms d’abord : min garde le premier en cas d’égalité."
+    ],
+    "explanation_fr": "La régularité se mesure par la dispersion, pas par la moyenne.",
+    "common_wrong_answers": [],
+    "id": "stat-m1-02-e4"
+  }
+]

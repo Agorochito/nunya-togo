@@ -1,0 +1,166 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "S’abonner à un événement",
+    "instruction_fr": "Écris abonner(emetteur, journal) qui abonne à l’événement \"message\" une fonction ajoutant les données reçues au tableau journal.",
+    "starter_code": "function abonner(emetteur, journal) {\n  journal.push(\"message\");\n}\n",
+    "solution": "function abonner(emetteur, journal) {\n  emetteur.on(\"message\", donnees => journal.push(donnees));\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { const E = require(\"events\"); const em = new E(); const j = []; abonner(em, j); em.emit(\"message\", \"a\"); em.emit(\"message\", \"b\"); return j.join(\",\"); })()",
+            "expected": "a,b"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { const E = require(\"events\"); const em = new E(); const j = []; abonner(em, j); em.emit(\"autre\", \"x\"); return j.length; })()",
+            "expected": "0"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Utilise emetteur.on.",
+      "Le nom de l’événement est \"message\".",
+      "La fonction ajoute les données au journal."
+    ],
+    "explanation_fr": "L’abonnement ne fait rien tout de suite : il attend les événements.",
+    "common_wrong_answers": [],
+    "id": "node-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Une caisse qui annonce",
+    "instruction_fr": "Complète la classe Caisse : vendre(montant) ajoute au total et émet \"vente\" avec le montant ; quand le total franchit le seuil (il était en dessous, il est au-dessus ou égal), elle émet aussi \"objectif\" avec le total.",
+    "starter_code": "const EventEmitter = require(\"events\");\n\nclass Caisse extends EventEmitter {\n  constructor(seuil) {\n    super();\n    this.seuil = seuil;\n    this.total = 0;\n  }\n\n  vendre(montant) {\n    this.total += montant;\n  }\n}\n",
+    "solution": "const EventEmitter = require(\"events\");\n\nclass Caisse extends EventEmitter {\n  constructor(seuil) {\n    super();\n    this.seuil = seuil;\n    this.total = 0;\n  }\n\n  vendre(montant) {\n    this.total += montant;\n    this.emit(\"vente\", montant);\n    if (this.total >= this.seuil && this.total - montant < this.seuil) {\n      this.emit(\"objectif\", this.total);\n    }\n  }\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { const c = new Caisse(5000); const vus = []; c.on(\"vente\", m => vus.push(m)); c.on(\"objectif\", t => vus.push(\"objectif \" + t)); [2000, 3500, 100].forEach(m => c.vendre(m)); return vus.join(\",\"); })()",
+            "expected": "2000,3500,objectif 5500,100"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { const c = new Caisse(100); let n = 0; c.on(\"objectif\", () => n++); c.vendre(100); c.vendre(50); return n; })()",
+            "expected": "1"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Émets \"vente\" à chaque vente.",
+      "Compare l’ancien total et le nouveau au seuil.",
+      "Émets \"objectif\" seulement au franchissement."
+    ],
+    "explanation_fr": "La caisse ne sait pas qui l’écoute : elle annonce, c’est tout.",
+    "common_wrong_answers": [],
+    "id": "node-m4-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "L’alerte qui se répète",
+    "instruction_fr": "L’alerte « stock faible » doit s’afficher une seule fois, mais elle s’ajoute au journal à chaque émission. Corrige l’abonnement dans surveiller(emetteur, journal).",
+    "starter_code": "function surveiller(emetteur, journal) {\n  emetteur.on(\"stock-faible\", produit => journal.push(\"Alerte : \" + produit));\n}\n",
+    "solution": "function surveiller(emetteur, journal) {\n  emetteur.once(\"stock-faible\", produit => journal.push(\"Alerte : \" + produit));\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { const E = require(\"events\"); const em = new E(); const j = []; surveiller(em, j); em.emit(\"stock-faible\", \"riz\"); em.emit(\"stock-faible\", \"riz\"); return j.join(\" | \"); })()",
+            "expected": "Alerte : riz"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { const E = require(\"events\"); const em = new E(); const j = []; surveiller(em, j); return em.listenerCount(\"stock-faible\"); })()",
+            "expected": "1"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "on réagit à chaque émission.",
+      "Une alerte unique demande once.",
+      "Remplace on par once."
+    ],
+    "explanation_fr": "Choisir entre on et once est une décision sur le comportement voulu.",
+    "common_wrong_answers": [],
+    "id": "node-m4-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Un stock qui prévient",
+    "instruction_fr": "Écris la classe Stock (héritant d’EventEmitter) : constructor(quantites) reçoit un objet produit → quantité ; retirer(produit, n) lève une erreur « stock insuffisant » si la quantité ne suffit pas, sinon retire n et émet \"rupture\" avec le produit quand la quantité atteint 0.",
+    "starter_code": "const EventEmitter = require(\"events\");\n\nclass Stock extends EventEmitter {\n  constructor(quantites) {\n    super();\n    this.quantites = quantites;\n  }\n\n  retirer(produit, n) {\n    this.quantites[produit] -= n;\n  }\n}\n",
+    "solution": "const EventEmitter = require(\"events\");\n\nclass Stock extends EventEmitter {\n  constructor(quantites) {\n    super();\n    this.quantites = { ...quantites };\n  }\n\n  retirer(produit, n) {\n    const disponible = this.quantites[produit] || 0;\n    if (n > disponible) throw new Error(\"stock insuffisant\");\n    this.quantites[produit] = disponible - n;\n    if (this.quantites[produit] === 0) this.emit(\"rupture\", produit);\n  }\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { const s = new Stock({ riz: 3 }); const vus = []; s.on(\"rupture\", p => vus.push(p)); s.retirer(\"riz\", 1); s.retirer(\"riz\", 2); return vus.join(\",\") + \" \" + s.quantites.riz; })()",
+            "expected": "riz 0"
+          },
+          {
+            "expr": "(() => { try { new Stock({ riz: 1 }).retirer(\"riz\", 2); return \"pas d’erreur\"; } catch (e) { return e.message; } })()",
+            "expected": "stock insuffisant"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { try { new Stock({}).retirer(\"sel\", 1); return \"pas d’erreur\"; } catch (e) { return e.message; } })()",
+            "expected": "stock insuffisant"
+          },
+          {
+            "expr": "(() => { const s = new Stock({ sel: 5 }); let n = 0; s.on(\"rupture\", () => n++); s.retirer(\"sel\", 2); return n; })()",
+            "expected": "0"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Copie l’objet reçu pour ne pas modifier celui de l’appelant.",
+      "Refuse avant de retirer.",
+      "Émets \"rupture\" quand la quantité tombe à 0."
+    ],
+    "explanation_fr": "Un tableau de bord, une commande au fournisseur, un message : autant d’écouteurs possibles, sans changer la classe.",
+    "common_wrong_answers": [],
+    "id": "node-m4-01-e4"
+  }
+]

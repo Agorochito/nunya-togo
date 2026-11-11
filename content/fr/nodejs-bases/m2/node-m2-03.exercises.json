@@ -1,0 +1,162 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Écrire une note",
+    "instruction_fr": "Écris la fonction async ecrireNote(dossier, texte) qui écrit le texte dans le fichier note.txt du dossier et renvoie le chemin du fichier.",
+    "starter_code": "const path = require(\"path\");\n\nasync function ecrireNote(dossier, texte) {\n  return path.join(dossier, \"note.txt\");\n}\n",
+    "solution": "const fs = require(\"fs\").promises;\nconst path = require(\"path\");\n\nasync function ecrireNote(dossier, texte) {\n  const chemin = path.join(dossier, \"note.txt\");\n  await fs.writeFile(chemin, texte);\n  return chemin;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(async () => { const fs = require(\"fs\"); const os = require(\"os\"); const path = require(\"path\"); const d = await fs.promises.mkdtemp(path.join(os.tmpdir(), \"nunya-\")); const p = await ecrireNote(d, \"bonjour\"); return fs.promises.readFile(p, \"utf8\"); })()",
+            "expected": "bonjour"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(async () => { const fs = require(\"fs\"); const os = require(\"os\"); const path = require(\"path\"); const d = await fs.promises.mkdtemp(path.join(os.tmpdir(), \"nunya-\")); const p = await ecrireNote(d, \"\"); return path.basename(p) + \":\" + (await fs.promises.readFile(p, \"utf8\")).length; })()",
+            "expected": "note.txt:0"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Construis le chemin avec path.join.",
+      "Écris avec await fs.writeFile.",
+      "Renvoie le chemin."
+    ],
+    "explanation_fr": "Le test relit le fichier pour vérifier qu’il a vraiment été écrit.",
+    "common_wrong_answers": [],
+    "id": "node-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Compter les lignes",
+    "instruction_fr": "Écris la fonction async compterLignes(chemin) qui renvoie le nombre de lignes non vides du fichier.",
+    "starter_code": "async function compterLignes(chemin) {\n  return 0;\n}\n",
+    "solution": "const fs = require(\"fs\").promises;\n\nasync function compterLignes(chemin) {\n  const texte = await fs.readFile(chemin, \"utf8\");\n  return texte.split(\"\\n\").filter(l => l.trim() !== \"\").length;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(async () => { const fs = require(\"fs\"); const os = require(\"os\"); const path = require(\"path\"); const d = await fs.promises.mkdtemp(path.join(os.tmpdir(), \"nunya-\")); const p = path.join(d, \"v.txt\"); await fs.promises.writeFile(p, \"riz;2\\nhuile;1\\n\\nsel;3\\n\"); return compterLignes(p); })()",
+            "expected": "3"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(async () => { const fs = require(\"fs\"); const os = require(\"os\"); const path = require(\"path\"); const d = await fs.promises.mkdtemp(path.join(os.tmpdir(), \"nunya-\")); const p = path.join(d, \"v.txt\"); await fs.promises.writeFile(p, \"\"); return compterLignes(p); })()",
+            "expected": "0"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis le texte avec \"utf8\".",
+      "Découpe en lignes avec split.",
+      "Ignore les lignes vides."
+    ],
+    "explanation_fr": "Les fichiers se terminent souvent par un saut de ligne : sans filtre, on compterait une ligne de trop.",
+    "common_wrong_answers": [],
+    "id": "node-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le premier lancement",
+    "instruction_fr": "lireOuDefaut(chemin, defaut) plante quand le fichier n’existe pas. Corrige-la : si l’erreur a le code \"ENOENT\", renvoie defaut ; relance toute autre erreur.",
+    "starter_code": "const fs = require(\"fs\").promises;\n\nasync function lireOuDefaut(chemin, defaut) {\n  return await fs.readFile(chemin, \"utf8\");\n}\n",
+    "solution": "const fs = require(\"fs\").promises;\n\nasync function lireOuDefaut(chemin, defaut) {\n  try {\n    return await fs.readFile(chemin, \"utf8\");\n  } catch (erreur) {\n    if (erreur.code === \"ENOENT\") return defaut;\n    throw erreur;\n  }\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "lireOuDefaut(\"/nulle/part/x.txt\", \"vide\")",
+            "expected": "vide"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(async () => { const fs = require(\"fs\"); const os = require(\"os\"); const path = require(\"path\"); const d = await fs.promises.mkdtemp(path.join(os.tmpdir(), \"nunya-\")); const p = path.join(d, \"a.txt\"); await fs.promises.writeFile(p, \"contenu\"); return lireOuDefaut(p, \"vide\"); })()",
+            "expected": "contenu"
+          },
+          {
+            "expr": "(async () => { try { await lireOuDefaut(require(\"os\").tmpdir(), \"vide\"); return \"pas d’erreur\"; } catch (e) { return e.message; } })()",
+            "expected": "EISDIR: illegal operation on a directory, read"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Attrape l’erreur avec try…catch.",
+      "Compare erreur.code à \"ENOENT\".",
+      "Relance les autres erreurs avec throw."
+    ],
+    "explanation_fr": "Lire un dossier comme un fichier est une autre erreur : elle doit remonter, pas être masquée.",
+    "common_wrong_answers": [],
+    "id": "node-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Un fichier JSON de ventes",
+    "instruction_fr": "Écris la fonction async ajouterVente(chemin, vente) : lis le fichier JSON (un tableau), ou pars d’un tableau vide s’il n’existe pas, ajoute la vente, réécris le fichier avec JSON.stringify et renvoie le nombre de ventes.",
+    "starter_code": "const fs = require(\"fs\").promises;\n\nasync function ajouterVente(chemin, vente) {\n  await fs.writeFile(chemin, JSON.stringify([vente]));\n  return 1;\n}\n",
+    "solution": "const fs = require(\"fs\").promises;\n\nasync function ajouterVente(chemin, vente) {\n  let ventes = [];\n  try {\n    ventes = JSON.parse(await fs.readFile(chemin, \"utf8\"));\n  } catch (erreur) {\n    if (erreur.code !== \"ENOENT\") throw erreur;\n  }\n  ventes.push(vente);\n  await fs.writeFile(chemin, JSON.stringify(ventes, null, 2));\n  return ventes.length;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(async () => { const fs = require(\"fs\"); const os = require(\"os\"); const path = require(\"path\"); const d = await fs.promises.mkdtemp(path.join(os.tmpdir(), \"nunya-\")); const p = path.join(d, \"ventes.json\"); await ajouterVente(p, { produit: \"riz\" }); const n = await ajouterVente(p, { produit: \"huile\" }); return n + \" \" + JSON.parse(await fs.promises.readFile(p, \"utf8\"))[1].produit; })()",
+            "expected": "2 huile"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(async () => { const fs = require(\"fs\"); const os = require(\"os\"); const path = require(\"path\"); const d = await fs.promises.mkdtemp(path.join(os.tmpdir(), \"nunya-\")); return ajouterVente(path.join(d, \"neuf.json\"), { produit: \"sel\" }); })()",
+            "expected": "1"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Commence par un tableau vide.",
+      "Lis et analyse le fichier s’il existe.",
+      "Ajoute, réécris, renvoie la longueur."
+    ],
+    "explanation_fr": "Le second appel retrouve la première vente : le fichier sert de mémoire.",
+    "common_wrong_answers": [],
+    "id": "node-m2-03-e4"
+  }
+]

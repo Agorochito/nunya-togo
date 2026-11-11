@@ -1,0 +1,145 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Créer et récupérer",
+    "instruction_fr": "Ajoute le produit Mangue (prix 300, stock 50, vendeur Ama 33333333-3333-3333-3333-333333333333) et renvoie son id et son nom. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "insert into produits (nom, prix, stock, vendeur_id) values ('Mangue', 300, 50, '33333333-3333-3333-3333-333333333333');",
+    "solution": "insert into produits (nom, prix, stock, vendeur_id)\nvalues ('Mangue', 300, 50, '33333333-3333-3333-3333-333333333333')\nreturning id, nom;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "insert into produits (nom, prix, stock, vendeur_id) values ('Mangue', 300, 50, '33333333-3333-3333-3333-333333333333') returning id, nom;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "insert into produits (nom, prix, stock, vendeur_id) values ('Mangue', 300, 50, '33333333-3333-3333-3333-333333333333') returning id, nom;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "L’insertion seule ne renvoie rien.",
+      "Ajoute returning à la fin.",
+      "returning id, nom;"
+    ],
+    "explanation_fr": "L’identifiant renvoyé dépend des produits déjà présents : la base le calcule.",
+    "common_wrong_answers": [],
+    "id": "pgs-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Ruptures par vendeur",
+    "instruction_fr": "Affiche pour chaque vendeur (nom) le nombre de produits et le nombre en rupture (stock nul), triés par nom de vendeur. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "select vendeur_id, count(*) from produits group by vendeur_id;",
+    "solution": "select pr.nom as vendeur, count(*) as produits, count(*) filter (where p.stock = 0) as en_rupture\nfrom produits p\njoin profils pr on pr.id = p.vendeur_id\ngroup by pr.nom\norder by pr.nom;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "select pr.nom as vendeur, count(*) as produits, count(*) filter (where p.stock = 0) as en_rupture from produits p join profils pr on pr.id = p.vendeur_id group by pr.nom order by pr.nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "select pr.nom as vendeur, count(*) as produits, count(*) filter (where p.stock = 0) as en_rupture from produits p join profils pr on pr.id = p.vendeur_id group by pr.nom order by pr.nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Joins profils pour le nom du vendeur.",
+      "count(*) filter (where p.stock = 0).",
+      "Nomme les colonnes vendeur, produits, en_rupture."
+    ],
+    "explanation_fr": "Deux comptages en une seule requête.",
+    "common_wrong_answers": [],
+    "id": "pgs-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La hausse de trop",
+    "instruction_fr": "Le gari doit augmenter de 50 FCFA, et seulement lui. La requête modifie tous les produits. Corrige-la et renvoie nom et nouveau prix. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "update produits set prix = prix + 50 returning nom, prix;",
+    "solution": "update produits set prix = prix + 50 where nom = 'Gari' returning nom, prix;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "update produits set prix = prix + 50 where nom = 'Gari' returning nom, prix;",
+        "mode": "mutation",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "update produits set prix = prix + 50 where nom = 'Gari' returning nom, prix;",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "select count(*)::int from produits where prix > 1500",
+            "description_fr": "Aucun autre prix n’a changé.",
+            "expected": [
+              [
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "RETURNING montre quatre lignes modifiées.",
+      "Il manque le filtre.",
+      "where nom = 'Gari'"
+    ],
+    "explanation_fr": "RETURNING a rendu l’erreur visible avant qu’elle ne passe inaperçue.",
+    "common_wrong_answers": [],
+    "id": "pgs-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Les achats de chaque client",
+    "instruction_fr": "Affiche pour chaque client (nom) la liste de ses produits commandés, triés par nom de produit et séparés par une virgule et un espace, puis trie les clients par nom. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "select client_id, produit_id from commandes;",
+    "solution": "select pf.nom as client, string_agg(p.nom, ', ' order by p.nom) as produits\nfrom commandes c\njoin profils pf on pf.id = c.client_id\njoin produits p on p.id = c.produit_id\ngroup by pf.nom\norder by pf.nom;",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "select pf.nom as client, string_agg(p.nom, ', ' order by p.nom) as produits from commandes c join profils pf on pf.id = c.client_id join produits p on p.id = c.produit_id group by pf.nom order by pf.nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "select pf.nom as client, string_agg(p.nom, ', ' order by p.nom) as produits from commandes c join profils pf on pf.id = c.client_id join produits p on p.id = c.produit_id group by pf.nom order by pf.nom;",
+        "mode": "query",
+        "compare_results": "last",
+        "description_fr": "Même contrat sur les données fictives de ce cas."
+      }
+    ],
+    "hints": [
+      "Trois tables : commandes, profils, produits.",
+      "string_agg(p.nom, ', ' order by p.nom).",
+      "Regroupe par nom de client."
+    ],
+    "explanation_fr": "Une ligne par client, prête à afficher.",
+    "common_wrong_answers": [],
+    "id": "pgs-m1-03-e4"
+  }
+]

@@ -1,0 +1,68 @@
+{
+  "id": "statistiques-python",
+  "title_fr": "Statistiques avec Python : décrire, relier, estimer",
+  "language": "python",
+  "runtime": "python",
+  "technology": "stats",
+  "level": "intermediaire",
+  "summary_fr": "Analyse des données comme un ou une statisticienne : moyenne, médiane, mode, écart-type, quartiles et valeurs aberrantes, effectifs et fréquences, histogrammes, nettoyage d’un fichier CSV, covariance, corrélation et ses pièges, droite de régression, probabilités et simulation, sondages et marge d’erreur, puis enquête complète d’un lycée. En Python, hors ligne, avec le module statistics.",
+  "prerequisite_courses": [
+    "python-bases"
+  ],
+  "prerequisites": [
+    "Savoir écrire des fonctions Python avec listes, dictionnaires, boucles et conditions.",
+    "Le cours Python débutant de Nunya fournit ces bases."
+  ],
+  "outcomes": [
+    "Résumer une série par des indicateurs de position et de dispersion adaptés.",
+    "Organiser et nettoyer des données avant de calculer.",
+    "Mesurer et interpréter un lien entre deux variables sans confondre corrélation et causalité.",
+    "Simuler une expérience aléatoire et estimer une proportion avec sa marge d’erreur.",
+    "Rédiger une conclusion statistique qui annonce ses limites."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Décrire une série",
+      "outcome_fr": "Moyenne, médiane, mode, dispersion, quartiles et valeurs aberrantes.",
+      "lesson_ids": [
+        "stat-m1-01",
+        "stat-m1-02",
+        "stat-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Organiser les données",
+      "outcome_fr": "Effectifs, fréquences, classes, histogrammes et nettoyage.",
+      "lesson_ids": [
+        "stat-m2-01",
+        "stat-m2-02",
+        "stat-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Relier deux variables",
+      "outcome_fr": "Covariance, corrélation, régression et prévisions prudentes.",
+      "lesson_ids": [
+        "stat-m3-01",
+        "stat-m3-02",
+        "stat-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Hasard et échantillons",
+      "outcome_fr": "Probabilités, simulation, marge d’erreur et enquête complète.",
+      "lesson_ids": [
+        "stat-m4-01",
+        "stat-m4-02",
+        "stat-m4-03"
+      ]
+    }
+  ],
+  "next_courses": [],
+  "status": "brouillon",
+  "reviewer": null
+}

@@ -1,0 +1,641 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Mesurer une distance",
+    "instruction_fr": "Écris distance(a, b) qui renvoie la distance euclidienne entre deux points, arrondie à 2 décimales.",
+    "starter_code": "def distance(a, b):\n    return abs(a[0] - b[0]) + abs(a[1] - b[1])\n",
+    "solution": "import math\n\n\ndef distance(a, b):\n    return round(math.dist(a, b), 2)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "distance",
+            "args": [
+              [
+                2,
+                3
+              ],
+              [
+                5,
+                7
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 5.0
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "distance",
+            "args": [
+              [
+                2,
+                3
+              ],
+              [
+                8,
+                9
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 8.49
+          },
+          {
+            "name": "distance",
+            "args": [
+              [
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 0.0
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La version actuelle additionne les écarts sans carré ni racine.",
+      "math.dist calcule la distance euclidienne.",
+      "Arrondis à 2 décimales."
+    ],
+    "explanation_fr": "math.dist fonctionne aussi avec trois caractéristiques ou plus.",
+    "common_wrong_answers": [],
+    "id": "ia-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Le voisin le plus proche",
+    "instruction_fr": "Écris plus_proche(exemples, point) : exemples est une liste de [caractéristiques, étiquette]. Renvoie l’étiquette de l’exemple le plus proche du point.",
+    "starter_code": "def plus_proche(exemples, point):\n    return exemples[0][1]\n",
+    "solution": "import math\n\n\ndef plus_proche(exemples, point):\n    return min(exemples, key=lambda ex: math.dist(ex[0], point))[1]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "plus_proche",
+            "args": [
+              [
+                [
+                  [
+                    2,
+                    3
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    3,
+                    3
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    2,
+                    4
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    7,
+                    8
+                  ],
+                  "mangue"
+                ],
+                [
+                  [
+                    8,
+                    7
+                  ],
+                  "mangue"
+                ],
+                [
+                  [
+                    8,
+                    9
+                  ],
+                  "mangue"
+                ]
+              ],
+              [
+                3,
+                4
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "orange"
+          },
+          {
+            "name": "plus_proche",
+            "args": [
+              [
+                [
+                  [
+                    2,
+                    3
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    3,
+                    3
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    2,
+                    4
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    7,
+                    8
+                  ],
+                  "mangue"
+                ],
+                [
+                  [
+                    8,
+                    7
+                  ],
+                  "mangue"
+                ],
+                [
+                  [
+                    8,
+                    9
+                  ],
+                  "mangue"
+                ]
+              ],
+              [
+                9,
+                9
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "mangue"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "plus_proche",
+            "args": [
+              [
+                [
+                  [
+                    0,
+                    0
+                  ],
+                  "a"
+                ],
+                [
+                  [
+                    10,
+                    0
+                  ],
+                  "b"
+                ]
+              ],
+              [
+                6,
+                0
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": "b"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Calcule la distance à chaque exemple.",
+      "min avec une clé donne l’exemple le plus proche.",
+      "Renvoie sa deuxième case, l’étiquette."
+    ],
+    "explanation_fr": "C’est le cas k = 1 de l’algorithme.",
+    "common_wrong_answers": [],
+    "id": "ia-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Les voisins les plus lointains",
+    "instruction_fr": "voisins(exemples, point, k) doit renvoyer les étiquettes des k exemples les plus proches, du plus proche au plus loin. Elle trie dans le mauvais sens. Corrige-la.",
+    "starter_code": "import math\n\n\ndef voisins(exemples, point, k):\n    tries = sorted(exemples, key=lambda ex: math.dist(ex[0], point), reverse=True)\n    return [e for _, e in tries[:k]]\n",
+    "solution": "import math\n\n\ndef voisins(exemples, point, k):\n    tries = sorted(exemples, key=lambda ex: math.dist(ex[0], point))\n    return [e for _, e in tries[:k]]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "voisins",
+            "args": [
+              [
+                [
+                  [
+                    2,
+                    3
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    3,
+                    3
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    2,
+                    4
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    7,
+                    8
+                  ],
+                  "mangue"
+                ],
+                [
+                  [
+                    8,
+                    7
+                  ],
+                  "mangue"
+                ],
+                [
+                  [
+                    8,
+                    9
+                  ],
+                  "mangue"
+                ]
+              ],
+              [
+                2,
+                3
+              ],
+              2
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "orange",
+              "orange"
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "voisins",
+            "args": [
+              [
+                [
+                  [
+                    0
+                  ],
+                  "a"
+                ],
+                [
+                  [
+                    5
+                  ],
+                  "b"
+                ],
+                [
+                  [
+                    1
+                  ],
+                  "c"
+                ]
+              ],
+              [
+                0
+              ],
+              2
+            ],
+            "unchanged_args": true,
+            "expected": [
+              "a",
+              "c"
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Les voisins de (2, 3) devraient être des oranges.",
+      "reverse=True met les plus lointains en premier.",
+      "Retire reverse=True."
+    ],
+    "explanation_fr": "Un mauvais sens de tri, et le modèle consulte les exemples les moins ressemblants.",
+    "common_wrong_answers": [],
+    "id": "ia-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Le vote des k voisins",
+    "instruction_fr": "Écris knn(exemples, point, k) : trie les exemples par distance au point, garde les k premiers et renvoie l’étiquette la plus fréquente parmi eux.",
+    "starter_code": "def knn(exemples, point, k):\n    return None\n",
+    "solution": "import math\nfrom collections import Counter\n\n\ndef knn(exemples, point, k):\n    proches = sorted(exemples, key=lambda ex: math.dist(ex[0], point))[:k]\n    return Counter(etiquette for _, etiquette in proches).most_common(1)[0][0]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "knn",
+            "args": [
+              [
+                [
+                  [
+                    2,
+                    3
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    3,
+                    3
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    2,
+                    4
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    7,
+                    8
+                  ],
+                  "mangue"
+                ],
+                [
+                  [
+                    8,
+                    7
+                  ],
+                  "mangue"
+                ],
+                [
+                  [
+                    8,
+                    9
+                  ],
+                  "mangue"
+                ]
+              ],
+              [
+                3,
+                4
+              ],
+              3
+            ],
+            "unchanged_args": true,
+            "expected": "orange"
+          },
+          {
+            "name": "knn",
+            "args": [
+              [
+                [
+                  [
+                    2,
+                    3
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    3,
+                    3
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    2,
+                    4
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    7,
+                    8
+                  ],
+                  "mangue"
+                ],
+                [
+                  [
+                    8,
+                    7
+                  ],
+                  "mangue"
+                ],
+                [
+                  [
+                    8,
+                    9
+                  ],
+                  "mangue"
+                ]
+              ],
+              [
+                7,
+                7
+              ],
+              3
+            ],
+            "unchanged_args": true,
+            "expected": "mangue"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "knn",
+            "args": [
+              [
+                [
+                  [
+                    2,
+                    3
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    3,
+                    3
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    2,
+                    4
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    7,
+                    8
+                  ],
+                  "mangue"
+                ],
+                [
+                  [
+                    8,
+                    7
+                  ],
+                  "mangue"
+                ],
+                [
+                  [
+                    8,
+                    9
+                  ],
+                  "mangue"
+                ],
+                [
+                  [
+                    5,
+                    5
+                  ],
+                  "mangue"
+                ]
+              ],
+              [
+                4.6,
+                4.6
+              ],
+              1
+            ],
+            "unchanged_args": true,
+            "expected": "mangue"
+          },
+          {
+            "name": "knn",
+            "args": [
+              [
+                [
+                  [
+                    2,
+                    3
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    3,
+                    3
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    2,
+                    4
+                  ],
+                  "orange"
+                ],
+                [
+                  [
+                    7,
+                    8
+                  ],
+                  "mangue"
+                ],
+                [
+                  [
+                    8,
+                    7
+                  ],
+                  "mangue"
+                ],
+                [
+                  [
+                    8,
+                    9
+                  ],
+                  "mangue"
+                ],
+                [
+                  [
+                    5,
+                    5
+                  ],
+                  "mangue"
+                ]
+              ],
+              [
+                4.6,
+                4.6
+              ],
+              3
+            ],
+            "unchanged_args": true,
+            "expected": "orange"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Trie avec math.dist comme clé.",
+      "Garde [:k].",
+      "Counter(...).most_common(1)[0][0] donne l’étiquette majoritaire."
+    ],
+    "explanation_fr": "Avec k = 1, un exemple isolé décide seul ; avec k = 3, la majorité corrige.",
+    "common_wrong_answers": [],
+    "id": "ia-m1-02-e4"
+  }
+]

@@ -1,0 +1,213 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Deux colonnes sur grand écran",
+    "instruction_fr": "Dans la requête média existante, donne à .projets deux colonnes égales avec grid-template-columns: 1fr 1fr.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    .projets {\n      display: grid;\n      gap: 16px;\n    }\n    @media (min-width: 700px) {\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <div class=\"projets\">\n      <article><h3>Quiz</h3></article>\n      <article><h3>Club</h3></article>\n    </div>\n    <aside class=\"astuce\"><p>Astuce : passe la souris sur une carte pour la mettre en valeur.</p></aside>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    .projets {\n      display: grid;\n      gap: 16px;\n    }\n    @media (min-width: 700px) {\n      .projets {\n        grid-template-columns: 1fr 1fr;\n      }\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <div class=\"projets\">\n      <article><h3>Quiz</h3></article>\n      <article><h3>Club</h3></article>\n    </div>\n    <aside class=\"astuce\"><p>Astuce : passe la souris sur une carte pour la mettre en valeur.</p></aside>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Deux colonnes",
+        "checks": [
+          {
+            "selector": ".projets",
+            "style": {
+              "grid-template-columns": "484px 484px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 1000,
+          "height": 700
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Une colonne sur téléphone",
+        "checks": [
+          {
+            "selector": ".projets",
+            "style": {
+              "display": "grid",
+              "grid-template-columns": "344px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 700
+        }
+      }
+    ],
+    "hints": [
+      "La règle va à l’intérieur de la requête média.",
+      "Elle vise .projets.",
+      "grid-template-columns: 1fr 1fr;"
+    ],
+    "explanation_fr": "Les mêmes cartes, deux dispositions.",
+    "common_wrong_answers": [],
+    "id": "pw-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Une astuce pour les grands écrans",
+    "instruction_fr": "Masque .astuce par défaut avec display: none, et affiche-la avec display: block à partir de 700px.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    .projets {\n      display: grid;\n      gap: 16px;\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <div class=\"projets\">\n      <article><h3>Quiz</h3></article>\n      <article><h3>Club</h3></article>\n    </div>\n    <aside class=\"astuce\"><p>Astuce : passe la souris sur une carte pour la mettre en valeur.</p></aside>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    .projets {\n      display: grid;\n      gap: 16px;\n    }\n    .astuce {\n      display: none;\n    }\n    @media (min-width: 700px) {\n      .astuce {\n        display: block;\n      }\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <div class=\"projets\">\n      <article><h3>Quiz</h3></article>\n      <article><h3>Club</h3></article>\n    </div>\n    <aside class=\"astuce\"><p>Astuce : passe la souris sur une carte pour la mettre en valeur.</p></aside>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Masquée sur téléphone",
+        "checks": [
+          {
+            "selector": ".astuce",
+            "style": {
+              "display": "none"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 700
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Visible sur ordinateur",
+        "checks": [
+          {
+            "selector": ".astuce",
+            "style": {
+              "display": "block"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 1000,
+          "height": 700
+        }
+      }
+    ],
+    "hints": [
+      "Le style de base masque l’astuce.",
+      "La requête média l’affiche.",
+      "display: none puis display: block."
+    ],
+    "explanation_fr": "L’astuce parle de souris : elle n’a pas de sens sur un écran tactile.",
+    "common_wrong_answers": [],
+    "id": "pw-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le contact disparu",
+    "instruction_fr": "Une règle masque la section #contact sur téléphone : les visiteurs mobiles ne peuvent plus joindre Ama. Supprime ce masquage pour que le contact reste visible à toutes les largeurs.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    #contact {\n      display: none;\n    }\n    @media (min-width: 700px) {\n      #contact {\n        display: block;\n      }\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <section id=\"contact\"><h2>Contact</h2><p><a href=\"mailto:ama.mensah@example.com\">Écrire à Ama</a></p></section>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <main>\n    <section id=\"contact\"><h2>Contact</h2><p><a href=\"mailto:ama.mensah@example.com\">Écrire à Ama</a></p></section>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Visible sur téléphone",
+        "checks": [
+          {
+            "selector": "#contact",
+            "style": {
+              "display": "block"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 700
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Visible sur ordinateur",
+        "checks": [
+          {
+            "selector": "#contact",
+            "style": {
+              "display": "block"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 1000,
+          "height": 700
+        }
+      }
+    ],
+    "hints": [
+      "Le contact est une information essentielle.",
+      "display: none le retire sur téléphone.",
+      "Supprime les deux règles qui visent #contact."
+    ],
+    "explanation_fr": "L’essentiel doit être disponible sur tous les écrans.",
+    "common_wrong_answers": [],
+    "id": "pw-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Grille de projets complète",
+    "instruction_fr": "Écris : .projets en grille avec gap 16px ; .astuce masquée par défaut ; à partir de 700px, .projets sur deux colonnes égales et .astuce affichée.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <main>\n    <div class=\"projets\">\n      <article><h3>Quiz</h3></article>\n      <article><h3>Club</h3></article>\n    </div>\n    <aside class=\"astuce\"><p>Astuce : passe la souris sur une carte pour la mettre en valeur.</p></aside>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    .projets {\n      display: grid;\n      gap: 16px;\n    }\n    .astuce {\n      display: none;\n    }\n    @media (min-width: 700px) {\n      .projets {\n        grid-template-columns: 1fr 1fr;\n      }\n      .astuce {\n        display: block;\n      }\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <div class=\"projets\">\n      <article><h3>Quiz</h3></article>\n      <article><h3>Club</h3></article>\n    </div>\n    <aside class=\"astuce\"><p>Astuce : passe la souris sur une carte pour la mettre en valeur.</p></aside>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Téléphone",
+        "checks": [
+          {
+            "selector": ".projets",
+            "style": {
+              "display": "grid",
+              "row-gap": "16px",
+              "grid-template-columns": "344px"
+            }
+          },
+          {
+            "selector": ".astuce",
+            "style": {
+              "display": "none"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 700
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Ordinateur",
+        "checks": [
+          {
+            "selector": ".projets",
+            "style": {
+              "grid-template-columns": "484px 484px"
+            }
+          },
+          {
+            "selector": ".astuce",
+            "style": {
+              "display": "block"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 1000,
+          "height": 700
+        }
+      }
+    ],
+    "hints": [
+      "Commence par le style de base.",
+      "Ajoute la requête média.",
+      "Deux colonnes et l’astuce dans la requête."
+    ],
+    "explanation_fr": "Ta section Projets s’adapte à tous les écrans.",
+    "common_wrong_answers": [],
+    "id": "pw-m3-03-e4"
+  }
+]

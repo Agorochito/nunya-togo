@@ -1,0 +1,294 @@
+{
+  "id": "ia-bases",
+  "title_fr": "Intelligence artificielle : comprendre, vérifier, se protéger",
+  "language": "python",
+  "runtime": "python",
+  "technology": "ia",
+  "level": "debutant",
+  "replaces_plans": [
+    "ia-cyber"
+  ],
+  "summary_fr": "Comprends ce qu’il y a dans une IA en construisant des modèles à la main : seuil appris, plus proches voisins, régression, filtre d’arnaques par sac de mots et neurone artificiel. Apprends à les évaluer honnêtement, à repérer leurs biais et le sur-apprentissage, à comprendre les hallucinations des assistants, puis à te protéger : données personnelles, arnaques à fausse voix et injection de consignes. En Python, hors ligne.",
+  "prerequisite_courses": [
+    "python-bases"
+  ],
+  "prerequisites": [
+    "Savoir écrire des fonctions Python avec listes, dictionnaires, boucles et conditions.",
+    "Le cours Python débutant de Nunya fournit ces bases."
+  ],
+  "outcomes": [
+    "Expliquer la différence entre règles écrites et apprentissage à partir d’exemples.",
+    "Construire et évaluer de petits modèles : voisins, régression, sac de mots, perceptron.",
+    "Repérer les biais, le sur-apprentissage et les hallucinations.",
+    "Protéger ses données et celles des autres face aux assistants.",
+    "Reconnaître les arnaques dopées à l’IA et l’injection de consignes."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Comprendre l’apprentissage",
+      "outcome_fr": "Règles contre exemples, plus proches voisins et évaluation.",
+      "lesson_ids": [
+        "ia-m1-01",
+        "ia-m1-02",
+        "ia-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Construire des modèles",
+      "outcome_fr": "Régression, sac de mots et neurone artificiel.",
+      "lesson_ids": [
+        "ia-m2-01",
+        "ia-m2-02",
+        "ia-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Les limites des modèles",
+      "outcome_fr": "Biais, sur-apprentissage et hallucinations.",
+      "lesson_ids": [
+        "ia-m3-01",
+        "ia-m3-02",
+        "ia-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "IA et sécurité",
+      "outcome_fr": "Données personnelles, arnaques et injection de consignes.",
+      "lesson_ids": [
+        "ia-m4-01",
+        "ia-m4-02",
+        "ia-m4-03"
+      ]
+    }
+  ],
+  "next_courses": [],
+  "status": "brouillon",
+  "reviewer": null,
+  "later_modules": [],
+  "lessons": [
+    {
+      "id": "ia-m1-01",
+      "title_fr": "Qu’est-ce que l’intelligence artificielle ?",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "py-m12-03"
+      ],
+      "tags": [
+        "intelligence artificielle",
+        "sécurité",
+        "python",
+        "intelligence artificielle",
+        "apprentissage automatique",
+        "exemple étiqueté",
+        "modèle"
+      ]
+    },
+    {
+      "id": "ia-m1-02",
+      "title_fr": "Les plus proches voisins",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "ia-m1-01"
+      ],
+      "tags": [
+        "intelligence artificielle",
+        "sécurité",
+        "python",
+        "caractéristique",
+        "distance euclidienne",
+        "k plus proches voisins",
+        "mise à l’échelle"
+      ]
+    },
+    {
+      "id": "ia-m1-03",
+      "title_fr": "Évaluer un modèle : exactitude et erreurs",
+      "module": "m1",
+      "minutes": 20,
+      "prerequisites": [
+        "ia-m1-02"
+      ],
+      "tags": [
+        "intelligence artificielle",
+        "sécurité",
+        "python",
+        "exemples de test",
+        "matrice de confusion",
+        "précision",
+        "rappel"
+      ]
+    },
+    {
+      "id": "ia-m2-01",
+      "title_fr": "Prédire un nombre : la régression",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "ia-m1-03"
+      ],
+      "tags": [
+        "intelligence artificielle",
+        "sécurité",
+        "python",
+        "régression",
+        "modèle de référence",
+        "erreur moyenne absolue",
+        "paramètre"
+      ]
+    },
+    {
+      "id": "ia-m2-02",
+      "title_fr": "Classer des textes : le sac de mots",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "ia-m2-01"
+      ],
+      "tags": [
+        "intelligence artificielle",
+        "sécurité",
+        "python",
+        "sac de mots",
+        "prétraitement",
+        "poids",
+        "anonymiser"
+      ]
+    },
+    {
+      "id": "ia-m2-03",
+      "title_fr": "Le perceptron : un neurone artificiel",
+      "module": "m2",
+      "minutes": 20,
+      "prerequisites": [
+        "ia-m2-02"
+      ],
+      "tags": [
+        "intelligence artificielle",
+        "sécurité",
+        "python",
+        "neurone artificiel",
+        "poids",
+        "biais",
+        "époque"
+      ]
+    },
+    {
+      "id": "ia-m3-01",
+      "title_fr": "Les biais : quand le modèle est injuste",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "ia-m2-03"
+      ],
+      "tags": [
+        "intelligence artificielle",
+        "sécurité",
+        "python",
+        "biais",
+        "déséquilibre",
+        "audit",
+        "contrôle humain"
+      ]
+    },
+    {
+      "id": "ia-m3-02",
+      "title_fr": "Sur-apprentissage : mémoriser n’est pas comprendre",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "ia-m3-01"
+      ],
+      "tags": [
+        "intelligence artificielle",
+        "sécurité",
+        "python",
+        "généraliser",
+        "sur-apprentissage",
+        "jeu de validation",
+        "fuite de données"
+      ]
+    },
+    {
+      "id": "ia-m3-03",
+      "title_fr": "Les grands modèles de langage et leurs hallucinations",
+      "module": "m3",
+      "minutes": 20,
+      "prerequisites": [
+        "ia-m3-02"
+      ],
+      "tags": [
+        "intelligence artificielle",
+        "sécurité",
+        "python",
+        "modèle de langage",
+        "bigramme",
+        "hallucination",
+        "source fiable"
+      ]
+    },
+    {
+      "id": "ia-m4-01",
+      "title_fr": "Protéger ses données face aux assistants",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "ia-m3-03"
+      ],
+      "tags": [
+        "intelligence artificielle",
+        "sécurité",
+        "python",
+        "donnée personnelle",
+        "pseudonymiser",
+        "expression régulière",
+        "conditions d’utilisation"
+      ]
+    },
+    {
+      "id": "ia-m4-02",
+      "title_fr": "Arnaques dopées à l’IA : hameçonnage et fausses voix",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "ia-m4-01"
+      ],
+      "tags": [
+        "intelligence artificielle",
+        "sécurité",
+        "python",
+        "hameçonnage",
+        "clonage de voix",
+        "hypertrucage",
+        "autre canal"
+      ]
+    },
+    {
+      "id": "ia-m4-03",
+      "title_fr": "Injection de consignes et usage responsable",
+      "module": "m4",
+      "minutes": 20,
+      "prerequisites": [
+        "ia-m4-02"
+      ],
+      "tags": [
+        "intelligence artificielle",
+        "sécurité",
+        "python",
+        "injection de consignes",
+        "délimiter",
+        "moindre privilège",
+        "humain dans la boucle"
+      ]
+    }
+  ],
+  "estimated_minutes": 240,
+  "content_revision": "233938e20586",
+  "exercise_count": 48,
+  "quiz_count": 36
+}

@@ -1,0 +1,71 @@
+{
+  "id": "typescript-bases",
+  "title_fr": "TypeScript : du JavaScript sûr",
+  "language": "typescript",
+  "runtime": "typescript",
+  "technology": "typescript",
+  "level": "intermediaire",
+  "replaces_plans": [
+    "typescript"
+  ],
+  "summary_fr": "Ajoute des types à ton JavaScript et laisse le compilateur trouver les erreurs avant l’exécution : types de base et fonctions, interfaces, unions et rétrécissement, null en mode strict, unions discriminées et cas oubliés, génériques, types utilitaires, classes, validation des données externes, puis suivi de commandes typé. TypeScript 5.6 en mode strict, en ligne.",
+  "prerequisite_courses": [
+    "javascript-bases"
+  ],
+  "prerequisites": [
+    "Maîtriser les fonctions, tableaux, objets et classes en JavaScript.",
+    "Le cours JavaScript de Nunya fournit ces bases."
+  ],
+  "outcomes": [
+    "Typer variables, fonctions, objets et tableaux, et lire les erreurs de type.",
+    "Modéliser des données avec unions, unions discriminées et types utilitaires.",
+    "Écrire des fonctions et classes génériques précises.",
+    "Traiter null et undefined en mode strict.",
+    "Vérifier les données externes avec des gardes de type."
+  ],
+  "modules": [
+    {
+      "id": "m1",
+      "title_fr": "Les types de base",
+      "outcome_fr": "Pourquoi TypeScript, types, tableaux, tuples et fonctions.",
+      "lesson_ids": [
+        "ts-m1-01",
+        "ts-m1-02",
+        "ts-m1-03"
+      ]
+    },
+    {
+      "id": "m2",
+      "title_fr": "Objets et unions",
+      "outcome_fr": "Interfaces, unions, rétrécissement et null.",
+      "lesson_ids": [
+        "ts-m2-01",
+        "ts-m2-02",
+        "ts-m2-03"
+      ]
+    },
+    {
+      "id": "m3",
+      "title_fr": "Types avancés",
+      "outcome_fr": "Unions discriminées, génériques et types utilitaires.",
+      "lesson_ids": [
+        "ts-m3-01",
+        "ts-m3-02",
+        "ts-m3-03"
+      ]
+    },
+    {
+      "id": "m4",
+      "title_fr": "Programmer avec les types",
+      "outcome_fr": "Classes, validation des données et projet de suivi.",
+      "lesson_ids": [
+        "ts-m4-01",
+        "ts-m4-02",
+        "ts-m4-03"
+      ]
+    }
+  ],
+  "next_courses": [],
+  "status": "brouillon",
+  "reviewer": null
+}

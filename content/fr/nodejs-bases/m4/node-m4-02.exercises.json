@@ -1,0 +1,190 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Échapper le HTML",
+    "instruction_fr": "Écris echapperHTML(texte) qui remplace & par &amp;, < par &lt;, > par &gt;, \" par &quot; et ' par &#39;. Commence par &.",
+    "starter_code": "function echapperHTML(texte) {\n  return texte.replaceAll(\"<\", \"&lt;\");\n}\n",
+    "solution": "function echapperHTML(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "echapperHTML(\"<b>Afi</b>\")",
+            "expected": "&lt;b&gt;Afi&lt;/b&gt;"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "echapperHTML(\"Riz & \\\"sel\\\" 'fin'\")",
+            "expected": "Riz &amp; &quot;sel&quot; &#39;fin&#39;"
+          },
+          {
+            "expr": "echapperHTML(42)",
+            "expected": "42"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Il manque plusieurs caractères.",
+      "Remplace & en premier, sinon tu échapperais tes propres entités.",
+      "Enchaîne les replaceAll."
+    ],
+    "explanation_fr": "L’ordre compte : échapper & après < transformerait &lt; en &amp;lt;.",
+    "common_wrong_answers": [],
+    "id": "node-m4-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un nom de fichier sûr",
+    "instruction_fr": "Écris nomSur(nom) qui renvoie true seulement pour un nom fait de lettres minuscules, chiffres, tirets ou tirets bas, terminé par .txt ou .json.",
+    "starter_code": "function nomSur(nom) {\n  return !nom.includes(\"..\");\n}\n",
+    "solution": "function nomSur(nom) {\n  return /^[a-z0-9_-]+\\.(txt|json)$/.test(nom);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nomSur(\"notes-2026.txt\")",
+            "expected": "true"
+          },
+          {
+            "expr": "nomSur(\"../secret.txt\")",
+            "expected": "false"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nomSur(\"ventes.json\")",
+            "expected": "true"
+          },
+          {
+            "expr": "nomSur(\"photo.exe\")",
+            "expected": "false"
+          },
+          {
+            "expr": "nomSur(\"dossier/notes.txt\")",
+            "expected": "false"
+          },
+          {
+            "expr": "nomSur(\".txt\")",
+            "expected": "false"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Interdire « .. » ne suffit pas : pense aux barres obliques.",
+      "Décris plutôt ce qui est autorisé.",
+      "Une expression régulière ancrée avec ^ et $."
+    ],
+    "explanation_fr": "La liste d’autorisation refuse aussi les attaques auxquelles on n’a pas pensé.",
+    "common_wrong_answers": [],
+    "id": "node-m4-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La page piégée",
+    "instruction_fr": "Cette route insère le paramètre nom dans du HTML sans l’échapper : /bonjour?nom=<script>… exécuterait du code. Utilise echapperHTML (fournie) pour corriger.",
+    "starter_code": "const http = require(\"http\");\n\nfunction echapperHTML(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nconst serveur = http.createServer((req, res) => {\n  const nom = new URL(req.url, \"http://localhost\").searchParams.get(\"nom\") || \"visiteur\";\n  res.writeHead(200, { \"Content-Type\": \"text/html; charset=utf-8\" });\n  res.end(\"<p>Bonjour \" + nom + \"</p>\");\n});\n",
+    "solution": "const http = require(\"http\");\n\nfunction echapperHTML(texte) {\n  return String(texte)\n    .replaceAll(\"&\", \"&amp;\")\n    .replaceAll(\"<\", \"&lt;\")\n    .replaceAll(\">\", \"&gt;\")\n    .replaceAll('\"', \"&quot;\")\n    .replaceAll(\"'\", \"&#39;\");\n}\n\nconst serveur = http.createServer((req, res) => {\n  const nom = new URL(req.url, \"http://localhost\").searchParams.get(\"nom\") || \"visiteur\";\n  res.writeHead(200, { \"Content-Type\": \"text/html; charset=utf-8\" });\n  res.end(\"<p>Bonjour \" + echapperHTML(nom) + \"</p>\");\n});\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/bonjour?nom=%3Cscript%3Ex%3C%2Fscript%3E\").then(r => r.corps)",
+            "expected": "<p>Bonjour &lt;script&gt;x&lt;/script&gt;</p>"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nunyaRequete(serveur, \"/bonjour?nom=Afi\").then(r => r.type + \" \" + r.corps)",
+            "expected": "text/html <p>Bonjour Afi</p>"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le nom vient de l’adresse : il est contrôlé par n’importe qui.",
+      "Il est inséré tel quel dans le HTML.",
+      "Passe-le dans echapperHTML avant de l’insérer."
+    ],
+    "explanation_fr": "Le nom ordinaire s’affiche toujours ; seul le code piégé est neutralisé.",
+    "common_wrong_answers": [],
+    "id": "node-m4-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Valider une inscription",
+    "instruction_fr": "Écris validerInscription(d) qui renvoie la liste des champs invalides, dans l’ordre : \"nom\" (chaîne de 2 à 50 caractères), \"courriel\" (format simple quelque@chose.ext), \"age\" (entier de 13 à 120). Une liste vide signifie que tout est valide.",
+    "starter_code": "function validerInscription(d) {\n  return [];\n}\n",
+    "solution": "const COURRIEL = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;\n\nfunction validerInscription(d) {\n  const erreurs = [];\n  if (typeof d.nom !== \"string\" || d.nom.trim().length < 2 || d.nom.length > 50) erreurs.push(\"nom\");\n  if (typeof d.courriel !== \"string\" || !COURRIEL.test(d.courriel)) erreurs.push(\"courriel\");\n  if (!Number.isInteger(d.age) || d.age < 13 || d.age > 120) erreurs.push(\"age\");\n  return erreurs;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "validerInscription({ nom: \"Afi\", courriel: \"afi@example.com\", age: 16 })",
+            "expected": "[]"
+          },
+          {
+            "expr": "validerInscription({ nom: \"A\", courriel: \"afi@\", age: 9 })",
+            "expected": "[\"nom\",\"courriel\",\"age\"]"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "validerInscription({ nom: \"  \", courriel: \"a b@x.tg\", age: 16.5 })",
+            "expected": "[\"nom\",\"courriel\",\"age\"]"
+          },
+          {
+            "expr": "validerInscription({})",
+            "expected": "[\"nom\",\"courriel\",\"age\"]"
+          },
+          {
+            "expr": "validerInscription({ nom: \"Kossi\", courriel: \"k@ecole.tg\", age: \"16\" })",
+            "expected": "[\"age\"]"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Vérifie le type avant la longueur.",
+      "Une expression régulière simple suffit pour le courriel.",
+      "Number.isInteger refuse 16.5 et \"16\"."
+    ],
+    "explanation_fr": "Renvoyer la liste des champs fautifs permet au client d’afficher un message précis pour chacun.",
+    "common_wrong_answers": [],
+    "id": "node-m4-02-e4"
+  }
+]

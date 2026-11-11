@@ -1,0 +1,213 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "La balise viewport",
+    "instruction_fr": "Ajoute dans head la balise meta name=\"viewport\" avec content=\"width=device-width, initial-scale=1\".",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    nav {\n      display: flex;\n      flex-direction: column;\n      gap: 8px;\n    }\n    @media (min-width: 700px) {\n      nav {\n        flex-direction: row;\n        gap: 24px;\n      }\n    }\n  </style>\n</head>\n<body>\n  <header>\n    <h1>Ama Mensah</h1>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#apropos\">À propos</a>\n    <a href=\"#projets\">Projets</a>\n    <a href=\"#contact\">Contact</a>\n  </nav>\n  </header>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    nav {\n      display: flex;\n      flex-direction: column;\n      gap: 8px;\n    }\n    @media (min-width: 700px) {\n      nav {\n        flex-direction: row;\n        gap: 24px;\n      }\n    }\n  </style>\n</head>\n<body>\n  <header>\n    <h1>Ama Mensah</h1>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#apropos\">À propos</a>\n    <a href=\"#projets\">Projets</a>\n    <a href=\"#contact\">Contact</a>\n  </nav>\n  </header>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Viewport déclaré",
+        "checks": [
+          {
+            "selector": "meta[name=\"viewport\"]",
+            "count": 1,
+            "attributes": {
+              "content": "width=device-width, initial-scale=1"
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Une seule balise",
+        "checks": [
+          {
+            "selector": "meta[name=\"viewport\"]",
+            "count": 1
+          },
+          {
+            "selector": "meta[charset]",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Elle se place dans head.",
+      "L’attribut name vaut viewport.",
+      "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"
+    ],
+    "explanation_fr": "Une ligne qui change tout sur téléphone.",
+    "common_wrong_answers": [],
+    "id": "pw-m3-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Navigation adaptative",
+    "instruction_fr": "La navigation est en colonne. Ajoute une requête média @media (min-width: 700px) qui passe nav en flex-direction: row avec gap: 24px.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    nav {\n      display: flex;\n      flex-direction: column;\n      gap: 8px;\n    }\n  </style>\n</head>\n<body>\n  <header>\n    <h1>Ama Mensah</h1>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#apropos\">À propos</a>\n    <a href=\"#projets\">Projets</a>\n    <a href=\"#contact\">Contact</a>\n  </nav>\n  </header>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    nav {\n      display: flex;\n      flex-direction: column;\n      gap: 8px;\n    }\n    @media (min-width: 700px) {\n      nav {\n        flex-direction: row;\n        gap: 24px;\n      }\n    }\n  </style>\n</head>\n<body>\n  <header>\n    <h1>Ama Mensah</h1>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#apropos\">À propos</a>\n    <a href=\"#projets\">Projets</a>\n    <a href=\"#contact\">Contact</a>\n  </nav>\n  </header>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Grand écran en ligne",
+        "checks": [
+          {
+            "selector": "nav",
+            "style": {
+              "flex-direction": "row",
+              "column-gap": "24px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 1000,
+          "height": 700
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Téléphone en colonne",
+        "checks": [
+          {
+            "selector": "nav",
+            "style": {
+              "flex-direction": "column",
+              "row-gap": "8px"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 700
+        }
+      }
+    ],
+    "hints": [
+      "Le style de base reste pour le téléphone.",
+      "La requête commence par @media (min-width: 700px).",
+      "À l’intérieur : nav { flex-direction: row; gap: 24px; }"
+    ],
+    "explanation_fr": "Le même code donne deux dispositions selon la largeur.",
+    "common_wrong_answers": [],
+    "id": "pw-m3-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La condition à l’envers",
+    "instruction_fr": "La requête utilise max-width: 700px et place la ligne sur téléphone, la colonne sur ordinateur. Corrige-la pour obtenir une colonne sous 700 pixels et une ligne au-delà, en style mobile d’abord.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    nav {\n      display: flex;\n      flex-direction: column;\n    }\n    @media (max-width: 700px) {\n      nav {\n        flex-direction: row;\n      }\n    }\n  </style>\n</head>\n<body>\n  <header>\n    <h1>Ama Mensah</h1>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#apropos\">À propos</a>\n    <a href=\"#projets\">Projets</a>\n    <a href=\"#contact\">Contact</a>\n  </nav>\n  </header>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    nav {\n      display: flex;\n      flex-direction: column;\n    }\n    @media (min-width: 700px) {\n      nav {\n        flex-direction: row;\n      }\n    }\n  </style>\n</head>\n<body>\n  <header>\n    <h1>Ama Mensah</h1>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#apropos\">À propos</a>\n    <a href=\"#projets\">Projets</a>\n    <a href=\"#contact\">Contact</a>\n  </nav>\n  </header>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Téléphone",
+        "checks": [
+          {
+            "selector": "nav",
+            "style": {
+              "flex-direction": "column"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 700
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Ordinateur",
+        "checks": [
+          {
+            "selector": "nav",
+            "style": {
+              "flex-direction": "row"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 1000,
+          "height": 700
+        }
+      }
+    ],
+    "hints": [
+      "max-width vise les petits écrans.",
+      "Le style de base doit être celui du téléphone.",
+      "Remplace max-width par min-width."
+    ],
+    "explanation_fr": "min-width ajoute des règles à mesure que l’écran grandit.",
+    "common_wrong_answers": [],
+    "id": "pw-m3-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "En-tête adaptatif",
+    "instruction_fr": "Ajoute la balise viewport et écris : header en flex, colonne sur téléphone ; à partir de 700px, header en ligne avec justify-content: space-between. La nav suit la même logique : colonne puis ligne.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <header>\n    <h1>Ama Mensah</h1>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#apropos\">À propos</a>\n    <a href=\"#projets\">Projets</a>\n    <a href=\"#contact\">Contact</a>\n  </nav>\n  </header>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    header,\n    nav {\n      display: flex;\n      flex-direction: column;\n    }\n    @media (min-width: 700px) {\n      header,\n      nav {\n        flex-direction: row;\n      }\n      header {\n        justify-content: space-between;\n      }\n    }\n  </style>\n</head>\n<body>\n  <header>\n    <h1>Ama Mensah</h1>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#apropos\">À propos</a>\n    <a href=\"#projets\">Projets</a>\n    <a href=\"#contact\">Contact</a>\n  </nav>\n  </header>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Téléphone",
+        "checks": [
+          {
+            "selector": "meta[name=\"viewport\"]",
+            "count": 1
+          },
+          {
+            "selector": "header",
+            "style": {
+              "display": "flex",
+              "flex-direction": "column"
+            }
+          },
+          {
+            "selector": "nav",
+            "style": {
+              "flex-direction": "column"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 360,
+          "height": 700
+        }
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Ordinateur",
+        "checks": [
+          {
+            "selector": "header",
+            "style": {
+              "flex-direction": "row",
+              "justify-content": "space-between"
+            }
+          },
+          {
+            "selector": "nav",
+            "style": {
+              "flex-direction": "row"
+            }
+          }
+        ],
+        "viewport": {
+          "width": 1000,
+          "height": 700
+        }
+      }
+    ],
+    "hints": [
+      "Commence par la balise viewport.",
+      "Style de base : colonne pour header et nav.",
+      "La requête média passe en ligne et écarte les éléments."
+    ],
+    "explanation_fr": "Ton en-tête s’adapte à tous les écrans.",
+    "common_wrong_answers": [],
+    "id": "pw-m3-01-e4"
+  }
+]

@@ -9,7 +9,7 @@ class Handler(SimpleHTTPRequestHandler):
    self.send_header('Content-Security-Policy',policy)
   if self.path.split('?')[0]=='/coding-remote-worker.js':
    self.send_header('Content-Security-Policy',"default-src 'none'; connect-src https://wandbox.org; base-uri 'none'")
-  if self.path.split('?')[0] in ['/coding-sql-worker.js','/coding-php-worker.js']:
+  if self.path.split('?')[0] in ['/coding-sql-worker.js','/coding-php-worker.js','/coding-pg-worker.js']:
    self.send_header('Content-Security-Policy',"default-src 'none'; script-src 'wasm-unsafe-eval'; connect-src 'self'; worker-src 'none'; base-uri 'none'")
   if self.path.split('?')[0] in ['/runtime/dom-frame.html','/runtime/react-frame.html']:
    self.send_header('Content-Security-Policy',"default-src 'none'; sandbox allow-scripts; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; worker-src 'none'; form-action 'none'; base-uri 'none'")

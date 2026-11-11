@@ -1,0 +1,169 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Corriger une erreur de type",
+    "instruction_fr": "Le programme met un texte dans une variable de type number. Corrige la valeur pour que age vaille 16, puis exécute.",
+    "starter_code": "let age: number = \"seize\";\nconsole.log(age + 1);\n",
+    "solution": "let age: number = 16;\nconsole.log(age + 1);\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "17",
+        "expressions": [
+          {
+            "expr": "age",
+            "expected": "16"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "typeof age",
+            "expected": "number"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : string ne peut pas être affecté à number.",
+      "Une valeur numérique s’écrit sans guillemets.",
+      "let age: number = 16;"
+    ],
+    "explanation_fr": "Sans TypeScript, ce programme aurait affiché « seize1 ».",
+    "common_wrong_answers": [],
+    "id": "ts-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Annoter une fonction",
+    "instruction_fr": "Écris aire(longueur, largeur) avec des paramètres et un résultat de type number. La vérification contrôle aussi qu’un appel avec un texte est refusé.",
+    "starter_code": "function aire(longueur, largeur) {\n  return longueur * largeur;\n}\n",
+    "solution": "function aire(longueur: number, largeur: number): number {\n  return longueur * largeur;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "aire(4, 5)",
+            "expected": "20"
+          },
+          {
+            "expr": "aire(\"4\", 5)",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "aire(2.5, 2)",
+            "expected": "5"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "En mode strict, un paramètre sans type est refusé.",
+      "Annote chaque paramètre avec : number.",
+      "Le résultat s’annote après la parenthèse."
+    ],
+    "explanation_fr": "Le paramètre implicitement any est la première erreur du mode strict.",
+    "common_wrong_answers": [],
+    "id": "ts-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La propriété mal écrite",
+    "instruction_fr": "TypeScript refuse ce programme : la propriété est mal orthographiée. Corrige-la pour afficher la longueur du nom.",
+    "starter_code": "const nom = \"Kossi\";\nconsole.log(nom.lenght);\n",
+    "solution": "const nom = \"Kossi\";\nconsole.log(nom.length);\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "5",
+        "expressions": []
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "nom.length",
+            "expected": "5"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : la propriété n’existe pas sur le type string.",
+      "Compare l’orthographe.",
+      "length, pas lenght."
+    ],
+    "explanation_fr": "En JavaScript, nom.lenght aurait simplement donné undefined, sans aucun message.",
+    "common_wrong_answers": [],
+    "id": "ts-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Le prix d’une commande",
+    "instruction_fr": "Écris prixCommande(prixUnitaire: number, quantite: number, livraison: boolean): number qui renvoie prix × quantité, plus 1500 si livraison vaut true. Un appel avec une quantité en texte doit être refusé.",
+    "starter_code": "function prixCommande(prixUnitaire, quantite, livraison) {\n  return prixUnitaire * quantite;\n}\n",
+    "solution": "function prixCommande(prixUnitaire: number, quantite: number, livraison: boolean): number {\n  const total = prixUnitaire * quantite;\n  return livraison ? total + 1500 : total;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "prixCommande(600, 3, true)",
+            "expected": "3300"
+          },
+          {
+            "expr": "prixCommande(600, 3, false)",
+            "expected": "1800"
+          },
+          {
+            "expr": "prixCommande(600, \"3\", true)",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "prixCommande(600, 3, \"oui\")",
+            "kind": "type_error"
+          },
+          {
+            "expr": "prixCommande(0, 10, true)",
+            "expected": "1500"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Trois paramètres, trois types.",
+      "Le booléen se teste directement.",
+      "L’opérateur ? : choisit la valeur."
+    ],
+    "explanation_fr": "Les types documentent la fonction : on sait comment l’appeler sans lire son corps.",
+    "common_wrong_answers": [],
+    "id": "ts-m1-01-e4"
+  }
+]

@@ -1,0 +1,292 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Des catégories uniques",
+    "instruction_fr": "Crée la table categories : id bigint generated always as identity primary key, nom text obligatoire et unique. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "create table categories (id bigint, nom text);",
+    "solution": "create table categories (\n  id bigint generated always as identity primary key,\n  nom text not null unique\n);",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "create table categories (id bigint generated always as identity primary key, nom text not null unique);",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "insert into categories (nom) values ('hygiène') returning id",
+            "description_fr": "L’identifiant est attribué par la base.",
+            "expected": [
+              [
+                1
+              ]
+            ]
+          },
+          {
+            "sql": "insert into categories (nom) values ('épicerie'), ('épicerie')",
+            "description_fr": "Un nom en double est refusé.",
+            "error_includes": "duplicate key value violates unique constraint"
+          },
+          {
+            "sql": "insert into categories (nom) values (null)",
+            "description_fr": "Un nom absent est refusé.",
+            "error_includes": "violates not-null constraint"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "create table categories (id bigint generated always as identity primary key, nom text not null unique);",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "insert into categories (nom) values ('hygiène') returning id",
+            "description_fr": "L’identifiant est attribué par la base.",
+            "expected": [
+              [
+                1
+              ]
+            ]
+          },
+          {
+            "sql": "insert into categories (nom) values ('épicerie'), ('épicerie')",
+            "description_fr": "Un nom en double est refusé.",
+            "error_includes": "duplicate key value violates unique constraint"
+          },
+          {
+            "sql": "insert into categories (nom) values (null)",
+            "description_fr": "Un nom absent est refusé.",
+            "error_includes": "violates not-null constraint"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Ajoute generated always as identity primary key à id.",
+      "nom doit être not null et unique.",
+      "Relis les messages des insertions refusées."
+    ],
+    "explanation_fr": "La base refuse maintenant les doublons, quel que soit le programme qui écrit.",
+    "common_wrong_answers": [],
+    "id": "pgs-m1-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "La table des avis",
+    "instruction_fr": "Crée la table avis : id identité, produit_id bigint obligatoire lié à produits (suppression en cascade), note integer obligatoire entre 1 et 5, commentaire text facultatif. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "create table avis (id bigint, produit_id bigint, note integer, commentaire text);",
+    "solution": "create table avis (\n  id bigint generated always as identity primary key,\n  produit_id bigint not null references produits (id) on delete cascade,\n  note integer not null check (note between 1 and 5),\n  commentaire text\n);",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "create table avis (   id bigint generated always as identity primary key,   produit_id bigint not null references produits (id) on delete cascade,   note integer not null check (note between 1 and 5),   commentaire text );",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "insert into avis (produit_id, note) values (1, 6)",
+            "description_fr": "Une note de 6 est refusée.",
+            "error_includes": "violates check constraint"
+          },
+          {
+            "sql": "insert into avis (produit_id, note) values (99, 4)",
+            "description_fr": "Un produit inexistant est refusé.",
+            "error_includes": "violates foreign key constraint"
+          },
+          {
+            "sql": "insert into produits (id, nom, prix) values (99, 'Essai', 100); insert into avis (produit_id, note) values (99, 5); delete from produits where id = 99; select count(*)::int from avis",
+            "description_fr": "Supprimer le produit supprime ses avis.",
+            "expected": [
+              [
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "create table avis (   id bigint generated always as identity primary key,   produit_id bigint not null references produits (id) on delete cascade,   note integer not null check (note between 1 and 5),   commentaire text );",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "insert into avis (produit_id, note) values (1, 6)",
+            "description_fr": "Une note de 6 est refusée.",
+            "error_includes": "violates check constraint"
+          },
+          {
+            "sql": "insert into avis (produit_id, note) values (99, 4)",
+            "description_fr": "Un produit inexistant est refusé.",
+            "error_includes": "violates foreign key constraint"
+          },
+          {
+            "sql": "insert into produits (id, nom, prix) values (99, 'Essai', 100); insert into avis (produit_id, note) values (99, 5); delete from produits where id = 99; select count(*)::int from avis",
+            "description_fr": "Supprimer le produit supprime ses avis.",
+            "expected": [
+              [
+                0
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "references produits (id) on delete cascade.",
+      "check (note between 1 and 5).",
+      "commentaire peut rester sans not null."
+    ],
+    "explanation_fr": "Trois règles métier, trois contraintes, zéro ligne de code applicatif.",
+    "common_wrong_answers": [],
+    "id": "pgs-m1-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Des livraisons trop permissives",
+    "instruction_fr": "La table livraisons accepte une livraison sans commande et n’importe quel statut. Corrige-la : commande_id obligatoire, statut text obligatoire, par défaut « prevue », limité à prevue, en_route et livree. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "create table livraisons (\n  id bigint generated always as identity primary key,\n  commande_id bigint references commandes (id),\n  statut text default 'prevue'\n);",
+    "solution": "create table livraisons (\n  id bigint generated always as identity primary key,\n  commande_id bigint not null references commandes (id),\n  statut text not null default 'prevue' check (statut in ('prevue', 'en_route', 'livree'))\n);",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "create table livraisons (id bigint generated always as identity primary key, commande_id bigint not null references commandes (id), statut text not null default 'prevue' check (statut in ('prevue', 'en_route', 'livree')));",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "insert into livraisons (commande_id) values (null)",
+            "description_fr": "Une livraison sans commande est refusée.",
+            "error_includes": "violates not-null constraint"
+          },
+          {
+            "sql": "insert into livraisons (commande_id, statut) values (1, 'perdue')",
+            "description_fr": "Un statut inconnu est refusé.",
+            "error_includes": "violates check constraint"
+          },
+          {
+            "sql": "insert into livraisons (commande_id) values (1) returning statut",
+            "description_fr": "Le statut par défaut est « prevue ».",
+            "expected": [
+              [
+                "prevue"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "create table livraisons (id bigint generated always as identity primary key, commande_id bigint not null references commandes (id), statut text not null default 'prevue' check (statut in ('prevue', 'en_route', 'livree')));",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "insert into livraisons (commande_id) values (null)",
+            "description_fr": "Une livraison sans commande est refusée.",
+            "error_includes": "violates not-null constraint"
+          },
+          {
+            "sql": "insert into livraisons (commande_id, statut) values (1, 'perdue')",
+            "description_fr": "Un statut inconnu est refusé.",
+            "error_includes": "violates check constraint"
+          },
+          {
+            "sql": "insert into livraisons (commande_id) values (1) returning statut",
+            "description_fr": "Le statut par défaut est « prevue ».",
+            "expected": [
+              [
+                "prevue"
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "commande_id doit être not null.",
+      "statut a besoin de not null et d’un check.",
+      "check (statut in ('prevue', 'en_route', 'livree'))."
+    ],
+    "explanation_fr": "Une liste fermée de statuts empêche les fautes de frappe dans toute l’application.",
+    "common_wrong_answers": [],
+    "id": "pgs-m1-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Faire évoluer les produits",
+    "instruction_fr": "Ajoute aux produits une colonne actif boolean obligatoire, vraie par défaut, et une contrainte prix_raisonnable qui refuse un prix supérieur à 100 000. Chaque essai repart de la base initiale fictive.",
+    "starter_code": "alter table produits add column actif boolean;",
+    "solution": "alter table produits add column actif boolean not null default true;\nalter table produits add constraint prix_raisonnable check (prix <= 100000);",
+    "visible_tests": [
+      {
+        "fixture": "pg-boutique",
+        "reference_sql": "alter table produits add column actif boolean not null default true; alter table produits add constraint prix_raisonnable check (prix <= 100000);",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "update produits set prix = 200000 where id = 1",
+            "description_fr": "Un prix de 200 000 est refusé.",
+            "error_includes": "violates check constraint"
+          },
+          {
+            "sql": "select count(*)::int from produits where actif",
+            "description_fr": "Les produits existants sont actifs par défaut.",
+            "expected": [
+              [
+                4
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "fixture": "pg-boutique-variation",
+        "reference_sql": "alter table produits add column actif boolean not null default true; alter table produits add constraint prix_raisonnable check (prix <= 100000);",
+        "mode": "mutation",
+        "compare_results": "none",
+        "description_fr": "Même contrat sur les données fictives de ce cas.",
+        "probes": [
+          {
+            "sql": "update produits set prix = 200000 where id = 1",
+            "description_fr": "Un prix de 200 000 est refusé.",
+            "error_includes": "violates check constraint"
+          },
+          {
+            "sql": "select count(*)::int from produits where actif",
+            "description_fr": "Les produits existants sont actifs par défaut.",
+            "expected": [
+              [
+                5
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "alter table … add column.",
+      "not null default true remplit les lignes existantes.",
+      "add constraint prix_raisonnable check (prix <= 100000)."
+    ],
+    "explanation_fr": "Une migration fait évoluer la structure sans perdre les données existantes.",
+    "common_wrong_answers": [],
+    "id": "pgs-m1-02-e4"
+  }
+]

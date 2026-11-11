@@ -1,0 +1,178 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une question dépliable",
+    "instruction_fr": "Transforme la question et sa réponse en volet : details contenant summary « Quels langages utilises-tu ? » puis le paragraphe de réponse.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <main>\n    <h2>Questions fréquentes</h2>\n    <h3>Quels langages utilises-tu ?</h3>\n    <p>HTML, CSS et Python.</p>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <main>\n    <h2>Questions fréquentes</h2>\n    <details>\n      <summary>Quels langages utilises-tu ?</summary>\n      <p>HTML, CSS et Python.</p>\n    </details>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Volet",
+        "checks": [
+          {
+            "selector": "details > summary",
+            "textIncludes": "Quels langages utilises-tu ?"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Réponse dans le volet",
+        "checks": [
+          {
+            "selector": "details > p",
+            "textIncludes": "HTML, CSS et Python"
+          },
+          {
+            "selector": "h3",
+            "exists": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "details entoure la question et la réponse.",
+      "La question devient summary.",
+      "summary doit être le premier enfant."
+    ],
+    "explanation_fr": "Aucun script : le navigateur gère tout, clavier compris.",
+    "common_wrong_answers": [],
+    "id": "pw-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un focus bien visible",
+    "instruction_fr": "Ajoute une règle a:focus-visible avec outline: 3px solid #1f5e46 et outline-offset: 2px.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#projets\">Projets</a>\n  </nav>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    a:focus-visible {\n      outline: 3px solid #1f5e46;\n      outline-offset: 2px;\n    }\n  </style>\n</head>\n<body>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#projets\">Projets</a>\n  </nav>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Contour au focus",
+        "checks": [
+          {
+            "selector": "nav a",
+            "style": {
+              "outline-style": "solid",
+              "outline-width": "3px",
+              "outline-color": "#1f5e46"
+            }
+          }
+        ],
+        "focus_selector": "nav a"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Décalage",
+        "checks": [
+          {
+            "selector": "nav a",
+            "style": {
+              "outline-offset": "2px"
+            }
+          }
+        ],
+        "focus_selector": "nav a"
+      }
+    ],
+    "hints": [
+      "Le sélecteur est a:focus-visible.",
+      "outline prend épaisseur, style et couleur.",
+      "Ajoute outline-offset: 2px."
+    ],
+    "explanation_fr": "La personne au clavier voit toujours où elle se trouve.",
+    "common_wrong_answers": [],
+    "id": "pw-m4-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le focus supprimé",
+    "instruction_fr": "Une règle a:focus { outline: none } supprime l’indicateur de focus. Remplace-la par a:focus-visible avec outline: 3px solid #1f5e46.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    a:focus {\n      outline: none;\n    }\n  </style>\n</head>\n<body>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#contact\">Contact</a>\n  </nav>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    a:focus-visible {\n      outline: 3px solid #1f5e46;\n    }\n  </style>\n</head>\n<body>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#contact\">Contact</a>\n  </nav>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Indicateur rétabli",
+        "checks": [
+          {
+            "selector": "nav a",
+            "style": {
+              "outline-style": "solid"
+            }
+          }
+        ],
+        "focus_selector": "nav a"
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Épaisseur",
+        "checks": [
+          {
+            "selector": "nav a",
+            "style": {
+              "outline-width": "3px"
+            }
+          }
+        ],
+        "focus_selector": "nav a"
+      }
+    ],
+    "hints": [
+      "outline: none rend le focus invisible.",
+      "Il faut un indicateur visible au clavier.",
+      "a:focus-visible { outline: 3px solid #1f5e46; }"
+    ],
+    "explanation_fr": "Supprimer le focus est l’une des erreurs d’accessibilité les plus fréquentes.",
+    "common_wrong_answers": [],
+    "id": "pw-m4-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Foire aux questions et défilement doux",
+    "instruction_fr": "Construis section#questions avec un h2 et deux details (chaque summary suivi d’un paragraphe). Ajoute html { scroll-behavior: smooth } et la requête prefers-reduced-motion qui le remet à auto.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <main>\n    <section id=\"questions\">\n      <h2>Questions fréquentes</h2>\n    </section>\n  </main>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Ama Mensah — page personnelle</title>\n  <style>\n    html {\n      scroll-behavior: smooth;\n    }\n    @media (prefers-reduced-motion: reduce) {\n      html {\n        scroll-behavior: auto;\n      }\n    }\n  </style>\n</head>\n<body>\n  <main>\n    <section id=\"questions\">\n      <h2>Questions fréquentes</h2>\n      <details>\n        <summary>Quels langages utilises-tu ?</summary>\n        <p>HTML, CSS et Python.</p>\n      </details>\n      <details>\n        <summary>Fais-tu des sites pour des associations ?</summary>\n        <p>Oui, bénévolement, pour apprendre.</p>\n      </details>\n    </section>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Volets",
+        "checks": [
+          {
+            "selector": "#questions details",
+            "count": 2
+          },
+          {
+            "selector": "#questions details > summary:first-child",
+            "count": 2
+          },
+          {
+            "selector": "#questions details > p",
+            "count": 2
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Défilement doux",
+        "checks": [
+          {
+            "selector": "html",
+            "style": {
+              "scroll-behavior": "smooth"
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Un details par question.",
+      "summary en premier, réponse ensuite.",
+      "La règle de défilement vise html."
+    ],
+    "explanation_fr": "Une page interactive, sans une ligne de script.",
+    "common_wrong_answers": [],
+    "id": "pw-m4-01-e4"
+  }
+]

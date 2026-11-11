@@ -1,0 +1,182 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Un paramètre optionnel",
+    "instruction_fr": "Écris saluer(nom: string, titre?: string): string qui renvoie « Bonjour TITRE NOM » si le titre est donné, sinon « Bonjour NOM ».",
+    "starter_code": "function saluer(nom: string, titre: string): string {\n  return `Bonjour ${titre} ${nom}`;\n}\n",
+    "solution": "function saluer(nom: string, titre?: string): string {\n  return titre ? `Bonjour ${titre} ${nom}` : `Bonjour ${nom}`;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "saluer(\"Afi\")",
+            "expected": "Bonjour Afi"
+          },
+          {
+            "expr": "saluer(\"Mensah\", \"Mme\")",
+            "expected": "Bonjour Mme Mensah"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "saluer()",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "saluer(\"Afi\") est refusé : titre est obligatoire.",
+      "Ajoute ? après titre.",
+      "Prévois son absence dans le corps."
+    ],
+    "explanation_fr": "Le nom, lui, reste obligatoire : l’appel sans argument doit être refusé.",
+    "common_wrong_answers": [],
+    "id": "ts-m1-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Une fonction en argument",
+    "instruction_fr": "Écris appliquer(valeurs: number[], f: (n: number) => number): number[] qui applique f à chaque valeur.",
+    "starter_code": "function appliquer(valeurs, f) {\n  return valeurs;\n}\n",
+    "solution": "function appliquer(valeurs: number[], f: (n: number) => number): number[] {\n  return valeurs.map(f);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "appliquer([1, 2, 3], n => n * 10)",
+            "expected": "[10,20,30]"
+          },
+          {
+            "expr": "appliquer([1], n => \"a\")",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "appliquer([], n => n)",
+            "expected": "[]"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le second paramètre est une fonction.",
+      "Son type s’écrit (n: number) => number.",
+      "map applique f à chaque élément."
+    ],
+    "explanation_fr": "Une fonction qui renvoie un texte est refusée : elle ne respecte pas le contrat.",
+    "common_wrong_answers": [],
+    "id": "ts-m1-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le chemin sans retour",
+    "instruction_fr": "mention(note: number): string oublie le cas des notes inférieures à 10 : TypeScript refuse la fonction. Ajoute le retour « Ajourné ».",
+    "starter_code": "function mention(note: number): string {\n  if (note >= 16) return \"Très bien\";\n  if (note >= 10) return \"Admis\";\n}\n",
+    "solution": "function mention(note: number): string {\n  if (note >= 16) return \"Très bien\";\n  if (note >= 10) return \"Admis\";\n  return \"Ajourné\";\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "mention(8)",
+            "expected": "Ajourné"
+          },
+          {
+            "expr": "mention(16)",
+            "expected": "Très bien"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "mention(12)",
+            "expected": "Admis"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : la fonction ne renvoie pas de valeur dans tous les cas.",
+      "Que renvoie-t-elle pour 8 ?",
+      "Ajoute return \"Ajourné\"; à la fin."
+    ],
+    "explanation_fr": "En JavaScript, mention(8) aurait renvoyé undefined sans prévenir.",
+    "common_wrong_answers": [],
+    "id": "ts-m1-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Une remise paramétrable",
+    "instruction_fr": "Écris remise(prix: number, pourcentage = 10): number (prix moins le pourcentage arrondi) et appliquerRemises(prix: number[], calcul: (p: number) => number): number qui renvoie la somme des prix après calcul.",
+    "starter_code": "function remise(prix, pourcentage) {\n  return prix;\n}\n\nfunction appliquerRemises(prix, calcul) {\n  return 0;\n}\n",
+    "solution": "function remise(prix: number, pourcentage = 10): number {\n  return prix - Math.round(prix * pourcentage / 100);\n}\n\nfunction appliquerRemises(prix: number[], calcul: (p: number) => number): number {\n  return prix.map(calcul).reduce((s, p) => s + p, 0);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "remise(5000)",
+            "expected": "4500"
+          },
+          {
+            "expr": "appliquerRemises([1000, 2000], p => remise(p, 50))",
+            "expected": "1500"
+          },
+          {
+            "expr": "remise(5000, \"10\")",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "appliquerRemises([], remise)",
+            "expected": "0"
+          },
+          {
+            "expr": "appliquerRemises([1000], (p: string) => 1)",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La valeur par défaut donne le type number.",
+      "calcul est une fonction de nombre vers nombre.",
+      "map puis reduce."
+    ],
+    "explanation_fr": "remise elle-même peut servir de calcul : son type correspond.",
+    "common_wrong_answers": [],
+    "id": "ts-m1-03-e4"
+  }
+]

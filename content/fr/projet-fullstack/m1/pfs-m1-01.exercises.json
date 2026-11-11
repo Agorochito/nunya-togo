@@ -1,0 +1,182 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une table de routes fixes",
+    "instruction_fr": "Écris route(methode, chemin) qui renvoie le nom associé à \"METHODE CHEMIN\" dans ROUTES_FIXES, ou null.",
+    "starter_code": "const ROUTES_FIXES = { \"GET /\": \"accueil\", \"GET /produits/nouveau\": \"formulaire\", \"POST /produits\": \"creer\" };\n\nfunction route(methode, chemin) {\n  return ROUTES_FIXES[chemin];\n}\n",
+    "solution": "const ROUTES_FIXES = { \"GET /\": \"accueil\", \"GET /produits/nouveau\": \"formulaire\", \"POST /produits\": \"creer\" };\n\nfunction route(methode, chemin) {\n  return ROUTES_FIXES[methode + \" \" + chemin] ?? null;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "route(\"GET\", \"/\")",
+            "expected": "accueil"
+          },
+          {
+            "expr": "route(\"POST\", \"/produits\")",
+            "expected": "creer"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "route(\"DELETE\", \"/\")",
+            "expected": "null"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La clé combine méthode et chemin.",
+      "Construis-la avec methode + \" \" + chemin.",
+      "?? null pour une route absente."
+    ],
+    "explanation_fr": "La méthode fait partie de la route : GET et POST sur /produits sont deux routes différentes.",
+    "common_wrong_answers": [],
+    "id": "pfs-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Reconnaître un paramètre",
+    "instruction_fr": "Écris correspondre(motif, chemin) : renvoie l’objet des paramètres si le chemin correspond au motif (morceaux commençant par « : »), sinon null.",
+    "starter_code": "function correspondre(motif, chemin) {\n  return motif === chemin ? {} : null;\n}\n",
+    "solution": "function correspondre(motif, chemin) {\n  const a = motif.split(\"/\"), b = chemin.split(\"/\");\n  if (a.length !== b.length) return null;\n  const params = {};\n  for (let i = 0; i < a.length; i++) {\n    if (a[i].startsWith(\":\")) params[a[i].slice(1)] = b[i];\n    else if (a[i] !== b[i]) return null;\n  }\n  return params;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "correspondre(\"/produits/:id\", \"/produits/3\")",
+            "expected": "{\"id\":\"3\"}"
+          },
+          {
+            "expr": "correspondre(\"/produits/:id\", \"/clients/3\")",
+            "expected": "null"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "correspondre(\"/a/:x/b/:y\", \"/a/1/b/2\")",
+            "expected": "{\"x\":\"1\",\"y\":\"2\"}"
+          },
+          {
+            "expr": "correspondre(\"/\", \"/\")",
+            "expected": "{}"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Découpe motif et chemin avec split(\"/\").",
+      "Un morceau en « : » capture la valeur.",
+      "Tout autre morceau doit être identique."
+    ],
+    "explanation_fr": "Deux paramètres dans le même motif fonctionnent aussi.",
+    "common_wrong_answers": [],
+    "id": "pfs-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le chemin trop long",
+    "instruction_fr": "correspondre accepte /produits/3/avis pour le motif /produits/:id : il manque une vérification. Corrige-la.",
+    "starter_code": "function correspondre(motif, chemin) {\n  const a = motif.split(\"/\"), b = chemin.split(\"/\");\n  const params = {};\n  for (let i = 0; i < a.length; i++) {\n    if (a[i].startsWith(\":\")) params[a[i].slice(1)] = b[i];\n    else if (a[i] !== b[i]) return null;\n  }\n  return params;\n}\n",
+    "solution": "function correspondre(motif, chemin) {\n  const a = motif.split(\"/\"), b = chemin.split(\"/\");\n  if (a.length !== b.length) return null;\n  const params = {};\n  for (let i = 0; i < a.length; i++) {\n    if (a[i].startsWith(\":\")) params[a[i].slice(1)] = b[i];\n    else if (a[i] !== b[i]) return null;\n  }\n  return params;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "correspondre(\"/produits/:id\", \"/produits/3/avis\")",
+            "expected": "null"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "correspondre(\"/produits/:id\", \"/produits/3\")",
+            "expected": "{\"id\":\"3\"}"
+          },
+          {
+            "expr": "correspondre(\"/produits/:id\", \"/produits\")",
+            "expected": "null"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La boucle ne parcourt que les morceaux du motif.",
+      "Les morceaux en trop du chemin sont ignorés.",
+      "Compare d’abord les longueurs."
+    ],
+    "explanation_fr": "Sans cette vérification, une adresse inventée afficherait une vraie page.",
+    "common_wrong_answers": [],
+    "id": "pfs-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Le routeur complet",
+    "instruction_fr": "Écris router(routes, methode, chemin) : renvoie { nom, params } de la première route dont le motif et la méthode correspondent ; si le chemin existe pour une autre méthode, { nom: \"non autorisée\", params: {} } ; sinon { nom: \"introuvable\", params: {} }. correspondre est fournie.",
+    "starter_code": "function correspondre(motif, chemin) {\n  const a = motif.split(\"/\"), b = chemin.split(\"/\");\n  if (a.length !== b.length) return null;\n  const params = {};\n  for (let i = 0; i < a.length; i++) {\n    if (a[i].startsWith(\":\")) params[a[i].slice(1)] = b[i];\n    else if (a[i] !== b[i]) return null;\n  }\n  return params;\n}\n\nfunction router(routes, methode, chemin) {\n  return { nom: \"introuvable\", params: {} };\n}\n",
+    "solution": "function correspondre(motif, chemin) {\n  const a = motif.split(\"/\"), b = chemin.split(\"/\");\n  if (a.length !== b.length) return null;\n  const params = {};\n  for (let i = 0; i < a.length; i++) {\n    if (a[i].startsWith(\":\")) params[a[i].slice(1)] = b[i];\n    else if (a[i] !== b[i]) return null;\n  }\n  return params;\n}\n\nfunction router(routes, methode, chemin) {\n  let autreMethode = false;\n  for (const r of routes) {\n    const params = correspondre(r.chemin, chemin);\n    if (!params) continue;\n    if (r.methode === methode) return { nom: r.nom, params };\n    autreMethode = true;\n  }\n  return { nom: autreMethode ? \"non autorisée\" : \"introuvable\", params: {} };\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "router([\n  { methode: \"GET\", chemin: \"/\", nom: \"accueil\" },\n  { methode: \"GET\", chemin: \"/produits/:id\", nom: \"produit\" },\n  { methode: \"POST\", chemin: \"/produits\", nom: \"creer\" },\n], \"GET\", \"/produits/2\")",
+            "expected": "{\"nom\":\"produit\",\"params\":{\"id\":\"2\"}}"
+          },
+          {
+            "expr": "router([{ methode: \"GET\", chemin: \"/\", nom: \"accueil\" }], \"POST\", \"/\").nom",
+            "expected": "non autorisée"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "router([{ methode: \"GET\", chemin: \"/\", nom: \"accueil\" }], \"GET\", \"/x\").nom",
+            "expected": "introuvable"
+          },
+          {
+            "expr": "router([{ methode: \"GET\", chemin: \"/p/:id\", nom: \"lire\" }, { methode: \"DELETE\", chemin: \"/p/:id\", nom: \"effacer\" }], \"DELETE\", \"/p/9\")",
+            "expected": "{\"nom\":\"effacer\",\"params\":{\"id\":\"9\"}}"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Parcours les routes dans l’ordre.",
+      "Retiens si un chemin a correspondu avec une autre méthode.",
+      "Choisis entre « non autorisée » et « introuvable » à la fin."
+    ],
+    "explanation_fr": "C’est le cœur de tout cadriciel web, en dix lignes.",
+    "common_wrong_answers": [],
+    "id": "pfs-m1-01-e4"
+  }
+]

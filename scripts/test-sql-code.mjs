@@ -2,7 +2,7 @@ import fs from 'node:fs';import assert from 'node:assert/strict';import init fro
 import {execute,runSqlCase} from '../lib/sql/core.mjs';import {createFixture} from '../lib/sql/fixtures.mjs';
 // Build gate for every SQL course: examples run, solutions pass every case, starters and empty scripts are rejected.
 const SQL=await init(),index='dist/data/curriculum/index.json',report={};
-const ids=fs.existsSync(index)?JSON.parse(fs.readFileSync(index)).courses.filter(c=>c.runtime==='sql').map(c=>c.id):[];
+const ids=fs.existsSync(index)?JSON.parse(fs.readFileSync(index)).courses.filter(c=>c.runtime==='sql'&&c.engine!=='postgres').map(c=>c.id):[];
 for(const id of ids){
  const pack=JSON.parse(fs.readFileSync('dist/data/curriculum/'+id+'.json'));let examples=0,cases=0,starters=0;
  for(const l of pack.lessons){

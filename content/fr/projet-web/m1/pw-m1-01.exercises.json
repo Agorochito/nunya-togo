@@ -1,0 +1,220 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Langue et titre d’onglet",
+    "instruction_fr": "Ajoute lang=\"fr\" à la balise html et un title « Ama Mensah — page personnelle » dans head.",
+    "starter_code": "<!doctype html>\n<html>\n<head>\n  <meta charset=\"utf-8\">\n</head>\n<body>\n  <h1>Ama Mensah</h1>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <h1>Ama Mensah</h1>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Langue et titre",
+        "checks": [
+          {
+            "selector": "html",
+            "attributes": {
+              "lang": "fr"
+            }
+          },
+          {
+            "selector": "title",
+            "textIncludes": "Ama Mensah — page personnelle"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Encodage conservé",
+        "checks": [
+          {
+            "selector": "meta[charset]",
+            "count": 1
+          },
+          {
+            "selector": "h1",
+            "textIncludes": "Ama Mensah"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La langue est un attribut de la balise html.",
+      "Le titre d’onglet va dans head.",
+      "<title>Ama Mensah — page personnelle</title>"
+    ],
+    "explanation_fr": "Langue et titre ne se voient pas dans la page, mais servent aux lecteurs d’écran, aux onglets et aux moteurs.",
+    "common_wrong_answers": [],
+    "id": "pw-m1-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Les quatre régions",
+    "instruction_fr": "Dans body, crée un header avec le h1 « Ama Mensah » et un paragraphe, un main contenant un paragraphe, puis un footer avec « Page fictive réalisée dans Nunya, 2026. ».",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <h1>Ama Mensah</h1>\n  <p>Élève en première.</p>\n  <p>Bienvenue sur ma page.</p>\n  <p>Page fictive réalisée dans Nunya, 2026.</p>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <header>\n    <h1>Ama Mensah</h1>\n    <p>Élève en première.</p>\n  </header>\n  <main>\n    <p>Bienvenue sur ma page.</p>\n  </main>\n  <footer>\n    <p>Page fictive réalisée dans Nunya, 2026.</p>\n  </footer>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Régions présentes",
+        "checks": [
+          {
+            "selector": "header > h1",
+            "textIncludes": "Ama Mensah"
+          },
+          {
+            "selector": "main",
+            "count": 1
+          },
+          {
+            "selector": "footer",
+            "textIncludes": "2026"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Ordre des régions",
+        "checks": [
+          {
+            "selector": "header + main",
+            "count": 1
+          },
+          {
+            "selector": "main + footer",
+            "count": 1
+          },
+          {
+            "selector": "h1",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Entoure le titre et la présentation par header.",
+      "Le contenu principal va dans main.",
+      "Le pied de page va dans footer, après main."
+    ],
+    "explanation_fr": "Les régions donnent du sens sans changer l’apparence.",
+    "common_wrong_answers": [],
+    "id": "pw-m1-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Trop de titres principaux",
+    "instruction_fr": "La page utilise trois h1 et un div à la place de main. Garde un seul h1 (Ama Mensah), transforme les titres de sections en h2 et remplace le div par main.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <h1>Ama Mensah</h1>\n  <div>\n    <h1>À propos</h1>\n    <p>Élève à Lomé.</p>\n    <h1>Projets</h1>\n    <p>Un quiz et un site de club.</p>\n  </div>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <h1>Ama Mensah</h1>\n  <main>\n    <h2>À propos</h2>\n    <p>Élève à Lomé.</p>\n    <h2>Projets</h2>\n    <p>Un quiz et un site de club.</p>\n  </main>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Hiérarchie corrigée",
+        "checks": [
+          {
+            "selector": "h1",
+            "count": 1
+          },
+          {
+            "selector": "main h2",
+            "count": 2
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Contenu dans main",
+        "checks": [
+          {
+            "selector": "main",
+            "count": 1
+          },
+          {
+            "selector": "main p",
+            "count": 2
+          },
+          {
+            "selector": "div",
+            "exists": false
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le h1 est réservé au nom.",
+      "Les sections prennent un h2.",
+      "Remplace <div> par <main> et </div> par </main>."
+    ],
+    "explanation_fr": "Un seul h1 et des h2 forment une table des matières claire.",
+    "common_wrong_answers": [],
+    "id": "pw-m1-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Le squelette d’Ama",
+    "instruction_fr": "Écris la page complète : langue fr, titre d’onglet, header avec h1 « Ama Mensah » et une nav de trois liens (#apropos, #projets, #contact), main avec trois sections de mêmes id et leurs h2 « À propos », « Projets », « Contact », puis un footer.",
+    "starter_code": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <h1>Ama Mensah</h1>\n</body>\n</html>\n",
+    "solution": "<!doctype html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"utf-8\">\n  <title>Ama Mensah — page personnelle</title>\n</head>\n<body>\n  <header>\n    <h1>Ama Mensah</h1>\n    <p>Élève en première, passionnée de code et de dessin.</p>\n  <nav aria-label=\"Sections de la page\">\n    <a href=\"#apropos\">À propos</a>\n    <a href=\"#projets\">Projets</a>\n    <a href=\"#contact\">Contact</a>\n  </nav>\n  </header>\n  <main>\n    <section id=\"apropos\">\n      <h2>À propos</h2>\n    </section>\n    <section id=\"projets\">\n      <h2>Projets</h2>\n    </section>\n    <section id=\"contact\">\n      <h2>Contact</h2>\n    </section>\n  </main>\n  <footer>\n    <p>Page fictive réalisée dans Nunya, 2026.</p>\n  </footer>\n</body>\n</html>\n",
+    "visible_tests": [
+      {
+        "description_fr": "Navigation et sections",
+        "checks": [
+          {
+            "selector": "header h1",
+            "textIncludes": "Ama Mensah"
+          },
+          {
+            "selector": "nav a",
+            "count": 3
+          },
+          {
+            "selector": "main > section",
+            "count": 3
+          },
+          {
+            "selector": "footer",
+            "count": 1
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "description_fr": "Chaque lien a sa cible",
+        "checks": [
+          {
+            "selector": "nav a[href=\"#apropos\"]",
+            "count": 1
+          },
+          {
+            "selector": "nav a[href=\"#projets\"]",
+            "count": 1
+          },
+          {
+            "selector": "nav a[href=\"#contact\"]",
+            "count": 1
+          },
+          {
+            "selector": "section#apropos > h2",
+            "textIncludes": "À propos"
+          },
+          {
+            "selector": "section#projets > h2",
+            "textIncludes": "Projets"
+          },
+          {
+            "selector": "section#contact > h2",
+            "textIncludes": "Contact"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Commence par header, nav, main et footer.",
+      "Chaque lien vise un id avec un dièse.",
+      "Chaque section commence par son h2."
+    ],
+    "explanation_fr": "Ce squelette servira de base à tout le projet.",
+    "common_wrong_answers": [],
+    "id": "pw-m1-01-e4"
+  }
+]

@@ -1,6 +1,6 @@
 # Historique
 
-## 5.19.0 — 10 novembre 2026
+## 5.26.0 — 11 novembre 2026
 
 - **Attestation de fin de cours** : quand toutes les leçons d’un cours sont validées, la page du programme propose « Mon attestation Nunya ». L’élève tape le nom à afficher (non vérifié, jamais envoyé), puis imprime, enregistre en PDF ou télécharge un fichier HTML autonome. Le document est titré « Attestation Nunya — pas un diplôme » et liste les compétences et les modules du cours.
 - **Imprimer ou PDF depuis une leçon** : nouveau bouton à côté de la fiche de lecture, avec ou sans indices et corrigés. Ctrl+P sur une page de cours n’imprime plus une page blanche (la règle d’impression du CV ne s’applique plus qu’au CV) ; menus et éditeur sont masqués.
@@ -8,7 +8,48 @@
 - Prérequis de leçon venant d’un autre cours : le titre du cours et de la leçon s’affiche au lieu de l’identifiant brut (par ex. « css-m4-03 »). Le contrôle des prérequis refuse désormais un identifiant de cours écrit dans les prérequis en texte.
 - Titres en police serif déjà présente sur l’appareil (aucun téléchargement), distincte du texte courant.
 - Le choix de langue EN est conservé après rechargement ; menu et fil d’Ariane affichent « Learn to code » en anglais. Les parcours full-stack et ingénieur·e logiciel choisis ne sont plus oubliés au rechargement.
-- Cache `nunya-v5.19.0`.
+- Cache `nunya-v5.26.0`.
+
+## 5.25.0 — 10 novembre 2026
+
+- Nouveau cours : **Backend en ligne : PostgreSQL et Supabase**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux : types, contraintes et identités PostgreSQL, RETURNING et agrégats filtrés, vues, fonctions et déclencheurs PL/pgSQL, UPSERT et transactions, puis rôles et privilèges, sécurité par ligne avec auth.uid(), politiques d’écriture WITH CHECK, traduction des appels supabase-js, fonctions SECURITY DEFINER appelées par RPC et migration de sécurité d’une boutique prête pour la production.
+- Nouveau moteur : vrai PostgreSQL 18 (PGlite, WebAssembly) dans un Worker du navigateur, sans Docker ni serveur ; environ 6 Mo compressés, téléchargés seulement pour ce cours et disponibles hors ligne une fois enregistrés. Les rôles anon, authenticated et service_role et la fonction auth.uid() reproduisent Supabase : chaque politique est vérifiée sous plusieurs identités (client, autre client, vendeur, visiteur).
+- Un script qui laisse une transaction ouverte échoue avec un message clair, comme dans l’atelier SQLite.
+- Parcours Backend et Full-stack : le cours s’ajoute après SQL. L’étape « Docker et déploiement » reste annoncée.
+
+## 5.24.0 — 10 novembre 2026
+
+- Nouveau cours : **Projet complet : une boutique en ligne full-stack**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, sur Node.js 20 en ligne : routeur à paramètres, modèle de données validé avec identifiants sûrs, pages HTML générées par le serveur et échappées, formulaire selon Post/Redirect/Get (303) avec erreurs et valeurs réaffichées, API JSON avec recherche, panier en cookie HttpOnly et SameSite dont les prix viennent toujours du serveur, pagination bornée, filet d’erreurs (500 sans détail technique), limite de taille (413), en-têtes de sécurité (CSP, nosniff), configuration par variables d’environnement et application complète testée par des parcours de bout en bout.
+- Complète le parcours Développeur·se full-stack : l’étape « Projet complet — en préparation » est remplacée par ce cours.
+- Atelier Node.js : l’outil d’essai nunyaEchange montre aussi les redirections, les cookies et les en-têtes de sécurité d’une réponse.
+
+## 5.23.0 — 10 novembre 2026
+
+- Nouveau cours : **TypeScript : du JavaScript sûr**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, compilés par TypeScript 5.6 en mode strict puis exécutés en ligne (Wandbox) : annotations et inférence, tableaux, tuples, any et unknown, fonctions typées, interfaces, unions et rétrécissement, null et undefined en mode strict, unions discriminées avec vérification d’exhaustivité, génériques, types utilitaires, classes, gardes de type pour les données externes et suivi de commandes typé. Certaines vérifications contrôlent qu’un appel incorrect est bien refusé par les types de l’élève : des types trop larges, comme any, les font échouer. Les erreurs de type sont expliquées en français avec la ligne de l’élève.
+- Remplace la série « TypeScript : démarrer avec les types — en préparation » et l’étape TypeScript prévue du parcours front-end.
+
+## 5.22.0 — 10 novembre 2026
+
+- Nouveau cours : **Node.js : le serveur en JavaScript**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, sur Node.js 20 en ligne (Wandbox) : modules et module.exports, JSON et validation, boucle d’événements et rappels erreur d’abord, promesses, async/await et Promise.allSettled, fichiers avec fs.promises, premier serveur HTTP, routes et paramètres avec URL, API JSON qui lit et valide un corps POST (201, 400, 404, 405), EventEmitter, échappement HTML, noms de fichiers sûrs, validation d’inscription et API de boutique complète. Les serveurs écrits par l’élève sont réellement démarrés et interrogés par l’atelier sur un port local temporaire.
+- Remplace la série « Node.js : les bases du serveur — en préparation » et l’étape Node.js prévue du parcours full-stack.
+- Atelier Node.js : les erreurs, y compris dans les vérifications, sont expliquées en français avec la ligne de l’élève ; une erreur dans un gestionnaire asynchrone n’interrompt plus les cas suivants.
+
+## 5.21.0 — 10 novembre 2026
+
+- Nouveau cours : **Intelligence artificielle : comprendre, vérifier, se protéger**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, en Python hors ligne, sans aucun service d’IA en ligne : seuil appris, plus proches voisins, exactitude, précision et rappel, régression comparée à un modèle de référence, filtre d’arnaques par sac de mots, perceptron entraîné pas à pas, biais mesurés groupe par groupe, sur-apprentissage, mini-modèle de langage et hallucinations, masquage des données personnelles, arnaques à fausse voix et injection de consignes.
+- Remplace la série « Introduction à l’IA et à la cybersécurité — en préparation » ; ajouté aux parcours Analyste de données et Cybersécurité.
+
+## 5.20.0 — 10 novembre 2026
+
+- Nouveau cours : **Projet web : ma page personnelle**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, dans le vrai moteur de rendu de Nunya : plan et squelette sémantique, présentation avec image décrite et listes, projets et liens sûrs, feuille de style avec variables CSS, contraste et typographie, cartes en grille, mobile d’abord et requêtes média vérifiées à 360 et 1 000 pixels, images et mots longs qui ne débordent pas, volets details, focus clavier visible, formulaire de contact accessible, liste de contrôle et publication sur GitHub Pages.
+- La série « Projet web : ma page personnelle — en préparation » et l’étape « Projet web : mon portfolio » du parcours front-end sont remplacées par ce cours.
+
+## 5.19.0 — 10 novembre 2026
+
+- Nouveau cours : **Statistiques avec Python : décrire, relier, estimer**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, en Python hors ligne : moyenne, médiane et mode, étendue, variance et écart-type (population et échantillon), quartiles et valeurs aberrantes, effectifs et fréquences cumulées, classes et histogrammes, nettoyage d’un fichier CSV (virgule décimale, valeurs manquantes, doublons), covariance, corrélation et ses pièges, droite de régression et résidus, probabilités et simulation reproductible, marge d’erreur et intervalle de confiance, puis enquête complète d’un lycée.
+- Le cours remplace l’étape « Statistiques avec Python — en préparation » du parcours Analyste de données.
+- Catalogue : chaque grand domaine (Web, Langages, Données, Cybersécurité, Outils) se replie ou se déplie d’un clic sur son titre, avec le nombre de cours affiché ; un bouton « Tout replier / Tout déplier » permet de passer d’un défilement complet à une vue compacte. Le choix reste sur l’appareil.
+- Barre latérale repliée : les liens du bas (« Donner mon avis », « Un coup de pouce ? ») se replient aussi en icônes, avec info-bulle et nom accessible, au lieu d’afficher leur texte mot par mot.
 
 ## 5.18.0 — 10 novembre 2026
 

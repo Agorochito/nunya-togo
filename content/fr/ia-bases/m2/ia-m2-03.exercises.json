@@ -1,0 +1,404 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "La sortie du neurone",
+    "instruction_fr": "Écris sortie(poids, biais, x) : somme des poids × entrées, plus le biais ; renvoie 1 si le total est strictement positif, sinon 0.",
+    "starter_code": "def sortie(poids, biais, x):\n    return sum(x)\n",
+    "solution": "def sortie(poids, biais, x):\n    total = sum(w * xi for w, xi in zip(poids, x)) + biais\n    return 1 if total > 0 else 0\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "sortie",
+            "args": [
+              [
+                2,
+                1
+              ],
+              -2,
+              [
+                1,
+                1
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 1
+          },
+          {
+            "name": "sortie",
+            "args": [
+              [
+                2,
+                1
+              ],
+              -2,
+              [
+                1,
+                0
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "sortie",
+            "args": [
+              [
+                1,
+                1
+              ],
+              0,
+              [
+                0,
+                0
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 0
+          },
+          {
+            "name": "sortie",
+            "args": [
+              [
+                0.5,
+                0.5
+              ],
+              0,
+              [
+                1,
+                0
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": 1
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Multiplie chaque poids par son entrée.",
+      "Ajoute le biais.",
+      "Compare à 0 strictement."
+    ],
+    "explanation_fr": "Un total nul donne 0 : le seuil est strict.",
+    "common_wrong_answers": [],
+    "id": "ia-m2-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Une correction",
+    "instruction_fr": "Écris corriger(poids, biais, x, attendu) : calcule l’erreur attendu − sortie, puis renvoie [nouveaux poids, nouveau biais] avec poids + erreur × entrée et biais + erreur. La fonction sortie est fournie.",
+    "starter_code": "def sortie(poids, biais, x):\n    return 1 if sum(w * xi for w, xi in zip(poids, x)) + biais > 0 else 0\n\n\ndef corriger(poids, biais, x, attendu):\n    return [poids, biais]\n",
+    "solution": "def sortie(poids, biais, x):\n    return 1 if sum(w * xi for w, xi in zip(poids, x)) + biais > 0 else 0\n\n\ndef corriger(poids, biais, x, attendu):\n    erreur = attendu - sortie(poids, biais, x)\n    return [[w + erreur * xi for w, xi in zip(poids, x)], biais + erreur]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "corriger",
+            "args": [
+              [
+                0,
+                0
+              ],
+              0,
+              [
+                1,
+                1
+              ],
+              1
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                1,
+                1
+              ],
+              1
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "corriger",
+            "args": [
+              [
+                1,
+                1
+              ],
+              1,
+              [
+                0,
+                0
+              ],
+              0
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                1,
+                1
+              ],
+              0
+            ]
+          },
+          {
+            "name": "corriger",
+            "args": [
+              [
+                2,
+                1
+              ],
+              -2,
+              [
+                1,
+                1
+              ],
+              1
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                2,
+                1
+              ],
+              -2
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "L’erreur vaut −1, 0 ou +1.",
+      "Chaque poids reçoit erreur × son entrée.",
+      "Le biais reçoit l’erreur."
+    ],
+    "explanation_fr": "Sans erreur, rien ne change : le neurone garde ce qui marche.",
+    "common_wrong_answers": [],
+    "id": "ia-m2-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "La correction à l’envers",
+    "instruction_fr": "corriger calcule l’erreur comme sortie − attendu : le neurone s’éloigne de la bonne réponse. Corrige le sens de l’erreur.",
+    "starter_code": "def sortie(poids, biais, x):\n    return 1 if sum(w * xi for w, xi in zip(poids, x)) + biais > 0 else 0\n\n\ndef corriger(poids, biais, x, attendu):\n    erreur = sortie(poids, biais, x) - attendu\n    return [[w + erreur * xi for w, xi in zip(poids, x)], biais + erreur]\n",
+    "solution": "def sortie(poids, biais, x):\n    return 1 if sum(w * xi for w, xi in zip(poids, x)) + biais > 0 else 0\n\n\ndef corriger(poids, biais, x, attendu):\n    erreur = attendu - sortie(poids, biais, x)\n    return [[w + erreur * xi for w, xi in zip(poids, x)], biais + erreur]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "corriger",
+            "args": [
+              [
+                0,
+                0
+              ],
+              0,
+              [
+                1,
+                1
+              ],
+              1
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                1,
+                1
+              ],
+              1
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "corriger",
+            "args": [
+              [
+                1,
+                1
+              ],
+              1,
+              [
+                0,
+                1
+              ],
+              0
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                1,
+                0
+              ],
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le neurone a répondu 0 au lieu de 1 : les poids doivent augmenter.",
+      "L’erreur doit valoir +1 ici.",
+      "erreur = attendu - sortie(...)"
+    ],
+    "explanation_fr": "Le sens de la correction est tout : inversé, l’apprentissage diverge.",
+    "common_wrong_answers": [],
+    "id": "ia-m2-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Entraîner un perceptron",
+    "instruction_fr": "Écris entrainer(exemples, epoques) : part de poids nuls et d’un biais nul, applique corriger sur chaque exemple, dans l’ordre, pendant le nombre d’époques donné, et renvoie [poids, biais]. Les fonctions sortie et corriger sont fournies. La vérification fournie teste le modèle appris sur la fonction « et ».",
+    "starter_code": "def sortie(poids, biais, x):\n    return 1 if sum(w * xi for w, xi in zip(poids, x)) + biais > 0 else 0\n\n\ndef corriger(poids, biais, x, attendu):\n    erreur = attendu - sortie(poids, biais, x)\n    return [[w + erreur * xi for w, xi in zip(poids, x)], biais + erreur]\n\n\ndef entrainer(exemples, epoques):\n    return [[0, 0], 0]\n\n\n# Vérification fournie : ne la modifie pas.\ndef verifier_et():\n    poids, biais = entrainer([[[0, 0], 0], [[0, 1], 0], [[1, 0], 0], [[1, 1], 1]], 10)\n    return [sortie(poids, biais, x) for x, _ in [[[0, 0], 0], [[0, 1], 0], [[1, 0], 0], [[1, 1], 1]]]\n",
+    "solution": "def sortie(poids, biais, x):\n    return 1 if sum(w * xi for w, xi in zip(poids, x)) + biais > 0 else 0\n\n\ndef corriger(poids, biais, x, attendu):\n    erreur = attendu - sortie(poids, biais, x)\n    return [[w + erreur * xi for w, xi in zip(poids, x)], biais + erreur]\n\n\ndef entrainer(exemples, epoques):\n    poids = [0] * len(exemples[0][0])\n    biais = 0\n    for _ in range(epoques):\n        for x, attendu in exemples:\n            poids, biais = corriger(poids, biais, x, attendu)\n    return [poids, biais]\n\n\n# Vérification fournie : ne la modifie pas.\ndef verifier_et():\n    poids, biais = entrainer([[[0, 0], 0], [[0, 1], 0], [[1, 0], 0], [[1, 1], 1]], 10)\n    return [sortie(poids, biais, x) for x, _ in [[[0, 0], 0], [[0, 1], 0], [[1, 0], 0], [[1, 1], 1]]]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "verifier_et",
+            "args": [],
+            "unchanged_args": true,
+            "expected": [
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "name": "entrainer",
+            "args": [
+              [
+                [
+                  [
+                    0,
+                    0
+                  ],
+                  0
+                ],
+                [
+                  [
+                    0,
+                    1
+                  ],
+                  0
+                ],
+                [
+                  [
+                    1,
+                    0
+                  ],
+                  0
+                ],
+                [
+                  [
+                    1,
+                    1
+                  ],
+                  1
+                ]
+              ],
+              10
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                2,
+                1
+              ],
+              -2
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "entrainer",
+            "args": [
+              [
+                [
+                  [
+                    0,
+                    0
+                  ],
+                  0
+                ],
+                [
+                  [
+                    0,
+                    1
+                  ],
+                  1
+                ],
+                [
+                  [
+                    1,
+                    0
+                  ],
+                  1
+                ],
+                [
+                  [
+                    1,
+                    1
+                  ],
+                  1
+                ]
+              ],
+              10
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                1,
+                1
+              ],
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Commence avec des poids nuls, un par entrée.",
+      "Deux boucles : époques, puis exemples.",
+      "Remplace poids et biais par le résultat de corriger."
+    ],
+    "explanation_fr": "Le neurone a trouvé seul les poids 2 et 1 et le biais −2 de l’exemple de la leçon.",
+    "common_wrong_answers": [],
+    "id": "ia-m2-03-e4"
+  }
+]

@@ -1,0 +1,374 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "La droite des moindres carrés",
+    "instruction_fr": "Écris droite(xs, ys) qui renvoie [a, b] arrondis à 2 décimales : a = covariance / variance de x, b = moyenne de y − a × moyenne de x.",
+    "starter_code": "import statistics\n\n\ndef droite(xs, ys):\n    a = (ys[-1] - ys[0]) / (xs[-1] - xs[0])\n    b = ys[0] - a * xs[0]\n    return [round(a, 2), round(b, 2)]\n",
+    "solution": "import statistics\n\n\ndef droite(xs, ys):\n    mx, my = statistics.mean(xs), statistics.mean(ys)\n    a = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / sum((x - mx) ** 2 for x in xs)\n    b = my - a * mx\n    return [round(a, 2), round(b, 2)]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "droite",
+            "args": [
+              [
+                1,
+                2,
+                2,
+                3,
+                4,
+                5
+              ],
+              [
+                8,
+                9,
+                11,
+                12,
+                14,
+                15
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              1.8,
+              6.4
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "droite",
+            "args": [
+              [
+                1,
+                2,
+                3,
+                4
+              ],
+              [
+                3,
+                5,
+                7,
+                9
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              2.0,
+              1.0
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "La version actuelle ne regarde que le premier et le dernier point.",
+      "La pente utilise tous les points : somme des produits des écarts sur somme des carrés des écarts de x.",
+      "b = moyenne de y − a × moyenne de x."
+    ],
+    "explanation_fr": "Pour des points alignés, on retrouve exactement la droite y = 2x + 1.",
+    "common_wrong_answers": [],
+    "id": "stat-m3-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Prévoir sans extrapoler",
+    "instruction_fr": "Écris prevoir(xs, ys, x) qui renvoie la prévision a × x + b arrondie à 1 décimale, avec a et b non arrondis. Lève ValueError si x est en dehors de [min(xs) ; max(xs)].",
+    "starter_code": "def prevoir(xs, ys, x):\n    return 0\n",
+    "solution": "import statistics\n\n\ndef prevoir(xs, ys, x):\n    if not min(xs) <= x <= max(xs):\n        raise ValueError(\"extrapolation refusée\")\n    mx, my = statistics.mean(xs), statistics.mean(ys)\n    a = sum((u - mx) * (v - my) for u, v in zip(xs, ys)) / sum((u - mx) ** 2 for u in xs)\n    b = my - a * mx\n    return round(a * x + b, 1)\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "prevoir",
+            "args": [
+              [
+                1,
+                2,
+                2,
+                3,
+                4,
+                5
+              ],
+              [
+                8,
+                9,
+                11,
+                12,
+                14,
+                15
+              ],
+              3.5
+            ],
+            "unchanged_args": true,
+            "expected": 12.7
+          },
+          {
+            "name": "prevoir",
+            "args": [
+              [
+                1,
+                2,
+                2,
+                3,
+                4,
+                5
+              ],
+              [
+                8,
+                9,
+                11,
+                12,
+                14,
+                15
+              ],
+              15
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "prevoir",
+            "args": [
+              [
+                1,
+                2,
+                3,
+                4
+              ],
+              [
+                3,
+                5,
+                7,
+                9
+              ],
+              2.5
+            ],
+            "unchanged_args": true,
+            "expected": 6.0
+          },
+          {
+            "name": "prevoir",
+            "args": [
+              [
+                1,
+                2,
+                2,
+                3,
+                4,
+                5
+              ],
+              [
+                8,
+                9,
+                11,
+                12,
+                14,
+                15
+              ],
+              0
+            ],
+            "unchanged_args": true,
+            "raises": "ValueError"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Vérifie d’abord que x est dans l’intervalle observé.",
+      "Calcule a et b comme dans l’exercice précédent.",
+      "N’arrondis que le résultat final."
+    ],
+    "explanation_fr": "Refuser l’extrapolation est un choix prudent que beaucoup d’outils ne font pas pour toi.",
+    "common_wrong_answers": [],
+    "id": "stat-m3-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le point moyen oublié",
+    "instruction_fr": "droite(xs, ys) calcule b = moyenne de y − a, en oubliant la moyenne de x. Corrige-la.",
+    "starter_code": "import statistics\n\n\ndef droite(xs, ys):\n    mx, my = statistics.mean(xs), statistics.mean(ys)\n    a = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / sum((x - mx) ** 2 for x in xs)\n    b = my - a\n    return [round(a, 2), round(b, 2)]\n",
+    "solution": "import statistics\n\n\ndef droite(xs, ys):\n    mx, my = statistics.mean(xs), statistics.mean(ys)\n    a = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / sum((x - mx) ** 2 for x in xs)\n    b = my - a * mx\n    return [round(a, 2), round(b, 2)]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "droite",
+            "args": [
+              [
+                1,
+                2,
+                3,
+                4
+              ],
+              [
+                3,
+                5,
+                7,
+                9
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              2.0,
+              1.0
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "droite",
+            "args": [
+              [
+                1,
+                2,
+                2,
+                3,
+                4,
+                5
+              ],
+              [
+                8,
+                9,
+                11,
+                12,
+                14,
+                15
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              1.8,
+              6.4
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Pour y = 2x + 1, b doit valoir 1.",
+      "La droite passe par le point (moyenne de x, moyenne de y).",
+      "b = my - a * mx"
+    ],
+    "explanation_fr": "Le point moyen est toujours sur la droite des moindres carrés.",
+    "common_wrong_answers": [],
+    "id": "stat-m3-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "L’individu le plus surprenant",
+    "instruction_fr": "Écris residus(xs, ys) qui renvoie [liste des résidus arrondis à 2 décimales, indice du plus grand résidu en valeur absolue]. Utilise la fonction droite fournie (a et b arrondis).",
+    "starter_code": "import statistics\n\n\ndef droite(xs, ys):\n    mx, my = statistics.mean(xs), statistics.mean(ys)\n    a = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / sum((x - mx) ** 2 for x in xs)\n    b = my - a * mx\n    return [round(a, 2), round(b, 2)]\n\n\ndef residus(xs, ys):\n    return [[], 0]\n",
+    "solution": "import statistics\n\n\ndef droite(xs, ys):\n    mx, my = statistics.mean(xs), statistics.mean(ys)\n    a = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / sum((x - mx) ** 2 for x in xs)\n    b = my - a * mx\n    return [round(a, 2), round(b, 2)]\n\n\ndef residus(xs, ys):\n    a, b = droite(xs, ys)\n    ecarts = [round(y - (a * x + b), 2) for x, y in zip(xs, ys)]\n    indice = max(range(len(ecarts)), key=lambda i: abs(ecarts[i]))\n    return [ecarts, indice]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "residus",
+            "args": [
+              [
+                1,
+                2,
+                2,
+                3,
+                4,
+                5
+              ],
+              [
+                8,
+                9,
+                11,
+                12,
+                14,
+                15
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                -0.2,
+                -1.0,
+                1.0,
+                0.2,
+                0.4,
+                -0.4
+              ],
+              1
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "residus",
+            "args": [
+              [
+                1,
+                2,
+                3,
+                4
+              ],
+              [
+                3,
+                5,
+                7,
+                9
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Résidu = observé − prévu.",
+      "Compare les valeurs absolues.",
+      "max(range(len(ecarts)), key=...) donne l’indice."
+    ],
+    "explanation_fr": "Le deuxième élève a révisé 2 heures mais obtient moins que prévu : une situation à comprendre, pas à juger.",
+    "common_wrong_answers": [],
+    "id": "stat-m3-03-e4"
+  }
+]

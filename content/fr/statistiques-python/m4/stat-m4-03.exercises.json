@@ -1,0 +1,297 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Lire et nettoyer l’enquête",
+    "instruction_fr": "Écris lire(lignes) qui lit le CSV (séparateur \";\", en-tête \"eleve;sommeil;note;transport\") et renvoie la liste des élèves valides sous forme de dictionnaires {\"sommeil\", \"note\", \"transport\"} : sommeil et note convertis en float, sommeil entre 0 exclu et 24, note entre 0 et 20, lignes illisibles écartées.",
+    "starter_code": "import csv\n\n\ndef lire(lignes):\n    return [dict(l) for l in csv.DictReader(lignes, delimiter=\";\")]\n",
+    "solution": "import csv\n\n\ndef lire(lignes):\n    eleves = []\n    for ligne in csv.DictReader(lignes, delimiter=\";\"):\n        try:\n            sommeil, note = float(ligne[\"sommeil\"]), float(ligne[\"note\"])\n        except ValueError:\n            continue\n        if 0 < sommeil <= 24 and 0 <= note <= 20:\n            eleves.append({\"sommeil\": sommeil, \"note\": note, \"transport\": ligne[\"transport\"]})\n    return eleves\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire",
+            "args": [
+              [
+                "eleve;sommeil;note;transport",
+                "A1;8;14;pied",
+                "A2;6;10;moto"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              {
+                "sommeil": 8.0,
+                "note": 14.0,
+                "transport": "pied"
+              },
+              {
+                "sommeil": 6.0,
+                "note": 10.0,
+                "transport": "moto"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "lire",
+            "args": [
+              [
+                "eleve;sommeil;note;transport",
+                "B1;NA;12;bus",
+                "B2;30;12;bus",
+                "B3;7;25;pied",
+                "B4;7;12;pied"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": [
+              {
+                "sommeil": 7.0,
+                "note": 12.0,
+                "transport": "pied"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Convertis dans un try : \"NA\" lève ValueError.",
+      "Vérifie les bornes après la conversion.",
+      "Ne garde que les trois champs demandés."
+    ],
+    "explanation_fr": "Le nettoyage décide de l’effectif final : il fait partie du résultat.",
+    "common_wrong_answers": [],
+    "required_constructs": [
+      "import:csv",
+      "try"
+    ],
+    "id": "stat-m4-03-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Décrire une variable",
+    "instruction_fr": "Écris decrire(valeurs) qui renvoie {\"n\": ..., \"moyenne\": ..., \"mediane\": ..., \"ecart_type\": ...}, moyenne et écart-type de population arrondis à 2 décimales.",
+    "starter_code": "def decrire(valeurs):\n    return {\"n\": len(valeurs)}\n",
+    "solution": "import statistics\n\n\ndef decrire(valeurs):\n    return {\"n\": len(valeurs), \"moyenne\": round(statistics.mean(valeurs), 2), \"mediane\": statistics.median(valeurs), \"ecart_type\": round(statistics.pstdev(valeurs), 2)}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "decrire",
+            "args": [
+              [
+                14,
+                10,
+                12,
+                15,
+                9,
+                13,
+                13
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "n": 7,
+              "moyenne": 12.29,
+              "mediane": 13,
+              "ecart_type": 1.98
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "decrire",
+            "args": [
+              [
+                10,
+                10
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "n": 2,
+              "moyenne": 10,
+              "mediane": 10.0,
+              "ecart_type": 0.0
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Utilise mean, median et pstdev.",
+      "Arrondis moyenne et écart-type.",
+      "L’effectif fait partie du résumé."
+    ],
+    "explanation_fr": "Ce petit résumé suffit à présenter chaque variable.",
+    "common_wrong_answers": [],
+    "id": "stat-m4-03-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Les deux groupes",
+    "instruction_fr": "comparer(eleves, seuil) doit renvoyer [moyenne des notes de ceux qui ont dormi au moins seuil heures, moyenne des autres], arrondies à 2 décimales (None pour un groupe vide). Le premier groupe oublie ceux qui ont exactement le seuil. Corrige-la.",
+    "starter_code": "import statistics\n\n\ndef moyenne_ou_rien(valeurs):\n    return round(statistics.mean(valeurs), 2) if valeurs else None\n\n\ndef comparer(eleves, seuil):\n    dormeurs = [e[\"note\"] for e in eleves if e[\"sommeil\"] > seuil]\n    autres = [e[\"note\"] for e in eleves if e[\"sommeil\"] < seuil]\n    return [moyenne_ou_rien(dormeurs), moyenne_ou_rien(autres)]\n",
+    "solution": "import statistics\n\n\ndef moyenne_ou_rien(valeurs):\n    return round(statistics.mean(valeurs), 2) if valeurs else None\n\n\ndef comparer(eleves, seuil):\n    dormeurs = [e[\"note\"] for e in eleves if e[\"sommeil\"] >= seuil]\n    autres = [e[\"note\"] for e in eleves if e[\"sommeil\"] < seuil]\n    return [moyenne_ou_rien(dormeurs), moyenne_ou_rien(autres)]\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "comparer",
+            "args": [
+              [
+                {
+                  "sommeil": 8,
+                  "note": 14
+                },
+                {
+                  "sommeil": 6,
+                  "note": 10
+                },
+                {
+                  "sommeil": 9,
+                  "note": 15
+                },
+                {
+                  "sommeil": 8,
+                  "note": 13
+                }
+              ],
+              8
+            ],
+            "unchanged_args": true,
+            "expected": [
+              14,
+              10
+            ]
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "comparer",
+            "args": [
+              [
+                {
+                  "sommeil": 5,
+                  "note": 9
+                }
+              ],
+              8
+            ],
+            "unchanged_args": true,
+            "expected": [
+              null,
+              9
+            ]
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "« Au moins 8 heures » inclut 8.",
+      "Avec > , les élèves à 8 heures ne sont dans aucun groupe.",
+      "Utilise >= seuil."
+    ],
+    "explanation_fr": "Chaque élève doit tomber dans exactement un groupe : c’est une vérification simple à faire.",
+    "common_wrong_answers": [],
+    "id": "stat-m4-03-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Le rapport de l’enquête",
+    "instruction_fr": "Écris rapport(lignes) qui renvoie {\"effectif\": ..., \"lignes_ecartees\": ..., \"r_sommeil_note\": ..., \"part_pied\": ...} : r arrondi à 2 décimales (covariance de population divisée par le produit des écarts-types de population), part_pied = fréquence des élèves venant à pied arrondie à 2 décimales. Les fonctions lire est fournie.",
+    "starter_code": "import csv\n\n\ndef lire(lignes):\n    eleves = []\n    for ligne in csv.DictReader(lignes, delimiter=\";\"):\n        try:\n            sommeil, note = float(ligne[\"sommeil\"]), float(ligne[\"note\"])\n        except ValueError:\n            continue\n        if 0 < sommeil <= 24 and 0 <= note <= 20:\n            eleves.append({\"sommeil\": sommeil, \"note\": note, \"transport\": ligne[\"transport\"]})\n    return eleves\n\n\ndef rapport(lignes):\n    return {}\n",
+    "solution": "import csv\n\n\ndef lire(lignes):\n    eleves = []\n    for ligne in csv.DictReader(lignes, delimiter=\";\"):\n        try:\n            sommeil, note = float(ligne[\"sommeil\"]), float(ligne[\"note\"])\n        except ValueError:\n            continue\n        if 0 < sommeil <= 24 and 0 <= note <= 20:\n            eleves.append({\"sommeil\": sommeil, \"note\": note, \"transport\": ligne[\"transport\"]})\n    return eleves\n\n\nimport statistics\n\n\ndef rapport(lignes):\n    eleves = lire(lignes)\n    xs = [e[\"sommeil\"] for e in eleves]\n    ys = [e[\"note\"] for e in eleves]\n    mx, my = statistics.mean(xs), statistics.mean(ys)\n    cov = sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / len(xs)\n    r = cov / (statistics.pstdev(xs) * statistics.pstdev(ys))\n    pied = sum(1 for e in eleves if e[\"transport\"] == \"pied\")\n    return {\"effectif\": len(eleves), \"lignes_ecartees\": len(lignes) - 1 - len(eleves), \"r_sommeil_note\": round(r, 2), \"part_pied\": round(pied / len(eleves), 2)}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rapport",
+            "args": [
+              [
+                "eleve;sommeil;note;transport",
+                "A1;8;14;pied",
+                "A2;6;10;moto",
+                "A3;7;12;pied",
+                "A4;NA;11;bus",
+                "A5;9;15;pied",
+                "A6;5;9;moto",
+                "A7;8;13;bus",
+                "A8;7;13;pied"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "effectif": 7,
+              "lignes_ecartees": 1,
+              "r_sommeil_note": 0.97,
+              "part_pied": 0.57
+            }
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "calls": [
+          {
+            "name": "rapport",
+            "args": [
+              [
+                "eleve;sommeil;note;transport",
+                "C1;6;10;bus",
+                "C2;8;14;pied",
+                "C3;x;1;bus"
+              ]
+            ],
+            "unchanged_args": true,
+            "expected": {
+              "effectif": 2,
+              "lignes_ecartees": 1,
+              "r_sommeil_note": 1.0,
+              "part_pied": 0.5
+            }
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Commence par lire(lignes).",
+      "L’en-tête ne compte pas parmi les lignes écartées.",
+      "Calcule r comme dans le module 3."
+    ],
+    "explanation_fr": "Avec ces quatre nombres, la conclusion peut annoncer son effectif, sa force et ses limites.",
+    "common_wrong_answers": [],
+    "id": "stat-m4-03-e4"
+  }
+]
