@@ -3,13 +3,13 @@
   "fichiers": {
     "dist/styles.css": {
       "important": 20,
-      "colours": 554,
-      "petitesPolices": 287
+      "colours": 473,
+      "petitesPolices": 0
     },
     "dist/theme-system.css": {
-      "important": 72,
+      "important": 67,
       "colours": 5,
-      "petitesPolices": 7
+      "petitesPolices": 0
     },
     "dist/ambiances.css": {
       "important": 13,
@@ -19,27 +19,27 @@
     "dist/resource-studio.css": {
       "important": 1,
       "colours": 0,
-      "petitesPolices": 20
+      "petitesPolices": 0
     },
     "dist/academy-layout.css": {
-      "important": 47,
-      "colours": 15,
-      "petitesPolices": 14
+      "important": 42,
+      "colours": 14,
+      "petitesPolices": 0
     },
     "dist/assessment-ui.css": {
       "important": 2,
       "colours": 40,
-      "petitesPolices": 1
+      "petitesPolices": 0
     },
     "dist/onboarding-flow.css": {
       "important": 3,
       "colours": 0,
-      "petitesPolices": 1
+      "petitesPolices": 0
     },
     "lib/runtime/course-catalogue.css": {
       "important": 7,
       "colours": 12,
-      "petitesPolices": 10
+      "petitesPolices": 0
     }
   }
 }

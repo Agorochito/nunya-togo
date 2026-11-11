@@ -24,11 +24,7 @@
 
 /* ── transitions ─────────────────────────────────────────────────── */
 .as-enter { animation: asSlideIn .28s ease-out both; }
-.as-exit  { animation: asSlideOut .2s ease-in both; position: absolute; pointer-events: none; }
 @keyframes asSlideIn  { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
-@keyframes asSlideOut { from { opacity: 1; transform: translateX(0); }   to { opacity: 0; transform: translateX(-40px); } }
-.as-fade-out { animation: asFadeOut .22s ease-in both; }
-@keyframes asFadeOut  { to { opacity: 0; } }
 
 /* ── progress bar ────────────────────────────────────────────────── */
 .as-progress {
@@ -40,12 +36,12 @@
 }
 .as-progress-fill {
   height: 100%;
-  background: var(--accent, #9a6544);
+  background: var(--warm, var(--accent, #9a6544));
   border-radius: 4px;
   transition: width .3s ease;
 }
 .as-indicator {
-  font-size: 11px;
+  font-size: var(--fs-1);
   color: var(--theme-muted, #68645f);
   margin: 0 0 20px;
 }
@@ -109,7 +105,7 @@
   text-align: left;
   padding: 14px 16px;
   min-height: 48px;
-  border: 1px solid var(--theme-line, #e4e3e3);
+  border: 1px solid var(--line-strong, #7d8a80);
   border-radius: 10px;
   background: var(--theme-surface, #fefdfd);
   font: inherit;
@@ -180,7 +176,7 @@
   justify-content: center;
   background: var(--theme-surface, #fefdfd);
   color: var(--accent-text, #795440);
-  border: 1px solid var(--theme-line, #e4e3e3);
+  border: 1px solid var(--line-strong, #7d8a80);
   padding: 14px 24px;
   min-height: 48px;
   border-radius: 8px;
@@ -244,6 +240,6 @@
 
 /* ── reduced motion ──────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .as-enter, .as-exit, .as-fade-out { animation: none !important; }
+  .as-enter { animation: none !important; }
   .as-progress-fill { transition: none !important; }
 }

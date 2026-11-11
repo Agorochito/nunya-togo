@@ -4,46 +4,5 @@
   "platform": "win32-x64",
   "browser": "157.0.4341.46"
  },
- "violations": [
-  {
-   "route": "#/mes-cours",
-   "width": 360,
-   "ambiance": "verre",
-   "theme": "light",
-   "rule": "color-contrast",
-   "count": 1
-  },
-  {
-   "route": "#/progression",
-   "width": 1440,
-   "ambiance": "nunya",
-   "theme": "light",
-   "rule": "color-contrast",
-   "count": 37
-  },
-  {
-   "route": "#/progression",
-   "width": 1440,
-   "ambiance": "verre",
-   "theme": "light",
-   "rule": "color-contrast",
-   "count": 37
-  },
-  {
-   "route": "#/progression",
-   "width": 360,
-   "ambiance": "nunya",
-   "theme": "light",
-   "rule": "color-contrast",
-   "count": 37
-  },
-  {
-   "route": "#/progression",
-   "width": 360,
-   "ambiance": "verre",
-   "theme": "light",
-   "rule": "color-contrast",
-   "count": 37
-  }
- ]
+ "violations": []
 }
