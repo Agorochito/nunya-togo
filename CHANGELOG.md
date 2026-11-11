@@ -1,5 +1,10 @@
 # Historique
 
+## 5.27.1 — 11 novembre 2026
+
+- Écran d’accueil : les trois choix (« Personnaliser mon parcours », « Passer et choisir moi-même », « J’ai déjà une sauvegarde ») ne sont plus collés ; deux boutons de même taille côte à côte, le lien de restauration centré dessous, empilés sur téléphone ; libellés traduits en anglais.
+- Cache `nunya-v5.27.1`.
+
 ## 5.27.0 — 11 novembre 2026 · nouvelle apparence (refonte visuelle, phases 0 et 1)
 
 - **Palette « forêt, latérite, soleil »** dans les sept ambiances, en clair et en sombre : la latérite marque ce qui est « en cours » (barres de progression, surtitres, leçon actuelle, menu actif), le soleil les boutons principaux des grands panneaux et les badges obtenus. Nunya passe sur un fond crème et un sombre plus profond.
