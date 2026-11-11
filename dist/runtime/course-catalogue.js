@@ -6,7 +6,7 @@ const levelTitle=level=>({debutant:'Débutant',intermediaire:'Intermédiaire',av
 let activeApi=null;
 let listening=false;
 
-const TECHNOLOGIES={
+export const TECHNOLOGIES={
   python:{label:'Python',mark:'Py',aliases:'python programmation console'},
   html:{label:'HTML',mark:'</>',aliases:'html web balisage structure'},
   css:{label:'CSS',mark:'{ }',aliases:'css web styles presentation'},
@@ -34,7 +34,7 @@ const TECHNOLOGIES={
 };
 
 function normalize(value){return String(value??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[’']/g,' ').replace(/\s+/g,' ').trim();}
-function technology(course){
+export function technology(course){
   const key=Object.hasOwn(TECHNOLOGIES,course.technology)?course.technology:Object.hasOwn(TECHNOLOGIES,course.runtime)?course.runtime:course.language;
   return {key:String(key||'autres'),...(TECHNOLOGIES[key]||{label:course.technology_fr||course.language||'Autres outils',mark:'<>',aliases:''})};
 }
@@ -92,7 +92,7 @@ function renderOrientation(api,courses){
   return `<section class="nunya-catalogue-orientation" aria-labelledby="nunya-orientation-title"><div><span class="nunya-catalogue-kicker">UN POINT DE DÉPART, SI TU EN AS BESOIN</span><h2 id="nunya-orientation-title">Tu débutes ?</h2><p>Deux portes d’entrée. Tu peux aussi explorer librement tous les cours.</p></div><div class="nunya-orientation-links">${python?`<a href="${esc(programmeRoute(python))}"><strong>Écrire mes premiers programmes</strong><span>Commencer par Python <span aria-hidden="true">→</span></span></a>`:''}${html?`<a href="${esc(programmeRoute(html))}"><strong>Créer ma première page web</strong><span>Commencer par HTML <span aria-hidden="true">→</span></span></a>`:''}</div></section>`;
 }
 
-const DOMAINS=[
+export const DOMAINS=[
   {key:'web',title:'Web : sites et applications',text:'Créer des pages, les mettre en forme et les rendre interactives, du premier HTML à React.',technologies:['html','css','javascript','dom','typescript','react','http','projetweb','projetfs']},
   {key:'langages',title:'Langages de programmation',text:'Programmer des scripts, des logiciels et des serveurs avec un langage généraliste.',technologies:['python','php','cpp','java','node','algo','qualite']},
   {key:'donnees',title:'Données',text:'Interroger, organiser et analyser des informations, avec une base de données, les statistiques ou l’intelligence artificielle.',technologies:['sql','postgres','stats','ia']},

@@ -116,6 +116,17 @@ def over(top, under):
     return '#' + ''.join(f'{round(t[i] * a + u[i] * (1 - a)):02x}' for i in range(3))
 
 
+def mix(a, b, p):
+    """color-mix(in srgb, a p, b) for opaque colours."""
+    x, y = rgba(a), rgba(b)
+    return '#' + ''.join(f'{round(x[i] * p + y[i] * (1 - p)):02x}' for i in range(3))
+
+
+def alpha(c, a):
+    x = rgba(c)
+    return f'rgba({round(x[0])},{round(x[1])},{round(x[2])},{a})'
+
+
 def lum(c):
     v = [x / 255 for x in rgba(c)[:3]]
     v = [x / 12.92 if x <= .04045 else ((x + .055) / 1.055) ** 2.4 for x in v]
@@ -209,6 +220,43 @@ for name, modes in R.items():
             for x in DOMAINS:
                 need('dom-X/dom-X-soft', 4.5, r[f'dom-{x}'], over(r[f'dom-{x}-soft'], s), f'{at} {x}')
                 need('dom-X/surface', 4.5, r[f'dom-{x}'], s, f'{at} {x}')
+            # Accueil vitrine (5.28.0) : marque d'un cours (fond de page sur la couleur du domaine), code coloré sur le fond de page,
+            # lignes teintées sur le fond de page, texte de la bande « Nunya Aide » (teinte web sur le décor de la page ; en Verre, la bande prend la surface de verre, déjà vérifiée).
+            bg = v['theme-bg']
+            for x in DOMAINS:
+                need('bg/dom-X (marque)', 4.5, bg, r[f'dom-{x}'], f'{at} {x}')
+                need('dom-X/bg (code)', 4.5, r[f'dom-{x}'], bg, f'{at} {x}')
+                need('ink/dom-X-soft', 4.5, v['theme-ink'], over(r[f'dom-{x}-soft'], bg), f'{at} {x}')
+            # Bande « Nunya Aide » : teinte du domaine web posée sur le décor de la page. En Verre, comme tout texte de page,
+            # elle est jugée sur la couleur de base (worlds) : la teinte couvre en partie les fonds colorés.
+            ground = page if name == 'verre' else field
+            for k in ('theme-ink', 'theme-muted', 'accent-text'):
+                need(f'{k}/dom-web-soft', 4.5, v[k], over(r['dom-web-soft'], ground), at)
+            need('warm/dom-web-soft', 4.5, r['warm'], over(r['dom-web-soft'], ground), at)
+            need('warm/bg (code)', 4.5, r['warm'], bg, at)
+            need('muted/bg (code)', 4.5, v['theme-muted'], bg, at)
+            # Lignes teintées de la carte « sauvegarde » posée sur la surface.
+            for x in DOMAINS:
+                need('ink/dom-X-soft (surface)', 4.5, v['theme-ink'], over(r[f'dom-{x}-soft'], s), f'{at} {x}')
+            # Mode sombre (hors Verre, qui garde sa surface de verre) : les bandes « surface » prennent la surface relevée posée sur le fond.
+            if mode == 'dark' and name != 'verre':
+                lifted = over(v['theme-raised'], field)
+                for k in ('theme-ink', 'theme-muted', 'accent-text'):
+                    need(f'{k}/raised (bande)', 4.5, v[k], lifted, at)
+                need('warm/raised (bande)', 4.5, r['warm'], lifted, at)
+                need('line-strong/raised (bande)', 3, r['line-strong'], lifted, at)
+            # Bandeau des technologies : le fond du héros mêlé à 38 % de la teinte la plus sombre ; parcours métiers : voile d'encre à 8 et 14 %
+            # (texte en encre et en gris du héros ; l'accent n'y dessine que la flèche décorative et le bord au survol : 3:1).
+            hero = over(r['hero-bg'], field)
+            deep = v['theme-bg'] if mode == 'dark' else v['theme-ink']
+            strip = mix(hero, over(deep, field), .62)
+            for k in ('ink', 'accent', 'muted'):
+                need(f'hero-{k}/bandeau techno', 4.5, r[f'hero-{k}'], strip, at)
+            for a in (.08, .14):
+                veil = over(alpha(r['hero-ink'], a), hero)
+                for k in ('ink', 'muted'):
+                    need(f'hero-{k}/carte parcours', 4.5, r[f'hero-{k}'], veil, at)
+                need('hero-accent/carte parcours', 3, r['hero-accent'], veil, at)
 print('Contrastes (minimum, seuil, pire cas) :')
 for label, (floor, v, where) in mins.items():
     print(f'  {label:<24} {v:5.2f}  >= {floor:<3}  {where}')
