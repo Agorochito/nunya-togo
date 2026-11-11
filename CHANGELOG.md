@@ -1,5 +1,22 @@
 # Historique
 
+## 5.28.0 — 11 novembre 2026 · un vrai accueil
+
+- **Nouvel accueil**, pour tout le monde, y compris à la première visite :
+  - un bandeau sombre sous la barre du haut liste les technologies du catalogue (HTML, CSS, JavaScript, Python, SQL, PHP, Java, C++, Git, Linux, React, TypeScript, Node.js, IA…), chacune menant à son programme ; il défile au doigt, au clavier et à la molette ;
+  - un grand bandeau « Apprends à coder. En français. » avec une recherche (vers la page Rechercher), « Commencer avec Python », « Personnaliser mon parcours » et « Voir les 28 cours » ; à droite, un petit programme Python et son résultat ;
+  - pour qui revient : « Bon retour, <prénom>. On continue ? », « Reprendre la leçon N » (ou « Continuer avec la leçon N+1 ») et une carte de progression réelle : cours, leçon en cours, leçons terminées avec un anneau et un pourcentage, exercices réussis ces 7 derniers jours (s’il y en a), leçon suivante ; la reprise tient compte du dernier cours ouvert et de Git ;
+  - « Que veux-tu apprendre ? » : des onglets HTML, CSS, JavaScript, Python et SQL (flèches du clavier ; une ligne qui défile sur téléphone), chacun avec un exemple original dans une fenêtre d’éditeur, son résultat exact, « Essayer dans Nunya » et « Voir le programme » ;
+  - « Tous les cours » : une tuile par technologie (le DOM rejoint JavaScript, les deux projets guidés partagent une tuile), rangées par domaine sous un titre coloré ; chaque tuile a une tête teintée avec la marque Nunya, une phrase de présentation et un lien par niveau (leçons, avancement) ; 2 colonnes sur téléphone, 4 sur ordinateur ;
+  - des bandes d’une seule idée chacune, fond de page et surface en alternance (surface relevée en mode sombre) : ton travail reste sur ton appareil (sans compte ; lecture hors connexion ; C++, Java, Linux, Node.js et TypeScript exécutent le code en ligne), l’attestation Nunya de fin de cours (pas un diplôme ; Git n’en délivre pas), Nunya Aide (des indices, 15 questions par jour, avec connexion), les parcours métiers, puis Mes cours & examens, Mon avenir et la révision du jour ;
+  - une bande de fin : une dernière invitation et toutes les technologies.
+- **Première visite** : l’accueil remplace l’écran de préférences. « Personnaliser mon parcours », « J’ai déjà une sauvegarde », « Passer et choisir moi-même » et le choix de l’ambiance restent sur la page ; le parcours de personnalisation et le message aux moins de 13 ans ne changent pas.
+- **Titres** : police sans empattement du système, en graisse forte, sur tout le site (plus de mélange serif / sans-serif) ; titres équilibrés sur leurs lignes.
+- **Accessibilité** : anneau de focus de la recherche lisible sur le champ clair, anneaux du bouton « Essayer ce programme » et des onglets non coupés.
+- L’accueil est chargé à la demande (`runtime/home-landing.js` et `.css`, précachés) ; le catalogue, le module et la feuille partent en même temps. Contrôle de contraste élargi aux couleurs de l’accueil ; la feuille de l’accueil est soumise au cliquet CSS.
+- **Budget du JavaScript du cœur** relevé de 150 000 à 300 000 octets gzip (décision du propriétaire) ; le cœur en pèse environ 150 000.
+- Cache `nunya-v5.28.0`.
+
 ## 5.27.1 — 11 novembre 2026
 
 - Écran d’accueil : les trois choix (« Personnaliser mon parcours », « Passer et choisir moi-même », « J’ai déjà une sauvegarde ») ne sont plus collés ; deux boutons de même taille côte à côte, le lien de restauration centré dessous, empilés sur téléphone ; libellés traduits en anglais.

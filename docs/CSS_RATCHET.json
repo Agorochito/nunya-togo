@@ -40,6 +40,11 @@
       "important": 7,
       "colours": 12,
       "petitesPolices": 0
+    },
+    "lib/runtime/home-landing.css": {
+      "important": 0,
+      "colours": 0,
+      "petitesPolices": 0
     }
   }
 }

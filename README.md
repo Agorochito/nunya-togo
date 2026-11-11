@@ -8,7 +8,7 @@ Apprendre en français, à son rythme, même hors connexion : coder depuis zéro
 
 ## État du projet
 
-Pilote en cours ; version 5.27.1. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
+Pilote en cours ; version 5.28.0. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
 
 ## Ce que propose Nunya
 
@@ -94,7 +94,7 @@ npm run lint:content && npm run check:prereqs && npm run check:curriculum-links 
 
 **Contraintes à respecter :**
 - le site fonctionne d’abord **hors ligne** ;
-- le bundle principal reste sous **150 000 octets gzip** (`scripts/js-budget.mjs`) ;
+- le bundle principal reste sous **300 000 octets gzip** (relevé de 150 000 le 11 novembre 2026, décision du propriétaire) (`scripts/js-budget.mjs`) ;
 - toute nouvelle page lourde se charge à la demande ;
 - à chaque mise en ligne, on change la version du cache, dans `dist/sw.js` et dans la chaîne de versions de `scripts/build-academy.mjs`.
 

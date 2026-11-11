@@ -4,6 +4,8 @@
 
 **État d’avancement :** Phase 0 et Phase 1 faites (version 5.27.0, branche refonte-phase1). Écarts par rapport aux valeurs ci-dessous, imposés par le contrôle de contraste élargi aux panneaux surélevés : bordure forte de Nunya sombre #748279 (au lieu de #66766c) ; latérite de Verre sombre #ffc8ae. Prochaine étape : Phase 2 (accueil et progression vivants).
 
+**5.28.0 (accueil vitrine) :** l’accueil devient une vraie page d’entrée (bandeau des technologies, héros sombre, exemples de code, tuiles des cours, bandes thématiques), première visite comprise ; il couvre une partie de la Phase 2 (carte de progression réelle). Écart assumé avec la typographie ci-dessous : les titres passent en sans-serif système graisse 800 sur tout le site, jugé plus lisible et plus cohérent que le mélange serif / sans-serif.
+
 ## 0. Les autres chantiers, et leur place dans ce plan
 
 - **Avant tout (Phase 0)** : fichier `.gitattributes` (fins de ligne LF) pour que la construction donne le même résultat sous Windows et macOS ; protection de la branche `main` sur GitHub (PR et contrôles « Quality » obligatoires), à activer par le propriétaire du dépôt.
@@ -91,7 +93,7 @@ Panneau « moment » sombre, carte de cours compacte, anneau de progression (`co
 Ces critères s'appliquent à **chaque phase** :
 - axe : 0 violation, sur 8 pages × {360, 1440} × {clair, sombre} × 7 ambiances ;
 - texte ≥ 4,5:1 et éléments non textuels ≥ 3:1 ;
-- budget JS cœur inchangé (≤ 150 000 o) ;
+- budget JS cœur ≤ 300 000 o (relevé de 150 000 le 11 novembre 2026) ; garder le JS chargé à la demande quand c’est possible ;
 - CSS : budget de 42 Ko gzip pendant la Phase 0 (jetons ajoutés, pas encore utilisés), puis ≤ 40 Ko dès la Phase 1, et en baisse ensuite ;
 - `prefers-reduced-motion` respecté ;
 - captures de référence relues.
