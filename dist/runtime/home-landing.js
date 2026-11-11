@@ -66,7 +66,6 @@ Jour 3 : je code`,le={py:[["c",/#[^\n]*/y],["s",/"[^"\n]*"|'[^'\n]*'/y],["k",/\b
       </div>
       <div class="nl-hero-side">${d}</div>
     </div>
-    <div class="nl-weave" aria-hidden="true"></div>
   </section>`}function ve(e){let s=re.map(r=>({...r,course:e.find(i=>i.key===r.tech)?.course})).filter(r=>r.course);return s.length?(w>=s.length&&(w=0),`<section class="nl-band" aria-labelledby="nl-learn-title"><div class="nl-wrap">
     <div class="nl-head nl-head-center"><p class="nl-eyebrow">${t(n("Des exemples \xE0 lire tout de suite","Examples to read right now"))}</p><h2 id="nl-learn-title">${t(n("Que veux-tu apprendre ?","What do you want to learn?"))}</h2><p>${t(n("Choisis un langage : un petit programme, son r\xE9sultat, puis la vraie le\xE7on dans Nunya.","Pick a language: a short program, its result, then the real lesson in Nunya."))}</p></div>
     <div class="nl-tabs" role="tablist" aria-label="${t(n("Langages","Languages"))}">${s.map((r,i)=>`<button type="button" role="tab" id="nl-tab-${r.tech}" aria-controls="nl-panel-${r.tech}" aria-selected="${i===w}" tabindex="${i===w?0:-1}" data-nl-tab="${i}" data-dom="${C(r.tech)}"><span class="nl-tab-mark" aria-hidden="true">${t($[r.tech]?.mark||"")}</span>${t($[r.tech]?.label||r.tech)}</button>`).join("")}</div>
@@ -122,7 +121,7 @@ Jour 3 : je code`,le={py:[["c",/#[^\n]*/y],["s",/"[^"\n]*"|'[^'\n]*'/y],["k",/\b
     <div class="nl-split-art" aria-hidden="true"><div class="nl-chat"><p class="nl-bubble nl-bubble-me">${t(n("Pourquoi j\u2019ai \xAB NameError \xBB \xE0 la ligne 3 ?","Why do I get \u201CNameError\u201D on line 3?"))}</p><p class="nl-bubble">${t(n("Regarde le nom de ta variable ligne 1, puis ligne 3. Sont-ils \xE9crits exactement pareil ?","Look at your variable name on line 1, then line 3. Are they spelled exactly the same?"))}</p><p class="nl-bubble nl-bubble-me">${t(n("Ah ! \xAB prenom \xBB et \xAB pr\xE9nom \xBB. Merci !","Oh! \u201Cprenom\u201D and \u201Cpr\xE9nom\u201D. Thanks!"))}</p></div></div>
   </div></section>`:""}
 
-  ${f.length?`<section class="nl-band nl-band-dark" aria-labelledby="nl-jobs-title"><div class="nl-weave" aria-hidden="true"></div><div class="nl-wrap">
+  ${f.length?`<section class="nl-band nl-band-dark" aria-labelledby="nl-jobs-title"><div class="nl-wrap">
     <div class="nl-head"><p class="nl-eyebrow">${t(n("Des parcours m\xE9tiers","Career paths"))}</p><h2 id="nl-jobs-title">${t(n("Un m\xE9tier en t\xEAte ? Suis son parcours.","A job in mind? Follow its path."))}</h2><p>${t(n("Chaque parcours met les cours dans le bon ordre et suit ton avanc\xE9e, \xE9tape par \xE9tape.","Each path puts the courses in the right order and tracks your progress, step by step."))}</p></div>
     <ul class="nl-chips">${f.map(({j:c,s:p})=>{let v=k(c);return`<li><a class="nl-chip" href="#/apprendre" data-landing-journey="${t(c.id)}" data-dom="${v.dom}"><span class="nl-mark${[...v.mark].length>2?" nl-mark-long":""}" aria-hidden="true">${t(v.mark)}</span><span class="nl-chip-text"><strong>${t(c.title_fr)}</strong><span>${p.steps.length} ${t(n("cours","courses"))}${p.steps.some(T=>T.done)?` \xB7 ${p.steps.filter(T=>T.complete).length}/${p.steps.length} ${t(n("termin\xE9s","done"))}`:""}</span></span>${y}</a></li>`}).join("")}</ul>
   </div></section>`:""}
@@ -145,7 +144,7 @@ Jour 3 : je code`,le={py:[["c",/#[^\n]*/y],["s",/"[^"\n]*"|'[^'\n]*'/y],["k",/\b
     <div class="nl-actions nl-center"><button type="button" class="nl-btn" data-onboarding="skip">${t(n("Passer et choisir moi-m\xEAme","Skip and choose myself"))}</button></div>
   </div></section>`:""}
 
-  <section class="nl-band nl-band-dark nl-close" aria-labelledby="nl-close-title"><div class="nl-weave" aria-hidden="true"></div><div class="nl-wrap">
+  <section class="nl-band nl-band-dark nl-close" aria-labelledby="nl-close-title"><div class="nl-wrap">
     <h2 id="nl-close-title">${t(a?n("Ta prochaine le\xE7on t\u2019attend.","Your next lesson is waiting."):n("Pr\xEAt ? Ta premi\xE8re le\xE7on commence ici.","Ready? Your first lesson starts here."))}</h2>
     <p>${t(a?n(`${a.course.title_fr} \xB7 ${a.go.lesson.title_fr}`,`${a.course.title_fr} \xB7 ${a.go.lesson.title_fr}`):d?n(`Environ ${d} minutes, dans ton navigateur, sans rien installer.`,`About ${d} minutes, in your browser, nothing to install.`):n("Dans ton navigateur, sans rien installer.","In your browser, nothing to install."))}</p>
     <div class="nl-actions"><a class="primary nl-cta-main" href="${t(a?N(a.course,a.go.lesson.id):R(l))}">${t(a?n("Ouvrir la le\xE7on","Open the lesson"):n("Commencer avec Python","Start with Python"))} ${y}</a></div>

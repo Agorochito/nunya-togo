@@ -34,7 +34,6 @@ html[data-mode=dark] .nl,html[data-ambiance=nuit] .nl{--nl-deep:var(--theme-bg)}
 #main .nl-hero h1{max-width:none;margin:0 0 var(--sp-5);font-size:clamp(40px,1rem + 4.2vw,68px);line-height:1.02;letter-spacing:-.04em}
 #main .nl-hero h1 span{display:block;color:var(--hero-accent)}
 #main .nl-hero .nl-lead{max-width:600px;margin:0 0 var(--sp-6);font-size:clamp(17px,1rem + .35vw,20px);line-height:1.6;color:var(--hero-muted)}
-.nl-weave{position:absolute;left:0;right:0;bottom:0;height:12px;opacity:.6;pointer-events:none;background:repeating-linear-gradient(90deg,var(--hero-accent) 0 30px,transparent 30px 38px,var(--hero-muted) 38px 54px,transparent 54px 62px) top/100% 6px no-repeat,repeating-linear-gradient(90deg,var(--hero-muted) 0 12px,transparent 12px 20px,var(--hero-accent) 20px 46px,transparent 46px 54px,var(--hero-muted) 54px 62px) bottom/100% 6px no-repeat}
 
 /* Recherche : un grand champ clair dans le héros, envoyé vers #/recherche. Son anneau de focus reprend l’accent de la page (lisible sur le champ clair). */
 .nl-search{--theme-ink:var(--nl-ink);--ink:var(--nl-ink);--theme-muted:var(--nl-muted);--theme-surface:var(--nl-field);--line-strong:transparent;--accent-text:var(--nl-accent);position:relative;display:flex;align-items:center;gap:var(--sp-2);max-width:600px;margin:0 0 var(--sp-5);padding:6px;border-radius:var(--r-pill);background:var(--nl-field);box-shadow:var(--amb-shadow-hi)}
@@ -98,7 +97,13 @@ html[data-ambiance=verre] .nl-editor{background:var(--nl-field)}
 html[data-mode=dark]:not([data-ambiance=verre]) .nl-band-surface,html[data-ambiance=nuit] .nl-band-surface{background:var(--theme-raised)}
 .nl-band-tint[data-dom]{background:var(--dom-s)}
 .nl-band-dark{background:var(--hero-bg);color:var(--hero-ink);--theme-ink:var(--hero-ink);--ink:var(--hero-ink);--theme-muted:var(--hero-muted);--muted:var(--hero-muted);--accent-text:var(--hero-accent);--warm:var(--hero-accent)}
-.nl-band-dark .nl-weave{top:0;bottom:auto}
+/* Transitions entre les bandes sombres et leurs voisines (5.28.1, à la place de la barre tissée) : des arcs doux.
+   Le héros se termine en arc vers le bas ; une bande sombre s’ouvre en dôme qui chevauche le bas de la section précédente
+   (ses coins laissent voir la couleur de cette section, quelle qu’elle soit) et, sauf la dernière, se referme en arc. */
+.nl{--nl-curve:clamp(24px,4vw,56px)}
+#main .nl-hero{border-radius:0 0 50% 50% / 0 0 var(--nl-curve) var(--nl-curve)}
+.nl-band-dark{z-index:1;margin-top:calc(-1 * var(--nl-curve));padding-top:calc(clamp(56px,8vw,112px) + var(--nl-curve));border-radius:50% 50% 0 0 / var(--nl-curve) var(--nl-curve) 0 0}
+.nl-band-dark:not(.nl-close){border-radius:50% / var(--nl-curve)}
 .nl-actions{display:flex;flex-wrap:wrap;gap:var(--sp-3);margin-top:var(--sp-5)}
 .nl-actions.nl-center{justify-content:center}
 .nl .nl-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border:1.5px solid var(--line-strong);border-radius:var(--r-pill);background:none;color:var(--theme-ink);font:inherit;font-size:var(--fs-3);font-weight:700;text-decoration:none;cursor:pointer}
