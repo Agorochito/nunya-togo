@@ -11,3 +11,6 @@ artifacts/
 
 __pycache__/
 *.py[cod]
+
+# Captures de référence visuelles : propres à chaque machine (polices système), régénérées avec npm run test:visual -- --update
+docs/visual-baseline/*.png

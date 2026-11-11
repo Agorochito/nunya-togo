@@ -33,6 +33,64 @@ GLASS_LITE = {'light': ('#ffffff', '#f1f2f8', '#f5f5fa'), 'dark': ('#191c33', '#
 # Card previews in the picker always show the ambiance's own light look (Nuit and Verre: their dark look).
 PREVIEW = {k: (v.get('light') or v['dark']) if k != 'verre' else v['dark'] for k, v in A.items()}
 
+# Redesign roles ("Forêt, latérite, soleil", docs/PLAN_REFONTE_VISUELLE.md). Phase 0: generated and checked, not used yet.
+# warm = latérite (current step, progress, eyebrows); sun = fill only; hero = the one dark "moment" panel per page;
+# line-strong = borders that must be seen (fields, lists, secondary buttons); dom-* = domain colour / tint (sec = warm).
+ROLES2 = ['warm', 'warm-soft', 'warm-on', 'sun', 'sun-on', 'hero-bg', 'hero-ink', 'hero-accent', 'hero-muted', 'line-strong',
+          'dom-web', 'dom-web-soft', 'dom-lang', 'dom-lang-soft', 'dom-data', 'dom-data-soft', 'dom-tools', 'dom-tools-soft', 'dom-algo', 'dom-algo-soft']
+DOMAINS = ('web', 'lang', 'data', 'sec', 'tools', 'algo')
+R = {
+    'nunya': {
+        'light': ['#a8401a', '#fbe7dc', '#ffffff', '#f2b134', '#1b1208', '#173f31', '#f7f1e6', '#f2b134', '#cfe6d8', '#7d8a80',
+                  '#2f45a3', '#e6eafb', '#1f5e46', '#e2efe6', '#0b6670', '#ddf1f1', '#6b3a78', '#f1e4f4', '#7d5200', '#fbefd2'],
+        'dark': ['#ff9f78', '#3d2419', '#1b1208', '#f2c35b', '#1b1208', '#1f3a2e', '#f7f1e6', '#f2c35b', '#cfe6d8', '#66766c',
+                 '#a9b8ff', '#222b52', '#7fd3a8', '#1f3a2e', '#6fd0d6', '#10363a', '#e2b1ef', '#36223d', '#f2c35b', '#3a2d10']},
+    'lagune': {
+        'light': ['#b03c22', '#fde6de', '#ffffff', '#f5bd45', '#1a1206', '#0d2a5c', '#f2f7ff', '#6fe0d4', '#c3d4ee', '#73859c',
+                  '#3442b0', '#e7e9fc', '#1c6b4f', '#ddf1e8', '#00687a', '#d8f0f3', '#6c3d8f', '#efe5f8', '#7a5300', '#fcf0d4'],
+        'dark': ['#ff9a7a', '#3b2224', '#1a0c06', '#f7c85e', '#1a1206', '#102a55', '#eaf1fb', '#7ee6db', '#b9cbe8', '#5d6d87',
+                 '#aab6ff', '#1f2852', '#86d9b2', '#15332a', '#5fd8e4', '#0d3340', '#d3b0ff', '#2e2350', '#f5c86a', '#3a2e12']},
+    'kente': {
+        'light': ['#b23a10', '#fde3cf', '#fffdf8', '#f4b400', '#1a1611', '#1a1611', '#fff6e5', '#f4b400', '#e7d9bb', '#8f8068',
+                  '#283c9a', '#e5e8fa', '#1d6638', '#def0dc', '#07636a', '#d9efed', '#7a2c6c', '#f6e1ef', '#7a4f00', '#fbeac4'],
+        'dark': ['#ff8f5e', '#3d2112', '#1a0c06', '#ffc83d', '#1a1611', '#3a2e14', '#fbf3e4', '#ffc83d', '#e0d2b6', '#74684f',
+                 '#a7b4ff', '#232848', '#8ad7a0', '#183020', '#66d1cf', '#10322f', '#f0a6dd', '#3a1e33', '#ffc83d', '#3a2c0c']},
+    'sauge': {
+        'light': ['#94492f', '#f2e2d8', '#fbf8f3', '#d8b26a', '#20261e', '#2e3b31', '#f3eee7', '#e2c587', '#c8d2c5', '#828a7d',
+                  '#45508a', '#e6e8f2', '#4a5e4f', '#e1e8df', '#2e6366', '#dceae8', '#694a70', '#ece3ec', '#735a24', '#f1e9d4'],
+        'dark': ['#e0a080', '#352720', '#1a1e1a', '#dcc189', '#20261e', '#263228', '#ecefe8', '#e2c587', '#c2ccbf', '#646d63',
+                 '#b2b9e0', '#262a3a', '#a9c7ae', '#263228', '#9fcfcb', '#1e3231', '#d6b7d8', '#33283a', '#dcc189', '#342d1d']},
+    'prune': {
+        'light': ['#a33d3a', '#f8e2df', '#ffffff', '#eeb050', '#2a1a29', '#3e2340', '#faf6f8', '#f5c36e', '#e2cbdc', '#8a7686',
+                  '#3b43a0', '#e7e6f7', '#2e664c', '#e0eee6', '#135f6a', '#dcedef', '#6b3a78', '#f1e4f4', '#7b501a', '#f6ead6'],
+        'dark': ['#ff9c8a', '#3b2024', '#151015', '#f3c068', '#2a1a29', '#352335', '#f4ecf2', '#f3c068', '#dcc6d6', '#74636f',
+                 '#b3b8ff', '#282647', '#8fd3b0', '#1d3128', '#79cfd8', '#142f34', '#e7b1f2', '#3a2240', '#f3c068', '#3a2a14']},
+    'nuit': {
+        'dark': ['#ffa173', '#3a2418', '#1b1206', '#ffc95c', '#1b1206', '#1d2a47', '#eef2f9', '#ffc95c', '#bfcbe2', '#5c6a84',
+                 '#a9beff', '#1f2a4d', '#86d6ad', '#142e27', '#6ccfe0', '#0f2f3b', '#d7b2ff', '#2b2350', '#ffcb6b', '#362b14']},
+    'verre': {
+        'light': ['#a63a1d', 'rgba(255,220,204,.72)', '#ffffff', '#f2b134', '#1b1208', 'rgba(14,16,34,.86)', '#ffffff', '#ffd27a', '#d6d9f0', 'rgba(14,16,34,.5)',
+                  '#2f3fc0', 'rgba(227,231,255,.8)', '#1d6447', 'rgba(214,240,226,.8)', '#0a6270', 'rgba(212,240,242,.8)', '#6a3196', 'rgba(238,226,252,.8)', '#7a4e00', 'rgba(252,238,206,.8)'],
+        'dark': ['#ffbc9f', 'rgba(255,140,100,.1)', '#1b1208', '#f6c560', '#1b1208', 'rgba(8,10,28,.72)', '#ffffff', '#ffd27a', '#d6d9f0', 'rgba(255,255,255,.42)',
+                 '#b9c3ff', 'rgba(120,140,255,.18)', '#8fe0b8', 'rgba(80,200,140,.16)', '#7fdde6', 'rgba(60,190,200,.16)', '#dcb8ff', 'rgba(170,110,255,.18)', '#ffd27a', 'rgba(240,180,60,.16)']},
+}
+# Opaque stand-ins for Verre's translucent roles ("Verre léger" and browsers without backdrop-filter).
+GLASS_LITE2 = {'light': {'warm-soft': '#fde6dc', 'hero-bg': '#161a3a', 'dom-web-soft': '#e6e9ff', 'dom-lang-soft': '#dcf1e6', 'dom-data-soft': '#dbf1f3', 'dom-tools-soft': '#efe5fc', 'dom-algo-soft': '#fcefd2'},
+               'dark': {'warm-soft': '#3a2430', 'hero-bg': '#0e1024', 'dom-web-soft': '#262c5a', 'dom-lang-soft': '#1a3a33', 'dom-data-soft': '#173a45', 'dom-tools-soft': '#2f2550', 'dom-algo-soft': '#3a3120'}}
+# Shared scales, the same in every ambiance: type (ratio 1.25, the three largest fluid), spacing and radii.
+SCALE = {'fs-1': '12px', 'fs-2': '14px', 'fs-3': '16px', 'fs-4': '20px', 'fs-5': 'clamp(22px,1.27rem + .47vw,25px)',
+         'fs-6': 'clamp(26px,1.45rem + .78vw,31px)', 'fs-7': 'clamp(31px,1.66rem + 1.25vw,39px)',
+         'sp-1': '4px', 'sp-2': '8px', 'sp-3': '12px', 'sp-4': '16px', 'sp-5': '24px', 'sp-6': '32px', 'sp-7': '48px', 'sp-8': '64px',
+         'r-s': '8px', 'r-m': '14px', 'r-l': '24px', 'r-pill': '999px'}
+# --accent-2 still fails 3:1 as a fill on light surfaces; tolerated at these exact values until phase 1 makes it an alias of --warm.
+ACCENT2_KNOWN = {('nunya', 'light'): '#f08a4b', ('lagune', 'light'): '#19b3a6', ('kente', 'light'): '#f4b400', ('sauge', 'light'): '#b7a792', ('prune', 'light'): '#e58ba0'}
+
+
+def roles2(name, mode):
+    d = dict(zip(ROLES2, R[name][mode]))
+    d['dom-sec'], d['dom-sec-soft'] = d['warm'], d['warm-soft']
+    return {k: d[k] for k in ROLES2[:10] + [f'dom-{x}{s}' for x in DOMAINS for s in ('', '-soft')]}
+
 
 def rgba(c):
     if c.startswith('#'):
@@ -81,6 +139,62 @@ if problems:
     raise SystemExit('Contraste insuffisant :\n' + '\n'.join(problems))
 
 
+def worlds(name, mode):
+    """Yield (roles, redesign roles, page, field, card surface) as drawn. Verre: over its base colour and each colour field
+    (page text judged on the base colour, as above), then once more with its opaque fallbacks."""
+    d, r = dict(zip(ROLES, A[name][mode])), roles2(name, mode)
+    if name != 'verre':
+        yield d, r, d['bg'], d['bg'], d['surface']
+        return
+    base = GLASS_GROUNDS[mode][0]
+    for g in GLASS_GROUNDS[mode]:
+        yield d, r, base, g, over(d['surface'], g)
+    lite = dict(r, **GLASS_LITE2[mode])
+    lite['dom-sec-soft'] = lite['warm-soft']
+    yield d, lite, base, base, GLASS_LITE[mode][0]
+
+
+# Redesign gate: text 4.5:1, non-text (borders, fills against their track) 3:1, in every ambiance and mode.
+problems, mins, tolerated = [], {}, []
+
+
+def need(label, floor, fg, bg, where):
+    v = ratio(over(fg, bg), bg)
+    if label not in mins or v < mins[label][1]:
+        mins[label] = (floor, v, where)
+    if v < floor:
+        problems.append(f'{where}: {label} {fg} sur {bg} = {v:.2f} (minimum {floor})')
+
+
+for name, modes in R.items():
+    for mode in modes:
+        at = f'{name}/{mode}'
+        for d, r, page, field, s in worlds(name, mode):
+            need('warm-on/warm', 4.5, r['warm-on'], r['warm'], at)
+            need('warm/surface', 4.5, r['warm'], s, at)
+            need('warm/bg', 4.5, r['warm'], page, at)
+            need('warm/warm-soft', 4.5, r['warm'], over(r['warm-soft'], s), at)
+            need('sun-on/sun', 4.5, r['sun-on'], r['sun'], at)
+            for k in ('ink', 'accent', 'muted'):
+                need(f'hero-{k}/hero-bg', 4.5, r[f'hero-{k}'], over(r['hero-bg'], field), at)
+            need('line-strong/surface', 3, r['line-strong'], s, at)
+            need('line-strong/bg', 3, r['line-strong'], page, at)
+            need('warm/track (line)', 3, r['warm'], over(d['line'], s), at)
+            for x in DOMAINS:
+                need('dom-X/dom-X-soft', 4.5, r[f'dom-{x}'], over(r[f'dom-{x}-soft'], s), f'{at} {x}')
+                need('dom-X/surface', 4.5, r[f'dom-{x}'], s, f'{at} {x}')
+            if ACCENT2_KNOWN.get((name, mode)) == d['accent2']:
+                tolerated.append(f'{at} {ratio(d["accent2"], s):.2f}')
+            else:
+                need('accent-2/surface', 3, d['accent2'], s, at)
+print('Contrastes (minimum, seuil, pire cas) :')
+for label, (floor, v, where) in mins.items():
+    print(f'  {label:<22} {v:5.2f}  >= {floor:<3}  {where}')
+print('  accent-2/surface tolérés jusqu\'à la phase 1 : ' + ', '.join(dict.fromkeys(tolerated)))
+if problems:
+    raise SystemExit('Contraste insuffisant (rôles de la refonte) :\n' + '\n'.join(dict.fromkeys(problems)))
+
+
 def block(selector, p, dark):
     d = dict(zip(ROLES, p))
     shadow = ('0 1px 0 rgba(255,255,255,.04) inset,0 14px 30px -16px rgba(0,0,0,.7)' if dark
@@ -103,6 +217,15 @@ for name, modes in A.items():
         continue
     out.append(block(f'html[data-ambiance={name}]', modes['light'], False))
     out.append(block(f'html[data-ambiance={name}][data-mode=dark]', modes['dark'], True))
+out.append('/* Redesign roles and shared scales (phase 0): generated and contrast-checked, not used by any rule yet. */')
+out.append(':root{' + ';'.join(f'--{k}:{v}' for k, v in SCALE.items()) + '}')
+for name, modes in R.items():
+    for mode in modes:
+        sel = f'html[data-ambiance={name}]' + ('[data-mode=dark]' if mode == 'dark' and name != 'nuit' else '')
+        out.append(sel + '{' + ';'.join(f'--{k}:{v}' for k, v in roles2(name, mode).items()) + '}')
+# Before the JS sets data-ambiance (first paint) and in the custom-colour mode (no data-ambiance), use Nunya's roles.
+out.append('html:not([data-ambiance]){' + ';'.join(f'--{k}:{v}' for k, v in roles2('nunya', 'light').items()) + '}')
+out.append('html:not([data-ambiance])[data-mode=dark]{' + ';'.join(f'--{k}:{v}' for k, v in roles2('nunya', 'dark').items()) + '}')
 
 for name, p in PREVIEW.items():
     d = dict(zip(ROLES, p))
@@ -190,6 +313,12 @@ for mode, (surface, raised, soft) in GLASS_LITE.items():
     out.append(f'{sel}{{--theme-surface:{surface};--theme-raised:{raised};--theme-soft:{soft};--accent-soft:{soft};--mint:{soft}}}')
     sel2 = 'html[data-ambiance=verre]' + ('[data-mode=dark]' if mode == 'dark' else ':not([data-mode=dark])')
     out.append(f'@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){{{sel2}{{--theme-surface:{surface};--theme-raised:{raised};--theme-soft:{soft}}}}}')
+for mode, fallback in GLASS_LITE2.items():
+    lite = ';'.join(f'--{k}:{v}' for k, v in dict(fallback, **{'dom-sec-soft': fallback['warm-soft']}).items())
+    sel = 'html[data-ambiance=verre][data-glass-lite]' + ('[data-mode=dark]' if mode == 'dark' else ':not([data-mode=dark])')
+    sel2 = 'html[data-ambiance=verre]' + ('[data-mode=dark]' if mode == 'dark' else ':not([data-mode=dark])')
+    out.append(f'{sel}{{{lite}}}')
+    out.append(f'@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){{{sel2}{{{lite}}}}}')
 out.append('@media (prefers-reduced-motion:reduce){html[data-ambiance=verre] body.personalized::before{animation:none}}')
 
 Path('dist/ambiances.css').write_text('\n'.join(out) + '\n')

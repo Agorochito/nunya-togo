@@ -1,5 +1,13 @@
 # Historique
 
+## Non publié — refonte visuelle, phase 0 (fondations)
+
+- Plan de refonte visuelle et décisions du propriétaire : docs/PLAN_REFONTE_VISUELLE.md (palette forêt, latérite, soleil ; motif tissage ; une dizaine de jalons ; les sept ambiances conservées).
+- Nouveaux jetons générés pour les sept ambiances, en clair et en sombre (couleurs chaudes, panneau « moment », bordures fortes, couleurs de domaine, échelles de texte, d’espacement et de rayons), encore inutilisés : l’apparence du site ne change pas. Le contrôle de contraste couvre aussi les éléments non textuels.
+- Garde-fou CSS (npm run check:css) : budget gzip et cliquet sur les !important, les couleurs en dur et les textes de moins de 12 px.
+- Captures de référence et axe portables, y compris sous Windows (npm run test:visual) ; axe tourne aussi en CI. Deux défauts de contraste repérés, corrigés en phase 1 : la note grise de « Ma progression » et l’onglet actif « Coder » en Verre liquide.
+- Fins de ligne LF imposées (.gitattributes) pour des constructions identiques sous Windows, macOS et Linux.
+
 ## 5.19.0 — 10 novembre 2026
 
 - **Attestation de fin de cours** : quand toutes les leçons d’un cours sont validées, la page du programme propose « Mon attestation Nunya ». L’élève tape le nom à afficher (non vérifié, jamais envoyé), puis imprime, enregistre en PDF ou télécharge un fichier HTML autonome. Le document est titré « Attestation Nunya — pas un diplôme » et liste les compétences et les modules du cours.
