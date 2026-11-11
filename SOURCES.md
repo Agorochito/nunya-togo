@@ -115,6 +115,10 @@ Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités origin
 
 Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la documentation officielle de SQLite (SELECT, expressions, fonctions, dates, WITH, fonctions de fenêtre, vues, index, UPSERT, déclencheurs, EXPLAIN QUERY PLAN), citée dans chaque leçon ; aucun texte n’en est repris. Produits, clients, quartiers et ventes de la boutique sont fictifs.
 
+## TypeScript : du JavaScript sûr — 10 novembre 2026
+
+Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide du manuel officiel de TypeScript (les bases, types du quotidien, rétrécissement, fonctions, types d’objets, génériques, types utilitaires, classes) et de la référence de l’option strict. Les boutiques, produits et personnes sont fictifs. Aucun texte, exercice ou corrigé n’est repris d’un autre site.
+
 ## Node.js : le serveur en JavaScript — 10 novembre 2026
 
 Les 12 leçons, 24 exemples et 48 exercices sont des textes et activités originaux Nunya, vérifiés à l’aide de la documentation officielle de Node.js 20 (modules, path, fs, http, events, minuteurs, URL), de la documentation MDN en français (promesses, JSON, codes de statut HTTP) et de l’OWASP Top 10 en français. Les boutiques, produits et personnes sont fictifs ; les adresses utilisent le domaine réservé example.com. Aucun texte, exercice ou corrigé n’est repris d’un autre site.

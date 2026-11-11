@@ -1,0 +1,182 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Le dernier élément",
+    "instruction_fr": "Écris dernier<T>(liste: T[]): T | undefined qui renvoie le dernier élément.",
+    "starter_code": "function dernier(liste: any[]): any {\n  return liste[liste.length - 1];\n}\n",
+    "solution": "function dernier<T>(liste: T[]): T | undefined {\n  return liste[liste.length - 1];\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "dernier([1, 2, 3])",
+            "expected": "3"
+          },
+          {
+            "expr": "(() => { const n: number | undefined = dernier([\"a\"]); return n; })()",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "dernier([])",
+            "expected": "undefined"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "any perd le type du résultat.",
+      "Déclare <T> et utilise T[] et T.",
+      "Le résultat peut manquer : T | undefined."
+    ],
+    "explanation_fr": "Avec any, un texte pouvait se faire passer pour un nombre.",
+    "common_wrong_answers": [],
+    "id": "ts-m3-02-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Grouper par clé",
+    "instruction_fr": "Écris grouperPar<T>(items: T[], cle: (item: T) => string): Record<string, T[]> qui range les éléments par la clé calculée.",
+    "starter_code": "function grouperPar(items, cle) {\n  return {};\n}\n",
+    "solution": "function grouperPar<T>(items: T[], cle: (item: T) => string): Record<string, T[]> {\n  const groupes: Record<string, T[]> = {};\n  for (const item of items) {\n    const k = cle(item);\n    (groupes[k] ??= []).push(item);\n  }\n  return groupes;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "grouperPar([{ n: \"Afi\", c: \"A\" }, { n: \"Yao\", c: \"B\" }, { n: \"Ama\", c: \"A\" }], e => e.c)",
+            "expected": "{\"A\":[{\"n\":\"Afi\",\"c\":\"A\"},{\"n\":\"Ama\",\"c\":\"A\"}],\"B\":[{\"n\":\"Yao\",\"c\":\"B\"}]}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "grouperPar([\"riz\", \"sel\", \"rhum\"], m => m[0])",
+            "expected": "{\"r\":[\"riz\",\"rhum\"],\"s\":[\"sel\"]}"
+          },
+          {
+            "expr": "grouperPar([1, 2], n => n)",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "T est le type des éléments.",
+      "La clé est une fonction de T vers string.",
+      "??= crée le groupe à sa première apparition."
+    ],
+    "explanation_fr": "Une clé qui renvoie un nombre est refusée : le contrat dit string.",
+    "common_wrong_answers": [],
+    "id": "ts-m3-02-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "Le générique devenu any",
+    "instruction_fr": "trouver renvoie any : une faute de frappe sur le résultat (e.nmo) passerait. Rends-la générique avec la contrainte T extends { id: number }.",
+    "starter_code": "function trouver(liste: any[], id: number): any {\n  return liste.find(e => e.id === id);\n}\n",
+    "solution": "function trouver<T extends { id: number }>(liste: T[], id: number): T | undefined {\n  return liste.find(e => e.id === id);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "trouver([{ id: 1, nom: \"riz\" }], 1)?.nom",
+            "expected": "riz"
+          },
+          {
+            "expr": "trouver([{ id: 1, nom: \"riz\" }], 1)?.nmo",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "trouver([{ nom: \"sans id\" }], 1)",
+            "kind": "type_error"
+          },
+          {
+            "expr": "trouver([{ id: 1 }], 2)",
+            "expected": "undefined"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "any désactive la vérification du résultat.",
+      "Un paramètre de type garde la forme exacte.",
+      "La contrainte garantit la présence de id."
+    ],
+    "explanation_fr": "La faute nmo est maintenant refusée.",
+    "common_wrong_answers": [],
+    "id": "ts-m3-02-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Un dépôt générique",
+    "instruction_fr": "Écris class Depot<T extends { id: number }> avec ajouter(e: T): void, trouver(id: number): T | undefined et tous(): T[] (une copie du tableau).",
+    "starter_code": "class Depot {\n  elements: any[] = [];\n  ajouter(e: any) {\n    this.elements.push(e);\n  }\n}\n",
+    "solution": "class Depot<T extends { id: number }> {\n  private elements: T[] = [];\n\n  ajouter(e: T): void {\n    this.elements.push(e);\n  }\n\n  trouver(id: number): T | undefined {\n    return this.elements.find(e => e.id === id);\n  }\n\n  tous(): T[] {\n    return [...this.elements];\n  }\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { const d = new Depot<{ id: number; nom: string }>(); d.ajouter({ id: 1, nom: \"riz\" }); d.ajouter({ id: 2, nom: \"sel\" }); return [d.trouver(2)?.nom, d.tous().length]; })()",
+            "expected": "[\"sel\",2]"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "new Depot<{ id: number; nom: string }>().ajouter({ id: 1 })",
+            "kind": "type_error"
+          },
+          {
+            "expr": "new Depot<{ nom: string }>()",
+            "kind": "type_error"
+          },
+          {
+            "expr": "new Depot<{ id: number }>().trouver(1)",
+            "expected": "undefined"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le paramètre de type va après le nom de la classe.",
+      "Les méthodes utilisent T.",
+      "tous renvoie une copie."
+    ],
+    "explanation_fr": "Le même dépôt sert pour des produits, des élèves ou des commandes.",
+    "common_wrong_answers": [],
+    "id": "ts-m3-02-e4"
+  }
+]

@@ -1,0 +1,178 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Un solde protégé",
+    "instruction_fr": "Rends le solde du compte private, et ajoute la méthode consulter(): number qui le renvoie.",
+    "starter_code": "class Compte {\n  solde = 0;\n\n  deposer(montant: number): void {\n    this.solde += montant;\n  }\n}\n",
+    "solution": "class Compte {\n  private solde = 0;\n\n  deposer(montant: number): void {\n    this.solde += montant;\n  }\n\n  consulter(): number {\n    return this.solde;\n  }\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { const c = new Compte(); c.deposer(500); return c.consulter(); })()",
+            "expected": "500"
+          },
+          {
+            "expr": "(() => { const c = new Compte(); c.solde = 1000000; })()",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "new Compte().solde",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Ajoute private devant solde.",
+      "Le code extérieur ne peut plus le lire ni l’écrire.",
+      "Fournis consulter pour le lire."
+    ],
+    "explanation_fr": "Plus personne ne peut s’accorder un million par une simple affectation.",
+    "common_wrong_answers": [],
+    "id": "ts-m4-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Un contrat commun",
+    "instruction_fr": "Écris class Carre implements Forme et class Disque implements Forme (aire arrondie à l’entier), avec interface Forme { aire(): number }, puis aireTotale(formes: Forme[]): number.",
+    "starter_code": "interface Forme {\n  aire(): number;\n}\n\nfunction aireTotale(formes: Forme[]): number {\n  return 0;\n}\n",
+    "solution": "interface Forme {\n  aire(): number;\n}\n\nclass Carre implements Forme {\n  constructor(private readonly cote: number) {}\n  aire(): number {\n    return this.cote * this.cote;\n  }\n}\n\nclass Disque implements Forme {\n  constructor(private readonly rayon: number) {}\n  aire(): number {\n    return Math.round(Math.PI * this.rayon ** 2);\n  }\n}\n\nfunction aireTotale(formes: Forme[]): number {\n  return formes.reduce((s, f) => s + f.aire(), 0);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "aireTotale([new Carre(3), new Disque(1)])",
+            "expected": "12"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "new Disque(2).aire()",
+            "expected": "13"
+          },
+          {
+            "expr": "aireTotale([{ aire: () => \"9\" }])",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Chaque classe déclare implements Forme.",
+      "Le constructeur peut déclarer la propriété.",
+      "aireTotale ne connaît que le contrat."
+    ],
+    "explanation_fr": "Un objet dont aire renvoie un texte ne respecte pas le contrat.",
+    "common_wrong_answers": [],
+    "id": "ts-m4-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "L’identifiant qui change",
+    "instruction_fr": "La méthode changerTitulaire modifie aussi le numéro de compte, déclaré readonly : TypeScript refuse. Corrige-la pour ne changer que le titulaire.",
+    "starter_code": "class Compte {\n  constructor(readonly numero: string, public titulaire: string) {}\n\n  changerTitulaire(nom: string): void {\n    this.numero = \"nouveau\";\n    this.titulaire = nom;\n  }\n}\n",
+    "solution": "class Compte {\n  constructor(readonly numero: string, public titulaire: string) {}\n\n  changerTitulaire(nom: string): void {\n    this.titulaire = nom;\n  }\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { const c = new Compte(\"TG-001\", \"Ama\"); c.changerTitulaire(\"Yao\"); return [c.numero, c.titulaire]; })()",
+            "expected": "[\"TG-001\",\"Yao\"]"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "new Compte(\"TG-002\", \"A\").numero = \"x\"",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : numero est en lecture seule.",
+      "Un numéro de compte ne change pas.",
+      "Supprime la ligne qui le modifie."
+    ],
+    "explanation_fr": "readonly a révélé une erreur de logique dans la méthode.",
+    "common_wrong_answers": [],
+    "id": "ts-m4-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Un compte complet",
+    "instruction_fr": "Écris class Compte : titulaire en readonly, solde private à 0 ; deposer(montant) refuse un montant ≤ 0 (« montant invalide ») ; retirer(montant) refuse un montant ≤ 0 ou supérieur au solde (« retrait impossible ») ; consulter() renvoie le solde.",
+    "starter_code": "class Compte {\n  solde = 0;\n  constructor(public titulaire: string) {}\n}\n",
+    "solution": "class Compte {\n  private solde = 0;\n  readonly titulaire: string;\n\n  constructor(titulaire: string) {\n    this.titulaire = titulaire;\n  }\n\n  deposer(montant: number): void {\n    if (montant <= 0) throw new Error(\"montant invalide\");\n    this.solde += montant;\n  }\n\n  retirer(montant: number): void {\n    if (montant <= 0 || montant > this.solde) throw new Error(\"retrait impossible\");\n    this.solde -= montant;\n  }\n\n  consulter(): number {\n    return this.solde;\n  }\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { const c = new Compte(\"Ama\"); c.deposer(5000); c.retirer(1500); return c.consulter(); })()",
+            "expected": "3500"
+          },
+          {
+            "expr": "(() => { try { new Compte(\"Yao\").retirer(10); return \"accepté\"; } catch (e) { return (e as Error).message; } })()",
+            "expected": "retrait impossible"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "(() => { try { new Compte(\"A\").deposer(-5); return \"accepté\"; } catch (e) { return (e as Error).message; } })()",
+            "expected": "montant invalide"
+          },
+          {
+            "expr": "new Compte(\"A\").solde",
+            "kind": "type_error"
+          },
+          {
+            "expr": "(() => { const c = new Compte(\"A\"); c.titulaire = \"B\"; })()",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Combine private, readonly et le constructeur.",
+      "Les méthodes vérifient les montants.",
+      "Lève une erreur avec le message demandé."
+    ],
+    "explanation_fr": "Types et vérifications à l’exécution se complètent : chacun attrape ce que l’autre ne voit pas.",
+    "common_wrong_answers": [],
+    "id": "ts-m4-01-e4"
+  }
+]

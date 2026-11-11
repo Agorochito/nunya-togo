@@ -845,7 +845,7 @@
     "Objets connectés et robotique",
     "Blockchain"
   ],
-  "updated_for_release": "5.22.0",
+  "updated_for_release": "5.23.0",
   "updated_at": "2026-11-10",
   "additional_implemented": [
     {
@@ -965,6 +965,19 @@
       "evidence": [
         "content/fr/nodejs-bases/",
         "docs/NODEJS_BASES_UI_RESULTS.json"
+      ]
+    },
+    {
+      "id": "typescript-bases",
+      "modules": 4,
+      "lessons": 12,
+      "activities": 48,
+      "quizzes": 36,
+      "status": "brouillon",
+      "scope": "TypeScript 5.6 strict en ligne, vérifications de types refusés ; étape du parcours front-end.",
+      "evidence": [
+        "content/fr/typescript-bases/",
+        "docs/TYPESCRIPT_BASES_UI_RESULTS.json"
       ]
     }
   ]

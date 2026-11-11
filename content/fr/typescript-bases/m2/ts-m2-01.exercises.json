@@ -1,0 +1,174 @@
+[
+  {
+    "kind": "guided",
+    "title_fr": "Une interface Produit",
+    "instruction_fr": "Déclare interface Produit { nom: string; prix: number; } et écris prixTTC(p: Produit): number qui renvoie le prix avec 18 % arrondi.",
+    "starter_code": "function prixTTC(p: any): number {\n  return Math.round(p.prix * 1.18);\n}\n",
+    "solution": "interface Produit {\n  nom: string;\n  prix: number;\n}\n\nfunction prixTTC(p: Produit): number {\n  return Math.round(p.prix * 1.18);\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "prixTTC({ nom: \"riz\", prix: 1000 })",
+            "expected": "1180"
+          },
+          {
+            "expr": "prixTTC({ nom: \"riz\", prix: \"1000\" })",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "prixTTC({ nom: \"riz\" })",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "any accepte un prix en texte.",
+      "Décris la forme avec une interface.",
+      "Utilise-la comme type du paramètre."
+    ],
+    "explanation_fr": "Un produit sans prix est maintenant refusé avant l’exécution.",
+    "common_wrong_answers": [],
+    "id": "ts-m2-01-e1"
+  },
+  {
+    "kind": "practice",
+    "title_fr": "Propriété optionnelle",
+    "instruction_fr": "Ajoute à l’interface Contact une propriété optionnelle telephone: string, et écris joindre(c: Contact): string qui renvoie le téléphone s’il existe, sinon le courriel.",
+    "starter_code": "interface Contact {\n  nom: string;\n  courriel: string;\n}\n\nfunction joindre(c: Contact): string {\n  return c.courriel;\n}\n",
+    "solution": "interface Contact {\n  nom: string;\n  courriel: string;\n  telephone?: string;\n}\n\nfunction joindre(c: Contact): string {\n  return c.telephone ?? c.courriel;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "joindre({ nom: \"Ama\", courriel: \"ama@example.com\", telephone: \"90 12 34 56\" })",
+            "expected": "90 12 34 56"
+          },
+          {
+            "expr": "joindre({ nom: \"Yao\", courriel: \"yao@example.com\" })",
+            "expected": "yao@example.com"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "joindre({ nom: \"Yao\", courriel: \"y@example.com\", telephone: 90123456 })",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Le téléphone peut manquer : telephone?: string.",
+      "?? choisit la valeur de droite si la gauche est absente.",
+      "c.telephone ?? c.courriel."
+    ],
+    "explanation_fr": "Un numéro écrit comme nombre est refusé : le type dit string.",
+    "common_wrong_answers": [],
+    "id": "ts-m2-01-e2"
+  },
+  {
+    "kind": "debug",
+    "title_fr": "L’identifiant modifié",
+    "instruction_fr": "renommer modifie l’identifiant du produit au lieu du nom : TypeScript le refuse car id est readonly. Corrige renommer pour changer le nom et garder l’id.",
+    "starter_code": "interface Produit {\n  readonly id: number;\n  nom: string;\n}\n\nfunction renommer(p: Produit, nom: string): Produit {\n  p.id = 0;\n  return p;\n}\n",
+    "solution": "interface Produit {\n  readonly id: number;\n  nom: string;\n}\n\nfunction renommer(p: Produit, nom: string): Produit {\n  p.nom = nom;\n  return p;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "renommer({ id: 7, nom: \"riz\" }, \"riz parfumé\")",
+            "expected": "{\"id\":7,\"nom\":\"riz parfumé\"}"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "renommer({ id: 1, nom: \"a\" }, \"b\").id",
+            "expected": "1"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Lis l’erreur : id ne peut pas être modifié.",
+      "C’est le nom qu’il fallait changer.",
+      "p.nom = nom;"
+    ],
+    "explanation_fr": "readonly a attrapé une erreur de logique, pas seulement de syntaxe.",
+    "common_wrong_answers": [],
+    "id": "ts-m2-01-e3"
+  },
+  {
+    "kind": "project",
+    "title_fr": "Le modèle d’une commande",
+    "instruction_fr": "Déclare interface Ligne { produit: string; prix: number; quantite: number; } et interface Commande { readonly id: number; client: string; lignes: Ligne[]; livraison?: boolean; }. Écris total(c: Commande): number : somme des lignes, plus 1500 si livraison vaut true.",
+    "starter_code": "function total(c: any): number {\n  return 0;\n}\n",
+    "solution": "interface Ligne {\n  produit: string;\n  prix: number;\n  quantite: number;\n}\n\ninterface Commande {\n  readonly id: number;\n  client: string;\n  lignes: Ligne[];\n  livraison?: boolean;\n}\n\nfunction total(c: Commande): number {\n  const somme = c.lignes.reduce((s, l) => s + l.prix * l.quantite, 0);\n  return c.livraison ? somme + 1500 : somme;\n}\n",
+    "visible_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "total({ id: 1, client: \"Afi\", lignes: [{ produit: \"riz\", prix: 600, quantite: 2 }], livraison: true })",
+            "expected": "2700"
+          },
+          {
+            "expr": "total({ id: 1, client: \"Afi\", lignes: [{ produit: \"riz\", prix: 600 }] })",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hidden_tests": [
+      {
+        "inputs": [],
+        "expected_output": "",
+        "expressions": [
+          {
+            "expr": "total({ id: 2, client: \"Yao\", lignes: [] })",
+            "expected": "0"
+          },
+          {
+            "expr": "total({ id: 3, client: \"Kossi\", lignes: [], livraison: \"oui\" })",
+            "kind": "type_error"
+          }
+        ]
+      }
+    ],
+    "hints": [
+      "Deux interfaces, l’une utilise l’autre.",
+      "lignes est un Ligne[].",
+      "livraison peut manquer."
+    ],
+    "explanation_fr": "Une ligne sans quantité est refusée : le modèle protège tout le programme.",
+    "common_wrong_answers": [],
+    "id": "ts-m2-01-e4"
+  }
+]

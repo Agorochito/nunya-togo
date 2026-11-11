@@ -8,7 +8,7 @@ Apprendre en français, à son rythme, même hors connexion : coder depuis zéro
 
 ## État du projet
 
-Pilote en cours ; version 5.22. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
+Pilote en cours ; version 5.23. Tous les contenus sont des **brouillons** rédigés avec assistance et pas encore relus par des enseignants (`status: brouillon`, `reviewer: null`). Les changements de chaque version sont dans le [CHANGELOG](CHANGELOG.md).
 
 ## Ce que propose Nunya
 
@@ -21,6 +21,7 @@ Pilote en cours ; version 5.22. Tous les contenus sont des **brouillons** rédig
    - *CSS intermédiaire* (6 modules, 18 leçons, 72 exercices) : cascade, Flexbox et grilles robustes, interfaces adaptatives, états accessibles et tableau de club ;
    - *PHP : les bases* (4 modules, 12 leçons, 48 exercices) avec un vrai interpréteur PHP 8.3 sur l’appareil : variables, conditions, boucles, tableaux, fonctions et caisse de boutique ;
    - *C++ : les fondamentaux* (4 modules, 12 leçons, 48 exercices), compilé en ligne par GCC 13 sur Wandbox : types, boucles, fonctions, vecteurs, textes, références, structures et bulletin de classe ;
+   - *TypeScript : du JavaScript sûr* (4 modules, 12 leçons, 48 exercices), TypeScript 5.6 strict en ligne : types, interfaces, unions, null, unions discriminées, génériques, types utilitaires, classes et validation des données ;
    - *Node.js : le serveur en JavaScript* (4 modules, 12 leçons, 48 exercices), Node.js 20 en ligne : modules, JSON, asynchrone, fichiers, serveurs HTTP testés par l’atelier, API JSON validée, événements et sécurité ;
    - *Intelligence artificielle : comprendre, vérifier, se protéger* (4 modules, 12 leçons, 48 exercices), en Python hors ligne : modèles construits à la main, évaluation, biais, hallucinations, données personnelles, arnaques et injection de consignes ;
    - *Projet web : ma page personnelle* (4 modules, 12 leçons, 48 exercices) : squelette sémantique, style avec variables, mobile d’abord, interactions sans script, formulaire accessible et publication, vérifiés dans un vrai rendu à deux largeurs ;

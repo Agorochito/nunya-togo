@@ -1,5 +1,10 @@
 # Historique
 
+## 5.23.0 — 10 novembre 2026
+
+- Nouveau cours : **TypeScript : du JavaScript sûr**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, compilés par TypeScript 5.6 en mode strict puis exécutés en ligne (Wandbox) : annotations et inférence, tableaux, tuples, any et unknown, fonctions typées, interfaces, unions et rétrécissement, null et undefined en mode strict, unions discriminées avec vérification d’exhaustivité, génériques, types utilitaires, classes, gardes de type pour les données externes et suivi de commandes typé. Certaines vérifications contrôlent qu’un appel incorrect est bien refusé par les types de l’élève : des types trop larges, comme any, les font échouer. Les erreurs de type sont expliquées en français avec la ligne de l’élève.
+- Remplace la série « TypeScript : démarrer avec les types — en préparation » et l’étape TypeScript prévue du parcours front-end.
+
 ## 5.22.0 — 10 novembre 2026
 
 - Nouveau cours : **Node.js : le serveur en JavaScript**. Quatre modules, 12 leçons, 48 exercices, 36 questions et 24 exemples originaux, sur Node.js 20 en ligne (Wandbox) : modules et module.exports, JSON et validation, boucle d’événements et rappels erreur d’abord, promesses, async/await et Promise.allSettled, fichiers avec fs.promises, premier serveur HTTP, routes et paramètres avec URL, API JSON qui lit et valide un corps POST (201, 400, 404, 405), EventEmitter, échappement HTML, noms de fichiers sûrs, validation d’inscription et API de boutique complète. Les serveurs écrits par l’élève sont réellement démarrés et interrogés par l’atelier sur un port local temporaire.

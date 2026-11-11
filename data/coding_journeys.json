@@ -11,17 +11,13 @@
       "html-intermediaire",
       "css-intermediaire",
       "javascript-dom",
+      "typescript-bases",
       "git-bases",
       "projet-web",
       "http-bases",
       "react-bases"
     ],
-    "planned_fr": [
-      {
-        "title_fr": "TypeScript",
-        "summary_fr": "Ajouter des types au JavaScript pour des applications plus sûres."
-      }
-    ],
+    "planned_fr": [],
     "outcome_fr": "Construire et expliquer une interface web interactive et accessible ; poursuivre ensuite avec TypeScript et un projet publié."
   },
   {
