@@ -5,8 +5,8 @@
 .nunya-catalogue :is(button,input,select){font:inherit}
 .nunya-catalogue button,.nunya-catalogue summary{cursor:pointer}
 .nunya-catalogue a{color:var(--accent-text)}
-.nunya-catalogue-kicker{display:block;font-size:11px;font-weight:750;letter-spacing:.12em;line-height:1.5;color:var(--accent-text)}
-.nunya-catalogue-hero{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(230px,1fr);gap:36px;align-items:center;padding:36px;border:1px solid var(--border);border-radius:22px;background:var(--accent-soft)}
+.nunya-catalogue-kicker{display:block;font-size:var(--fs-1);font-weight:650;letter-spacing:.06em;line-height:1.5;color:var(--warm,var(--accent-text))}
+.nunya-catalogue-hero{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(230px,1fr);gap:36px;align-items:center;padding:36px;border:1px solid;border-radius:22px}
 .nunya-catalogue-intro h1{font-size:clamp(30px,3.5vw,46px);font-weight:780;line-height:1.12;letter-spacing:-.045em;margin:12px 0 18px;color:var(--ink)}
 .nunya-catalogue-intro>p:not(.nunya-catalogue-editorial){font-size:16px;max-width:610px;line-height:1.8}
 .nunya-catalogue-facts{display:flex;flex-wrap:wrap;gap:12px 22px;list-style:none;padding:0;margin:24px 0 14px;font-size:13px;color:var(--ink)}
@@ -20,7 +20,6 @@
 .nunya-catalogue-resume h2{font-size:22px;letter-spacing:-.025em;line-height:1.3;margin:8px 0 14px}
 .nunya-catalogue-resume .nunya-resume-course{font-size:14px;color:var(--ink);font-weight:700;margin-bottom:6px}
 .nunya-catalogue-resume>p:not(.nunya-resume-course){font-size:13px;color:var(--muted);margin-bottom:18px}
-.nunya-catalogue-resume>.nunya-course-start{display:flex;margin-top:18px}
 .nunya-catalogue-orientation{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:24px;align-items:center;margin:28px 0 40px;padding:24px 0;border-bottom:1px solid var(--border)}
 .nunya-catalogue-orientation h2{font-size:23px;line-height:1.3;letter-spacing:-.025em;margin:7px 0 8px}
 .nunya-catalogue-orientation p{font-size:13px;color:var(--muted);max-width:360px}
@@ -38,7 +37,7 @@
 .nunya-catalogue-filters :is(input,select){display:block;width:100%;min-width:0;height:46px;padding:10px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--ink);font-size:14px}
 .nunya-catalogue-filters input::placeholder{color:var(--muted);opacity:1}
 .nunya-catalogue-filter-actions{grid-column:1/-1;display:flex;gap:8px;align-items:center}
-.nunya-catalogue-clear{border:1px solid var(--border);background:var(--surface);color:var(--ink);min-height:46px;border-radius:8px;padding:10px 14px;font-size:13px;font-weight:650}
+.nunya-catalogue-clear{border:1px solid var(--line-strong,var(--border));background:var(--surface);color:var(--ink);min-height:46px;border-radius:8px;padding:10px 14px;font-size:13px;font-weight:650}
 .nunya-catalogue-clear:hover{background:var(--accent-soft);border-color:var(--accent-text)}
 .nunya-catalogue .nunya-catalogue-filter-hint{grid-column:1/-1;font-size:12px;color:var(--muted);line-height:1.6}
 .nunya-catalogue .nunya-catalogue-results{min-height:24px;font-size:13px;color:var(--muted);margin:20px 0 18px}
@@ -48,28 +47,28 @@
 .nunya-course-mark{display:grid;place-items:center;flex:0 0 45px;width:45px;height:45px;border:1px solid var(--border);border-radius:11px;background:var(--accent-soft);color:var(--accent-text);font:750 15px ui-monospace,monospace}
 .nunya-course-top>div{min-width:0}
 .nunya-course-technology{display:block;font-size:12px;line-height:1.4;font-weight:750;color:var(--accent-text)}
-.nunya-course-level{display:block;font-size:11px;color:var(--muted);margin-top:3px}
-.nunya-course-state{font-size:10px;font-weight:700;color:var(--accent-text);padding:4px 7px;border:1px solid var(--border);border-radius:6px;margin-left:auto;line-height:1.4;max-width:110px}
-.nunya-course-card h3{font-size:20px;font-weight:750;line-height:1.4;letter-spacing:-.025em;overflow-wrap:anywhere}
+.nunya-course-level{display:block;font-size:var(--fs-1);color:var(--muted);margin-top:3px}
+.nunya-course-state{font-size:var(--fs-1);font-weight:700;color:var(--warm,var(--accent-text));padding:4px 7px;border:1px solid;border-radius:6px;margin-left:auto;line-height:1.4;max-width:110px}
+.nunya-course-card h3{font-size:var(--fs-4);font-weight:750;line-height:1.4;letter-spacing:-.025em;overflow-wrap:anywhere}
 .nunya-course-description{font-size:13px;color:var(--muted);line-height:1.8;overflow-wrap:anywhere}
 .nunya-course-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:15px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .nunya-course-metrics>div{display:flex;flex-direction:column-reverse;gap:2px}
-.nunya-course-metrics dt{font-size:11px;color:var(--muted);line-height:1.5}
+.nunya-course-metrics dt{font-size:var(--fs-1);color:var(--muted);line-height:1.5}
 .nunya-course-metrics dd{font-size:20px;line-height:1.35;font-weight:750;color:var(--ink);margin:0}
-.nunya-course-notes{display:grid;gap:7px;font-size:11px;line-height:1.65;color:var(--muted)}
+.nunya-course-notes{display:grid;gap:7px;font-size:var(--fs-1);line-height:1.65;color:var(--muted)}
 .nunya-course-notes .nunya-course-review{color:var(--accent-text)}
 .nunya-course-review>span{font-size:14px;vertical-align:baseline}
 .nunya-course-progress{margin-top:auto;min-width:0}
-.nunya-course-progress .a-progress{height:6px;border-radius:4px;overflow:hidden;background:var(--border);margin-bottom:7px}
-.nunya-course-progress .a-progress>span{display:block;height:100%;background:var(--accent-text);border-radius:4px}
-.nunya-course-progress>small{display:block;font-size:11px;color:var(--muted)}
-.nunya-catalogue .nunya-course-unstarted{margin-top:auto;font-size:11px;color:var(--muted)}
+.nunya-course-progress .a-progress{margin-bottom:7px}
+.nunya-course-progress>small{display:block;font-size:var(--fs-1);color:var(--muted)}
+.nunya-catalogue .nunya-course-unstarted{margin-top:auto;font-size:var(--fs-1);color:var(--muted)}
 .nunya-course-actions{display:grid;gap:12px;padding-top:16px;border-top:1px solid var(--border)}
 .nunya-course-programme{display:flex;gap:12px;justify-content:space-between;align-items:center;min-height:32px;font-size:12px;line-height:1.5;font-weight:650;text-decoration:none}
 .nunya-course-programme:hover{text-decoration:underline;text-underline-offset:4px}
 .nunya-catalogue .nunya-course-start{display:inline-flex;justify-content:center;align-items:center;gap:12px;min-height:46px;border:1px solid var(--accent-text);border-radius:8px;padding:10px 16px;background:var(--accent-soft);color:var(--accent-text);font-size:13px;line-height:1.5;font-weight:750;text-decoration:none;text-align:center;white-space:normal}
 .nunya-course-actions>.nunya-course-start{display:flex;justify-content:space-between}
 .nunya-catalogue .nunya-course-start:hover{background:var(--surface);text-decoration:underline;text-underline-offset:4px}
+.nunya-catalogue .nunya-catalogue-resume>.nunya-course-start{display:flex;margin-top:18px;background:var(--sun);border-color:var(--sun);color:var(--sun-on)}
 .nunya-catalogue-empty{display:grid;justify-items:start;gap:14px;padding:30px;border:1px dashed var(--border);border-radius:14px;background:var(--surface)}
 .nunya-catalogue-empty h3{font-size:20px;line-height:1.4}
 .nunya-catalogue-empty p{font-size:14px;color:var(--muted);max-width:570px}
@@ -84,27 +83,27 @@
 .nunya-roadmap-list>li:last-child{border-bottom:0}
 .nunya-roadmap-list h3{font-size:14px;line-height:1.6;margin-bottom:3px}
 .nunya-roadmap-list p{font-size:12px;line-height:1.7;color:var(--muted)}
-.nunya-roadmap-list>li>span{flex-shrink:0;font-size:10px;line-height:1.6;font-weight:650;padding:4px 7px;color:var(--muted);border:1px solid var(--border);border-radius:6px}
+.nunya-roadmap-list>li>span{flex-shrink:0;font-size:var(--fs-1);line-height:1.6;font-weight:650;padding:4px 7px;color:var(--muted);border:1px solid var(--border);border-radius:6px}
 .nunya-catalogue-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:36px;border-top:1px solid var(--border);padding-top:30px}
 .nunya-catalogue-tools article{min-width:0;padding:6px 0}
 .nunya-catalogue-tools h2{font-size:21px;line-height:1.4;letter-spacing:-.025em;margin:9px 0 10px}
 .nunya-catalogue-tools p{font-size:13px;color:var(--muted);line-height:1.8;max-width:430px;margin-bottom:18px}
-.nunya-catalogue-secondary{min-height:44px;padding:10px 15px;background:var(--surface);color:var(--accent-text);border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:650;white-space:normal}
+.nunya-catalogue-secondary{min-height:44px;padding:10px 15px;background:var(--surface);color:var(--accent-text);border:1px solid var(--line-strong,var(--border));border-radius:8px;font-size:13px;font-weight:650;white-space:normal}
 .nunya-catalogue-secondary:hover{border-color:var(--accent-text);background:var(--accent-soft)}
 .nunya-catalogue-tools .curr-import{display:grid;gap:8px;font-size:12px;font-weight:650;margin-top:18px;color:var(--ink)}
 .nunya-catalogue-tools input[type=file]{max-width:100%;width:100%;font-size:12px;line-height:1.6;color:var(--muted);border:1px solid var(--border);padding:9px;border-radius:8px;background:var(--surface)}
 .nunya-catalogue-tools input[type=file]::file-selector-button{padding:8px 10px;margin-right:10px;border:1px solid var(--border);border-radius:6px;background:var(--accent-soft);color:var(--accent-text);font:inherit;cursor:pointer}
 @media(max-width:1100px){.nunya-catalogue-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.nunya-catalogue-hero{gap:24px;padding:28px}.nunya-catalogue-filters{grid-template-columns:minmax(0,1.3fr) minmax(170px,1fr)}.nunya-catalogue-filter-actions{grid-column:1/-1}.nunya-catalogue-filter-actions>.nunya-course-start{flex:1}.nunya-catalogue-orientation{grid-template-columns:1fr}.nunya-catalogue-orientation p{max-width:none}}
-@media(max-width:700px){.nunya-catalogue{padding-top:0}.nunya-catalogue-hero{grid-template-columns:1fr;padding:24px 20px;gap:24px;border-radius:16px}.nunya-catalogue-intro h1{font-size:33px}.nunya-catalogue-intro>p:not(.nunya-catalogue-editorial){font-size:14px}.nunya-catalogue-facts{gap:10px 17px;margin-top:20px}.nunya-catalogue-facts strong{font-size:18px}.nunya-catalogue-facts li{font-size:12px}.nunya-catalogue-method{border-left:0;border-top:1px solid var(--border);padding:18px 0 0}.nunya-catalogue-method p{max-width:none;font-size:13px}.nunya-catalogue-method>strong{font-size:18px}.nunya-method-number{margin-bottom:10px}.nunya-catalogue-resume{padding:20px}.nunya-catalogue-orientation{margin:20px 0 28px;padding:18px 0;gap:18px}.nunya-catalogue-kicker{font-size:10px;letter-spacing:.09em}.nunya-orientation-links{grid-template-columns:1fr}.nunya-orientation-links>a{min-height:90px;padding:15px 17px}.nunya-catalogue-section-head{align-items:start;flex-direction:column;gap:10px;margin-bottom:18px}.nunya-catalogue-section-head h2{font-size:25px}.nunya-catalogue-filters{grid-template-columns:1fr;padding:17px;gap:15px}.nunya-catalogue-filter-actions{grid-column:auto}.nunya-catalogue-filters :is(input,select){font-size:16px}.nunya-catalogue-grid{grid-template-columns:1fr;gap:18px}.nunya-course-card{padding:22px;gap:17px}.nunya-course-card h3{font-size:21px}.nunya-course-description{font-size:14px}.nunya-catalogue-courses{margin-top:28px}.nunya-catalogue-empty{padding:24px 20px}.nunya-catalogue-roadmap{padding:0 18px;margin-top:28px}.nunya-catalogue-roadmap>summary{min-height:90px}.nunya-catalogue-roadmap>summary>span:first-of-type{max-width:calc(100% - 34px);padding-left:4px}.nunya-catalogue-roadmap summary strong{font-size:17px}.nunya-roadmap-count{position:static;display:block;padding-left:22px;margin-top:9px;font-size:11px}.nunya-roadmap-list>li{flex-direction:column;gap:9px}.nunya-catalogue-tools{grid-template-columns:1fr;gap:24px;margin-top:28px;padding-top:24px}.nunya-catalogue-tools article+article{padding-top:24px;border-top:1px solid var(--border)}.nunya-catalogue-tools h2{font-size:21px}.nunya-catalogue-tools p{font-size:14px}}
+@media(max-width:700px){.nunya-catalogue{padding-top:0}.nunya-catalogue-hero{grid-template-columns:1fr;padding:24px 20px;gap:24px;border-radius:16px}.nunya-catalogue-intro h1{font-size:33px}.nunya-catalogue-intro>p:not(.nunya-catalogue-editorial){font-size:14px}.nunya-catalogue-facts{gap:10px 17px;margin-top:20px}.nunya-catalogue-facts strong{font-size:18px}.nunya-catalogue-facts li{font-size:12px}.nunya-catalogue-method{border-left:0;border-top:1px solid var(--border);padding:18px 0 0}.nunya-catalogue-method p{max-width:none;font-size:13px}.nunya-catalogue-method>strong{font-size:18px}.nunya-method-number{margin-bottom:10px}.nunya-catalogue-resume{padding:20px}.nunya-catalogue-orientation{margin:20px 0 28px;padding:18px 0;gap:18px}.nunya-orientation-links{grid-template-columns:1fr}.nunya-orientation-links>a{min-height:90px;padding:15px 17px}.nunya-catalogue-section-head{align-items:start;flex-direction:column;gap:10px;margin-bottom:18px}.nunya-catalogue-section-head h2{font-size:25px}.nunya-catalogue-filters{grid-template-columns:1fr;padding:17px;gap:15px}.nunya-catalogue-filter-actions{grid-column:auto}.nunya-catalogue-filters :is(input,select){font-size:16px}.nunya-catalogue-grid{grid-template-columns:1fr;gap:18px}.nunya-course-card{padding:22px;gap:17px}.nunya-course-description{font-size:14px}.nunya-catalogue-courses{margin-top:28px}.nunya-catalogue-empty{padding:24px 20px}.nunya-catalogue-roadmap{padding:0 18px;margin-top:28px}.nunya-catalogue-roadmap>summary{min-height:90px}.nunya-catalogue-roadmap>summary>span:first-of-type{max-width:calc(100% - 34px);padding-left:4px}.nunya-catalogue-roadmap summary strong{font-size:17px}.nunya-roadmap-count{position:static;display:block;padding-left:22px;margin-top:9px;font-size:var(--fs-1)}.nunya-roadmap-list>li{flex-direction:column;gap:9px}.nunya-catalogue-tools{grid-template-columns:1fr;gap:24px;margin-top:28px;padding-top:24px}.nunya-catalogue-tools article+article{padding-top:24px;border-top:1px solid var(--border)}.nunya-catalogue-tools h2{font-size:21px}.nunya-catalogue-tools p{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.nunya-catalogue *{scroll-behavior:auto}}
-.nunya-course-quick{margin:22px 0;padding:20px 0;border-bottom:1px solid var(--border)}.nunya-course-quick h2{font-size:22px;margin-bottom:8px}.nunya-course-quick p{font-size:14px;color:var(--muted);margin-bottom:14px}.nunya-course-quick>div{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}.nunya-course-quick a{display:inline-flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 16px;min-height:44px;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--accent-text);font-weight:650;text-decoration:none}.nunya-course-quick a:hover{background:var(--accent-soft)}.nunya-course-quick a:focus-visible{outline:2px solid var(--accent-text);outline-offset:3px}@media(max-width:700px){.nunya-course-quick>div{display:grid;grid-template-columns:1fr 1fr}.nunya-course-quick a{padding:10px 12px;min-width:0;font-size:14px}.nunya-course-quick a:last-child{grid-column:1/-1}}
+.nunya-course-quick{margin:22px 0;padding:20px 0;border-bottom:1px solid var(--border)}.nunya-course-quick h2{font-size:22px;margin-bottom:8px}.nunya-course-quick p{font-size:14px;color:var(--muted);margin-bottom:14px}.nunya-course-quick>div{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}.nunya-course-quick a{display:inline-flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 16px;min-height:44px;border:1px solid var(--line-strong,var(--border));border-radius:9px;background:var(--surface);color:var(--accent-text);font-weight:650;text-decoration:none}.nunya-course-quick a:hover{background:var(--accent-soft)}.nunya-course-quick a:focus-visible{outline:2px solid var(--accent-text);outline-offset:3px}@media(max-width:700px){.nunya-course-quick>div{display:grid;grid-template-columns:1fr 1fr}.nunya-course-quick a{padding:10px 12px;min-width:0;font-size:14px}.nunya-course-quick a:last-child{grid-column:1/-1}}
 .nunya-journeys{margin:32px 0;padding:28px;border:1px solid var(--border);border-radius:22px;background:var(--surface)}
 .nunya-journeys>p{max-width:720px;color:var(--muted);margin:12px 0 22px}
 .nunya-journey-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .nunya-journey-grid article{padding:22px;border:1px solid var(--border);border-radius:14px;background:var(--bg);display:flex;flex-direction:column;gap:12px}
 .nunya-journey-grid h3{font-size:19px}.nunya-journey-grid p{color:var(--muted);font-size:14px}.nunya-journey-grid small{color:var(--muted)}
 .nunya-journey-grid button{margin-top:auto;text-align:left;border:0;background:none;min-height:44px;padding:0;font:inherit;font-weight:650;cursor:pointer}
-.nunya-journey-active{margin:20px 0;padding:22px;background:var(--accent-soft);border-radius:14px}.nunya-journey-active progress{width:100%;height:12px;accent-color:var(--accent-text)}
+.nunya-journey-active{margin:20px 0;padding:22px;background:var(--accent-soft);border-radius:14px}.nunya-journey-active progress{width:100%;height:12px;accent-color:var(--warm,var(--accent-text))}
 .nunya-journey-timeline{list-style:none;padding:0;margin:24px 0}.nunya-journey-timeline li{display:flex;gap:16px;align-items:flex-start;border-bottom:1px solid var(--border);padding:16px 0}.nunya-journey-timeline p{margin:6px 0}.nunya-journey-step{flex:0 0 36px;display:grid;place-items:center;width:36px;height:36px;background:var(--accent-soft);color:var(--accent-text);border-radius:50%;font-weight:700}
 .nunya-journey-switch{padding:14px;background:var(--accent-soft);border-radius:10px}.nunya-journey-timeline a{color:var(--accent-text)}
 @media(max-width:640px){.nunya-journeys{padding:18px}.nunya-journey-grid{grid-template-columns:1fr}.nunya-journey-grid article{padding:18px}}
@@ -119,7 +118,7 @@
 .nunya-journey-modules span{color:var(--muted);font-size:14px}
 .nunya-journey-beginner,.nunya-journey-planned-note{font-size:14px;color:var(--muted)}
 .nunya-catalogue-domain{margin-top:12px;padding-top:10px;border-top:1px solid var(--border)}
-.nunya-catalogue-domain>h3{font-size:20px;margin:0 0 4px}
+.nunya-catalogue-domain>h3{font-size:var(--fs-6);margin:0 0 4px}
 .nunya-catalogue-domain>h3>button{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:12px;width:100%;min-height:48px;padding:6px 4px;cursor:pointer;border-radius:10px;font:inherit;color:var(--ink)}
 .nunya-catalogue-domain>h3>button:hover{background:var(--accent-soft,rgba(0,0,0,.04))}
 .nunya-catalogue-domain>h3>button:focus-visible{outline:3px solid var(--accent-text);outline-offset:2px}

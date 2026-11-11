@@ -1,6 +1,16 @@
 # Historique
 
-## Non publié — refonte visuelle, phase 0 (fondations)
+## 5.27.0 — 11 novembre 2026 · nouvelle apparence (refonte visuelle, phases 0 et 1)
+
+- **Palette « forêt, latérite, soleil »** dans les sept ambiances, en clair et en sombre : la latérite marque ce qui est « en cours » (barres de progression, surtitres, leçon actuelle, menu actif), le soleil les boutons principaux des grands panneaux et les badges obtenus. Nunya passe sur un fond crème et un sombre plus profond.
+- **Un panneau « moment »** sombre par page clé (reprise sur l’accueil, en-tête du catalogue, en-tête d’un programme) : un repère visuel clair au lieu du même panneau vert pâle partout.
+- **Lisibilité** : plus aucun texte sous 12 px (surtitres, notes, menus, petits libellés) ; les paragraphes et le texte des leçons passent en couleur d’encre (16 px, interligne 1,65) au lieu du gris imposé partout ; bordures des champs, listes et boutons secondaires visibles (contraste 3:1).
+- **Badges** : verrouillé (pointillés, discret) et obtenu (doré) se distinguent enfin.
+- Corrections : la note grise de « Ma progression » et l’onglet « Coder » en Verre liquide sont lisibles ; la barre du bas ne cache plus la fin des leçons sur téléphone ; « 4,4 h » au lieu de « 4.4 h » ; « 6 Séances » au pluriel ; icônes distinctes pour Santé, Agriculture et Environnement ; boutons d’export d’une leçon séparés ; interrupteur et sélection de texte lisibles en Verre sombre.
+- CSS ramené à 39,6 Ko gzip (budget 40 Ko) en retirant d’anciennes surcharges ; JS du cœur en baisse.
+- Cache `nunya-v5.27.0`.
+
+### Fondations (phase 0)
 
 - Plan de refonte visuelle et décisions du propriétaire : docs/PLAN_REFONTE_VISUELLE.md (palette forêt, latérite, soleil ; motif tissage ; une dizaine de jalons ; les sept ambiances conservées).
 - Nouveaux jetons générés pour les sept ambiances, en clair et en sombre (couleurs chaudes, panneau « moment », bordures fortes, couleurs de domaine, échelles de texte, d’espacement et de rayons), encore inutilisés : l’apparence du site ne change pas. Le contrôle de contraste couvre aussi les éléments non textuels.

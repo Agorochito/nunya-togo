@@ -113,7 +113,7 @@
   align-items: flex-start;
   gap: 10px;
   padding: 18px;
-  border: 1px solid var(--theme-line);
+  border: 1px solid var(--line-strong, var(--theme-line));
   border-radius: 14px;
   background: var(--theme-surface);
   color: var(--theme-ink);
@@ -146,7 +146,7 @@
 .a-onboarding-domain small {
   margin-top: auto;
   color: var(--theme-muted);
-  font-size: 11px;
+  font-size: var(--fs-1);
 }
 
 .a-onboarding-soon {
@@ -198,7 +198,7 @@
   min-height: 48px;
   margin-top: 6px;
   padding: 10px 12px;
-  border: 1px solid var(--theme-line);
+  border: 1px solid var(--line-strong, var(--theme-line));
   border-radius: 8px;
   background: var(--theme-surface);
   color: var(--theme-ink);

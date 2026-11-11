@@ -2,6 +2,8 @@
 
 *11 novembre 2026. Diagnostic fait sur la 5.19.0 (branche interface-5.2) à partir de 24 captures (8 pages, ordinateur clair et sombre, mobile), du CSS et du JS, par quatre relectures indépendantes (identité visuelle, motivation, mise en page, faisabilité) puis une synthèse revérifiée. Contrastes calculés avec la formule WCAG.*
 
+**État d’avancement :** Phase 0 et Phase 1 faites (version 5.27.0, branche refonte-phase1). Écarts par rapport aux valeurs ci-dessous, imposés par le contrôle de contraste élargi aux panneaux surélevés : bordure forte de Nunya sombre #748279 (au lieu de #66766c) ; latérite de Verre sombre #ffc8ae. Prochaine étape : Phase 2 (accueil et progression vivants).
+
 ## 0. Les autres chantiers, et leur place dans ce plan
 
 - **Avant tout (Phase 0)** : fichier `.gitattributes` (fins de ligne LF) pour que la construction donne le même résultat sous Windows et macOS ; protection de la branche `main` sur GitHub (PR et contrôles « Quality » obligatoires), à activer par le propriétaire du dépôt.
