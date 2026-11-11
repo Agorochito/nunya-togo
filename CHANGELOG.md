@@ -1,5 +1,11 @@
 # Historique
 
+## 5.28.1 — 11 novembre 2026
+
+- **Accueil** : la barre tissée sous le grand bandeau et au-dessus des bandes sombres est retirée. À la place, des arcs doux : le grand bandeau se termine en arc, et chaque bande sombre s’ouvre en dôme par-dessus la section précédente (dont la couleur reste visible dans les coins) puis, sauf la dernière, se referme en arc. Rendu net dans les sept ambiances, en clair comme en sombre.
+- **Tests** : les 21 tests d’interface qui enchaînent les exercices attendent désormais que l’exercice suivant soit réellement affiché avant de taper la solution, et relancent « Exercice suivant » si le clic est arrivé avant l’enregistrement de la réussite. Le test PHP échouait parfois en CI pour cette raison ; l’application, elle, ne change pas.
+- Cache `nunya-v5.28.1`.
+
 ## 5.28.0 — 11 novembre 2026 · un vrai accueil
 
 - **Nouvel accueil**, pour tout le monde, y compris à la première visite :
