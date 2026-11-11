@@ -1,5 +1,10 @@
 # Historique
 
+## 5.27.1 — 11 novembre 2026
+
+- Écran d’accueil : les trois choix (« Personnaliser mon parcours », « Passer et choisir moi-même », « J’ai déjà une sauvegarde ») ne sont plus collés ; deux boutons de même taille côte à côte, le lien de restauration centré dessous, empilés sur téléphone ; libellés traduits en anglais.
+- Cache `nunya-v5.27.1`.
+
 ## 5.27.0 — 11 novembre 2026 · nouvelle apparence (refonte visuelle, phases 0 et 1)
 
 - **Palette « forêt, latérite, soleil »** dans les sept ambiances, en clair et en sombre : la latérite marque ce qui est « en cours » (barres de progression, surtitres, leçon actuelle, menu actif), le soleil les boutons principaux des grands panneaux et les badges obtenus. Nunya passe sur un fond crème et un sombre plus profond.
@@ -7,8 +12,7 @@
 - **Lisibilité** : plus aucun texte sous 12 px (surtitres, notes, menus, petits libellés) ; les paragraphes et le texte des leçons passent en couleur d’encre (16 px, interligne 1,65) au lieu du gris imposé partout ; bordures des champs, listes et boutons secondaires visibles (contraste 3:1).
 - **Badges** : verrouillé (pointillés, discret) et obtenu (doré) se distinguent enfin.
 - Corrections : la note grise de « Ma progression » et l’onglet « Coder » en Verre liquide sont lisibles ; la barre du bas ne cache plus la fin des leçons sur téléphone ; « 4,4 h » au lieu de « 4.4 h » ; « 6 Séances » au pluriel ; icônes distinctes pour Santé, Agriculture et Environnement ; boutons d’export d’une leçon séparés ; interrupteur et sélection de texte lisibles en Verre sombre.
-- Écran d’accueil : les trois choix (« Personnaliser mon parcours », « Passer et choisir moi-même », « J’ai déjà une sauvegarde ») ne sont plus collés ; deux boutons de même taille côte à côte, le lien de restauration centré dessous, empilés sur téléphone ; libellés traduits en anglais.
-- CSS ramené à 39,8 Ko gzip (budget 40 Ko) en retirant d’anciennes surcharges ; JS du cœur en baisse.
+- CSS ramené à 39,6 Ko gzip (budget 40 Ko) en retirant d’anciennes surcharges ; JS du cœur en baisse.
 - Cache `nunya-v5.27.0`.
 
 ### Fondations (phase 0)
