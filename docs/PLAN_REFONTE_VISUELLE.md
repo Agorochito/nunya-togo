@@ -2,9 +2,27 @@
 
 *11 novembre 2026. Diagnostic fait sur la 5.19.0 (branche interface-5.2) à partir de 24 captures (8 pages, ordinateur clair et sombre, mobile), du CSS et du JS, par quatre relectures indépendantes (identité visuelle, motivation, mise en page, faisabilité) puis une synthèse revérifiée. Contrastes calculés avec la formule WCAG.*
 
-**État d’avancement :** Phase 0 et Phase 1 faites (version 5.27.0, branche refonte-phase1). Écarts par rapport aux valeurs ci-dessous, imposés par le contrôle de contraste élargi aux panneaux surélevés : bordure forte de Nunya sombre #748279 (au lieu de #66766c) ; latérite de Verre sombre #ffc8ae. Prochaine étape : Phase 2 (accueil et progression vivants).
+**État d’avancement :** Phase 0 et Phase 1 faites (version 5.27.0, branche refonte-phase1). Écarts par rapport aux valeurs ci-dessous, imposés par le contrôle de contraste élargi aux panneaux surélevés : bordure forte de Nunya sombre #748279 (au lieu de #66766c) ; latérite de Verre sombre #ffc8ae. Phase 2 commencée en 5.29.0 (voir ci-dessous) ; prochaine étape : second lot de la Phase 2 (Ma progression).
 
 **5.28.0 (accueil vitrine) :** l’accueil devient une vraie page d’entrée (bandeau des technologies, héros sombre, exemples de code, tuiles des cours, bandes thématiques), première visite comprise ; il couvre une partie de la Phase 2 (carte de progression réelle). Écart assumé avec la typographie ci-dessous : les titres passent en sans-serif système graisse 800 sur tout le site, jugé plus lisible et plus cohérent que le mélange serif / sans-serif.
+
+**5.29.0 (phase 2, premier lot : accueil guidé et compteurs).** Ce lot suit un audit UX externe : « transformer l'accueil d'un catalogue de fonctionnalités en un parcours guidé ». Fait :
+- une seule action principale dans le héros, et l'attestation annoncée dès le premier écran ;
+- « Par où commencer ? » : trois portes à la place des onglets d'exemples et de la grille des cours ;
+- trois bandes regroupées en une seule ;
+- le rythme de la semaine sur la carte de progression ;
+- les leçons de code, de Git et de Découverte alimentent enfin minutes, jours actifs et badges. C'est l'équivalent d'`aTick`, mais dans `persist()` au lieu d'appels dispersés, avec `state.ticked` pour ne compter chaque leçon qu'une fois ;
+- les cours pas encore commencés sont repliés dans « Mes programmes de code » ;
+- la tuile des jours consécutifs devient « jours actifs ces 7 derniers jours ».
+
+Écarts avec la phase 2 décrite plus bas :
+- pas de module `momentum.mjs` : la logique de l'accueil reste dans `home-landing.mjs`, qui est déjà chargé à la demande ;
+- l'anneau « x/15 min » est remplacé par un rythme de sept jours, parce que les minutes restent indicatives (10 par leçon).
+
+Reste pour le second lot de la phase 2 :
+- réordonner « Ma progression » : Cette semaine, En cours, badges, puis Pas encore commencés ;
+- sortir `progressView` du cœur ;
+- définir la dizaine de jalons.
 
 ## 0. Les autres chantiers, et leur place dans ce plan
 
