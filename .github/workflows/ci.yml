@@ -19,6 +19,7 @@ jobs:
       - run: npm test
       - run: npm run check:content
       - run: npm run check:academy
+      - run: npm run check:headers
 
       - run: npm run lint:content
       - run: npm run check:prereqs
@@ -29,7 +30,7 @@ jobs:
 
   browser-regressions:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
         with:
@@ -46,11 +47,15 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: npm run build
       - name: Test real student flows
+        # Below the job limit so the evidence and the server log are still uploaded when a run is cut.
+        # Budget: setup ~8 min + tests ~82-92 min (Nov 2026). Each release adds a --from= upgrade run to
+        # test:browser: raise both limits together, or retire the oldest --from= runs, before tests near 100 min.
+        timeout-minutes: 105
         run: |
           python3 scripts/serve-test.py --port 4176 > /tmp/nunya-browser-server.log 2>&1 &
           nunya_server_pid=$!
           trap 'kill "$nunya_server_pid"' EXIT
-          node --input-type=module -e "for(let i=0;i<40;i++){try{if((await fetch('http://127.0.0.1:4176/')).ok)process.exit(0)}catch{}await new Promise(r=>setTimeout(r,100))}process.exit(1)"
+          node --input-type=module -e "for(let i=0;i<40;i++){try{if((await fetch('http://127.0.0.1:4176/',{signal:AbortSignal.timeout(1000)})).ok)process.exit(0)}catch{}await new Promise(r=>setTimeout(r,100))}process.exit(1)"
           npm run test:browser
           node scripts/visual-baseline.mjs --no-pixels --base=http://127.0.0.1:4176/
       - uses: actions/upload-artifact@v4
@@ -60,3 +65,9 @@ jobs:
           path: |
             docs/*RESULTS.json
             docs/screenshots/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-server-log
+          path: /tmp/nunya-browser-server.log
+          retention-days: 7

@@ -1,6 +1,6 @@
-import fs from 'node:fs/promises';import {chromium,expect} from '@playwright/test';import {launchTestBrowser} from '../lib/test/browser.mjs';
+import fs from 'node:fs/promises';import {chromium,expect} from '@playwright/test';import {launchTestBrowser,waitForServiceWorkerControl} from '../lib/test/browser.mjs';
 const base=process.env.NUNYA_TEST_URL||'http://127.0.0.1:4176/',browser=await launchTestBrowser(chromium),ctx=await browser.newContext(),pack=JSON.parse(await fs.readFile('dist/data/curriculum/sql-bases.json','utf8')),results={lessons:pack.lessons.length,examples:0,referenceCases:0,solutions:0,startersRejected:0};let p=await ctx.newPage();
-async function ready(){await p.goto(base+'#/apprendre/sql-bases');await p.evaluate(async()=>{await navigator.serviceWorker.ready;if(!navigator.serviceWorker.controller)await new Promise(r=>navigator.serviceWorker.addEventListener('controllerchange',r,{once:true}))})}
+async function ready(){await p.goto(base+'#/apprendre/sql-bases');await waitForServiceWorkerControl(p)}
 async function run(code,tests,grade=true){return p.evaluate(({code,tests,grade})=>new Promise((resolve,reject)=>{const w=new Worker('./coding-sql-worker.js',{type:'module'}),timer=setTimeout(()=>{w.terminate();reject(Error('SQL timeout'))},15000);w.onerror=e=>{clearTimeout(timer);w.terminate();reject(Error(e.message))};w.onmessage=({data})=>{if(data.done||data.error){clearTimeout(timer);w.terminate();resolve(data)}};w.postMessage({code,tests,grade})}),{code,tests,grade})}
 const passes=r=>!r.error&&r.results?.every(x=>!x.error&&x.assertions_passed);
 try{
