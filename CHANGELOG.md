@@ -11,6 +11,7 @@
   - **pages de test retirées de la production** : `test-assessment.html`, `test-onboarding.html`, `test-results.html` et leurs données `_test-*-data.js` étaient des maquettes de développement de la 5.2.0. Elles étaient publiques mais n'étaient liées nulle part.
 - **Contrôle** : `npm run check:headers`, ajouté à la CI, vérifie que chaque page HTML publiée refuse d'être encadrée ailleurs. Il vérifie aussi que la CSP d'en-tête de l'accueil reste celle de la balise `meta`, que les ateliers gardent `sandbox allow-scripts` et que deux règles de `vercel.json` ne fixent jamais le même en-tête pour un même fichier.
 - **Tests** : `scripts/serve-test.py` lit maintenant les en-têtes directement dans `vercel.json`, au lieu d'en recopier une partie. Les tests navigateur locaux et ceux de la CI voient donc les mêmes en-têtes que la production.
+- **CI** : le job `browser-regressions` a désormais 120 minutes au lieu de 90. La suite durait entre 75 et 90 minutes selon le runner, et un passage a été coupé à la limite alors qu'aucun test n'avait échoué.
 - Cache `nunya-v5.28.2`.
 
 ## 5.28.1 — 11 novembre 2026
