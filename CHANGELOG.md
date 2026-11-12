@@ -1,5 +1,18 @@
 # Historique
 
+## 5.28.2 — 12 novembre 2026
+
+- **Sécurité (suite à un scan OWASP ZAP du site public)** :
+  - **clickjacking** : aucune page de Nunya ne peut plus être affichée dans un cadre par un autre site. Toutes les pages HTML reçoivent `Content-Security-Policy: … frame-ancestors 'self'`, et tout le site reçoit `X-Frame-Options: SAMEORIGIN`. Les ateliers isolés (`dom-frame.html`, `react-frame.html`) restent utilisables dans Nunya ;
+  - **CSP en en-tête HTTP** : l'accueil reçoit sa politique en en-tête, identique à la balise `meta` avec `frame-ancestors` en plus, puisqu'une balise `meta` ne peut pas porter `frame-ancestors`. `guide-public.html`, qui n'a pas de JavaScript, reçoit une politique qui interdit tout script ;
+  - **CORS** : Vercel envoyait `Access-Control-Allow-Origin: *` sur tous les fichiers. Seul `https://nunya-togo.vercel.app` est désormais autorisé. Les contenus sont publics et sans cookie, donc le risque était faible ; l'application n'utilise que des requêtes de même origine ;
+  - **Permissions-Policy** : caméra, micro, géolocalisation, paiement et USB sont désactivés, car Nunya ne s'en sert pas ;
+  - **atelier isolé** : une URL encodée comme `/runtime/dom%2Dframe.html` échappait aux règles d'en-têtes propres à ce fichier. La page était donc servie sans `sandbox` et pouvait être encadrée par un autre site, qui aurait pu y faire exécuter du code sur l'origine de Nunya. `X-Frame-Options` bloque maintenant ce cadre. En plus, `lib/dom/frame.mjs` refuse d'exécuter du code si son origine n'est pas opaque, c'est-à-dire si la page n'est pas réellement isolée. Faille relevée par une relecture adverse du correctif ;
+  - **pages de test retirées de la production** : `test-assessment.html`, `test-onboarding.html`, `test-results.html` et leurs données `_test-*-data.js` étaient des maquettes de développement de la 5.2.0. Elles étaient publiques mais n'étaient liées nulle part.
+- **Contrôle** : `npm run check:headers`, ajouté à la CI, vérifie que chaque page HTML publiée refuse d'être encadrée ailleurs. Il vérifie aussi que la CSP d'en-tête de l'accueil reste celle de la balise `meta`, que les ateliers gardent `sandbox allow-scripts` et que deux règles de `vercel.json` ne fixent jamais le même en-tête pour un même fichier.
+- **Tests** : `scripts/serve-test.py` lit maintenant les en-têtes directement dans `vercel.json`, au lieu d'en recopier une partie. Les tests navigateur locaux et ceux de la CI voient donc les mêmes en-têtes que la production.
+- Cache `nunya-v5.28.2`.
+
 ## 5.28.1 — 11 novembre 2026
 
 - **Accueil** : la barre tissée sous le grand bandeau et au-dessus des bandes sombres est retirée. À la place, des arcs doux : le grand bandeau se termine en arc, et chaque bande sombre s’ouvre en dôme par-dessus la section précédente (dont la couleur reste visible dans les coins) puis, sauf la dernière, se referme en arc. Rendu net dans les sept ambiances, en clair comme en sombre.
