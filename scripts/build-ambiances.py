@@ -257,6 +257,11 @@ for name, modes in R.items():
                 for k in ('ink', 'muted'):
                     need(f'hero-{k}/carte parcours', 4.5, r[f'hero-{k}'], veil, at)
                 need('hero-accent/carte parcours', 3, r['hero-accent'], veil, at)
+            # Carte « Ma progression » (5.29.0) : voile d'encre à 7 % ; rythme de la semaine, jours sans activité = anneau d'encre à 55 %,
+            # jours actifs = pastille d'accent (éléments non textuels : 3:1).
+            card = over(alpha(r['hero-ink'], .07), hero)
+            need('hero-ink 55%/carte progression', 3, alpha(r['hero-ink'], .55), card, at)
+            need('hero-accent/carte progression', 3, r['hero-accent'], card, at)
 print('Contrastes (minimum, seuil, pire cas) :')
 for label, (floor, v, where) in mins.items():
     print(f'  {label:<24} {v:5.2f}  >= {floor:<3}  {where}')

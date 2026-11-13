@@ -1,5 +1,27 @@
 # Historique
 
+## 5.29.0 — 12 novembre 2026 · un accueil qui guide (refonte visuelle, phase 2)
+
+- **Accueil guidé.** Un audit UX externe jugeait l'accueil trop chargé : il montrait tout ce que Nunya sait faire sans dire par où commencer. Il passe de 10 à 7 sections au plus et perd près de la moitié de sa hauteur à la première visite : de 8 868 à 4 609 px à 1 440 px de large (−48 %), et de 12 102 à 6 616 px à 375 px (−45 %) :
+  - **une seule action principale** dans le grand bandeau : « Commencer avec Python », ou « Reprendre la leçon N » pour qui revient. La recherche du bandeau est retirée, car celle de la barre du haut reste disponible. « Personnaliser mon parcours » et « Voir les 28 cours » restent en second plan ;
+  - **l'attestation est annoncée dès le premier écran** : « Termine un cours et reçois une attestation Nunya de ton travail (ce n'est pas un diplôme). » ;
+  - **« Par où commencer ? »** remplace les onglets d'exemples et la grille des 28 cours. Trois portes, chacune avec une seule action : « Je n'ai jamais codé » (Python : les bases), « Je veux créer des sites » (HTML) et « J'ai déjà des bases » (le catalogue). Les portes Python et HTML affichent le nombre de leçons et la durée indicative. Une fois le cours commencé, elles proposent « Continuer » vers la première leçon non validée. La troisième ouvre le catalogue. Pour qui n'a jamais utilisé un ordinateur pour apprendre, un lien mène au niveau 0, Découverte du numérique. Pour qui revient, la section devient « Envie d'apprendre autre chose ? » ;
+  - **les parcours métiers suivent directement**, comme la question suivante : « Un métier en tête ? » ;
+  - **trois bandes regroupées en une seule**, « Gratuit, sans compte, et ton travail reste à toi. » : trois cartes (ton travail reste avec toi, l'attestation, Nunya Aide), ou deux quand Nunya Aide est désactivé. « J'ai déjà une sauvegarde » y reste à la première visite ;
+  - « Réviser l'école, préparer l'avenir » garde ses trois cartes, sans la grille des parcours de l'académie, qui reste dans Mon avenir. La bande finale ne répète plus toutes les technologies, déjà listées en haut de page ;
+  - **le rythme de la semaine** remplace, sur la carte de progression, le seul nombre d'exercices : sept pastilles, une par jour, pleines les jours où l'apprenant a travaillé, puis « 2 jours actifs · 5 exercices réussis ». S'il n'y a encore rien cette semaine, le texte dit « Pas encore cette semaine : une leçon suffit pour reprendre le fil. » Il n'y a pas de série à perdre ;
+  - le programme d'exemple du grand bandeau passe à la ligne à toutes les largeurs. Entre 900 et 1 100 px, il défilait horizontalement dans une zone inaccessible au clavier (règle axe « scrollable-region-focusable ») ;
+  - les trois portes passent sur une colonne sous 1 100 px de large, pour ne pas couper les titres au milieu des mots ;
+  - le module de l'accueil passe de 16,2 à 13,5 Ko gzip, sa feuille de style de 5,0 à 3,6 Ko.
+- **Des compteurs qui concordent (Ma progression).** Jusqu'ici, seules les anciennes leçons à questions alimentaient le temps d'apprentissage, les jours d'activité et les badges. Un élève qui avait validé 2 leçons de Python voyait « 2/53 » d'un côté, mais « 0 leçon terminée · 0 jour · 0 min » et aucun badge de l'autre :
+  - une leçon validée dans un cours de code, dans Git ou dans Découverte du numérique compte maintenant dans « leçons terminées » et dans les badges « Premier pas » et « La curiosité grandit ». Elle ajoute aussi 10 minutes indicatives, comme les anciennes leçons, au total et au jour même ;
+  - chaque leçon n'est comptée qu'une fois (`state.ticked`), même si l'élève la revalide ou si l'état est enregistré plusieurs fois. Le comptage se fait dès l'ouverture de Nunya, pas seulement au premier enregistrement ;
+  - à la mise à jour, et après une restauration de sauvegarde, les leçons déjà validées entrent dans le total des minutes sans être datées d'aujourd'hui : aucun faux « jour actif » n'apparaît ;
+  - la tuile « jours d'apprentissage consécutifs » devient « jours actifs ces 7 derniers jours ». Elle est calculée comme le rythme de l'accueil, donc les deux chiffres concordent. Il n'y a plus de série à perdre : le plan de refonte écarte les séries strictes, qui pénalisent un téléphone partagé ou un forfait épuisé.
+- **Mes programmes de code** (Ma progression) : les cours commencés d'abord, avec « Reprendre ». Les autres sont repliés sous « Pas encore commencés (N) », avec « Commencer » au lieu d'un « Reprendre » trompeur.
+- **Tests** : nouveau `scripts/test-home-guided.mjs`, ajouté à `test:browser`. Il vérifie, à 360, 1 024 et 1 440 px, une seule action principale, l'attestation dans le héros, les trois portes et leurs liens, la hauteur maximale de la page, l'absence de débordement, de titre coupé et d'erreur axe. Il vérifie aussi l'accueil de qui revient (reprise, rythme), le comptage des minutes une seule fois, la mise à jour sans faux jour actif, la concordance des compteurs sur Ma progression, et qu'une sauvegarde portant une date d'exercice hors limites ne fait échouer ni l'accueil ni Ma progression. Mise à jour testée depuis `339a2868`.
+- Cache `nunya-v5.29.0`.
+
 ## 5.28.2 — 12 novembre 2026
 
 - **Sécurité (suite à un scan OWASP ZAP du site public)** :
