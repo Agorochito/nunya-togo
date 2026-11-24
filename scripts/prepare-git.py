@@ -23,6 +23,8 @@ assert len(lessons)==12
 course=dict(id='git-bases',title_fr='Git et GitHub : versionner et collaborer',level='debutant',status='brouillon',reviewer=None,summary_fr='Comprends les fichiers, l’index et les commits, utilise des branches et résous un conflit dans un vrai dépôt local. Prépare ensuite une collaboration GitHub sans publication simulée.',outcomes=['Distinguer dossier de travail, index et instantané commité.','Créer des commits utiles et relire un historique.','Restaurer un fichier sans confondre les trois états.','Créer des branches et vérifier une fusion réelle.','Résoudre un conflit et expliquer une proposition de changement.'],modules=[dict(id=mid,title_fr=title,lesson_ids=[l['id']for l in lessons if l['module']==mid])for mid,title in modules],lesson_count=len(lessons),activity_count=sum(len(l['activities'])for l in lessons),lab_count=sum(a['type']=='lab'for l in lessons for a in l['activities']),quiz_count=sum(len(l['quiz'])for l in lessons),estimated_minutes=sum(l['minutes']for l in lessons))
 course['content_revision']=hashlib.sha256(json.dumps(lessons,sort_keys=True,ensure_ascii=False).encode()).hexdigest()[:12]
 out=r/'dist/data/git';out.mkdir(parents=True,exist_ok=True)
-(out/'git-bases.json').write_text(json.dumps(dict(course=course,lessons=lessons),ensure_ascii=False,separators=(',',':'))+'\n')
-(out/'index.json').write_text(json.dumps(dict(**course,lessons=[{k:l[k]for k in ['id','title_fr','module','minutes','prerequisites']}for l in lessons]),ensure_ascii=False,separators=(',',':'))+'\n')
+def write(path,value):
+ with path.open('w',encoding='utf-8',newline='\n') as stream:stream.write(json.dumps(value,ensure_ascii=False,separators=(',',':'))+'\n')
+write(out/'git-bases.json',dict(course=course,lessons=lessons))
+write(out/'index.json',dict(**course,lessons=[{k:l[k]for k in ['id','title_fr','module','minutes','prerequisites']}for l in lessons]))
 print(json.dumps(dict(gitLessons=len(lessons),gitLabs=course['lab_count'],activities=course['activity_count'],words=sum(len(l['body_fr'][i].split())for l in lessons for i in range(len(l['body_fr']))))))

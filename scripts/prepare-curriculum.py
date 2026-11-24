@@ -9,7 +9,8 @@ plans=json.loads((data/'plans.json').read_text())
 chapter_end=json.loads((data/'chapter-end.json').read_text())
 all_ids,courses,search=set(),[],[]
 def write(path,value,pretty=False):
- path.write_text(json.dumps(value,ensure_ascii=False,indent=2 if pretty else None,separators=None if pretty else (',',':'))+'\n')
+ with path.open('w',encoding='utf-8',newline='\n') as stream:
+  stream.write(json.dumps(value,ensure_ascii=False,indent=2 if pretty else None,separators=None if pretty else (',',':'))+'\n')
 for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='python-bases.manifest',p.name)):
  course=json.loads(manifest.read_text())
  if course['id']=='python-bases' and (data/'python-beginner-extension.json').exists():
@@ -67,7 +68,7 @@ for manifest in sorted(data.glob('*.manifest.json'),key=lambda p:(p.stem!='pytho
  search.append(dict(kind='Cours',title=course['title_fr'],route='#/apprendre/'+course['id'],breadcrumb='Apprendre à coder › '+course['title_fr'],terms=language+' programmation '+{'debutant':'debutant débutant zéro','intermediaire':'intermediaire intermédiaire','avance':'avance avancé'}.get(course['level'],course['level'])+' '+course['summary_fr']+' '+' '.join(m['title_fr'] for m in course['modules'])))
 legacy=[]
 for path in sorted((r/'content/fr').glob('*.json')):
- course=json.loads(path.read_text());legacy.append(dict(id=course['id'],title_fr=course['title'],status='aperçu',lesson_count=len(course['lessons']),source_file=str(path.relative_to(r))))
+ course=json.loads(path.read_text());legacy.append(dict(id=course['id'],title_fr=course['title'],status='aperçu',lesson_count=len(course['lessons']),source_file=path.relative_to(r).as_posix()))
 available={course['id'].removesuffix('-bases') for course in courses};available.update(p for c in courses for p in c.get('replaces_plans',[]));available.add('git')  # Built separately by prepare-git.py before this catalogue.
 # Retain planned courses until actual authored packs replace them.
 catalogue=dict(version=2,courses=courses,plans=[p for p in plans if p['id'] not in available],legacy_references=legacy)

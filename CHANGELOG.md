@@ -1,5 +1,17 @@
 # Historique
 
+## 5.29.1 — 24 novembre 2026
+
+- **La construction et les tests locaux fonctionnent enfin sous Windows**, sans contournement. Cinq défauts de l'outillage, qui n'avaient aucun effet pour les élèves :
+  - **Java** : `lib/test/local-compiler.mjs` lançait `javac` et `java` à travers `sh -c`. Le code de départ de `java-m2-02-e1` affiche sans fin, ce qui faisait échouer la suppression du dossier temporaire (`EPERM`) tant que la machine virtuelle tournait encore, et la construction s'arrêtait. Il lance maintenant `javac` puis `java` directement, signale les erreurs de lancement au lieu de renvoyer un résultat vide, et retente la suppression du dossier temporaire. Les programmes d'exercice ne reçoivent qu'un environnement minimal (`PATH`, `HOME`, `LANG`, `LC_ALL`, et sous Windows `SystemRoot`, `TEMP`, `TMP`, `JAVA_HOME`) : les autres variables, des jetons de CI par exemple, ne leur sont pas transmises ;
+  - **Node.js** : sous Windows, `path.join` renvoyait des antislashs et les exercices de `nodejs-bases` échouaient. Un petit module chargé avec `node -r` (`lib/test/win32-posix-path.cjs`) rend le dialecte POSIX de `path` aux seuls tests locaux sous Windows. Rien n'est ajouté au code envoyé aux élèves ;
+  - **TypeScript** : le chemin de `tsc` est calculé avec `fileURLToPath`, car l'ancien calcul commençait par `/C:/` sous Windows ;
+  - **Fichiers de licences** : `git-THIRD-PARTY.txt` et `interactive-LICENSES.txt` sortaient tronqués sous Windows (1 889 lignes en moins), parce que la recherche de `/node_modules/` supposait des barres obliques ;
+  - **Fins de ligne** : les scripts Python qui génèrent `dist/data/`, `dist/ambiances.css` et le résultat du test Python intermédiaire écrivent en LF, et `source_file` utilise des barres obliques. Une construction sous Windows ne laisse donc plus de changement parasite.
+- **Exercices Java qui affichent sans fin** : la sortie du programme de vérification est limitée à 48 001 octets par cas. Un exercice qui affiche sans arrêt ne renvoie plus des mégaoctets à l'élève, ce qui compte avec peu de données mobiles, ni au service de compilation. Il est signalé par l'erreur habituelle « L’affichage dépasse 16 000 caractères. ». `scripts/test-remote-code.mjs` vérifie ce comportement sur `java-m2-02-e1`.
+- **Données** : `engine_revision` des cours JavaScript DOM et React passe de `e8265b1255cf` à `8d891502647a`, et `content_revision` avec lui. La valeur enregistrée dans le dépôt datait d'avant la 5.28.2, qui a modifié `lib/dom/frame.mjs` sans régénérer les données. Aucun effet en production, car Vercel régénère déjà ces valeurs à chaque déploiement.
+- Cache `nunya-v5.29.1`.
+
 ## 5.29.0 — 12 novembre 2026 · un accueil qui guide (refonte visuelle, phase 2)
 
 - **Accueil guidé.** Un audit UX externe jugeait l'accueil trop chargé : il montrait tout ce que Nunya sait faire sans dire par où commencer. Il passe de 10 à 7 sections au plus et perd près de la moitié de sa hauteur à la première visite : de 8 868 à 4 609 px à 1 440 px de large (−48 %), et de 12 102 à 6 616 px à 375 px (−45 %) :

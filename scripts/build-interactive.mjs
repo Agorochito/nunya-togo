@@ -9,7 +9,7 @@ for(const kind of ['dom','react']){
  fs.writeFileSync('dist/runtime/'+kind+'-frame.html',html);
 }
 const packages=new Map();for(const file of Object.keys({...client.metafile.inputs,...react.metafile.inputs})){
- if(!file.includes('node_modules/'))continue;let dir=path.dirname(path.resolve(file));while(dir.includes('/node_modules/')){const metadata=path.join(dir,'package.json');if(fs.existsSync(metadata)){packages.set(dir,JSON.parse(fs.readFileSync(metadata)));break}dir=path.dirname(dir)}
+ if(!file.split(/[\\/]/).includes('node_modules'))continue;let dir=path.dirname(path.resolve(file));while(dir.split(/[\\/]/).includes('node_modules')){const metadata=path.join(dir,'package.json');if(fs.existsSync(metadata)){packages.set(dir,JSON.parse(fs.readFileSync(metadata)));break}dir=path.dirname(dir)}
 }
 const notices=['Interactive ateliers Nunya — third-party notices'];for(const [dir,pkg]of packages){notices.push(pkg.name+'@'+pkg.version+' · '+pkg.license);for(const name of fs.readdirSync(dir).filter(x=>/^(license|copying|notice)([. _-]|$)/i.test(x))){const file=path.join(dir,name);if(fs.statSync(file).isFile())notices.push(fs.readFileSync(file,'utf8'))}}
 fs.writeFileSync('dist/runtime/interactive-LICENSES.txt',notices.join('\n\n')+'\n');

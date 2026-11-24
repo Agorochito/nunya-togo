@@ -395,5 +395,6 @@ for mode, fallback in GLASS_LITE2.items():
     out.append(f'@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){{{sel2}{{{lite}}}}}')
 out.append('@media (prefers-reduced-motion:reduce){html[data-ambiance=verre] body.personalized::before{animation:none}}')
 
-Path('dist/ambiances.css').write_text('\n'.join(out) + '\n')
+with open('dist/ambiances.css', 'w', encoding='utf-8', newline='\n') as stream:
+    stream.write('\n'.join(out) + '\n')
 print('ambiances.css', len('\n'.join(out)), 'octets')
