@@ -1,0 +1,97 @@
+import {chromium,expect} from '@playwright/test';
+import {launchTestBrowser} from '../lib/test/browser.mjs';
+import fs from 'node:fs/promises';
+import axe from 'axe-core';
+
+const base=process.env.NUNYA_TEST_URL||'http://127.0.0.1:4176/';
+const pack=JSON.parse(await fs.readFile('dist/data/curriculum/python-bases.json','utf8'));
+const lesson=pack.lessons[0],browser=await launchTestBrowser(chromium),results=[];
+
+try{
+ const mobileContext=await browser.newContext({viewport:{width:360,height:640}}),mobile=await mobileContext.newPage();
+ await mobile.goto(base+'#/apprendre/python-bases/m1/'+lesson.id);
+ await expect(mobile.locator('.c-crumb')).toHaveCSS('white-space','normal');
+ expect(await mobile.locator('.c-crumb').evaluate(el=>el.scrollWidth<=el.clientWidth)).toBe(true);
+ await expect(mobile.locator('.c-crumb')).toContainText('Leçon 1 sur 5');
+ expect(await mobile.locator('#main').evaluate(el=>getComputedStyle(el).paddingBottom)).toBe('100px');
+ await expect(mobile.locator('.curr-workspace')).toHaveAttribute('data-tab','read');
+ await expect(mobile.locator('.curr-reading-kicker')).toHaveText('Pour commencer');
+ await expect(mobile.locator('.curr-reading h2').first()).toHaveText('À la fin, tu sauras…');
+ expect(Number.parseFloat(await mobile.locator('.curr-reading').evaluate(el=>getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(17);
+ await expect(mobile.locator('.curr-practice')).toBeHidden();
+ const firstContentTop=await mobile.locator('.curr-reading h2').first().evaluate(el=>el.getBoundingClientRect().top);
+ const bottomNavigationTop=await mobile.locator('.bottom-nav').evaluate(el=>el.getBoundingClientRect().top);
+ expect(firstContentTop).toBeLessThan(bottomNavigationTop);
+ await expect(mobile.locator('.curr-lesson-tools summary')).toContainText('Autres actions');
+ await mobile.locator('.curr-lesson-tools summary').click();
+ await expect(mobile.locator('[data-curr="reading-lesson"]')).toBeVisible();
+ await mobile.locator('.curr-mobile-tabs [data-curr="code"]').click();
+ const pills=mobile.locator('.curr-exercise-pills button');
+ await expect(pills).toHaveCount(lesson.exercises.length);
+ if(lesson.exercises.length>1){
+  await pills.nth(1).click();
+  await expect(mobile.locator('#curr-exercise')).toHaveValue('1');
+  await expect(pills.nth(1)).toHaveAttribute('aria-pressed','true');
+ }
+ await expect(mobile.locator('.curr-completed-pill')).toHaveCount(0);
+ await mobile.locator('.curr-mobile-tabs [data-curr="read"]').click();
+ await mobile.locator('[data-curr="mark-read"]').click();
+ for(const [index,question] of lesson.quiz.entries()){
+  await mobile.locator(`input[name="${question.id}"][value="${question.answer}"]`).check();
+  await mobile.locator(`[data-curr="quiz"][data-id="${question.id}"]`).click();
+  if(index<lesson.quiz.length-1)await mobile.locator('[data-curr="quiz-next"]').click();
+ }
+ await expect(mobile.locator('[data-curr="next"]')).toBeEnabled();
+ await mobile.locator('[data-curr="next"]').click();
+ await expect(mobile).toHaveURL(new RegExp(pack.lessons[1].id+'$'));
+ await mobile.goto(base+'#/apprendre/python-bases/m1/'+lesson.id);
+ await expect(mobile.locator('.curr-completed-pill')).toContainText('Leçon terminée');
+ await expect(mobile.locator('.curr-completed-banner')).toContainText('Module 1 : 1/');
+ await expect(mobile.locator('.curr-completed-banner a.primary')).toHaveAttribute('href',new RegExp(pack.lessons[1].id+'$'));
+ await mobile.locator('.curr-completed-banner a.primary').click();
+ await expect(mobile).toHaveURL(new RegExp(pack.lessons[1].id+'$'));
+ await mobile.goto(base+'#/apprendre/python-bases/m1/'+lesson.id);
+ await mobile.locator('.curr-completed-banner a.secondary').click();
+ await expect(mobile).toHaveURL(/#\/apprendre\/python-bases$/);
+ await mobile.evaluate(axe.source);
+ const mobileAudit=await mobile.evaluate(()=>axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}}));
+ expect(mobileAudit.violations.map(v=>v.id)).toEqual([]);
+ expect(await mobile.evaluate(()=>document.documentElement.scrollWidth>innerWidth)).toBe(false);
+ results.push({width:360,lessonPills:true,completionBanner:true,continueAndPause:true,firstContentAboveFold:true,axeViolations:0,horizontalOverflow:false});
+ await mobileContext.close();
+
+ const narrowContext=await browser.newContext({viewport:{width:320,height:640}}),narrow=await narrowContext.newPage();
+ await narrow.goto(base+'#/apprendre/python-bases/m1/'+lesson.id);
+ await expect(narrow.locator('.curr-workspace')).toHaveAttribute('data-tab','read');
+ await expect(narrow.locator('.curr-reading')).toHaveCSS('font-size','17px');
+ expect(await narrow.locator('.c-crumb').evaluate(el=>el.scrollWidth<=el.clientWidth)).toBe(true);
+ expect(await narrow.evaluate(()=>document.documentElement.scrollWidth)).toBe(320);
+ await narrow.evaluate(axe.source);
+ const narrowAudit=await narrow.evaluate(()=>axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}}));
+ expect(narrowAudit.violations.map(v=>v.id)).toEqual([]);
+ results.push({width:320,readingSelected:true,crumbWraps:true,axeViolations:0,horizontalOverflow:false});
+ await narrowContext.close();
+
+ const desktopContext=await browser.newContext({viewport:{width:1366,height:768}}),desktop=await desktopContext.newPage();
+ await desktop.goto(base+'#/apprendre/python-bases/m1/'+lesson.id);
+ const reading=desktop.locator('.curr-reading'),practice=desktop.locator('.curr-practice'),runBar=desktop.locator('.curr-run-actions');
+ expect((await reading.boundingBox()).width).toBeGreaterThan((await practice.boundingBox()).width);
+ expect(Number.parseFloat(await reading.evaluate(el=>getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(17);
+ await expect(runBar).toHaveCSS('position','sticky');
+ await practice.scrollIntoViewIfNeeded();
+ const scrollable=await practice.evaluate(el=>el.scrollHeight>el.clientHeight);
+ expect(scrollable).toBe(true);
+ await practice.evaluate(el=>{el.scrollTop=el.scrollHeight});
+ const stickyBounds=await runBar.evaluate(el=>{const action=el.getBoundingClientRect(),panel=el.closest('.curr-practice').getBoundingClientRect();return {top:action.top,bottom:action.bottom,panelTop:panel.top,panelBottom:panel.bottom}});
+ expect(stickyBounds.top).toBeGreaterThanOrEqual(stickyBounds.panelTop);
+ expect(stickyBounds.bottom).toBeLessThanOrEqual(stickyBounds.panelBottom);
+ await desktop.evaluate(axe.source);
+ const desktopAudit=await desktop.evaluate(()=>axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}}));
+ expect(desktopAudit.violations.map(v=>v.id)).toEqual([]);
+ results.push({width:1366,height:768,stickyVerify:true,axeViolations:0});
+ await desktopContext.close();
+ await fs.writeFile('docs/LESSON_RESPONSIVE_RESULTS.json',JSON.stringify({results},null,2));
+ console.log(JSON.stringify({results}));
+}finally{
+ await browser.close();
+}
