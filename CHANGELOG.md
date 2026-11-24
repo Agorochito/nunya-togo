@@ -13,6 +13,7 @@
   - la feuille globale `runtime/reference-redesign.css` reste séparée du bundle ; elle est maintenant comptée dans le budget CSS, qui passe de 40 000 à 44 000 octets gzip (42 596 mesurés ; JavaScript du cœur : 151 490 sur 300 000) ;
   - le nom du cache et la liste de précache de `dist/sw.js` (module de progression, photo, icônes) sont versionnés comme le reste du code source ; la construction ne met plus à jour que l'empreinte `?r=` de `http-api.js` ;
   - de 701 à 1 000 px, où la navigation passe par le tiroir, le tiroir fermé n'est plus atteignable au clavier, et Échap ou un clic à l'extérieur le ferment, comme sur téléphone. Échap ferme aussi le menu « Plus » de l'en-tête ;
+  - en ambiance Verre, dont les surfaces sont translucides, la barre du bas, le bouton de recherche, l'avatar, le bouton de menu et le menu « Plus » reposent sur un fond de base opaque : le contraste de leurs libellés ne dépend plus de ce qui se trouve derrière ;
   - « Tout déplier / Tout replier » dans le catalogue ne porte plus `aria-pressed`, puisque son libellé change déjà ;
   - une seule chaîne de version pour `dist/index.html`, qui finit à 5.30.0.
 - **Tests** : `test-lesson-responsive.mjs` rejoint la chaîne de la CI. `test-home-guided.mjs` lit la version servie au lieu d'une version figée, et couvre l'en-tête, l'accueil, la photo, les icônes et Ma progression. Les tests du catalogue, du hors ligne, de la restauration, des parcours et des mises à jour ont été mis à jour pour le nouveau catalogue (29 cartes) ; la mise à jour est testée depuis la 5.29.1.
