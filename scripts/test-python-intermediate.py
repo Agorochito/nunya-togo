@@ -22,5 +22,5 @@ for path in sorted((r/'content/fr/python-intermediaire').glob('m*/*.md')):
   if passes(ex['starter_code']):raise RuntimeError(ex['id']+' unfinished starter passes')
   solutions+=1;rejected+=1
 result=dict(lessons=lessons,examples=examples,solutions=solutions,rejectedStarters=rejected,referenceCases=cases)
-(r/'docs/PYTHON_INTERMEDIATE_NATIVE_RESULTS.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+with (r/'docs/PYTHON_INTERMEDIATE_NATIVE_RESULTS.json').open('w',encoding='utf-8',newline='\n') as stream:stream.write(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
 print(json.dumps(result))

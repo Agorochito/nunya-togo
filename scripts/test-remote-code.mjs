@@ -14,7 +14,13 @@ for(const course of JSON.parse(fs.readFileSync('dist/data/curriculum/index.json'
   for(const [i,e]of l.examples.entries()){const [r]=run(e.code,[{inputs:e.inputs||[],files:e.files||{}}],false);assert(!r.error&&normalize(r.output)===normalize(e.expected_output),l.id+' exemple '+(i+1)+' : '+JSON.stringify({attendu:e.expected_output,obtenu:r}));examples++}
   for(const e of l.exercises){const tests=[...e.visible_tests,...e.hidden_tests];assert(tests.length>=2,e.id+' : un second cas est nécessaire');
    const res=run(e.solution,tests);res.forEach((r,k)=>assert(passes(r,tests[k]),e.id+' solution cas '+k+' : '+JSON.stringify({attendu:tests[k].expected_output,obtenu:r})));cases+=tests.length;solutions++;
-   assert(!run(e.starter_code,tests).every((r,k)=>passes(r,tests[k])),e.id+' : le code de départ réussit déjà');
+   const starter=run(e.starter_code,tests);
+   assert(!starter.every((r,k)=>passes(r,tests[k])),e.id+' : le code de départ réussit déjà');
+   if(e.id==='java-m2-02-e1'){
+    const excessive=starter.find(r=>r.error==='RangeError'&&r.detail==='L’affichage dépasse 16 000 caractères.');
+    assert(excessive,'java-m2-02-e1 : une boucle qui affiche sans limite doit être classée comme sortie excessive');
+    assert.equal(excessive.output.length,java.MAX_OUTPUT,'java-m2-02-e1 : la sortie exposée doit respecter MAX_OUTPUT');
+   }
   }
  }
  report[course.id]={tool,examples,referenceCases:cases,solutionsAccepted:solutions,startersRejected:solutions};
