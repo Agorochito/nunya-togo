@@ -44,7 +44,7 @@ try{
    await summary.click();await expect(more).toHaveAttribute('open','');await hero.locator('h1').click();await expect(more).not.toHaveAttribute('open');
    await summary.click();await more.locator('.ref-more-menu a[data-ref-nav="progression"]').click();await expect(p).toHaveURL(/#\/progression$/);await expect(more).not.toHaveAttribute('open');await p.goto(base+'#/accueil');
   }
-  const curriculum=await p.evaluate(async()=>{const {courses}=await fetch('./data/curriculum/index.json').then(r=>r.json());return {courses:courses.length,lessons:courses.reduce((n,c)=>n+c.lessons.length,0)}});
+  const curriculum=await p.evaluate(async()=>{const {courses}=await fetch('./data/curriculum/index.json').then(r=>r.json()),git=await fetch('./data/git/index.json').then(r=>r.json());return {courses:courses.length+1,lessons:courses.reduce((n,c)=>n+c.lessons.length,0)+git.lessons.length}});
   await expect(p.locator('.nl-ref-facts dd').nth(0)).toHaveText(String(curriculum.courses));await expect(p.locator('.nl-ref-facts dd').nth(1)).toHaveText(String(curriculum.lessons));
   await expect(hero.locator('.primary')).toHaveCount(1);await expect(hero.locator('form,input')).toHaveCount(0);
   await expect(hero.locator('.primary')).toHaveAttribute('href','#/apprendre');

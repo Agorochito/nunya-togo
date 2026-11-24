@@ -112,6 +112,8 @@ html[data-mode=dark]:not([data-ambiance=verre]) .nl-band-surface,html[data-ambia
 [data-dom=web]{--dom-c:var(--dom-web);--dom-s:var(--dom-web-soft)}[data-dom=lang]{--dom-c:var(--dom-lang);--dom-s:var(--dom-lang-soft)}[data-dom=data]{--dom-c:var(--dom-data);--dom-s:var(--dom-data-soft)}[data-dom=sec]{--dom-c:var(--dom-sec);--dom-s:var(--dom-sec-soft)}[data-dom=tools]{--dom-c:var(--dom-tools);--dom-s:var(--dom-tools-soft)}[data-dom=algo]{--dom-c:var(--dom-algo);--dom-s:var(--dom-algo-soft)}
 .nl-mark{display:grid;place-items:center;flex:none;width:56px;height:56px;border-radius:16px;background:var(--dom-c);color:var(--nl-field);line-height:1}
 .nl-mark img,.nl-ref-domain-mark img,.nl-why-icon img{display:block;width:26px;height:26px;object-fit:contain;filter:brightness(0) invert(1)}
+/* Modes sombres : les couleurs de domaine y sont claires, un glyphe blanc y serait presque invisible (1,4 à 2,3:1). */
+html[data-mode=dark] :is(.nl-mark,.nl-ref-domain-mark,.nl-why-icon) img,html[data-ambiance=nuit] :is(.nl-mark,.nl-ref-domain-mark,.nl-why-icon) img{filter:brightness(0)}
 
 /* « Par où commencer ? » : trois portes de même poids, chacune avec une question, un cours, une promesse et une seule action pleine. */
 .nl-doors{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--sp-4);margin:0;padding:0;list-style:none}
@@ -193,10 +195,12 @@ html[data-ambiance=verre] .nl-door{background:var(--nl-field)}
 /* La piste reprend la clarté éditoriale de la maquette, avec une photo locale et sans barre marketing concurrente. */
 #main .nl-hero{
   isolation:isolate;
-  --hero-bg:var(--theme-bg);
-  --hero-ink:var(--theme-ink);
-  --hero-muted:var(--theme-muted);
-  --hero-accent:var(--accent-text);
+  /* Valeurs captées sur .nl (ancêtre) : référencer --theme-* ici créerait un cycle avec la règle d’origine du bandeau (--theme-ink:var(--hero-ink)). */
+  --hero-bg:var(--nl-field);
+  --hero-ink:var(--nl-ink);
+  --hero-muted:var(--nl-muted);
+  --hero-accent:var(--nl-accent);
+  --warm:var(--nl-warm);
   padding:clamp(28px,4vw,56px) 0 clamp(28px,4vw,56px);
   border-bottom:1px solid var(--theme-line);
   border-radius:0;
