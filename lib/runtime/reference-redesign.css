@@ -52,7 +52,7 @@
 .ref-site .bottom-nav{border-color:var(--theme-line);background:linear-gradient(var(--theme-surface),var(--theme-surface)) var(--theme-bg);box-shadow:0 -4px 16px color-mix(in srgb,var(--theme-ink) 8%,transparent)}
 .ref-site .bottom-nav :is(a,button){color:var(--theme-muted)}
 .ref-site .bottom-nav :is(a,button).active{color:var(--accent-text);background:var(--theme-raised)}
-@media(max-width:1300px){
+@media(max-width:1320px){
  .ref-header-inner{gap:12px;padding-inline:20px}
  .ref-primary-nav{gap:2px}
  .ref-primary-nav>a,.ref-more>summary{padding-inline:6px}
