@@ -346,7 +346,19 @@
 
     const action = button.dataset.onboarding;
     if(action==='skip'){skipPersonalization();return}
-    if(action==='restore'){const input=document.createElement('input');input.type='file';input.accept='.json,application/json';input.id='onboarding-backup';input.onchange=()=>{if(!input.files[0])return;restoreProgressFile(input.files[0]).then(ok=>{if(ok){state.academy.onboarded=true;state.onboarding={...state.onboarding,step:'complete'};aPersist();aGo(returnRoute)}}).catch(error=>toast(error.message))};input.click();return}
+    if(action==='restore'){
+      const input=document.createElement('input');
+      input.type='file';input.accept='.json,application/json';input.id='onboarding-backup';
+      input.style.cssText='position:fixed;left:-10000px;width:1px;height:1px;opacity:0';
+      input.addEventListener('change',()=>{
+        const file=input.files?.[0];
+        input.remove();
+        if(!file)return;
+        restoreProgressFile(file).then(ok=>{if(ok){state.academy.onboarded=true;state.onboarding={...state.onboarding,step:'complete'};aPersist();aGo(returnRoute)}}).catch(error=>toast(error.message));
+      },{once:true});
+      input.addEventListener('cancel',()=>input.remove(),{once:true});
+      document.body.append(input);input.click();return;
+    }
     if(action==='preferences'){state.onboarding={...state.onboarding,step:'domain'};state.academy.onboarded=false;aPersist();aGo('#/accueil');return}
     if (action === 'begin') {
       state.onboarding = { ...state.onboarding, step: 'domain' };

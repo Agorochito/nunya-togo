@@ -2,7 +2,9 @@
 
 *11 novembre 2026. Diagnostic fait sur la 5.19.0 (branche interface-5.2) à partir de 24 captures (8 pages, ordinateur clair et sombre, mobile), du CSS et du JS, par quatre relectures indépendantes (identité visuelle, motivation, mise en page, faisabilité) puis une synthèse revérifiée. Contrastes calculés avec la formule WCAG.*
 
-**État d’avancement :** Phase 0 et Phase 1 faites (version 5.27.0, branche refonte-phase1). Écarts par rapport aux valeurs ci-dessous, imposés par le contrôle de contraste élargi aux panneaux surélevés : bordure forte de Nunya sombre #748279 (au lieu de #66766c) ; latérite de Verre sombre #ffc8ae. Phase 2 commencée en 5.29.0 (voir ci-dessous) ; prochaine étape : second lot de la Phase 2 (Ma progression).
+**État d’avancement :** Phases 0 à 4 réalisées, publiées avec la refonte visuelle globale en 5.30.0. Écarts par rapport aux valeurs ci-dessous, imposés par le contrôle de contraste élargi aux panneaux surélevés : bordure forte de Nunya sombre #748279 (au lieu de #66766c) ; latérite de Verre sombre #ffc8ae. Direction validée par le propriétaire : refonte visuelle globale inspirée de la maquette fournie, sans en reprendre les images ni les affirmations. Il reste la Phase 5 (finitions et illustrations) et l’interface anglaise d’« Apprendre à coder ».
+
+**5.30.0 (refonte visuelle globale).** En-tête horizontal sur ordinateur (tiroir et navigation basse sur petit écran) ; accueil avec photo de fond (Pexels, sans légende, crédit dans `dist/images/PHOTO-CREDITS.txt`), quatre domaines calculés depuis le catalogue, trois cours d’entrée et icônes locales (Lucide pour l’interface ; logos de langage conservés par décision du propriétaire, qui remplace la règle « aucune couleur de marque réelle » du §2) ; catalogue de 29 programmes, Git compris, avec frise des modules ; « Ma progression » chargée à la demande, avec dix jalons ; leçon centrée sur la lecture (17 px, barre « Vérifier » visible, en-tête sans débordement à 320 px). Validation : zéro violation axe à 360, 768, 1 024 et 1 440 px ; CSS 42 596 / 44 000 octets gzip (budget relevé en 5.30.0 : la feuille globale `reference-redesign.css`, chargée dès le premier affichage, est comptée) ; JS cœur 151 490 / 300 000 ; accueil de 4 987 px à 1 440 px et 7 173 px à 360 px.
 
 **5.28.0 (accueil vitrine) :** l’accueil devient une vraie page d’entrée (bandeau des technologies, héros sombre, exemples de code, tuiles des cours, bandes thématiques), première visite comprise ; il couvre une partie de la Phase 2 (carte de progression réelle). Écart assumé avec la typographie ci-dessous : les titres passent en sans-serif système graisse 800 sur tout le site, jugé plus lisible et plus cohérent que le mélange serif / sans-serif.
 
@@ -16,18 +18,20 @@
 - la tuile des jours consécutifs devient « jours actifs ces 7 derniers jours ».
 
 Écarts avec la phase 2 décrite plus bas :
-- pas de module `momentum.mjs` : la logique de l'accueil reste dans `home-landing.mjs`, qui est déjà chargé à la demande ;
+- l'accueil reste dans `home-landing.mjs` ; `momentum.mjs` porte « Ma progression ». Les deux sont chargés à la demande ;
 - l'anneau « x/15 min » est remplacé par un rythme de sept jours, parce que les minutes restent indicatives (10 par leçon).
 
-Reste pour le second lot de la phase 2 :
-- réordonner « Ma progression » : Cette semaine, En cours, badges, puis Pas encore commencés ;
-- sortir `progressView` du cœur ;
-- définir la dizaine de jalons.
+**5.29.0 (phase 2, second lot : « Ma progression »).** Terminé :
+- nouvelle vue chargée à la demande, organisée autour de la semaine, des parcours en cours, des jalons, puis des programmes à commencer ;
+- dix jalons calculés depuis les leçons, exercices, jours actifs et projets réellement enregistrés ;
+- notes, projets locaux, cours commencés/terminés et actions d’export/restauration conservés dans la vue ;
+- anciens affichages et surcharges de progression retirés des modules de cours ; module et CSS ajoutés au précache hors ligne ;
+- validé à 360, 1024 et 1440 px : aucun débordement, zéro violation axe ; progression sous 2 500 px sur ordinateur, y compris avec de nombreux parcours commencés ; vue et style disponibles hors ligne.
 
 ## 0. Les autres chantiers, et leur place dans ce plan
 
 - **Avant tout (Phase 0)** : fichier `.gitattributes` (fins de ligne LF) pour que la construction donne le même résultat sous Windows et macOS ; protection de la branche `main` sur GitHub (PR et contrôles « Quality » obligatoires), à activer par le propriétaire du dépôt.
-- **Interface anglaise d’« Apprendre à coder »** : après la Phase 3, pour ne traduire qu’une fois les nouveaux textes du catalogue et du programme.
+- **Interface anglaise d’« Apprendre à coder »** : après la Phase 4, pour ne traduire qu’une fois les nouveaux textes du catalogue, du programme et des leçons.
 - **Git comme carte du catalogue** : inclus dans la Phase 3 (refonte du catalogue).
 - **Docker** : à coordonner avec le collaborateur, qui l’annonce « en préparation ».
 - **Côté propriétaire** : régénérer la clé Groq ; activer la protection contre les mots de passe divulgués dans Supabase.
@@ -112,7 +116,7 @@ Ces critères s'appliquent à **chaque phase** :
 - axe : 0 violation, sur 8 pages × {360, 1440} × {clair, sombre} × 7 ambiances ;
 - texte ≥ 4,5:1 et éléments non textuels ≥ 3:1 ;
 - budget JS cœur ≤ 300 000 o (relevé de 150 000 le 11 novembre 2026) ; garder le JS chargé à la demande quand c’est possible ;
-- CSS : budget de 42 Ko gzip pendant la Phase 0 (jetons ajoutés, pas encore utilisés), puis ≤ 40 Ko dès la Phase 1, et en baisse ensuite ;
+- CSS : budget de 42 Ko gzip pendant la Phase 0 (jetons ajoutés, pas encore utilisés), puis ≤ 40 Ko dès la Phase 1, relevé à 44 Ko en 5.30.0 parce que la feuille globale `reference-redesign.css` est désormais comptée ;
 - `prefers-reduced-motion` respecté ;
 - captures de référence relues.
 
@@ -159,7 +163,7 @@ Ces critères s'appliquent à **chaque phase** :
   - JS cœur ≤ budget, avec un gain net ;
   - le module est annoncé en `aria-live=polite`.
 
-### Phase 3 : catalogue et page programme (M)
+### Phase 3 : catalogue et page programme (M) — achevée
 
 Uniquement dans des modules à la demande (`course-catalogue.mjs`, `coding-views.mjs`), donc 0 o dans le cœur.
 
@@ -176,19 +180,23 @@ Uniquement dans des modules à la demande (`course-catalogue.mjs`, `coding-views
   - la fiche imprimable rend toujours tout.
 - **Risques :** tests liés à l'ordre des éléments ; Ctrl+F dans les modules repliés.
 - **Critères :** catalogue ≤ 4 000 px sur ordinateur ; `content-visibility:auto` sur les listes.
+- **Réalisation :** 29 programmes avec Git une seule fois dans « Outils », filtres et reprise conservés, domaines secondaires et parcours guidés repliés. Le catalogue complet mesure 3 648 px à 1 440 px (7 993 px à 360 px ; le seuil de 4 000 px est celui de l’ordinateur). La frise, la prochaine leçon et l’impression des modules repliés fonctionnent.
+- **Validation :** tests navigateur à 360 et 1 440 px, zéro violation axe ; garde CSS à 39 992 octets gzip au moment de la clôture de la phase.
 
-### Phase 4 : leçon et mobile (M)
+### Phase 4 : leçon et mobile (M) — achevée
 
 - **Changements :**
   - en-tête de leçon raccourci (fil d'Ariane sur une ligne, export dans un menu « ⋯ ») ;
   - pastille « ✓ Leçon terminée » quand la leçon est déjà validée ;
   - bandeau non bloquant « Leçon terminée · Module 1 : 3/5 » avec choix « Continuer / Faire une pause » ;
-  - sur ordinateur, le panneau de pratique devient une colonne flex avec la barre « Vérifier mon code » toujours visible (aujourd'hui coupée à 900 px de haut) ;
+  - sur ordinateur, la barre « Vérifier mon code » reste visible dans le panneau de pratique pendant son défilement ;
   - exercices en pastilles numérotées ;
-  - sur mobile, `padding-bottom` avec `env(safe-area-inset-bottom)`.
+  - sur mobile, conserver l’espace de fin de page et la zone sûre `env(safe-area-inset-bottom)` déjà gérée par la barre de navigation.
 - **Fichiers :** `coding-views.mjs`, `academy-layout.css`, `coding-curriculum.js` (≤ 40 o).
 - **Risques :** le focus reste sur le h1 de la leçon ; cibles tactiles ≥ 44 px.
 - **Critères :** sur un écran 360×640, la première ligne de contenu apparaît au-dessus de la ligne de flottaison ; testé à 1366×768.
+- **Réalisation :** fil d’Ariane sur une ligne, export/impression regroupés dans « Autres actions », pastilles d’exercices numérotées, pastille de complétion et bandeau Continuer/Faire une pause. La barre de vérification utilise `position: sticky` dans le panneau défilant, plutôt qu’une mise en page flex ; le comportement demandé reste identique.
+- **Validation :** première section visible à 360×640 ; barre de vérification visible à 1 366×768 ; zéro débordement horizontal et zéro violation axe. Les leçons ont aussi passé 39 audits axe par largeur dans les sept ambiances, en clair et sombre quand disponible. CSS final de la 5.30.0 : 42 596 octets gzip, feuille globale comprise.
 
 ### Phase 5 : finitions et illustrations (M)
 
@@ -219,4 +227,4 @@ Uniquement dans des modules à la demande (`course-catalogue.mjs`, `coding-views
 3. **Badges :** une dizaine de jalons calculés à partir des leçons réellement validées, sans points ni classement.
 4. **Ambiances :** les 7 sont conservées (Nunya, Lagune, Kente, Sauge, Prune, Nuit, Verre liquide). Chaque phase doit donc régler et tester les 7, en clair et en sombre quand l’ambiance l’a.
 
-Reste ouvert : faut-il garder le bouton direct « Commencer » sur chaque carte de cours, ou seulement sur les cartes vedettes et « Continuer » ? Par défaut, on le garde (Phase 3).
+Décision appliquée : la carte de cours est entièrement cliquable (« Voir le programme → ») ; le bouton direct « Commencer » n’est plus affiché sur chaque carte, il reste dans « Continuer » et dans l’en-tête.

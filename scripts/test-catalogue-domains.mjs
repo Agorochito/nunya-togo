@@ -3,6 +3,7 @@ const base=process.env.NUNYA_TEST_URL||'http://127.0.0.1:4176/',browser=await la
 try{for(const width of [360,1440]){const ctx=await browser.newContext({viewport:{width,height:900}}),p=await ctx.newPage();p.on('pageerror',e=>errors.push(e.message));
  await p.goto(base+'#/apprendre');const toggles=p.locator('[data-domain-toggle]');await expect(toggles.first()).toBeVisible();const count=await toggles.count();expect(count).toBeGreaterThanOrEqual(4);
  const lang=p.locator('[data-domain-toggle=langages]'),body=p.locator('#nunya-domain-body-langages');await expect(lang).toHaveAttribute('aria-expanded','true');await expect(body).toBeVisible();
+ const data=p.locator('[data-domain-toggle=donnees]');await expect(data).toHaveAttribute('aria-expanded','false');await expect(p.locator('#nunya-domain-body-donnees')).toBeHidden();
  await lang.click();await expect(lang).toHaveAttribute('aria-expanded','false');await expect(body).toBeHidden();await expect(lang).toBeFocused();
  await p.reload();await expect(p.locator('[data-domain-toggle=langages]')).toHaveAttribute('aria-expanded','false');await expect(p.locator('#nunya-domain-body-langages')).toBeHidden();await expect(p.locator('#nunya-domain-body-web')).toBeVisible();
  await p.locator('[data-domain-toggle=langages]').focus();await p.keyboard.press('Enter');await expect(p.locator('#nunya-domain-body-langages')).toBeVisible();

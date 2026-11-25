@@ -1,5 +1,25 @@
 # Historique
 
+## 5.30.0 — 24 novembre 2026 · refonte visuelle globale
+
+- **Navigation** : sur ordinateur, un en-tête horizontal remplace la barre latérale (Accueil, Apprendre, Mes cours, Métiers, Bibliothèque, un menu « Plus » pour le reste, la recherche, Nunya Aide, la langue et « Commencer »). Sur tablette et téléphone, un tiroir et une barre du bas prennent le relais. Le menu « Plus » se ferme après un choix ou un clic à l'extérieur. L'en-tête est contrôlé à treize largeurs, de 801 à 1 440 px, et reste utilisable à 320 px.
+- **Accueil** : un bandeau avec une photo de fond, trois repères (« En français », « Sans compte obligatoire », « Progression sur cet appareil »), puis quatre domaines (Code et création, Données et IA, Cybersécurité, Outils numériques) avec le nombre de cours calculé depuis le catalogue (Git compris, soit 29 programmes comme dans le catalogue), trois cours d'entrée (Python, HTML, SQL) et trois espaces (Apprendre, Réviser, Découvrir). Les icônes sont locales : Lucide (licence ISC) pour les domaines, les espaces et les engagements, et les logos de Python, HTML5 et PostgreSQL via Simple Icons (CC0), conservés avec leurs licences dans `dist/icons/`. La photo (Pexels, 120 Ko, créditée dans `dist/images/PHOTO-CREDITS.txt`) et les icônes sont précachées pour le hors ligne. La bande finale reprend la promesse du bandeau (« Découvrir les cours »). L'accueil mesure 4 987 px à 1 440 px et 7 173 px à 360 px à la première visite, soit plus que la 5.29.0 (4 609 et 6 616 px), pour une page plus illustrée.
+- **Catalogue** : 29 programmes, Git compris, rangé dans les outils. Les cartes sont entièrement cliquables, avec une seule ligne de métadonnées et la progression seulement si le cours est commencé. La page propose « Continuer », puis « Pour bien commencer » (Python, HTML, JavaScript), puis les domaines repliables (Données, Sécurité et Outils repliés par défaut). Le catalogue mesure 3 648 px à 1 440 px. L'export et la restauration de la progression quittent le catalogue pour Ma progression.
+- **Programmes** : une frise verticale des modules (terminé, en cours, à venir), où seul le module qui contient la prochaine leçon est ouvert, avec « Prochaine leçon » repérée pour les lecteurs d'écran. L'impression ouvre tous les modules.
+- **Ma progression** : une vue chargée à la demande, organisée autour de la semaine (sept jours et temps), des cours en cours, de dix jalons calculés depuis les leçons, exercices, jours actifs et projets réellement enregistrés, puis des cours pas encore commencés, repliés. Sans le module (hors ligne sans cache, erreur de chargement), une version simple reste affichée avec un bouton pour réessayer.
+- **Leçons** : la leçon s'ouvre sur « Comprendre », avec « Pour commencer » et « À la fin, tu sauras… », une lecture à 17 px, un fil d'Ariane qui se replie, des pastilles d'exercices, un bandeau de fin de leçon et une barre « Vérifier » qui reste visible. À 320 px, rien ne déborde.
+- **Restauration d'une sauvegarde** : depuis l'accueil, le sélecteur de fichier est rattaché à la page et gère l'annulation. Il ne restait plus actif sans fichier choisi.
+- **Technique** :
+  - la feuille globale `runtime/reference-redesign.css` reste séparée du bundle ; elle est maintenant comptée dans le budget CSS, qui passe de 40 000 à 44 000 octets gzip (42 596 mesurés ; JavaScript du cœur : 151 490 sur 300 000) ;
+  - le nom du cache et la liste de précache de `dist/sw.js` (module de progression, photo, icônes) sont versionnés comme le reste du code source ; la construction ne met plus à jour que l'empreinte `?r=` de `http-api.js` ;
+  - de 701 à 1 000 px, où la navigation passe par le tiroir, le tiroir fermé n'est plus atteignable au clavier, et Échap ou un clic à l'extérieur le ferment, comme sur téléphone. Échap ferme aussi le menu « Plus » de l'en-tête ;
+  - en-tête : la compression des espacements démarre à 1 320 px (la largeur maximale du conteneur) et non à 1 300 px, pour que la navigation ne déborde pas entre 1 301 et 1 320 px ;
+  - en ambiance Verre, dont les surfaces sont translucides, la barre du bas, le bouton de recherche, l'avatar, le bouton de menu et le menu « Plus » reposent sur un fond de base opaque : le contraste de leurs libellés ne dépend plus de ce qui se trouve derrière ;
+  - « Tout déplier / Tout replier » dans le catalogue ne porte plus `aria-pressed`, puisque son libellé change déjà ;
+  - une seule chaîne de version pour `dist/index.html`, qui finit à 5.30.0.
+- **Tests** : `test-lesson-responsive.mjs` rejoint la chaîne de la CI. `test-home-guided.mjs` lit la version servie au lieu d'une version figée, et couvre l'en-tête, l'accueil, la photo, les icônes et Ma progression. Les tests du catalogue, du hors ligne, de la restauration, des parcours et des mises à jour ont été mis à jour pour le nouveau catalogue (29 cartes) ; la mise à jour est testée depuis la 5.29.1.
+- Cache `nunya-v5.30.0`.
+
 ## 5.29.1 — 24 novembre 2026
 
 - **La construction et les tests locaux fonctionnent enfin sous Windows**, sans contournement. Cinq défauts de l'outillage, qui n'avaient aucun effet pour les élèves :
