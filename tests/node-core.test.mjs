@@ -15,8 +15,9 @@ describe('Node.js online workshop',()=>{
   expect(r.assertions_passed).toBe(true);
  });
  it('waits for asynchronous output before moving to the checks',()=>{
-  const [r]=run('setTimeout(() => console.log("plus tard"), 200);\nconst http = require("http");\nconst s = http.createServer((q, res) => res.end("pong"));\nnunyaRequete(s, "/").then(x => console.log(x.statut, x.corps));',[{expressions:[{expr:'1',expected:'1'}]}]);
-  expect(r.output).toBe('200 pong\nplus tard\n');
+  const [r]=run('setTimeout(() => { globalThis.termine = true; console.log("plus tard"); }, 200);\nconst http = require("http");\nconst s = http.createServer((q, res) => res.end("pong"));\nnunyaRequete(s, "/").then(x => console.log(x.statut, x.corps));',[{expressions:[{expr:'globalThis.termine',expected:'true'}]}]);
+  expect(r.output.trim().split('\n')).toEqual(expect.arrayContaining(['200 pong','plus tard']));
+  expect(r.checks[0].actual).toBe('true');
   expect(r.assertions_passed).toBe(true);
  });
  it('survives an error thrown inside an async request handler',()=>{

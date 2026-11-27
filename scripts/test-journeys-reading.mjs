@@ -39,11 +39,12 @@ try{for(const width of[360,1440]){const ctx=await browser.newContext({viewport:{
  await p.locator('.momentum-backup [data-action=export]').click();
  const backup=await backupEvent,backupPath='artifacts/journey-backup-'+width+'.json';await backup.saveAs(backupPath);
  const other=await browser.newContext(),restored=await other.newPage();
- await restored.goto(base+'#/accueil');
+ await restored.goto(base+'#/progression');
  const restoreEvent=restored.waitForEvent('filechooser');
- await restored.locator('[data-onboarding=restore]').click();
+ await restored.locator('.momentum-backup-actions [data-action=import]').click();
  await(await restoreEvent).setFiles(backupPath);
- await expect(restored).toHaveURL(/#\/apprendre$/);
+ await expect(restored).toHaveURL(/#\/progression$/);
+ await restored.goto(base+'#/apprendre');
  await expect(restored.locator('.nunya-journey-active')).toBeVisible();
  state=await restored.evaluate(()=>JSON.parse(localStorage.getItem('nunya-state')));
  expect(state.curriculum.work['py-m1-01-e1'].code).toContain('mon travail');

@@ -1,15 +1,21 @@
 {
   "results": [
     {
+      "progressSync": "disabled; profile settings make no Supabase auth or data requests"
+    },
+    {
       "deepLink": "#/apprendre/python-bases/m12/py-m12-03",
+      "canonical": "#/apprendre/python-bases/m12/py-m12-03",
       "firstVisit": "opens without questionnaire"
     },
     {
       "deepLink": "#/apprendre/decouverte/m4/dec-m4-05",
+      "canonical": "#/apprendre/decouverte/m4/dec-m4-05",
       "firstVisit": "opens without questionnaire"
     },
     {
       "deepLink": "#/bibliotheque/cours",
+      "canonical": "#/apprendre",
       "firstVisit": "opens without questionnaire"
     },
     {

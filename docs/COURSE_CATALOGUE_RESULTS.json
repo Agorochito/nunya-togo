@@ -2,24 +2,30 @@
   "results": [
     {
       "width": 360,
-      "courses": 27,
+      "catalogueHeight": 8017,
+      "courses": 29,
       "filters": true,
-      "quickLinks": 28,
+      "gitInToolsOnce": true,
       "discoveryPreserved": true,
       "refreshKeepsTypedQuery": true,
       "offlineCanonicalCatalogue": true,
       "roadmapHonest": true,
+      "programTimeline": true,
+      "printShowsCollapsedModules": true,
       "axeViolations": 0
     },
     {
       "width": 1440,
-      "courses": 27,
+      "catalogueHeight": 3865,
+      "courses": 29,
       "filters": true,
-      "quickLinks": 28,
+      "gitInToolsOnce": true,
       "discoveryPreserved": true,
       "refreshKeepsTypedQuery": true,
       "offlineCanonicalCatalogue": true,
       "roadmapHonest": true,
+      "programTimeline": true,
+      "printShowsCollapsedModules": true,
       "axeViolations": 0
     }
   ],

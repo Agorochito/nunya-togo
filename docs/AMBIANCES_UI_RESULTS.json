@@ -3,23 +3,23 @@
     {
       "width": 360,
       "welcomePicker": true,
-      "sidebarToggle": false,
+      "desktopNavigation": false,
       "settingsCards": 7,
       "nuitForcesDark": true,
       "glassLiteToggle": true,
       "ownColour": true,
-      "axeAudits": 26,
+      "axeAudits": 39,
       "axeViolations": 0
     },
     {
       "width": 1440,
       "welcomePicker": true,
-      "sidebarToggle": true,
+      "desktopNavigation": true,
       "settingsCards": 7,
       "nuitForcesDark": true,
       "glassLiteToggle": true,
       "ownColour": true,
-      "axeAudits": 26,
+      "axeAudits": 39,
       "axeViolations": 0
     }
   ],

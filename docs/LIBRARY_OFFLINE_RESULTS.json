@@ -1,6 +1,9 @@
 {
   "results": [
     {
+      "library": "reference resources, guided courses and career pathways have separate entry points"
+    },
+    {
       "resource": "mdn-03388f77d9c35869",
       "opensWithoutReload": true
     },
@@ -10,6 +13,9 @@
     },
     {
       "libraryUnits": "shareable filtered unit survives reload"
+    },
+    {
+      "offline": "Ma progression, son module et son style restent disponibles hors ligne"
     },
     {
       "offline": "visiting public guide does not replace app shell; downloaded JavaScript final project opens offline"

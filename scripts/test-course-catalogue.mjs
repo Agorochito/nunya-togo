@@ -12,11 +12,36 @@ try{
   p.on('pageerror',error=>errors.push(error.message));
   await p.goto(base+'#/apprendre');
   await expect(p.locator('.nunya-course-card')).toHaveCount(29);
+  const expectedMarks={python:'brand-python',html:'brand-html5',css:'brand-css',javascript:'brand-javascript',dom:'brand-javascript',react:'brand-react',sql:'database',postgres:'brand-postgresql',bash:'brand-gnubash',cpp:'brand-cplusplus',java:'brand-openjdk',php:'brand-php',typescript:'brand-typescript',node:'brand-nodedotjs',git:'brand-git'};
+  for(const [technology,icon] of Object.entries(expectedMarks)){
+   const mark=p.locator(`.nunya-course-card[data-tech="${technology}"] .nunya-course-mark`);
+   await expect(mark.first()).toHaveCount(1);
+   await expect(mark.first().locator('img')).toHaveAttribute('src',`./icons/${icon}.svg`);
+  }
+  const courseIcons=await p.locator('.nunya-course-mark img').evaluateAll(images=>images.map(img=>({src:img.getAttribute('src'),loaded:img.complete&&img.naturalWidth>0})));
+  expect(courseIcons.filter(icon=>!icon.loaded)).toEqual([]);
+  const markStyle=await p.evaluate(()=>{
+   const root=document.documentElement,mode=root.getAttribute('data-mode'),mark=document.querySelector('.nunya-course-mark'),image=mark?.querySelector('img'),sql=document.querySelector('.nunya-course-card[data-tech="sql"] .nunya-course-mark img'),java=document.querySelector('.nunya-course-card[data-tech="java"] .nunya-course-mark img');
+   root.dataset.mode='dark';
+   const style={width:getComputedStyle(mark).width,border:getComputedStyle(mark).borderWidth,background:getComputedStyle(mark).backgroundColor,imageWidth:getComputedStyle(image).width,sqlFilter:getComputedStyle(sql).filter,javaFilter:getComputedStyle(java).filter};
+   if(mode===null)root.removeAttribute('data-mode');else root.setAttribute('data-mode',mode);
+   return style;
+  });
+  expect(markStyle).toEqual({width:'44px',border:'0px',background:'rgba(0, 0, 0, 0)',imageWidth:'32px',sqlFilter:'brightness(0) invert(1)',javaFilter:'brightness(0) invert(1)'});
+  const cachedCourseIcons=[...new Set(Object.values(expectedMarks).map(icon=>`./icons/${icon}.svg`))];
+  const cached=await p.evaluate(async paths=>{const sw=await fetch('./sw.js').then(response=>response.text());return paths.every(path=>sw.includes(`'${path}'`))},cachedCourseIcons);
+  expect(cached).toBe(true);
   const catalogueHeight=await p.locator('#nunya-course-catalogue').evaluate(el=>el.scrollHeight);
   const gitCard=p.locator('.nunya-course-card[href="#/apprendre/git-bases"]');
   await expect(gitCard).toHaveCount(1);
   await expect(gitCard).toHaveAttribute('data-domain','outils');
   if(width===1440)expect(catalogueHeight).toBeLessThanOrEqual(4000);
+  const advancedFilters=p.locator('#nunya-course-advanced');
+  await expect(advancedFilters).not.toHaveAttribute('open','');
+  await expect(p.locator('#nunya-course-filter-clear')).toHaveCount(0);
+  await expect(p.locator('[data-curr=refresh-catalogue]')).toBeVisible();
+  await advancedFilters.locator('summary').click();
+  await expect(p.locator('#nunya-course-domain')).toBeVisible();
   const original=p.url();
   await p.locator('#nunya-course-level').selectOption('intermediaire');
   await p.locator('#nunya-course-search-submit').click();
@@ -26,12 +51,15 @@ try{
   await expect(p.locator('.nunya-course-card')).toHaveCount(1);
   await expect(p.locator('.nunya-course-card')).toContainText('CSS : interfaces robustes');
   await p.locator('#nunya-course-filter-clear').click();
+  await expect(advancedFilters).not.toHaveAttribute('open','');
+  await advancedFilters.locator('summary').click();
   await p.locator('#nunya-course-technology').selectOption('sql');
   await p.locator('#nunya-course-search-submit').click();
   await expect(p.locator('.nunya-course-card')).toHaveCount(2);
   await expect(p.locator('.nunya-course-card[href="#/apprendre/sql-bases"]')).toContainText('SQL : des premières requêtes');
   expect(p.url()).toBe(original);
   await p.locator('#nunya-course-filter-clear').click();
+  await advancedFilters.locator('summary').click();
   await p.locator('#nunya-course-query').fill('JS');
   await p.locator('#nunya-course-search-submit').click();
   await expect(p.locator('.nunya-course-card')).toHaveCount(7);
@@ -43,6 +71,7 @@ try{
   await journeyChoices.locator('summary').click();
   await expect(journeyChoices.locator('.nunya-journey-grid')).toBeVisible();
   await journeyChoices.locator('summary').click();
+  await advancedFilters.locator('summary').click();
   await p.locator('#nunya-course-technology').selectOption('git');
   await p.locator('#nunya-course-search-submit').click();
   await expect(p.locator('.nunya-course-card')).toHaveCount(1);
@@ -55,6 +84,7 @@ try{
   await expect(p.locator('.nunya-course-card')).toHaveCount(29);
   await expect(p.locator('.curr-entry h2').filter({hasText:'Découverte du numérique'})).toHaveCount(1);
   await p.locator('#nunya-course-query').fill('mon filtre conservé');
+  await advancedFilters.locator('summary').click();
   await p.locator('#nunya-course-level').selectOption('intermediaire');
   await p.locator('[data-curr=refresh-catalogue]').click();
   await expect(p.locator('#nunya-course-query')).toHaveValue('mon filtre conservé');
@@ -65,7 +95,15 @@ try{
   expect(audit.violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>n.target)}))).toEqual([]);
   expect(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth)).toBe(false);
   await p.screenshot({path:'docs/screenshots/course-catalogue-'+width+'.png',fullPage:true});
-  await p.locator('[data-domain-toggle=donnees]').click();
+  if(width===360){
+   const jumps=p.locator('.nunya-domain-jumps'),dataSection=p.locator('#nunya-domain-section-donnees');
+   await expect(jumps).toBeVisible();await expect(jumps).toHaveCSS('position','sticky');
+   const route=p.url();await jumps.locator('select').selectOption('donnees');
+   await expect(dataSection.locator('[data-domain-toggle=donnees]')).toHaveAttribute('aria-expanded','true');
+   expect(p.url()).toBe(route);
+   await p.waitForFunction(()=>{const nav=document.querySelector('.nunya-domain-jumps'),section=document.querySelector('#nunya-domain-section-donnees');return nav&&section&&Math.abs(nav.getBoundingClientRect().top-64)<2&&section.getBoundingClientRect().top>=120&&section.getBoundingClientRect().top<180});
+  }else await expect(p.locator('.nunya-domain-jumps')).toBeHidden();
+  if(width===1440)await p.locator('[data-domain-toggle=donnees]').click();
   await expect(p.locator('#nunya-domain-body-donnees')).toBeVisible();
   await p.locator('.nunya-course-card[href="#/apprendre/sql-bases"]').click();
   await expect(p.locator('.curr-module')).toHaveCount(6);
