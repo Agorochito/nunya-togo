@@ -16,6 +16,7 @@ try{
  const picker=r.waitForEvent('filechooser');
  await r.locator('.momentum-backup-actions [data-action=import]').click();
  await(await picker).setFiles({name:'nunya-test.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(source))});
+ await expect(r.locator('#toast')).toContainText('ont été restaurés');
  await expect(r).toHaveURL(/#\/progression$/);
  let state=await saved(r);
  expect(state.profile.level).toBe('advanced');
