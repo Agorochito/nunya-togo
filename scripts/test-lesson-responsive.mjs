@@ -9,6 +9,11 @@ const lesson=pack.lessons[0],browser=await launchTestBrowser(chromium),results=[
 
 try{
  const mobileContext=await browser.newContext({viewport:{width:360,height:640}}),mobile=await mobileContext.newPage();
+ await mobile.goto(base+'#/profil');
+ await mobile.locator('[data-font="larger"]').click();
+ await expect.poll(()=>mobile.evaluate(()=>Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--lesson-reading-text-size')))).toBeCloseTo(18.7,1);
+ await mobile.locator('[data-setting="readingFont"]').click();
+ await expect(mobile.locator('body')).toHaveClass(/reading-font/);
  await mobile.goto(base+'#/apprendre/python-bases/m1/'+lesson.id);
  await expect(mobile.locator('.c-crumb')).toHaveCSS('white-space','normal');
  expect(await mobile.locator('.c-crumb').evaluate(el=>el.scrollWidth<=el.clientWidth)).toBe(true);
@@ -17,8 +22,26 @@ try{
  await expect(mobile.locator('.curr-workspace')).toHaveAttribute('data-tab','read');
  await expect(mobile.locator('.curr-reading-kicker')).toHaveText('Pour commencer');
  await expect(mobile.locator('.curr-reading h2').first()).toHaveText('À la fin, tu sauras…');
- expect(Number.parseFloat(await mobile.locator('.curr-reading').evaluate(el=>getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(17);
+ expect(Number.parseFloat(await mobile.locator('.curr-reading').evaluate(el=>getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(18.6);
+ expect(await mobile.locator('.curr-reading').evaluate(el=>getComputedStyle(el).fontFamily)).toContain('Verdana');
  await expect(mobile.locator('.curr-practice')).toBeHidden();
+ await expect(mobile.locator('.curr-mobile-location')).toHaveText('Module 1 · Leçon 1 sur 5');
+ await expect(mobile.locator('.curr-mobile-tabs')).toHaveCSS('position','sticky');
+ await expect(mobile.locator('.curr-mobile-tabs')).toHaveCSS('top','64px');
+ await mobile.reload();
+ expect(Number.parseFloat(await mobile.locator('.curr-reading').evaluate(el=>getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(18.6);
+ expect(await mobile.locator('.curr-reading').evaluate(el=>getComputedStyle(el).fontFamily)).toContain('Verdana');
+ const lessonUrl=mobile.url();
+ await mobile.locator('.curr-mobile-outline summary').click();
+ await mobile.evaluate(axe.source);
+ const outlineAudit=await mobile.evaluate(()=>axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}}));
+ expect(outlineAudit.violations.map(v=>v.id)).toEqual([]);
+ await mobile.locator('[data-curr-mobile-jump="curr-quiz-title"]').click();
+ expect(mobile.url()).toBe(lessonUrl);
+ await expect(mobile.locator('#curr-quiz-title')).toBeFocused();
+ await expect.poll(()=>mobile.locator('#curr-quiz-title').evaluate(el=>el.getBoundingClientRect().top)).toBeGreaterThanOrEqual(140);
+ await expect.poll(()=>mobile.locator('#curr-quiz-title').evaluate(el=>el.getBoundingClientRect().top)).toBeLessThan(180);
+ await expect(mobile.locator('.curr-mobile-outline')).not.toHaveAttribute('open','');
  const firstContentTop=await mobile.locator('.curr-reading h2').first().evaluate(el=>el.getBoundingClientRect().top);
  const bottomNavigationTop=await mobile.locator('.bottom-nav').evaluate(el=>el.getBoundingClientRect().top);
  expect(firstContentTop).toBeLessThan(bottomNavigationTop);
@@ -26,14 +49,25 @@ try{
  await mobile.locator('.curr-lesson-tools summary').click();
  await expect(mobile.locator('[data-curr="reading-lesson"]')).toBeVisible();
  await mobile.locator('.curr-mobile-tabs [data-curr="code"]').click();
- const pills=mobile.locator('.curr-exercise-pills button');
- await expect(pills).toHaveCount(lesson.exercises.length);
+ const exerciseSelect=mobile.locator('#curr-exercise');
+ expect(await exerciseSelect.evaluate(el=>el.labels[0]?.textContent.trim())).toBe('Choisir un exercice');
+ await expect(mobile.locator('.curr-exercise-pills')).toHaveCount(0);
+ await expect(mobile.locator('[data-curr="stop"]')).toBeHidden();
  if(lesson.exercises.length>1){
-  await pills.nth(1).click();
-  await expect(mobile.locator('#curr-exercise')).toHaveValue('1');
-  await expect(pills.nth(1)).toHaveAttribute('aria-pressed','true');
+  await exerciseSelect.selectOption('1');
+  await expect(exerciseSelect).toHaveValue('1');
+  await expect(exerciseSelect).toBeFocused();
+  await expect(mobile.locator('.curr-practice h2')).toHaveText(lesson.exercises[1].title_fr);
  }
+ await mobile.locator('[data-curr="run"]').click();
+ await expect(mobile.locator('[data-curr="stop"]')).toBeVisible();
+ await mobile.locator('[data-curr="stop"]').click();
+ await expect(mobile.locator('[data-curr="stop"]')).toBeHidden();
  await expect(mobile.locator('.curr-completed-pill')).toHaveCount(0);
+ await mobile.locator('.curr-mobile-outline summary').click();
+ await mobile.locator('[data-curr-mobile-jump="curr-explanation-title"]').click();
+ await expect(mobile.locator('.curr-workspace')).toHaveAttribute('data-tab','read');
+ await expect(mobile.locator('#curr-explanation-title')).toBeFocused();
  await mobile.locator('.curr-mobile-tabs [data-curr="read"]').click();
  await mobile.locator('[data-curr="mark-read"]').click();
  for(const [index,question] of lesson.quiz.entries()){
@@ -57,13 +91,14 @@ try{
  const mobileAudit=await mobile.evaluate(()=>axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}}));
  expect(mobileAudit.violations.map(v=>v.id)).toEqual([]);
  expect(await mobile.evaluate(()=>document.documentElement.scrollWidth>innerWidth)).toBe(false);
- results.push({width:360,lessonPills:true,completionBanner:true,continueAndPause:true,firstContentAboveFold:true,axeViolations:0,horizontalOverflow:false});
+ results.push({width:360,exerciseNavigation:true,stopControl:true,completionBanner:true,continueAndPause:true,firstContentAboveFold:true,axeViolations:0,horizontalOverflow:false});
  await mobileContext.close();
 
  const narrowContext=await browser.newContext({viewport:{width:320,height:640}}),narrow=await narrowContext.newPage();
  await narrow.goto(base+'#/apprendre/python-bases/m1/'+lesson.id);
  await expect(narrow.locator('.curr-workspace')).toHaveAttribute('data-tab','read');
  await expect(narrow.locator('.curr-reading')).toHaveCSS('font-size','17px');
+ await expect(narrow.locator('.curr-mobile-location')).toBeVisible();
  expect(await narrow.locator('.c-crumb').evaluate(el=>el.scrollWidth<=el.clientWidth)).toBe(true);
  expect(await narrow.evaluate(()=>document.documentElement.scrollWidth)).toBe(320);
  await narrow.evaluate(axe.source);

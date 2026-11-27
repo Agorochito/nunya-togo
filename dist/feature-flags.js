@@ -16,6 +16,9 @@ const FEATURES = {
   /** Nunya Aide : assistant IA open source (fonction Supabase « nunya-aide »). */
   aide: true,
 
+  /** Cross-device account and progress sync; keep disabled until launch approvals are complete. */
+  progressSync: false,
+
   /** Show non-IT domains as "bientôt" during the IT-focused launch. */
   otherDomainsComingSoon: true
 };

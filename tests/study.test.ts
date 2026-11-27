@@ -1,5 +1,6 @@
 import {describe,it,expect} from 'vitest';
-import {readFileSync,existsSync} from 'node:fs';
+import {readFileSync,readdirSync} from 'node:fs';
+import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
 const root=new URL('../dist/',import.meta.url);
 const json=(p:string)=>JSON.parse(readFileSync(new URL(p,root),'utf8'));
@@ -7,10 +8,11 @@ const context:any={};vm.createContext(context);
 vm.runInContext(readFileSync(new URL('learning-core.js',root),'utf8')+';globalThis.api={decodeStudyCatalog,matchLearningGuide,studyResourceUrls,studyQuestionResult};',context);
 const api=context.api,guides=json('data/learning_guides.json');
 describe('resource study workspace',()=>{
- it('keeps every real title and direct-load payload when compacting the catalogue',()=>{
-  const original=json('library/index.json'),compact=api.decodeStudyCatalog(json('library/catalog-v2.json'));
+ it('keeps every real title and direct-load payload when compacting the catalogue',async()=>{
+  const original=json('library/index.json'),compact=api.decodeStudyCatalog(json('library/catalog-v2.json')),articles=new Set(readdirSync(new URL('library/articles/',root)));
   expect(compact).toHaveLength(original.length);
-  for(let i=0;i<original.length;i++){const a=original[i],b=compact[i];expect([b.id,b.title,b.s,b.c,b.u,b.f]).toEqual([a.id,a.title,a.s,a.c,a.u,a.f]);const payload=json('library/resources/'+b.id+'.json');expect(payload.resource.id).toBe(b.id);expect(payload.resource.url).toMatch(/^https:\/\//);if(b.f==='article')expect(existsSync(new URL('library/articles/'+b.id+'.json',root))).toBe(true)}
+  for(let i=0;i<original.length;i++){const a=original[i],b=compact[i];expect([b.id,b.title,b.s,b.c,b.u,b.f]).toEqual([a.id,a.title,a.s,a.c,a.u,a.f])}
+  for(let start=0;start<compact.length;start+=128)await Promise.all(compact.slice(start,start+128).map(async b=>{const payload=JSON.parse(await readFile(new URL('library/resources/'+b.id+'.json',root),'utf8'));expect(payload.resource.id).toBe(b.id);expect(payload.resource.url).toMatch(/^https:\/\//);if(b.f==='article')expect(articles.has(b.id+'.json')).toBe(true)}));
  }, 30000);
  it('matches concepts by subject and whole words rather than confusing mole and molecule',()=>{
   const match=(title:string,s:string)=>api.matchLearningGuide({title,s,u:''},guides);

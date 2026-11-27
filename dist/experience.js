@@ -53,7 +53,7 @@ document.addEventListener('input',e=>{if(e.target.id==='catalog-search'){catalog
 document.addEventListener('submit',e=>{if(e.target.id==='profile-form'){const f=new FormData(e.target);const age=f.get('ageBand');setTimeout(()=>{state.profile.ageBand=String(age||'');persist()},0)}},true);
 const oldExport=exportProgress;exportProgress=function(){downloadJSON({format:'nunya-backup-v1',profile:state.profile,done:state.done,activity:state.activity,minutes:state.minutes,lang:state.lang,notes:state.notes,courseAccess:state.courseAccess,placement:state.placement,followedPath:state.followedPath},'nunya-progression-'+dayKey()+'.json');toast('Sauvegarde exportée avec ton carnet et tes progrès.')};
 $('.brand').addEventListener('click',e=>{e.preventDefault();navigate('home')});
-$('#help-btn').insertAdjacentHTML('beforebegin','<button class="help-button feedback-nav" data-action="feedback"><span>♡</span><span>Donner mon avis</span><span>↗</span></button>');
+$('#help-btn').insertAdjacentHTML('beforebegin','<button class="help-button feedback-nav" data-action="feedback"><span data-icon="message"></span><span>Donner mon avis</span></button>');
 window.addEventListener('popstate',routeFromUrl);window.addEventListener('hashchange',routeFromUrl);
 routeFromUrl();
 

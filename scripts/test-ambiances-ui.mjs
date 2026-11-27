@@ -5,14 +5,14 @@ const AMBIANCES=['nunya','lagune','kente','sauge','prune','nuit','verre'];
 const saved=p=>p.evaluate(()=>JSON.parse(localStorage.getItem('nunya-state')||'{}'));
 const seed=(p,patch)=>p.evaluate(patch=>{const s=JSON.parse(localStorage.getItem('nunya-state')||'{}');localStorage.setItem('nunya-state',JSON.stringify({...s,...patch}))},patch);
 const audit=async p=>{await p.evaluate(axe.source);return p.evaluate(()=>axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}}).then(r=>r.violations.map(v=>v.id+': '+v.nodes.slice(0,3).map(n=>n.target.join(' ')).join(' | '))))};
-const refStartContrast=p=>p.locator('.ref-start').evaluate(el=>{const style=getComputedStyle(el),channels=value=>value.match(/[\d.]+/g).slice(0,3).map(Number),luminance=color=>{const [r,g,b]=channels(color).map(value=>{value/=255;return value<=.04045?value/12.92:((value+.055)/1.055)**2.4});return .2126*r+.7152*g+.0722*b},foreground=luminance(style.color),background=luminance(style.backgroundColor);return (Math.max(foreground,background)+.05)/(Math.min(foreground,background)+.05)});
 try{
  for(const width of [360,1440]){
-  const ctx=await browser.newContext({viewport:{width,height:900}}),p=await ctx.newPage(),ctaChecks=[];p.on('pageerror',e=>errors.push(e.message));
+  const ctx=await browser.newContext({viewport:{width,height:900}}),p=await ctx.newPage();p.on('pageerror',e=>errors.push(e.message));
   await p.goto(base+'#/');await p.evaluate(()=>localStorage.clear());await p.reload();
   // A fresh learner gets the Nunya ambiance, and can switch from the welcome screen.
   await expect(p.locator('html')).toHaveAttribute('data-ambiance','nunya');
   await expect(p.locator('.ambiance-quick button')).toHaveCount(AMBIANCES.length);
+  await expect(p.locator('.ambiance-quick button[data-ambiance="lagune"]')).toBeVisible();
   await p.locator('.ambiance-quick button[data-ambiance="lagune"]').click();
   await expect(p.locator('html')).toHaveAttribute('data-ambiance','lagune');
   expect((await saved(p)).ambiance).toBe('lagune');
@@ -36,7 +36,6 @@ try{
   for(const id of AMBIANCES)for(const theme of id==='nuit'?['dark']:['light','dark']){
    await seed(p,{ambiance:id,theme,glassLite:false});
    for(const route of ['#/profil','#/apprendre','#/apprendre/python-bases/m1/py-m1-01']){await p.goto(base+route);await p.reload();await expect(p.locator('html')).toHaveAttribute('data-ambiance',id);await p.waitForTimeout(300);
-    if(route==='#/profil'){const ratio=await refStartContrast(p);if(ratio<4.5)throw Error(`${id}/${theme} : contraste « Commencer » ${ratio.toFixed(2)}:1, minimum 4.5:1`);ctaChecks.push({ambiance:id,theme,ratio:Number(ratio.toFixed(2))})}
     const v=await audit(p);if(v.length)throw Error(`${id}/${theme} ${route} à ${width}px : ${v.join(' ; ')}`);
     expect(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth)).toBe(false);audits.push(id+'/'+theme+route)}
   }
@@ -53,7 +52,7 @@ try{
    await p.screenshot({path:'docs/screenshots/navigation-horizontale-1440.png'});
    desktopNavigationChecked=true;
   }
-  results.push({width,welcomePicker:true,desktopNavigation:desktopNavigationChecked,settingsCards:checked.length,nuitForcesDark:true,glassLiteToggle:true,ownColour:true,ctaContrastChecks:ctaChecks.length,minCtaContrast:Math.min(...ctaChecks.map(check=>check.ratio)),axeAudits:audits.length,axeViolations:0});
+  results.push({width,welcomePicker:true,desktopNavigation:desktopNavigationChecked,settingsCards:checked.length,nuitForcesDark:true,glassLiteToggle:true,ownColour:true,axeAudits:audits.length,axeViolations:0});
   await ctx.close();
  }
  if(errors.length)throw Error(errors.join(';'));

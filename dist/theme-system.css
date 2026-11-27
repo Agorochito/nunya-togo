@@ -1,9 +1,9 @@
 /* One accent, a coordinated neutral scale, and the same component tokens in both modes. */
 body.personalized{background:var(--theme-bg);color:var(--theme-ink)}
 .personalized .workspace,.personalized #main{background:var(--theme-bg);color:var(--theme-ink)}
-.personalized :is(.sidebar,.topbar,.modal,.panel,.stat,.course-card,.resource-card,.sector-tile,.job-path,.syllabus-lesson,.course-collection,.school-subject-grid>button,.exam-band,.download-row,.settings-card){background:var(--theme-surface)!important;color:var(--theme-ink)!important;border-color:var(--theme-line)!important;box-shadow:none}
-.personalized :is(.hero,.catalog-hero,.library-invite,.track-school,.track-future,.school-hero,.placement-invite,.project-invite,.institution-note,.info-banner,.reflection,.review-summary>span,.personal-path-banner,.openlearn-credit,.resource-disclosure,.project-deliverable,.review-notice,.example-output,.offline-note,.sector-evidence,.catalog-bottom-banner){background:var(--theme-surface)!important;color:var(--theme-ink)!important;border-color:var(--theme-line)!important}
-.personalized :is(.course-art,.sector-tile-art,.detail-symbol,.resource-card-top,.course-detail-hero,.sector-detail-head,.floating-card,.onboarding-art){background:var(--theme-raised)!important;color:var(--accent-text)!important;border-color:var(--theme-line)!important}
+.personalized :is(.sidebar,.topbar,.modal,.panel,.stat,.course-card,.resource-card,.sector-tile,.job-path,.syllabus-lesson,.course-collection,.school-subject-grid>button,.exam-band,.download-row,.settings-card){background:var(--theme-surface);color:var(--theme-ink);border-color:var(--theme-line);box-shadow:none}
+.personalized :is(.hero,.catalog-hero,.library-invite,.track-school,.track-future,.school-hero,.placement-invite,.project-invite,.institution-note,.info-banner,.reflection,.review-summary>span,.personal-path-banner,.openlearn-credit,.resource-disclosure,.project-deliverable,.review-notice,.example-output,.offline-note,.sector-evidence,.catalog-bottom-banner){background:var(--theme-surface);color:var(--theme-ink);border-color:var(--theme-line)}
+.personalized :is(.course-art,.sector-tile-art,.detail-symbol,.resource-card-top,.course-detail-hero,.sector-detail-head,.floating-card,.onboarding-art){background:var(--theme-raised);color:var(--accent-text);border-color:var(--theme-line)}
 .personalized :is(h1,h2,h3,h4,.page-title,.breadcrumb strong,.course-body h3 button,.track-choice h2,.hero h2,.catalog-hero h1){color:var(--theme-ink)!important}
 .personalized :is(.page-subtitle,.course-body>p,.stat p,.hero p,.school-hero p,.catalog-hero p,.track-choice p,.library-invite p){color:var(--theme-muted)!important}
 .personalized :is(small,.tag,.course-category,.course-meta,.profile-line,.breadcrumb,.resource-collection,.resource-reader-meta,.brand-sub,.reader-status,.connection-indicator,.count,.art-number,.reader-programme,.sidebar-footer,.nav-label,.output-label,.form-note){color:var(--theme-muted)!important;opacity:1}.personalized .form-note{font-size:var(--fs-1)}
@@ -45,3 +45,25 @@ body.personalized,body.personalized.dark{--bg:var(--theme-bg);--white:var(--them
 .toast:empty{display:none}
 /* Plancher de 12 px aussi pour <small> (taille « smaller » du navigateur). */
 .personalized small{font-size:max(var(--fs-1,12px),.85em)}
+
+/* Readability refinements for shared explanatory copy and profile forms. */
+.modal{max-width:740px}
+.modal p{color:var(--theme-muted,var(--ink));font-size:15px;line-height:1.7}
+.modal .field{color:var(--theme-ink,var(--ink));font-size:15px;line-height:1.45}
+.modal input,.modal select{min-height:50px;border-color:var(--line-strong,var(--theme-line,var(--line)));color:var(--theme-ink,var(--ink));font-size:16px}
+.modal input::placeholder{color:var(--theme-muted,var(--muted));opacity:1}
+.modal .modal-close{display:grid;min-width:44px;min-height:44px;place-items:center;border-radius:50%;background:var(--theme-raised,var(--line));color:var(--theme-ink,var(--ink))}
+.modal #profile-form .form-note{color:var(--theme-muted,var(--ink));font-size:14px;line-height:1.65}
+.modal #profile-form>.form-note:first-of-type{margin:12px 0 18px;padding:12px 14px;border-left:3px solid var(--accent-text);border-radius:8px;background:var(--theme-raised,var(--mint));color:var(--theme-ink,var(--ink))}
+.modal .onboarding-art{display:grid;width:52px;height:52px;place-items:center;margin:0 0 16px;border-radius:16px;background:var(--theme-soft,var(--mint));color:var(--accent-text,var(--green));font-size:28px}
+.modal #profile-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px}
+.modal #profile-form>.field{margin-bottom:0}
+.modal #profile-form>.field:first-of-type,.modal #profile-form>.two-fields,.modal #profile-form>.form-note,.modal #profile-form>button,.modal #profile-form>label:has([name="goal"]){grid-column:1/-1}
+.modal #profile-form .two-fields>.field{margin-bottom:0}
+.modal #profile-form>button.primary{width:100%;min-height:50px;justify-content:center}
+.page-subtitle{font-size:15px;line-height:1.7}
+.form-note{font-size:14px;line-height:1.65}
+.personalized .form-note{font-size:14px}
+.personalized .resource-card p{font-size:14px;line-height:1.65}
+.personalized .catalog-results-line{font-size:14px}
+@media(max-width:700px){.personalized .library-hero>div>p{font-size:14px}.modal #profile-form{grid-template-columns:minmax(0,1fr);gap:12px}.modal #profile-form>.field,.modal #profile-form>.two-fields,.modal #profile-form>.form-note,.modal #profile-form>button{grid-column:1}.modal #profile-form .two-fields{grid-template-columns:minmax(0,1fr)}}

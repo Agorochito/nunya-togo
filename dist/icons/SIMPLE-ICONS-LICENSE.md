@@ -1,5 +1,20 @@
 # CC0 1.0 Universal
 
+The additional brand SVGs added for technology cards are sourced from Simple Icons v16.38.1 (https://github.com/simple-icons/simple-icons). Their artwork is CC0; the names and marks remain trademarks of their respective owners. Java course cards use the OpenJDK mark because the current Simple Icons catalogue does not include a Java mark.
+
+## Upstream logo sources
+
+- CSS: https://github.com/CSS-Next/logo.css/blob/bacc20878227204b283c68a6b935f8279e06b0cd/css.svg
+- JavaScript: https://github.com/voodootikigod/logo.js/blob/1544bdeed6d618a6cfe4f0650d04ab8d9cfa76d9/js.svg
+- React: https://github.com/facebook/create-react-app/blob/282c03f9525fdf8061ffa1ec50dce89296d916bd/test/fixtures/relative-paths/src/logo.svg
+- GNU Bash: https://github.com/odb/official-bash-logo/tree/61eff022f2dad3c7468f5deb4f06652d15f2c143
+- C++: https://github.com/isocpp/logos/tree/64ef037049f87ac74875dbe72695e59118b52186
+- OpenJDK: https://hg.openjdk.java.net/duke/duke/file/ca00f100dafc/vector/Agent.svg
+- PHP: https://php.net/download-logos.php
+- TypeScript: https://www.typescriptlang.org/branding
+- Node.js: https://nodejs.org/en/about/branding
+- Git: https://git-scm.com/community/logos
+
 ## Statement of Purpose
 
 The laws of most jurisdictions throughout the world automatically confer exclusive Copyright and Related Rights (defined below) upon the creator and subsequent owner(s) (each and all, an “owner”) of an original work of authorship and/or a database (each, a “Work”).

@@ -28,6 +28,22 @@
 - anciens affichages et surcharges de progression retirés des modules de cours ; module et CSS ajoutés au précache hors ligne ;
 - validé à 360, 1024 et 1440 px : aucun débordement, zéro violation axe ; progression sous 2 500 px sur ordinateur, y compris avec de nombreux parcours commencés ; vue et style disponibles hors ligne.
 
+**Reprise instantanée (25 novembre 2026).** La carte d’accueil remplace le pourcentage par « Ma prochaine action » : cours, prochaine leçon inachevée, durée issue du programme et état de lecture hors ligne fondé sur la version enregistrée. Le bouton principal mène directement à cette leçon. Si la dernière leçon ouverte est déjà terminée, l’accueil et les liens de « Ma progression » passent à la prochaine leçon inachevée ; une copie hors ligne obsolète est signalée comme à actualiser. Tests navigateur à 360, 768, 1024 et 1440 px : cibles de reprise, durée, copie absente/actuelle/obsolète, débordement et axe validés.
+
+La reprise restaure aussi, localement et par leçon, l’onglet actif ainsi que le défilement de lecture ; les curseurs d’exercice et de quiz déjà sauvegardés restent inchangés. Les anciennes données sans ces repères repartent simplement sur l’onglet « Comprendre » et en haut de page. Une sauvegarde exportée conserve ces repères, sans prétendre restaurer les fichiers hors ligne.
+
+**Séparation des contenus (26 novembre 2026).** La Bibliothèque est recentrée sur les ressources de référence, leurs collections et la recherche ; ses étagères de cours et la liste redondante « Tous les cours Nunya » en sont retirées. Les entrées vers le catalogue de cours guidés (`#/apprendre`) et les parcours métiers (`#/avenir`) sont explicites. L’ancien lien `#/bibliotheque/cours` reste compatible et renvoie désormais au catalogue principal. Les données de progression locales ne sont pas modifiées.
+
+**Disponibilité des contenus (26 novembre 2026).** « Mon avenir » met maintenant en premier les parcours effectivement accessibles, affiche leur nombre depuis le catalogue et précise que certains contenus restent en relecture. Les autres domaines sont regroupés sous un volet secondaire « en préparation ». « Mes cours & examens » identifie explicitement le pilote détaillé de Seconde et distingue la révision partielle de Terminale.
+
+**Finition du héros mobile.** En thème clair, la photo d’accueil ressort davantage sur petit écran grâce à un voile qui s’éclaircit progressivement vers le bas ; le texte reste sur une zone plus protégée. Le thème sombre, le cadrage ordinateur, les actions et l’état de reprise ne changent pas. Validation navigateur à 360, 768, 1 024 et 1 440 px, zéro violation Axe, lint et contrôle CSS réussis.
+
+**États sans activité.** Avant la première leçon, « Ma progression » invite à explorer les cours au lieu d’afficher les compteurs hebdomadaires et les jalons à zéro ; « Révision » présente la même porte d’entrée sans panneaux vides. Les statistiques et tableaux réapparaissent dès qu’une activité de révision ou de progression existe.
+
+**Orientation mobile dans les pages longues.** Dans le catalogue, un menu de domaines reste accessible sous l’en-tête et ouvre la section choisie sans changer de route. Dans une leçon, la barre persistante indique le module et la leçon en cours ; son sommaire mène aux objectifs, à l’explication, au quiz, au récapitulatif et au lexique, y compris depuis l’onglet de pratique.
+
+**Sections d’exercice (26 novembre 2026).** L’audit de la vue mobile a relevé trois commandes redondantes pour choisir un exercice (liste, pastilles numérotées, puis précédent/suivant), ainsi qu’un bouton « Arrêter » affiché au repos. Les pastilles sont retirées au profit de la liste descriptive ; le focus revient à cette liste après sélection, la progression est annoncée, et « Arrêter l’exécution » n’apparaît que pendant un lancement. Parcours, vérification et navigation séquentielle restent inchangés. Validation à 320, 360 et 1 366 px : aucun débordement horizontal ni violation Axe.
+
 ## 0. Les autres chantiers, et leur place dans ce plan
 
 - **Avant tout (Phase 0)** : fichier `.gitattributes` (fins de ligne LF) pour que la construction donne le même résultat sous Windows et macOS ; protection de la branche `main` sur GitHub (PR et contrôles « Quality » obligatoires), à activer par le propriétaire du dépôt.
@@ -206,9 +222,10 @@ Uniquement dans des modules à la demande (`course-catalogue.mjs`, `coding-views
   - médaillons SVG pour les badges, icônes de domaine ;
   - cartes « Bientôt » de Mon avenir regroupées en une seule ligne ;
   - Bibliothèque : le h1 passe avant la promotion.
-- **Ensuite :** encapsuler le CSS en `@layer` au moment de la construction, puis vider `theme-system.css` de ses `!important` groupe par groupe ; supprimer le CSS mort repéré par mesure de couverture.
+- **Ensuite :** retirer les `!important` de `theme-system.css` groupe par groupe, puis supprimer le CSS mort repéré par mesure de couverture.
 - **Risques :** mauvaise lecture culturelle du motif, d'où une co-conception avec des lycéens et un ou une designer togolais ; bruit visuel, d'où une opacité plafonnée ; masquage en `.low-data`.
 - **Critères :** illustrations ≤ 25 Ko au total et précachées ; aucun filtre ni flou ; Verre en version allégée si `deviceMemory ≤ 2`.
+- **Étape technique (26 novembre 2026) :** le bundle CSS principal est encapsulé dans `@layer nunya-base` à la construction ; les feuilles de refonte chargées séparément restent hors couche pour conserver leur priorité. Le choix d’ambiance de première visite est sorti de l’accordéon fermé. Trois groupes de surfaces nettoyés : neuf `!important` retirés (67 → 58). Validation : 78 audits d’ambiance sans violation Axe, accueil vérifié de 360 à 1 440 px, pages scolaires à 360 et 1 440 px, et les huit surfaces du dernier groupe toujours correctement stylées ; bundle et feuille globale à 43 954 / 44 000 octets gzip.
 
 ## 4. Ce qui est volontairement écarté
 

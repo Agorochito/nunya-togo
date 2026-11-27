@@ -23,6 +23,7 @@ Relecteurs togolais à identifier ; calendrier officiel à obtenir ; établissem
 ## Décisions directes ultérieures
 
 - Le propriétaire ne possède aucun projet Supabase et demande de garder la base locale : IndexedDB, profils locaux et sauvegardes ; pas de création de compte fournisseur ni de coût engagé. Supabase reste une option pour plus tard.
+- 25 novembre : l’orientation produit évolue vers une synchronisation inter-appareils facultative, sur demande explicite, sans compte obligatoire pour l’usage normal. Le propriétaire autorise à préparer l’intégration, mais à la laisser désactivée : aucune inscription ni transmission de progression ne doit être proposée avant la validation des obligations de confidentialité, de l’hébergement et de la configuration Auth. La base Supabase et ses tables RLS existent déjà ; ce feu vert ne vaut pas autorisation d’activer l’envoi de données.
 - L’éditeur de code doit être dans les cours de programmation et les articles concernés. Suppression de l’entrée « atelier de code » à l’échelle du site ; résultat affiché dans la leçon.
 - BAC II : recherche élargie au portail des compositions régionales et à l’Office du Bac. 28 documents de Terminale trouvés dans le dossier officiel régional, dont des corrigés. Leur nature reste visible ; ils ne sont pas présentés comme des annales nationales.
 

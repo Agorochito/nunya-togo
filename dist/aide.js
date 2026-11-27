@@ -14,7 +14,7 @@ document.addEventListener('click',e=>{
 });
 
 /* Points d’entrée : bouton en haut de chaque page, carte sur la page Aide, appels discrets dans les leçons. */
-const aideNavPrevious=aNav;aNav=function(){aideNavPrevious();if(aideEnabled()&&!$('#aide-btn'))$('#language-btn')?.insertAdjacentHTML('beforebegin',`<button type="button" class="aide-top" id="aide-btn" data-aide-open aria-label="Poser une question à Nunya Aide">${aideIcon}<span>Nunya Aide</span></button>`)};
+const aideNavPrevious=aNav;aNav=function(){aideNavPrevious();if(aideEnabled()&&!$('#aide-btn'))$('#language-btn')?.insertAdjacentHTML('beforebegin',`<button type="button" class="aide-top" id="aide-btn" data-aide-open aria-label="Poser une question à Nunya Aide">${aideIcon}<span>Nunya Aide</span></button>`);const help=$('#help-btn');if(help)help.onclick=()=>{if(!aideEnabled()){aGo('#/aide');return}aideLoad().then(panel=>panel.open(help,'')).catch(()=>toast('Nunya Aide ne peut pas être chargé. Vérifie ta connexion et réessaie.'))}};
 const aideHelpPrevious=aHelp;aHelp=function(){const html=aideHelpPrevious();return aideEnabled()?html.replace('</header>','</header><section class="curr-entry aide-entry"><div><h2>Nunya Aide</h2><p>Une notion te semble floue ? Nunya Aide t’explique autrement et te donne des indices.</p></div><button type="button" class="primary" data-aide-open>Poser une question</button></section>'):html};
 function aideDecorate(){
  if(!aideEnabled()||aRoute.kind!=='apprendre'||!aRoute.stepId)return;
